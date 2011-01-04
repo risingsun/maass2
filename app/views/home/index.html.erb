@@ -1,0 +1,11 @@
+<center>
+<h1> Welcome to Mansinghites'Alumni Association </h1>
+</center>
+
+<% if user_signed_in? %>
+   <%= link_to "Sign out", destroy_user_session_path %>
+   <%#= link_to "Edit Account", edit_account_path %>
+ <%else%>
+   <%= link_to "Sign In", new_user_session_path %>
+   <%= link_to "Sign Up", new_user_registration_path %>
+<% end %>
