@@ -8,5 +8,5 @@ Feature: Sign In
     And I am a valid user
     And I sign in with valid data
     Then I should be on the home page
-    And show me the page
+   
     

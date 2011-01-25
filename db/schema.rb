@@ -10,7 +10,57 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110104100525) do
+ActiveRecord::Schema.define(:version => 20110125111136) do
+
+  create_table "educations", :force => true do |t|
+    t.string   "profile_id"
+    t.string   "institution"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "education_from_year"
+    t.integer  "education_to_year"
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.integer  "user_id",                    :null => false
+    t.string   "title"
+    t.string   "blood_group"
+    t.string   "house_name"
+    t.string   "date_of_birth"
+    t.string   "relationship_status"
+    t.string   "aniversery_date"
+    t.string   "spouse_name"
+    t.string   "professional_qualification"
+    t.text     "about_me"
+    t.text     "activities"
+    t.string   "location"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "state"
+    t.string   "landline"
+    t.string   "mobile"
+    t.string   "status_message"
+    t.string   "website"
+    t.string   "blog"
+    t.string   "flicker_id"
+    t.string   "linkedin_id"
+    t.string   "twitter_id"
+    t.string   "aim_id"
+    t.string   "msn_id"
+    t.string   "yahoo_id"
+    t.string   "gtalk_id"
+    t.string   "skype_id"
+    t.string   "delicious_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -38,5 +88,16 @@ ActiveRecord::Schema.define(:version => 20110104100525) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "works", :force => true do |t|
+    t.string   "profile_id"
+    t.string   "occupation"
+    t.string   "industry"
+    t.string   "company_name"
+    t.string   "company_website"
+    t.string   "job_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

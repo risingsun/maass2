@@ -1,8 +1,12 @@
 Maass2::Application.routes.draw do
-  get "home/index"
+  get "profiles/edit"
 
   devise_for :users
+
+  resources :profiles
+
   root :to=>"home#index"
+  match '/edit',  :to => 'profiles#edit'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

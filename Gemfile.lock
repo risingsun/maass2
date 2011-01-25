@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: e23d7f51aaaa2ac70f96e7741892adb3272d02b8
+  specs:
+    paperclip (2.3.8)
+      activerecord
+      activesupport
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -48,6 +56,7 @@ GEM
     celerity (0.8.6)
     childprocess (0.1.6)
       ffi (~> 0.6.3)
+    columnize (0.3.2)
     configuration (1.2.0)
     cucumber (0.10.0)
       builder (>= 2.1.2)
@@ -90,11 +99,15 @@ GEM
     hpricot (0.8.3)
     humanizer (2.4.1)
     i18n (0.5.0)
+    jquery-rails (0.2.6)
+      rails (~> 3.0)
+      thor (~> 0.14.4)
     json (1.4.6)
     json_pure (1.4.6)
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
+    linecache (0.43)
     mail (2.2.13)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -103,9 +116,6 @@ GEM
     mime-types (1.16)
     mysql2 (0.2.6)
     nokogiri (1.4.4)
-    paperclip (2.3.8)
-      activerecord
-      activesupport
     pickle (0.4.4)
       cucumber (>= 0.8)
       rake
@@ -144,6 +154,11 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.4.0)
+    ruby-debug (0.10.4)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.4.0)
+    ruby-debug-base (0.10.4)
+      linecache (>= 0.3)
     ruby_parser (2.0.5)
       sexp_processor (~> 3.0)
     rubyzip (0.9.4)
@@ -184,16 +199,19 @@ DEPENDENCIES
   devise_invitable
   factory_girl_rails
   faker
-  formtastic (~> 1.1.0)
+  formtastic
   haml-rails
   hpricot
   humanizer
+  jquery-rails (>= 0.2.6)
   launchy
   mysql2
-  paperclip
+  paperclip!
   pickle
   rails (= 3.0.3)
+  rspec
   rspec-rails
+  ruby-debug
   ruby_parser
   webrat
   will_paginate

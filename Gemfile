@@ -8,11 +8,12 @@ gem 'rails', '3.0.3'
 group :development, :test do
   gem 'hpricot'
   gem 'ruby_parser'
+  gem 'rspec'
   gem 'webrat'
   gem 'faker'
 
   gem 'annotate'
-  gem "rspec-rails"
+  gem 'rspec-rails'
   gem "autotest"
   gem 'capybara'
   gem 'database_cleaner'
@@ -21,20 +22,25 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'pickle'
+  gem 'ruby-debug'
 end
 
 gem 'mysql2'
 gem 'haml-rails'
 
 gem 'will_paginate'
-gem 'formtastic', '~> 1.1.0'
+gem 'formtastic'
 
 gem 'devise'
 gem 'devise_invitable'
 gem 'humanizer'
 gem 'cancan'
 
-gem 'paperclip'
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+gem 'jquery-rails', '>= 0.2.6'
+
+
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

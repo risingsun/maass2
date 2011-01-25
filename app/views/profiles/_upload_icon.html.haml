@@ -1,0 +1,5 @@
+%h2 Upload icon
+= semantic_form_for @profile,:html => { :multipart => true } do |f|
+  = f.inputs do
+    = f.input :avatar, :label => "Upload your Icon (<=5Mb)"
+    = f.commit_button :label => "Update"
