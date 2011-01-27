@@ -1,0 +1,31 @@
+<h2> Permissions </h2>
+<%=  semantic_form_for @account do |a| %>
+<%=  a.semantic_fields_for :permission do |p| %>
+  <table name = 'permission_table'>
+    <tr>
+      <td></td>
+      <td> <%= p.label "My_Self" %> </td>
+      <td> <%= p.label "My_Friends" %> </td>
+      <td> <%= p.label "Everyone" %> </td>
+    </tr>
+    
+   <% User::PERMISSION_FIELDS.each { |x| %>
+    <tr>
+      <td><%= p.label x %></td>
+      <td> <%=  p.radio_button x, "My Self", :checked => true  %> </td>
+      <td> <%=  p.radio_button x, "My Friends" %> </td>
+      <td> <%=  p.radio_button x, "Everyone" %> </td>
+
+      <%}%>
+    </tr>
+  </table>
+ <%=  a.commit_button 'Update permissions' %>
+<%  end %>
+<%  end %>
+ 
+
+
+
+
+
+    

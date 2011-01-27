@@ -10,19 +10,69 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110125111136) do
+ActiveRecord::Schema.define(:version => 20110127061043) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "user_id"
+    t.string   "default_permission"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "educations", :force => true do |t|
     t.string   "profile_id"
+    t.string   "education_from_year"
+    t.string   "education_to_year"
     t.string   "institution"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "education_from_year"
-    t.integer  "education_to_year"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.string   "account_id"
+    t.string   "news_notification"
+    t.string   "event_notification"
+    t.string   "message_notification"
+    t.string   "blog_comment_notification"
+    t.string   "profile_comment_notification"
+    t.string   "follow_notification"
+    t.string   "delete_friend_notification"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permissions", :force => true do |t|
+    t.string   "account_id"
+    t.string   "website"
+    t.string   "blog"
+    t.string   "about_me"
+    t.string   "gtalk_name"
+    t.string   "location"
+    t.string   "email"
+    t.string   "date_of_birth"
+    t.string   "anniversary_date"
+    t.string   "relationship_status"
+    t.string   "spouse_name"
+    t.string   "gender"
+    t.string   "activities"
+    t.string   "yahoo_name"
+    t.string   "skype_name"
+    t.string   "educations"
+    t.string   "work_informations"
+    t.string   "delicious_name"
+    t.string   "twitter_username"
+    t.string   "msn_username"
+    t.string   "linkedin_name"
+    t.string   "address"
+    t.string   "landline"
+    t.string   "mobile"
+    t.string   "marker"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "profiles", :force => true do |t|
-    t.integer  "user_id",                    :null => false
+    t.integer  "user_id"
     t.string   "title"
     t.string   "blood_group"
     t.string   "house_name"
@@ -42,7 +92,15 @@ ActiveRecord::Schema.define(:version => 20110125111136) do
     t.string   "state"
     t.string   "landline"
     t.string   "mobile"
+    t.string   "education_from_year"
+    t.string   "education_to_year"
+    t.string   "university"
     t.string   "status_message"
+    t.string   "occupation"
+    t.string   "industry"
+    t.string   "company_name"
+    t.string   "company_website"
+    t.string   "job_description"
     t.string   "website"
     t.string   "blog"
     t.string   "flicker_id"

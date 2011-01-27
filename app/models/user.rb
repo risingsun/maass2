@@ -1,24 +1,3 @@
-class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
-
-  has_one :profile
-  SEX = ["Male","Female"]
-  GROUP=["Teacher","Guest"]+(1992..Date.today.year+1).to_a
-  EDU_YEAR=(1990..Date.today.year+5).to_a
-
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :login_name, :first_name, :last_name, :middle_name, :maiden_last_name, :gender, :groups
-  validates :login_name, :presence => true,
-                         :length   => { :maximum => 20 },
-                         :uniqueness => true
-  validates :first_name, :presence => true,
-                         :length   => { :maximum => 20 }
-  validates :last_name, :length   => { :maximum => 20 }
-  validates :middle_name, :length   => { :maximum => 20 }
-  validates :maiden_last_name, :length   => { :maximum => 20 }
-end
 # == Schema Information
 #
 # Table name: users
@@ -42,8 +21,46 @@ end
 #  last_name            :string(255)
 #  middle_name          :string(255)
 #  maiden_last_name     :string(255)
-#  groups               :string(255)
+#  group                :string(255)
 #  gender               :string(255)
 #  question             :string(255)
 #
 
+class User < ActiveRecord::Base
+
+
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable, :lockable and :timeoutable
+
+  has_one :account
+  has_one :permission
+
+
+
+ has_one :profile
+
+  SEX = ["Male","Female"]
+  GROUP=["Teacher","Guest"]+(1992..Date.today.year+1).to_a
+  EDU_YEAR=(1990..Date.today.year+5).to_a
+  PERMISSION_FIELDS = %w(website blog about_me gtalk_name location email
+                         date_of_birth anniversary_date relationship_status
+                         spouse_name gender activities yahoo_name skype_name
+                         educations work_informations delicious_name
+                         twitter_username msn_username linkedin_name
+                         address landline mobile marker)
+  NOTIFICATION_FIELDS = %w(news_notification event_notification message_notification blog_comment_notification
+                          profile_comment_notification follow_notification delete_friend_notification )
+
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :login_name, :first_name, :last_name, :middle_name, :maiden_last_name, :gender, :group
+
+  validates :login_name, :presence => true,
+                         :length => { :maximum => 20 },
+                         :uniqueness => true
+  validates :first_name, :presence => true,
+                         :length => { :maximum => 20 }
+  validates :last_name, :length => { :maximum => 20 }
+  validates :maiden_last_name, :length => { :maximum => 20 }
+end

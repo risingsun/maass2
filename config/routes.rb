@@ -1,12 +1,24 @@
 Maass2::Application.routes.draw do
-  get "profiles/edit"
 
-  devise_for :users
 
+  
+
+  devise_for :users, :controllers => {:registrations => "users"}
+
+  resources :notifications
+  resources :permissions
+  resources :accounts
+  resources :users
   resources :profiles
+  get 'accounts/update_default_permission'
 
   root :to=>"home#index"
+
+
+#  match '/permissions', :to => 'accounts#permissions'
+
   match '/edit',  :to => 'profiles#edit'
+#  match '/user/:user_id/profile/:id',  :to => 'profiles#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -63,5 +75,5 @@ Maass2::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+   match ':controller(/:action(/:id(.:format)))'
 end
