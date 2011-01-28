@@ -49,6 +49,7 @@ doc\:clobber_plugins=
 doc\:clobber_rails=
 doc\:guides=
 doc\:plugins=
+doc\:plugins\:cartographer=
 doc\:plugins\:country_select=
 doc\:plugins\:dynamic_form=
 doc\:rails=

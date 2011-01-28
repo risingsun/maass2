@@ -1,0 +1,22 @@
+%h2 Notification
+= semantic_form_for @account do |a|
+  = a.semantic_fields_for :notification do |p|
+    %table{:name => "notification_table"}
+      %tr
+        %td
+          = p.label "Notification"
+        %td
+          = p.label "Email Notification"
+        %td
+          = p.label "Message Notification"
+      - User::NOTIFICATION_FIELDS.each do |x|
+        %tr
+          %td= p.label x
+          - f=@account.notification.send("#{x}")
+          %td
+            = p.check_box(x,{:multiple => true, :checked => (true if ['e', 'em'].include?(f))},'e',nil)
+          - if(x!='message_notification' && x!='blog_comment_notification' && x!='profile_comment_notification')
+            %td= p.check_box x,{:multiple => true, :checked => (true if ['m', 'em'].include?(f))}, 'm', nil
+          - else
+            %td -
+    = a.commit_button 'Update_Notification'

@@ -4,7 +4,7 @@ development:
   database: maass2_development
   pool: 5
   username: root
-  password: 
+  password: kirti
   timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
@@ -14,15 +14,15 @@ test: &test
   adapter: mysql2
   database: maass2_test
   username: root
-  password: 
+  password: kirti
   pool: 5
   timeout: 5000
 
 production:
   adapter: mysql2
-  database: maass2_production
+  database: maass2_development
   username: root
-  password: 
+  password: kirti
   pool: 5
   timeout: 5000
 

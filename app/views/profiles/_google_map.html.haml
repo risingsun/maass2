@@ -1,0 +1,4 @@
+%h2 Map Location
+= raw Cartographer::Header.new.to_s
+= raw @map.to_html
+#map{:style => "width:600px;height:400px;"} [Map]

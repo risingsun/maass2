@@ -5,6 +5,7 @@ jQuery(document).ready(function()
     showOn: "both",
     buttonImage: "/images/calendar.gif",
 //    buttonImageOnly: true,
+    yearRange: "-50:+0",
     changeMonth: true,
 	changeYear: true,
     nextText: "",
