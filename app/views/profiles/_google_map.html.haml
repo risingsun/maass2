@@ -1,4 +1,12 @@
-%h2 Map Location
-= raw Cartographer::Header.new.to_s
-= raw @map.to_html
-#map{:style => "width:600px;height:400px;"} [Map]
+%h2 Location
+= semantic_form_for @profile do |p|
+  =@profile.marker.id.nil?
+  -@profile.marker.id.nil? ? new_map : edit_map(@profile.marker)
+  = raw GMap.header()
+  = raw @map.to_html
+  = raw @map.div(:width => 460, :height => 400)
+  =p.semantic_fields_for(:marker) do |m|
+    = m.text_field(:lat,:id=>'map_lat')
+    = m.text_field(:lng,:id=>'map_lng')
+    = m.text_field(:zoom,:id=>'map_zoom')
+  = p.commit_button :label => "Update"
