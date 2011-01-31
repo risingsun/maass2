@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
     @profile =  current_user.profile || current_user.build_profile
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
-    @marker = @profile.marker || @profile.build_marker
+   
  end
 
   def update
