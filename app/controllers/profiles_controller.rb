@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-     @map = initialize_map()
+    @map = initialize_map()
     @map.zoom = :bound
     @icon_org = Cartographer::Gicon.new(:name => "org",
           :image_url => '/images/marker.png',
@@ -28,11 +28,11 @@ class ProfilesController < ApplicationController
           :info_anchor_y => 1)
     # Add the icons to map
     @map.icons <<  @icon_org
-    @marker2 = Cartographer::Gmarker.new(:name=> "org12", :marker_type => "Organization",
-              :position => [28.614309,77.201353],
+    @marker1 = Cartographer::Gmarker.new(:name=> "org11", :marker_type => "Organization",
+              :position => [27.173006,78.042086],
               :info_window_url => "/welcome/sample_ajax",
               :icon => @icon_org)
-    @map.markers << @marker2
+    @map.markers << @marker1
     @profile =  current_user.profile || current_user.build_profile
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
@@ -90,6 +90,7 @@ class ProfilesController < ApplicationController
                   :opt_textColor => 'black'
               }
       cluster_icons << org
+
      @map.marker_clusterer_icons = cluster_icons
      return @map
    end

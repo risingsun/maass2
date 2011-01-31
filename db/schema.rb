@@ -10,11 +10,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110127061043) do
+ActiveRecord::Schema.define(:version => 20110131064130) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
     t.string   "default_permission"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "blogs", :force => true do |t|
+    t.string   "profile_id"
+    t.string   "title"
+    t.text     "body"
+    t.boolean  "is_sent"
+    t.integer  "comments_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.string   "profile_id"
+    t.text     "comment"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.boolean  "is_denied"
+    t.boolean  "is_reviewed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
