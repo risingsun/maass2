@@ -1,2 +1,7 @@
-%h2 Your Post
-= @blogs.body
+%p.notice= notice
+%p
+  %b Title:
+  = @blog.title
+%p
+  %b Body:
+  = @blog.body.html_safe

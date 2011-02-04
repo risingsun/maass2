@@ -81,6 +81,10 @@ describe User do
     user_with_duplicate_login_name.should_not be_valid
   end
 
+#  it { should has_one(:account) }
+#  it { should has_one(:permission) }
+#  it { should has_one(:profile) }
+   
 end
 
 # == Schema Information

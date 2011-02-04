@@ -1,6 +1,4 @@
-%h2 New Post
-= semantic_form_for @blogs do |b|
-  = b.inputs do
-    = b.input :title
-    = b.input :body
-    = b.commit_button :label => "Save it"
+%h1 New Blog
+- if params[:preview_button]
+  = render 'preview' ,:local =>{:blog =>@blog}
+= render 'form'

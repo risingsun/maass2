@@ -1,12 +1,13 @@
+var $j = jQuery.noConflict();
 jQuery(document).ready(function()
 {
-$("#cancel").click(function(){
-    $("#status").hide();
-    $("#status_show").show();
+$j("#cancel").click(function(){
+    $j("#status").hide();
+    $j("#status_show").show();
   });
 
-  $("#status_show").click(function(){
-    $("#status").show();
-    $("#status_show").hide();
+  $j("#status_show").click(function(){
+    $j("#status").show();
+    $j("#status_show").hide();
   });
 })

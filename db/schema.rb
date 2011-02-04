@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110131073645) do
+ActiveRecord::Schema.define(:version => 20110204121349) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(:version => 20110131073645) do
     t.string   "profile_id"
     t.string   "title"
     t.text     "body"
-    t.boolean  "is_sent"
-    t.integer  "comments_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_sent"
+    t.string   "cached_tag_list"
   end
 
   create_table "comments", :force => true do |t|
@@ -140,6 +140,20 @@ ActiveRecord::Schema.define(:version => 20110131073645) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.string   "tag_id"
+    t.string   "taggable_id"
+    t.string   "taggable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

@@ -23,6 +23,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'ruby-debug'
+  gem 'tiny_mce'
 end
 
 gem 'mysql2'
@@ -38,6 +39,8 @@ gem 'cancan'
 
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'jquery-rails', '>= 0.2.6'
+
+
 
 
 
