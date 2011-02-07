@@ -16,9 +16,8 @@ class ProfilesController < ApplicationController
     @profile =  current_user.profile || current_user.build_profile
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
-#    @marker = @profile.marker || @profile.build_marker
-    
-  end
+   
+ end
 
   def update
     @profile = current_user.profile
@@ -26,7 +25,7 @@ class ProfilesController < ApplicationController
       flash[:notice] = "Profile updated."
       redirect_to :edit
     else
-      flash[:notice] = "ERRORRRRRRRRRRRRRR"
+      flash[:notice] = "ERROR"
       render 'edit'
     end
   end

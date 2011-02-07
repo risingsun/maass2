@@ -1,0 +1,13 @@
+%h1 Listing Blogs
+- @blog.each do |blog|
+  %table
+  %div{:style => "width:'250px'"}
+  %tr
+    %td= blog.title
+    %td{:align => "right", :width => "100px"}
+      = link_to image_tag('edit.png', :border =>0), edit_blog_path(blog)
+      = link_to image_tag('delete.png',:border =>0), blog, :method => :delete
+  %tr
+    %td{:colspan => "2"}= blog.body.html_safe
+%br/
+= link_to 'New blog', new_blog_path

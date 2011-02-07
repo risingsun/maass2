@@ -1,0 +1,14 @@
+%h2 Email
+= semantic_form_for(@user,:as => @user, :url => registration_path(@user), :html => { :method => :put }) do |f|
+  %table
+    %tr
+      %td
+        = "current email"
+      %td
+        = @user.email
+    %tr
+      %td
+        = f.label :Request_New_Email
+      %td
+        = f.text_field :email , :value => ""
+  = f.commit_button :label => "Email Change"

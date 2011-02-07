@@ -21,15 +21,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :state
       t.string :landline
       t.string :mobile
-      t.string :education_from_year
-      t.string :education_to_year
-      t.string :university
       t.string :status_message
-      t.string :occupation
-      t.string :industry
-      t.string :company_name
-      t.string :company_website
-      t.string :job_description
       t.string :website
       t.string :blog
       t.string :flicker_id

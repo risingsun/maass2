@@ -1,8 +1,10 @@
 function create_draggable_editable_marker()
 {
   // intialize the values in form fields to 0
-  document.getElementById("map_lng").value = 0;
-  document.getElementById("map_lat").value = 0;
+  document.getElementById("map_lng").value =75.849609375;
+  document.getElementById("map_lat").value =26.6670958011;
+
+  document.getElementById("map_zoom").value = 4;
   var currMarker;
   // if the user click on an existing marker remove it
   GEvent.addListener(map, "click", function(marker, point) {

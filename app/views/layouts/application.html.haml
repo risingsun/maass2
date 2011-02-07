@@ -1,0 +1,18 @@
+%html
+  %head
+    %title Maass
+    = stylesheet_link_tag 'jquery-ui-1.8.7.custom','formtastic','formtastic_changes'
+    = javascript_include_tag 'jquery-1.4.4.min','jquery-ui-1.8.7.custom.min', 'application', 'status_button','clusterer','controls','dragdrop','effects','geoRssOverlay','markerGroup','prototype','rails','wms-gs','ym4r-gm','rs_maps','widgEditor'
+    = include_tiny_mce_if_needed
+    = csrf_meta_tag
+  - if user_signed_in?
+    = link_to "Sign out", destroy_user_session_path
+    = link_to "Edit Profile", edit_path
+    = link_to "Edit Account", edit_account_path(current_user.id)
+    = link_to "My Blogs", blogs_path
+  - else
+    = link_to "Sign In", new_user_session_path
+    = link_to "Sign Up", new_user_registration_path
+  %body
+    = yield
+    = flash[:notice]

@@ -10,11 +10,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110131073645) do
+ActiveRecord::Schema.define(:version => 20110204121349) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
     t.string   "default_permission"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "blogs", :force => true do |t|
+    t.string   "profile_id"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "is_sent"
+    t.string   "cached_tag_list"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.string   "profile_id"
+    t.text     "comment"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.boolean  "is_denied"
+    t.boolean  "is_reviewed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,15 +122,7 @@ ActiveRecord::Schema.define(:version => 20110131073645) do
     t.string   "state"
     t.string   "landline"
     t.string   "mobile"
-    t.string   "education_from_year"
-    t.string   "education_to_year"
-    t.string   "university"
     t.string   "status_message"
-    t.string   "occupation"
-    t.string   "industry"
-    t.string   "company_name"
-    t.string   "company_website"
-    t.string   "job_description"
     t.string   "website"
     t.string   "blog"
     t.string   "flicker_id"
@@ -127,6 +140,20 @@ ActiveRecord::Schema.define(:version => 20110131073645) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.string   "tag_id"
+    t.string   "taggable_id"
+    t.string   "taggable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
