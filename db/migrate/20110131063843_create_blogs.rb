@@ -3,7 +3,7 @@ class CreateBlogs < ActiveRecord::Migration
     create_table :blogs do |t|
       t.string :profile_id
       t.string :title
-      t.text :body
+      t.string :body
       t.boolean :is_sent
       t.integer :comments_count
 
