@@ -11,9 +11,10 @@ Maass2::Application.routes.draw do
   resources :users
   resources :profiles
   resources :blogs
+  resources :homes
   get 'accounts/update_default_permission'
 
-  root :to=>"home#index"
+  root :to=>"homes#index"
 
 
 #  match '/permissions', :to => 'accounts#permissions'

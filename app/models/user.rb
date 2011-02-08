@@ -47,11 +47,12 @@ class User < ActiveRecord::Base
                          address landline mobile marker)
   NOTIFICATION_FIELDS = %w(news_notification event_notification message_notification blog_comment_notification
                           profile_comment_notification follow_notification delete_friend_notification )
+  PERSONAL_INFO= %w(house_name blood_group date_of_birth address_line1 landline mobile relationship_status spouse_name professional_qualification)
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :login_name, :first_name, :last_name, :middle_name, :maiden_last_name, :gender, :group
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :login_name, :first_name, :last_name, :middle_name, :maiden_last_name, :gender, :groups
 
   validates :login_name, :presence => true,
                          :length => { :maximum => 20 },
