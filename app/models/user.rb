@@ -29,7 +29,7 @@
 class User < ActiveRecord::Base
 
   include Humanizer
-  
+
   has_one :account
   has_one :permission
   has_one :profile
@@ -48,7 +48,6 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login_name, :first_name, :last_name, :middle_name, :maiden_last_name, :gender, :group
   attr_accessible :humanizer_answer, :humanizer_question_id
   require_human_on :create
@@ -60,4 +59,5 @@ class User < ActiveRecord::Base
   validates :middle_name, :length => { :maximum => 20 }
   validates :last_name, :length => { :maximum => 20 }
   validates :maiden_last_name, :length => { :maximum => 20 }
+
 end

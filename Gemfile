@@ -9,6 +9,7 @@ group :development, :test do
   gem 'hpricot'
   gem 'ruby_parser'
   gem 'rspec'
+  gem 'rspec-core'
   gem 'webrat'
   gem 'faker'
 

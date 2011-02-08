@@ -15,8 +15,4 @@ class UsersController < Devise::RegistrationsController
       end
   end
 
-  def create
-    super
-  end
-
 end
