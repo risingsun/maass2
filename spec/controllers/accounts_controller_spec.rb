@@ -36,6 +36,26 @@ describe AccountsController do
       assigns[:account].should be_an_instance_of(Account)
       assigns[:account].should_not be_a_new_record
       assigns[:account].should_not be_nil
+      flash[:notice].should == "Account Successfully Updated."
+      assigns[:account].should redirect_to(edit_account_path(@current_user))
     end
   end
+
+  describe "GET 'update default permission'" do
+    it "should set the default permission selected by user" do
+    get 'update_default_permission'
+    assigns[:account].should be_an_instance_of(Account)
+    assigns[:account].should_not be_a_new_record
+    assigns[:account].should_not be_nil
+    if @account.save do
+      flash[:notice].should == "Account Successfully Updated."
+      User::PERMISSION_FIELDS.each do |x|
+      @account.permission.update_attributes({x => @account.default_permission})
+      end
+    end
+    end
+    assigns[:account].should redirect_to(edit_account_path(@current_user))
+   end
+  end
 end
+

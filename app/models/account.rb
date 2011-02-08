@@ -6,5 +6,4 @@ class Account < ActiveRecord::Base
   accepts_nested_attributes_for :permission
   accepts_nested_attributes_for :notification
 
-
 end
