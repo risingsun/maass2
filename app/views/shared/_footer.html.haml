@@ -1,0 +1,17 @@
+- cache 'footer' do
+  .footer_text_top= SITE_DESC
+  .footer_text_left
+    = raw SiteContent.get_content('footer','footer_links' )
+  .footer_text_right
+    %em
+      Rising Sun &copy; #{Time.now.year}
+      = link_to image_tag('RisingSun_logo.gif'), "http://www.risingsuntech.net"
+  - if Rails.env == 'production' && !GOOGLE_ANALYTICS_TRACKER.blank?
+    :javascript
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          :javascript
+      var pageTracker = _gat._getTracker("#{GOOGLE_ANALYTICS_TRACKER}");
+      pageTracker._initData();
+      pageTracker._trackPageview();
+      

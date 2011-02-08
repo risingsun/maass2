@@ -215,6 +215,7 @@ DEPENDENCIES
   pickle
   rails (= 3.0.3)
   rspec
+  rspec-core
   rspec-rails
   ruby-debug
   ruby_parser

@@ -23,27 +23,3 @@ Feature: Sign Up
     And no user profile exists
     When I follow "Edit Profile"
     Then show me the page
-#    Then I fill in the following:
-#        |Status     | hello |
-#    And I press "Update"
-#    And show me the page
-#
-##  Scenario: Update Status
-##    Given I am on the edit profile page
-##    And I fill in the following:
-##        |Status     | hello |
-##    When I press "Update"
-##    And show me the page
-#
-#    Scenario: Update General info
-#      Given I am a valid user
-#      And I sign in with valid data
-#      When I follow "Edit Profile"
-#      Then I fill in the following:
-#         |Login name  | kirti |
-#         |Title       | miss  |
-#         |First name  | kirti |
-#         |Middle name | singh |
-#         |Last name   | parihar|
-#      And I press "Update"
-#      And show me the page

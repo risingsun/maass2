@@ -14,10 +14,10 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile =  current_user.profile || current_user.build_profile
+    @profile.save
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
-   
- end
+  end
 
   def update
     @profile = current_user.profile

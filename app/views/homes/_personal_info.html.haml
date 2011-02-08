@@ -1,0 +1,5 @@
+%h3 Personal Info
+- User::PERSONAL_INFO.each do |x|
+  =x + ":"
+  =@p.send("#{x}")
+  %br

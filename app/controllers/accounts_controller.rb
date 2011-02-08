@@ -13,30 +13,30 @@ class AccountsController < ApplicationController
      @account = Account.find(params[:id])
      @account.attributes = params[:account]
 
-    if @account.save
-      flash[:notice] = "Account updated successfully"
+
+
+     if @account.save
+      flash[:notice] = "Account Successfully Updated."
       redirect_to edit_account_path(current_user)
-    else
-      flash[:notice] = "Account is not created."
-      render 'edit'
     end
 
   end
 
-  def update_default_permission
+
+
+   def update_default_permission
     @account = Account.find(current_user.account)
     @account.attributes = params[:account]
 
     if @account.save
-      flash[:notice] = "Account created.........."
+      flash[:notice] = "Account Successfully Updated."
       User::PERMISSION_FIELDS.each do |x|
         @account.permission.update_attributes({x => @account.default_permission})
       end
      else
-         flash[:notice] = "Account was notcreated.........."
+         flash[:notice] = "Update Failed."
      end
     redirect_to edit_account_path(current_user)
   end
-
 
 end

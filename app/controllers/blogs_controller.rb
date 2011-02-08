@@ -72,9 +72,5 @@ class BlogsController < ApplicationController
    def preview
      @blog=Blog.new(params[:blog])
    end
-
-   def tag_cloud
-      @tags = Post.tag_counts
-   end
-
+  
 end
