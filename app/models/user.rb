@@ -24,7 +24,6 @@
 #  group                :string(255)
 #  gender               :string(255)
 #  question             :string(255)
-#
 
 class User < ActiveRecord::Base
 
@@ -48,7 +47,8 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :login_name, :first_name, :last_name, :middle_name, :maiden_last_name, :gender, :group
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :login_name, :first_name, :last_name,
+                  :middle_name, :maiden_last_name, :gender, :group
   attr_accessible :humanizer_answer, :humanizer_question_id
   require_human_on :create
   validates :login_name, :presence => true,
