@@ -9,6 +9,8 @@
   = link_to "Edit Profile", edit_path
   |
   = link_to "Edit Account", edit_account_path(current_user.id)
+  | 
+  = link_to "My Polls", new_poll_path
   |
   = link_to "Sign out", destroy_user_session_path
   |

@@ -1,8 +1,5 @@
 Maass2::Application.routes.draw do
 
-
-  
-
   devise_for :users, :controllers => {:registrations => "users"}
 
   resources :notifications
@@ -10,12 +7,14 @@ Maass2::Application.routes.draw do
   resources :accounts
   resources :users
   resources :profiles
+  resources :polls do
+    get 'poll_close', :on => :member
+  end
+  resources :poll_responses
+  get 'accounts/update_default_permission'
+  root :to=>"home#index"
   resources :blogs
   resources :homes
-  get 'accounts/update_default_permission'
-
-  root :to=>"homes#index"
-
 
 #  match '/permissions', :to => 'accounts#permissions'
 

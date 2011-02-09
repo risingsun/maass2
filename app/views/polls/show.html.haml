@@ -1,0 +1,9 @@
+%h2
+  = current_user.first_name
+  's poll
+  = link_to image_tag('add.png',:title=>"Create New poll"),new_poll_path(@poll)
+= render "polls/poll"
+= semantic_form_for(@vote,:method => :post) do |f|
+  = semantic_fields_for(:poll_options) do |form|
+    = form.inputs do 
+      = render "option" , :f=> form, :poll_id => @poll

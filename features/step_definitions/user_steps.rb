@@ -39,4 +39,5 @@ Given /^I sign in with valid data$/ do
   When %{I press "Sign In"}
   Then %{I should see "Signed in successfully."}
   @current_user = User.find_by_id!(@user)
+  @profile = Factory(:profile, :user => @current_user)
 end

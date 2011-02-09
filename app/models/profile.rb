@@ -1,10 +1,16 @@
 class Profile < ActiveRecord::Base
 
+
  belongs_to :user
  has_many :educations, :dependent => :destroy
  has_many :works, :dependent => :destroy
  has_many :blogs
  has_one :marker
+
+  has_many :polls, :dependent => :destroy
+  has_many :poll_responses, :dependent => :destroy
+
+
  accepts_nested_attributes_for :user
  accepts_nested_attributes_for :blogs
  accepts_nested_attributes_for :marker
