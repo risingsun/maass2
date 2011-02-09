@@ -4,7 +4,7 @@
     %th From Year
     %th To Year
     %th Institute
-  -@education_info.each do |x|
+  -@educations.each do |x|
     %tr
       %td{:width => "70px"}= x.education_from_year
       %td{:width => "70px"}= x.education_to_year

@@ -6,7 +6,7 @@
     %th Occupation
     %th Job Description
     %th Company Website
-  -@work_info.each do |x|
+  -@works.each do |x|
     %tr
       %td{:width => "70px"}= x.company_name
       %td{:width => "70px"}= x.industry

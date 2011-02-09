@@ -32,7 +32,11 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @profile=Profile.find(:user_id => current_user)
+    p "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    p @profile=Profile.find(params[:id])
+    @user=current_user
+    @works=@profile.works
+    @educations=@profile.educations
   end
 
 end
