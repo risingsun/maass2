@@ -2,13 +2,16 @@ class HomesController < ApplicationController
 
   def index
      
-    @users=User.all
+    @users=User.all :conditions => (current_user ? ["id != ?", current_user.id] : [])
+
   end
 
   def show
     @user=User.find(params[:id])
-    p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-     p @p=@user.profile
+    @profile=@user.profile
+    @works=@profile.works
+    @educations=@profile.educations
+   
   end
 
 end

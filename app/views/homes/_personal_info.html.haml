@@ -1,5 +1,17 @@
 %h3 Personal Info
-- User::PERSONAL_INFO.each do |x|
-  =x + ":"
-  =@p.send("#{x}")
-  %br
+%table
+  = show_field(@user.groups,"Group","groups").html_safe
+  = show_field(@profile.house_name,"House Name","house_name").html_safe
+  = show_field(@user.gender,"Gender","gender").html_safe
+  = show_field(@profile.blood_group,"Blood Group","blood_group").html_safe
+  = show_field(@profile.date_of_birth,"Date Of Birth","date_of_birth").html_safe
+  = show_field(@profile.address_line1,"Address","address_line1").html_safe
+  = show_field(@profile.landline,"Landline", "landline").html_safe
+  = show_field(@profile.mobile, "Mobile" , "mobile").html_safe
+  = show_field(@profile.relationship_status, "Relationship Status" , "relationship_status").html_safe
+  = show_field(@user.maiden_last_name, "Maiden Name" , "maiden_last_name").html_safe
+  = show_field(@profile.spouse_name, "Spouse Name" , "spouse_name").html_safe
+  = show_field(@profile.aniversery_date, "Anniversary Date" , "aniversery_date").html_safe
+  = show_field(@profile.professional_qualification, "Professional Qualification" , "professional_qualification").html_safe
+  = show_field(@profile.about_me, "About" , "about_me").html_safe
+  = show_field(@profile.activities, "Activity" , "activities").html_safe

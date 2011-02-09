@@ -1,0 +1,12 @@
+- if @poll.poll_options.blank?
+  - @poll.poll_options.build
+= f.inputs do
+  = f.input :question, :as => :string, :label =>"Enter the poll question?"
+    
+  = f.semantic_fields_for(:poll_options) do |form|
+    = render "poll_option_fields", :f => form
+    
+  %p
+    = link_to_add_fields("Add More Option",f,:poll_options)
+    = f.input :public, :label => "Public?", :as => :boolean
+    = f.commit_button

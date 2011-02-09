@@ -1,9 +1,8 @@
 class ProfilesController < ApplicationController
 
+  before_filter :load_profile, :only => [:create,:edit]
+
   def create
-    @profile =  current_user.profile || current_user.build_profile
-    @educations = @profile.educations || @profile.educations.build
-    @works = @profile.works || @profile.works.build
     if @profile.save
       flash[:notice] = "Profile created."
       redirect_to :edit
@@ -11,6 +10,7 @@ class ProfilesController < ApplicationController
       render 'edit'
     end
   end
+
 
   def edit
     @profile =  current_user.profile || current_user.build_profile
@@ -21,7 +21,6 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = current_user.profile
-  
     if @profile.update_attributes!(params[:profile])
       flash[:notice] = "Profile updated."
       redirect_to :edit
@@ -31,8 +30,19 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def show
-    @profile=Profile.find(:user_id => current_user)
+  private
+
+  def load_profile
+    @profile =  current_user.profile || current_user.build_profile
+    @educations = @profile.educations || @profile.educations.build
+    @works = @profile.works || @profile.works.build
   end
 
+  def show
+    p "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    p @profile=Profile.find(params[:id])
+    @user=current_user
+    @works=@profile.works
+    @educations=@profile.educations
+  end
 end
