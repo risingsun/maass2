@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110127061043) do
+ActiveRecord::Schema.define(:version => 20110208094837) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20110127061043) do
   create_table "permissions", :force => true do |t|
     t.string   "account_id"
     t.string   "website"
-    t.string   "blog"
+    t.string   "bolg"
     t.string   "about_me"
     t.string   "gtalk_name"
     t.string   "location"
@@ -69,6 +69,32 @@ ActiveRecord::Schema.define(:version => 20110127061043) do
     t.string   "marker"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "poll_options", :force => true do |t|
+    t.string   "option"
+    t.integer  "poll_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "poll_responses_count", :default => 0
+  end
+
+  create_table "poll_responses", :force => true do |t|
+    t.integer  "poll_id"
+    t.integer  "profile_id"
+    t.integer  "poll_option_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "polls", :force => true do |t|
+    t.string   "question"
+    t.integer  "profile_id"
+    t.boolean  "public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "status",      :default => true
+    t.integer  "votes_count", :default => 0
   end
 
   create_table "profiles", :force => true do |t|

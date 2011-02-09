@@ -1,8 +1,11 @@
 class Profile < ActiveRecord::Base
 
- belongs_to :user
- has_many :educations, :dependent => :destroy
-  has_many :works, :dependent => :destroy
+belongs_to :user
+has_many :educations, :dependent => :destroy
+has_many :works, :dependent => :destroy
+
+has_many :polls, :dependent => :destroy
+has_many :poll_responses, :dependent => :destroy
  accepts_nested_attributes_for :user
 
  accepts_nested_attributes_for :educations, :allow_destroy => true, :reject_if => proc { |attrs| reject = %w(education_from_year education_fo_year institution).all?{|a| attrs[a].blank?} }
