@@ -21,6 +21,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = current_user.profile
+  
     if @profile.update_attributes!(params[:profile])
       flash[:notice] = "Profile updated."
       redirect_to :edit
@@ -28,6 +29,10 @@ class ProfilesController < ApplicationController
       flash[:notice] = "ERROR"
       render 'edit'
     end
+  end
+
+  def show
+    @profile=Profile.find(:user_id => current_user)
   end
 
 end

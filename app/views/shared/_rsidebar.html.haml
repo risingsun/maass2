@@ -1,0 +1,19 @@
+- cache 'ads' do
+  .ad
+    %span.ad_widget_top
+    .clear_div
+    %h2.widget_title Supporters
+    = render :partial => 'shared/ads', :collection => AD_ARRAY
+    %span.ad_widget_btm
+= render :partial => 'profiles/featured'
+= render :partial => "shared/search_by_keyword"  if @p
+= render :partial => 'profiles/greets' if @p
+- if (params[:profile_id] || @show_profile_side_panel) && @profile.can_see_field('twitter_username',@p)
+  = render :partial => "shared/twitter_widget"
+- if  params[:controller]=='blogs'||params[:controller]=='home' && @p
+  = render :partial => 'blogs/archives'
+  = render :partial => 'blogs/blog_clouds'
+- if TWITTER_ENABLED
+  - rounded_corner(:size => 'small', :title => 'Follow on Twitter') do
+    .twitter_update{:id => ""}
+      =raw "Follow #{SITE_NAME} on #{link_to "Twitter", TWITTER_FOLLOW_URL}"

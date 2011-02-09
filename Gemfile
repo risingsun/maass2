@@ -41,6 +41,7 @@ gem 'cancan'
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'jquery-rails', '>= 0.2.6'
 gem 'acts-as-taggable-on'
+gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'humanizer'
 
 

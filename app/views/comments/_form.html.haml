@@ -1,0 +1,5 @@
+= form_for(@comment) do |f|
+  = f.text_area :comment
+  = f.submit
+  %input#cancel{:type => "button", :value => "Cancel"}
+  
