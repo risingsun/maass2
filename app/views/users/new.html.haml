@@ -11,6 +11,7 @@
     = f.input :maiden_last_name, :as => :string
     = f.input :gender, :as => :select, :collection => User::SEX, :prompt => false
     = f.input :groups, :as => :select, :collection => User::GROUP, :prompt => false
-    = f.input :question, :as => :string
+    = f.input :humanizer_answer, :label => @user.humanizer_question
+    = f.hidden_field :humanizer_question_id
     = f.commit_button :label => "Sign Up"
   = render :partial => "devise/shared/links"

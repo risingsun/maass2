@@ -1,6 +1,5 @@
 class UsersController < Devise::RegistrationsController
 
-
   def update
     @account =  current_user.account || current_user.build_account
     @notification =@account.notification || @account.build_notification

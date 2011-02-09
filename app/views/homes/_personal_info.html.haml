@@ -1,0 +1,17 @@
+%h3 Personal Info
+%table
+  = show_field(@user.groups,"Group","groups").html_safe
+  = show_field(@p.house_name,"House Name","house_name").html_safe
+  = show_field(@user.gender,"Gender","gender").html_safe
+  = show_field(@p.blood_group,"Blood Group","blood_group").html_safe
+  = show_field(@p.date_of_birth,"Date Of Birth","date_of_birth").html_safe
+  = show_field(@p.address_line1,"Address","address_line1").html_safe
+  = show_field(@p.landline,"Landline", "landline").html_safe
+  = show_field(@p.mobile, "Mobile" , "mobile").html_safe
+  = show_field(@p.relationship_status, "Relationship Status" , "relationship_status").html_safe
+  = show_field(@user.maiden_last_name, "Maiden Name" , "maiden_last_name").html_safe
+  = show_field(@p.spouse_name, "Spouse Name" , "spouse_name").html_safe
+  = show_field(@p.aniversery_date, "Anniversary Date" , "aniversery_date").html_safe
+  = show_field(@p.professional_qualification, "Professional Qualification" , "professional_qualification").html_safe
+  = show_field(@p.about_me, "About" , "about_me").html_safe
+  = show_field(@p.activities, "Activity" , "activities").html_safe

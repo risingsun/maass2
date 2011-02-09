@@ -11,7 +11,12 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def edit    
+
+  def edit
+    @profile =  current_user.profile || current_user.build_profile
+    @profile.save
+    @educations = @profile.educations || @profile.educations.build
+    @works = @profile.works || @profile.works.build
   end
 
   def update
@@ -20,7 +25,7 @@ class ProfilesController < ApplicationController
       flash[:notice] = "Profile updated."
       redirect_to :edit
     else
-      flash[:notice] = "ERRORRRRRRRRRRRRRR"
+      flash[:notice] = "ERROR"
       render 'edit'
     end
   end
@@ -28,10 +33,12 @@ class ProfilesController < ApplicationController
   private
 
   def load_profile
-     @profile =  current_user.profile || current_user.build_profile
-     @educations = @profile.educations || @profile.educations.build
-     @works = @profile.works || @profile.works.build
+    @profile =  current_user.profile || current_user.build_profile
+    @educations = @profile.educations || @profile.educations.build
+    @works = @profile.works || @profile.works.build
   end
 
-
+  def show
+    @profile=Profile.find(:user_id => current_user)
+  end
 end

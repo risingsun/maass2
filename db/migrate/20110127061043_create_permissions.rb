@@ -3,7 +3,7 @@ class CreatePermissions < ActiveRecord::Migration
     create_table :permissions do |t|
       t.string :account_id
       t.string :website
-      t.string :bolg
+      t.string :blog
       t.string :about_me
       t.string :gtalk_name
       t.string :location

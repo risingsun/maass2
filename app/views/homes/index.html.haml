@@ -1,0 +1,10 @@
+%h2 Mansinghites'Alumni Association
+
+%h1 Listing User's
+- @users.each do |user|
+  %table
+  %div{:style => "width:'250px'"}
+  %tr
+    %td= link_to gravatar_image_tag(user.email.downcase, :alt => user.first_name, :class => 'gravatar', :gravatar => { :size => 50 }), home_path(user.id)
+    %td= [user.first_name, user.middle_name, user.last_name ].join(" ")
+    
