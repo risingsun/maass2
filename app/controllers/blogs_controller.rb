@@ -1,4 +1,3 @@
-
 class BlogsController < ApplicationController
 
   uses_tiny_mce(:only => [:new, :edit,:create,:update],
@@ -28,6 +27,7 @@ class BlogsController < ApplicationController
     @blog = @profile.blogs.build params[:blog]
     if params[:preview_button] || !@blog.save
        render :action => 'new'
+       flash[:notice] = "Blog Creation Failed."
     else
        flash[:notice] = "Successfully created Blog."
        redirect_to :blogs
@@ -51,7 +51,8 @@ class BlogsController < ApplicationController
    def update
       @blog = Blog.find(params[:id])
       if params[:preview_button] || !@blog.update_attributes(params[:blog])
-          render :action => 'new'
+       flash[:notice]= "Update Failed"
+       render :action => 'new'
       else
          flash[:notice] = "Successfully updated post."
          redirect_to blogs_path

@@ -13,7 +13,7 @@ Maass2::Application.routes.draw do
   resources :blogs
   resources :homes
   get 'accounts/update_default_permission'
-
+  get 'blogs/preview'
   root :to=>"homes#index"
 
 
@@ -21,6 +21,7 @@ Maass2::Application.routes.draw do
 
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
+
 #  match '/user/:user_id/profile/:id',  :to => 'profiles#show'
 
   # The priority is based upon order of creation:
