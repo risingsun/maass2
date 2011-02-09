@@ -4,3 +4,5 @@
 = [ @user.first_name, @user.middle_name, @user.last_name ].join(" ")
 = render 'status' ,:local =>{:p =>@p} if !@p.status_message.blank?
 = render 'personal_info' ,:local =>{:p =>@p}
+= render 'work_info' ,:local =>{:work_info =>@p.works}
+= render 'education_info' ,:local =>{:education_info =>@p.educations}

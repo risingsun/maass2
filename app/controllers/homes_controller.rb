@@ -9,6 +9,9 @@ class HomesController < ApplicationController
     @user=User.find(params[:id])
     p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
      p @p=@user.profile
+      @work_info=@p.works
+      @education_info=@p.educations
+   
   end
 
 end

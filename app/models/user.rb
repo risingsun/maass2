@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
                          address landline mobile marker)
   NOTIFICATION_FIELDS = %w(news_notification event_notification message_notification blog_comment_notification
                           profile_comment_notification follow_notification delete_friend_notification )
-  PERSONAL_INFO= %w(house_name blood_group date_of_birth address_line1 landline mobile relationship_status spouse_name professional_qualification)
+  PERSONAL_INFO= %w(house_name blood_group date_of_birth address_line1 landline mobile relationship_status spouse_name aniversery_date professional_qualification about_me activities)
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
