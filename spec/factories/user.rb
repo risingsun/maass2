@@ -96,3 +96,19 @@ Factory.define :blog do |b|
   b.body "my first blog"
   b.is_sent "true"
 end
+
+Factory.define :work do |b|
+  b.profile_id "1"
+  b.occupation "trainee"
+  b.industry "web design"
+  b.company_name "rising sun tech"
+  b.company_website "risingsuntech.com"
+  b.job_description "developer"
+end
+
+Factory.define :education do |b|
+  b.profile_id "1"
+  b.education_from_year "2006"
+  b.education_to_year "2008"
+  b.institution "MCA"
+end

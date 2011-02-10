@@ -39,6 +39,7 @@ describe BlogsController do
       assigns[:profile].should be_an_instance_of(Profile)
       assigns[:profile].should_not be_a_new_record
       assigns[:profile].should_not be_nil
+      assigns[:profile].should render_template('new')
       response.should be_success
     end
   end
@@ -114,12 +115,14 @@ describe BlogsController do
       flash[:notice].should == "Update Failed"
     end
   end
-# describe "GET 'preview'" do
+
+#  describe "GET 'preview'" do
 #    it "should be successful" do
-#      get 'preview'
+#      get 'preview', :id => @blog, :blog => {:title => "", :body => ""}
 #      assigns[:blog].should be_an_instance_of(Blog)
 #      assigns[:blog].should be_a_new_record
 #      assigns[:blog].should_not be_nil
 #    end
 # end
+
 end

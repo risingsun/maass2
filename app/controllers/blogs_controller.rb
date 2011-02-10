@@ -1,21 +1,21 @@
 class BlogsController < ApplicationController
 
-  uses_tiny_mce(:only => [:new, :edit,:create,:update],
-    :options => {
-      :theme => 'advanced',
-      :theme_advanced_toolbar_location => "bottom",
-      :theme_advanced_toolbar_align => "left",
-      :theme_advanced_resizing => true,
-      :theme_advanced_resize_horizontal => false,
-      :paste_auto_cleanup_on_paste => true,
-      :theme_advanced_buttons1 => %w{bold italic underline strikethrough separator
-                                     justifyleft justifycenter justifyright indent
-                                     outdent separator bullist numlist separator
-                                     link unlink image undo redo code forecolor
-                                     backcolor newdocument cleanup},
-      :theme_advanced_buttons2 => %w{formatselect fontselect fontsizeselect},
-      :theme_advanced_buttons3 => [],
-      :plugins => %w{contextmenu paste}})
+uses_tiny_mce(:only => [:new, :edit,:create,:update],
+  :options => {
+    :theme => 'advanced',
+    :theme_advanced_toolbar_location => "bottom",
+    :theme_advanced_toolbar_align => "left",
+    :theme_advanced_resizing => true,
+    :theme_advanced_resize_horizontal => false,
+    :paste_auto_cleanup_on_paste => true,
+    :theme_advanced_buttons1 => %w{bold italic underline strikethrough separator
+                                   justifyleft justifycenter justifyright indent
+                                   outdent separator bullist numlist separator
+                                   link unlink image undo redo code forecolor
+                                   backcolor newdocument cleanup},
+    :theme_advanced_buttons2 => %w{formatselect fontselect fontsizeselect},
+    :theme_advanced_buttons3 => [],
+    :plugins => %w{contextmenu paste}})
 
   def new
     @profile = current_user.profile
@@ -41,11 +41,11 @@ class BlogsController < ApplicationController
    end
 
    def index
-      @profile = current_user.profile
-      @blog = @profile.blogs
-      if @blog.blank?
-        redirect_to new_blog_path
-      end
+    @profile = current_user.profile
+    @blog = @profile.blogs
+    if @blog.blank?
+      redirect_to new_blog_path
+    end
    end
 
    def update

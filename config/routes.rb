@@ -16,7 +16,7 @@ Maass2::Application.routes.draw do
   get 'accounts/update_default_permission'
   get 'blogs/preview'
 
-  root :to=>"home#index"
+  root :to=>"homes#index"
 
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'

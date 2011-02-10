@@ -45,13 +45,7 @@ describe AccountsController do
     assigns[:account].should be_an_instance_of(Account)
     assigns[:account].should_not be_a_new_record
     assigns[:account].should_not be_nil
-    if @account.save do
-      flash[:notice].should == "Account Successfully Updated."
-      User::PERMISSION_FIELDS.each do |x|
-      @account.permission.update_attributes({x => @account.default_permission})
-      end
-    end
-    end
+    flash[:notice].should == "Account Successfully Updated."
     assigns[:account].should redirect_to(edit_account_path(@current_user))
    end
   end

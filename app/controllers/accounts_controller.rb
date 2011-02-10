@@ -30,6 +30,6 @@ class AccountsController < ApplicationController
      end
     redirect_to edit_account_path(current_user)
   end
-   
-  end
+
+end
 
