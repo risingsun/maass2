@@ -68,7 +68,7 @@ uses_tiny_mce(:only => [:new, :edit,:create,:update],
       @blog.destroy
       flash[:notice] = "Successfully destroyed blog."
       redirect_to blogs_path
-    end
+   end
 
    def preview
      @blog=Blog.new(params[:blog])

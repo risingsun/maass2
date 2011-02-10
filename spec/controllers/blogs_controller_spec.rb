@@ -19,15 +19,6 @@ describe BlogsController do
       assigns[:blog].should render_template('index')
       response.should be_success
     end
-
-#    it "should display new page when already created bolgs does not exist" do
-#      get 'index'
-#      assigns[:blog].should be_a_kind_of(Array)
-#      assigns[:blog].should_not be_nil
-#      assigns[:blog].should redirect_to(new_blog_path(assigns(:blog)))
-#      response.should be_success
-#    end
-
   end
 
   describe "GET 'new'" do
@@ -45,6 +36,15 @@ describe BlogsController do
   end
 
   describe "POST 'create'" do
+
+    lambda do
+     assigns[:blog].should be_an_instance_of(Blog)
+     assigns[:blog].should_not be_a_new_record
+     assigns[:blog].should_not be_nil
+     assigns[:profile].should be_an_instance_of(Profile)
+     assigns[:profile].should_not be_a_new_record
+     assigns[:profile].should_not be_nil
+    end
 
     describe "failure" do
 
@@ -103,33 +103,7 @@ describe BlogsController do
       
     end
   end
-
-#    it "should create new blog with valid data" do
-#      post 'create',:blog => { :title => "hi", :body => "this is my first blog" }
-#      assigns[:blog].should be_an_instance_of(Blog)
-#      assigns[:blog].should_not be_a_new_record
-#      assigns[:blog].should_not be_nil
-#      assigns[:profile].should be_an_instance_of(Profile)
-#      assigns[:profile].should_not be_a_new_record
-#      assigns[:profile].should_not be_nil
-#      flash[:notice].should == "Successfully created Blog."
-#      assigns[:blog].should redirect_to :blogs
-#    end
-#
-#    it "should not create new blog with invalid data" do
-#      post 'create',:blog => { :title => nil, :body => nil }
-#      assigns[:blog].should be_an_instance_of(Blog)
-#      assigns[:blog].should be_a_new_record
-#      assigns[:blog].should_not be_nil
-#      assigns[:profile].should be_an_instance_of(Profile)
-#      assigns[:profile].should_not be_a_new_record
-#      assigns[:profile].should_not be_nil
-#      flash[:notice].should == "Blog Creation Failed."
-#      assigns[:blog].should render_template('new')
-#      response.should be_success
-#    end
- 
-
+  
   describe "GET 'edit'" do
     it "should be successful" do
       get 'edit', :id => Factory(:blog, :profile => @profile)
@@ -159,7 +133,12 @@ describe BlogsController do
   end
 
   describe "PUT 'Update'" do
-
+   lambda do
+    put :update, :id => @blog
+    assigns[:blog].should be_an_instance_of(Blog)
+    assigns[:blog].should_not be_new_record
+   end
+    
     describe "failure" do
         before(:each)do
           @blog = { :title => "", :body => ""}
@@ -212,25 +191,12 @@ describe BlogsController do
         end
       end
    end
+
  end
 
-#    it "should be successful with valid data" do
-#      put :update, :id => @blog, :blog => { :title => "hello", :body => "my second blog" }
-#      assigns[:blog].should be_an_instance_of(Blog)
-#      assigns[:blog].should_not be_new_record
-#      assigns[:blog].should redirect_to(blogs_path)
-#      flash[:notice].should == "Successfully updated blog."
-#    end
-#
-#    it "should be unsuccessful with invalid data" do
-#      put :update, :id => @blog, :blog => { :title => "", :body => "" }
-#      assigns[:blog].should be_an_instance_of(Blog)
-#      assigns[:blog].should render_template('new')
-#      flash[:notice].should == "Update Failed."
-#    end
-#  describe "GET 'preview'" do
+# describe "GET 'Preview'" do
 #    it "should be successful" do
-#      get 'preview', :id => @blog, :blog => {:title => "", :body => ""}
+#      get :preview, id => @blog
 #      assigns[:blog].should be_an_instance_of(Blog)
 #      assigns[:blog].should be_a_new_record
 #      assigns[:blog].should_not be_nil

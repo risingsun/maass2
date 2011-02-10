@@ -88,7 +88,7 @@ Factory.define :profile do |p|
   p.skype_id "x"
   p.delicious_id "x"
   p.avatar_file_name "x"
- end
+end
 
 Factory.define :blog do |b|
   b.profile_id "1"
@@ -111,4 +111,5 @@ Factory.define :education do |b|
   b.education_from_year "2006"
   b.education_to_year "2008"
   b.institution "MCA"
+  b.association :profile
 end

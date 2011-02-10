@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
       flash[:notice] = "Profile created."
       redirect_to :edit
     else
+      flash[:notice] = "Failed creation."
       render 'edit'
     end
   end
@@ -25,14 +26,13 @@ class ProfilesController < ApplicationController
       flash[:notice] = "Profile updated."
       redirect_to :edit
     else
-      flash[:notice] = "ERROR"
+      flash[:notice] = "Failed updation."
       render 'edit'
     end
   end
 
   def show
-    p "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-    p @profile=current_user.profile
+    @profile=current_user.profile
     @user=current_user
     @works=@profile.works
     @educations=@profile.educations

@@ -7,16 +7,19 @@ Maass2::Application.routes.draw do
   resources :accounts
   resources :users
   resources :profiles
-  resources :blogs
+  resources :blogs do
+    get 'preview', :on => :collection
+  end
   resources :homes
   resources :polls do
     get 'poll_close', :on => :member
   end
   resources :poll_responses
   get 'accounts/update_default_permission'
-
-  root :to=>"homes#index"
   get 'blogs/preview'
+  get 'profiles/load_profile'
+  root :to=>"homes#index"
+
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
 
