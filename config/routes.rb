@@ -7,19 +7,23 @@ Maass2::Application.routes.draw do
   resources :accounts
   resources :users
   resources :profiles
+  resources :blogs
+  resources :homes
   resources :polls do
     get 'poll_close', :on => :member
   end
   resources :poll_responses
   get 'accounts/update_default_permission'
+
   root :to=>"homes#index"
   resources :blogs
   resources :homes
 
-#  match '/permissions', :to => 'accounts#permissions'
+  get 'blogs/preview'
 
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
+
 #  match '/user/:user_id/profile/:id',  :to => 'profiles#show'
 
   # The priority is based upon order of creation:

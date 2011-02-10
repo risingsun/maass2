@@ -10,24 +10,16 @@ class AccountsController < ApplicationController
   end
 
   def update
-     @account = Account.find(params[:id])
-     @account.attributes = params[:account]
-
-
-
-     if @account.save
-      flash[:notice] = "Account Successfully Updated."
-      redirect_to edit_account_path(current_user)
+    @account = Account.find(params[:id])
+    if @account.update_attributes(params[:account])
+     flash[:notice] = "Account Successfully Updated."
+     redirect_to edit_account_path(current_user)
     end
-
   end
 
-
-
-   def update_default_permission
+  def update_default_permission
     @account = Account.find(current_user.account)
     @account.attributes = params[:account]
-
     if @account.save
       flash[:notice] = "Account Successfully Updated."
       User::PERMISSION_FIELDS.each do |x|
@@ -38,5 +30,6 @@ class AccountsController < ApplicationController
      end
     redirect_to edit_account_path(current_user)
   end
+   
+  end
 
-end

@@ -18,11 +18,9 @@ describe AccountsController do
       assigns[:account].should_not be_a_new_record
       assigns[:account].should_not be_nil
       assigns[:user].should == @user
-      @account.save
       assigns[:permission].should be_an_instance_of(Permission)
       assigns[:permission].should_not be_a_new_record
       assigns[:permission].should_not be_nil
-      @permission.save
       assigns[:notification].should be_an_instance_of(Notification)
       assigns[:notification].should_not be_a_new_record
       assigns[:notification].should_not be_nil
@@ -57,5 +55,6 @@ describe AccountsController do
     assigns[:account].should redirect_to(edit_account_path(@current_user))
    end
   end
+
 end
 
