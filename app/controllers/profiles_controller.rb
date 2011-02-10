@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
     end
   end
 
-    def show
+  def show
     p "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
     p @profile=current_user.profile
     @user=current_user
@@ -45,6 +45,5 @@ class ProfilesController < ApplicationController
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
   end
-
 
 end

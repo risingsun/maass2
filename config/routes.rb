@@ -14,10 +14,9 @@ Maass2::Application.routes.draw do
   end
   resources :poll_responses
   get 'accounts/update_default_permission'
-  get 'blogs/preview'
 
   root :to=>"homes#index"
-
+  get 'blogs/preview'
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
 
