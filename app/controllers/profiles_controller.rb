@@ -30,6 +30,14 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def show
+    p "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    p @profile=current_user.profile
+    @user=current_user
+    @works=@profile.works
+    @educations=@profile.educations
+  end
+  
   private
 
   def load_profile
@@ -38,11 +46,4 @@ class ProfilesController < ApplicationController
     @works = @profile.works || @profile.works.build
   end
 
-  def show
-    p "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-    p @profile=Profile.find(params[:id])
-    @user=current_user
-    @works=@profile.works
-    @educations=@profile.educations
-  end
 end

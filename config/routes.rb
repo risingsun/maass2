@@ -12,7 +12,7 @@ Maass2::Application.routes.draw do
   end
   resources :poll_responses
   get 'accounts/update_default_permission'
-  root :to=>"home#index"
+  root :to=>"homes#index"
   resources :blogs
   resources :homes
 
