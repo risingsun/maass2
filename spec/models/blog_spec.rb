@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe Blog do
- before(:each) do
+
+  before(:each) do
     @blog ={ :title => "my blog", :body => "this is my first blog"}
   end
 
@@ -18,5 +19,6 @@ describe Blog do
     no_body = Blog.new(@blog.merge(:body => ""))
     no_body.should_not be_valid
   end
-  
+
 end
+

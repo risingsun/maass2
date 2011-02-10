@@ -51,10 +51,10 @@ uses_tiny_mce(:only => [:new, :edit,:create,:update],
    def update
       @blog = Blog.find(params[:id])
       if params[:preview_button] || !@blog.update_attributes(params[:blog])
-       flash[:notice]= "Update Failed"
+       flash[:notice]= "Update Failed."
        render :action => 'new'
       else
-         flash[:notice] = "Successfully updated post."
+         flash[:notice] = "Successfully updated blog."
          redirect_to blogs_path
       end
    end
