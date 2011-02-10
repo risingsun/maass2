@@ -11,6 +11,8 @@ class Profile < ActiveRecord::Base
   has_many :poll_responses, :dependent => :destroy
 
 
+  has_many :friends, :foreign_key => "inviter_id"
+
  accepts_nested_attributes_for :user
  accepts_nested_attributes_for :blogs
  accepts_nested_attributes_for :marker
