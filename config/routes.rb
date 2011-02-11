@@ -11,6 +11,7 @@ Maass2::Application.routes.draw do
   end
   resources :blogs 
   resources :homes
+  resources :friends
   resources :polls do
     get 'poll_close', :on => :member
   end

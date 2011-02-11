@@ -38,6 +38,15 @@ class ProfilesController < ApplicationController
     @educations=@profile.educations
   end
 
+
+ def add_friend
+
+ end
+
+ def remove_friend
+
+ end
+
   private
 
   def load_profile

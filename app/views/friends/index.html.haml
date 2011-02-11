@@ -1,0 +1,10 @@
+%h2 Mansinghites'Alumni Association
+
+%h1 Listing Friend's
+- @friends.each do |friend|
+  %table
+  %div{:style => "width:'250px'"}
+  %tr
+    %td= link_to gravatar_image_tag(friend.invited_id,:class => 'gravatar', :gravatar => { :size => 50 }), home_path(friend.invited_id)
+    %td= link_to "remove", friend, :method => :delete
+    
