@@ -19,7 +19,7 @@ uses_tiny_mce(:only => [:new, :edit,:create,:update],
 
   def new
     @profile = current_user.profile
-    @blog = @profile.blogs.build
+    @blog = @profile.blogs.build || @prorfile.blogs
   end
 
   def create
@@ -49,8 +49,9 @@ uses_tiny_mce(:only => [:new, :edit,:create,:update],
    end
 
    def update
-      @blog = Blog.find(params[:id])
-      if params[:preview_button] || !@blog.update_attributes(params[:blog])
+     @blog=Blog.find(params[:id])
+     @blog.attributes = params[:blog]
+      if params[:preview_button] || !@blog.save
        flash[:notice]= "Update Failed."
        render :action => 'new'
       else

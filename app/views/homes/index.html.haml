@@ -7,5 +7,4 @@
   %tr
     %td= link_to gravatar_image_tag(user.email.downcase, :alt => user.first_name, :class => 'gravatar', :gravatar => { :size => 50 }), home_path(user.id)
     %td= [user.first_name, user.middle_name, user.last_name ].join(" ")
-    %td= link_to "Add Friend", friends_path(:invited_id => user), :method => :post
     
