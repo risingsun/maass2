@@ -9,5 +9,10 @@
     %br/
     = f.text_area :body,  :class => "mceEditor"
   %div
+  %br
+    = f.label :Tags
+    = f.text_field :tag_list
+  %div
+  %br
     = f.submit
     = submit_tag 'Preview', :name => 'preview_button'

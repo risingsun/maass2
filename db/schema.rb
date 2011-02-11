@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110208094837) do
+ActiveRecord::Schema.define(:version => 20110211061351) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(:version => 20110208094837) do
   create_table "blogs", :force => true do |t|
     t.string   "profile_id"
     t.string   "title"
-    t.string   "body"
-    t.boolean  "is_sent"
-    t.integer  "comments_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_sent"
+    t.string   "cached_tag_list"
+    t.string   "body"
   end
 
   create_table "comments", :force => true do |t|
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(:version => 20110208094837) do
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
+  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", :force => true do |t|
     t.string "name"
@@ -203,7 +203,6 @@ ActiveRecord::Schema.define(:version => 20110208094837) do
     t.string   "maiden_last_name"
     t.string   "groups"
     t.string   "gender"
-    t.string   "question"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

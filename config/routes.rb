@@ -6,10 +6,10 @@ Maass2::Application.routes.draw do
   resources :permissions
   resources :accounts
   resources :users
-  resources :profiles
-  resources :blogs do
-    get 'preview', :on => :collection
+  resources :profiles do
+    post 'load_profile', :on => :collection
   end
+  resources :blogs 
   resources :homes
   resources :polls do
     get 'poll_close', :on => :member

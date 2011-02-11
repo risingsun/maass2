@@ -102,12 +102,12 @@ describe ProfilesController do
     end
   end
 
-#  describe "GET 'load_profile'" do
-#    it "should load the user profile" do
-#    get :load_profile
-#    assigns[:profile].should be_an_instance_of(Profile)
-#    assigns[:profile].should_not be_a_new_record
-#    assigns[:profile].should_not be_nil
-#   end
-#  end
+  describe "GET 'load_profile'" do
+    it "should load the user profile" do
+    get :load_profile
+    assigns[:profile].should be_an_instance_of(Profile)
+    assigns[:profile].should_not be_a_new_record
+    assigns[:profile].should_not be_nil
+   end
+  end
 end
