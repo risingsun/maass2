@@ -4,13 +4,15 @@
   |
   = link_to "My Blogs", blogs_path
   |
-  = link_to "My Profile", "#"
+  = link_to "My Profile", profile_path(current_user)
   |
   = link_to "Edit Profile", edit_path
   |
   = link_to "Edit Account", edit_account_path(current_user.id)
   | 
   = link_to "My Polls", polls_path
+  |
+  = link_to "My Friends", friends_path
   |
   = link_to "Sign out", destroy_user_session_path
   |

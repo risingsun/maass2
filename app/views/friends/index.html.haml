@@ -1,0 +1,12 @@
+%h2 Mansinghites'Alumni Association
+-if !@r_friends.blank?
+  =render 'invite_friend'
+%h1 Listing Friend's
+- @friends.each do |friend|
+  %table
+  %div{:style => "width:'250px'"}
+  %tr
+    %td= link_to gravatar_image_tag(friend.invited_id,:class => 'gravatar', :gravatar => { :size => 50 }), home_path(friend.invited_id)
+    %td= [user_find(friend.invited_id).first_name, user_find(friend.invited_id).middle_name, user_find(friend.invited_id).last_name ].join(" ")
+    %td= link_to "remove", friend, :method => :delete
+    

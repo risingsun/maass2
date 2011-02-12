@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
       flash[:notice] = "Profile created."
       redirect_to :edit
     else
+      flash[:notice] = "Failed creation."
       render 'edit'
     end
   end
@@ -25,10 +26,26 @@ class ProfilesController < ApplicationController
       flash[:notice] = "Profile updated."
       redirect_to :edit
     else
-      flash[:notice] = "ERROR"
+      flash[:notice] = "Failed updation."
       render 'edit'
     end
   end
+
+  def show
+    @profile=current_user.profile
+    @user=current_user
+    @works=@profile.works
+    @educations=@profile.educations
+  end
+
+
+ def add_friend
+
+ end
+
+ def remove_friend
+
+ end
 
   private
 
@@ -38,7 +55,4 @@ class ProfilesController < ApplicationController
     @works = @profile.works || @profile.works.build
   end
 
-  def show
-    @profile=Profile.find(:user_id => current_user)
-  end
 end

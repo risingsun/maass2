@@ -1,17 +1,21 @@
 class HomesController < ApplicationController
 
   def index
-     
-    @users=User.all
+   @users=User.all :conditions => (current_user ? ["id != ?", current_user.id] : [])
   end
 
   def show
-    @user=User.find(params[:id])
-    p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-     p @p=@user.profile
-      @work_info=@p.works
-      @education_info=@p.educations
-   
+   if !current_user.blank?
+      @user=User.find(params[:id])
+      @profile=@user.profile
+      @works=@profile.works
+      @educations=@profile.educations
+      p "+++++++++++++++++++++++++++++++++++++++++++++"
+     p  @friend=current_user.profile.friends.find(:all, :conditions => ['invited_id = ?', @profile.id])
+    else
+      redirect_to homes_path
+      flash[:notice]="It looks like you don't have permission to view that page."
+    end
   end
 
 end
