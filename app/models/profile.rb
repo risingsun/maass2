@@ -10,8 +10,9 @@ class Profile < ActiveRecord::Base
   has_many :polls, :dependent => :destroy
   has_many :poll_responses, :dependent => :destroy
 
-
-  has_many :friends, :foreign_key => "inviter_id"
+ has_many :friendships, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'accepted'"
+ has_many :requested_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'pending'"
+ has_many :friends, :through => :friendships, :source => :invited
 
  accepts_nested_attributes_for :user
  accepts_nested_attributes_for :blogs
