@@ -1,6 +1,5 @@
 module ApplicationHelper
 
- include TagsHelper
 
 def link_to_remove_fields(name, f)
 

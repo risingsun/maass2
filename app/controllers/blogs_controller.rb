@@ -74,8 +74,9 @@ uses_tiny_mce(:only => [:new, :edit,:create,:update],
      @blog=Blog.new(params[:blog])
    end
 
-  def tag_cloud
-      @tags = Post.tag_counts
-  end
+   def tag_cloud
+      @tags = Blog.tag_counts_on(:tags)
+   end
+
 
 end
