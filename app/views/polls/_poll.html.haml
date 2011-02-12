@@ -1,11 +1,20 @@
 %h4
-  = @poll.question
-%br
+  = link_to (poll.question),poll_path(poll)
+  %br
   Posted by
-="#{current_user.first_name}"
-at
-="#{@poll.created_at.to_date.to_formatted_s(:rfc822)}"
-= link_to image_tag('cancel.png', :title => "Close poll"),poll_close_poll_path(@poll) unless @poll.poll_close?
-= link_to image_tag('edit.png', :title => "Edit poll"),edit_poll_path(@poll)
-//= link_to("Delete", @poll,:method => :delete, :confirm => "Are you sure?", :remote=>true)
-%br
+  ="#{current_user.first_name}"
+  at
+  ="#{poll.created_at.to_date.to_formatted_s(:rfc822)}"
+  = link_to image_tag('cancel.png', :title => "Close poll"),poll_close_poll_path(poll) unless poll.poll_close?
+  = link_to image_tag('edit.png', :title => "Edit poll"),edit_poll_path(poll)
+  = link_to image_tag('delete.png', :title => "Delete poll"),poll_path(poll),:method => :delete
+  %br
+  - if (poll.responded? current_user.profile)
+    = render :partial => 'polls/poll_response', :locals =>{:poll => poll}
+  - else
+    .poll_option{:id => "poll_option_#{poll.id}"}
+      = semantic_form_for(:poll, :url => votes_path,:remote=>true) do |f|
+        = f.semantic_fields_for(:poll_options) do |form|
+          = form.inputs do
+            = render "option" , :y=> form, :poll => poll
+        = f.commit_button "Vote"

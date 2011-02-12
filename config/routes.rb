@@ -10,9 +10,9 @@ Maass2::Application.routes.draw do
   resources :polls do
     get 'poll_close', :on => :member
   end
-  resources :poll_responses
+  resources :votes
   get 'accounts/update_default_permission'
-  root :to=>"home#index"
+  root :to=>"homes#index"
   resources :blogs
   resources :homes
 
