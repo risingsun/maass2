@@ -13,6 +13,7 @@ class HomesController < ApplicationController
       @educations=@profile.educations
       p "+++++++++++++++++++++++++++++++++++++++++++++"
       p  @friend=current_user.profile.friends.find(:all, :conditions => ['invited_id = ?', @profile.id])
+      p  @friend=Friend.check_friend(@profile.id, current_user.profile.id)
     else
       redirect_to homes_path
       flash[:notice]="It looks like you don't have permission to view that page."
