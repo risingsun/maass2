@@ -1,4 +1,5 @@
 class Poll < ActiveRecord::Base
+  
   OPT_HEIGHT = 35
   LABEL_WIDTH = 13
   GOOGLE_CHART_URL = "http://chart.apis.google.com/chart?"
@@ -23,7 +24,11 @@ class Poll < ActiveRecord::Base
   end
 
   def responded?(profile)
-    !self.poll_responses.find_by_profile_id(profile.id).nil?
+    !self.poll_responses.find_by_profile_id(profile.id).nil? || self.status == false
+  end
+
+  def can_edit?
+    self.votes_count < 1
   end
   
   def poll_close?

@@ -7,3 +7,4 @@
     has no polls .
   - else
     = render :partial => 'polls/poll', :collection=>@polls
+  = will_paginate @polls

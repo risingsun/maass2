@@ -11,3 +11,4 @@
 = render 'personal_info'
 = render 'work_info' if !@profile.works.blank?
 = render 'education_info' if !@profile.educations.blank?
+= render 'poll_link' if !@profile.polls.blank?
