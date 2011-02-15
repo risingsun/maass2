@@ -1,0 +1,7 @@
+-@blogs.each do |blog|
+  %p
+  %b
+    = blog.title
+  %p
+  = blog.body.html_safe
+  %br

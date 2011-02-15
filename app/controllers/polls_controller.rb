@@ -20,8 +20,8 @@ class PollsController < ApplicationController
       flash[:notice] = 'Poll was successfully created.'
       redirect_to :action=>'show', :id=>@poll
     else
-       flash.now[:error] = 'Poll was not successfully created.'
-       render 'new'
+      flash.now[:error] = 'Poll was not successfully created.'
+      render 'new'
     end
   end
 
@@ -40,11 +40,11 @@ class PollsController < ApplicationController
     @profile =  current_user.profile
     @poll = @profile.polls.find(params[:id])
     if @poll.update_attributes!(params[:poll])
-       flash[:notice] = 'Poll was successfully updated.'
-       redirect_to poll_path(@poll)
+      flash[:notice] = 'Poll was successfully updated.'
+      redirect_to poll_path(@poll)
     else
-       flash.now[:error] = 'Poll was not successfully updated.'
-       render 'edit'
+      flash.now[:error] = 'Poll was not successfully updated.'
+      render 'edit'
     end
   end
 
@@ -59,11 +59,11 @@ class PollsController < ApplicationController
     end
   end
 
-def poll_close
+  def poll_close
     @profile =  current_user.profile
     @poll = @profile.polls.find(params[:id])
     @poll.update_attributes(:status => false)
     redirect_to root_url
-end
+  end
 
 end

@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(:version => 20110212054239) do
   create_table "blogs", :force => true do |t|
     t.string   "profile_id"
     t.string   "title"
+    t.string   "body"
+    t.boolean  "is_sent"
+    t.integer  "comments_count"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_sent"
-    t.string   "cached_tag_list"
-    t.string   "body"
   end
 
   create_table "comments", :force => true do |t|
@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(:version => 20110212054239) do
     t.string   "maiden_last_name"
     t.string   "groups"
     t.string   "gender"
+    t.string   "question"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -39,13 +39,13 @@ class ProfilesController < ApplicationController
   end
 
 
- def add_friend
+  def add_friend
 
- end
+  end
 
- def remove_friend
+  def remove_friend
 
- end
+  end
 
   private
 

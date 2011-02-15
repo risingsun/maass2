@@ -9,7 +9,9 @@ Maass2::Application.routes.draw do
   resources :profiles do
     post 'load_profile', :on => :collection
   end
-  resources :blogs 
+  resources :blogs  do
+    get 'blog_archive', :on => :member
+  end
   resources :homes
   resources :friends
   resources :polls do
@@ -23,7 +25,8 @@ Maass2::Application.routes.draw do
 
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
-
+#  match '/blog_archive/:month/:year', :to => 'blogs#blog_archive'
+ 
 #  match '/user/:user_id/profile/:id',  :to => 'profiles#show'
 
   # The priority is based upon order of creation:
