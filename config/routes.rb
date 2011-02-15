@@ -17,12 +17,17 @@ Maass2::Application.routes.draw do
   resources :polls do
     get 'poll_close', :on => :member
   end
-  resources :poll_responses
+  resources :votes
   get 'accounts/update_default_permission'
-  get 'blogs/preview'
-  get 'profiles/load_profile'
-  root :to=>"homes#index"
 
+  root :to=>"homes#index"
+  resources :blogs
+  resources :homes
+
+#  match '/permissions', :to => 'accounts#permissions'
+
+  get 'blogs/preview'
+  #get 'profiles/load_profile'
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
 #  match '/blog_archive/:month/:year', :to => 'blogs#blog_archive'

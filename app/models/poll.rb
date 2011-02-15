@@ -1,4 +1,5 @@
 class Poll < ActiveRecord::Base
+  
   OPT_HEIGHT = 35
   LABEL_WIDTH = 13
   GOOGLE_CHART_URL = "http://chart.apis.google.com/chart?"
@@ -11,21 +12,26 @@ class Poll < ActiveRecord::Base
   validates :question, :presence => true
   validates :profile, :presence => true
 
-
   accepts_nested_attributes_for :poll_options, :allow_destroy=> true , :reject_if=> proc{|attr| attr['option'].blank?}
   accepts_nested_attributes_for :poll_responses, :allow_destroy=> true
-
-  
 
   def select_poll_options
     option_array = []
     poll_options.each do |p|
-     option_array << [p.option,[p.id,p.poll_id]]
+      option_array << [p.option,[p.id,p.poll_id]]
     end
     option_array
   end
 
-   def poll_close?
+  def responded?(profile)
+    !self.poll_responses.find_by_profile_id(profile.id).nil? || self.status == false
+  end
+
+  def can_edit?
+    self.votes_count < 1
+  end
+  
+  def poll_close?
     self.status == false
   end
   
@@ -49,7 +55,6 @@ class Poll < ActiveRecord::Base
       return false
     end
   end
-
 
   def graph_data
     'chd=t:'+self.options_in_count_asc.map(&:votes_percentage).join(',')

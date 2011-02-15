@@ -1,5 +1,10 @@
 %h2
-    = current_user.first_name
-    's polls
-    = link_to image_tag('add.png',:title=>"Create New poll"),new_poll_path(@poll)
-    = render "polls/poll"
+  = current_user.first_name
+  's polls
+  = link_to image_tag('add.png',:title=>"Create New poll"),new_poll_path(@poll)
+  -if @polls.empty?
+    = @profile.full_name
+    has no polls .
+  - else
+    = render :partial => 'polls/poll', :collection=>@polls
+  = will_paginate @polls

@@ -10,6 +10,9 @@ class Profile < ActiveRecord::Base
   has_many :poll_responses, :dependent => :destroy
 
   has_many :friends, :foreign_key => "inviter_id"
+  has_many :friendships, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'accepted'"
+  has_many :requested_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'pending'"
+  has_many :friends, :through => :friendships, :source => :invited
 
   Friend::FRIENDS_STATUSES.each do |key,value|
     has_many "#{key}_friends".to_sym, :class_name => "Friend", :foreign_key => "invited_id", :conditions => {:status => value}

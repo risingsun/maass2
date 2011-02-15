@@ -8,6 +8,10 @@
     = csrf_meta_tag
   %body
     = render 'layouts/header'
-    = yield
+    %br
     %br
     = flash[:notice]
+    %br
+    = yield
+    %br
+    
