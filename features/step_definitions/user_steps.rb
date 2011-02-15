@@ -19,7 +19,6 @@ Then /^I attach the file to:$/ do |table|
 #  pending # express the regexp above with the code you wish you had
 end
 
-
 #Then /^I should be signed in$/ do
 #  email = @user.email
 #  password = @user.password
