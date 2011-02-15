@@ -1,83 +1,90 @@
 class BlogsController < ApplicationController
 
-uses_tiny_mce(:only => [:new, :edit,:create,:update],
-  :options => {
-    :theme => 'advanced',
-    :theme_advanced_toolbar_location => "bottom",
-    :theme_advanced_toolbar_align => "left",
-    :theme_advanced_resizing => true,
-    :theme_advanced_resize_horizontal => false,
-    :paste_auto_cleanup_on_paste => true,
-    :theme_advanced_buttons1 => %w{bold italic underline strikethrough separator
-                                   justifyleft justifycenter justifyright indent
-                                   outdent separator bullist numlist separator
-                                   link unlink image undo redo code forecolor
-                                   backcolor newdocument cleanup},
-    :theme_advanced_buttons2 => %w{formatselect fontselect fontsizeselect},
-    :theme_advanced_buttons3 => [],
-    :plugins => %w{contextmenu paste}})
+  before_filter :load_profile, :except => [:tag_cloud]
+  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive]
 
-  def new
-    @profile = current_user.profile
-    @blog = @profile.blogs.build || @prorfile.blogs
-  end
-
-  def create
-    @profile = current_user.profile
-    @blog = @profile.blogs.build params[:blog]
-    if params[:preview_button] || !@blog.save
-       render :action => 'new'
-       flash[:notice] = "Blog Creation Failed."
-    else
-       flash[:notice] = "Successfully created Blog."
-       redirect_to :blogs
-    end
-  end
-
-
-   def show
-      @profile = current_user.profile
-      @blog = @profile.blogs.find(params[:id])
-   end
-
-   def index
-    @profile = current_user.profile
+    uses_tiny_mce(:only => [:new, :edit,:create,:update],
+    :options => {
+      :theme => 'advanced',
+      :theme_advanced_toolbar_location => "bottom",
+      :theme_advanced_toolbar_align => "left",
+      :theme_advanced_resizing => true,
+      :theme_advanced_resize_horizontal => false,
+      :paste_auto_cleanup_on_paste => true,
+      :theme_advanced_buttons1 => %w{bold italic underline strikethrough separator
+                                     justifyleft justifycenter justifyright indent
+                                     outdent separator bullist numlist separator
+                                     link unlink image undo redo code forecolor
+                                     backcolor newdocument cleanup},
+      :theme_advanced_buttons2 => %w{formatselect fontselect fontsizeselect},
+      :theme_advanced_buttons3 => [],
+      :plugins => %w{contextmenu paste}})
+  
+  def index
     @blog = @profile.blogs
     if @blog.blank?
       redirect_to new_blog_path
     end
-   end
+#    @b = Blog.all(:select => "title, id")
+#    @blog_months = @blog.group_by { |t| t.posted_at.beginning_of_month }
 
-   def update
-     @blog=Blog.find(params[:id])
-     @blog.attributes = params[:blog]
-      if params[:preview_button] || !@blog.save
-       flash[:notice]= "Update Failed."
-       render :action => 'new'
-      else
-         flash[:notice] = "Successfully updated blog."
-         redirect_to blogs_path
-      end
-   end
+  end
 
-   def edit
-      @blog = Blog.find(params[:id])
-   end
+  def show
+  end
 
-   def destroy
-      @blog = Blog.find(params[:id])
-      @blog.destroy
-      flash[:notice] = "Successfully destroyed blog."
+  def new
+    @blog = @profile.blogs.build
+  end
+
+  def create
+    @blog = @profile.blogs.build(params[:blog])
+    if params[:preview_button] || !@blog.save
+      render :action => 'new'
+      flash[:notice] = "Blog Creation Failed."
+    else
+      flash[:notice] = "Successfully created Blog."
+      redirect_to :blogs
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @blog.attributes = params[:blog]
+    if params[:preview_button] || !@blog.save
+      flash[:notice]= "Update Failed."
+      render :action => 'new'
+    else
+      flash[:notice] = "Successfully updated blog."
       redirect_to blogs_path
-   end
+    end
+  end
 
-   def preview
-     @blog=Blog.new(params[:blog])
-   end
+  def destroy
+    @blog.destroy
+    flash[:notice] = "Successfully destroyed blog."
+    redirect_to blogs_path
+  end
 
-   def tag_cloud
-      @tags = Blog.tag_counts_on(:tags)
-   end
+  def tag_cloud
+    @tags = Blog.tag_counts_on(:tags)
+  end
+  
+  def blog_archive
+    @blogs = Blog.find(:all)
+    render '_blog_archive'
+  end
 
+  
+private
+  
+    def load_profile
+      @profile = current_user.profile
+    end
 
+    def load_resource
+      @blog = @profile.blogs.find(params[:id])
+    end
 end
