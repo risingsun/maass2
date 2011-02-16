@@ -10,8 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20110208094837) do
+ActiveRecord::Schema.define(:version => 20110215120026) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -28,9 +27,6 @@ ActiveRecord::Schema.define(:version => 20110208094837) do
     t.integer  "comments_count"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_sent"
-    t.string   "cached_tag_list"
-    t.string   "body"
   end
 
   create_table "comments", :force => true do |t|
@@ -71,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20110208094837) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.string   "account_id"
+    t.string   "profile_id"
     t.string   "news_notification"
     t.string   "event_notification"
     t.string   "message_notification"
@@ -84,31 +80,9 @@ ActiveRecord::Schema.define(:version => 20110208094837) do
   end
 
   create_table "permissions", :force => true do |t|
-    t.string   "account_id"
-    t.string   "website"
-    t.string   "blog"
-    t.string   "about_me"
-    t.string   "gtalk_name"
-    t.string   "location"
-    t.string   "email"
-    t.string   "date_of_birth"
-    t.string   "anniversary_date"
-    t.string   "relationship_status"
-    t.string   "spouse_name"
-    t.string   "gender"
-    t.string   "activities"
-    t.string   "yahoo_name"
-    t.string   "skype_name"
-    t.string   "educations"
-    t.string   "work_informations"
-    t.string   "delicious_name"
-    t.string   "twitter_username"
-    t.string   "msn_username"
-    t.string   "linkedin_name"
-    t.string   "address"
-    t.string   "landline"
-    t.string   "mobile"
-    t.string   "marker"
+    t.string   "profile_id"
+    t.string   "permission_field"
+    t.string   "permission_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -160,15 +134,7 @@ ActiveRecord::Schema.define(:version => 20110208094837) do
     t.string   "state"
     t.string   "landline"
     t.string   "mobile"
-    t.string   "education_from_year"
-    t.string   "education_to_year"
-    t.string   "university"
     t.string   "status_message"
-    t.string   "occupation"
-    t.string   "industry"
-    t.string   "company_name"
-    t.string   "company_website"
-    t.string   "job_description"
     t.string   "website"
     t.string   "blog"
     t.string   "flicker_id"
@@ -186,9 +152,10 @@ ActiveRecord::Schema.define(:version => 20110208094837) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "default_permission",         :default => "Everyone"
   end
 
- create_table "taggings", :force => true do |t|
+  create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
@@ -204,7 +171,6 @@ ActiveRecord::Schema.define(:version => 20110208094837) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
-
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

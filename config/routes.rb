@@ -3,10 +3,7 @@ Maass2::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users"}
 
   resources :notifications
-  resources :permissions
-  resources :accounts
   resources :users
-  resources :profiles 
   resources :blogs 
   resources :homes
   resources :friends
@@ -15,15 +12,12 @@ Maass2::Application.routes.draw do
   end
   resources :votes
   get 'accounts/update_default_permission'
+  resources :profiles do
+    get 'edit_account', :on => :member
+  end
 
   root :to=>"homes#index"
-  resources :blogs
-  resources :homes
-
-#  match '/permissions', :to => 'accounts#permissions'
-
   get 'blogs/preview'
-  #get 'profiles/load_profile'
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
 

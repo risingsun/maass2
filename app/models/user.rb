@@ -28,11 +28,8 @@
 class User < ActiveRecord::Base
 
   include Humanizer
-
-  has_one :account
-  has_one :permission
   has_one :profile
-
+  accepts_nested_attributes_for :profile
   SEX = ["Male","Female"]
   GROUP=["Teacher","Guest"]+(1992..Date.today.year+1).to_a
   EDU_YEAR=(1990..Date.today.year+5).to_a

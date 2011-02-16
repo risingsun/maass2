@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  before_filter :load_profile, :only => [:create,:edit]
+  before_filter :load_profile, :only => [:create,:edit,:update,:show,:edit_account]
 
   def create
     if @profile.save
@@ -12,47 +12,40 @@ class ProfilesController < ApplicationController
     end
   end
 
-
   def edit
-    @profile =  current_user.profile || current_user.build_profile
-    @profile.save
-    @educations = @profile.educations || @profile.educations.build
-    @works = @profile.works || @profile.works.build
   end
 
   def update
-    @profile = current_user.profile
-    if @profile.update_attributes!(params[:profile])
+    case params[:commit]
+    when "Update Permissions"
+      @profile.update_attributes(params[:profile])
+      redirect_to edit_account_profile_path(current_user.profile)
+    when "Set Default"
+      @profile.update_attributes(params[:profile])
+      @profile.permissions.each {|p| p.destroy}
+      redirect_to edit_account_profile_path(current_user.profile)
+    else
+      @profile.update_attributes params[:profile]
       flash[:notice] = "Profile updated."
       redirect_to :edit
-    else
-      flash[:notice] = "Failed updation."
-      render 'edit'
     end
   end
 
   def show
-    @profile=current_user.profile
-    @user=current_user
-    @works=@profile.works
-    @educations=@profile.educations
   end
 
-
- def add_friend
-
- end
-
- def remove_friend
-
- end
+  def edit_account
+   @permissions = @profile.permissions || @profile.permissions.build
+  end
 
   private
 
   def load_profile
     @profile =  current_user.profile || current_user.build_profile
+     @profile.save
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
+    @user=current_user
   end
 
 end
