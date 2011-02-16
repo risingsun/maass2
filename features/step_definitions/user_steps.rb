@@ -10,15 +10,10 @@ Given /^no user profile exists$/ do
   @user.profile.should be_nil
 end
 
-Then /^I select from:$/ do |table|
-#      select("Rajasthan", :from => "State")
-end
-
 Then /^I attach the file to:$/ do |table|
 #  # table is a Cucumber::Ast::Table
 #  pending # express the regexp above with the code you wish you had
 end
-
 
 #Then /^I should be signed in$/ do
 #  email = @user.email

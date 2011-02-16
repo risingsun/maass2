@@ -6,33 +6,29 @@ Maass2::Application.routes.draw do
   resources :permissions
   resources :accounts
   resources :users
+  resources :homes
+  resources :votes
+  resources :friends
   resources :profiles do
     post 'load_profile', :on => :collection
   end
   resources :blogs  do
     get 'blog_archive', :on => :member
   end
-  resources :homes
-  resources :friends
   resources :polls do
     get 'poll_close', :on => :member
   end
-  resources :votes
-  get 'accounts/update_default_permission'
 
   root :to=>"homes#index"
-  resources :blogs
-  resources :homes
 
-#  match '/permissions', :to => 'accounts#permissions'
-
+  get 'accounts/update_default_permission'
   get 'blogs/preview'
-  #get 'profiles/load_profile'
+
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
-#  match '/blog_archive/:month/:year', :to => 'blogs#blog_archive'
+  #  match '/blog_archive/:month/:year', :to => 'blogs#blog_archive'
  
-#  match '/user/:user_id/profile/:id',  :to => 'profiles#show'
+  #  match '/user/:user_id/profile/:id',  :to => 'profiles#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -89,5 +85,5 @@ Maass2::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-   match ':controller(/:action(/:id(.:format)))'
+  match ':controller(/:action(/:id(.:format)))'
 end
