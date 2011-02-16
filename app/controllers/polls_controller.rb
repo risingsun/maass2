@@ -51,10 +51,9 @@ class PollsController < ApplicationController
     @profile =  current_user.profile
     @poll = @profile.polls.find(params[:id])
     if @poll.destroy
-      flash[:notice] = "poll destroyed successfully."
       redirect_to new_poll_path
     else
-      flash[:notice] = "error while destroy"
+      flash[:notice] = "Poll was not successfully destroyed."
     end
   end
 

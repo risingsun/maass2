@@ -6,7 +6,6 @@ Maass2::Application.routes.draw do
   resources :permissions
   resources :accounts
   resources :users
-  resources :homes
   resources :votes
   resources :friends
   resources :profiles do
@@ -20,6 +19,11 @@ Maass2::Application.routes.draw do
   end
 
   root :to=>"homes#index"
+  resources :homes do
+    get 'see_my_polls', :on => :member
+  end
+
+#  match '/permissions', :to => 'accounts#permissions'
 
   get 'accounts/update_default_permission'
   get 'blogs/preview'

@@ -17,11 +17,4 @@ Feature: Poll
     Then I should be on the polls index page
     And I choose "poll[poll_options][option]"
     When I press "Vote"
-# Scenario: Vote submission
-#    Given I am a valid user
-#    And I sign in with valid data
-#    And the polls index page
-#    And show me the page
-#    And I choose "poll[poll_options][option]"
-#    When I press "Vote"
-#  
+    Then I should see "Poll was successfully created."
