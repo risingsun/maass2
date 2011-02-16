@@ -22,7 +22,12 @@ module NavigationHelpers
 
     when /the profile setup page/
        edit_path
+    
+    when /the polls index page/
+        polls_path
 
+    when /the polls index page/
+       polls_path
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

@@ -1,7 +1,7 @@
 class PollsController < ApplicationController
 
   def index
-    @polls = current_user.profile.polls.order("created_at desc")
+    @polls = current_user.profile.polls.order("created_at desc").paginate(:page => params[:page],:per_page => 10)
     if current_user.profile.polls.empty?
       flash[:notice] = 'You have not create any polls. Try creating one now.'
       redirect_to new_poll_path
@@ -51,10 +51,9 @@ class PollsController < ApplicationController
     @profile =  current_user.profile
     @poll = @profile.polls.find(params[:id])
     if @poll.destroy
-      flash[:notice] = "poll destroyed successfully."
       redirect_to new_poll_path
     else
-      flash[:notice] = "error while destroy"
+      flash[:notice] = "Poll was not successfully destroyed."
     end
   end
 

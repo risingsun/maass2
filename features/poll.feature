@@ -9,9 +9,12 @@ Feature: Poll
     And I sign in with valid data
     Then I should be on the home page
     When I follow "My Polls"
-    And show me the page
     Then I should see "New Poll" 
     And I fill in the following:
         |poll_question                                    | hi how r u all     |
         |poll[poll_options_attributes][0][option]         | fine               |
-    Then I press "Create Poll"
+    When I press "Create Poll"
+    Then I should be on the polls index page
+    And I choose "poll[poll_options][option]"
+    When I press "Vote"
+    Then I should see "Poll was successfully created."

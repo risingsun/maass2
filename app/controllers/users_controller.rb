@@ -5,6 +5,7 @@ class UsersController < Devise::RegistrationsController
     @notification =@profile.notification || @profile.build_notification
     @permission =@profile.permission || @profile.build_permission
 
+
       if resource.update_with_password(params[:user])
         set_flash_message :notice, :updated
         #      sign_in resource_name, resource, :bypass => true
@@ -13,6 +14,7 @@ class UsersController < Devise::RegistrationsController
         clean_up_passwords(current_user)
         render "profiles/edit_account"
       end
+
   end
 
 end

@@ -34,6 +34,7 @@ class ProfilesController < ApplicationController
   def show
   end
 
+
   def edit_account
    @permissions = @profile.permissions || @profile.permissions.build
   end

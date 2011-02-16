@@ -1,6 +1,7 @@
 class Profile < ActiveRecord::Base
 
 
+
  belongs_to :user
  has_many :educations, :dependent => :destroy
  has_many :works, :dependent => :destroy
@@ -16,7 +17,7 @@ class Profile < ActiveRecord::Base
  has_many :requested_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'requested'"
  has_many :friends, :through => :friendships, :source => :invited
 
- 
+ accepts_nested_attributes_for :user
  accepts_nested_attributes_for :notification
  accepts_nested_attributes_for :blogs
  accepts_nested_attributes_for :marker
@@ -26,43 +27,7 @@ class Profile < ActiveRecord::Base
  accepts_nested_attributes_for :works, :allow_destroy => true,
                                :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-
- INDIA_STATES = [ "Andhra Pradesh",
-   "Arunachal Pradesh",
-   "Assam",
-   "Andaman and Nicobar Islands",
-   "Bihar",
-   "Chandigarh",
-  "Chhattisgarh",
-   "Dadra and Nagar Haveli",
-   "Daman and Diu",
-   "Delhi",
-   "Goa",
-   "Gujarat",
-   "Harayana",
-   "Himachal Pradesh",
-   "Jammu and Kashmir",
-   "Jharkhand",
-   "Karnataka",
-   "Kerala",
-   "Lakshadweep",
-   "Madhya Pradesh",
-   "Maharashtra",
-   "Manipur",
-   "Meghalaya",
-   "Mizoram",
-   "Nagaland",
-   "Orissa",
-   "Punjab",
-   "Puducherry",
-   "Rajasthan",
-   "Sikkim",
-   "Tamilnadu",
-   "Tripura",
-   "Uttarakhand",
-   "Uttar Pradesh",
-  "West Bengal"]
-
+  
   def profile_permissions
     if @permission_objects.nil?
       @permission_objects = []
