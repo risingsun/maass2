@@ -2,9 +2,8 @@ Maass2::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "users"}
 
-  resources :notifications
+#  resources :notifications
   resources :users
-  resources :blogs 
   resources :homes
 
   resources :votes

@@ -25,7 +25,7 @@ class BlogsController < ApplicationController
     if @blog.blank?
       redirect_to new_blog_path
     end
-    @blog = Blog.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
+    @blog = @blog.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
   end
 
   def show

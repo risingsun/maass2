@@ -1,14 +1,12 @@
 class Profile < ActiveRecord::Base
 
-
-
  belongs_to :user
  has_many :educations, :dependent => :destroy
  has_many :works, :dependent => :destroy
  has_many :permissions, :dependent => :destroy, :attributes => true
  has_many :blogs
  has_one :marker
- has_one :notification
+ has_one :notification_control
  has_many :friends, :foreign_key => "inviter_id"
  has_many :polls, :dependent => :destroy
  has_many :poll_responses, :dependent => :destroy
@@ -21,7 +19,7 @@ class Profile < ActiveRecord::Base
 # has_many :waiting_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'requested'"
 # has_many :friends, :through => :friendships, :source => :invited
 
- accepts_nested_attributes_for :notification
+ accepts_nested_attributes_for :notification_control
  accepts_nested_attributes_for :blogs
  accepts_nested_attributes_for :user
  accepts_nested_attributes_for :marker
@@ -38,6 +36,8 @@ class Profile < ActiveRecord::Base
 #  validates :middle_name, :length => { :maximum => 20 }
 #  validates :last_name, :length => { :maximum => 20 }
 #  validates :maiden_name, :length => { :maximum => 20 }
+
+  
   def profile_permissions
     if @permission_objects.nil?
       @permission_objects = []
@@ -46,7 +46,6 @@ class Profile < ActiveRecord::Base
         dbp[f].nil? ? permissions.build(:permission_field => f, :permission_type => default_permission) : dbp[f]
       end
     end
-
     @permission_objects
   end
 
@@ -58,15 +57,13 @@ class Profile < ActiveRecord::Base
     @db_permissions
   end
 
-  private
+private
 
   before_update :permission_sync
 
   def permission_sync
     return true if permissions.nil?
     permissions.delete permissions.select {|p| p.permission_type == default_permission}
-
   end
-
-
+  
 end
