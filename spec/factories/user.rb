@@ -2,9 +2,7 @@ Factory.define :user do |u|
   u.email "pariharkirti24@gamil.com"
   u.password "123456"
   u.password_confirmation "123456"
-  u.login_name "kirti"
-  u.first_name "kirti"
-  u.last_name "parihar"
+  u.login "kirti"
   u.humanizer_question_id "Two plus two?"
   u.humanizer_answer "four"
 end
@@ -56,12 +54,14 @@ end
 
 Factory.define :profile do |p|
   p.user_id "1"
+  p.first_name "kirti"
+  p.last_name "parihar"
   p.title "x"
   p.blood_group "x"
   p.house_name "x"
   p.date_of_birth "x"
   p.relationship_status "x"
-  p.aniversery_date "x"
+  p.aniversary_date "x"
   p.spouse_name "x"
   p.professional_qualification "x"
   p.about_me "x"
@@ -78,16 +78,16 @@ Factory.define :profile do |p|
   p.status_message "x"
   p.website "x"
   p.blog "x"
-  p.flicker_id "x"
-  p.linkedin_id "x"
-  p.twitter_id "x"
-  p.aim_id "x"
-  p.msn_id "x"
-  p.yahoo_id "x"
-  p.gtalk_id "x"
-  p.skype_id "x"
-  p.delicious_id "x"
-  p.avatar_file_name "x"
+  p.flicker_username "x"
+  p.linkedin_name "x"
+  p.twitter_username "x"
+  p.aim_name "x"
+  p.msn_username "x"
+  p.yahoo_name "x"
+  p.gtalk_name "x"
+  p.skype_name "x"
+  p.delicious_name "x"
+  p.icon_file_name "x"
 end
 
 Factory.define :blog do |b|
@@ -112,4 +112,12 @@ Factory.define :education do |b|
   b.education_to_year "2008"
   b.institution "MCA"
   b.association :profile
+end
+
+Factory.define :polls do |p|
+  p.question "hi how r u all"
+  p.profile_id "1"
+  p.public "false"
+  p.status "true"
+  p.votes_count "false"
 end

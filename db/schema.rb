@@ -10,7 +10,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110217112009) do
+
+ActiveRecord::Schema.define(:version => 20110217065042) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -75,9 +76,20 @@ ActiveRecord::Schema.define(:version => 20110217112009) do
     t.integer  "profile_comment", :default => 1
     t.integer  "follow",          :default => 1
     t.integer  "delete_friend",   :default => 1
+
+  create_table "messages", :force => true do |t|
+    t.string   "subject"
+    t.text     "body"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.boolean  "read"
+    t.boolean  "sender_flag"
+    t.boolean  "receiver_flag"
+    t.boolean  "system_message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
 
   create_table "permissions", :force => true do |t|
     t.string   "profile_id"
@@ -229,4 +241,5 @@ ActiveRecord::Schema.define(:version => 20110217112009) do
     t.datetime "updated_at"
   end
 
+end
 end
