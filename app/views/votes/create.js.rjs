@@ -1,3 +1,0 @@
-if @vote.valid?
-  page.replace_html "poll_option_#{@option.poll.id}", :partial => 'polls/poll_response', :locals => {:poll => @option.poll}
-end

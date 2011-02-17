@@ -1,5 +1,5 @@
 %h2
-  = current_user.first_name
+  = @poll.profile.user.first_name
   's poll
-  = link_to image_tag('add.png',:title=>"Create New poll"),new_poll_path(@poll)
+  = link_to image_tag('add.png',:title=>"Create New poll"),new_poll_path
 = render "polls/poll", :poll =>@poll

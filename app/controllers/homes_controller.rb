@@ -13,7 +13,7 @@ class HomesController < ApplicationController
       @educations=@profile.educations
       @friend=current_user.profile.friends.find(:all, :conditions => ['invited_id = ?', @profile.id])
       @friend=Friend.check_friend(@profile.id, current_user.profile.id)
-      @user = User.all - [current_user]
+      #@user = User.all - [current_user]
     else
       redirect_to homes_path
       flash[:notice] = "It looks like you don't have permission to view that page."
@@ -23,7 +23,7 @@ class HomesController < ApplicationController
   def see_my_polls
     @user = User.find(params[:id])
     @profile = @user.profile
-    @polls = @profile.polls
+    @polls = @profile.polls.order("created_at desc").paginate(:page => params[:page],:per_page => 10)
     render :template => 'homes/_poll_link'
   end
 

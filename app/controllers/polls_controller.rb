@@ -10,7 +10,9 @@ class PollsController < ApplicationController
 
   def show
     @profile =  current_user.profile
-    @poll = @profile.polls.find(params[:id])
+    unless @poll = @profile.polls.find_by_id(params[:id])
+      @poll = Poll.find(params[:id])
+    end
   end
   
   def new

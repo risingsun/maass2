@@ -1,2 +1,1 @@
-- @polls.each do |poll|
-  = render :partial => 'polls/poll', :locals => {:poll => poll}
+= render :template => '/polls/index', :collection => @polls
