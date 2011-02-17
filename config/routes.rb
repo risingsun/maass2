@@ -2,11 +2,12 @@ Maass2::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "users"}
 
-  resources :notifications
   resources :users
+
   resources :messages do
     get 'direct_message', :on => :member
   end
+
   resources :homes
   resources :votes
   resources :friends

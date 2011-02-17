@@ -1,7 +1,7 @@
 class Friend < ActiveRecord::Base
 
-FRIENDS_STATUSES = {"accepted" => "accept", "waiting" => "wait"}
-  belongs_to :profile
+  FRIENDS_STATUSES = {"accepted" => "accept", "waiting" => "wait"}
+    belongs_to :profile
 
   FRIENDS_STATUSES.each do |key,value|
     scope key.to_sym, where(:status => value)
@@ -26,7 +26,7 @@ FRIENDS_STATUSES = {"accepted" => "accept", "waiting" => "wait"}
     destroy(find_by_inviter_id_and_invited_id(friend, user))
   end
 
-  private
+private
 
   def self.accept_one_side(user, friend)
     request = find_by_inviter_id_and_invited_id(user, friend)

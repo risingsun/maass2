@@ -41,8 +41,8 @@ class User < ActiveRecord::Base
                          educations work_informations delicious_name
                          twitter_username msn_username linkedin_name
                          address landline mobile marker)
-  NOTIFICATION_FIELDS = %w(news_notification event_notification message_notification blog_comment_notification
-                          profile_comment_notification follow_notification delete_friend_notification )
+  NOTIFICATION_FIELDS = %w(news event message blog_comment
+                          profile_comment follow delete_friend )
   PERSONAL_INFO= %w(house_name blood_group date_of_birth address_line1 landline mobile relationship_status spouse_name aniversery_date professional_qualification about_me activities)
 
   devise :database_authenticatable, :registerable,
