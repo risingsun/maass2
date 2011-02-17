@@ -13,21 +13,27 @@ class Profile < ActiveRecord::Base
  has_many :polls, :dependent => :destroy
  has_many :poll_responses, :dependent => :destroy
 
- has_many :friendships, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'accepted'"
- has_many :requested_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'requested'"
+ has_many :accepted_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'accepted'"
+ has_many :waiting_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'requested'"
  has_many :friends, :through => :friendships, :source => :invited
 
- accepts_nested_attributes_for :user
  accepts_nested_attributes_for :notification
  accepts_nested_attributes_for :blogs
+ accepts_nested_attributes_for :user
  accepts_nested_attributes_for :marker
- #accepts_nested_attributes_for :permissions
+ accepts_nested_attributes_for :permissions
  accepts_nested_attributes_for :educations, :allow_destroy => true,
                                :reject_if => proc { |attrs| reject = %w(education_from_year education_fo_year institution).all?{|a| attrs[a].blank?} }
  accepts_nested_attributes_for :works, :allow_destroy => true,
                                :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
- has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  
+ has_attached_file :icon, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+
+#  attr_accessible :first_name, :last_name, :middle_name, :maiden_name, :gender, :group
+#  validates :first_name, :presence => true,
+#                         :length => { :maximum => 20 }
+#  validates :middle_name, :length => { :maximum => 20 }
+#  validates :last_name, :length => { :maximum => 20 }
+#  validates :maiden_name, :length => { :maximum => 20 }
   def profile_permissions
     if @permission_objects.nil?
       @permission_objects = []

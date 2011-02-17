@@ -1,5 +1,10 @@
 class UsersController < Devise::RegistrationsController
 
+  def create
+    super
+    @profile=Profile.create(params[:profile].merge(:user_id => resource.id))
+  end
+
   def update
     @profile =  current_user.profile || current_user.build_profile
     @notification =@profile.notification || @profile.build_notification
@@ -14,7 +19,6 @@ class UsersController < Devise::RegistrationsController
         clean_up_passwords(current_user)
         render "profiles/edit_account"
       end
-
   end
 
 end

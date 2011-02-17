@@ -1,7 +1,7 @@
 %h2 Mansinghites'Alumni Association
 %p
 = link_to gravatar_image_tag(@user.email, :gravatar => { :size => 50 }), home_path(@user.id)
-= [ @user.first_name, @user.middle_name, @user.last_name ].join(" ")
+= [ @profile.first_name, @profile.middle_name, @profile.last_name ].join(" ")
 %br
 -if @friend.blank?
   = link_to "add Friend", friends_path(:invited_id => @user.id), :method => :post
