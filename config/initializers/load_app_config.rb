@@ -1,6 +1,6 @@
 GOOGLE_CHART_COLOUR_ARRAY = %w(3CD983 C4D925 BABF1B BFA20F A66D03 732C02)
 
-INDIA_STATES = [ "Andhra Pradesh",
+Profile::INDIA_STATES = [ "Andhra Pradesh",
   "Arunachal Pradesh",
   "Assam",
   "Andaman and Nicobar Islands",

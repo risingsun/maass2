@@ -10,8 +10,7 @@ class Poll < ActiveRecord::Base
   has_many :poll_options, :dependent => :destroy
   has_many :poll_responses, :dependent => :destroy
   validates :question, :presence => true
-  validates :profile, :presence => true
-
+  
   accepts_nested_attributes_for :poll_options, :allow_destroy=> true , :reject_if=> proc{|attr| attr['option'].blank?}
   accepts_nested_attributes_for :poll_responses, :allow_destroy=> true
 

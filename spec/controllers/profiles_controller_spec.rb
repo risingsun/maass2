@@ -3,12 +3,12 @@ require 'spec_helper'
 describe ProfilesController do
 
   before :each do
-   @user = Factory(:user)
-   sign_in(@user)
-   @profile = Factory(:profile, :user => @user)
-   @education = Factory(:education, :profile => @profile)
-   @work = Factory(:work, :profile => @profile)
-   @current_user = User.find_by_id!(@user)
+    @user = Factory(:user)
+    sign_in(@user)
+    @profile = Factory(:profile, :user => @user)
+    @education = Factory(:education, :profile => @profile)
+    @work = Factory(:work, :profile => @profile)
+    @current_user = User.find_by_id!(@user)
   end
 
   describe "GET 'edit'" do
@@ -24,10 +24,10 @@ describe ProfilesController do
 
   describe "POST 'create'" do
     lambda do
-     assigns[:profile].should be_an_instance_of(Profile)
-     assigns[:profile].should_not be_a_new_record
-     assigns[:profile].should_not be_nil
-     assigns[:profile].should render_template('edit')
+      assigns[:profile].should be_an_instance_of(Profile)
+      assigns[:profile].should_not be_a_new_record
+      assigns[:profile].should_not be_nil
+      assigns[:profile].should render_template('edit')
     end
     describe "failure" do
       before(:each)do
@@ -43,11 +43,11 @@ describe ProfilesController do
 
       it "should have a failure message" do
         lambda do
-        post :create, :user => @attr
-        flash[:notice].should =~ /Failed creation/
+          post :create, :user => @attr
+          flash[:notice].should =~ /Failed creation/
+        end
       end
     end
-  end
 
     describe "success" do
       before(:each) do
@@ -66,26 +66,26 @@ describe ProfilesController do
       end
 
       it "should create profile" do
-       lambda do
-         post :create, :profile => { :relationship_status => "single" }
-       end.should change(Profile, :count).by(0)
-     end
-  end
+        lambda do
+          post :create, :profile => { :relationship_status => "single" }
+        end.should change(Profile, :count).by(0)
+      end
+    end
 
   end
 
   describe "PUT 'update'" do
     lambda do
-     assigns[:profile].should be_an_instance_of(Profile)
-     assigns[:profile].should_not be_a_new_record
-     assigns[:profile].should_not be_nil
-     assigns[:profile].should redirect_to :edit
+      assigns[:profile].should be_an_instance_of(Profile)
+      assigns[:profile].should_not be_a_new_record
+      assigns[:profile].should_not be_nil
+      assigns[:profile].should redirect_to :edit
     end
     it "should update a profile" do
-       lambda do
-       put 'update', :profile => {:relationship_status => "married"}
-       end.should change(Profile, :count).by(0)
-     end
+      lambda do
+        put 'update', :profile => {:relationship_status => "married"}
+      end.should change(Profile, :count).by(0)
+    end
   end
 
   describe "SHOW 'show'" do
@@ -100,14 +100,5 @@ describe ProfilesController do
       assigns[:profile].should render_template('show')
       response.should be_success
     end
-  end
-
-  describe "GET 'load_profile'" do
-    it "should load the user profile" do
-    get :load_profile
-    assigns[:profile].should be_an_instance_of(Profile)
-    assigns[:profile].should_not be_a_new_record
-    assigns[:profile].should_not be_nil
-   end
   end
 end

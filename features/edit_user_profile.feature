@@ -7,7 +7,8 @@ Feature: Edit User Profile
      Given I am a valid user
      And I sign in with valid data
      When I follow "Edit Profile"
-     Then I should see "click here to set status"
+     Then show me the page
+     And I should see "click here to set status"
      And I fill in the following:
         |status               | hello              |
      Then I press "Update"
@@ -18,13 +19,13 @@ Feature: Edit User Profile
      When I follow "Edit Profile"
      Then I should see "General Info"
      And I fill in the following:
-        |Login name                          | kirti              |
+        |Login                           | kirti              |
         |First name                          | kirti              |
         |Middle name                         | singh              |
         |Last name                           | parihar            |
-        |Maiden last name                    | parihar            |
-        |Date of birth                       | 12/12/88           |
-        |Aniversery date                     | 12/12/99           |
+        |Maiden name                    | parihar            |
+#        |Date of birth                       | 12/12/88           |
+#        |Aniversary date                   | 12/12/99           |
         |House name                          | parihar            |
         |Spouse name                         | parihar            |
         |Professional qualification          | parihar            |

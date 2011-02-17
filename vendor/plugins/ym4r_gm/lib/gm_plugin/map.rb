@@ -34,14 +34,14 @@ module Ym4r
         options[:version] ||= "2.x"
         api_key = ApiKey.get(options)
         a = "<script src=\"http://maps.google.com/maps?file=api&amp;v=#{options[:version]}&amp;key=#{api_key}&amp;hl=#{options[:hl]}&amp;sensor=#{options[:sensor]}\" type=\"text/javascript\"></script>\n"
-        a << "<script src=\"#{ActionController::Base.relative_url_root}/javascripts/ym4r-gm.js\" type=\"text/javascript\"></script>\n" unless options[:without_js]
+        a << "<script src=\"config.action_controller.relative_url_root/javascripts/ym4r-gm.js\" type=\"text/javascript\"></script>\n" unless options[:without_js]
         a << "<!--[if IE]>\n<style type=\"text/css\">\n v\\:* { behavior:url(#default#VML);}\n</style>\n<![endif]-->\n" if options[:with_vml]
         a << "<script src=\"http://www.google.com/uds/api?file=uds.js&amp;v=1.0\" type=\"text/javascript\"></script>" if options[:local_search]
         a << "<script src=\"http://www.google.com/uds/solutions/localsearch/gmlocalsearch.js\" type=\"text/javascript\"></script>\n" if options[:local_search]
         a << "<style type=\"text/css\">@import url(\"http://www.google.com/uds/css/gsearch.css\");@import url(\"http://www.google.com/uds/solutions/localsearch/gmlocalsearch.css\");}</style>" if options[:local_search]
         a
       end
-     
+#     I think replacement for ActionController::Base.relative_url_root is config.action_controller.relative_url_root
       #Outputs the <div id=...></div> which has been configured to contain the map. You can pass <tt>:width</tt> and <tt>:height</tt> as options to output this in the style attribute of the DIV element (you could also achieve the same effect by putting the dimension info into a CSS or using the instance method GMap#header_width_height). You can aslo pass <tt>:class</tt> to set the classname of the div.
       # To include initial content in the div, such as a loading message, you
       # may pass a <tt>:content</tt> option specifying a string, or other

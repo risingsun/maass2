@@ -75,7 +75,7 @@ Factory.define :profile do |p|
   p.state "x"
   p.landline "x"
   p.mobile "x"
-  p.status_message "x"
+  p.status_message "click here to set status"
   p.website "x"
   p.blog "x"
   p.flicker_username "x"
@@ -115,8 +115,8 @@ Factory.define :education do |b|
 end
 
 Factory.define :polls do |p|
-  p.question "hi how r u all"
   p.profile_id "1"
+  p.question "hi how r u all"
   p.public "false"
   p.status "true"
   p.votes_count "false"

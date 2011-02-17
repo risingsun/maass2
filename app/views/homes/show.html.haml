@@ -13,7 +13,6 @@
     =link_to("Remove Friend Request?", @friend, :method => :delete)
   -if @friend["status"]=='wait'
     =link_to "Accept Friend Request?", friend_path(@friend), :method => :put
-      Friend Request Sent
 %br
 = link_to("See My Polls",see_my_polls_home_path(@user))
 = render 'status'  if !@profile.status_message.blank?
