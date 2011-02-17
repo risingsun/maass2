@@ -1,0 +1,14 @@
+= form_for(@message) do |f|
+  %br/
+  %div
+    = f.label :Subject
+    %br/
+    = f.text_field :subject
+  %div
+    = f.label :Body
+    %br/
+    = f.text_area :body
+  %div
+  %br
+    = f.submit "Send message"
+   

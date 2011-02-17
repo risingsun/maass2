@@ -4,11 +4,11 @@ Maass2::Application.routes.draw do
 
   resources :notifications
   resources :users
-  resources :blogs 
+  resources :messages do
+    get 'direct_message', :on => :member
+  end
   resources :homes
-
   resources :votes
-
   resources :friends
   resources :profiles do
     post 'load_profile', :on => :collection
@@ -26,8 +26,6 @@ Maass2::Application.routes.draw do
 
   root :to=>"homes#index"
   get 'blogs/preview'
-
-  root :to=>"homes#index"
   resources :homes do
     get 'see_my_polls', :on => :member
   end
