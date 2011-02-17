@@ -4,13 +4,12 @@
 = [ @profile.first_name, @profile.middle_name, @profile.last_name ].join(" ")
 %br
 -if @friend.blank?
-  = link_to "add Friend", friends_path(:invited_id => @user.id), :method => :post
+  = link_to "add Friend", friends_path(:invited_id => @profile.id), :method => :post
 -else
   -if @friend["status"]=='requested'
     =link_to("Remove Friend Request?", @friend, :method => :delete)
-  -if @friend["status"]=='pending'
+  -if @friend["status"]=='wait'
     =link_to "Accept Friend Request?", friend_path(@friend), :method => :put
-    %br Friend Request Sent
 = link_to("See My Polls",see_my_polls_home_path(@user))
 
 = render 'status'  if !@profile.status_message.blank?

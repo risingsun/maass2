@@ -9,13 +9,17 @@ class Profile < ActiveRecord::Base
  has_many :blogs
  has_one :marker
  has_one :notification
-
+ has_many :friends, :foreign_key => "inviter_id"
  has_many :polls, :dependent => :destroy
  has_many :poll_responses, :dependent => :destroy
 
- has_many :accepted_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'accepted'"
- has_many :waiting_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'requested'"
- has_many :friends, :through => :friendships, :source => :invited
+ Friend::FRIENDS_STATUSES.each do |key,value|
+   has_many "#{key}_friends".to_sym, :class_name => "Friend", :foreign_key => "invited_id", :conditions => {:status => value}
+ end
+
+# has_many :accepted_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'accepted'"
+# has_many :waiting_friends, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = 'requested'"
+# has_many :friends, :through => :friendships, :source => :invited
 
  accepts_nested_attributes_for :notification
  accepts_nested_attributes_for :blogs
