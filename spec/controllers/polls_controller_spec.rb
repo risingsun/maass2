@@ -2,18 +2,16 @@ require 'spec_helper'
 
 describe PollsController do
 
-    before :each do
-    @user = Factory(:user)
-    sign_in(@user)
-    @profile = Factory(:profile, :user => @user)
- 
-    @current_user = User.find_by_id!(@user)
+  before(:each) do
+    @poll = {:question => "hi how r u all", :profile_id => "1", :public => false, :votes_count => 0, :status => true }
+    @poll1 = Poll.new(@poll)
+    @poll1.poll_options_attributes = {"0" =>{:option=>"fine"}, "1" => {:options => "bad"}}
+    @poll1.save!
   end
 
-  describe "GET 'index'" do
+  describe "GET 'new'" do
     it "should be successful" do
-      Factory(:polls, :profile => @profile)
-      get 'index'
+      get 'new'
       response.should be_success
     end
   end

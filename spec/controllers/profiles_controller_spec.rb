@@ -6,6 +6,8 @@ describe ProfilesController do
     @user = Factory(:user)
     sign_in(@user)
     @profile = Factory(:profile, :user => @user)
+    @permission = Factory(:permission, :profile => @profile)
+    @notification = Factory(:notification, :profile => @profile)
     @education = Factory(:education, :profile => @profile)
     @work = Factory(:work, :profile => @profile)
     @current_user = User.find_by_id!(@user)
@@ -101,4 +103,14 @@ describe ProfilesController do
       response.should be_success
     end
   end
+
+  describe "GET 'edit_account'" do
+    it "should edit user permissions " do
+    get 'edit_account'
+    assigns[:profile].should be_an_instance_of(Profile)
+    assigns[:profile].should_not be_a_new_record
+    assigns[:profile].should_not be_nil
+    end
+  end
+
 end

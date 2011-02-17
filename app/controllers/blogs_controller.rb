@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
 
-  before_filter :load_profile, :except => [:tag_cloud]
-  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive]
+  before_filter :load_profile, :except => [:tag_cloud, :show]
+  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show]
 
   uses_tiny_mce(:only => [:new, :edit,:create,:update],
     :options => {
@@ -25,10 +25,11 @@ class BlogsController < ApplicationController
     if @blog.blank?
       redirect_to new_blog_path
     end
-    @blog = Blog.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
+    @blog = @blog.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
   end
 
   def show
+    @blog = Blog.find(params[:id])
   end
 
   def new

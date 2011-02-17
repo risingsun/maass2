@@ -12,8 +12,6 @@ class HomesController < ApplicationController
       @polls=@profile.polls
       @educations=@profile.educations
       @friend=Friend.check_friend(@profile.id, current_user.profile.id)
-#
-#      debugger
     else
       redirect_to homes_path
       flash[:notice] = "It looks like you don't have permission to view that page."

@@ -5,11 +5,10 @@ class ProfilesController < ApplicationController
   def create
     if @profile.save
       flash[:notice] = "Profile created."
-      redirect_to :edit
     else
       flash[:notice] = "Failed creation."
-      render 'edit'
     end
+    render 'edit'
   end
 
   def edit
@@ -36,14 +35,14 @@ class ProfilesController < ApplicationController
 
 
   def edit_account
-   @permissions = @profile.permissions || @profile.permissions.build
+    @permissions = @profile.permissions || @profile.permissions.build
   end
 
   private
 
   def load_profile
     @profile =  current_user.profile || current_user.build_profile
-     @profile.save
+    @profile.save
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
     @user=current_user
