@@ -1,0 +1,6 @@
+- @tags = Blog.tag_counts_on(:tags)
+
+%h2 Blog Tags:
+- tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class|
+  = link_to tag.name, blog_path(Blog_id(Blog.tagged_with(tag.name))), :class => css_class
+
