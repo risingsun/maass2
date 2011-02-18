@@ -29,9 +29,8 @@ class User < ActiveRecord::Base
 
   include Humanizer
 
-  has_one :account
-  has_one :permission
   has_one :profile
+  accepts_nested_attributes_for :profile
 
   SEX = ["Male","Female"]
   GROUP=["Teacher","Guest"]+(1992..Date.today.year+1).to_a
@@ -42,24 +41,18 @@ class User < ActiveRecord::Base
                          educations work_informations delicious_name
                          twitter_username msn_username linkedin_name
                          address landline mobile marker)
-  NOTIFICATION_FIELDS = %w(news_notification event_notification message_notification blog_comment_notification
-                          profile_comment_notification follow_notification delete_friend_notification )
+  NOTIFICATION_FIELDS = %w(news event message blog_comment
+                          profile_comment follow delete_friend )
   PERSONAL_INFO= %w(house_name blood_group date_of_birth address_line1 landline mobile relationship_status spouse_name aniversery_date professional_qualification about_me activities)
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :login_name, :first_name, :last_name,
-                  :middle_name, :maiden_last_name, :gender, :groups
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :login
   attr_accessible :humanizer_answer, :humanizer_question_id
   require_human_on :create
 
-  validates :login_name, :presence => true,
+  validates :login, :presence => true,
                          :length => { :maximum => 20 },
                          :uniqueness => true
-  validates :first_name, :presence => true,
-                         :length => { :maximum => 20 }
-  validates :middle_name, :length => { :maximum => 20 }
-  validates :last_name, :length => { :maximum => 20 }
-  validates :maiden_last_name, :length => { :maximum => 20 }
 
 end

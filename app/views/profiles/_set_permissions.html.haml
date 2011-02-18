@@ -1,0 +1,10 @@
+%h2 Permissions
+= semantic_form_for(@profile) do |form|
+  %table
+    %tr
+      %th
+      %th Just Me
+      %th My Friends
+      %th Everyone
+    = raw form.render_associated_form(current_user.profile.profile_permissions)
+  = form.commit_button "Update Permissions"

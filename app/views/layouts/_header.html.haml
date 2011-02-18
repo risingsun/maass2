@@ -8,11 +8,13 @@
   |
   = link_to "Edit Profile", edit_path
   |
-  = link_to "Edit Account", edit_account_path(current_user.id)
+  = link_to "Edit Account", edit_account_profile_path(current_user)
   | 
   = link_to "My Polls", polls_path
   |
   = link_to "My Friends", friends_path
+  |
+  = link_to "My Messages", messages_path
   |
   = link_to "Sign out", destroy_user_session_path
   |

@@ -2,24 +2,24 @@
 = semantic_form_for @profile do |f|
   = f.semantic_fields_for(:user) do |u|
     = u.inputs do
-      = u.input :login_name, :as => :string, :value => current_user.login_name
+      = u.input :login, :as => :string, :value => current_user.login
+    = f.inputs do
       = f.input :title, :as => :select, :collection => ["Ms.","Mr.","Mrs.","Dr.","Er.","Lt.","Capt.","Col.","Maj.","Prof.","Advct."], :prompt => false
-      = u.input :first_name, :as => :string
-      = u.input :middle_name, :as => :string
-      = u.input :last_name, :as => :string
-      = u.input :maiden_last_name, :as => :string
-      = u.input :gender, :as => :select, :collection => User::SEX, :prompt => false
-      = u.input :groups, :as => :select, :collection => User::GROUP, :prompt => false
-  = f.inputs do
-    = f.input :blood_group, :as => :select, :collection => ["A+","A-","B+","B-","AB+","AB-","O+","O-"], :prompt => false
-    = f.input :house_name, :as => :string
-    = f.input :date_of_birth, :input_html => {:class => "datebalks" }
-    = f.input :relationship_status, :as => :select, :collection => ["single","Married","not sure"], :prompt => false
-    = f.input :aniversery_date, :input_html => {:class => "datebalks" }
-    = f.input :spouse_name, :as => :string
-    = f.input :professional_qualification, :as => :string
-    = f.input :about_me,  :as => :text, :input_html => { :rows => 3 }
-    = f.input :activities, :as => :text, :input_html => { :rows => 3 }, :label => "activities"
-    = f.commit_button :label => "Update"
+      = f.input :first_name, :as => :string
+      = f.input :middle_name, :as => :string
+      = f.input :last_name, :as => :string
+      = f.input :maiden_name, :as => :string
+      = f.input :gender, :as => :select, :collection => User::SEX, :prompt => false
+      = f.input :group, :as => :select, :collection => User::GROUP, :prompt => false
+      = f.input :blood_group, :as => :select, :collection => ["A+","A-","B+","B-","AB+","AB-","O+","O-"], :prompt => false
+      = f.input :house_name, :as => :string
+      = f.input :date_of_birth, :input_html => {:class => "datebalks" }
+      = f.input :relationship_status, :as => :select, :collection => ["single","Married","not sure"], :prompt => false
+      = f.input :aniversary_date, :input_html => {:class => "datebalks" }
+      = f.input :spouse_name, :as => :string
+      = f.input :professional_qualification, :as => :string
+      = f.input :about_me,  :as => :text, :input_html => { :rows => 3 }
+      = f.input :activities, :as => :text, :input_html => { :rows => 3 }, :label => "activities"
+      = f.commit_button :label => "Update"
    
   

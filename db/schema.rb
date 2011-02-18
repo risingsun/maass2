@@ -10,7 +10,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110212054239) do
+
+ActiveRecord::Schema.define(:version => 20110217065042) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -66,45 +67,34 @@ ActiveRecord::Schema.define(:version => 20110212054239) do
     t.datetime "updated_at"
   end
 
-  create_table "notifications", :force => true do |t|
-    t.string   "account_id"
-    t.string   "news_notification"
-    t.string   "event_notification"
-    t.string   "message_notification"
-    t.string   "blog_comment_notification"
-    t.string   "profile_comment_notification"
-    t.string   "follow_notification"
-    t.string   "delete_friend_notification"
+  create_table "notification_controls", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "news",            :default => 1
+    t.integer  "event",           :default => 1
+    t.integer  "message",         :default => 1
+    t.integer  "blog_comment",    :default => 1
+    t.integer  "profile_comment", :default => 1
+    t.integer  "follow",          :default => 1
+    t.integer  "delete_friend",   :default => 1
+
+  create_table "messages", :force => true do |t|
+    t.string   "subject"
+    t.text     "body"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.boolean  "read"
+    t.boolean  "sender_flag"
+    t.boolean  "receiver_flag"
+    t.boolean  "system_message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+
   create_table "permissions", :force => true do |t|
-    t.string   "account_id"
-    t.string   "website"
-    t.string   "blog"
-    t.string   "about_me"
-    t.string   "gtalk_name"
-    t.string   "location"
-    t.string   "email"
-    t.string   "date_of_birth"
-    t.string   "anniversary_date"
-    t.string   "relationship_status"
-    t.string   "spouse_name"
-    t.string   "gender"
-    t.string   "activities"
-    t.string   "yahoo_name"
-    t.string   "skype_name"
-    t.string   "educations"
-    t.string   "work_informations"
-    t.string   "delicious_name"
-    t.string   "twitter_username"
-    t.string   "msn_username"
-    t.string   "linkedin_name"
-    t.string   "address"
-    t.string   "landline"
-    t.string   "mobile"
-    t.string   "marker"
+    t.string   "profile_id"
+    t.string   "permission_field"
+    t.string   "permission_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -137,51 +127,55 @@ ActiveRecord::Schema.define(:version => 20110212054239) do
 
   create_table "profiles", :force => true do |t|
     t.integer  "user_id"
-    t.string   "title"
-    t.string   "blood_group"
-    t.string   "house_name"
-    t.string   "date_of_birth"
-    t.string   "relationship_status"
-    t.string   "aniversery_date"
-    t.string   "spouse_name"
-    t.string   "professional_qualification"
-    t.text     "about_me"
-    t.text     "activities"
-    t.string   "location"
-    t.string   "address_line1"
-    t.string   "address_line2"
-    t.string   "city"
-    t.string   "postal_code"
-    t.string   "country"
-    t.string   "state"
-    t.string   "landline"
-    t.string   "mobile"
-    t.string   "education_from_year"
-    t.string   "education_to_year"
-    t.string   "university"
-    t.string   "status_message"
-    t.string   "occupation"
-    t.string   "industry"
-    t.string   "company_name"
-    t.string   "company_website"
-    t.string   "job_description"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "website"
     t.string   "blog"
-    t.string   "flicker_id"
-    t.string   "linkedin_id"
-    t.string   "twitter_id"
-    t.string   "aim_id"
-    t.string   "msn_id"
-    t.string   "yahoo_id"
-    t.string   "gtalk_id"
-    t.string   "skype_id"
-    t.string   "delicious_id"
+    t.string   "flicker"
+    t.text     "about_me"
+    t.string   "aim_name"
+    t.string   "gtalk_name"
+    t.string   "ichat_name"
+    t.string   "location"
+    t.string   "email"
+    t.boolean  "is_active",                  :default => false
+    t.string   "youtube_username"
+    t.string   "flicker_username"
+    t.string   "group"
+    t.date     "date_of_birth"
+    t.date     "aniversary_date"
+    t.string   "relationship_status"
+    t.string   "spouse_name"
+    t.string   "maiden_name"
+    t.string   "gender"
+    t.text     "activities"
+    t.string   "yahoo_name"
+    t.string   "skype_name"
+    t.string   "status_message"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "postal_code"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "landline"
+    t.string   "mobile"
+    t.string   "professional_qualification"
+    t.string   "default_permission",         :default => "Everyone"
+    t.string   "middle_name"
+    t.string   "linkedin_name"
+    t.string   "msn_username"
+    t.string   "twitter_username"
+    t.string   "house_name"
+    t.string   "delicious_name"
+    t.string   "title"
+    t.integer  "marker_id"
+    t.integer  "comments_count",             :default => 0
+    t.string   "blood_group"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
   end
 
   create_table "taggings", :force => true do |t|
@@ -202,27 +196,35 @@ ActiveRecord::Schema.define(:version => 20110212054239) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "email",                                      :default => "", :null => false
+    t.string   "encrypted_password",          :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                              :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
+    t.integer  "sign_in_count",                              :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "login_name"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "middle_name"
-    t.string   "maiden_last_name"
-    t.string   "groups"
-    t.string   "gender"
-    t.string   "question"
+    t.string   "login"
+    t.boolean  "is_admin"
+    t.boolean  "can_send_messages"
+    t.string   "time_zone"
+    t.string   "email_verification"
+    t.boolean  "email_verified"
+    t.date     "last_login_date"
+    t.string   "first_referral_person_name"
+    t.string   "first_referral_person_year"
+    t.string   "second_referral_person_name"
+    t.string   "second_referral_person_year"
+    t.string   "third_referral_person_name"
+    t.string   "third_referral_person_year"
+    t.text     "additional_message"
+    t.string   "requested_new_email"
+    t.integer  "facebook_uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -239,4 +241,5 @@ ActiveRecord::Schema.define(:version => 20110212054239) do
     t.datetime "updated_at"
   end
 
+end
 end

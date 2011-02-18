@@ -1,9 +1,9 @@
 class BlogsController < ApplicationController
 
-  before_filter :load_profile, :except => [:tag_cloud]
-  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive]
+  before_filter :load_profile, :except => [:tag_cloud, :show]
+  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show]
 
-    uses_tiny_mce(:only => [:new, :edit,:create,:update],
+  uses_tiny_mce(:only => [:new, :edit,:create,:update],
     :options => {
       :theme => 'advanced',
       :theme_advanced_toolbar_location => "bottom",
@@ -25,12 +25,11 @@ class BlogsController < ApplicationController
     if @blog.blank?
       redirect_to new_blog_path
     end
-#    @b = Blog.all(:select => "title, id")
-#    @blog_months = @blog.group_by { |t| t.posted_at.beginning_of_month }
-
+    @blog = @blog.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
   end
 
   def show
+    @blog = Blog.find(params[:id])
   end
 
   def new
@@ -74,17 +73,18 @@ class BlogsController < ApplicationController
   
   def blog_archive
     @blogs = Blog.find(:all)
+    @blogs = Blog.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
     render '_blog_archive'
   end
 
   
-private
+  private
   
-    def load_profile
-      @profile = current_user.profile
-    end
+  def load_profile
+    @profile = current_user.profile
+  end
 
-    def load_resource
-      @blog = @profile.blogs.find(params[:id])
-    end
+  def load_resource
+    @blog = @profile.blogs.find(params[:id])
+  end
 end

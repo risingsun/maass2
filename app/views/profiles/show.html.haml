@@ -1,7 +1,7 @@
 %h2 Mansinghites'Alumni Association
 %p
 = link_to gravatar_image_tag(current_user.email, :gravatar => { :size => 50 }), profile_path(current_user)
-= [ current_user.first_name, current_user.middle_name, current_user.last_name ].join(" ")
+= [ current_user.profile.first_name, current_user.profile.middle_name, current_user.profile.last_name ].join(" ")
 = render 'set_status'
 = render 'homes/personal_info' 
 = render 'homes/work_info' if !@profile.works.blank?

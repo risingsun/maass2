@@ -11,7 +11,6 @@ class HomesController < ApplicationController
       @works=@profile.works
       @polls=@profile.polls
       @educations=@profile.educations
-      @friend=current_user.profile.friends.find(:all, :conditions => ['invited_id = ?', @profile.id])
       @friend=Friend.check_friend(@profile.id, current_user.profile.id)
       #@user = User.all - [current_user]
     else

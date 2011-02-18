@@ -1,17 +1,19 @@
 %h2 Sign up
 = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  =f.inputs do
-    = f.input :login_name, :as => :string
+  = f.inputs do
+    = f.input :login, :as => :string
     = f.input :email, :as => :string
     = f.input :password, :as => :password
     = f.input :password_confirmation, :as => :password
-    = f.input :first_name, :as => :string
-    = f.input :middle_name, :as => :string
-    = f.input :last_name, :as => :string
-    = f.input :maiden_last_name, :as => :string
-    = f.input :gender, :as => :select, :collection => User::SEX, :prompt => false
-    = f.input :groups, :as => :select, :collection => User::GROUP, :prompt => false
-    = f.input :humanizer_answer, :label => @user.humanizer_question
-    = f.hidden_field :humanizer_question_id
-    = f.commit_button :label => "Sign Up"
+  = semantic_fields_for(:profile) do |p|
+    = p.inputs do
+      = p.input :first_name, :as => :string
+      = p.input :middle_name, :as => :string
+      = p.input :last_name, :as => :string
+      = p.input :maiden_name, :as => :string
+      = p.input :gender, :as => :select, :collection => User::SEX, :prompt => false
+      = p.input :group, :as => :select, :collection => User::GROUP, :prompt => false
+      = f.input :humanizer_answer, :label => @user.humanizer_question
+      = f.hidden_field :humanizer_question_id
+  = f.commit_button :label => "Sign Up"
   = render :partial => "devise/shared/links"
