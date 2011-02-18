@@ -7,7 +7,6 @@ Feature: Poll
     Given I am on the home page
     And I am a valid user
     And I sign in with valid data
-    Then I should be on the home page
     When I follow "My Polls"
     Then I should see "New Poll" 
     And I fill in the following:
@@ -15,6 +14,6 @@ Feature: Poll
         |poll[poll_options_attributes][0][option]         | fine               |
     When I press "Create Poll"
     Then I should be on the polls index page
+    And I should see "Poll was successfully created."
     And I choose "poll[poll_options][option]"
-    When I press "Vote"
-    Then I should see "Poll was successfully created."
+    And I press "Vote"

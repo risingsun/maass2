@@ -35,5 +35,8 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def me (profile=@profile)
+    current_user.profile == profile
+  end
 
 end

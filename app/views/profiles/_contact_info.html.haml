@@ -7,8 +7,7 @@
     = f.input :city, :as => :string
     = f.input :postal_code, :as => :string
     = f.input :country, :priority_countries =>['India'],:required => true, :as => :country
-    = f.input :state, :as => :select, :collection => Profile::INDIA_STATES, :prompt => false
+    = f.input :state, :as => :select, :collection => INDIA_STATES, :prompt => false
     = f.input :landline, :as => :string
     = f.input :mobile, :as => :string
   = f.commit_button :label => "Update"
- 
