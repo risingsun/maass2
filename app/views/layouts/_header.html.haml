@@ -14,7 +14,7 @@
   |
   = link_to "My Friends", friends_path
   |
-  = link_to "My Messages", messages_path
+  = link_to "My Messages", profile_messages_path(current_user.profile)
   |
   = link_to "Sign out", destroy_user_session_path
   |

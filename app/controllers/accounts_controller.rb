@@ -1,4 +1,3 @@
 class AccountsController < ApplicationController
-
 end
 
