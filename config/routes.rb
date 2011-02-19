@@ -9,12 +9,15 @@ Maass2::Application.routes.draw do
   resources :homes
   resources :votes
   resources :friends
-  resources :profiles do
-    resources :messages do
-      get 'direct_message', :on => :member
-    end
+  resources :profiles do    
+    resource :messages
     post 'load_profile', :on => :collection
   end
+
+  resource :messages do
+    
+  end
+
   resources :blogs  do
     get 'blog_archive', :on => :member
   end

@@ -4,12 +4,19 @@ class MessagesController < ApplicationController
   end
 
   def new
+    @profile = Profile.find(params[:profile_id])
     @message = Message.new
   end
 
   def create
-    debugger
-    @message=Message.create(params[:profile])
+    @message = Message.create(params[:message])
+    if @message.save!
+      flash[:notice] = "message created"
+      redirect_to new_messages_path
+    else  
+      flash[:error] = "message not created"
+      render :new
+    end
   end
 
   def direct_message
