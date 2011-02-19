@@ -19,7 +19,7 @@ class HomesController < ApplicationController
     end
   end
 
-  def see_my_polls
+  def polls
     @user = User.find(params[:id])
     @profile = @user.profile
     @polls = @profile.polls.order("created_at desc").paginate(:page => params[:page],:per_page => 10)

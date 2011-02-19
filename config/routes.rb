@@ -32,7 +32,7 @@ Maass2::Application.routes.draw do
   root :to=>"homes#index"
   get 'blogs/preview'
   resources :homes do
-    get 'see_my_polls', :on => :member
+    get 'polls', :on => :member
   end
 
 #  match '/permissions', :to => 'accounts#permissions'
