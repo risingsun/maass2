@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110217112009) do
+ActiveRecord::Schema.define(:version => 20110221111743) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -30,15 +30,18 @@ ActiveRecord::Schema.define(:version => 20110217112009) do
   end
 
   create_table "comments", :force => true do |t|
-    t.string   "profile_id"
     t.text     "comment"
-    t.string   "commentable_type"
     t.integer  "commentable_id"
-    t.boolean  "is_denied"
-    t.boolean  "is_reviewed"
+    t.string   "commentable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "profile_id"
+    t.integer  "is_denied"
+    t.boolean  "is_reviewed"
   end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
 
   create_table "educations", :force => true do |t|
     t.string   "profile_id"

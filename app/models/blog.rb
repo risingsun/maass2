@@ -1,6 +1,8 @@
 class Blog < ActiveRecord::Base
+  acts_as_commentable
   acts_as_taggable_on :tags
   belongs_to :profile
+  has_many :comments
   scope :by_month_year,
                lambda {|month,year| {:conditions => ["monthname(created_at)=? and year(created_at)=?",month,year]}}
   validates :title, :presence => true

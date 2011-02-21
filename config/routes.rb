@@ -3,22 +3,19 @@ Maass2::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users"}
 
   resources :users
-
-  
-
+  resources :messages
   resources :homes
   resources :votes
   resources :friends
-  resources :profiles do    
-    resource :messages
+  resources :comments
+  resources :profiles do
+    resources :messages do
+      get 'direct_message', :on => :member
+    end
     post 'load_profile', :on => :collection
   end
 
-  resource :messages do
-    
-  end
-
-  resources :blogs  do
+ resources :blogs  do
     get 'blog_archive', :on => :member
   end
   resources :polls do

@@ -5,7 +5,7 @@
 =[ @profile.first_name, @profile.middle_name, @profile.last_name ].join(" ")
 %br
 %br
-= link_to "Direct Message",new_profile_messages_path(@profile)
+= link_to "Direct Message",direct_message_profile_message_path(@profile)
 %br
 -if @friend.blank?
   = link_to "add Friend", friends_path(:invited_id => @profile.id), :method => :post
