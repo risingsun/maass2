@@ -2,7 +2,7 @@
   = link_to (poll.question),poll_path(poll)
   %br
   Posted by
-  ="#{poll.profile.user.first_name}"
+  ="#{poll.profile.first_name}"
   at
   ="#{poll.created_at.to_date.to_formatted_s(:rfc822)}"
   - if current_user.profile && me(poll.profile)

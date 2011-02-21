@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
 
-  before_filter :load_profile, :except => [:tag_cloud]
-  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive]
+  before_filter :load_profile, :except => [:tag_cloud,:show,:show_blogs]
+  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive,:show,:show_blogs]
 
   uses_tiny_mce(:only => [:new, :edit,:create,:update],
     :options => {
@@ -29,6 +29,7 @@ class BlogsController < ApplicationController
   end
 
   def show
+    @blogs=Blog.find(params[:id])
   end
 
   def new
@@ -65,15 +66,15 @@ class BlogsController < ApplicationController
     flash[:notice] = "Successfully destroyed blog."
     redirect_to blogs_path
   end
-
-  def tag_cloud
-    @tags = Blog.tag_counts_on(:tags)
-  end
   
   def blog_archive
     @blogs = Blog.find(:all)
     @blogs = Blog.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
     render '_blog_archive'
+  end
+
+  def show_blogs
+    @blogs = Blog.tagged_with(params[:id])
   end
 
   
