@@ -6,6 +6,7 @@ class Profile < ActiveRecord::Base
  has_many :permissions, :dependent => :destroy, :attributes => true
  has_many :blogs
  has_one :marker
+ has_many :messages
  has_one :notification_control
  has_many :friends, :foreign_key => "inviter_id"
  has_many :polls, :dependent => :destroy
@@ -21,6 +22,7 @@ class Profile < ActiveRecord::Base
 
  accepts_nested_attributes_for :notification_control
  accepts_nested_attributes_for :blogs
+ accepts_nested_attributes_for :messages
  accepts_nested_attributes_for :user
  accepts_nested_attributes_for :marker
  accepts_nested_attributes_for :permissions
@@ -36,6 +38,41 @@ class Profile < ActiveRecord::Base
 #  validates :middle_name, :length => { :maximum => 20 }
 #  validates :last_name, :length => { :maximum => 20 }
 #  validates :maiden_name, :length => { :maximum => 20 }
+INDIA_STATES = [ "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Andaman and Nicobar Islands",
+  "Bihar",
+  "Chandigarh",
+  "Chhattisgarh",
+  "Dadra and Nagar Haveli",
+  "Daman and Diu",
+  "Delhi",
+  "Goa",
+  "Gujarat",
+  "Harayana",
+  "Himachal Pradesh",
+  "Jammu and Kashmir",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Lakshadweep",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Orissa",
+  "Punjab",
+  "Puducherry",
+  "Rajasthan",
+  "Sikkim",
+  "Tamilnadu",
+  "Tripura",
+  "Uttarakhand",
+  "Uttar Pradesh",
+  "West Bengal"]
 
   
   def profile_permissions

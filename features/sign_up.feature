@@ -11,10 +11,11 @@ Feature: Sign Up
         |Email                 | pariharkirti24@gmail.com |
         |Password              | 123456 |
         |Password confirmation | 123456 |
-        |Login name            | kirti  |
-        |First name            | kkkkk |
+        |Login             | kirti  |
+  
     And I press "Sign Up"
-    Then I should see "You have signed up successfully. If enabled, a confirmation was sent to your e-mail."
+    Then show me the page
+    Then I should see "You have signed up successfully. If enabled, a confirmation was sent to your e-mail. "
     And I should be on the home page
 
   Scenario: create profile when user profile does not exist

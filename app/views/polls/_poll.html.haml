@@ -13,7 +13,7 @@
   - if !current_user.profile || (poll.responded? current_user.profile)
     = render :partial => 'polls/poll_response', :locals =>{:poll => poll}
   - else
-    .poll_option{:id => "poll_option_#{poll.id}"}
+    %div{:id => "poll_option_\#{poll.id}"}
       = semantic_form_for(:poll, :url => votes_path,:remote=>true) do |f|
         = f.semantic_fields_for(:poll_options) do |form|
           = form.inputs do

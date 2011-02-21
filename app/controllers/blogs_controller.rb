@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
 
-  before_filter :load_profile, :except => [:tag_cloud,:show,:show_blogs]
-  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive,:show,:show_blogs]
+  before_filter :load_profile, :except => [:tag_cloud, :show]
+  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show]
 
   uses_tiny_mce(:only => [:new, :edit,:create,:update],
     :options => {
@@ -29,7 +29,7 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @blogs=Blog.find(params[:id])
+    @blog = Blog.find(params[:id])
   end
 
   def new

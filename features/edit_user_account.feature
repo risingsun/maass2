@@ -8,7 +8,7 @@ Feature: Edit User Account
       And I sign in with valid data
       When I follow "Edit Account"
       Then I should see "Permissions"
-      And I choose "account[permission_attributes][website]"
+      And I choose "website"
       And I choose "account[permission_attributes][blog]"
       And I choose "account[permission_attributes][about_me]"
       And I choose "account[permission_attributes][gtalk_name]"

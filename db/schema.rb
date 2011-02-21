@@ -91,7 +91,6 @@ ActiveRecord::Schema.define(:version => 20110217112009) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
   create_table "permissions", :force => true do |t|
     t.string   "profile_id"
     t.string   "permission_field"

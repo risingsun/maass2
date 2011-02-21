@@ -6,14 +6,15 @@ class UsersController < Devise::RegistrationsController
   end
 
   def update
-    @profile =  current_user.profile
-    @permission =@profile.permissions || @profile.permissions.build
+#    @profile =  current_user.profile
+#    @permission =@profile.permissions || @profile.permissions.build
     if resource.update_with_password(params[:user])
       set_flash_message :notice, :updated
       redirect_to edit_account_profile_path(current_user)
     else
       clean_up_passwords(current_user)
-      render :action=>"profiles/edit_account"
+      #debugger
+      render "profiles/edit_account" 
     end
   end
 

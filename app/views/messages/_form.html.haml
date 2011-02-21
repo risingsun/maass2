@@ -1,5 +1,9 @@
-= form_for(@message) do |f|
+= form_for @message, :url => profile_messages_path(@profile) do |f|
   %br/
+  %div
+    = @profile.id
+    = f.hidden_field :receiver_id, :value => @profile.id
+    = f.hidden_field :sender_id, :value => current_user.profile.id
   %div
     = f.label :Subject
     %br/
