@@ -1,0 +1,13 @@
+- profile ||= @profile
+- size ||= 10
+- polls ||= profile.polls.find :all, :limit => size
+- total = profile.polls.count
+- unless polls.empty?
+  Most Recent Polls
+  ="( latest " + "#{polls.size }" + " of " + "#{total > size ? link_to( total, polls_path(profile)) : total} )"
+  %br
+  - polls.each do |p|
+    %img{:src => "/images/poll_icon.png"}
+    = link_to p.question, poll_path(p)
+    written #{time_ago_in_words p.created_at} ago
+    %br
