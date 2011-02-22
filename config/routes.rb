@@ -7,8 +7,11 @@ Maass2::Application.routes.draw do
   resources :homes
   resources :votes
   resources :friends
-  resources :comments
+  resources :comments do
+   
+  end
   resources :profiles do
+
     resources :messages do
       get 'direct_message', :on => :member
     end
@@ -16,6 +19,7 @@ Maass2::Application.routes.draw do
   end
 
  resources :blogs  do
+        get 'add_comment', :on => :member
     get 'blog_archive', :on => :member
   end
   resources :polls do

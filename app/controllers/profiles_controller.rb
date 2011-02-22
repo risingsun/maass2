@@ -43,6 +43,8 @@ class ProfilesController < ApplicationController
     @notification = @profile.notification_control || @profile.build_notification_control
   end
 
+
+
   private
 
   def load_profile

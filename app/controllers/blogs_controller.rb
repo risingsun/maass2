@@ -77,7 +77,12 @@ class BlogsController < ApplicationController
     render '_blog_archive'
   end
 
-  
+   def add_comment
+#    respond_to do | format |
+#      format.js {render 'comments/form'}
+#    end
+    render 'index'
+  end
   private
   
   def load_profile

@@ -27,5 +27,8 @@ function add_fields(link, association, content) {
   $j(link).parent().before(content.replace(regexp, new_id));
 }
 
+function add_comment(){
+  jQuery("#comment").show();
+}
 
 

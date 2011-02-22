@@ -1,5 +1,6 @@
-= form_for(@comment) do |f|
-  = f.text_area :comment
-  = f.submit
+= form_for(Comment.new) do |c|
+  = c.text_area :comment
+  = c.hidden_field :commentable_id, :value => blog.id
+  = c.hidden_field :commentable_type, :value => blog.class.name
+  = c.submit
   %input#cancel{:type => "button", :value => "Cancel"}
-  
