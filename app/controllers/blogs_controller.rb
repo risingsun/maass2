@@ -66,10 +66,6 @@ class BlogsController < ApplicationController
     flash[:notice] = "Successfully destroyed blog."
     redirect_to blogs_path
   end
-
-  def tag_cloud
-    @tags = Blog.tag_counts_on(:tags)
-  end
   
   def blog_archive
     @blogs = Blog.find(:all)
@@ -77,12 +73,11 @@ class BlogsController < ApplicationController
     render '_blog_archive'
   end
 
-   def add_comment
-#    respond_to do | format |
-#      format.js {render 'comments/form'}
-#    end
-    render 'index'
+  def show_blogs
+    @blogs = Blog.tagged_with(params[:id])
   end
+
+  
   private
   
   def load_profile

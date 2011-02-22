@@ -13,7 +13,7 @@ class Friend < ActiveRecord::Base
 
   def self.request(user,friend)
     create(:inviter_id => user, :invited_id => friend, :status => 'wait')
-    create(:inviter_id => friend, :invited_id => user, :status => 'requested')
+    create(:inviter_id => friend, :invited_id => user, :status => 'request')
   end
 
   def self.accept_request(user,friend)

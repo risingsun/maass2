@@ -21,7 +21,9 @@ Maass2::Application.routes.draw do
  resources :blogs  do
         get 'add_comment', :on => :member
     get 'blog_archive', :on => :member
+    get 'show_blogs', :on => :member
   end
+ 
   resources :polls do
     get 'poll_close', :on => :member
   end

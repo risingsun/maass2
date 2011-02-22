@@ -7,10 +7,15 @@
 %br
 = link_to "Direct Message",direct_message_profile_message_path(@profile)
 %br
+%br
+%h3 Profile Action
+%br
+= link_to "Direct Message", direct_message_message_path
+%br
 -if @friend.blank?
   = link_to "add Friend", friends_path(:invited_id => @profile.id), :method => :post
 -else
-  -if @friend["status"]=='requested'
+  -if @friend["status"]=='request'
     =link_to("Remove Friend Request?", @friend, :method => :delete)
   -if @friend["status"]=='wait'
     =link_to "Accept Friend Request?", friend_path(@friend), :method => :put

@@ -17,3 +17,4 @@ Feature: Poll
     And I should see "Poll was successfully created."
     And I choose "poll[poll_options][option]"
     And I press "Vote"
+
