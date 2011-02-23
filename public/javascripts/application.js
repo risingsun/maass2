@@ -31,4 +31,6 @@ function add_comment(){
   jQuery("#comment").show();
 }
 
-
+function show_comment(){
+  jQuery("#comment_show").show();
+}

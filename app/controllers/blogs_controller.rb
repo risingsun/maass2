@@ -87,4 +87,8 @@ class BlogsController < ApplicationController
   def load_resource
     @blog = @profile.blogs.find(params[:id])
   end
+
+  def comment_count
+    
+  end
 end
