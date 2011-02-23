@@ -94,6 +94,20 @@ ActiveRecord::Schema.define(:version => 20110221111743) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "notifications", :force => true do |t|
+    t.string   "account_id"
+    t.string   "news_notification"
+    t.string   "event_notification"
+    t.string   "message_notification"
+    t.string   "blog_comment_notification"
+    t.string   "profile_comment_notification"
+    t.string   "follow_notification"
+    t.string   "delete_friend_notification"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "permissions", :force => true do |t|
     t.string   "profile_id"
     t.string   "permission_field"

@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
 
-  before_filter :load_profile, :only => [:create,:edit,:update,:show,:edit_account]
+  before_filter :load_profile, :only => [:create,:edit,:update,:show,:edit_account,:search]
+  before_filter :search_results, :only => [:search]
 
   def create
     if @profile.save
@@ -43,7 +44,9 @@ class ProfilesController < ApplicationController
     @notification = @profile.notification_control || @profile.build_notification_control
   end
 
-
+  def search
+    render :partial=>'result'
+  end
 
   private
 

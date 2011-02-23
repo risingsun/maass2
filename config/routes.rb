@@ -16,6 +16,7 @@ Maass2::Application.routes.draw do
       get 'direct_message', :on => :member
     end
     post 'load_profile', :on => :collection
+    get 'search', :on=>:collection
   end
 
  resources :blogs  do
