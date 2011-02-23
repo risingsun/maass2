@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
     @message = Message.create(params[:message])
     if @message.save!
       flash[:notice] = "message created"
-      redirect_to new_messages_path
+      redirect_to new_profile_message_path
     else  
       flash[:error] = "message not created"
       render :new

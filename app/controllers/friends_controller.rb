@@ -4,6 +4,7 @@ class FriendsController < ApplicationController
     @profile = current_user.profile
     @friends = @profile.accepted_friends
     @r_friends = @profile.waiting_friends
+#    debugger
   end
 
   def edit

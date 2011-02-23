@@ -43,6 +43,7 @@ gem 'jquery-rails', '>= 0.2.6'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'humanizer'
 gem 'acts-as-taggable-on'
+gem 'acts_as_commentable'
 
 
 

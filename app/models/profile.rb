@@ -32,12 +32,6 @@ class Profile < ActiveRecord::Base
                                :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
  has_attached_file :icon, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
-#  attr_accessible :first_name, :last_name, :middle_name, :maiden_name, :gender, :group
-#  validates :first_name, :presence => true,
-#                         :length => { :maximum => 20 }
-#  validates :middle_name, :length => { :maximum => 20 }
-#  validates :last_name, :length => { :maximum => 20 }
-#  validates :maiden_name, :length => { :maximum => 20 }
 INDIA_STATES = [ "Andhra Pradesh",
   "Arunachal Pradesh",
   "Assam",
