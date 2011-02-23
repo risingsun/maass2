@@ -1,4 +1,4 @@
--@comment = Comment.all
+-@comment = Comment.find(:all, :conditions => { :commentable_id => blog.id})
 -@comment.each do |c|
   %p
   %b
