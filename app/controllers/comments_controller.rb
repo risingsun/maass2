@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
       c = blog[:comments_count]
       c = c + 1
       blog.update_attributes(:comments_count => c )
-      redirect_to blogs_path
     end
+    redirect_to blogs_path
     
   end
 

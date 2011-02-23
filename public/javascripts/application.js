@@ -34,3 +34,7 @@ function add_comment(c){
 function show_comment(c){
   jQuery("#show"+c).show();
 }
+
+function cancel_comment(c){
+  jQuery("#form"+c).hide();
+}
