@@ -1,0 +1,7 @@
+-@comment = Comment.find(:all, :conditions => { :commentable_id => blog.id})
+-@comment.each do |c|
+  %p
+  %b
+    = c.comment
+    = link_to image_tag('delete.png',:border =>0), c , :method => :delete
+  %br

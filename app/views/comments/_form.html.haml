@@ -3,4 +3,4 @@
   = c.hidden_field :commentable_id, :value => blog.id
   = c.hidden_field :commentable_type, :value => blog.class.name
   = c.submit
-  %input#cancel{:type => "button", :value => "Cancel"}
+  %input#cancel{:type => "button", :value => "Cancel", :onclick => "cancel_comment(#{blog.id})"}
