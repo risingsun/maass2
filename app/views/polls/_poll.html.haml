@@ -13,9 +13,11 @@
   - if !current_user.profile || (poll.responded? current_user.profile)
     = render :partial => 'polls/poll_response', :locals =>{:poll => poll}
   - else
-    %div{:id => "poll_option_\#{poll.id}"}
-      = semantic_form_for(:poll, :url => votes_path,:remote=>true) do |f|
+    - div_id = "#{poll.id}"
+    %div{:id => div_id }
+      = semantic_form_remote_for(:poll, :url => votes_path,:loading =>"div_id').hide(); $('spinner_\#{poll.id}').show();",:complete =>"$('spinner_\#{poll.id}').hide(); $('div_id').show();") do |f|
         = f.semantic_fields_for(:poll_options) do |form|
           = form.inputs do
             = render "polls/option" , :y=> form, :poll => poll
         = f.commit_button "Vote"
+    %div{:id => "spinner_#{poll.id}", :style => "display: none;"}= image_tag('spinner.gif')
