@@ -43,7 +43,28 @@ class Profile < ActiveRecord::Base
 #  validates :maiden_name, :length => { :maximum => 20 }
 
   attr_accessor :search_by, :search_value
-  
+
+  def self.check_friend(user, friend)
+    Friend.find_by_inviter_id_and_invited_id(user, friend)
+  end
+
+  def self.start_following(user, friend)
+    Friend.create(:inviter_id => user, :invited_id => friend, :status => Friend::PENDING_FRIEND)
+  end
+
+  def self.stop_following(user, friend)
+     if !check_friend(user, friend).blank?
+       Friend.destroy(check_friend(user, friend))
+    end
+    if !check_friend(friend, user).blank?
+      Friend.destroy(check_friend(friend, user))
+    end
+  end
+
+  def self.make_friend(user, friend)
+    check_friend(user, friend).update_attribute(:status, Friend::ACCEPT_FRIEND)
+    Friend.create(:inviter_id => friend, :invited_id => user, :status => Friend::ACCEPT_FRIEND)
+  end
 
   def profile_permissions
     if @permission_objects.nil?

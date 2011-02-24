@@ -6,14 +6,14 @@
 =# link_to "Direct Message",  direct_message_profile_message_path(profile.id)
 %br
 -if relation == "friend"
-  = link_to("Stop Being Friends", stop_following_profile_path(profile), :id => profile.id)
+  = link_to("Stop Being Friends", profile_path(profile, :commit => "stop follow"), :method => :put)
 -elsif relation == "following"
-  = link_to("Stop Following", stop_following_profile_path(profile))
+  = link_to("Stop Following", profile_path(profile, :commit => "stop follow"), :method => :put)
 -elsif relation == "follower"
-  = link_to("Be Friends", make_friend_profile_path(profile), :id => profile.id)
+  = link_to("Be Friends", profile_path(profile, :commit => "make friend"), :method => :put)
   %br
-  = link_to("Stop Follower", stop_following_profile_path(profile), :id => profile.id)
+  = link_to("Stop Follower", profile_path(profile, :commit => "stop follow"), :method => :put)
 -else
-  = link_to "Start Following", start_following_profile_path(profile)
+  = link_to("Start Following", profile_path(profile, :commit => "add following"), :method => :put)
 %br
 = link_to("See My Polls",polls_home_path(user))

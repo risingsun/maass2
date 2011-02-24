@@ -7,7 +7,8 @@ Maass2::Application.routes.draw do
   resources :friends
   resources :profiles do    
     resources :messages do
-      get 'direct_message', :on => :member
+      get 'direct_message', :on => :collection
+      get 'sent_messages', :on => :collection
     end
     post 'load_profile', :on => :collection
     get 'edit_account', :on => :member
