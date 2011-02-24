@@ -17,4 +17,11 @@ class Blog < ActiveRecord::Base
       :group => "month,year",
       :order => "year DESC, MONTH(created_at) DESC" )
   end
+
+  def self.comment_count(blog)
+#    debugger
+    blog = Blog.find(blog)
+    c = Comment.find(:all,:conditions => { :commentable_id => blog }).count
+    blog.update_attributes(:comments_count => c )
+  end
 end
