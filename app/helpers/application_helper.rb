@@ -39,4 +39,8 @@ module ApplicationHelper
     current_user.profile == profile
   end
 
+  def full_name(profile)
+    [profile.first_name, profile.middle_name, profile.last_name].join(" ")
+  end
+
 end

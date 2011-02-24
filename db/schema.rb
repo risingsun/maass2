@@ -10,14 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110217112009) do
-
-  create_table "accounts", :force => true do |t|
-    t.string   "user_id"
-    t.string   "default_permission"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20110223075539) do
 
   create_table "blogs", :force => true do |t|
     t.string   "profile_id"
@@ -71,10 +64,10 @@ ActiveRecord::Schema.define(:version => 20110217112009) do
     t.text     "body"
     t.integer  "sender_id"
     t.integer  "receiver_id"
-    t.boolean  "read"
-    t.boolean  "sender_flag"
-    t.boolean  "receiver_flag"
-    t.boolean  "system_message"
+    t.boolean  "read",           :default => false, :null => false
+    t.boolean  "sender_flag",    :default => true
+    t.boolean  "receiver_flag",  :default => true
+    t.boolean  "system_message", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -91,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20110217112009) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
   create_table "permissions", :force => true do |t|
     t.string   "profile_id"
     t.string   "permission_field"

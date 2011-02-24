@@ -5,10 +5,10 @@ class CreateMessages < ActiveRecord::Migration
       t.text :body
       t.integer :sender_id
       t.integer :receiver_id
-      t.boolean :read
-      t.boolean :sender_flag
-      t.boolean :receiver_flag
-      t.boolean :system_message
+      t.boolean :read,           :default => false, :null => false
+      t.boolean :sender_flag,    :default => true
+      t.boolean :receiver_flag,  :default => true
+      t.boolean :system_message, :default => false
 
       t.timestamps
     end

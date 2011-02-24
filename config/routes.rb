@@ -3,21 +3,18 @@ Maass2::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users"}
 
   resources :users
-
-  
-
-  resources :homes
   resources :votes
   resources :friends
   resources :profiles do    
-    resource :messages
+    resources :messages do
+      get 'direct_message', :on => :member
+    end
     post 'load_profile', :on => :collection
+    get 'edit_account', :on => :member
+    get 'start_following', :on => :member
+    get 'stop_following', :on => :member
+    get 'make_friend', :on => :member
   end
-
-  resource :messages do
-    
-  end
-
   resources :blogs  do
     get 'blog_archive', :on => :member
     get 'show_blogs', :on => :member
@@ -26,18 +23,11 @@ Maass2::Application.routes.draw do
   resources :polls do
     get 'poll_close', :on => :member
   end
-  get 'accounts/update_default_permission'
-  resources :profiles do
-    get 'edit_account', :on => :member
-  end
 
   root :to=>"homes#index"
-  get 'blogs/preview'
   resources :homes do
     get 'polls', :on => :member
   end
-
-#  match '/permissions', :to => 'accounts#permissions'
 
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'

@@ -1,26 +1,5 @@
 %h2 Mansinghites'Alumni Association
-%p
-= link_to gravatar_image_tag(@user.email, :gravatar => { :size => 50 }), home_path(@user.id)
-%br
-=[ @profile.first_name, @profile.middle_name, @profile.last_name ].join(" ")
-%br
-%br
-= link_to "Direct Message",new_profile_messages_path(@profile)
-%br
-%br
-%h3 Profile Action
-%br
-= link_to "Direct Message", direct_message_message_path
-%br
--if @friend.blank?
-  = link_to "add Friend", friends_path(:invited_id => @profile.id), :method => :post
--else
-  -if @friend["status"]=='request'
-    =link_to("Remove Friend Request?", @friend, :method => :delete)
-  -if @friend["status"]=='wait'
-    =link_to "Accept Friend Request?", friend_path(@friend), :method => :put
-%br
-= link_to("See My Polls",polls_home_path(@user))
+= render 'mini_profile', :profile => @profile
 = render 'status'  if !@profile.status_message.blank?
 = render 'personal_info'
 = render 'work_info' if !@profile.works.blank?

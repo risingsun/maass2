@@ -1,0 +1,19 @@
+-user = profile.user
+-relation = Friend.check_relation(current_user.profile.id, profile.id)
+= link_to gravatar_image_tag(user.email, :gravatar => { :size => 50 }), home_path(user.id)
+%br
+= full_name(profile)
+=# link_to "Direct Message",  direct_message_profile_message_path(profile.id)
+%br
+-if relation == "friend"
+  = link_to("Stop Being Friends", stop_following_profile_path(profile), :id => profile.id)
+-elsif relation == "following"
+  = link_to("Stop Following", stop_following_profile_path(profile))
+-elsif relation == "follower"
+  = link_to("Be Friends", make_friend_profile_path(profile), :id => profile.id)
+  %br
+  = link_to("Stop Follower", stop_following_profile_path(profile), :id => profile.id)
+-else
+  = link_to "Start Following", start_following_profile_path(profile)
+%br
+= link_to("See My Polls",polls_home_path(user))
