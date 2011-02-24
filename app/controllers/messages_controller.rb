@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
     @message = @profile.sent_messages.create(params[:message])
 #     debugger
     redirect_to profile_messages_path(@profile)
+
   end
 
   def direct_message

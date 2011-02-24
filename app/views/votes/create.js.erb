@@ -1,3 +1,3 @@
 <% if @vote.valid? %>
-  jQuery("#(poll_option_#{@option.poll.id})").replace("<%= escape_javascript(render :partial => 'polls/poll_response', :locals => {:poll => @option.poll})%>"); %>
+  jQuery("#<%= @vote.poll_id%>").replaceWith("<%= escape_javascript(render :partial => 'polls/poll_response', :locals => {:poll => @vote.poll})%>");
 <% end %>

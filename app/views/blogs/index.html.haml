@@ -1,7 +1,6 @@
 %h1 Listing Blogs
 - @blog.each do |blog|
   %table
-  %div{:style => "width:'250px'"}
   %tr
     %td= blog.title
     %td{:align => "right", :width => "100px"}
@@ -9,6 +8,12 @@
       = link_to image_tag('delete.png',:border =>0), blog, :method => :delete
   %tr
     %td{:colspan => "2"}= blog.body.html_safe
+    = link_to image_tag('add_comment.png',:border =>0), '#', :onclick => "add_comment(#{blog.id})"
+    = link_to "#{blog.comments_count} Comments", '#', :onclick => "show_comment('#{blog.id}')"
+    %div{:id => "show"+blog.id.to_s,:style => "display: none;"}
+      = render 'comments/show_comments', :blog => blog
+    %div{:id => "form"+blog.id.to_s,:style => "display: none;"}
+      = render 'comments/form', :blog => blog
 %br/
 
 = link_to 'New blog', new_blog_path

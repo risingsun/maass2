@@ -6,7 +6,7 @@ class PollResponse < ActiveRecord::Base
   validates :profile, :presence => true
   validates :poll_option, :presence => true
   validates :poll, :presence => true
-  validates_uniqueness_of :profile_id, :scope => :poll_id
+  #validates_uniqueness_of :profile_id, :scope => :poll_id
 
    after_save :update_poll_votes_count
 
