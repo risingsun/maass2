@@ -27,6 +27,7 @@ Maass2::Application.routes.draw do
  
   resources :polls do
     get 'poll_close', :on => :member
+    get 'search_poll', :on => :member
   end
   get 'accounts/update_default_permission'
   resources :profiles do

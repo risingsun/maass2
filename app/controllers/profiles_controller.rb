@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  before_filter :load_profile, :only => [:create,:edit,:update,:show,:edit_account,:search]
+  before_filter :load_profile, :only => [:create,:edit,:update,:show,:edit_account]
   before_filter :search_results, :only => [:search]
 
   def create
@@ -45,7 +45,7 @@ class ProfilesController < ApplicationController
   end
 
   def search
-    render :partial=>'result'
+    render :template=>'shared/user_friends'
   end
 
   private

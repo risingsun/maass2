@@ -32,6 +32,8 @@ class Profile < ActiveRecord::Base
     :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
   has_attached_file :icon, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
+  scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
+
   INDIA_STATES = [ "Andhra Pradesh",
     "Arunachal Pradesh",
     "Assam",
@@ -89,7 +91,7 @@ class Profile < ActiveRecord::Base
     @db_permissions
   end
 
-  def search_by_keyword(p)
+  def self.search_by_keyword(p)
     conditions=[]
     if p[:search_by] == "name"
       conditions = [" first_name LIKE ? OR last_name LIKE ? ","%#{p[:search_value]}%","%#{p[:search_value]}%"]
@@ -97,6 +99,8 @@ class Profile < ActiveRecord::Base
       conditions = [" location LIKE ?","%#{p[:search_value]}%" ]
     elsif p[:search_by] == "blood_group"
       conditions = [" blood_group LIKE ? ","%#{p[:search_value]}%"]
+    elsif p[:search_by] == "year"
+      conditions = [" profiles.group LIKE ? ","%#{p[:search_value]}%"]
     elsif p[:search_by] == "phone"
       conditions = [" mobile LIKE ? OR landline LIKE ? ","%#{p[:search_value]}%","%#{p[:search_value]}%"]
     elsif p[:search_by] == "address"
