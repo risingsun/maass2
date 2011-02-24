@@ -3,29 +3,17 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.create(params[:comment])
     @comment.save
-#    blog = Blog.find(params[:comment][:commentable_id])
-##   c = Comment.find(:all,:conditions => { :commentable_id => params[:comment][:commentable_id] }).count
-#    c = blog[:comments_count]
-#    c = c + 1
-#    blog.update_attributes(:comments_count => c )
+    Blog.comment_count(params[:comment][:commentable_id])
     redirect_to blogs_path
   end
 
   def destroy
     @comment = Comment.find(params[:id])
+    id = Comment.find(params[:id]).commentable_id
     @comment.destroy
+    Blog.comment_count(id)
     redirect_to blogs_path
     flash[:notice] = "Successfully destroyed blog."
   end
-
-  def comment_count
-    blog = Blog.find(params[:comment][:commentable_id])
-    c = Comment.find(:all,:conditions => { :commentable_id => params[:comment][:commentable_id] }).count
-    c = blog[:comments_count]
-    c = c + 1
-    blog.update_attributes(:comments_count => c )
-    c = blog[:comments_count]
-    c = c + 1
-    blog.update_attributes(:comments_count => c )
-  end
+  
 end
