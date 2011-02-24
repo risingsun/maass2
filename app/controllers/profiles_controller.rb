@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
 
-  before_filter :load_profile, :only => [:create,:edit,:update,:show,:edit_account]
+  before_filter :load_profile, :only => [:create,:edit,:update,:show,:edit_account,:search]
+  before_filter :search_results, :only => [:search]
 
   def create
     if @profile.save
@@ -34,16 +35,32 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def show
+ def start_following
+    Friend.request(current_user.profile.id, params[:id])
+    redirect_to home_path(Profile.find(params[:id]).user)
   end
 
+  def stop_following
+    Friend.delete_friend(current_user.profile.id, params[:id])
+    redirect_to home_path(Profile.find(params[:id]).user)
+  end
 
+  def make_friend
+    Friend.accept_request(params[:id], current_user.profile.id)
+    redirect_to home_path(Profile.find(params[:id]).user)
+  end
+
+  def show
+  end
+ 
   def edit_account
     @permissions = @profile.permissions || @profile.permissions.build
     @notification = @profile.notification_control || @profile.build_notification_control
   end
 
-
+  def search
+    render :partial=>'result'
+  end
 
   private
 
