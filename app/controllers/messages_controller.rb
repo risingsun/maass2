@@ -1,28 +1,36 @@
 class MessagesController < ApplicationController
+
   def index
+    @profile = current_user.profile
     @message = Message.new
+    @to_list = @profile.friends + @profile.followers  + @profile.followings
+    
+    @receive_messages = @profile.received_messages
   end
 
+  def sent_messages
+    @profile = current_user.profile
+    @sent_messages = @profile.sent_messages
+  end
+  
   def new
-    @profile = Profile.find(params[:profile_id])
+    @profile = current_user.profile
     @message = Message.new
+    @to_list = @profile.friends + @profile.followers  + @profile.followings
+    @sent_messages = @profile.sent_messages
+    @receive_messages = @profile.received_messages
   end
 
   def create
-    @message = Message.create(params[:message])
-    if @message.save!
-      flash[:notice] = "message created"
-      redirect_to new_profile_message_path
-    else  
-      flash[:error] = "message not created"
-      render :new
-    end
+    @profile = current_user.profile
+    @message = @profile.sent_messages.create(params[:message])
+#     debugger
+    redirect_to profile_messages_path(@profile)
+
   end
 
   def direct_message
-    @profile=current_user.profile
-    @message = Message.new
-    @to_list = [Profile.find(params[:profile_id])]
-    render :action => "new"
+    
   end
+
 end

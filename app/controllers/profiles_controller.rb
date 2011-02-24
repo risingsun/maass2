@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
     else
       flash[:notice] = "Failed creation."
     end
+   
     render 'edit'
   end
 
@@ -28,6 +29,15 @@ class ProfilesController < ApplicationController
       NotificationControl.set_value(params[:profile][:notification_control_attributes])
       @profile.update_attributes(params[:profile])
       redirect_to edit_account_profile_path(current_user.profile)
+    when "add following"
+      Profile.start_following(current_user.profile.id, params[:id])
+      redirect_to home_path(Profile.find(params[:id]).user)
+    when "stop follow"
+      Profile.stop_following(current_user.profile.id, params[:id])
+      redirect_to home_path(Profile.find(params[:id]).user)
+    when "make friend"
+      Profile.make_friend(params[:id], current_user.profile.id)
+      redirect_to home_path(Profile.find(params[:id]).user)
     else
       @profile.update_attributes params[:profile]
       flash[:notice] = "Profile updated."
@@ -37,8 +47,7 @@ class ProfilesController < ApplicationController
 
   def show
   end
-
-
+ 
   def edit_account
     @permissions = @profile.permissions || @profile.permissions.build
     @notification = @profile.notification_control || @profile.build_notification_control

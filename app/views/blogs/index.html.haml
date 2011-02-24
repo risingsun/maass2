@@ -14,6 +14,7 @@
       = render 'comments/show_comments', :blog => blog
     %div{:id => "form"+blog.id.to_s,:style => "display: none;"}
       = render 'comments/form', :blog => blog
+    %hr
 %br/
 
 = link_to 'New blog', new_blog_path

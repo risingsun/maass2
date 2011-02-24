@@ -1,39 +1,23 @@
 class Friend < ActiveRecord::Base
 
-  FRIENDS_STATUSES = {"accepted" => "accept", "waiting" => "wait"}
-    belongs_to :profile
+  ACCEPT_FRIEND = "1"
+  PENDING_FRIEND = "0"
+  belongs_to :inviter, :class_name => 'Profile'
+  belongs_to :invited, :class_name => 'Profile'
 
-  FRIENDS_STATUSES.each do |key,value|
-    scope key.to_sym, where(:status => value)
+
+  def self.check_relation(user, friend)
+    @friend =  find_by_inviter_id_and_invited_id_and_status(user, friend, ACCEPT_FRIEND)
+    @following =  find_by_inviter_id_and_invited_id_and_status(user, friend, PENDING_FRIEND)
+    @follower =  find_by_inviter_id_and_invited_id_and_status(friend, user, PENDING_FRIEND)
+    if !@friend.blank?
+      return "friend"
+    elsif !@following.blank?
+      return "following"
+    elsif !@follower.blank?
+      return "follower"
+    else
+      return "nothing"
+    end
   end
-
-  def self.check_friend(user,friend)
-    find_by_inviter_id_and_invited_id(user, friend)
-  end
-
-  def self.request(user,friend)
-    create(:inviter_id => user, :invited_id => friend, :status => 'wait')
-    create(:inviter_id => friend, :invited_id => user, :status => 'request')
-  end
-
-  def self.accept_request(user,friend)
-    accept_one_side(user, friend)
-    accept_one_side(friend, user)
-  end
-
-  def self.delete_friend(user, friend)
-    destroy(find_by_inviter_id_and_invited_id(user, friend))
-    destroy(find_by_inviter_id_and_invited_id(friend, user))
-  end
-
-private
-
-  def self.accept_one_side(user, friend)
-    request = find_by_inviter_id_and_invited_id(user, friend)
-    request.status = 'accept'
-    request.save!
-  end
-
 end
-
-

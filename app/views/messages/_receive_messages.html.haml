@@ -1,0 +1,8 @@
+- @receive_messages.each do |message|
+  %table
+    %tr
+      %th
+        = message.subject
+      %td
+        = message.body
+   
