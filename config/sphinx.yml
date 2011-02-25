@@ -1,0 +1,4 @@
+devlopment:
+bin_path: "/usr/local/sphinx/bin"
+searchd_binary_name: sphinx-searchd
+indexer_binary_name: sphinx-indexer

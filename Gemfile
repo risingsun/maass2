@@ -44,6 +44,7 @@ gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'humanizer'
 gem 'acts-as-taggable-on'
 gem 'acts_as_commentable'
+gem 'thinking-sphinx', '2.0.0', :require => 'thinking_sphinx'
 
 
 

@@ -1,5 +1,5 @@
 %h1 Listing Blogs
-- @blog.each do |blog|
+- @blogs.each do |blog|
   %table
   %tr
     %td= blog.title
@@ -20,4 +20,4 @@
 = link_to 'New blog', new_blog_path
 = render 'blogs/tag_clouds'
 = render 'blogs/archives'
-= will_paginate @blog
+= will_paginate @blogs
