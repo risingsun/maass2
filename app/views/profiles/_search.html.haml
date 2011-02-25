@@ -1,5 +1,5 @@
 = semantic_form_for(:profile, :url=>search_profiles_path, :method=>:get) do |f|
   = f.inputs do
-    = f.input :search_by, :label=>"Choose One",:as => :select, :collection =>SEARCH_KEYS.map{ |k| [k.titleize,k]},:prompt=>false
+    = f.input :search_by, :label=>"Choose One",:as => :select, :collection => SEARCH_KEYS.map{ |k| [k.titleize,k]},:prompt=>false
     = f.input :search_value,:label=>"Search", :as => :string
   = f.commit_button "Search"

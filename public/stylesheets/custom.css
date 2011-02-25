@@ -3,7 +3,12 @@
 }
 
 body {
-  background: #cff;
+  background-color: #ffc600;
+  background-image: url(/images/bg_gradient.png);
+  background-repeat: repeat-x;
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
