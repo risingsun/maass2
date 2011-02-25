@@ -11,6 +11,24 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
+body {
+  background-color: #ffc600;
+  background-image: url(/images/bg_gradient.png);
+  background-repeat: repeat-x;
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a{
+  color: #b93232;
+  text-decoration: underline;
+  position: relative;
+}
+a:hover{
+  text-decoration: none;
+}
+
 root { 
   display: block;
 }
@@ -19,3 +37,11 @@ root {
 .css2 { font-size: 1.2em; }
 .css3 { font-size: 1.4em; }
 .css4 { font-size: 1.6em; }
+
+.header_back{
+  position: fixed;
+}
+
+* html .header_back{
+  margin-bottom: -190px;
+}

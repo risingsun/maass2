@@ -85,7 +85,6 @@ class BlogsController < ApplicationController
   end
 
   def load_resource
-#    debugger
     @blog = @profile.blogs.find(params[:id])
   end
 end

@@ -7,11 +7,13 @@
     = include_tiny_mce_if_needed
     = csrf_meta_tag
   %body
-    = render 'layouts/header'
-    %br
-    %br
-    = flash[:notice]
-    %br
-    = yield
-    %br
+    .main_container
+      = render 'layouts/header'
+    .content_container
+      %br
+      %br
+      = flash[:notice]
+      %br
+      = yield
+      %br
     
