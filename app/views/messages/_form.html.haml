@@ -1,8 +1,7 @@
 = form_for @message, :url => profile_messages_path(@profile) do |f|
   %br/
   %div
-    = @profile.id
-    = f.hidden_field :receiver_id, :value => @profile.id
+    = f.select :receiver_id, @to_list.map{|p| [full_name(p), p.id]}
     = f.hidden_field :sender_id, :value => current_user.profile.id
   %div
     = f.label :Subject

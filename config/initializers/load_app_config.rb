@@ -43,3 +43,5 @@ INDIA_STATES = [ "Andhra Pradesh",
   "Uttarakhand",
   "Uttar Pradesh",
   "West Bengal"]
+
+SEARCH_KEYS = ['name','location','blood_group','year','blog','phone','address']

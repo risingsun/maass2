@@ -21,6 +21,7 @@
     =link_to "Accept Friend Request?", friend_path(@friend), :method => :put
 %br
 = link_to("See My Polls",polls_home_path(@user))
+= render 'mini_profile', :profile => @profile
 = render 'status'  if !@profile.status_message.blank?
 = render 'personal_info'
 = render 'work_info' if !@profile.works.blank?

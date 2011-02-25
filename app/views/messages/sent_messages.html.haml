@@ -1,0 +1,9 @@
+= render :partial => 'messages/header_links'
+- @sent_messages.each do |message|
+  %table
+    %tr
+      %th
+        = message.subject
+      %td
+        = message.body
+   

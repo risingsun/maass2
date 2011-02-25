@@ -5,4 +5,6 @@
   %tr
     %td= link_to gravatar_image_tag(user.email.downcase, :alt => user.profile.first_name, :class => 'gravatar', :gravatar => { :size => 50 }), home_path(user.id)
     %td= [user.profile.first_name, user.profile.middle_name, user.profile.last_name ].join(" ")
-    
+%br
+%br
+= render :partial=>'profiles/search', :profile=>@profile if !current_user.blank?
