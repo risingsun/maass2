@@ -1,9 +1,9 @@
 class CreateFriends < ActiveRecord::Migration
   def self.up
     create_table :friends do |t|
-      t.string :inviter_id
-      t.string :invited_id
-      t.string :status
+      t.integer :inviter_id
+      t.integer :invited_id
+      t.integer :status, :default => 0
 
       t.timestamps
     end

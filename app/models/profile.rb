@@ -44,26 +44,26 @@ class Profile < ActiveRecord::Base
 
   attr_accessor :search_by, :search_value
 
-  def self.check_friend(user, friend)
+  def check_friend(user, friend)
     Friend.find_by_inviter_id_and_invited_id(user, friend)
   end
 
-  def self.start_following(user, friend)
-    Friend.create(:inviter_id => user, :invited_id => friend, :status => Friend::PENDING_FRIEND)
+  def start_following(friend)
+    user.profile.following_friends.create(:invited_id => friend)
   end
 
-  def self.stop_following(user, friend)
-     if !check_friend(user, friend).blank?
-       Friend.destroy(check_friend(user, friend))
+  def stop_following(friend)
+     if !check_friend(user.profile.id, friend).blank?
+       Friend.destroy(check_friend(user.profile.id, friend))
     end
-    if !check_friend(friend, user).blank?
-      Friend.destroy(check_friend(friend, user))
+    if !check_friend(friend, user.profile.id).blank?
+      Friend.destroy(check_friend(friend, user.profile.id))
     end
   end
 
-  def self.make_friend(user, friend)
-    check_friend(user, friend).update_attribute(:status, Friend::ACCEPT_FRIEND)
-    Friend.create(:inviter_id => friend, :invited_id => user, :status => Friend::ACCEPT_FRIEND)
+  def make_friend(friend)
+    user.profile.follower_friends.where(:inviter_id =>friend )[0].update_attribute(:status, Friend::ACCEPT_FRIEND)
+    user.profile.friendships.create(:invited_id => friend, :status => Friend::ACCEPT_FRIEND)
   end
 
   def profile_permissions
@@ -100,7 +100,7 @@ class Profile < ActiveRecord::Base
     end
     Profile.where(conditions).all
   end
-   
+
   private
 
   before_update :permission_sync
@@ -109,5 +109,5 @@ class Profile < ActiveRecord::Base
     return true if permissions.nil?
     permissions.delete permissions.select {|p| p.permission_type == default_permission}
   end
-  
+
 end

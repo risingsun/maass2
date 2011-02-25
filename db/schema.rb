@@ -10,8 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+ActiveRecord::Schema.define(:version => 20110225053347) do
 
-ActiveRecord::Schema.define(:version => 20110223075539) do
+  create_table "accounts", :force => true do |t|
+    t.string   "user_id"
+    t.string   "default_permission"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "blogs", :force => true do |t|
     t.string   "profile_id"
@@ -47,9 +53,9 @@ ActiveRecord::Schema.define(:version => 20110223075539) do
   end
 
   create_table "friends", :force => true do |t|
-    t.string   "inviter_id"
-    t.string   "invited_id"
-    t.string   "status"
+    t.integer  "inviter_id"
+    t.integer  "invited_id"
+    t.integer  "status",     :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -85,6 +91,19 @@ ActiveRecord::Schema.define(:version => 20110223075539) do
     t.integer  "profile_comment", :default => 1
     t.integer  "follow",          :default => 1
     t.integer  "delete_friend",   :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.string   "account_id"
+    t.string   "news_notification"
+    t.string   "event_notification"
+    t.string   "message_notification"
+    t.string   "blog_comment_notification"
+    t.string   "profile_comment_notification"
+    t.string   "follow_notification"
+    t.string   "delete_friend_notification"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
