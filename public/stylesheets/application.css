@@ -29,19 +29,52 @@ a:hover{
   text-decoration: none;
 }
 
-root { 
-  display: block;
+
+/****** Utilities *******/
+.hide{
+  display: none;
 }
 
-.css1 { font-size: 1.0em; }
-.css2 { font-size: 1.2em; }
-.css3 { font-size: 1.4em; }
-.css4 { font-size: 1.6em; }
-
-.header_back{
-  position: fixed;
+label, h2, h3 {
+  padding: 0px;
+  margin: 0px;
+  float: left;
 }
 
-* html .header_back{
-  margin-bottom: -190px;
+p{
+  padding: 0px;
+  margin: 0px;
+  float: none;
+}
+
+.clear_div{
+  clear: both;
+}
+
+img{
+  border: 0;
+}
+
+.left{
+  float: left;
+}
+
+
+/****** Content CSS ******/
+.main_container{
+  background-image: url(/images/main_container_bg.png);
+  background-repeat: repeat-y;
+  width: 996px;
+  margin: 0 auto;
+}
+
+* html .main_container{ /** IE 6 hack **/
+  background-image:none;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='/images/main_container_bg.png');
+}
+
+.header_container{
+  background-image: url(/images/header.jpg);
+  width: 996px;
+  height: 128px;
 }
