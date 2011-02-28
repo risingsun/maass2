@@ -1,4 +1,5 @@
 class Blog < ActiveRecord::Base
+  #  acts_as_commentable
   acts_as_taggable_on :tags
 
   belongs_to :profile
@@ -10,6 +11,11 @@ class Blog < ActiveRecord::Base
   validates :title, :presence => true
   validates :body, :presence => true
 
+  define_index do
+    indexes :title
+    indexes :body
+  end
+
   def self.blog_groups
     find(:all,
       :select => "count(*) as cnt, MONTHNAME(created_at) as month,YEAR(created_at) as year" ,
@@ -18,6 +24,7 @@ class Blog < ActiveRecord::Base
   end
 
   def self.comment_count(blog)
+    #    debugger
     blog = Blog.find(blog)
     c = Comment.find(:all,:conditions => { :commentable_id => blog }).count
     blog.update_attributes(:comments_count => c )
