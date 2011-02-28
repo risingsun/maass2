@@ -33,7 +33,53 @@ class Profile < ActiveRecord::Base
                              :reject_if => proc { |attrs| reject = %w(education_from_year education_fo_year institution).all?{|a| attrs[a].blank?} }
   accepts_nested_attributes_for :works, :allow_destroy => true,
                              :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
-  has_attached_file :icon, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :icon,
+    :styles =>
+    {:big => "150x150#",
+    :medium => "100x100#",
+    :small =>"50x50#",
+    :small_60 =>  "60x60#",
+    :small_20 =>  "20x20#"
+  }
+   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+
+  scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
+
+  INDIA_STATES = [ "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Andaman and Nicobar Islands",
+    "Bihar",
+    "Chandigarh",
+    "Chhattisgarh",
+    "Dadra and Nagar Haveli",
+    "Daman and Diu",
+    "Delhi",
+    "Goa",
+    "Gujarat",
+    "Harayana",
+    "Himachal Pradesh",
+    "Jammu and Kashmir",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Lakshadweep",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Orissa",
+    "Punjab",
+    "Puducherry",
+    "Rajasthan",
+    "Sikkim",
+    "Tamilnadu",
+    "Tripura",
+    "Uttarakhand",
+    "Uttar Pradesh",
+    "West Bengal"]
 
 #  attr_accessible :first_name, :last_name, :middle_name, :maiden_name, :gender, :group
 #  validates :first_name, :presence => true,
@@ -41,6 +87,7 @@ class Profile < ActiveRecord::Base
 #  validates :middle_name, :length => { :maximum => 20 }
 #  validates :last_name, :length => { :maximum => 20 }
 #  validates :maiden_name, :length => { :maximum => 20 }
+
 
   attr_accessor :search_by, :search_value
 
@@ -85,7 +132,7 @@ class Profile < ActiveRecord::Base
     @db_permissions
   end
 
-  def search_by_keyword(p)
+  def self.search_by_keyword(p)
     conditions=[]
     if p[:search_by] == "name"
       conditions = [" first_name LIKE ? OR last_name LIKE ? ","%#{p[:search_value]}%","%#{p[:search_value]}%"]
@@ -93,12 +140,33 @@ class Profile < ActiveRecord::Base
       conditions = [" location LIKE ?","%#{p[:search_value]}%" ]
     elsif p[:search_by] == "blood_group"
       conditions = [" blood_group LIKE ? ","%#{p[:search_value]}%"]
+    elsif p[:search_by] == "year"
+      conditions = [" profiles.group LIKE ? ","%#{p[:search_value]}%"]
     elsif p[:search_by] == "phone"
       conditions = [" mobile LIKE ? OR landline LIKE ? ","%#{p[:search_value]}%","%#{p[:search_value]}%"]
     elsif p[:search_by] == "address"
       conditions = [" address_line1 LIKE ? OR address_line2 LIKE ? ","%#{p[:search_value]}%","%#{p[:search_value]}%"]
     end
     Profile.where(conditions).all
+  end
+
+  def gender_str
+    gender.downcase
+  end
+
+  def self.new_member
+    Profile.all
+  end
+  def f(tr=15, options={})
+    full_name(:length => tr)
+  end
+
+  def full_name(options={})
+    n = [(title if options[:is_long]),first_name,(middle_name unless options[:is_short]),last_name].reject(&:blank?).compact.join(' ').titleize
+    if n.blank?
+      n = user.login rescue 'Deleted user'
+    end
+    n
   end
 
   private

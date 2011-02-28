@@ -1,0 +1,12 @@
+%h3 Education Info
+%table
+  %tr
+    %th From Year
+    %th To Year
+    %th Institute
+  -@educations.each do |x|
+    %tr
+      %td{:width => "70px"}= x.education_from_year
+      %td{:width => "70px"}= x.education_to_year
+      %td{:width => "70px"}= x.institution
+    

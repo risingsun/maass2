@@ -1,26 +1,28 @@
-- if user_signed_in?
-  |
-  = link_to "Home", homes_path
-  |
-  = link_to "My Blogs", blogs_path
-  |
-  = link_to "My Profile", profile_path(current_user)
-  |
+%ul.menu
+  %li.menu_text
+    = link_to "Home", homes_path
+    |
+  - if current_user
+    %li.menu_text
+      = link_to('My Profile', current_user.profile)
+      |
+    %li.menu_text
+      = link_to 'My Blog', blogs_path
+      |
+    %li.menu_text
+      = link_to 'My Polls', polls_path
+      |
+    %li.menu_text
+      = link_to 'My Friends', friends_path
+      |
+    %li.menu_text
+      = link_to 'My Messages', profile_messages_path(current_user.profile)
+.logout_container
+  = image_tag(current_user.profile.icon.url(:small_20))
+  %span.menu_text= full_name(current_user.profile)
+  = link_to 'Edit Account', edit_account_profile_path(current_user)
+  = link_to image_tag('edit.png', :title => "Edit Profile", :class => "img01"), edit_profile_path(current_user.profile) if current_user.profile
   = link_to "Edit Profile", edit_path
-  |
-  = link_to "Edit Account", edit_account_profile_path(current_user)
-  | 
-  = link_to "My Polls", polls_path
-  |
-  = link_to "My Friends", friends_path
-  |
-  = link_to "My Messages", profile_messages_path(current_user.profile)
-  |
-  = link_to "Sign out", destroy_user_session_path
-  |
-- else
-  = link_to "Sign In", new_user_session_path
-  |
-  = link_to "Sign Up", new_user_registration_path
-  |
-
+  = link_to(image_tag("logout.png", :title=>"Logout", :align=>"top"), destroy_user_session_path ,:class=>"logoutuser")
+  = link_to('Logout', destroy_user_session_path)
+ 

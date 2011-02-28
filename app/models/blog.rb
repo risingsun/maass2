@@ -1,5 +1,4 @@
 class Blog < ActiveRecord::Base
-#  acts_as_commentable
   acts_as_taggable_on :tags
 
   belongs_to :profile
@@ -19,7 +18,6 @@ class Blog < ActiveRecord::Base
   end
 
   def self.comment_count(blog)
-#    debugger
     blog = Blog.find(blog)
     c = Comment.find(:all,:conditions => { :commentable_id => blog }).count
     blog.update_attributes(:comments_count => c )

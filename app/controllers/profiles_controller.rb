@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  before_filter :load_profile, :only => [:create,:edit,:update,:show,:edit_account,:search]
+  before_filter :load_profile, :only => [:create,:edit,:update,:edit_account]
   before_filter :search_results, :only => [:search]
 
   def create
@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
     else
       flash[:notice] = "Failed creation."
     end
-   
+
     render 'edit'
   end
 
@@ -46,19 +46,28 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-    
+
   end
 
   def show
+    if !current_user.blank?
+      @profile = Profile.find(params[:id])
+      @user = @profile.user
+      @educations = @profile.educations
+      @works = @profile.works
+    else
+      redirect_to homes_path
+      flash[:notice] = "It looks like you don't have permission to view that page."
+    end
   end
- 
+
   def edit_account
     @permissions = @profile.permissions || @profile.permissions.build
     @notification = @profile.notification_control || @profile.build_notification_control
   end
 
   def search
-    render :partial=>'result'
+    render :template=>'shared/user_friends'
   end
 
   private
