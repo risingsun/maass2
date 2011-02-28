@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110223075539) do
+ActiveRecord::Schema.define(:version => 20110228135006) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(:version => 20110223075539) do
     t.string   "flicker_username"
     t.string   "group"
     t.date     "date_of_birth"
-    t.date     "aniversary_date"
+    t.date     "anniversary_date"
     t.string   "relationship_status"
     t.string   "spouse_name"
     t.string   "maiden_name"

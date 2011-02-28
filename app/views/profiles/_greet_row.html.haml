@@ -1,0 +1,5 @@
+- if greet_row.can_see_field(field,current_user.profile)
+  %tr
+    %td= greet_row.send(field).to_formatted_s(:short)
+    %td= image_tag("#{field}.png", :title=>title)
+    %td= link_to greet_row.first_name

@@ -1,6 +1,14 @@
 class Profile < ActiveRecord::Base
-
+  PERMISSION_FIELDS = %w(website blog about_me gtalk_name location email
+                         date_of_birth anniversary_date relationship_status
+                         spouse_name gender activities yahoo_name skype_name
+                         educations work_informations delicious_name
+                         twitter_username msn_username linkedin_name
+                         address landline mobile marker)
   belongs_to :user
+
+  attr_protected :is_active
+
   has_many :educations, :dependent => :destroy
   has_many :works, :dependent => :destroy
   has_many :permissions, :dependent => :destroy, :attributes => true
@@ -30,13 +38,13 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :marker
   accepts_nested_attributes_for :permissions
   accepts_nested_attributes_for :educations, :allow_destroy => true,
-                             :reject_if => proc { |attrs| reject = %w(education_from_year education_fo_year institution).all?{|a| attrs[a].blank?} }
+    :reject_if => proc { |attrs| reject = %w(education_from_year education_fo_year institution).all?{|a| attrs[a].blank?} }
   accepts_nested_attributes_for :works, :allow_destroy => true,
-                             :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
+    :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
   has_attached_file :icon, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
-
+  scope :active, :conditions => {:is_active => true}
   INDIA_STATES = [ "Andhra Pradesh",
     "Arunachal Pradesh",
     "Assam",
@@ -73,14 +81,14 @@ class Profile < ActiveRecord::Base
     "Uttar Pradesh",
     "West Bengal"]
 
-#  attr_accessible :first_name, :last_name, :middle_name, :maiden_name, :gender, :group
-#  validates :first_name, :presence => true,
-#                         :length => { :maximum => 20 }
-#  validates :middle_name, :length => { :maximum => 20 }
-#  validates :last_name, :length => { :maximum => 20 }
-#  validates :maiden_name, :length => { :maximum => 20 }
+  #  attr_accessible :first_name, :last_name, :middle_name, :maiden_name, :gender, :group
+  #  validates :first_name, :presence => true,
+  #                         :length => { :maximum => 20 }
+  #  validates :middle_name, :length => { :maximum => 20 }
+  #  validates :last_name, :length => { :maximum => 20 }
+  #  validates :maiden_name, :length => { :maximum => 20 }
 
-
+  @@days = ()
   attr_accessor :search_by, :search_value
 
   def self.check_friend(user, friend)
@@ -92,8 +100,8 @@ class Profile < ActiveRecord::Base
   end
 
   def self.stop_following(user, friend)
-     if !check_friend(user, friend).blank?
-       Friend.destroy(check_friend(user, friend))
+    if !check_friend(user, friend).blank?
+      Friend.destroy(check_friend(user, friend))
     end
     if !check_friend(friend, user).blank?
       Friend.destroy(check_friend(friend, user))
@@ -103,6 +111,14 @@ class Profile < ActiveRecord::Base
   def self.make_friend(user, friend)
     check_friend(user, friend).update_attribute(:status, Friend::ACCEPT_FRIEND)
     Friend.create(:inviter_id => friend, :invited_id => user, :status => Friend::ACCEPT_FRIEND)
+  end
+
+  def friend_of? user
+    user.in? friends
+  end
+
+  def all_friends
+    @my_friends ||= (self.followings+self.friends+[self]).uniq.compact 
   end
 
   def profile_permissions
@@ -124,6 +140,33 @@ class Profile < ActiveRecord::Base
     @db_permissions
   end
 
+  def field_permissions
+    if @field_permissions.nil?
+      @field_permissions = Hash.new
+      dbp = db_permissions
+      PERMISSION_FIELDS.each do |f|
+        @field_permissions[f] = dbp[f].nil? ? default_permission.to_sym : dbp[f].permission.to_sym
+      end
+    end
+    @field_permissions
+  end
+
+  def can_see_field(field, profile)
+    #return true if profile.nil?
+    return false if self.send(field).blank?
+    return true if profile == self # logged in user same as profile user
+    permissions =  field_permissions
+    permission = permissions[field]
+    return true if permission.nil?
+    if permission == :Everyone
+      return true
+    elsif permission == :Myself
+      return false
+    else permission == :Friends
+      return friend_of?(profile.user)
+    end
+  end
+
   def self.search_by_keyword(p)
     conditions=[]
     if p[:search_by] == "name"
@@ -141,7 +184,48 @@ class Profile < ActiveRecord::Base
     end
     Profile.where(conditions).all
   end
-   
+
+  def self.happy_day(days=self.happy_day_range,profile=nil,f='date_of_birth')
+    clause = "#{f} is not null and date_format(#{f},'%m%d') in (?)"
+    if profile
+      clause += " and id in(?)"
+      conditions = [clause,days,profile.all_friends.map(&:id)]
+    else
+      conditions = [clause,days]
+    end
+    self.active.all(
+      :select => "id,title,first_name,middle_name,last_name,profiles.group,#{f},default_permission" ,
+      :conditions => conditions, :include => :permissions).group_by {|d| d.send(f).strftime("%m%d") }
+  end
+
+  def self.happy_day_range(options = {})
+    unless @@days
+      options = options.reverse_merge(:date => Date.today, :back => 5, :forward => 10)
+      start_date = options[:date] - options[:back].days
+      end_date = options[:date] + options[:forward].days
+      @@days = (start_date .. end_date).to_a.map{|d| d.strftime("%m%d")}
+    end
+    @@days
+  end
+
+  def self.find_all_happy_days(profile = nil, options = {})
+    ref_date = options[:date] || Date.today
+    days = self.happy_day_range(options)
+    today_index = days.index(ref_date.strftime("%m%d"))
+    birthdays = self.happy_day(days,profile,'date_of_birth')
+    anniversaries = self.happy_day(days,profile,'anniversary_date')
+    happy_days = {}
+    [birthdays.keys + anniversaries.keys].flatten.uniq.sort.each do |date|
+      happy_days[date] = {}
+      happy_days[date][:birthdays] = birthdays.keys.any?{|d| d == date} ? birthdays[date] : []
+      happy_days[date][:anniversaries] = anniversaries.keys.any?{|d| d == date} ? anniversaries[date] : []
+      happy_days[date][:from_today] = days.index(date) - today_index
+    end
+    happy_days = happy_days.sort{|a,b| a[1][:from_today] <=> b[1][:from_today] }
+    return  happy_days
+
+  end
+  
   private
 
   before_update :permission_sync
