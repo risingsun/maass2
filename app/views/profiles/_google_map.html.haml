@@ -1,5 +1,5 @@
-= semantic_form_for @profile do |p|
-  - rounded_med_corner(:title => "Map Location", :id => "location_map") do
+- rounded_med_corner(:title => "Map Location", :id => "location_map") do
+  = semantic_form_for @profile do |p|
     = @profile.marker.nil?
     - @profile.marker.nil? ? new_map : edit_map(@profile.marker)
     = raw GMap.header()

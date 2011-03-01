@@ -1,11 +1,11 @@
 = semantic_form_for @profile do |f|
   .large_panel_side
     - rounded_med_corner(:title => "Status", :id => "status") do
-    #status_show
-      - if @profile.status_message == nil || @profile.status_message == ""
-        click here to set status
-      - else
-        = @profile.status_message
-    #status{:style => "display: none;"}
-      = f.input :status_message, :label => "status"
-    = f.commit_button :label => "Update", :id => "update"
+      #status_show
+        - if @profile.status_message == nil || @profile.status_message == ""
+          click here to set status
+        - else
+          = @profile.status_message
+      #status{:style => "display: none;"}
+        = f.input :status_message, :label => "status"
+        = f.commit_button :label => "Update", :id => "update"

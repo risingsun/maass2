@@ -1,7 +1,6 @@
 .fields
-  - rounded_med_corner(:title => "Education", :id => "education_information") do
-    = f.inputs do
-      = f.input :education_from_year, :label => "From Year", :as => :select, :collection => User::EDU_YEAR, :prompt => true
-      = f.input :education_to_year, :label => "To Year", :as => :select, :collection => User::EDU_YEAR, :prompt => true
-      = f.input :institution
-    = link_to_remove_fields "remove", f
+  = f.inputs do
+    = f.input :education_from_year, :label => "From Year", :as => :select, :collection => User::EDU_YEAR, :prompt => true
+    = f.input :education_to_year, :label => "To Year", :as => :select, :collection => User::EDU_YEAR, :prompt => true
+    = f.input :institution
+  = link_to_remove_fields "remove", f

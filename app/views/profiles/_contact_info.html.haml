@@ -1,6 +1,5 @@
-%h2 Contact Info
-= semantic_form_for @profile do |f|
-  - rounded_med_corner(:title => "Status", :id => "status") do
+- rounded_med_corner(:id => "contact_info", :title => "Contact Info") do
+  = semantic_form_for @profile do |f|
     = f.inputs do
       = f.input :location, :as => :string
       = f.input :address_line1, :as => :string

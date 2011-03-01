@@ -1,9 +1,8 @@
 .fields
-  - rounded_med_corner(:title => "Education", :id => "education_information") do
-    = f.inputs do
-      = f.input :occupation
-      = f.input :industry
-      = f.input :company_name
-      = f.input :company_website
-      = f.input :job_description, :as => :text, :input_html => { :columns => 5, :rows => 5 }
-    = link_to_remove_fields "remove", f
+  = f.inputs do
+    = f.input :occupation
+    = f.input :industry
+    = f.input :company_name
+    = f.input :company_website
+    = f.input :job_description, :as => :text, :input_html => { :columns => 5, :rows => 5 }
+  = link_to_remove_fields "remove", f
