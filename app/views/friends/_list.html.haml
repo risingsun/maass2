@@ -1,0 +1,6 @@
+- type ||= 'friends'
+- size ||= 10
+- total = list.count
+-rounded_corner(:title => type, :size => 'large') do
+  = render :partial  => "shared/mini_profile", :collection => list
+  

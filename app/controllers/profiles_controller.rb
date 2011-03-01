@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  before_filter :load_profile, :only => [:create,:edit,:update,:show,:edit_account,:search]
+  before_filter :load_profile, :only => [:create,:edit,:update,:edit_account]
   before_filter :search_results, :only => [:search]
 
   def create
@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
     else
       flash[:notice] = "Failed creation."
     end
-   
+
     render 'edit'
   end
 
@@ -31,13 +31,13 @@ class ProfilesController < ApplicationController
       redirect_to edit_account_profile_path(current_user.profile)
     when "add following"
       @profile.start_following(params[:id])
-      redirect_to home_path(Profile.find(params[:id]).user)
+      redirect_to profile_path(Profile.find(params[:id]).user)
     when "stop follow"
       @profile.stop_following(params[:id])
-      redirect_to home_path(Profile.find(params[:id]).user)
+      redirect_to profile_path(Profile.find(params[:id]).user)
     when "make friend"
       @profile.make_friend(params[:id])
-      redirect_to home_path(Profile.find(params[:id]).user)
+      redirect_to profile_path(Profile.find(params[:id]).user)
     else
       @profile.update_attributes params[:profile]
       flash[:notice] = "Profile updated."
@@ -46,19 +46,28 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-    
+
   end
 
   def show
+    if !current_user.blank?
+      @profile = Profile.find(params[:id])
+      @user = @profile.user
+      @educations = @profile.educations
+      @works = @profile.works
+    else
+      redirect_to homes_path
+      flash[:notice] = "It looks like you don't have permission to view that page."
+    end
   end
- 
+
   def edit_account
     @permissions = @profile.permissions || @profile.permissions.build
     @notification = @profile.notification_control || @profile.build_notification_control
   end
 
   def search
-    render :partial=>'result'
+    render :template=>'shared/user_friends'
   end
 
   private

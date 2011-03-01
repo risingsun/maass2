@@ -1,0 +1,7 @@
+.profile_pic_panel
+  .profile_img_wrap
+    = image_tag(set_icon(newest_member, 'small_60'))
+  %span{:class => cycle('odd','even')}
+    = link_to h(newest_member.f(18)), newest_member
+    %br
+    = newest_member.group

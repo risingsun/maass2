@@ -1,0 +1,69 @@
+## YAML Template.
+---
+
+site_full_name: "Mansinghites' Alumni Association"
+site_name: "MAASS"
+site_desc: 'Coming Together is a Beginning, Keeping Together is Progress, Working Together is Success'
+site_production_domain: 'maass.in'
+site_development_domain: 'localhost:8000'
+
+flickr_on: true
+flickr_user_account: 'maass_in'
+flickr_images: 500
+flickr_images_on_profile: 10
+
+mailer_from_address: 'no-reply@maass.in'
+
+batch_start: 1992
+
+results_per_page: 16
+newest_member: 6
+feeds_display: 20
+profile_per_page: 16
+blogs_on_profile: 10
+blogs_per_page: 15
+blogs_on_home_page: 6
+polls_on_profile: 10
+polls_per_page: 10
+google_map_default_lat: 26.89765464254534
+google_map_default_lon: 75.81145763397217
+google_map_default_zoom: 14
+
+google_analytics_tracker: "UA-2253707-5"
+
+student_checking: true
+nomination_form: false
+
+be_friend_bundle_id: '97792288911'
+follow_bundle_id: '97791518911'
+profile_comment_bundle_id: '97826638911'
+blog_comment_bundle_id: '97793723911'
+blog_bundle_id: '97833028911'
+
+house_names:
+  - Bharat
+  - Eklavya
+  - Prahalad
+  - Shravan
+
+user_types:
+  - Admin
+  - Teacher
+  - Guest
+
+smtp_settings:
+  address: "smtp.1and1.com"
+  port: 25
+  domain: "http://risingsuntech.net"
+  authentication: 'plain'
+  user_name: "no-reply@risingsuntech.net"
+  password: "risingsun.noreply"
+
+ad_array:
+  - link: "http://www.jaipursareekendra.com"
+    image: "1.jpg"
+    alt: 'Vasansi Jaipur'
+    
+  - link: "http://www.tabindia.com"
+    image: '2.jpg'
+    alt: 'TAB India: Natural Stone Processors'

@@ -28,6 +28,7 @@ Maass2::Application.routes.draw do
  
   resources :polls do
     get 'poll_close', :on => :member
+    get 'search_poll', :on => :member
   end
 
   root :to=>"homes#index"

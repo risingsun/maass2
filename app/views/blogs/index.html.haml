@@ -18,6 +18,6 @@
 %br/
 
 = link_to 'New blog', new_blog_path
+= will_paginate @blog
 = render 'blogs/tag_clouds'
 = render 'blogs/archives'
-= will_paginate @blog

@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   
   def search_results
     p = params[:profile] ? params[:profile].dup : {}
-    @result = @profile.search_by_keyword(p)
+    @results = Profile.search_by_keyword(p)
   end
 end
