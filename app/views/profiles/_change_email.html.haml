@@ -1,5 +1,5 @@
-= semantic_form_for(current_user,:as => current_user, :url => registration_path(current_user), :html => { :method => :put }) do |f|
-  - rounded_med_corner(:id => "change_email", :title => "Email") do
+- rounded_med_corner(:id => "change_email", :title => "Email") do
+  = semantic_form_for(current_user,:as => current_user, :url => registration_path(current_user), :html => { :method => :put }) do |f|
     %table
       %tr
         %td

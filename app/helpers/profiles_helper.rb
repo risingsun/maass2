@@ -1,6 +1,6 @@
 module ProfilesHelper
 
-   def new_map
+  def new_map
     @map = GMap.new("map_div")
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([26.6670958011,75.849609375],4)
@@ -14,4 +14,17 @@ module ProfilesHelper
     @map.record_init("create_draggable_marker_for_edit(#{marker.lat},#{marker.lng},#{marker.zoom});")
   end
 
+  def year_link profile = current_user.profile
+    link_to profile.group, search_profiles_path
+  end
+
+  def before_after(field_index)
+    if field_index < 0
+      return "recent"
+    elsif field_index == 0
+      return "today"
+    end
+    return "upcoming"
+  end
+  
 end

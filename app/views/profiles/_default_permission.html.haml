@@ -1,5 +1,5 @@
-= semantic_form_for @profile do |a|
-  - rounded_med_corner(:id => "set_default_permission", :title => "Default Permission") do
+- rounded_med_corner(:id => "set_default_permission", :title => "Default Permission") do
+  = semantic_form_for @profile do |a|
     = a.input :default_permission, :as => :select, :collection => ["Myself", "Friends", "Everyone"], :label => "Default Permission", :prompt => false
     = a.commit_button "Set Default"
 
