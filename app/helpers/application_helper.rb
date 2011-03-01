@@ -43,12 +43,6 @@ module ApplicationHelper
     [profile.first_name, profile.middle_name, profile.last_name].join(" ")
   end
 
-  def icon(profile, size = :small, img_opts = {}, link_opts = {})
-    return "" if profile.nil?
-    img_opts = {:title => full_name(profile), :alt => full_name(profile), :class => size}.merge(img_opts)
-    link_to(avatar_tag(profile, {:gender => profile.gender_str, :size => size, :paperclip_style => size }, img_opts), profile_url(profile), link_opts)
-  end
-
   def rounded_corner(options = {}, &block)
 
     raise ArgumentError, "Missing block" unless block_given?
@@ -64,8 +58,24 @@ module ApplicationHelper
           content_tag(:span, "", :class => "widget_#{size}_btm")}) 
     ''
   end
-  def theme_image(img, options = {})
-    "#{image_tag((img), options)}"
+
+  def slide_up_down_header(inner_panel_style, inner_panel_id, header_text)
+    img_src = inner_panel_style == 'hide' ? 'show.jpg' : 'hide.jpg'
+    @template.content_tag :h2,
+      :class => "widget_lrg_title",
+      :id => inner_panel_id+"_header",
+      :onclick => "new Effect.SlideUpAndDown('#{inner_panel_id}', '#{inner_panel_id}_header', this);" do
+      header_text
+    end
+  end
+
+  def set_icon(profile, size)
+   if profile.icon_file_name.blank?
+     "#{profile.gender}_#{size}.png"
+   else
+     profile.icon.url(size)
+   end
+
   end
 
 end

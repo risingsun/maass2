@@ -6,4 +6,8 @@
         = message.subject
       %td
         = message.body
-   
+      %td
+      %td
+        = link_to "Read", profile_message_path(@profile, message)
+      %td
+        = link_to "delete" ,profile_message_path(@profile, message), :method => :delete
