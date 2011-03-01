@@ -49,21 +49,41 @@ module ApplicationHelper
     link_to(avatar_tag(profile, {:gender => profile.gender_str, :size => size, :paperclip_style => size }, img_opts), profile_url(profile), link_opts)
   end
 
-  def rounded_corner(options = {}, &block)
-
+    def rounded_corner(options = {}, &block)
     raise ArgumentError, "Missing block" unless block_given?
     options.symbolize_keys!
     size = (options[:size] || :lrg).to_s
     title = options[:title] || ""
-
-    concat(content_tag(:div, :class => "widget_#{size}"){
+    concat(content_tag(:div, :class => "widget_#{size}") do
         content_tag(:span, " ", :class => "widget_#{size}_top") +
           content_tag(:h2,title,:class => "widget_#{size}_title") +
           capture(&block) +
           content_tag(:div, "", :class => "clear_div") +
-          content_tag(:span, "", :class => "widget_#{size}_btm")}) 
-    ''
+          content_tag(:span, "", :class => "widget_#{size}_btm")
+      end)
+    ""
   end
+
+  def rounded_med_corner(options = {}, &block)
+    raise ArgumentError, "Missing block" unless block_given?
+    options.symbolize_keys!
+    title = options[:title] || ""
+    id = options[:id] || title
+    button = options[:button] || ""
+    concat(content_tag(:div, :class => "edit_profile", :id => id) do
+        content_tag(:span, " ", :class => "edit_profile_top") +
+          content_tag(:h2,title,:class => "edit_profile_title") +
+          content_tag(:div, :class => "edit_panel_profile") do
+          capture(&block)
+        end +
+          content_tag(:div, "", :class => "clear_div") +
+          content_tag(:span, "", :class => "edit_profile_btm")
+      end + (button.blank? ? "" : content_tag(:div, :class => "large_btn_container") do
+          content_tag(:button, theme_image(button), :class => "buttons", :type => "submit")
+        end))
+    ""
+  end
+  
   def theme_image(img, options = {})
     "#{image_tag((img), options)}"
   end

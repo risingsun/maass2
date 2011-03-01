@@ -1,14 +1,9 @@
-%hr
-<center> <h2> Edit Account </h2> </center>
-%hr
-= render :partial => "profiles/set_permissions"
-%hr
-= render :partial => "profiles/notification"
-%hr
-= render :partial => "users/change_password"
-%hr
-= render :partial => "profiles/change_email"
-%hr
-= render :partial => "profiles/default_permission"
-%hr
+%h2.edit_profile Edit Account
+.large_panel_side
+  = render :partial => "set_permissions"
+.large_panel_side
+  = render :partial => "notification"
+  = render :partial => "users/change_password"
+  = render :partial => "profiles/change_email"
+  = render :partial => "profiles/default_permission"
 

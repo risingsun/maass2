@@ -1,21 +1,10 @@
-%hr
-<center> <h2> Edit Profile </h2> </center>
-%hr
-= image_tag(@profile.icon.url(:thumb))
-%hr
-= render "profiles/set_status"
-%hr
-= render "profiles/general_info"
-%hr
-= render "profiles/contact_info"
-%hr
-= render "profiles/google_map"
-%hr
-= render "profiles/web_info"
-%hr
-= render "profiles/education_info"
-%hr
-= render "profiles/work_info"
-%hr
-= render "profiles/upload_icon"
-%hr
+%h2.edit_profile Edit Profile
+=# render "profiles/set_status"
+.large_panel_side
+  = render "profiles/general_info"
+  = render "profiles/contact_info"
+  = render "profiles/google_map"
+  = render "profiles/web_info"
+  = render "profiles/education_info"
+  = render "profiles/work_info"
+  = render "profiles/upload_icon"

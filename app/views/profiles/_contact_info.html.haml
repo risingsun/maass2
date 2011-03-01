@@ -1,13 +1,14 @@
 %h2 Contact Info
 = semantic_form_for @profile do |f|
-  = f.inputs do
-    = f.input :location, :as => :string
-    = f.input :address_line1, :as => :string
-    = f.input :address_line2, :as => :string
-    = f.input :city, :as => :string
-    = f.input :postal_code, :as => :string
-    = f.input :country, :priority_countries =>['India'],:required => true, :as => :country
-    = f.input :state, :as => :select, :collection => INDIA_STATES, :prompt => false
-    = f.input :landline, :as => :string
-    = f.input :mobile, :as => :string
-  = f.commit_button :label => "Update"
+  - rounded_med_corner(:title => "Status", :id => "status") do
+    = f.inputs do
+      = f.input :location, :as => :string
+      = f.input :address_line1, :as => :string
+      = f.input :address_line2, :as => :string
+      = f.input :city, :as => :string
+      = f.input :postal_code, :as => :string
+      = f.input :country, :priority_countries =>['India'],:required => true, :as => :country
+      = f.input :state, :as => :select, :collection => INDIA_STATES, :prompt => false
+      = f.input :landline, :as => :string
+      = f.input :mobile, :as => :string
+    = f.commit_button :label => "Update"
