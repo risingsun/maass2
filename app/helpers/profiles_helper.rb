@@ -14,8 +14,8 @@ module ProfilesHelper
     @map.record_init("create_draggable_marker_for_edit(#{marker.lat},#{marker.lng},#{marker.zoom});")
   end
 
-  def year_link profile = current_user.profile
-    link_to profile.group, search_profiles_path
+  def year_link profile = @p
+    link_to profile.group, "#"
   end
 
   def before_after(field_index)

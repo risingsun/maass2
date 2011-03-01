@@ -69,8 +69,10 @@ class ProfilesController < ApplicationController
   def search
     if params[:profile][:search_by] && params[:profile][:search_by]== "blog"
       @blogs= Blog.search params["profile"]["search_value"], :match_mode=> :boolean
+      @title = "Search"
       render :template => "blogs/search_blog"
     else
+      @title = "Search"
       render :template=>'shared/user_friends'
     end
   end
