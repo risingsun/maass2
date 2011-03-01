@@ -4,8 +4,8 @@
   %tr
     %td= blog.title
     %td{:align => "right", :width => "100px"}
-      = link_to image_tag('edit.png', :border =>0), edit_blog_path(blog)
-      = link_to image_tag('delete.png',:border =>0), blog, :method => :delete
+      = link_to image_tag('edit.png', :border =>0), edit_blog_path(blog) if current_user.profile==@profile
+      = link_to image_tag('delete.png',:border =>0), blog, :method => :delete if current_user.profile==@profile
   %tr
     %td{:colspan => "2"}= blog.body.html_safe
     = link_to image_tag('add_comment.png',:border =>0), '#', :onclick => "add_comment(#{blog.id})"
