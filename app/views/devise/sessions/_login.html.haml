@@ -1,0 +1,18 @@
+- resource = User.new
+- resource_name = :user
+- rounded_corner(:size => :small, :title => 'Login') do
+  - form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    .div_field
+      %label.label_text{:for => "username"} Username
+      = f.text_field :email, :class => "textbox_small", :id=> "username"
+    .div_field
+      %label.label_text{:for => "password"} Password
+      = f.password_field :password, :class => "textbox_small", :id => "password"
+    .div_field
+      = check_box_tag 'remember_me', 1, false, :name => 'user[remember_me]', :class => "checkbox"
+      %label.label_small{:for => "remember"} Remember me
+    .login_btn_container
+      =image_submit_tag 'login.png'
+  .login_links_container= link_to "Forgot Password", new_password_path(resource_name), :class => "grey_links_sml"
+  .signup
+  = link_to image_tag('signup.png'), new_registration_path(resource_name)

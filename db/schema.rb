@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(:version => 20110228135006) do
   end
 
   create_table "friends", :force => true do |t|
-    t.string   "inviter_id"
-    t.string   "invited_id"
-    t.string   "status"
+    t.integer  "inviter_id"
+    t.integer  "invited_id"
+    t.integer  "status",     :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

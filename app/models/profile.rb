@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+
   PERMISSION_FIELDS = %w(website blog about_me gtalk_name location email
                          date_of_birth anniversary_date relationship_status
                          spouse_name gender activities yahoo_name skype_name
@@ -41,46 +42,19 @@ class Profile < ActiveRecord::Base
     :reject_if => proc { |attrs| reject = %w(education_from_year education_fo_year institution).all?{|a| attrs[a].blank?} }
   accepts_nested_attributes_for :works, :allow_destroy => true,
     :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
-  has_attached_file :icon, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :icon,
+    :styles =>
+    {:big => "150x150#",
+    :medium => "100x100#",
+    :small =>"50x50#",
+    :small_60 =>  "60x60#",
+    :small_20 =>  "20x20#"
+  }
+  validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
   scope :active, :conditions => {:is_active => true}
-  INDIA_STATES = [ "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Andaman and Nicobar Islands",
-    "Bihar",
-    "Chandigarh",
-    "Chhattisgarh",
-    "Dadra and Nagar Haveli",
-    "Daman and Diu",
-    "Delhi",
-    "Goa",
-    "Gujarat",
-    "Harayana",
-    "Himachal Pradesh",
-    "Jammu and Kashmir",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Lakshadweep",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Orissa",
-    "Punjab",
-    "Puducherry",
-    "Rajasthan",
-    "Sikkim",
-    "Tamilnadu",
-    "Tripura",
-    "Uttarakhand",
-    "Uttar Pradesh",
-    "West Bengal"]
-
+  
   #  attr_accessible :first_name, :last_name, :middle_name, :maiden_name, :gender, :group
   #  validates :first_name, :presence => true,
   #                         :length => { :maximum => 20 }
@@ -91,26 +65,26 @@ class Profile < ActiveRecord::Base
   @@days = ()
   attr_accessor :search_by, :search_value
 
-  def self.check_friend(user, friend)
+  def check_friend(user, friend)
     Friend.find_by_inviter_id_and_invited_id(user, friend)
   end
 
-  def self.start_following(user, friend)
-    Friend.create(:inviter_id => user, :invited_id => friend, :status => Friend::PENDING_FRIEND)
+  def start_following(friend)
+    user.profile.following_friends.create(:invited_id => friend)
   end
 
-  def self.stop_following(user, friend)
-    if !check_friend(user, friend).blank?
-      Friend.destroy(check_friend(user, friend))
+  def stop_following(friend)
+    if !check_friend(user.profile.id, friend).blank?
+      Friend.destroy(check_friend(user.profile.id, friend))
     end
-    if !check_friend(friend, user).blank?
-      Friend.destroy(check_friend(friend, user))
+    if !check_friend(friend, user.profile.id).blank?
+      Friend.destroy(check_friend(friend, user.profile.id))
     end
   end
 
-  def self.make_friend(user, friend)
-    check_friend(user, friend).update_attribute(:status, Friend::ACCEPT_FRIEND)
-    Friend.create(:inviter_id => friend, :invited_id => user, :status => Friend::ACCEPT_FRIEND)
+  def make_friend(friend)
+    user.profile.follower_friends.where(:inviter_id =>friend )[0].update_attribute(:status, Friend::ACCEPT_FRIEND)
+    user.profile.friendships.create(:invited_id => friend, :status => Friend::ACCEPT_FRIEND)
   end
 
   def friend_of? user
@@ -223,9 +197,28 @@ class Profile < ActiveRecord::Base
     end
     happy_days = happy_days.sort{|a,b| a[1][:from_today] <=> b[1][:from_today] }
     return  happy_days
-
   end
   
+  def gender_str
+    gender.downcase
+  end
+
+  def self.new_member
+    Profile.all
+  end
+  
+  def f(tr=15, options={})
+    full_name(:length => tr)
+  end
+
+  def full_name(options={})
+    n = [(title if options[:is_long]),first_name,(middle_name unless options[:is_short]),last_name].reject(&:blank?).compact.join(' ').titleize
+    if n.blank?
+      n = user.login rescue 'Deleted user'
+    end
+    n
+  end
+
   private
 
   before_update :permission_sync
@@ -234,5 +227,5 @@ class Profile < ActiveRecord::Base
     return true if permissions.nil?
     permissions.delete permissions.select {|p| p.permission_type == default_permission}
   end
-  
+
 end
