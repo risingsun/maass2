@@ -21,11 +21,11 @@ class BlogsController < ApplicationController
       :plugins => %w{contextmenu paste}})
   
   def index
-    @blog = @profile.blogs
-    if @blog.blank?
+    @blogs = @profile.blogs
+    if @blogs.blank?
       redirect_to new_blog_path
     end
-    @blog = @blog.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
+    @blogs = @blogs.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
   end
 
   def show

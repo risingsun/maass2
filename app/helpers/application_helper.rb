@@ -58,7 +58,7 @@ module ApplicationHelper
           content_tag(:span, "", :class => "widget_#{size}_btm")}) 
     ''
   end
- 
+
   def slide_up_down_header(inner_panel_style, inner_panel_id, header_text)
     img_src = inner_panel_style == 'hide' ? 'show.jpg' : 'hide.jpg'
     @template.content_tag :h2,
@@ -75,6 +75,7 @@ module ApplicationHelper
    else
      profile.icon.url(size)
    end
+
   end
 
 end

@@ -294,6 +294,7 @@ a.button_large:hover{
   float: left;
 }
 
+
 *html .widget_lrg, * html .widget_large{ /** IE 6 hack **/ 
   margin-left: 5px;
   margin-right: -70px;
@@ -1660,7 +1661,7 @@ div.profile_pic_panel span.even {
 .checkbox{
   float: left;
   margin-left: 70px;
-  *margin-left:66px;
+  * margin-left:66px;
   position: relative;
 }   
 .login_checkbox{
@@ -3324,6 +3325,7 @@ a.editor_cancel{
   margin-left: 5px;
   padding-top: 30px;
 }
+
 *html .row_complete_large_for_forum{
   margin-left: 2px;
 }
@@ -3385,6 +3387,7 @@ a.editor_cancel{
   text-align:center;
   width:100px;
 }
+
 *html .forum_text{
   margin-left: 6px;
 }
@@ -3465,6 +3468,7 @@ a.editor_cancel{
   width:736px;
 }
 
+
 *html .message_panel{
   margin-top: -60px;
   margin-right: 1px;
@@ -3475,6 +3479,7 @@ a.editor_cancel{
   border-bottom: 1px solid #fff;
   margin-left: 21px;
 }
+
 *html .row_complete_large_for_post{
   margin-left: 1px;
 }
@@ -3510,7 +3515,6 @@ a.editor_cancel{
   padding: 3px;
   margin-left: 5px;
 }
-
 *html .big_text_area_for_forum{
   margin-left: -75px;
 }
@@ -3748,6 +3752,7 @@ div.embox {
 /* CSS PNG Transparency fix by Rogie King, Komodo Media  
 Patched by Herryanto Siatono, Pluit Solutions to solve background 'none' call to the server */
 * html .png, 
+
 *html img {
   azimuth: expression(
   this.pngSet?
@@ -3766,4 +3771,37 @@ Patched by Herryanto Siatono, Pluit Solutions to solve background 'none' call to
   ''
   ), this.pngSet=true
   );
+
+}
+
+.clear_div{
+  clear: both;
+}
+
+img{
+  border: 0;
+}
+
+.left{
+  float: left;
+}
+
+
+/****** Content CSS ******/
+.main_container{
+  background-image: url(/images/main_container_bg.png);
+  background-repeat: repeat-y;
+  width: 996px;
+  margin: 0 auto;
+}
+
+* html .main_container{ /** IE 6 hack **/
+  background-image:none;
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='/images/main_container_bg.png');
+}
+
+.header_container{
+  background-image: url(/images/header.jpg);
+  width: 996px;
+  height: 128px;
 }
