@@ -40,8 +40,8 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :permissions
   accepts_nested_attributes_for :educations, :allow_destroy => true,
     :reject_if => proc { |attrs| reject = %w(education_from_year education_fo_year institution).all?{|a| attrs[a].blank?} }
-  accepts_nested_attributes_for :works, :allow_destroy => true,
-    :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
+  accepts_nested_attributes_for :works, :allow_destroy => true, :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
+
   has_attached_file :icon,
     :styles =>
     {:big => "150x150#",
@@ -50,6 +50,20 @@ class Profile < ActiveRecord::Base
     :small_60 =>  "60x60#",
     :small_20 =>  "20x20#"
   }
+
+   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+
+  scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
+
+
+#  attr_accessible :first_name, :last_name, :middle_name, :maiden_name, :gender, :group
+#  validates :first_name, :presence => true,
+#                         :length => { :maximum => 20 }
+#  validates :middle_name, :length => { :maximum => 20 }
+#  validates :last_name, :length => { :maximum => 20 }
+#  validates :maiden_name, :length => { :maximum => 20 }
+
+
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
@@ -63,6 +77,7 @@ class Profile < ActiveRecord::Base
   #  validates :maiden_name, :length => { :maximum => 20 }
 
   @@days = ()
+
   attr_accessor :search_by, :search_value
 
   def check_friend(user, friend)
@@ -199,6 +214,7 @@ class Profile < ActiveRecord::Base
     return  happy_days
   end
   
+
   def gender_str
     gender.downcase
   end
@@ -206,7 +222,7 @@ class Profile < ActiveRecord::Base
   def self.new_member
     Profile.all
   end
-  
+
   def f(tr=15, options={})
     full_name(:length => tr)
   end

@@ -1,8 +1,0 @@
--user = profile.user
-= link_to gravatar_image_tag(user.email, :gravatar => { :size => 50 }), home_path(user.id)
-%br
-= full_name(profile)
-= render 'homes/friend_link', :profile => profile
-= link_to("See My Polls",polls_home_path(user))
-%br
-= link_to("See My Blogs", blogs_path(profile))

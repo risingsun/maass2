@@ -1,7 +1,5 @@
--if !@follower_friends.blank?
-  = render 'follower_friend'
--if !@following_friends.blank?
-  = render 'following_friend'
--if !@friends.blank?
-  = render 'friend'
+= render :partial => 'friends/list' , :locals => {:type => 'Follower', :list => @follower_friends}
+= render :partial => 'friends/list' , :locals => {:type => 'Following', :list => @following_friends}
+= render :partial => 'friends/list' , :locals => {:type => 'Friend', :list => @friends}
+
     

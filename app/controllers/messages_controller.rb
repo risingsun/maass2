@@ -4,7 +4,6 @@ class MessagesController < ApplicationController
     @profile = current_user.profile
     @message = Message.new
     @to_list = @profile.friends + @profile.followers  + @profile.followings
-    
     @receive_messages = @profile.received_messages
   end
 
@@ -12,7 +11,7 @@ class MessagesController < ApplicationController
     @profile = current_user.profile
     @sent_messages = @profile.sent_messages
   end
-  
+
   def new
     @profile = current_user.profile
     @message = Message.new
@@ -29,8 +28,16 @@ class MessagesController < ApplicationController
 
   end
 
+  def destroy
+    @profile = current_user.profile
+    @message = Message.find(params[:id])
+    @message.delete_message(@profile.id)
+    redirect_to profile_messages_path(@profile)
+
+  end
+
   def direct_message
-    
+
   end
 
 end
