@@ -1,11 +1,4 @@
 class Profile < ActiveRecord::Base
-
-  PERMISSION_FIELDS = %w(website blog about_me gtalk_name location email
-                         date_of_birth anniversary_date relationship_status
-                         spouse_name gender activities yahoo_name skype_name
-                         educations work_informations delicious_name
-                         twitter_username msn_username linkedin_name
-                         address landline mobile marker)
   belongs_to :user
 
   attr_protected :is_active
@@ -54,28 +47,11 @@ class Profile < ActiveRecord::Base
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
-
-
-  #  attr_accessible :first_name, :last_name, :middle_name, :maiden_name, :gender, :group
-  #  validates :first_name, :presence => true,
-  #                         :length => { :maximum => 20 }
-  #  validates :middle_name, :length => { :maximum => 20 }
-  #  validates :last_name, :length => { :maximum => 20 }
-  #  validates :maiden_name, :length => { :maximum => 20 }
-
-
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
   scope :active, :conditions => {:is_active => true}
   
-  #  attr_accessible :first_name, :last_name, :middle_name, :maiden_name, :gender, :group
-  #  validates :first_name, :presence => true,
-  #                         :length => { :maximum => 20 }
-  #  validates :middle_name, :length => { :maximum => 20 }
-  #  validates :last_name, :length => { :maximum => 20 }
-  #  validates :maiden_name, :length => { :maximum => 20 }
-
   @@days = ()
 
   attr_accessor :search_by, :search_value
@@ -114,7 +90,7 @@ class Profile < ActiveRecord::Base
     if @permission_objects.nil?
       @permission_objects = []
       dbp = db_permissions
-      @permission_objects = User::PERMISSION_FIELDS.map do |f|
+      @permission_objects = PERMISSION_FIELDS.map do |f|
         dbp[f].nil? ? permissions.build(:permission_field => f, :permission_type => default_permission) : dbp[f]
       end
     end

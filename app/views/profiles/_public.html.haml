@@ -1,0 +1,3 @@
+= render 'profiles/personal'
+= render 'profiles/work' if !@profile.works.blank?
+= render 'profiles/education' if !@profile.educations.blank?
