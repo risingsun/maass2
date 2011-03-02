@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
 
   before_filter :load_profile, :only => [:create,:edit,:update,:edit_account]
   before_filter :search_results, :only => [:search]
-
+  before_filter :show_panels, :only => [:show]
+    
   def create
     if @profile.save
       flash[:notice] = "Profile created."
@@ -88,4 +89,8 @@ class ProfilesController < ApplicationController
     @user=current_user
   end
 
+  def show_panels
+    @show_profile_side_panel = true
+  end
+  
 end
