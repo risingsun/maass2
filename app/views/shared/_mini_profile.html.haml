@@ -7,7 +7,7 @@
     %p
       %span{:id => "flink#{mini_profile.id}"}
         = render 'homes/friend_status' , :profile => mini_profile
-    %p=# link_to 'Direct Message', direct_message_profile_messages_path(mini_profile) unless me(mini_profile)
+    %p= link_to 'Direct Message', direct_message_profile_messages_path(mini_profile) 
     %p= link_to('Read My Blogs', blogs_path(mini_profile))
     %p= link_to('See My Polls', polls_path(mini_profile))
     %p

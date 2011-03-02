@@ -51,19 +51,6 @@ class Profile < ActiveRecord::Base
     :small_20 =>  "20x20#"
   }
 
-   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
-
-  scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
-
-
-#  attr_accessible :first_name, :last_name, :middle_name, :maiden_name, :gender, :group
-#  validates :first_name, :presence => true,
-#                         :length => { :maximum => 20 }
-#  validates :middle_name, :length => { :maximum => 20 }
-#  validates :last_name, :length => { :maximum => 20 }
-#  validates :maiden_name, :length => { :maximum => 20 }
-
-
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
@@ -110,6 +97,10 @@ class Profile < ActiveRecord::Base
     @my_friends ||= (self.followings+self.friends+[self]).uniq.compact 
   end
 
+  def message_count
+    self.received_messages.count if self.received_messages.count != 0
+  end
+
   def profile_permissions
     if @permission_objects.nil?
       @permission_objects = []
@@ -130,14 +121,15 @@ class Profile < ActiveRecord::Base
   end
 
   def field_permissions
+    
     if @field_permissions.nil?
       @field_permissions = Hash.new
       dbp = db_permissions
       PERMISSION_FIELDS.each do |f|
-        @field_permissions[f] = dbp[f].nil? ? default_permission.to_sym : dbp[f].permission.to_sym
+        @field_permissions[f] = dbp[f].nil? ? default_permission.to_sym : dbp[f].permission_type.to_sym
       end
     end
-    @field_permissions
+    return @field_permissions
   end
 
   def can_see_field(field, profile)

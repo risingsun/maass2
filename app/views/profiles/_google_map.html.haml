@@ -1,6 +1,6 @@
 %h2 Location
 = semantic_form_for @profile do |p|
-  = @profile.marker.nil?
+  - @profile.marker.nil?
   - @profile.marker.nil? ? new_map : edit_map(@profile.marker)
   = raw GMap.header()
   = raw @map.to_html

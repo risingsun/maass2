@@ -3,6 +3,7 @@ Maass2::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users"}
 
   resources :users
+  resources :events
   resources :votes
   resources :friends
   resources :profiles do    
@@ -34,6 +35,7 @@ Maass2::Application.routes.draw do
   root :to=>"homes#index"
   resources :homes do
     get 'polls', :on => :member
+    get 'admin', :on => :member
   end
 
   match '/edit',  :to => 'profiles#edit'

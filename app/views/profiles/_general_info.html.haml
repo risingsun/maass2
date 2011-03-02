@@ -9,7 +9,7 @@
       = f.input :middle_name, :as => :string
       = f.input :last_name, :as => :string
       = f.input :maiden_name, :as => :string
-      = f.input :gender, :as => :select, :collection => User::SEX, :prompt => false
+      = f.input :gender, :as => :select, :collection => SEX, :prompt => false
       = f.input :group, :as => :select, :collection => User::GROUP, :prompt => false
       = f.input :blood_group, :as => :select, :collection => ["A+","A-","B+","B-","AB+","AB-","O+","O-"], :prompt => false
       = f.input :house_name, :as => :string
