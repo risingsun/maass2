@@ -31,20 +31,6 @@ class User < ActiveRecord::Base
 
   has_one :profile
   accepts_nested_attributes_for :profile
-
-
-  GROUP=["Teacher","Guest"]+(1992..Date.today.year+1).to_a
-  EDU_YEAR=(1990..Date.today.year+5).to_a
-  PERMISSION_FIELDS = %w(website blog about_me gtalk_name location email
-                         date_of_birth anniversary_date relationship_status
-                         spouse_name gender activities yahoo_name skype_name
-                         educations work_informations delicious_name
-                         twitter_username msn_username linkedin_name
-                         address landline mobile marker)
-  NOTIFICATION_FIELDS = %w(news event message blog_comment
-                          profile_comment follow delete_friend )
-  PERSONAL_INFO= %w(house_name blood_group date_of_birth address_line1 landline mobile relationship_status spouse_name aniversery_date professional_qualification about_me activities)
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login

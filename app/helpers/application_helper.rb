@@ -128,5 +128,16 @@ module ApplicationHelper
   end
  def theme_image(img, options = {})
     "#{image_tag((THEME_IMG + "/" + img), options)}"
+ end
+ def slide_up_down_header(inner_panel_style,
+    inner_panel_id,
+    header_text)
+  img_src = inner_panel_style == 'hide' ? 'show.jpg' : 'hide.jpg'
+  @template.content_tag :h2,
+    :class => "widget_lrg_title",
+    :id => inner_panel_id+"_header",
+    :onclick => "new Effect.SlideUpAndDown('#{inner_panel_id}', '#{inner_panel_id}_header', this);" do
+    header_text
   end
+end
 end
