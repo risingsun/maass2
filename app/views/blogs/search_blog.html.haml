@@ -1,4 +1,5 @@
+%h2.widget_title= @title.titlecase
 - if @blogs.blank?
-  = "Not Found"
+  %span.comments= "Not Found"
 - else
   = render :template=>'blogs/index'

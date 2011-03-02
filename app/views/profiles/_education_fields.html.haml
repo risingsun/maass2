@@ -1,6 +1,7 @@
 .fields
   = f.inputs do
-    = f.input :education_from_year, :label => "From Year", :as => :select, :collection => User::EDU_YEAR, :prompt => true
-    = f.input :education_to_year, :label => "To Year", :as => :select, :collection => User::EDU_YEAR, :prompt => true
-    = f.input :institution
-    = link_to_remove_fields "remove", f
+    = f.input :education_from_year, :label => "From Year", :as => :select, :collection => User::EDU_YEAR, :prompt => true, :wrap_class => cycle(:row_light2, :row_dark2)
+    = f.input :education_to_year, :label => "To Year", :as => :select, :collection => User::EDU_YEAR, :prompt => true, :wrap_class => cycle(:row_light2, :row_dark2)
+    = f.input :institution, :wrap_class => cycle(:row_light2, :row_dark2)
+    %div{:class => cycle(:row_light2, :row_dark2)}
+      = link_to_remove_fields(image_tag("remove.png"), f)

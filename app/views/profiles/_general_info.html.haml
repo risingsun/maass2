@@ -1,25 +1,25 @@
-%h2 General Info
-= semantic_form_for @profile do |f|
-  = f.semantic_fields_for(:user) do |u|
-    = u.inputs do
-      = u.input :login, :as => :string, :value => current_user.login
-    = f.inputs do
-      = f.input :title, :as => :select, :collection => ["Ms.","Mr.","Mrs.","Dr.","Er.","Lt.","Capt.","Col.","Maj.","Prof.","Advct."], :prompt => false
-      = f.input :first_name, :as => :string
-      = f.input :middle_name, :as => :string
-      = f.input :last_name, :as => :string
-      = f.input :maiden_name, :as => :string
-      = f.input :gender, :as => :select, :collection => SEX, :prompt => false
-      = f.input :group, :as => :select, :collection => User::GROUP, :prompt => false
-      = f.input :blood_group, :as => :select, :collection => ["A+","A-","B+","B-","AB+","AB-","O+","O-"], :prompt => false
-      = f.input :house_name, :as => :string
-      = f.input :date_of_birth, :input_html => {:class => "datebalks" }
-      = f.input :relationship_status, :as => :select, :collection => ["single","Married","not sure"], :prompt => false
-      = f.input :anniversary_date, :input_html => {:class => "datebalks" }
-      = f.input :spouse_name, :as => :string
-      = f.input :professional_qualification, :as => :string
-      = f.input :about_me,  :as => :text, :input_html => { :rows => 3 }
-      = f.input :activities, :as => :text, :input_html => { :rows => 3 }, :label => "activities"
-      = f.commit_button :label => "Update"
-   
-  
+- rounded_med_corner(:title => "Status", :id => "status") do
+  = semantic_form_for @profile do |f|
+    = f.semantic_fields_for(:user) do |u|
+      = u.inputs do
+        = u.input :login, :as => :string, :value => current_user.login, :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.inputs do
+        = f.input :title, :as => :select, :collection => ["Ms.","Mr.","Mrs.","Dr.","Er.","Lt.","Capt.","Col.","Maj.","Prof.","Advct."], :prompt => false, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :first_name, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :middle_name, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :last_name, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :maiden_name, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :gender, :as => :select, :collection => User::SEX, :prompt => false, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :group, :as => :select, :collection => User::GROUP, :prompt => false, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :blood_group, :as => :select, :collection => ["A+","A-","B+","B-","AB+","AB-","O+","O-"], :prompt => false, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :house_name, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :date_of_birth, :input_html => {:class => "datebalks" }
+        = f.input :relationship_status, :as => :select, :collection => ["single","Married","not sure"], :prompt => false, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :anniversary_date, :input_html => {:class => "datebalks" }, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :spouse_name, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :professional_qualification, :as => :string
+        = f.input :about_me,  :as => :text, :input_html => { :rows => 3 }, :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.input :activities, :as => :text, :input_html => { :rows => 3 }, :label => "activities", :wrap_class => cycle(:row_light2, :row_dark2)
+        = f.commit_button :label => "Update"
+
+

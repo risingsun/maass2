@@ -18,13 +18,13 @@
                 = "Welcome to #{SITE_FULL_NAME}."
                 =# render 'layouts/header'
           -else
-            = render 'layouts/header'
+            = render 'shared/header_tab'
       .clear_div
       .side_panel
         = render :partial => "shared/lsidebar"
         = yield :left_side_panel
       .middle_panel
-        %span#main_container= yield
+        %span#main_containe= yield 
       .side_panel
         = yield :right_side_panel
       .clear_div

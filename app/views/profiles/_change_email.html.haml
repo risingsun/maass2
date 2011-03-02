@@ -1,14 +1,14 @@
-%h2 Email
-= semantic_form_for(current_user,:as => current_user, :url => registration_path(current_user), :html => { :method => :put }) do |f|
-  %table
-    %tr
-      %td
-        = "current email"
-      %td
-        = current_user.email
-    %tr
-      %td
-        = f.label :Request_New_Email
-      %td
-        = f.text_field :email , :value => ""
-  = f.commit_button :label => "Email Change"
+- rounded_med_corner(:id => "change_email", :title => "Email") do
+  = semantic_form_for(current_user,:as => current_user, :url => registration_path(current_user), :html => { :method => :put }) do |f|
+    %table
+      %tr
+        %td
+          = "current email"
+        %td
+          = current_user.email
+      %tr
+        %td
+          = f.label :Request_New_Email
+        %td
+          = f.text_field :email , :value => ""
+    = f.commit_button :label => "Email Change"

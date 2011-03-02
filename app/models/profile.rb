@@ -49,8 +49,7 @@ class Profile < ActiveRecord::Base
     :small =>"50x50#",
     :small_60 =>  "60x60#",
     :small_20 =>  "20x20#"
-  }
-
+    }
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
@@ -133,9 +132,8 @@ class Profile < ActiveRecord::Base
   end
 
   def can_see_field(field, profile)
-    #return true if profile.nil?
     return false if self.send(field).blank?
-    return true if profile == self # logged in user same as profile user
+    return true if profile == self
     permissions =  field_permissions
     permission = permissions[field]
     return true if permission.nil?

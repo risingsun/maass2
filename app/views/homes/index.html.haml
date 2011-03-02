@@ -1,3 +1,6 @@
 = render :partial=>'profiles/search', :profile=>@profile if !current_user.blank?
 %br
-= render :partial => 'profiles/greets' if current_user
+%br
+%br
+= render :partial => 'profiles/greets' if @p
+

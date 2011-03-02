@@ -1,6 +1,12 @@
-= render :partial => "profiles/set_permissions"
-= render :partial => "profiles/notification"
-= render :partial => "users/change_password"
-= render :partial => "profiles/change_email"
-= render :partial => "profiles/default_permission"
+.flash_message_class= formatted_error_message :profile,:user
+%h2.edit_profile Edit Account
+.large_panel_side
+  = render :partial => "set_permissions"
+  - rounded_med_corner(:title => "Facebook Connect") do
+    = render :partial => '/shared/fbconnect_button'
+.large_panel_side
+  = render :partial => "notification"
+  = render :partial => "users/change_password"
+  = render :partial => "profiles/change_email"
+  = render :partial => "profiles/default_permission"
 

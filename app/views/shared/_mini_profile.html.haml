@@ -3,12 +3,12 @@
     = image_tag(set_icon(mini_profile,'small_60'))
   .text_div
     %h3.name= link_to h(mini_profile.f(20)), mini_profile, :class => "profile_name"
-    %p= link_to mini_profile.group
+    %p= year_link(mini_profile)
     %p
       %span{:id => "flink#{mini_profile.id}"}
         = render 'homes/friend_status' , :profile => mini_profile
-    %p= link_to 'Direct Message', direct_message_profile_messages_path(mini_profile) 
-    %p= link_to('Read My Blogs', blogs_path(mini_profile))
-    %p= link_to('See My Polls', polls_path(mini_profile))
+    %p= link_to 'Direct Message', direct_message_profile_messages_path(mini_profile) unless me(mini_profile)
+    %p= link_to('Read My Blogs', search_blog_path(mini_profile))
+    %p= link_to('See My Polls', search_poll_poll_path(mini_profile))
     %p
       %span{:id => "spinner_#{mini_profile.id}", :style => "display: none;"}= image_tag('spinner.gif')

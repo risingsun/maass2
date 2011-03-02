@@ -5,4 +5,5 @@
     = f.input :company_name
     = f.input :company_website
     = f.input :job_description, :as => :text, :input_html => { :columns => 5, :rows => 5 }
-    = link_to_remove_fields "remove", f
+    %div{:class => cycle(:row_light2, :row_dark2)}
+      = link_to_remove_fields(image_tag("remove.png"), f)

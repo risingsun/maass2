@@ -25,6 +25,7 @@ Maass2::Application.routes.draw do
  resources :blogs  do
     get 'blog_archive', :on => :member
     get 'show_blogs', :on => :member
+    get 'search', :on=>:member
   end
  
   resources :polls do
