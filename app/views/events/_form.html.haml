@@ -1,0 +1,30 @@
+= form_for(@event) do |f|
+  %br/
+  %div
+    = f.label :title
+    %br/
+    = f.text_field :title
+  %div
+    = f.label :place
+    %br/
+    = f.text_field :place
+  %div
+    = f.label :start_date
+    %br/
+    = f.date_select :start_date
+    %br
+  %div
+    %br
+    = f.label :end_date
+    %br/
+    = f.date_select :end_date
+    %br
+  %div
+    %br
+    = f.label :description
+    %br/
+    = f.text_area :description,  :class => "mceEditor"
+  %div
+  %br
+    = f.submit
+    = submit_tag 'Preview', :name => 'preview_button'

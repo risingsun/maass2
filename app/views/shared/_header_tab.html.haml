@@ -17,6 +17,11 @@
       |
     %li.menu_text
       = link_to 'My Messages', profile_messages_path(current_user.profile)
+      = current_user.profile.message_count
+    - if @is_admin
+      %li.menu_text
+        |
+        = link_to('Admin', admin_home_path(current_user))
 .logout_container
   = image_tag(set_icon(current_user.profile,'small_20'))
   %span.menu_text= full_name(current_user.profile)

@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_one :profile
   accepts_nested_attributes_for :profile
 
-  SEX = ["Male","Female"]
+
   GROUP=["Teacher","Guest"]+(1992..Date.today.year+1).to_a
   EDU_YEAR=(1990..Date.today.year+5).to_a
   PERMISSION_FIELDS = %w(website blog about_me gtalk_name location email
@@ -54,5 +54,8 @@ class User < ActiveRecord::Base
   validates :login, :presence => true,
                          :length => { :maximum => 20 },
                          :uniqueness => true
+  def is_admin
+    return true if self.admin == true
+  end
 
 end

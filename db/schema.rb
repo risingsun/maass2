@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110228135006) do
+ActiveRecord::Schema.define(:version => 20110302063037) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(:version => 20110228135006) do
     t.string   "education_from_year"
     t.string   "education_to_year"
     t.string   "institution"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "title"
+    t.string   "place"
+    t.text     "description"
+    t.integer  "marker_id"
+    t.integer  "comments_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -227,7 +239,7 @@ ActiveRecord::Schema.define(:version => 20110228135006) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "login"
-    t.boolean  "is_admin"
+    t.boolean  "admin"
     t.boolean  "can_send_messages"
     t.string   "time_zone"
     t.string   "email_verification"
