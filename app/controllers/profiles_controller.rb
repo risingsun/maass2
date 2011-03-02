@@ -78,6 +78,12 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def friend_search
+    @results=Profile.search params["profile"]["search_value"]
+    @title = "Search"
+    render :template=>'shared/user_friends'
+  end
+
   private
 
   def load_profile

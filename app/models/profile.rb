@@ -49,7 +49,7 @@ class Profile < ActiveRecord::Base
     :small =>"50x50#",
     :small_60 =>  "60x60#",
     :small_20 =>  "20x20#"
-    }
+  }
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
@@ -65,6 +65,33 @@ class Profile < ActiveRecord::Base
   @@days = ()
 
   attr_accessor :search_by, :search_value
+
+  define_index do
+    indexes :first_name
+    indexes :middle_name
+    indexes :last_name
+    indexes :location
+    indexes :group
+    indexes :blood_group
+    indexes :email
+    indexes :date_of_birth
+    indexes :anniversary_date
+    indexes :about_me
+    indexes :relationship_status
+    indexes :spouse_name
+    indexes :maiden_name
+    indexes :activities
+    indexes :house_name
+    indexes :professional_qualification
+    indexes :address_line1
+    indexes :address_line2
+    indexes :city
+    indexes :postal_code
+    indexes :state
+    indexes :country
+    indexes :landline
+    indexes :mobile
+  end
 
   def check_friend(user, friend)
     Friend.find_by_inviter_id_and_invited_id(user, friend)
