@@ -1,6 +1,5 @@
-%br
-%br
-= image_tag(src=poll.get_url)
-%br
-Total No. of Votes
-= "#{poll.votes_count}"
+.option_vote
+  %div
+    = image_tag(src=poll.get_url)
+  .total_vote
+    Total No of Votes #{poll.votes_count}

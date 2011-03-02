@@ -1,14 +1,14 @@
 %html
   %head
     %title Maass
-    = stylesheet_link_tag 'jquery-ui-1.8.7.custom','formtastic','formtastic_changes', 'application'
+    = stylesheet_link_tag "/maass/stylesheets/application",'jquery-ui-1.8.7.custom','formtastic','formtastic_changes', 'application'
     = javascript_include_tag 'jquery-1.4.4.min','jquery-ui-1.8.7.custom.min','jquery.min','jquery','rails','application', 'status_button','clusterer','geoRssOverlay','markerGroup','wms-gs','ym4r-gm','rs_maps'
     = include_tiny_mce_if_needed
     = csrf_meta_tag
   %body
   .main_container
     .header_container
-      = link_to image_tag("b.gif", :height => 120, :width => 345, :class => "header_back", :alt => SITE_FULL_NAME), homes_path
+      = render :partial=> "layouts/header"
     .content_container
       #info
         .login_container
@@ -24,8 +24,9 @@
         = render :partial => "shared/lsidebar"
         = yield :left_side_panel
       .middle_panel
-        %span#main_containe= yield 
+        %span#main_container= yield
       .side_panel
+        = render :partial => "shared/rsidebar"
         = yield :right_side_panel
       .clear_div
       .clear_div
