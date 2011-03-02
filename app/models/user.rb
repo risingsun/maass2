@@ -40,5 +40,8 @@ class User < ActiveRecord::Base
   validates :login, :presence => true,
                          :length => { :maximum => 20 },
                          :uniqueness => true
+  def is_admin
+    return true if self.admin == true
+  end
 
 end

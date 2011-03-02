@@ -24,4 +24,8 @@ class HomesController < ApplicationController
     render :template => 'homes/_poll_link'
   end
 
+  def admin
+    @profile = @p
+  end
+
 end

@@ -2,10 +2,12 @@
   %table
     %tr
       %th
-        = message.subject
+        = link_to message.subject, profile_message_path(@profile, message)
       %td
         = message.body
       %td
+      %td
+        = link_to "reply", direct_message_profile_messages_path(message.sender_id)
       %td
         = link_to "Read", profile_message_path(@profile, message)
       %td

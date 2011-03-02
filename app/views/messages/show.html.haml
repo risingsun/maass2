@@ -1,0 +1,10 @@
+%table
+  %tr
+    %th
+      = @message.subject
+    %td
+      = @message.body
+    %td
+      = link_to "reply", profile_message_path(@profile, @message)
+    %td
+      = link_to "delete" ,profile_message_path(@profile, @message), :method => :delete

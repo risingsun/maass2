@@ -86,6 +86,10 @@ class Profile < ActiveRecord::Base
     @my_friends ||= (self.followings+self.friends+[self]).uniq.compact 
   end
 
+  def message_count
+    self.received_messages.count if self.received_messages.count != 0
+  end
+
   def profile_permissions
     if @permission_objects.nil?
       @permission_objects = []
@@ -106,6 +110,7 @@ class Profile < ActiveRecord::Base
   end
 
   def field_permissions
+    
     if @field_permissions.nil?
       @field_permissions = Hash.new
       dbp = db_permissions
@@ -113,7 +118,7 @@ class Profile < ActiveRecord::Base
         @field_permissions[f] = dbp[f].nil? ? default_permission.to_sym : dbp[f].permission_type.to_sym
       end
     end
-    @field_permissions
+    return @field_permissions
   end
 
   def can_see_field(field, profile)
