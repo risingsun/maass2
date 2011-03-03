@@ -62,6 +62,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit_account
+    #debugger
     @permissions = @profile.permissions || @profile.permissions.build
     @notification = @profile.notification_control || @profile.build_notification_control
   end

@@ -4,16 +4,16 @@
     |
   - if current_user
     %li.menu_text
-      = link_to('My Profile', current_user.profile)
+      = link_to('My Profile', @p)
       |
     %li.menu_text
-      = link_to 'My Blog', blogs_path
+      = link_to 'My Blog', profile_blogs_path(@p)
       |
     %li.menu_text
-      = link_to 'My Polls', polls_path
+      = link_to 'My Polls', profile_polls_path(@p)
       |
     %li.menu_text
-      = link_to 'My Friends', friends_path
+      = link_to 'My Friends', profile_friends_path(@p)
       |
     %li.menu_text
       = link_to 'My Messages', profile_messages_path(current_user.profile)

@@ -23,7 +23,9 @@ class BlogsController < ApplicationController
   def index
     @blogs = @profile.blogs
     if @blogs.blank?
-      redirect_to new_blog_path
+      if @profile == @p
+        redirect_to new_profile_blog_path
+      end
     end
     @blogs = @blogs.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
   end
@@ -38,12 +40,13 @@ class BlogsController < ApplicationController
 
   def create
     @blog = @profile.blogs.build(params[:blog])
+    
     if params[:preview_button] || !@blog.save
       render :action => 'new'
       flash[:notice] = "Blog Creation Failed."
     else
       flash[:notice] = "Successfully created Blog."
-      redirect_to :blogs
+      redirect_to profile_blogs_path
     end
   end
 
@@ -57,14 +60,14 @@ class BlogsController < ApplicationController
       render :action => 'new'
     else
       flash[:notice] = "Successfully updated blog."
-      redirect_to blogs_path
+      redirect_to profile_blogs_path
     end
   end
 
   def destroy
     @blog.destroy
     flash[:notice] = "Successfully destroyed blog."
-    redirect_to blogs_path
+    redirect_to profile_blogs_path
   end
   
   def blog_archive
@@ -86,10 +89,12 @@ class BlogsController < ApplicationController
   private
   
   def load_profile
-    @profile = current_user.profile
+    #debugger
+    @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
   end
 
   def load_resource
+    #debugger
     @blog = @profile.blogs.find(params[:id])
   end
 end

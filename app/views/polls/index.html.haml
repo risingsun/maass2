@@ -1,7 +1,7 @@
 %h2
-  = @polls.first.profile.first_name
+  = @profile.first_name
   's polls
-  = link_to image_tag('add.png',:title=>"Create New poll"),new_poll_path(@poll)
+  = link_to image_tag('add.png',:title=>"Create New poll"),new_profile_poll_path(@profile, @polls) if @p == @profile
   -if @polls.empty?
     = @profile.full_name
     has no polls .

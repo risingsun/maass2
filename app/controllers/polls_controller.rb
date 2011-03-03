@@ -1,10 +1,14 @@
 class PollsController < ApplicationController
 
+  before_filter :load_profile, :except => [:show,:search]
+
   def index
-    @polls = current_user.profile.polls.order("created_at desc").paginate(:page => params[:page],:per_page => 10)
-    if current_user.profile.polls.empty?
+    @polls = @profile.polls.order("created_at desc").paginate(:page => params[:page],:per_page => 10)
+    if @polls.empty?
+       if @profile == @p
+        redirect_to new_profile_poll_path
+      end
       flash[:notice] = 'You have not create any polls. Try creating one now.'
-      redirect_to new_poll_path
     end
   end
 
@@ -16,7 +20,6 @@ class PollsController < ApplicationController
   end
   
   def new
-    @profile= current_user.profile
     @poll = @profile.polls.new
   end
 
@@ -25,7 +28,7 @@ class PollsController < ApplicationController
     @poll = @profile.polls.build(params[:poll])
     if @poll.save
       flash[:notice] = 'Poll was successfully created.'
-      redirect_to polls_path
+      redirect_to profile_polls_path
     else
       flash.now[:error] = 'Poll was not successfully created.'
       render 'new'
@@ -42,7 +45,7 @@ class PollsController < ApplicationController
     @poll = @profile.polls.find(params[:id])
     if @poll.update_attributes!(params[:poll])
       flash[:notice] = 'Poll was successfully updated.'
-      redirect_to poll_path(@poll)
+      redirect_to profile_poll_path(@poll)
     else
       flash.now[:error] = 'Poll was not successfully updated.'
       render 'edit'
@@ -53,7 +56,7 @@ class PollsController < ApplicationController
     @profile =  current_user.profile
     @poll = @profile.polls.find(params[:id])
     if @poll.destroy
-      redirect_to new_poll_path
+      redirect_to new_profile_poll_path
     else
       flash[:notice] = "Poll was not successfully destroyed."
     end
@@ -70,6 +73,13 @@ class PollsController < ApplicationController
     @profile=Profile.find(params[:id])
     @polls=Poll.where(:profile_id=>params[:id]).order("created_at desc").paginate(:page => params[:page],:per_page => 10)
     render 'index'
+  end
+
+  private
+
+  def load_profile
+    #debugger
+    @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
   end
 
 end

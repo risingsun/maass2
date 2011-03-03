@@ -1,10 +1,9 @@
-- unless @profile
-  - if params[:id]
-    = render :partial => "profiles/bio"
-    = render :partial => "shared/profile_action" unless me
-  - else
-    - if current_user.blank?
-      = render :partial => "devise/sessions/login"
-    - rounded_corner(:title => 'Newest Members', :size => 'small') do
-      = render :partial => "profiles/newest_member", :collection => Profile.all
+- if params[:profile_id]
+  = render :partial => "profiles/bio"
+  = render :partial => "shared/profile_action" unless me
+- else
+  - if current_user.blank?
+    = render :partial => "devise/sessions/login"
+  - rounded_corner(:title => 'Newest Members', :size => 'small') do
+    = render :partial => "profiles/newest_member", :collection => Profile.all
 
