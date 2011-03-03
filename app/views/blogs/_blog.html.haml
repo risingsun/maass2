@@ -1,0 +1,22 @@
+- profile = blog.profile
+.widget_large{:id => "blog_#{blog.id}"}
+  %span.widget_lrg_top
+  %h3.blog_head
+    = link_to image_tag(set_icon(current_user.profile,'small')), homes_path
+    = link_to sanitize(blog.title),profile_blog_path(blog.profile, blog)
+    = link_to image_tag('edit.png', :title => "Edit blog post"),edit_profile_blog_path(blog.profile, blog)                
+    = link_to image_tag('delete.png', :title => "Delete blog post"),profile_blog_path(blog.profile, blog),:method => :delete                                             
+    .created_date
+      Posted by #{blog.profile.full_name} at #{blog.updated_at.to_date.to_formatted_s(:rfc822)}
+  .blog_text
+    - if @q.nil?
+      = raw blog_body_content blog
+    - else
+      = raw highlight(blog.body,@q,"<span class = 'tag_class'>#{params[:search][:blog]}</span>")
+  .blog_text
+    = link_to image_tag('add_comment.png',:border =>0), '#', :onclick => "add_comment(#{blog.id})"
+    = link_to "#{blog.comments_count} Comments", '#', :onclick => "show_comment('#{blog.id}')"
+    %div{:id => "show"+blog.id.to_s,:style => "display: none;"}
+      = render 'comments/show_comments', :commt => blog
+    %div{:id => "form"+blog.id.to_s,:style => "display: none;"}
+      = render 'comments/form', :commt => blog

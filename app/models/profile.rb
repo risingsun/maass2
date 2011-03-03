@@ -103,7 +103,9 @@ class Profile < ActiveRecord::Base
   end
 
   def friend_of? user
-    user.in? friends
+    unless self.friends.where(:id=>user.profile.id).blank?
+      return true
+    end
   end
 
   def all_friends

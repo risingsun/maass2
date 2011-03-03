@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
 
-  before_filter :load_profile, :except => [:tag_cloud, :show,:search]
+  before_filter :load_profile, :except => [:tag_cloud,:search]
   before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show, :show_blogs,:search]
 
   uses_tiny_mce(:only => [:new, :edit,:create,:update],

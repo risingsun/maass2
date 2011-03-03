@@ -4,6 +4,6 @@
 - else
   - if current_user.blank?
     = render :partial => "devise/sessions/login"
-  - rounded_corner(:title => 'Newest Members', :size => 'small') do
+  = rounded_corner(:title => 'Newest Members', :size => 'small') do
     = render :partial => "profiles/newest_member", :collection => Profile.all
 

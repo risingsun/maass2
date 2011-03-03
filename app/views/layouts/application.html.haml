@@ -1,6 +1,7 @@
 %html
   %head
-    %title Maass
+    %title
+      = @title || 'Maass'
     = stylesheet_link_tag "/maass/stylesheets/application",'jquery-ui-1.8.7.custom','formtastic','formtastic_changes', 'application'
     = javascript_include_tag 'jquery.min','jquery-ui.min','application','rails', 'status_button','clusterer','geoRssOverlay','markerGroup','wms-gs','ym4r-gm','rs_maps'
     = include_tiny_mce_if_needed
@@ -24,6 +25,7 @@
         = render :partial => "shared/lsidebar"
         = yield :left_side_panel
       .middle_panel
+        = display_standard_flashes
         %span#main_container= yield
       .side_panel
         = render :partial => "shared/rsidebar"

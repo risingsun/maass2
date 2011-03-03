@@ -1,5 +1,7 @@
-%div{:style => "background: bisque; width:525px"}
-  %h3
+%div{:id => "blog_#{@blog.id}"}
+  %span.widget_lrg_top
+  %h3.blog_head
     = @blog.title
-  %p
+  .blog_text
     = @blog.body.html_safe
+  %span.widget_lrg_btm
