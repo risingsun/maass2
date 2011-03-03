@@ -2,7 +2,7 @@
   - if params[:preview_button]
     = render 'preview'
   %br
-  - form_for(@blog) do |f|
+  - form_for [@profile, @blog] do |f|
     %br
     = f.label :Heading
     %br

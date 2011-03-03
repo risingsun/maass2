@@ -1,8 +1,9 @@
+-blogs =  @blogs
 #column_l
   %h2.page_title
     = @profile.full_name
     's Blogs
-    =link_to image_tag('add_new_post.png', :title=>"Create New Blog Post", :class=>"add_new_post2"), new_blog_path 
+    =link_to image_tag('add_new_post.png', :title=>"Create New Blog Post", :class=>"add_new_post2"), new_profile_blog_path(@profile)
   - if @blogs.empty?
     .widget_large
       .comments
@@ -10,6 +11,6 @@
         has no blog posts.
       %span.widget_lrg_btm
   - else
-    = render :partial => 'blogs/blog', :collection => @blogs
+    = render :partial => 'blogs/blog', :collection => blogs
     .clear_div
     = will_paginate @blogs

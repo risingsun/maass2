@@ -5,11 +5,22 @@ Maass2::Application.routes.draw do
   resources :users
   resources :events
   resources :votes
-  resources :friends
-  resources :profiles do    
+  resources :profiles do
+    resources :friends
     resources :messages do
       get 'direct_message', :on => :collection
       get 'sent_messages', :on => :collection
+    end
+
+    resources :blogs  do
+      get 'blog_archive', :on => :member
+      get 'show_blogs', :on => :member
+      get 'search', :on=>:member
+    end
+
+    resources :polls do
+      get 'poll_close', :on => :member
+      get 'search_poll', :on => :member
     end
     post 'load_profile', :on => :collection
     get 'edit_account', :on => :member
@@ -22,17 +33,8 @@ Maass2::Application.routes.draw do
 
   resources :comments do
   end
-  
- resources :blogs  do
-    get 'blog_archive', :on => :member
-    get 'show_blogs', :on => :member
-    get 'search', :on=>:member
-  end
  
-  resources :polls do
-    get 'poll_close', :on => :member
-    get 'search_poll', :on => :member
-  end
+
 
   root :to=>"homes#index"
   resources :homes do

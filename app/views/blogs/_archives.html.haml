@@ -5,5 +5,5 @@
     %tbody
       - blog_hash.each do |b|
         %tr
-          %td= link_to "#{b.month} #{b.year}", blog_archive_blog_path(b.month,b.year)
+          %td= link_to "#{b.month} #{b.year}", blog_archive_profile_blog_path(@p,b.month,b.year)
           %td= "(#{b.cnt})"
