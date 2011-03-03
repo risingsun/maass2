@@ -1,5 +1,5 @@
--@comment = Comment.find(:all, :conditions => { :commentable_id => commt.id})
--@comment.each do |c|
+-@commt = Comment.find(:all, :conditions => { :commentable_id => commt.id})
+-@commt.each do |c|
   %p
   %b
     = c.comment
