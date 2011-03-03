@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
 
   before_filter :load_profile, :only => [:create,:edit,:update,:edit_account]
   before_filter :search_results, :only => [:search]
-
+  before_filter :show_panels, :only => [:show]
+    
   def create
     if @profile.save
       flash[:notice] = "Profile created."
@@ -78,6 +79,12 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def friend_search
+    @results=Profile.search params["profile"]["search_value"]
+    @title = "Search"
+    render :template=>'shared/user_friends'
+  end
+
   private
 
   def load_profile
@@ -89,4 +96,8 @@ class ProfilesController < ApplicationController
     @user=current_user
   end
 
+  def show_panels
+    @show_profile_side_panel = true
+  end
+  
 end

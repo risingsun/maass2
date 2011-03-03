@@ -9,7 +9,7 @@
             = p.label "Email Notification"
           %td
             = p.label "Message Notification"
-        - User::NOTIFICATION_FIELDS.each do |x|
+        - NOTIFICATION_FIELDS.each do |x|
           %tr
             %td= p.label x
             - f=@profile.notification_control.send("#{x}")

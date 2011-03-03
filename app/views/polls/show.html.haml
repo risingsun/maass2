@@ -1,5 +1,7 @@
-%h2
-  = @poll.profile.first_name
-  's poll
-  = link_to image_tag('add.png',:title=>"Create New poll"),new_profile_poll_path(@profile) if @profile == @p
-= render "polls/poll", :poll =>@poll
+%div
+  %h2.page_title
+    = @poll.profile.full_name
+    's poll
+    = link_to image_tag('add.png',:title=>"Create New poll"),new_profile_poll_path(@profile) if @profile == @p
+  = render "polls/poll", :poll =>@poll
+

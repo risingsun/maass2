@@ -1,23 +1,26 @@
-%h4
-  = link_to (poll.question),profile_poll_path(poll.profile, poll)
-  %br
-  Posted by
-  ="#{poll.profile.first_name}"
-  at
-  ="#{poll.created_at.to_date.to_formatted_s(:rfc822)}"
-  - if current_user.profile && me(poll.profile)
-    = link_to image_tag('cancel.png', :title => "Close poll"),poll_close_profile_poll_path(poll.profile, poll) unless poll.poll_close?
-    = link_to image_tag('edit.png', :title => "Edit poll"),edit_profile_poll_path(poll.profile, poll) if poll.can_edit?
-    = link_to image_tag('delete.png', :title => "Delete poll"),profile_poll_path(poll.profile, poll),:method => :delete
-  %br
-  - if !current_user.profile || (poll.responded? current_user.profile)
-    = render :partial => 'polls/poll_response', :locals =>{:poll => poll}
-  - else
-    - div_id = "#{poll.id}"
-    %div{:id => div_id }
-      = semantic_form_remote_for(:poll, :url => votes_path,:loading =>"div_id').hide(); $('spinner_\#{poll.id}').show();",:complete =>"$('spinner_\#{poll.id}').hide(); $('div_id').show();") do |f|
-        = f.semantic_fields_for(:poll_options) do |form|
-          = form.inputs do
+.widget_large
+  %span.widget_lrg_top
+  %h3.blog_head
+    /= icon(poll.profile)
+    = link_to (poll.question),profile_poll_path(poll.profile, poll)
+    - if current_user.profile && me(poll.profile)
+      = link_to image_tag('cancel.png', :title => "Close poll"),poll_close_profile_poll_path(poll.profile, poll) unless poll.poll_close?
+      = link_to image_tag('edit.png', :title => "Edit poll"),edit_profile_poll_path(poll.profile, poll) if poll.can_edit?
+      = link_to image_tag('delete.png', :title => "Delete poll"),profile_poll_path(poll.profile, poll),:method => :delete
+    /%br
+    .created_date
+      Posted by
+      ="#{poll.profile.full_name}"
+      at
+      ="#{poll.created_at.to_date.to_formatted_s(:rfc822)}"
+  .poll_text
+    - if !current_user.profile || (poll.responded? current_user.profile)
+      = render :partial => 'polls/poll_response', :locals =>{:poll => poll}
+    - else
+      - div_id = "#{poll.id}"
+      %div{:id => div_id }
+        = semantic_form_remote_for(:poll, :url => votes_path,:loading =>"div_id').hide(); $('spinner_\#{poll.id}').show();",:complete =>"$('spinner_\#{poll.id}').hide(); $('div_id').show();") do |f|
+          = f.semantic_fields_for(:poll_options) do |form|
             = render "polls/option" , :y=> form, :poll => poll
-        = f.commit_button "Vote"
-    %div{:id => "spinner_#{poll.id}", :style => "display: none;"}= image_tag('spinner.gif')
+          = f.commit_button "Vote"
+      %div{:id => "spinner_#{poll.id}", :style => "display: none;"}= image_tag('spinner.gif')
