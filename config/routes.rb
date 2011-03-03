@@ -17,6 +17,7 @@ Maass2::Application.routes.draw do
     get 'stop_following', :on => :member
     get 'make_friend', :on => :member
     get 'search', :on=>:collection
+    get 'friend_search', :on=>:collection
   end
 
   resources :comments do
