@@ -2,7 +2,7 @@
   %h2.page_title
     = @polls.first.profile.full_name
     's polls
-    = link_to image_tag('add.png',:title=>"Create New poll"),new_poll_path(@poll)
+    = link_to image_tag('add.png',:title=>"Create New poll"),new_profile_poll_path(@profile, @polls) if @p == @profile
     -if @polls.empty?
       .widget_large
         .comments
@@ -13,3 +13,4 @@
       = render :partial => 'polls/poll', :collection=>@polls
     .clear_div
     = will_paginate @polls
+
