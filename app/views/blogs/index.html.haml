@@ -1,23 +1,15 @@
-%h1 Listing Blogs
-- @blogs.each do |blog|
-  %table
-  %tr
-    %td= blog.title
-    %td{:align => "right", :width => "100px"}
-      = link_to image_tag('edit.png', :border =>0), edit_blog_path(blog) if current_user.profile==@profile
-      = link_to image_tag('delete.png',:border =>0), blog, :method => :delete if current_user.profile==@profile
-  %tr
-    %td{:colspan => "2"}= blog.body.html_safe
-    = link_to image_tag('add_comment.png',:border =>0), '#', :onclick => "add_comment(#{blog.id})"
-    = link_to "#{blog.comments_count} Comments", '#', :onclick => "show_comment('#{blog.id}')"
-    %div{:id => "show"+blog.id.to_s,:style => "display: none;"}
-      = render 'comments/show_comments', :blog => blog
-    %div{:id => "form"+blog.id.to_s,:style => "display: none;"}
-      = render 'comments/form', :blog => blog
-    %hr
-%br/
-
-= link_to 'New blog', new_blog_path
-= render 'blogs/tag_clouds'
-= render 'blogs/archives'
-= will_paginate @blogs
+#column_l
+  %h2.page_title
+    = @profile.full_name
+    's Blogs
+    =link_to image_tag('add_new_post.png', :title=>"Create New Blog Post", :class=>"add_new_post2"), new_blog_path 
+  - if @blogs.empty?
+    .widget_large
+      .comments
+        = @profile.full_name
+        has no blog posts.
+      %span.widget_lrg_btm
+  - else
+    = render :partial => 'blogs/blog', :collection => @blogs
+    .clear_div
+    = will_paginate @blogs

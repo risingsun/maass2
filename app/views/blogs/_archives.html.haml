@@ -1,6 +1,9 @@
-%h2 Blog Archives:
 - blog_hash = Blog.blog_groups
-- blog_hash.each do |b|
-  = link_to "#{b.month} #{b.year}", blog_archive_blog_path(b.month,b.year)
-  ="(#{b.cnt})"
-  
+- title = "Blog Archive"
+- rounded_corner(:size => :small, :title => title) do
+  %table.greetings
+    %tbody
+      - blog_hash.each do |b|
+        %tr
+          %td= link_to "#{b.month} #{b.year}", blog_archive_blog_path(b.month,b.year)
+          %td= "(#{b.cnt})"

@@ -1,18 +1,27 @@
-= form_for(@blog) do |f|
-  %br/
-  %div
-    = f.label :title
-    %br/
-    = f.text_field :title
-  %div
+#blog
+  - if params[:preview_button]
+    = render 'preview'
+  %br
+  - form_for(@blog) do |f|
+    %br
+    = f.label :Heading
+    %br
+    = f.text_field :title, :title => "Title",:class => "big_text_field", :wrap_class => :row_complete
+    %br
     = f.label :Body
-    %br/
-    = f.text_area :body,  :class => "mceEditor"
-  %div
-  %br
+    %br
+    = f.text_area :body,  :class => "mceEditor big_text_area", :wrap_class => :row_complete_large
+    %br
     = f.label :Tags
-    = f.text_field :tag_list
-  %div
-  %br
-    = f.submit
-    = submit_tag 'Preview', :name => 'preview_button'
+    %br
+    = f.text_field :tag_list, :title => "Tags",:class => "big_text_field", :wrap_class => :row_complete
+    .blog_text Comma Seperated
+    .row_normal
+      .blog_check_box
+        = f.check_box :is_sent
+        Public?
+    .blog_btn_container
+      %button.buttons{:type => "submit"}
+        = image_tag("save.png")
+      %button.buttons{:name => 'preview_button'}
+        = image_tag("preview.png")
