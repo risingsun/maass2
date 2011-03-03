@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   def create
-    @comment = Comment.create(params[:comment])
+    @comment = @p.comments.create(params[:comment])
     @comment.save
     @comment.comment_count()
     redirect_to profile_blogs_path(@p)

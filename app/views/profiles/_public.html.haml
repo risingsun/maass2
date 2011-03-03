@@ -2,3 +2,5 @@
 = render 'profiles/work' if !@profile.works.blank?
 = render 'profiles/education' if !@profile.educations.blank?
 = render :partial => 'polls/list'
+= render 'comments/show_comments', :commt => @profile
+= render 'comments/form', :commt => @profile

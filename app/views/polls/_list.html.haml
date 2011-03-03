@@ -8,6 +8,6 @@
   %br
   - polls.each do |p|
     %img{:src => "/images/poll_icon.png"}
-    = link_to p.question, poll_path(p)
+    = link_to p.question, profile_poll_path(p.profile, p)
     written #{time_ago_in_words p.created_at} ago
     %br
