@@ -164,7 +164,7 @@ module ApplicationHelper
     end
     flash_message_class = flash_message_class.to_s + " " + "widget_flash_msg"
     flash_msg = flash_to_display.to_s + "<span class='widget_flash_msg_btm'></span>"
-    content_tag 'div', flash_msg.html_safe!, :class => flash_message_class, :id => "flash_message"
+    content_tag 'div', flash_msg.html_safe, :class => flash_message_class, :id => "flash_message"
   end
 
   def display_standard_flashes_in_large_size(message = 'There were some problems with your submission:')

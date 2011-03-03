@@ -1,4 +1,5 @@
 .fields
-  = f.inputs do
-    = f.input :option, :label => "Option", :as => :string
-    = link_to_remove_fields "remove", f
+  = f.input :option, :label => "Option", :as => :string, :input_html=>{:maxlength => 25,:class=>'poll_input_text'}
+  %br
+  %br
+  = link_to_remove_fields "remove", f
