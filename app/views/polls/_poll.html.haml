@@ -1,7 +1,7 @@
 .widget_large
   %span.widget_lrg_top
   %h3.blog_head
-    /= icon(poll.profile)
+    = link_to image_tag(set_icon(poll.profile,'small_60')), profile_path(poll.profile)
     = link_to (poll.question),profile_poll_path(poll.profile, poll)
     - if current_user.profile && me(poll.profile)
       = link_to image_tag('cancel.png', :title => "Close poll"),poll_close_profile_poll_path(poll.profile, poll) unless poll.poll_close?
