@@ -1,4 +1,4 @@
-- rounded_med_corner(:title => "Education", :id => "education_information") do
+= rounded_med_corner(:title => "Education", :id => "education_information") do
   = semantic_form_for(@profile) do |form|
     - if @profile.educations.blank?
       - @profile.educations.build
