@@ -4,11 +4,9 @@ class PollsController < ApplicationController
 
   def index
     @polls = @profile.polls.order("created_at desc").paginate(:page => params[:page],:per_page => 10)
-    if @polls.empty?
-       if @profile == @p
-        redirect_to new_profile_poll_path
-      end
+    if @profile == @p && @polls.empty?
       flash[:notice] = 'You have not create any polls. Try creating one now.'
+      redirect_to new_profile_poll_path
     end
   end
 

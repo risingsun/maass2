@@ -25,6 +25,7 @@
         = render :partial => "shared/lsidebar"
         = yield :left_side_panel
       .middle_panel
+        = display_standard_flashes
         %span#main_container= yield
       .side_panel
         = render :partial => "shared/rsidebar"

@@ -1,7 +1,8 @@
--@commt = Comment.find(:all, :conditions => { :commentable_id => commt.id})
--@commt.each do |c|
+-@comment = Comment.find(:all, :conditions => { :commentable_id => commt.id, :commentable_type => commt.class.name})
+-@comment.each do |c|
+  -# debugger
   %p
   %b
     = c.comment
-    = link_to image_tag('delete.png',:border =>0), c , :method => :delete
+    = link_to image_tag('delete.png',:border =>0), c , :method => :delete if Comment.destroy_comment(@p,c)
   %br

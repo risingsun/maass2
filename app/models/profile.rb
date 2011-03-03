@@ -8,6 +8,7 @@ class Profile < ActiveRecord::Base
   has_many :permissions, :dependent => :destroy, :attributes => true
   has_many :blogs
   has_many :messages
+  has_many :comments
   has_one :marker
   has_one :notification_control
   has_many :polls, :dependent => :destroy

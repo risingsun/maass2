@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  before_filter :load_profile, :only => [:create,:edit,:update,:edit_account]
+  before_filter :load_profile, :only => [:create,:edit,:update,:edit_account,:search]
   before_filter :search_results, :only => [:search]
   before_filter :show_panels, :only => [:show]
     
