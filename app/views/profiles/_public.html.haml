@@ -1,6 +1,24 @@
-= render 'profiles/personal'
-= render 'profiles/work' if !@profile.works.blank?
-= render 'profiles/education' if !@profile.educations.blank?
+.widget_large
+  %span.widget_lrg_top
+  = rounded_med_corner(:id => 'personal', :title => 'Personal Info') do
+    .middle_panel_profile
+      #personal_info{:style => "display:none;"}
+    .slidecontent
+      = render :partial => "personal"
+.widget_large
+  %span.widget_lrg_top
+  = rounded_med_corner(:id => 'work_info', :title => 'Work Info') do
+    .middle_panel_profile
+      #work_info{:style => "display:none;align:left;"}
+    .slidecontent
+      = render 'profiles/work' if !@profile.works.blank?
+.widget_large
+  %span.widget_lrg_top
+  = rounded_med_corner(:id => 'education', :title => 'Education Info') do
+    .middle_panel_profile
+      #education_info{:style => "display:none;align:left;"}
+    .slidecontent
+      = render 'profiles/education' if !@profile.educations.blank?
 = render :partial => 'polls/list'
-= render 'comments/show_comments', :commt => @profile
 = render 'comments/form', :commt => @profile
+= render 'comments/show_comments', :commt => @profile

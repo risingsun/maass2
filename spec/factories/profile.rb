@@ -7,7 +7,7 @@ Factory.define :profile do |p|
   p.house_name "x"
   p.date_of_birth "x"
   p.relationship_status "x"
-  p.aniversary_date "x"
+  p.anniversary_date "x"
   p.spouse_name "x"
   p.professional_qualification "x"
   p.about_me "x"

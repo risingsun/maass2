@@ -36,14 +36,14 @@ describe HomesController do
     end
   end
 
-  describe "GET 'see_my_polls'" do
-    it "should see polls of other user" do
-      get 'see_my_polls'
-      assigns[:user].should be_an_instance_of(User)
-      assigns[:user].should_not be_a_new_record
-      assigns[:user].should_not be_nil
+#  describe "GET 'see_my_polls'" do
+#    it "should see polls of other user" do
+#      get 'see_my_polls'
+#      assigns[:user].should be_an_instance_of(User)
+#      assigns[:user].should_not be_a_new_record
+#      assigns[:user].should_not be_nil
 #      flash[:notice].should == "Account Successfully Updated."
 #      assigns[:account].should redirect_to(edit_account_path(@current_user))
-    end
-  end
+#    end
+#  end
 end
