@@ -4,15 +4,15 @@ class CommentsController < ApplicationController
     @comment = @p.comments.create(params[:comment])
     @comment.save
     @comment.comment_count()
-    redirect_to profile_blogs_path(@p)
+    redirect_to request.referer
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
     @comment.comment_count()
-    redirect_to profile_blogs_path(@p)
     flash[:notice] = "Successfully destroyed blog."
+    redirect_to request.referer
   end
   
 end

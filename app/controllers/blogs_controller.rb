@@ -43,7 +43,6 @@ class BlogsController < ApplicationController
     
     if params[:preview_button] || !@blog.save
       render :action => 'new'
-      flash[:notice] = "Blog Creation Failed."
     else
       flash[:notice] = "Successfully created Blog."
       redirect_to profile_blogs_path
@@ -71,31 +70,22 @@ class BlogsController < ApplicationController
   end
   
   def blog_archive
-    @blogs = Blog.find(:all)
-    @blogs = Blog.order("created_at desc").paginate(:page => params[:page],:per_page => 3)
+    @blogs = Blog.by_month_year(params[:id], params[:format]).all.paginate(:page => params[:page],:per_page => 3)
     render '_blog_archive'
   end
 
   def show_blogs
     @blogs = Blog.tagged_with(params[:id])
   end
-
-  def search
-    @profile=Profile.find(params[:id])
-    @blogs=Blog.where(:profile_id=>params[:id]).order("created_at desc").paginate(:page => params[:page],:per_page => 10)
-    render :template=>'blogs/index'
-  end
   
   private
   
   def load_profile
-    #debugger
     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
     @show_profile_side_panel = true
   end
 
   def load_resource
-    #debugger
     @blog = @profile.blogs.find(params[:id])
   end
 end

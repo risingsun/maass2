@@ -1,7 +1,7 @@
 -@comment = Comment.find(:all, :conditions => { :commentable_id => commt.id, :commentable_type => commt.class.name})
 -@comment.each do |c|
   .comments
-    = link_to image_tag(set_icon(current_user.profile,'small')), c.profile
+    = link_to image_tag(set_icon(c.profile,'small')), c.profile
     %strong
       = link_to (c.profile.full_name), c.profile
       commented

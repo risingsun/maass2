@@ -32,13 +32,13 @@ class ProfilesController < ApplicationController
       redirect_to edit_account_profile_path(current_user.profile)
     when "add following"
       @profile.start_following(params[:id])
-      redirect_to profile_path(Profile.find(params[:id]).user)
+      redirect_to request.referer
     when "stop follow"
       @profile.stop_following(params[:id])
-      redirect_to profile_path(Profile.find(params[:id]).user)
+      redirect_to request.referer
     when "make friend"
       @profile.make_friend(params[:id])
-      redirect_to profile_path(Profile.find(params[:id]).user)
+      redirect_to request.referer
     else
       @profile.update_attributes params[:profile]
       flash[:notice] = "Profile updated."
