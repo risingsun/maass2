@@ -1,5 +1,5 @@
 
-theme_config = File.read(RAILS_ROOT + "/config/theme.yml")
+theme_config = File.read(Rails.root.to_s + "/config/theme.yml")
 THEME_CONFIG = YAML.load(theme_config).symbolize_keys
 
 SITE = Rails.env.production? ? THEME_CONFIG[:site_production_domain] : THEME_CONFIG[:site_development_domain]

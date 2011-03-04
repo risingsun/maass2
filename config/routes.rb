@@ -15,13 +15,15 @@ Maass2::Application.routes.draw do
     resources :blogs  do
       get 'blog_archive', :on => :member
       get 'show_blogs', :on => :member
-      get 'search', :on=>:member
     end
 
     resources :polls do
       get 'poll_close', :on => :member
       get 'search_poll', :on => :member
     end
+
+    resources :feed_items
+    
     post 'load_profile', :on => :collection
     get 'edit_account', :on => :member
     get 'start_following', :on => :member

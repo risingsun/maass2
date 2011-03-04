@@ -1,8 +1,8 @@
-%table
-  %tr
-    %th From Year
-    %th To Year
-    %th Institute
+%table{:width => "540px"}
+  %tr{:align => "left", :valign => "top"}
+    %th From
+    %th To
+    %th University
   -@educations.each do |x|
     %tr
       %td{:width => "70px"}= x.education_from_year

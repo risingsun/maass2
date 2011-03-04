@@ -9,29 +9,25 @@ describe PollsController do
     @poll.save!
   end
 
-  #  describe "GET 'index'" do
-  #    it "should be successful" do
-  #      get 'index'
-  #      assigns[:poll].should be_a_kind_of(Array)
-  #      assigns[:poll].should_not be_nil
-  #      assigns[:poll].should render_template('index')
-  #      response.should be_success
-  #    end
-  #  end
-
-  #  describe "GET 'new'" do
-  #    it "should be successful" do
-  #      get 'new'
-  #      assigns[:poll].should be_an_instance_of(Poll)
-  #      assigns[:poll].should be_a_new_record
-  #      assigns[:poll].should_not be_nil
-  #      assigns[:profile].should be_an_instance_of(Profile)
-  #      assigns[:profile].should_not be_a_new_record
-  #      assigns[:profile].should_not be_nil
-  #      assigns[:profile].should render_template('new')
-  #      response.should be_success
-  #    end
-  #  end
+#  describe "GET 'index'" do
+#    it "should be successful" do
+#      get 'index'
+#      assigns[:poll].should be_a_kind_of(Array)
+#      assigns[:poll].should_not be_nil
+#      assigns[:poll].should render_template('index')
+#      response.should be_success
+#    end
+#  end
+#
+#  describe "GET 'new'" do
+#    it "should be successful" do
+#      get 'new'
+#      assigns[:poll].should be_an_instance_of(Poll)
+#      assigns[:poll].should be_a_new_record
+#      assigns[:poll].should_not be_nil
+#      response.should be_success
+#    end
+#  end
 
   describe "POST 'create'" do
     lambda do

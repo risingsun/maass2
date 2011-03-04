@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110302063037) do
+ActiveRecord::Schema.define(:version => 20110304121741) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -63,6 +63,24 @@ ActiveRecord::Schema.define(:version => 20110302063037) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "feed_items", :force => true do |t|
+    t.boolean  "include_comments", :default => false, :null => false
+    t.boolean  "is_public",        :default => false, :null => false
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "feed_items", ["item_id", "item_type"], :name => "index_feed_items_on_item_id_and_item_type"
+
+  create_table "feeds", :force => true do |t|
+    t.integer "profile_id"
+    t.integer "feed_item_id"
+  end
+
+  add_index "feeds", ["profile_id", "feed_item_id"], :name => "index_feeds_on_profile_id_and_feed_item_id"
 
   create_table "friends", :force => true do |t|
     t.integer  "inviter_id"

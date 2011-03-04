@@ -1,4 +1,7 @@
 class Profile < ActiveRecord::Base
+
+  FEEDS_DISPLAY = 20
+  
   belongs_to :user
 
   attr_protected :is_active
@@ -13,6 +16,11 @@ class Profile < ActiveRecord::Base
   has_one :notification_control
   has_many :polls, :dependent => :destroy
   has_many :poll_responses, :dependent => :destroy
+
+  has_many :feeds
+  has_many :feed_items, :through => :feeds, :order => 'updated_at desc', :limit => FEEDS_DISPLAY
+  has_many :private_feed_items, :through => :feeds, :source => :feed_item, :conditions => {:is_public => false}, :order => 'created_at desc'
+  has_many :public_feed_items, :through => :feeds, :source => :feed_item, :conditions => {:is_public => true}, :order => 'created_at desc'
 
   has_many :friendships, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = #{Friend::ACCEPT_FRIEND}"
   has_many :follower_friends, :class_name => "Friend", :foreign_key => "invited_id", :conditions => "status = #{Friend::PENDING_FRIEND}"

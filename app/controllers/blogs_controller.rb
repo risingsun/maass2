@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
 
-  before_filter :load_profile, :except => [:tag_cloud,:search]
-  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show, :show_blogs,:search]
+  before_filter :load_profile, :except => [:tag_cloud]
+  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show, :show_blogs]
 
   uses_tiny_mce(:only => [:new, :edit,:create,:update],
     :options => {
@@ -77,7 +77,7 @@ class BlogsController < ApplicationController
   def show_blogs
     @blogs = Blog.tagged_with(params[:id])
   end
-  
+
   private
   
   def load_profile
