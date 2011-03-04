@@ -88,8 +88,6 @@ class ProfilesController < ApplicationController
   private
 
   def load_profile
-    @profile =  current_user.profile || current_user.build_profile
-    @profile.save
     @profile =  current_user.profile
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build

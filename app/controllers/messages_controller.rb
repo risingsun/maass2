@@ -52,6 +52,7 @@ class MessagesController < ApplicationController
 
    def load_profile
      @profile = @p
+     @show_profile_side_panel = true
    end
 
 end

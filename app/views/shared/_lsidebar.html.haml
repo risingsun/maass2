@@ -1,9 +1,10 @@
-- if params[:id]
+- if @show_profile_side_panel
   = render :partial => "profiles/bio"
   = render :partial => "shared/profile_action" unless me
 - else
   - if current_user.blank?
     = render :partial => "devise/sessions/login"
-  = rounded_corner(:title => 'Newest Members', :size => 'small') do
-    = render :partial => "profiles/newest_member", :collection => Profile.all
+  - unless params[:controller] != "profile" && (params[:action] == "edit_account" || params[:action] == "edit")
+    = rounded_corner(:title => 'Newest Members', :size => 'small') do
+      = render :partial => "profiles/newest_member", :collection => Profile.new_member
 
