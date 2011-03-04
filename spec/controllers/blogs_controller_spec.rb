@@ -12,7 +12,6 @@ describe BlogsController do
 
   describe "GET 'index'" do
     it "should be successful" do
-      Factory(:blog, :profile => @profile)
       get 'index'
       assigns[:blog].should be_a_kind_of(Array)
       assigns[:blog].should_not be_nil

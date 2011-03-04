@@ -6,7 +6,7 @@
       = link_to (c.profile.full_name), c.profile
       commented
       #{time_ago_in_words c.created_at} ago
-      = link_to image_tag('delete.png',:border =>0), c , :method => :delete if c.destroy_comment(@p)
+    = link_to image_tag('delete.png',:border =>0), c , :method => :delete
     .comment_text
       = c.comment
-     
+    
