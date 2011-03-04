@@ -1,8 +1,12 @@
 -@comment = Comment.find(:all, :conditions => { :commentable_id => commt.id, :commentable_type => commt.class.name})
 -@comment.each do |c|
-  -# debugger
-  %p
-  %b
-    = c.comment
-    = link_to image_tag('delete.png',:border =>0), c , :method => :delete if Comment.destroy_comment(@p,c)
-  %br
+  .comments
+    = link_to image_tag(set_icon(current_user.profile,'small')), c.profile
+    %strong
+      = link_to (c.profile.full_name), c.profile
+      commented
+      #{time_ago_in_words commt.created_at} ago
+      = link_to image_tag('delete.png',:border =>0), c , :method => :delete
+    .comment_text
+      = c.comment
+     
