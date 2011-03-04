@@ -2,4 +2,4 @@
 - if @blogs.blank?
   %span.comments= "Not Found"
 - else
-  = render :template=>'blogs/index'
+  = render :partial=>'blogs/blog', :collection=> @blogs

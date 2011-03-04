@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
 
-  before_filter :load_profile, :except => [:tag_cloud,:search]
-  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show, :show_blogs,:search]
+  before_filter :load_profile, :except => [:tag_cloud]
+  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show, :show_blogs]
 
   uses_tiny_mce(:only => [:new, :edit,:create,:update],
     :options => {
@@ -80,12 +80,6 @@ class BlogsController < ApplicationController
     @blogs = Blog.tagged_with(params[:id])
   end
 
-  def search
-    @profile=Profile.find(params[:id])
-    @blogs=Blog.where(:profile_id=>params[:id]).order("created_at desc").paginate(:page => params[:page],:per_page => 10)
-    render :template=>'blogs/index'
-  end
-  
   private
   
   def load_profile
