@@ -1,4 +1,5 @@
-= render :partial=>'shared/search_by_keyword', :profile=>@profile if !current_user.blank?
-= render :partial => 'profiles/greets' if @p
-= render 'blogs/tag_clouds' if @p
-= render 'blogs/archives' if @p
+- unless params[:controller] != "profile" && (params[:action] == "edit_account" || params[:action] == "edit")
+  = render :partial=>'shared/search_by_keyword', :profile=>@profile if !current_user.blank?
+  = render :partial => 'profiles/greets' if @p
+  = render 'blogs/tag_clouds' if @p
+  = render 'blogs/archives' if @p

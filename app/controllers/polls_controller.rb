@@ -78,6 +78,7 @@ class PollsController < ApplicationController
   def load_profile
     #debugger
     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
+    @show_profile_side_panel = true
   end
 
 end
