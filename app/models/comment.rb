@@ -19,15 +19,14 @@ class Comment < ActiveRecord::Base
     obj.update_attributes(:comments_count => c )
   end
 
-  def self.destroy_comment(p, c)
-    #debugger
-    if c.profile_id == p.id
+  def destroy_comment(p)
+    if profile_id == p.id
       return true
     else
-      if c.commentable_type == "Profile"
-        return true if c.commentable_id == p.id
-      elsif c.commentable_type == "Blog"
-        return true if !p.blogs.find(:all, :conditions =>{:id => c.commentable_id}).blank?
+      if commentable_type == "Profile"
+        return true if commentable_id == p.id
+      elsif commentable_type == "Blog"
+        return true if !p.blogs.find(:all, :conditions =>{:id => commentable_id}).blank?
       else
         return false
       end

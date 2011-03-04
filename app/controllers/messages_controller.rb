@@ -42,9 +42,6 @@ class MessagesController < ApplicationController
     if !@message.blank?
       @message.read = true
       @message.save!
-    else
-      flash[:error] = 'It looks like you don\'t have permission to view that page.'
-      redirect_back_or_default(profile_messages_path(@profile))
     end
   end
 

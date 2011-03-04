@@ -1,9 +1,1 @@
-%p.notice= notice
--if !@blogs.blank?
-  -@blogs.each do |blog|
-    %p
-      %b Title:
-      = blog.title
-    %p
-      %b Body:
-      = blog.body.html_safe
+= render :partial=>'blogs/blog' ,:collection => @blogs
