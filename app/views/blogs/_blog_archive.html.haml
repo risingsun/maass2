@@ -1,8 +1,1 @@
--@blogs.each do |blog|
-  %p
-  %b
-    = blog.title
-  %p
-  = blog.body.html_safe
-  %br
-= will_paginate @blogs
+= render :partial=>'blogs/blog' ,:collection => @blogs
