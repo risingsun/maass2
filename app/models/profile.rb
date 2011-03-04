@@ -226,7 +226,7 @@ class Profile < ActiveRecord::Base
   end
 
   def self.new_member
-    Profile.all
+    Profile.find(:all, :conditions => {:is_active => true}, :limit => 6, :order => 'created_at DESC')
   end
 
   def f(tr=15, options={})

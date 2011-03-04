@@ -29,6 +29,7 @@ Maass2::Application.routes.draw do
     get 'make_friend', :on => :member
     get 'search', :on=>:collection
     get 'friend_search', :on=>:collection
+    get 'active_user', :on => :member
   end
 
   resources :comments do

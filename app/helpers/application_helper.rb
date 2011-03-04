@@ -43,12 +43,6 @@ module ApplicationHelper
     [profile.first_name, profile.middle_name, profile.last_name].join(" ")
   end
 
-  def icon(profile, size = :small, img_opts = {}, link_opts = {})
-    return "" if profile.nil?
-    img_opts = {:title => full_name(profile), :alt => full_name(profile), :class => size}.merge(img_opts)
-    link_to(avatar_tag(profile, {:gender => profile.gender_str, :size => size, :paperclip_style => size }, img_opts), profile_url(profile), link_opts)
-  end
-
   def rounded_corner(options = {}, &block)
     raise ArgumentError, "Missing block" unless block_given?
     options.symbolize_keys!

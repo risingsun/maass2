@@ -10,5 +10,9 @@
     %p= link_to 'Direct Message', direct_message_profile_messages_path(mini_profile) unless me(mini_profile)
     %p= link_to('Read My Blogs', profile_blogs_path(mini_profile))
     %p= link_to('See My Polls', profile_polls_path(mini_profile))
+    - if mini_profile.is_active
+      %p= link_to('Deactivate', active_user_profile_path(mini_profile), :confirm => 'Are You Sure') if @is_admin == current_user
+    - else
+      %p= link_to('Activate', active_user_profile_path(mini_profile), :confirm => 'Are You Sure') if @is_admin == current_user
     %p
       %span{:id => "spinner_#{mini_profile.id}", :style => "display: none;"}= image_tag('spinner.gif')

@@ -3,6 +3,12 @@ class ProfilesController < ApplicationController
   before_filter :load_profile, :only => [:create,:edit,:update,:edit_account,:search]
   before_filter :search_results, :only => [:search]
   before_filter :show_panels, :only => [:show]
+
+  def index
+    if @is_admin
+      @profiles = Profile.all
+    end
+  end
     
   def create
     if @profile.save
@@ -63,9 +69,14 @@ class ProfilesController < ApplicationController
   end
 
   def edit_account
-    #debugger
     @permissions = @profile.permissions || @profile.permissions.build
     @notification = @profile.notification_control || @profile.build_notification_control
+  end
+
+  def active_user
+    @porfile = Profile.find(params[:id])
+    @porfile.toggle!(:is_active)
+    redirect_to profiles_path
   end
 
   def search
