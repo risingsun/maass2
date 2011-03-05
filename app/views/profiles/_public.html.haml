@@ -20,5 +20,11 @@
     .slidecontent
       = render 'profiles/education' if !@profile.educations.blank?
 = render :partial => 'polls/list'
-= render 'comments/form', :commt => @profile
-= render 'comments/show_comments', :commt => @profile
+.widget_large
+  %span.widget_lrg_top
+  = rounded_med_corner(:id => 'comment', :title => 'Comment') do
+    .middle_panel_profile
+      #comment{:style => "display:none;align:left;"}
+    .slidecontent
+      = render 'comments/form', :commt => @profile
+      = render 'comments/show_comments', :commt => @profile

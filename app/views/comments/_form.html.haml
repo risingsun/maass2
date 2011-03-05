@@ -6,5 +6,6 @@
   .comment_btn_container
     %button.buttons{:type => "submit"}
       = image_tag("add-comment.png")
-    %button.buttons#cancel{:type => "button",:onclick => "cancel_comment(#{commt.id})"}
-      = image_tag("cancel-button.png")
+    - if commt.class.name != "Profile"
+      %button.buttons#cancel{:type => "button",:onclick => "cancel_comment(#{commt.id})"}
+        = image_tag("cancel-button.png")

@@ -237,6 +237,10 @@ class Profile < ActiveRecord::Base
     Profile.find(:all, :conditions => {:is_active => true}, :limit => 6, :order => 'created_at DESC')
   end
 
+  def self.group_member(group)
+    Profile.find(:all, :conditions => {:group => group}, :limit => 6)
+  end
+
   def f(tr=15, options={})
     full_name(:length => tr)
   end
