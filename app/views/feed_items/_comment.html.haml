@@ -1,5 +1,5 @@
 - comment = feed_item.item
-%div
+%div{:id => "feed_item_#{feed_item.id}"}
   .comments
     %img{:alt => "User Comment Icon", :src => "/images/callout_bubble.gif", :title => "User Comment Icon"}
     = (commentable_text comment).html_safe
