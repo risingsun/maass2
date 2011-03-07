@@ -1,14 +1,14 @@
-- @receive_messages.each do |message|
-  %table
-    %tr
-      %th
-        = link_to message.subject, profile_message_path(@profile, message)
-      %td
+.widget_large
+  = render :partial => 'messages/header_links'
+  - @receive_messages.each do |message|
+    - profile = Profile.find(message.sender_id)
+    %div{:class => "comments"}
+      = link_to image_tag(set_icon(profile,'small')), profile
+      = link_to profile.full_name, profile
+      .messagebox_date
+        = time_ago_in_words message.created_at
+        ago
+      .messagebox_subject= link_to message.subject, profile_message_path(@profile, message)
+      .messagebox_message_preview
         = message.body
-      %td
-      %td
-        = link_to "reply", direct_message_profile_messages_path(message.sender_id)
-      %td
-        = link_to "Read", profile_message_path(@profile, message)
-      %td
-        = link_to "delete" ,profile_message_path(@profile, message), :method => :delete
+    = link_to image_tag('delete.png', :class => 'delete') ,profile_message_path(@profile, message), :method => :delete
