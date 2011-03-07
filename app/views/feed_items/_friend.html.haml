@@ -2,7 +2,7 @@
 - friendship = feed_item.item
 - inviter = friendship.inviter
 - invited = friendship.invited
-%div
+%div{:id => "feed_item_#{feed_item.id}"}
   .comments
     %img{:alt => "Friends Icon", :src => "/images/add_new_friends.gif", :title => "Friends Icon"}
     %strong

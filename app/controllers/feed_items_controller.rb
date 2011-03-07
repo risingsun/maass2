@@ -9,7 +9,7 @@ class FeedItemsController < ApplicationController
         flash[:notice] = 'Item successfully removed from the recent activities list.'
         redirect_to @profile
       end
-      wants.js { render(:update){|page| page.visual_effect :fade, "feed_item_#{params[:id]}".to_sym}}
+      wants.js
     end
   end
 
