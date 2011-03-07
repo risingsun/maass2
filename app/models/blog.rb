@@ -11,9 +11,16 @@ class Blog < ActiveRecord::Base
   validates :title, :presence => true
   validates :body, :presence => true
 
+  after_create :after_create_blog
+
   define_index do
     indexes :title
     indexes :body
+  end
+
+  def after_create_blog
+    feed_item = FeedItem.create(:item => self)
+    ([profile] + profile.friends + profile.followers).each{ |p| p.feed_items << feed_item }
   end
 
   def self.blog_groups
@@ -28,5 +35,5 @@ class Blog < ActiveRecord::Base
     blog = Blog.find(blog)
     c = Comment.find(:all,:conditions => { :commentable_id => blog }).count
     blog.update_attributes(:comments_count => c )
-  end
+  end  
 end

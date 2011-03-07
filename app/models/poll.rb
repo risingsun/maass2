@@ -15,6 +15,13 @@ class Poll < ActiveRecord::Base
   accepts_nested_attributes_for :poll_options, :allow_destroy=> true , :reject_if=> proc{|attr| attr['option'].blank?}
   accepts_nested_attributes_for :poll_responses, :allow_destroy=> true
 
+  after_create :after_create_poll
+
+  def after_create_poll
+    feed_item = FeedItem.create(:item => self)
+    ([profile] + profile.friends + profile.followers).each{ |p| p.feed_items << feed_item }
+  end
+
   def select_poll_options
     option_array = []
     poll_options.each do |p|

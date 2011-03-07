@@ -5,6 +5,24 @@ class Friend < ActiveRecord::Base
   belongs_to :inviter, :class_name => 'Profile'
   belongs_to :invited, :class_name => 'Profile'
 
+  ACCEPTED = 1
+  PENDING = 0
+
+  after_create :create_feed_item
+  after_update :create_feed_item
+
+  def create_feed_item
+    unless(status == ACCEPTED)
+      feed_item = FeedItem.create(:item => self)
+      inviter.feed_items << feed_item
+      invited.feed_items << feed_item
+    end
+  end
+
+  def description user
+    return 'friend' if status == ACCEPTED
+    return 'follower' if user == inviter
+  end
 
   def self.check_relation(user, friend)
     @friend =  find_by_inviter_id_and_invited_id_and_status(user, friend, ACCEPT_FRIEND)
@@ -19,5 +37,5 @@ class Friend < ActiveRecord::Base
     else
       return "nothing"
     end
-  end
+  end  
 end
