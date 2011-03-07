@@ -249,9 +249,25 @@ class Profile < ActiveRecord::Base
     n
   end
 
+  def find_feed_items
+    feed_items =[]
+    self.feed_items.each do|feed_item|
+      feed_items << feed_item if feed_item.item
+    end
+    return feed_items
+  end
+
   private
 
   before_update :permission_sync
+  after_update  :create_feed_item
+
+  def create_feed_item
+    feed_item = FeedItem.find_or_initialize_by_item_id_and_item_type(self.id,'Profile')
+    create_feed = feed_item.new_record?
+    feed_item.save
+    self.feed_items << feed_item if create_feed
+  end
 
   def permission_sync
     return true if permissions.nil?

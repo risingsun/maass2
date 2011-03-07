@@ -7,6 +7,13 @@ class Comment < ActiveRecord::Base
 
   validates :comment, :presence => true
 
+  after_create :after_create_comment
+
+  def after_create_comment
+    feed_item = FeedItem.create(:item => self)
+    ([profile] + profile.friends + profile.followers).each{ |p| p.feed_items << feed_item }
+  end
+
   def comment_count
     if commentable_type == "Blog"
       obj = Blog.find(commentable_id)

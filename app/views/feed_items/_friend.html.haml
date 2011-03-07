@@ -1,0 +1,11 @@
+- feed_item ||= @feed_item
+- friendship = feed_item.item
+- inviter = friendship.inviter
+- invited = friendship.invited
+%div
+  .comments
+    %img{:alt => "Friends Icon", :src => "/images/add_new_friends.gif", :title => "Friends Icon"}
+    %strong
+      = link_to h(inviter.full_name), inviter
+      is now a #{friendship.description inviter} of #{link_to h(invited.full_name), invited}.
+  = x_feed_link(feed_item) if me

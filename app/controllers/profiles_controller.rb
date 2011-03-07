@@ -56,6 +56,11 @@ class ProfilesController < ApplicationController
       @user = @profile.user
       @educations = @profile.educations
       @works = @profile.works
+      @feed_items = @profile.find_feed_items
+      respond_to do |wants|
+        wants.html
+        wants.rss {render :layout => false}
+      end
     else
       redirect_to homes_path
       flash[:notice] = "It looks like you don't have permission to view that page."
@@ -63,7 +68,6 @@ class ProfilesController < ApplicationController
   end
 
   def edit_account
-    #debugger
     @permissions = @profile.permissions || @profile.permissions.build
     @notification = @profile.notification_control || @profile.build_notification_control
   end
