@@ -5,15 +5,16 @@
 - unless polls.empty?
   .widget_large
     %span.widget_lrg_top
-    Most Recent Polls
-    ="(latest " + "#{polls.size }" + " of " + "#{total > size ? link_to( total, polls_path(profile)) : total} )"
-    #polls_info
+    - title = "Most Recent Polls (latest " + "#{polls.size }" + " of " + "#{total > size ? link_to( total, polls_path(profile)) : total} )"
+    = rounded_med_corner(:id => 'poll', :title => title) do
+      .middle_panel_profile
+        #polls_info{:style => "display:none;align:left;"}
+      .slidecontent
       .complete_middle_panel
         - polls.each do |p|
           .comments
             %img{:src => "/images/poll_icon.png"}
             = link_to p.question, profile_poll_path(p.profile,p)
             written #{time_ago_in_words p.created_at} ago
-            %br
-    %span.widget_lrg_btm
+
 

@@ -1,10 +1,18 @@
-%table
-  %tr
-    %th
+-profile = Profile.find(@message.sender_id)
+.widget_large
+  %span.widget_lrg_top
+  = render :partial => "header_links"
+  .comments
+    From:
+    =link_to profile.full_name, profile
+    %br
+    When:
+    =time_ago_in_words @message.created_at
+    ago
+    %br
+    %strong
+      Subject:
       = @message.subject
-    %td
+      %br
       = @message.body
-    %td
-      = link_to "reply", profile_message_path(@profile, @message)
-    %td
-      = link_to "delete" ,profile_message_path(@profile, @message), :method => :delete
+ 
