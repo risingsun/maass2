@@ -30,6 +30,15 @@ class MessagesController < ApplicationController
     @message.delete_message(@profile.id)
     redirect_to :back
   end
+  
+  def delete_messages
+    debugger
+    params[:check].each do |ch|
+      message = Message.find(ch)
+      message.delete_message(@profile.id)
+    end
+    redirect_to :back
+  end
 
   def direct_message
     @message = Message.new

@@ -3,12 +3,15 @@
   - @receive_messages.each do |message|
     - profile = Profile.find(message.sender_id)
     %div{:class => "comments"}
+      %input.left{:id => message.id, :name => "check[]", :type => "checkbox", :value => message.id}
       = link_to image_tag(set_icon(profile,'small')), profile
       = link_to profile.full_name, profile
-      .messagebox_date
-        = time_ago_in_words message.created_at
-        ago
+      %br
+      = time_ago_in_words message.created_at
+      ago
       .messagebox_subject= link_to message.subject, profile_message_path(@profile, message)
       .messagebox_message_preview
         = message.body
     = link_to image_tag('delete.png', :class => 'delete') ,profile_message_path(@profile, message), :method => :delete
+  = image_tag("select_all.png")
+  = image_tag("delete-selected.png")
