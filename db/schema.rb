@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110304121741) do
+ActiveRecord::Schema.define(:version => 20110305061309) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -221,6 +221,14 @@ ActiveRecord::Schema.define(:version => 20110304121741) do
     t.string   "blood_group"
     t.string   "icon_file_name"
     t.string   "icon_content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "site_contents", :force => true do |t|
+    t.integer  "parent_id"
+    t.string   "name"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

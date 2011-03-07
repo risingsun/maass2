@@ -1,6 +1,10 @@
-= link_to "Inbox", profile_messages_path
-|
-= link_to "Sent", sent_messages_profile_messages_path
-|
-= link_to "New Message", new_profile_message_path
+%h2.widget_lrg_title
+  .message_header_links
+    = link_to "Inbox", profile_messages_path
+    %span.grey
+    |
+    = link_to "Sent", sent_messages_profile_messages_path
+    %span.grey
+    |
+    = link_to "New Message", new_profile_message_path
     
