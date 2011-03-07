@@ -5,8 +5,9 @@
     %div{:class => "comments"}
       = link_to image_tag(set_icon(profile,'small')), profile
       = link_to profile.full_name, profile
-      .messagebox_date= #{time_ago_in_words message.created_at}
-      ago
+      .messagebox_date
+        = time_ago_in_words message.created_at
+        ago
       .messagebox_subject= link_to message.subject, profile_message_path(@profile, message)
       .messagebox_message_preview
         = message.body
