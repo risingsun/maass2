@@ -1,2 +1,6 @@
-= render :partial => 'messages/header_links'
-= render :partial => 'messages/receive_messages'
+- receive_messages ||= @receive_messages
+= render :partial => 'header_links'
+- if receive_messages.empty?
+  .comments No Message
+- else
+  = render :partial => 'receive_messages'

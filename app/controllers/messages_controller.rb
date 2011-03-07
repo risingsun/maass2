@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
   def destroy
     @message = Message.find(params[:id])
     @message.delete_message(@profile.id)
-    redirect_to profile_messages_path(@profile)
+    redirect_to :back
   end
 
   def direct_message
