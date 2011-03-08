@@ -1,45 +1,28 @@
 class Profile < ActiveRecord::Base
 
-  FEEDS_DISPLAY = 20
-  
+  include Friendship
+  include InMessaging
+  include Permissioning
+  include UserFeeds
+
   belongs_to :user
 
   attr_protected :is_active
 
   has_many :educations, :dependent => :destroy
   has_many :works, :dependent => :destroy
-  has_many :permissions, :dependent => :destroy, :attributes => true
   has_many :blogs
-  has_many :messages
   has_many :comments
+  has_many :profile_comments, :class_name => "Comment", :as => :commentable
   has_one :marker
   has_one :notification_control
   has_many :polls, :dependent => :destroy
   has_many :poll_responses, :dependent => :destroy
 
-  has_many :feeds
-  has_many :feed_items, :through => :feeds, :order => 'updated_at desc', :limit => FEEDS_DISPLAY
-  has_many :private_feed_items, :through => :feeds, :source => :feed_item, :conditions => {:is_public => false}, :order => 'created_at desc'
-  has_many :public_feed_items, :through => :feeds, :source => :feed_item, :conditions => {:is_public => true}, :order => 'created_at desc'
-
-  has_many :friendships, :class_name  => "Friend", :foreign_key => 'inviter_id', :conditions => "status = #{Friend::ACCEPT_FRIEND}"
-  has_many :follower_friends, :class_name => "Friend", :foreign_key => "invited_id", :conditions => "status = #{Friend::PENDING_FRIEND}"
-  has_many :following_friends, :class_name => "Friend", :foreign_key => "inviter_id", :conditions => "status = #{Friend::PENDING_FRIEND}"
-
-  has_many :friends,   :through => :friendships, :source => :invited
-  has_many :followers, :through => :follower_friends, :source => :inviter
-  has_many :followings, :through => :following_friends, :source => :invited
-
-  has_many :sent_messages, :class_name => 'Message', :order => 'created_at desc', :foreign_key => 'sender_id', :conditions => "sender_flag = #{true} and system_message = #{false}"
-  has_many :received_messages, :class_name => 'Message', :order => 'created_at desc', :foreign_key => 'receiver_id', :conditions => "receiver_flag = #{true}"
-  has_many :unread_messages, :class_name => 'Message', :conditions => ["messages.read = #{false}"], :foreign_key => 'receiver_id'
-
   accepts_nested_attributes_for :notification_control
   accepts_nested_attributes_for :blogs
-  accepts_nested_attributes_for :messages
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :marker
-  accepts_nested_attributes_for :permissions
   accepts_nested_attributes_for :educations, :allow_destroy => true,
     :reject_if => proc { |attrs| reject = %w(education_from_year education_fo_year institution).all?{|a| attrs[a].blank?} }
   accepts_nested_attributes_for :works, :allow_destroy => true, :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
@@ -54,10 +37,15 @@ class Profile < ActiveRecord::Base
   }
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
+  permissible_fields PERMISSION_FIELDS
+  my_default_permission_field :default_permission
+
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
   scope :active, :conditions => {:is_active => true}
-  
+
   @@days = ()
+
+  after_update :create_my_feed
 
   attr_accessor :search_by, :search_value
 
@@ -88,86 +76,8 @@ class Profile < ActiveRecord::Base
     indexes :mobile
   end
 
-  def check_friend(user, friend)
-    Friend.find_by_inviter_id_and_invited_id(user, friend)
-  end
-
-  def start_following(friend)
-    user.profile.following_friends.create(:invited_id => friend)
-  end
-
-  def stop_following(friend)
-    if !check_friend(user.profile.id, friend).blank?
-      Friend.destroy(check_friend(user.profile.id, friend))
-    end
-    if !check_friend(friend, user.profile.id).blank?
-      Friend.destroy(check_friend(friend, user.profile.id))
-    end
-  end
-
-  def make_friend(friend)
-    user.profile.follower_friends.where(:inviter_id =>friend )[0].update_attribute(:status, Friend::ACCEPT_FRIEND)
-    user.profile.friendships.create(:invited_id => friend, :status => Friend::ACCEPT_FRIEND)
-  end
-
-  def friend_of? user
-    unless self.friends.where(:id=>user.profile.id).blank?
-      return true
-    end
-  end
-
-  def all_friends
-    @my_friends ||= (self.followings+self.friends+[self]).uniq.compact 
-  end
-
-  def message_count
-    self.received_messages.count if self.received_messages.count != 0
-  end
-
-  def profile_permissions
-    if @permission_objects.nil?
-      @permission_objects = []
-      dbp = db_permissions
-      @permission_objects = PERMISSION_FIELDS.map do |f|
-        dbp[f].nil? ? permissions.build(:permission_field => f, :permission_type => default_permission) : dbp[f]
-      end
-    end
-    @permission_objects
-  end
-
-  def db_permissions
-    if @db_permissions.nil? && !permissions.nil?
-      @db_permissions = Hash.new
-      permissions.each { |p| @db_permissions[p.permission_field] = p }
-    end
-    @db_permissions
-  end
-
-  def field_permissions
-    
-    if @field_permissions.nil?
-      @field_permissions = Hash.new
-      dbp = db_permissions
-      PERMISSION_FIELDS.each do |f|
-        @field_permissions[f] = dbp[f].nil? ? default_permission.to_sym : dbp[f].permission_type.to_sym
-      end
-    end
-    return @field_permissions
-  end
-
-  def can_see_field(field, profile)
-    return false if self.send(field).blank?
-    return true if profile == self
-    permissions =  field_permissions
-    permission = permissions[field]
-    return true if permission.nil?
-    if permission == :Everyone
-      return true
-    elsif permission == :Myself
-      return false
-    else permission == :Friends
-      return friend_of?(profile.user)
-    end
+  if is_me?(another_profile)
+    self == (another_profile.kind_of?(User) ? another_profile.profile : another_profile)
   end
 
   def self.search_by_keyword(p)
@@ -227,7 +137,7 @@ class Profile < ActiveRecord::Base
     happy_days = happy_days.sort{|a,b| a[1][:from_today] <=> b[1][:from_today] }
     return  happy_days
   end
-  
+
 
   def gender_str
     gender.downcase
@@ -251,31 +161,6 @@ class Profile < ActiveRecord::Base
       n = user.login rescue 'Deleted user'
     end
     n
-  end
-
-  def find_feed_items
-    feed_items =[]
-    self.feed_items.each do|feed_item|
-      feed_items << feed_item if feed_item.item
-    end
-    return feed_items
-  end
-
-  private
-
-  before_update :permission_sync
-  after_update  :create_feed_item
-
-  def create_feed_item
-    feed_item = FeedItem.find_or_initialize_by_item_id_and_item_type(self.id,'Profile')
-    create_feed = feed_item.new_record?
-    feed_item.save
-    self.feed_items << feed_item if create_feed
-  end
-
-  def permission_sync
-    return true if permissions.nil?
-    permissions.delete permissions.select {|p| p.permission_type == default_permission}
   end
 
 end

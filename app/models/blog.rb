@@ -3,7 +3,7 @@ class Blog < ActiveRecord::Base
   acts_as_taggable_on :tags
 
   belongs_to :profile
-  has_many :comments
+  has_many :comments, :as => :commentable
 
   scope :by_month_year,
     lambda {|month,year| {:conditions => ["monthname(created_at)=? and year(created_at)=?",month,year]}}
@@ -35,5 +35,5 @@ class Blog < ActiveRecord::Base
     blog = Blog.find(blog)
     c = Comment.find(:all,:conditions => { :commentable_id => blog }).count
     blog.update_attributes(:comments_count => c )
-  end  
+  end
 end

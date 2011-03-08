@@ -13,6 +13,12 @@ jQuery('.datebalks').datepicker({
      prevText: ""
 
 });
+
+jQuery("a.select_all").click(function(){
+
+ jQuery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
+  });
+
 });
 
  function remove_fields(link) {
@@ -65,3 +71,4 @@ Effect.SlideUpAndDown = function(element,tagid, head) {
   }
 
 }
+

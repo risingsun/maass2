@@ -3,20 +3,12 @@
     = a.semantic_fields_for :notification_control do |p|
       %table{:name => "notification_table"}
         %tr
-          %td
-            = p.label "Notification"
-          %td
-            = p.label "Email Notification"
-          %td
-            = p.label "Message Notification"
+          %td Notification
+          %td Email Notification
+          %td Message Notification
         - NOTIFICATION_FIELDS.each do |x|
           %tr
             %td= p.label x
-            - f=@profile.notification_control.send("#{x}")
-            %td
-              = p.check_box(x,{:multiple => true, :checked => (true if [1, 2].include?(f))},'e',nil)
-            - if(x!='message' && x!='blog_comment' && x!='profile_comment')
-              %td= p.check_box x,{:multiple => true, :checked => (true if [1, 3].include?(f))}, 'm', nil
-            - else
-              %td -
+            %td= p.check_box(x,{:multiple => true, :checked => p.object.wants_email?(x)},NotificationControl::EMAIL_BIT,0)
+            %td= p.check_box(x,{:multiple => true, :checked => p.object.wants_internal_messaging?(x)},NotificationControl::INTERNAL_MESSAGE_BIT,0)
       = a.commit_button 'Update Notification'
