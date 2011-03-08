@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
-  belongs_to :commentable, :polymorphic => true
+
+  belongs_to :commentable, :polymorphic => true, :counter_cache => true
   belongs_to :blog
   belongs_to :profile
 
@@ -7,37 +8,28 @@ class Comment < ActiveRecord::Base
 
   validates :comment, :presence => true
 
-  after_create :after_create_comment
+  include UserFeeds
+  after_create :create_my_feed
+  after_create :create_other_feeds
 
-  def after_create_comment
-    feed_item = FeedItem.create(:item => self)
-    ([profile] + profile.friends + profile.followers).each{ |p| p.feed_items << feed_item }
+  def create_other_feeds
+    ([profile] + profile.friends + profile.followers).each{ |p| p.feed_items << my_feed }
   end
 
-  def comment_count
-    if commentable_type == "Blog"
-      obj = Blog.find(commentable_id)
-    elsif commentable_type == "Profile"
-      obj = Profile.find(commentable_id)
-    else
-      obj = Event.find(commentable_id)
-    end
-    c = Comment.find(:all,:conditions => { :commentable_id => obj, :commentable_type => obj.class.name }).count
-    obj.update_attributes(:comments_count => c )
+  def by_me?(profile)
+    self.profile == profile
   end
 
-  def destroy_comment(p)
-    if profile_id == p.id
-      return true
-    else
-      if commentable_type == "Profile"
-        return true if commentable_id == p.id
-      elsif commentable_type == "Blog"
-        return true if !p.blogs.find(:all, :conditions =>{:id => commentable_id}).blank?
-      else
-        return false
-      end
-
-    end
+  def on_my_profile?(profile)
+    self.commentable == profile
   end
+
+  def on_my_commentable?(profile)
+    self.commentable && self.commentable.respond_to?(:profile) && (self.commentable.profile == profile)
+  end
+
+  def destroyable_by?(profile)
+    by_me?(profile) or on_my_profile?(profile) or on_my_commentable?(profile)
+  end
+
 end

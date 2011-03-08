@@ -6,12 +6,17 @@ Maass2::Application.routes.draw do
   resources :events
   resources :votes
   resources :profiles do
+
+    resource :friendship, :only => [:create, :update, :destroy]
+
     resources :friends
+
     resources :messages do
       get 'direct_message', :on => :collection
       get 'sent_messages', :on => :collection
       get 'delete_messages', :on => :member
     end
+
 
     resources :blogs  do
       get 'blog_archive', :on => :member
@@ -24,23 +29,18 @@ Maass2::Application.routes.draw do
     end
 
     resources :feed_items
-    
+
     post 'load_profile', :on => :collection
     get 'edit_account', :on => :member
-    get 'start_following', :on => :member
-    get 'stop_following', :on => :member
-    get 'make_friend', :on => :member
     get 'search', :on=>:collection
     get 'friend_search', :on=>:collection
     get 'active_user', :on => :member
   end
 
-  resources :comments do
-  end
- 
-
+  resources :comments
 
   root :to=>"homes#index"
+
   resources :homes do
     get 'polls', :on => :member
     get 'admin', :on => :member
@@ -49,7 +49,7 @@ Maass2::Application.routes.draw do
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
   #  match '/blog_archive/:month/:year', :to => 'blogs#blog_archive'
- 
+
   #  match '/user/:user_id/profile/:id',  :to => 'profiles#show'
 
   # The priority is based upon order of creation:

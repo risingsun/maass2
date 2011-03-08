@@ -1,21 +1,28 @@
 class NotificationControl < ActiveRecord::Base
+
+  EMAIL_BIT = 1
+  INTERNAL_MESSAGE_BIT = 2
+  NOTIFICATION_FIELDS = %w(news event message blog_comment profile_comment follow delete_friend )
+
   belongs_to :profile
 
-  def self.set_value(notify)
-    notify.each do |k,v|
-      s=v.to_s
-      case s
-      when "em"
-        notify[k]=1
-      when "e"
-        notify[k]=2
-      when "m"
-        notify[k]=3
-      when ""
-        notify[k]=0
-      end
+  NOTIFICATION_FIELDS.each do |x|
+    define_method("#{x}=") do |value|
+      write_attribute(x,parse_bit(value))
     end
-    return notify
-   end
-   
+  end
+
+  def wants_email?(field)
+    value = send(field)
+    value.nil? or (value & EMAIL_BIT) > 0
+  end
+
+  def wants_interenal_message?(field)
+    (send(field) & INTERNAL_MESSAGE_BIT) > 0
+  end
+
+  def parse_bit(value)
+    value.sum
+  end
+
 end

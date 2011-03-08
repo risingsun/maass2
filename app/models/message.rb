@@ -1,4 +1,5 @@
 class Message < ActiveRecord::Base
+
   belongs_to :profile
 
   def delete_message(profile_id)
@@ -17,4 +18,5 @@ class Message < ActiveRecord::Base
       self.destroy
     end
   end
+
 end

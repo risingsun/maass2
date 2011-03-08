@@ -8,8 +8,7 @@ class Friend < ActiveRecord::Base
   ACCEPTED = 1
   PENDING = 0
 
-  after_create :create_feed_item
-  after_update :create_feed_item
+  after_save :create_feed_item
 
   def create_feed_item
     unless(status == ACCEPTED)
@@ -19,8 +18,12 @@ class Friend < ActiveRecord::Base
     end
   end
 
+  def is_accepted?
+    status == ACCEPTED
+  end
+
   def description user
-    return 'friend' if status == ACCEPTED
+    return 'friend' if is_accepted?
     return 'follower' if user == inviter
   end
 
@@ -37,5 +40,5 @@ class Friend < ActiveRecord::Base
     else
       return "nothing"
     end
-  end  
+  end
 end

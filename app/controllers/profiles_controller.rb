@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
       @profiles = Profile.all
     end
   end
-    
+
   def create
     if @profile.save
       flash[:notice] = "Profile created."
@@ -33,18 +33,8 @@ class ProfilesController < ApplicationController
       @profile.permissions.each {|p| p.destroy}
       redirect_to edit_account_profile_path(current_user.profile)
     when "Update Notification"
-      NotificationControl.set_value(params[:profile][:notification_control_attributes])
       @profile.update_attributes(params[:profile])
       redirect_to edit_account_profile_path(current_user.profile)
-    when "add following"
-      @profile.start_following(params[:id])
-      redirect_to request.referer
-    when "stop follow"
-      @profile.stop_following(params[:id])
-      redirect_to request.referer
-    when "make friend"
-      @profile.make_friend(params[:id])
-      redirect_to request.referer
     else
       @profile.update_attributes params[:profile]
       flash[:notice] = "Profile updated."
@@ -53,7 +43,6 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-
   end
 
   def show
@@ -62,7 +51,7 @@ class ProfilesController < ApplicationController
       @user = @profile.user
       @educations = @profile.educations
       @works = @profile.works
-      @feed_items = @profile.find_feed_items
+      @feed_items = @profile.feeds_with_item
       respond_to do |wants|
         wants.html
         wants.rss {render :layout => false}
@@ -113,5 +102,5 @@ class ProfilesController < ApplicationController
   def show_panels
     @show_profile_side_panel = true
   end
-  
+
 end

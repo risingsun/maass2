@@ -17,7 +17,7 @@
       |
     %li.menu_text
       = link_to 'My Messages', profile_messages_path(current_user.profile)
-      = current_user.profile.message_count
+      = current_user.profile.received_messages.size
     - if @is_admin
       %li.menu_text
         |
@@ -30,4 +30,4 @@
   = link_to "Edit Profile", edit_path
   = link_to(image_tag("logout.png", :title=>"Logout", :align=>"top"), destroy_user_session_path ,:class=>"logoutuser")
   = link_to('Logout', destroy_user_session_path)
- 
+
