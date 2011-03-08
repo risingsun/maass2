@@ -1,6 +1,7 @@
 .profile_card
   .img_div
     = link_to image_tag(set_icon(mini_profile,'small_60')), mini_profile
+    = link_to image_tag('edit.png', :title => "Edit Profile", :class => "img01"), edit_profile_path(@p) if me(mini_profile)
   .text_div
     %h3.name= link_to h(mini_profile.f(20)), mini_profile, :class => "profile_name"
     %p= year_link(mini_profile)
