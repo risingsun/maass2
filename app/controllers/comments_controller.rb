@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @p.comments.create(params[:comment])
     @comment.save
-    @comment.comment_count()
+#    @comment.comment_count()
     redirect_to request.referer
   end
 

@@ -5,7 +5,7 @@ module InMessaging
   included do
     has_many :messages
     has_many :sent_messages, :class_name => 'Message', :order => 'created_at desc', :foreign_key => 'sender_id', :conditions => "sender_flag = #{true} and system_message = #{false}"
-    has_many :received_messages, :class_name => 'Message', :order => 'created_at desc', :foreign_key => 'receiver_id', :conditions => where("receiver_flag" => true)
+    has_many :received_messages, :class_name => 'Message', :order => 'created_at desc', :foreign_key => 'receiver_id', :conditions => ["receiver_flag",true]
     has_many :unread_messages, :class_name => 'Message', :conditions => where("messages.read",false), :foreign_key => 'receiver_id'
 
     accepts_nested_attributes_for :messages

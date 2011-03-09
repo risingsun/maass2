@@ -22,6 +22,7 @@ module UserFeeds
     end
 
     def my_feed
+      #@my_feed ||= feed_items.for_item(self).first
       @my_feed ||= profile.feed_items.for_item(self).first
     end
 

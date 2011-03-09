@@ -11,7 +11,7 @@ class Comment < ActiveRecord::Base
   include UserFeeds
   after_create :create_my_feed
   after_create :create_other_feeds
-    
+
   def by_me?(profile)
     self.profile == profile
   end

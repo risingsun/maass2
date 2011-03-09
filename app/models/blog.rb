@@ -9,6 +9,7 @@ class Blog < ActiveRecord::Base
 
   validates :title, :presence => true
   validates :body, :presence => true
+
   include UserFeeds
   #has_one :feed_item, :as => :commentable
   after_create :create_my_feed
@@ -22,7 +23,7 @@ class Blog < ActiveRecord::Base
     indexes :title
     indexes :body
   end
-  
+
   def self.blog_groups
     find(:all,
       :select => "count(*) as cnt, MONTHNAME(created_at) as month,YEAR(created_at) as year" ,
@@ -30,11 +31,4 @@ class Blog < ActiveRecord::Base
       :order => "year DESC, MONTH(created_at) DESC" )
   end
 
-  def self.comment_count(blog)
-    #    debugger
-    blog = Blog.find(blog)
-    c = Comment.find(:all,:conditions => { :commentable_id => blog }).count
-    blog.update_attributes(:comments_count => c )
-  end
-  
 end

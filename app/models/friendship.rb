@@ -39,9 +39,8 @@ module Friendship
     end
 
     def stop_following(friend)
-      #debugger
       if friends_with?(friend)
-        friends.where(:invited_id => friend).first.destroy
+        friendships.where(:invited_id => friend).first.destroy
         friend.friendships.where(:invited_id => self).first.destroy
       elsif follows?(friend)
         following_friends.where(:invited_id => friend).first.destroy
@@ -55,9 +54,9 @@ module Friendship
       friendships.create(:invited => friend, :status => Friend::ACCEPT_FRIEND)
     end
 
-#    def friend_of? user
-#      friends.where(:id=>user.profile.id).present?
-#    end
+    #    def friend_of? user
+    #      friends.where(:id=>user.profile.id).present?
+    #    end
 
     def friend_of? profile
       friends.where(:id=>profile.id).present?

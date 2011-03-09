@@ -2,21 +2,21 @@
   %span.widget_lrg_top
   = rounded_med_corner(:id => 'personal', :title => 'Personal Info') do
     .middle_panel_profile
-      #personal_info{:style => "display:none;"}
+      #personal_info
     .slidecontent
       = render :partial => "personal"
 .widget_large
   %span.widget_lrg_top
   = rounded_med_corner(:id => 'work_info', :title => 'Work Info') do
     .middle_panel_profile
-      #work_info{:style => "display:none;align:left;"}
+      #work_info
     .slidecontent
       = render 'profiles/work' if !@profile.works.blank?
 .widget_large
   %span.widget_lrg_top
   = rounded_med_corner(:id => 'education', :title => 'Education Info') do
     .middle_panel_profile
-      #education_info{:style => "display:none;align:left;"}
+      #education_info
     .slidecontent
       = render 'profiles/education' if !@profile.educations.blank?
 = render :partial => 'profiles/recent_activity'
@@ -25,7 +25,7 @@
   %span.widget_lrg_top
   = rounded_med_corner(:id => 'comment', :title => 'Comment') do
     .middle_panel_profile
-      #comment{:style => "display:none;align:left;"}
+      #comment
     .slidecontent
       = render 'comments/form', :commt => @profile
       = render 'comments/show_comments', :commt => @profile
