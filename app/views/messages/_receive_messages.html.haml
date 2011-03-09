@@ -1,17 +1,19 @@
 .widget_large
   = render :partial => 'messages/header_links'
-  - @receive_messages.each do |message|
-    - profile = Profile.find(message.sender_id)
-    %div{:class => "comments"}
-      %input.left{:id => message.id, :name => "check[]", :type => "checkbox", :value => message.id}
-      = link_to image_tag(set_icon(profile,'small')), profile
-      = link_to profile.full_name, profile
-      %br
-      = time_ago_in_words message.created_at
-      ago
-      .messagebox_subject= link_to message.subject, profile_message_path(@profile, message)
-      .messagebox_message_preview
-        = message.body
-    = link_to image_tag('delete.png', :class => 'delete') ,profile_message_path(@profile, message), :method => :delete
-  = image_tag("select_all.png")
-  = image_tag("delete-selected.png")
+  - form_for :message, :url => delete_messages_profile_messages_path(@p), :html => {:id => "message_list"} do |f|
+    - @receive_messages.each do |message|
+      - profile = Profile.find(message.sender_id)
+      %div{:class => "comments"}
+        %input.left{:id => message.id, :name => "check[]", :type => "checkbox", :value => message.id}
+        = link_to image_tag(set_icon(profile,'small')), profile
+        = link_to profile.full_name, profile
+        %br
+        = time_ago_in_words message.created_at
+        ago
+        .messagebox_subject= link_to message.subject, profile_message_path(@profile, message)
+        .messagebox_message_preview
+          = message.body
+      = link_to image_tag('delete.png', :class => 'delete') ,profile_message_path(@profile, message), :method => :delete
+    = link_to image_tag("select_all.png"), '#', :class => "select_all"
+    %button.buttons{:type => "submit"}
+      = image_tag("delete-selected.png")

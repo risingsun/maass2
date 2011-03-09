@@ -31,5 +31,9 @@ module UserFeeds
         self.feed_items.create(:item => self) if my_feed.blank?
       end
 
+     def create_other_feeds
+      ([profile] + profile.friends + profile.followers).each{ |p| p.feed_items << my_feed }
+     end
+
   end
 end

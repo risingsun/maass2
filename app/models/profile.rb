@@ -76,7 +76,7 @@ class Profile < ActiveRecord::Base
     indexes :mobile
   end
 
-  if is_me?(another_profile)
+  def is_me?(another_profile)
     self == (another_profile.kind_of?(User) ? another_profile.profile : another_profile)
   end
 
