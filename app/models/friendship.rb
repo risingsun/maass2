@@ -18,13 +18,16 @@ module Friendship
   module InstanceMethods
 
     def friends_with?(friend)
-      profile = friend.kind_of?(User) ? friend.profile : friend
+      #profile = friend.kind_of?(User) ? friend.profile : friend
+      self.friends.include?(friend)
     end
 
-    def follows?(profile)
+    def follows?(friend)
+      self.followings.include?(friend)
     end
 
-    def is_followed_by?(profile)
+    def is_followed_by?(friend)
+      self.followers.include?(friend)
     end
 
     def check_friend(user, friend)
@@ -32,29 +35,32 @@ module Friendship
     end
 
     def start_following(friend)
-      following_friends.create(:invited_id => friend)
+      following_friends.create(:invited => friend)
     end
 
     def stop_following(friend)
-      if friends_with?(friend) or follows?(friend)
-        # Some destruction
-      end
-
-      if !check_friend(user.profile.id, friend).blank?
-        Friend.destroy(check_friend(user.profile.id, friend))
-      end
-      if !check_friend(friend, user.profile.id).blank?
-        Friend.destroy(check_friend(friend, user.profile.id))
+      #debugger
+      if friends_with?(friend)
+        friends.where(:invited_id => friend).first.destroy
+        friend.friendships.where(:invited_id => self).first.destroy
+      elsif follows?(friend)
+        following_friends.where(:invited_id => friend).first.destroy
+      else
+        follower_friends.where(:invited_id => friend).first.destroy
       end
     end
 
     def make_friend(friend)
-      follower_friends.where(:inviter_id => friend)[0].update_attribute(:status, Friend::ACCEPT_FRIEND)
-      friendships.create(:invited_id => friend, :status => Friend::ACCEPT_FRIEND)
+      follower_friends.where(:inviter_id => friend).first.update_attribute(:status, Friend::ACCEPT_FRIEND)
+      friendships.create(:invited => friend, :status => Friend::ACCEPT_FRIEND)
     end
 
-    def friend_of? user
-      friends.where(:id=>user.profile.id).present?
+#    def friend_of? user
+#      friends.where(:id=>user.profile.id).present?
+#    end
+
+    def friend_of? profile
+      friends.where(:id=>profile.id).present?
     end
 
     def all_friends
