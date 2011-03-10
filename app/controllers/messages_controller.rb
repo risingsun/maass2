@@ -21,7 +21,12 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @profile.sent_messages.create(params[:message])
+    @message = @profile.sent_messages.build(params[:message])
+#    if @messgae.save?
+#      flash[:notice] = "Your Message has been sent."
+#    else
+#      flash[:notice] = @message.errors.to_s
+#    end
     redirect_to profile_messages_path(@profile)
   end
 
@@ -41,10 +46,15 @@ class MessagesController < ApplicationController
     redirect_to :back
   end
 
-
   def direct_message
     @message = Message.new
     @to_list = [Profile.find(params[:profile_id])]
+    render :action => "new"
+  end
+
+  def reply_message
+    @message = Message.find(params[:id])
+    @to_list = [@message.sender]
     render :action => "new"
   end
 
