@@ -67,24 +67,23 @@ module Permissioning
 
     def can_see_field(field, profile)
       field_permission = fetch_permission_for(field)
+      #      return !field_permission ||
+      #             field.blank? ||
+      #             field_permission.everyone? ||
+      #             (field_permission.myself? && is_me?(profile) ||
+      #             (field_permission.friends? && friend_of?(profile)))
+
       return true if field_permission == :Everyone ||
-                     (field_permission == :Myself && is_me?(profile)) ||
-                      (field_permission == :Friends && friend_of?(profile))
-                    
-                    
-#      return !field_permission ||
-#             field.blank? ||
-#             field_permission.everyone? ||
-#             (field_permission.myself? && is_me?(profile) ||
-#             (field_permission.friends? && friend_of?(profile)))
+        (field_permission == :Myself && is_me?(profile)) ||
+        (field_permission == :Friends && friend_of?(profile))
     end
 
     private
 
-      def permission_sync
-        return true if permissions.nil?
-        permissions.delete permissions_with_my_default
-      end
+    def permission_sync
+      return true if permissions.nil?
+      permissions.delete permissions_with_my_default
+    end
 
   end
 

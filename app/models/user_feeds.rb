@@ -22,18 +22,23 @@ module UserFeeds
     end
 
     def my_feed
-      @my_feed ||= feed_items.for_item(self).first
+      #@my_feed ||= feed_items.for_item(self).first
+      @my_feed ||= profile.feed_items.for_item(self).first
     end
 
     private
 
-      def create_my_feed
-        self.feed_items.create(:item => self) if my_feed.blank?
-      end
+    def create_my_feed
+      #self.feed_items.create(:item => self) if my_feed.blank?
+      p = self.kind_of?(Profile) ? self : profile
+      p.feed_items.create(:item => self)
+    end
 
-     def create_other_feeds
-      ([profile] + profile.friends + profile.followers).each{ |p| p.feed_items << my_feed }
-     end
+    def create_other_feeds
+      #([profile]+profile.friends + profile.followers).each{ |p| p.feed_items << my_feed }
+      (profile.friends + profile.followers).each{ |p| p.feed_items << my_feed }
+    end
 
   end
+  
 end
