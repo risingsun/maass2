@@ -1,0 +1,10 @@
+%div{:id => "#{comment.id}_comment"}
+  .comments
+    = link_to image_tag(set_icon(comment.profile,'small')), comment.profile
+    %strong
+      = link_to (comment.profile.full_name), comment.profile
+      commented
+      #{time_ago_in_words comment.created_at} ago
+    .comment_tex= sanitize(comment.comment)
+  = link_to(image_tag('delete.png',:border =>0), comment, :class => 'delete', :method => :delete) if comment.destroyable_by?(@p)
+

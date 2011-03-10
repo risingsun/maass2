@@ -40,7 +40,6 @@ class BlogsController < ApplicationController
 
   def create
     @blog = @profile.blogs.build(params[:blog])
-    
     if params[:preview_button] || !@blog.save
       render :action => 'new'
     else

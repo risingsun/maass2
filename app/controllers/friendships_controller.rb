@@ -9,7 +9,7 @@ class FriendshipsController < ApplicationController
     else
       flash[:error] = ""
     end
-    redirect_to request.referer
+    redirect_to :back
   end
 
   # Start Following back (become friends)
@@ -19,7 +19,7 @@ class FriendshipsController < ApplicationController
     else
       flash[:error] = ""
     end
-    redirect_to request.referer
+    redirect_to :back
   end
 
   # Stop following (become just followers)
@@ -29,7 +29,7 @@ class FriendshipsController < ApplicationController
     else
       flash[:error] = ""
     end
-    redirect_to request.referer
+    redirect_to :back
   end
 
   private

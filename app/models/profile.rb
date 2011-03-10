@@ -38,6 +38,7 @@ class Profile < ActiveRecord::Base
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   permissible_fields PERMISSION_FIELDS
+  
   my_default_permission_field :default_permission
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
@@ -76,7 +77,7 @@ class Profile < ActiveRecord::Base
     indexes :mobile
   end
 
-  if is_me?(another_profile)
+  def is_me?(another_profile)
     self == (another_profile.kind_of?(User) ? another_profile.profile : another_profile)
   end
 

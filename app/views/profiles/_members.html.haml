@@ -1,0 +1,9 @@
+= rounded_corner(:title => type, :size => 'small') do
+  - members.each do |member|
+    .profile_pic_panel
+      .profile_img_wrap
+        = link_to (image_tag(set_icon(member,'small_60')), member)
+      %span{:class => cycle('odd','even')}
+        = link_to h(member.f(18)), member
+        %br
+        = member.group

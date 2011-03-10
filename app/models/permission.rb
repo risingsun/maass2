@@ -4,6 +4,10 @@ class Permission < ActiveRecord::Base
 
   belongs_to :profile
 
+  def field_name
+    permission_field.to_s.titleize
+  end
+
   def everyone?
     permission_type == "Everyone"
   end
