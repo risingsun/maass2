@@ -45,7 +45,7 @@ module Friendship
       elsif follows?(friend)
         following_friends.where(:invited_id => friend).first.destroy
       else
-        follower_friends.where(:invited_id => friend).first.destroy
+        follower_friends.where(:inviter_id => friend).first.destroy
       end
     end
 
@@ -54,9 +54,10 @@ module Friendship
       friendships.create(:invited => friend, :status => Friend::ACCEPT_FRIEND)
     end
 
-    #    def friend_of? user
-    #      friends.where(:id=>user.profile.id).present?
-    #    end
+#    def friend_of? user
+#      friends.where(:id=>user.profile.id).present?
+#    end
+
 
     def friend_of? profile
       friends.where(:id=>profile.id).present?

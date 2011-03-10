@@ -15,4 +15,8 @@
       = @message.subject
       %br
       = @message.body
+  .message_reply_button
+    - if @p.id == @message.receiver_id
+      = link_to image_tag("reply.png"), reply_message_profile_message_path(@p, @message)
+  %span.widget_lrg_btm
  

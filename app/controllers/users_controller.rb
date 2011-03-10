@@ -13,7 +13,6 @@ class UsersController < Devise::RegistrationsController
       redirect_to edit_account_profile_path(current_user)
     else
       clean_up_passwords(current_user)
-      #debugger
       render "profiles/edit_account" 
     end
   end

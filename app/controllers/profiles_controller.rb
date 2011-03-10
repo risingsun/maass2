@@ -16,7 +16,6 @@ class ProfilesController < ApplicationController
     else
       flash[:notice] = "Failed creation."
     end
-
     render 'edit'
   end
 
@@ -27,14 +26,14 @@ class ProfilesController < ApplicationController
     case params[:commit]
     when "Update Permissions"
       @profile.update_attributes(params[:profile])
-      redirect_to edit_account_profile_path(current_user.profile)
+      redirect_to edit_account_profile_path(@p)
     when "Set Default"
       @profile.update_attributes(params[:profile])
       @profile.permissions.each {|p| p.destroy}
-      redirect_to edit_account_profile_path(current_user.profile)
+      redirect_to edit_account_profile_path(@p)
     when "Update Notification"
       @profile.update_attributes(params[:profile])
-      redirect_to edit_account_profile_path(current_user.profile)
+      redirect_to edit_account_profile_path(@p)
     else
       @profile.update_attributes params[:profile]
       flash[:notice] = "Profile updated."
@@ -63,7 +62,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit_account
-    @permissions = @profile.permissions || @profile.permissions.build
+    @permissions = @profile.permissions || @profile.build_permissions
     @notification = @profile.notification_control || @profile.build_notification_control
   end
 

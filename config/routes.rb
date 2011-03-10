@@ -14,6 +14,7 @@ Maass2::Application.routes.draw do
     resources :messages do
       get 'direct_message', :on => :collection
       get 'sent_messages', :on => :collection
+      get 'reply_message', :on => :member
       post 'delete_messages', :on => :collection
     end
 

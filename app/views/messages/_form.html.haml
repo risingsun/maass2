@@ -1,4 +1,7 @@
 - hide_header ||= false
+- unless @message.new_record?
+  - @message.subject = "RE: " + @message.subject
+  - @message.body = "\n\n\n\n\n\n\n\n\n" + @message.body.gsub(/^/, '> ')
 .widget_large
   %span.widget_lrg_top
   - unless hide_header
@@ -6,7 +9,7 @@
   - form_for :message, :url => profile_messages_path(@p) do |f|
     .row_complete
       %label{:for => "message_to"} To
-      = f.select :receiver_id, @to_list.map{|p| [full_name(p), p.id]}
+      = f.select :receiver_id, @to_list.map{|p| [full_name(p), p.id]},:class => "big_text_field",:title => "To List"
       = f.hidden_field :sender_id, :value => current_user.profile.id
     %label{:for => "message_to"} Subject
     = f.text_field :subject, :title => "Subject",:class => "big_text_field" ,:wrap_class => "row_complete"
