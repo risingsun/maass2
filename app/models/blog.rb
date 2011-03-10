@@ -5,22 +5,23 @@ class Blog < ActiveRecord::Base
   belongs_to :profile
   has_many :comments, :as => :commentable
 
-  scope :by_month_year,
-    lambda {|month,year| {:conditions => ["monthname(created_at)=? and year(created_at)=?",month,year]}}
+  scope :by_month_year, lambda {|month,year| {:conditions => ["monthname(created_at)=? and year(created_at)=?",month,year]}}
 
   validates :title, :presence => true
   validates :body, :presence => true
 
-  after_create :after_create_blog
+  include UserFeeds
+  #has_one :feed_item, :as => :commentable
+  after_create :create_my_feed
+  after_create :create_other_feeds
+
+  #  def create_my_feed
+  #    profile.feed_items.create(:item => self)
+  #  end
 
   define_index do
     indexes :title
     indexes :body
-  end
-
-  def after_create_blog
-    feed_item = FeedItem.create(:item => self)
-    ([profile] + profile.friends + profile.followers).each{ |p| p.feed_items << feed_item }
   end
 
   def self.blog_groups
@@ -29,4 +30,5 @@ class Blog < ActiveRecord::Base
       :group => "month,year",
       :order => "year DESC, MONTH(created_at) DESC" )
   end
+
 end

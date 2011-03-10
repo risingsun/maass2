@@ -58,6 +58,7 @@ module Friendship
 #      friends.where(:id=>user.profile.id).present?
 #    end
 
+
     def friend_of? profile
       friends.where(:id=>profile.id).present?
     end

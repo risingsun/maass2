@@ -76,14 +76,15 @@ module Permissioning
 #             field_permission.everyone? ||
 #             (field_permission.myself? && is_me?(profile) ||
 #             (field_permission.friends? && friend_of?(profile)))
+
     end
 
     private
 
-      def permission_sync
-        return true if permissions.nil?
-        permissions.delete permissions_with_my_default
-      end
+    def permission_sync
+      return true if permissions.nil?
+      permissions.delete permissions_with_my_default
+    end
 
   end
 

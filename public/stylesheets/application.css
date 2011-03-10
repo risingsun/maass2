@@ -1121,7 +1121,7 @@ a.grey_links_sml3:hover{
   background-repeat: no-repeat;
   width: 482px;
   height: 6px;
-  display: block;
+  display: none;
   float: left;
 } 
 
@@ -1134,7 +1134,7 @@ a.grey_links_sml3:hover{
   background-repeat: no-repeat;
   width: 482px;
   height: 6px;
-  display: block;
+  display: none;
   float: left;
 }   
 
@@ -2623,7 +2623,7 @@ table.greetings {
   float:left;
 }
 
-*html table.greetings {
+* html table.greetings {
   margin-bottom: 0px;
   margin-left: 6px;
 }
@@ -2656,7 +2656,7 @@ table.greetings {
   background-color: #00000;
 }
 
-*html .in_place_editor_field {
+* html .in_place_editor_field {
   position: relative;
   margin-left: 5px;
 }

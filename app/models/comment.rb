@@ -9,12 +9,9 @@ class Comment < ActiveRecord::Base
   validates :comment, :presence => true
 
   include UserFeeds
-#  after_create :create_my_feed
-#  after_create :create_other_feeds
-#
-#  def create_other_feeds
-#    ([profile] + profile.friends + profile.followers).each{ |p| p.feed_items << my_feed }
-#  end
+
+  after_create :create_my_feed
+  after_create :create_other_feeds
 
   def by_me?(profile)
     self.profile == profile
