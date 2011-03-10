@@ -1,18 +1,9 @@
 - if @show_profile_side_panel
   = render :partial => "profiles/bio"
   = render :partial => "shared/profile_action" unless me
-  = rounded_corner(:title => 'Friends', :size => 'small') do
-    = render :partial => "profiles/newest_member", :collection => @profile.friends
-  = rounded_corner(:title => 'Followings', :size => 'small') do
-    = render :partial => "profiles/newest_member", :collection => @profile.followings
-  = rounded_corner(:title => 'Followers', :size => 'small') do
-    = render :partial => "profiles/newest_member", :collection => @profile.followers
-  = rounded_corner(:title => @profile.group+' Group Members', :size => 'small') do
-    = render :partial => "profiles/newest_member", :collection => Profile.group_member(@profile.group)
+  = render :partial => "shared/friends_list"
 - else
   - if current_user.blank?
     = render :partial => "devise/sessions/login"
   - unless params[:controller] != "profile" && (params[:action] == "edit_account" || params[:action] == "edit")
-    = rounded_corner(:title => 'Newest Members', :size => 'small') do
-      = render :partial => "profiles/newest_member", :collection => Profile.new_member
-
+    = render "profiles/members", :members => Profile.new_member, :type => "Newest Members"

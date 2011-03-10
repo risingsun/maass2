@@ -38,6 +38,7 @@ class Profile < ActiveRecord::Base
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   permissible_fields PERMISSION_FIELDS
+  
   my_default_permission_field :default_permission
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
