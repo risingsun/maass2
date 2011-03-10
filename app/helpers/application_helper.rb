@@ -137,7 +137,7 @@ module ApplicationHelper
     end
   end
 
-  def display_standard_flashes(message = 'There were some problems with your submission:')
+ def display_standard_flashes(message = 'There were some problems with your submission:')
     if flash[:notice]
       flash_to_display, level = flash[:notice], 'notice'
       flash_message_class = 'notice_msg'
@@ -161,28 +161,5 @@ module ApplicationHelper
     content_tag 'div', flash_msg.html_safe, :class => flash_message_class, :id => "flash_message"
   end
 
-  def display_standard_flashes_in_large_size(message = 'There were some problems with your submission:')
-    if flash[:notice]
-      flash_to_display, level = flash[:notice], 'notice'
-      flash_message_class = 'notice_msg'
-    elsif flash[:warning]
-      flash_to_display, level = flash[:warning], 'warning'
-      flash_message_class = 'warning_msg'
-    elsif flash[:error]
-      flash_message_class = 'error_msg'
-      level = 'error'
-      if flash[:error].instance_of?( ActiveRecord::Errors) || flash[:error].is_a?( Hash)
-        flash_to_display = message
-        flash_to_display << activerecord_error_list(flash[:error])
-      else
-        flash_to_display = flash[:error]
-      end
-    else
-      return
-    end
-    flash_message_class = flash_message_class.to_s + " " + "widget_large_flash_msg"
-    flash_msg = flash_to_display.to_s + "<span class='widget_large_flash_msg_btm'></span>"
-    content_tag 'div', flash_msg.html_safe!, :class => flash_message_class, :id => "flash_message"
-  end
 
 end
