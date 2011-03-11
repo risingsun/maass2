@@ -3,11 +3,9 @@
     = link_to image_tag(set_icon(mini_profile,'small_60')), mini_profile
     = link_to image_tag('edit.png', :title => "Edit Profile", :class => "img01"), edit_profile_path(@p) if me(mini_profile)
   .text_div
-    %h3.name= link_to h(mini_profile.f(20)), mini_profile, :class => "profile_name"
+    %h3.name= link_to mini_profile.full_name(20), mini_profile, :class => "profile_name"
     %p= year_link(mini_profile)
-    %p
-      %span{:id => "flink#{mini_profile.id}"}
-        = render 'homes/friend_status' , :profile => mini_profile
+    %p= render('homes/friend_status' , :profile => mini_profile) unless me(mini_profile)
     %p= link_to 'Direct Message', direct_message_profile_messages_path(mini_profile) unless me(mini_profile)
     %p= link_to('Read My Blogs', profile_blogs_path(mini_profile))
     %p= link_to('See My Polls', profile_polls_path(mini_profile))

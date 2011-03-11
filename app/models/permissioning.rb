@@ -28,7 +28,6 @@ module Permissioning
   module InstanceMethods
 
     def permissions_with_my_default
-      #default = my_default_permission
       permissions.select{|x| x.permission_type == default_permission}
     end
 
@@ -68,14 +67,14 @@ module Permissioning
     def can_see_field(field, profile)
       field_permission = fetch_permission_for(field)
       return true if self==profile || field_permission == :Everyone ||
-                     (field_permission == :Myself && is_me?(profile)) ||
-                      (field_permission == :Friends && friend_of?(profile))
+        (field_permission == :Myself && is_me?(profile)) ||
+        (field_permission == :Friends && friend_of?(profile))
 
-#      return !field_permission ||
-#             field.blank? ||
-#             field_permission.everyone? ||
-#             (field_permission.myself? && is_me?(profile) ||
-#             (field_permission.friends? && friend_of?(profile)))
+      #      return !field_permission ||
+      #             field.blank? ||
+      #             field_permission.everyone? ||
+      #             (field_permission.myself? && is_me?(profile) ||
+      #             (field_permission.friends? && friend_of?(profile)))
 
     end
 

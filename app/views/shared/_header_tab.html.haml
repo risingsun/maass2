@@ -17,7 +17,7 @@
       |
     %li.menu_text
       = link_to 'My Messages', profile_messages_path(current_user.profile)
-      = @p.received_messages.size
+      = message_count
     - if @is_admin
       %li.menu_text
         |
