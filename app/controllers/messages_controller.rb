@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
 
   before_filter :load_profile
-  
+
   def index
     @message = Message.new
     @to_list = @profile.friends + @profile.followers  + @profile.followings
@@ -21,7 +21,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-    #debugger
     @message = @profile.sent_messages.build(params[:message])
     if @message.save
       flash[:notice] = "Your Message has been sent."
@@ -55,11 +54,11 @@ class MessagesController < ApplicationController
 
   def reply_message
     @message = Message.find(params[:id])
-    @to_list = [@message.sender]
+    @to_list = @message.sender
     render :action => "new"
   end
 
-   def show
+  def show
     @message = Message.find(params[:id])
     if !@message.blank?
       @message.read = true

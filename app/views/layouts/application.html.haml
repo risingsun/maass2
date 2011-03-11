@@ -25,7 +25,7 @@
         = render :partial => "shared/lsidebar"
         = yield :left_side_panel
       .middle_panel
-        = #display_standard_flashes
+        = display_standard_flashes
         %span#main_container= yield
       .side_panel
         = render :partial => "shared/rsidebar"
@@ -35,5 +35,3 @@
     .clear_div
     .btm_div
     = yield :bottom
-
-    

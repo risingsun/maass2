@@ -12,5 +12,11 @@
   = show_field(@profile.spouse_name, "Spouse Name" , "spouse_name").html_safe
   = show_field(@profile.anniversary_date, "Anniversary Date" , "anniversary_date").html_safe
   = show_field(@profile.professional_qualification, "Professional Qualification" , "professional_qualification").html_safe
-  = show_field(@profile.about_me, "About" , "about_me").html_safe
-  = show_field(@profile.activities, "Activity" , "activities").html_safe
+  /= show_field(@profile.about_me, "About" , "about_me").html_safe
+  /= show_field(@profile.activities, "Activity" , "activities").html_safe
+- if !@profile.about_me.blank? && @profile.can_see_field("about_me", @p)
+  %h3 About
+  %p= @profile.about_me
+- if !@profile.activities.blank? && @profile.can_see_field("activities", @p)
+  %h3 Activities
+  %p= @profile.activities

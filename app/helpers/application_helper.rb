@@ -137,7 +137,7 @@ module ApplicationHelper
     end
   end
 
-  def display_standard_flashes(message = 'There were some problems with your submission:')
+ def display_standard_flashes(message = 'There were some problems with your submission:')
     if flash[:notice]
       flash_to_display, level = flash[:notice], 'notice'
       flash_message_class = 'notice_msg'

@@ -9,7 +9,7 @@
         - profile = Profile.find(message.receiver_id)
         %div{:class => "comments"}
           %input.left{:id => message.id, :name => "check[]", :type => "checkbox", :value => message.id}
-          = link_to image_tag(set_icon(profile,'small')), profile
+          = link_to image_tag(set_icon(profile,'small')), profile, {:class => "featured_mem_pic"}, {:class => "featured_mem_text"}
           = link_to profile.full_name, profile
           %br
           = time_ago_in_words message.created_at
