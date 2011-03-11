@@ -21,14 +21,13 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @profile.sent_messages.create(params[:message])
+    @message = @profile.sent_messages.build(params[:message])
     if @message.save
       flash[:notice] = "Your Message has been sent."
-      redirect_to profile_messages_path(@profile)
     else
       flash[:notice] = @message.errors.to_s
-      redirect_to :back
     end
+    redirect_to profile_messages_path(@profile)
   end
 
   def destroy

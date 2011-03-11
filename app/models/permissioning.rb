@@ -28,8 +28,7 @@ module Permissioning
   module InstanceMethods
 
     def permissions_with_my_default
-      default = my_default_permission
-      permissions.select{|x| x.permission_type == default}
+      permissions.select{|x| x.permission_type == default_permission}
     end
 
     def my_default_permission
