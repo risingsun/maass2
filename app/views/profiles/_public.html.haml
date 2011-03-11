@@ -23,9 +23,9 @@
 = render :partial => 'polls/list'
 .widget_large
   %span.widget_lrg_top
-  = rounded_med_corner(:id => 'comment', :title => 'Comment') do
+  = rounded_corner(:id => 'comment', :title => 'Comment') do
     .middle_panel_profile
-      #comment
+      #comment{:style => "display:none;align:left;"}
     .slidecontent
       = render 'comments/form', :commt => @profile
       = render 'comments/show_comments', :commt => @profile

@@ -26,5 +26,13 @@ module ProfilesHelper
     end
     return "upcoming"
   end
+
+  def link_to_friends(type)
+    if type == "Group Member"
+      link_to("See All", batch_mates_profile_path(@profile))
+    else
+      link_to("See All", user_friends_profile_path(@profile, :friend_type => type))
+    end
+  end
   
 end

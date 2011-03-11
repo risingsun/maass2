@@ -185,4 +185,9 @@ module ApplicationHelper
     content_tag 'div', flash_msg.html_safe, :class => flash_message_class, :id => "flash_message"
   end
 
+   def message_count(profile = @p)
+    c = profile.unread_messages.size
+    "(#{c})" if c > 0
+   end
+
 end

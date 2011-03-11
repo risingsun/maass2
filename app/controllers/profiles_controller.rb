@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
 
-  before_filter :load_profile, :only => [:create,:edit,:update,:edit_account,:search]
+  before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user, :batch_mates]
   before_filter :search_results, :only => [:search]
-  before_filter :show_panels, :only => [:show]
+  before_filter :show_panels, :only => [:show, :user_friends, :batch_mates]
 
   def index
     if @is_admin
@@ -46,10 +46,6 @@ class ProfilesController < ApplicationController
 
   def show
     if !current_user.blank?
-      @profile = Profile.find(params[:id])
-      @user = @profile.user
-      @educations = @profile.educations
-      @works = @profile.works
       @feed_items = @profile.feeds_with_item
       respond_to do |wants|
         wants.html
@@ -67,7 +63,6 @@ class ProfilesController < ApplicationController
   end
 
   def active_user
-    @porfile = Profile.find(params[:id])
     @porfile.toggle!(:is_active)
     redirect_to profiles_path
   end
@@ -79,23 +74,34 @@ class ProfilesController < ApplicationController
       render :template => "blogs/search_blog"
     else
       @title = "Search"
-      render :template=>'shared/user_friends'
+      render :template=>'profiles/user_friends'
     end
   end
 
   def friend_search
     @results=Profile.search params["profile"]["search_value"]
     @title = "Search"
-    render :template=>'shared/user_friends'
+    render :template=>'profiles/user_friends'
+  end
+
+  def user_friends
+    @results = @profile.send(params[:friend_type].downcase)
+    @title = params[:friend_type]
+  end
+
+  def batch_mates
+    @results = @profile.group_member
+    @title = "Group Members #{@profile.group}"
+    render :template => "profiles/user_friends"
   end
 
   private
 
   def load_profile
-    @profile =  current_user.profile
+    @profile = params[:id] == @p ? @p : Profile.find(params[:id])
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
-    @user=current_user
+    @user=@profile.user
   end
 
   def show_panels

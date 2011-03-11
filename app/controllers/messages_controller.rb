@@ -21,12 +21,13 @@ class MessagesController < ApplicationController
   end
 
   def create
+    #debugger
     @message = @profile.sent_messages.build(params[:message])
-#    if @messgae.save?
-#      flash[:notice] = "Your Message has been sent."
-#    else
-#      flash[:notice] = @message.errors.to_s
-#    end
+    if @message.save
+      flash[:notice] = "Your Message has been sent."
+    else
+      flash[:notice] = @message.errors.to_s
+    end
     redirect_to profile_messages_path(@profile)
   end
 

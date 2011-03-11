@@ -22,11 +22,11 @@ class Comment < ActiveRecord::Base
   end
 
   def on_my_commentable?(profile)
-    self.commentable && self.commentable.respond_to?(:profile) && (self.commentable == profile)
+     self.commentable && self.commentable.respond_to?(:profile) && (self.commentable.profile == profile)
   end
 
   def destroyable_by?(profile)
-    by_me?(profile) or on_my_profile?(profile) or on_my_commentable?(profile)
+     by_me?(profile) or on_my_profile?(profile) or on_my_commentable?(profile)
   end
 
 end
