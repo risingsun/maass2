@@ -16,6 +16,13 @@ EDU_YEAR=(1990..Date.today.year+5).to_a
 RELATIONSHIP_STATUS =  ["single","Married","not sure"]
 HOUSE_NAME = ["Bharat","Eklavya","Prahalad","Shravan"]
 
+PERMISSION_FIELDS = %w(website blog about_me gtalk_name location email
+                         date_of_birth anniversary_date relationship_status
+                         spouse_name gender activities yahoo_name skype_name
+                         educations work_informations delicious_name
+                         twitter_username msn_username linkedin_name
+                         address landline mobile marker)
+
 PERSONAL_INFO= %w(house_name blood_group date_of_birth address_line1 landline mobile relationship_status spouse_name aniversery_date professional_qualification about_me activities)
 
 INDIA_STATES = [ "Andhra Pradesh",
