@@ -34,8 +34,8 @@ module Maass2
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
     # Configure the default encoding used in templates for Ruby 1.9.
+    config.autoload_paths += %W( #{config.root}/app/models/ckeditor )
     config.encoding = "utf-8"
-
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     config.generators do |g|

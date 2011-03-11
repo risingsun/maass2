@@ -1,31 +1,37 @@
 var $j = jQuery.noConflict();
 jQuery(document).ready(function()
 {
-jQuery('.datebalks').datepicker({
-     dateFormat:'dd M yy',
-     showOn: "both",
-     buttonImage: "/images/calendar.gif",
-     buttonImageOnly: true,
-     yearRange: "-50:+0",
-     changeMonth: true,
-     changeYear: true,
-     nextText: "",
-     prevText: ""
+  jQuery('.datebalks').datepicker({
+    dateFormat:'dd M yy',
+    showOn: "both",
+    buttonImage: "/images/calendar.gif",
+    buttonImageOnly: true,
+    yearRange: "-50:+0",
+    changeMonth: true,
+    changeYear: true,
+    nextText: "",
+    prevText: ""
 
-});
-
-jQuery("a.select_all").click(function(){
-
- jQuery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
   });
 
+  jQuery("a.select_all").click(function(){
+
+    jQuery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
+  });
+
+  jQuery('form[data-remote]').bind("ajax:before", function(){
+    for (instance in CKEDITOR.instances){
+      CKEDITOR.instances[instance].updateElement();
+    }
+  });
 });
 
- function remove_fields(link) {
+
+function remove_fields(link) {
      
-    $j(link).prev("input[type=hidden]").val("1");
-     $j(link).closest(".fields").hide();
- }
+  $j(link).prev("input[type=hidden]").val("1");
+  $j(link).closest(".fields").hide();
+}
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
@@ -66,8 +72,6 @@ Effect.SlideUpAndDown = function(element,tagid, head) {
     //$(tagid).addClassName('active');
     $(head.id+"_img").src = replace($(head.id+"_img").src, 'show', 'hide')
   //lnk.childNodes[0].src = replace(lnk.childNodes[0].src, 'show', 'hide')
-
-
   }
 
 }

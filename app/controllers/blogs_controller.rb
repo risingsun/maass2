@@ -3,23 +3,6 @@ class BlogsController < ApplicationController
   before_filter :load_profile, :except => [:tag_cloud]
   before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show, :show_blogs]
 
-  uses_tiny_mce(:only => [:new, :edit,:create,:update],
-    :options => {
-      :theme => 'advanced',
-      :theme_advanced_toolbar_location => "bottom",
-      :theme_advanced_toolbar_align => "left",
-      :theme_advanced_resizing => true,
-      :theme_advanced_resize_horizontal => false,
-      :paste_auto_cleanup_on_paste => true,
-      :theme_advanced_buttons1 => %w{bold italic underline strikethrough separator
-                                     justifyleft justifycenter justifyright indent
-                                     outdent separator bullist numlist separator
-                                     link unlink image undo redo code forecolor
-                                     backcolor newdocument cleanup},
-      :theme_advanced_buttons2 => %w{formatselect fontselect fontsizeselect},
-      :theme_advanced_buttons3 => [],
-      :plugins => %w{contextmenu paste}})
-  
   def index
     @blogs = @profile.blogs
     if @blogs.blank?
