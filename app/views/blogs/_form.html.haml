@@ -2,7 +2,7 @@
   - if params[:preview_button]
     = render 'preview'
   %br
-  - form_for [@profile, @blog] do |f|
+  - form_for [@profile, @blog], :remote => true do |f|
     %br
     = f.label :Heading
     %br
@@ -10,11 +10,12 @@
     %br
     = f.label :Body
     %br
-    = f.text_area :body,  :class => "mceEditor big_text_area", :wrap_class => :row_complete_large
+    = f.cktext_area :body, :toolbar => 'Full', :width => '525px', :height => '350px'
     %br
     = f.label :Tags
     %br
     = f.text_field :tag_list, :title => "Tags",:class => "big_text_field", :wrap_class => :row_complete
+    = ckeditor_ajax_script
     .blog_text Comma Seperated
     .row_normal
       .blog_check_box
