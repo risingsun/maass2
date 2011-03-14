@@ -24,3 +24,4 @@
             = render "polls/option" , :y=> form, :poll => poll
           = f.commit_button "Vote"
       %div{:id => "spinner_#{poll.id}", :style => "display: none;"}= image_tag('spinner.gif')
+  %span.widget_lrg_btm

@@ -37,7 +37,7 @@ class ProfilesController < ApplicationController
     else
       @profile.update_attributes params[:profile]
       flash[:notice] = "Profile updated."
-      redirect_to :edit
+      redirect_to edit_profile_path(@p)
     end
   end
 

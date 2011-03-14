@@ -23,6 +23,10 @@ PERMISSION_FIELDS = %w(website blog about_me gtalk_name location email
                          address landline mobile marker)
 PERSONAL_INFO= %w(house_name blood_group date_of_birth address_line1 landline mobile relationship_status spouse_name aniversery_date professional_qualification about_me activities)
 
+RESULTS_PER_PAGE = THEME_CONFIG[:results_per_page]
+POLLS_ON_PROFILE = THEME_CONFIG[:polls_on_profile]
+POLLS_PER_PAGE = THEME_CONFIG[:polls_per_page]
+
 INDIA_STATES = [ "Andhra Pradesh",
   "Arunachal Pradesh",
   "Assam",

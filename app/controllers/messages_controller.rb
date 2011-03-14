@@ -54,7 +54,7 @@ class MessagesController < ApplicationController
 
   def reply_message
     @message = Message.find(params[:id])
-    @to_list = @message.sender
+    @to_list = [@message.sender]
     render :action => "new"
   end
 

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :set_profile
+  before_filter :set_profile, :pagination_defaults
 
   def search_results
     p = params[:profile] ? params[:profile].dup : {}
@@ -15,5 +15,11 @@ class ApplicationController < ActionController::Base
       @is_admin = current_user if current_user.admin
     end
   end
-  
+
+  def pagination_defaults
+    @page = (params[:page] || 1).to_i
+    @page = 1 if @page < 1
+    @per_page = params[:per_page]
+  end
+    
 end

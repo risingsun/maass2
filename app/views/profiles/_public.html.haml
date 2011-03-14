@@ -3,8 +3,9 @@
   = rounded_med_corner(:id => 'personal', :title => 'Personal Info') do
     .middle_panel_profile
       #personal_info
-    .slidecontent
-      = render :partial => "personal"
+        .slidecontent
+          = render :partial => "personal"
+  %span.widget_lrg_btm
 .widget_large
   %span.widget_lrg_top
   = rounded_med_corner(:id => 'work_info', :title => 'Work Info') do
@@ -12,6 +13,7 @@
       #work_info
     .slidecontent
       = render 'profiles/work' if !@profile.works.blank?
+  %span.widget_lrg_btm
 .widget_large
   %span.widget_lrg_top
   = rounded_med_corner(:id => 'education', :title => 'Education Info') do
@@ -19,6 +21,7 @@
       #education_info
     .slidecontent
       = render 'profiles/education' if !@profile.educations.blank?
+  %span.widget_lrg_btm
 = render :partial => 'profiles/recent_activity'
 = render :partial => 'polls/list'
 .widget_large
@@ -29,3 +32,4 @@
     .slidecontent
       = render 'comments/form', :commt => @profile
       = render 'comments/show_comments', :commt => @profile
+  %span.widget_lrg_btm
