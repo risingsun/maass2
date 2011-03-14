@@ -16,13 +16,15 @@
   %span.widget_lrg_btm
 .widget_large
   %span.widget_lrg_top
-  = rounded_med_corner(:id => 'education', :title => 'Education Info', :click => true) do
+  = rounded_med_corner(:id => 'education', :title => 'Education Info', :click => true, :display => :none) do
     .middle_panel_profile
       #education_info
     .slidecontent
       = render 'profiles/education' if !@profile.educations.blank?
   %span.widget_lrg_btm
 = render :partial => 'profiles/recent_activity'
+- cache "profile_#{@profile.id}/profile_page_blogs" do
+  = render :partial => 'blogs/list'
 = render :partial => 'polls/list'
 .widget_large
   %span.widget_lrg_top

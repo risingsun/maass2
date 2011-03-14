@@ -2,8 +2,9 @@
 - unless feed_items.empty?
   .widget_large
     %span.widget_lrg_top
-    #recent_activities
-      - feed_items.each do |feed_item|
-        - next unless feed_item.item
-        = render( :partial => "feed_items/#{feed_item.partial}", :locals => {:feed_item => feed_item})
-    %span.widget_lrg_btm
+    = rounded_med_corner(:id => 'recent_activity', :title => 'Recent Activity', :click => true) do
+      #recent_activities
+        - feed_items.each do |feed_item|
+          - next unless feed_item.item
+          = render( :partial => "feed_items/#{feed_item.partial}", :locals => {:feed_item => feed_item})
+      %span.widget_lrg_btm
