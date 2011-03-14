@@ -40,15 +40,23 @@ function add_fields(link, association, content) {
 }
 
 function add_comment(c){
-  jQuery("#form"+c).show();
+  jQuery("#form"+c).toggle();
 }
 
 function show_comment(c){
-  jQuery("#show"+c).show();
+  jQuery("#show"+c).toggle();
 }
 
 function cancel_comment(c){
   jQuery("#form"+c).hide();
+}
+
+function content_show_hide(div_id, click){
+  id=jQuery(div_id)
+  if(click == true)
+  {
+    jQuery(id).slideToggle();
+  }
 }
 
 Effect.SlideUpAndDown = function(element,tagid, head) {
