@@ -40,44 +40,23 @@ function add_fields(link, association, content) {
 }
 
 function add_comment(c){
-  jQuery("#form"+c).show();
+  jQuery("#form"+c).toggle();
 }
 
 function show_comment(c){
-  jQuery("#show"+c).show();
+  jQuery("#show"+c).toggle();
 }
 
 function cancel_comment(c){
   jQuery("#form"+c).hide();
 }
 
-function content_show_hide(element,tagid, head){
-  jQuery('#personal_info_header').toggle();
-}
-
-
-Effect.SlideUpAndDown = function(element,tagid, head) {
-  element = $(element);
-  tagid = $(tagid);
-
-  if(element.visible(element))
+function content_show_hide(div_id, click){
+  id = jQuery(div_id)
+  if(click == true)
   {
-    new Effect.SlideUp(element, {
-      duration: 0.25
-    });
-    //$(tagid).removeClassName('active');
-    $(head.id+"_img").src = replace($(head.id+"_img").src, 'hide', 'show')
-
-
+    jQuery(id).slideToggle();
   }
-  else {
-    new Effect.SlideDown(element, {
-      duration: 0.25
-    });
-    //$(tagid).addClassName('active');
-    $(head.id+"_img").src = replace($(head.id+"_img").src, 'show', 'hide')
-  //lnk.childNodes[0].src = replace(lnk.childNodes[0].src, 'show', 'hide')
-  }
-
 }
+
 

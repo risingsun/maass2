@@ -1,23 +1,22 @@
-= rounded_med_corner(:id => 'personal_info') do
-  %table
-    = show_field(@profile.group,"Group","group").html_safe
-    = show_field(@profile.house_name,"House Name","house_name").html_safe
-    = show_field(@profile.gender,"Gender","gender").html_safe
-    = show_field(@profile.blood_group,"Blood Group","blood_group").html_safe
-    = show_field(@profile.date_of_birth,"Date Of Birth","date_of_birth").html_safe
-    = show_field(@profile.address_line1,"Address","address_line1").html_safe
-    = show_field(@profile.landline,"Landline", "landline").html_safe
-    = show_field(@profile.mobile, "Mobile" , "mobile").html_safe
-    = show_field(@profile.relationship_status, "Relationship Status" , "relationship_status").html_safe
-    = show_field(@profile.maiden_name, "Maiden Name" , "maiden_last_name").html_safe
-    = show_field(@profile.spouse_name, "Spouse Name" , "spouse_name").html_safe
-    = show_field(@profile.anniversary_date, "Anniversary Date" , "anniversary_date").html_safe
-    = show_field(@profile.professional_qualification, "Professional Qualification" , "professional_qualification").html_safe
-    /= show_field(@profile.about_me, "About" , "about_me").html_safe
-    /= show_field(@profile.activities, "Activity" , "activities").html_safe
-  - if !@profile.about_me.blank? && @profile.can_see_field("about_me", @p)
-    %h3 About
-    %p= @profile.about_me
-  - if !@profile.activities.blank? && @profile.can_see_field("activities", @p)
-    %h3 Activities
-    %p= @profile.activities
+%table
+  = show_field(@profile.group,"Group","group").html_safe
+  = show_field(@profile.house_name,"House Name","house_name").html_safe
+  = show_field(@profile.gender,"Gender","gender").html_safe
+  = show_field(@profile.blood_group,"Blood Group","blood_group").html_safe
+  = show_field(@profile.date_of_birth,"Date Of Birth","date_of_birth").html_safe
+  = show_field(@profile.address_line1,"Address","address_line1").html_safe
+  = show_field(@profile.landline,"Landline", "landline").html_safe
+  = show_field(@profile.mobile, "Mobile" , "mobile").html_safe
+  = show_field(@profile.relationship_status, "Relationship Status" , "relationship_status").html_safe
+  = show_field(@profile.maiden_name, "Maiden Name" , "maiden_last_name").html_safe
+  = show_field(@profile.spouse_name, "Spouse Name" , "spouse_name").html_safe
+  = show_field(@profile.anniversary_date, "Anniversary Date" , "anniversary_date").html_safe
+  = show_field(@profile.professional_qualification, "Professional Qualification" , "professional_qualification").html_safe
+  /= show_field(@profile.about_me, "About" , "about_me").html_safe
+  /= show_field(@profile.activities, "Activity" , "activities").html_safe
+- if !@profile.about_me.blank? && @profile.can_see_field("about_me", @p)
+  %h3 About
+  %p=@profile.about_me
+- if !@profile.activities.blank? && @profile.can_see_field("activities", @p)
+  %h3 Activities
+  %p=@profile.activities

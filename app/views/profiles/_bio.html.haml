@@ -1,5 +1,5 @@
 - profile ||= @profile
-= rounded_corner(:size => :small, :title => 'Profile') do
+= rounded_corner(:size => :small, :title => 'Profile', :click => true) do
   .profile_div
     = image_tag(set_icon(profile, 'big'))
     %h2= h profile.f(18, :is_long => true)

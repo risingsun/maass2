@@ -1,24 +1,41 @@
 class Ckeditor::AttachmentFile < Ckeditor::Asset
-  has_attachment :storage => :file_system, :path_prefix => 'public/assets/attachments',
-                 :max_size => 10.megabytes
+  has_attached_file :data,
+                    :url => "/ckeditor_assets/attachments/:id/:filename",
+                    :path => ":rails_root/public/ckeditor_assets/attachments/:id/:filename"
   
-  validates_as_attachment
+  validates_attachment_size :data, :less_than=>100.megabytes
   
-  # Map file extensions to mime types.
-  # Thanks to bug in Flash 8 the content type is always set to application/octet-stream.
-  # From: http://blog.airbladesoftware.com/2007/8/8/uploading-files-with-swfupload
-  def swf_uploaded_data=(data)
-    data.content_type = MIME::Types.type_for(data.original_filename)
-    self.uploaded_data = data
+  def url(*args)
+    if [:thumb, :content].include?(args.first)
+      send("url_#{args.first}")
+    else
+      data.url(*args)
+    end
   end
   
-  def full_filename(thumbnail = nil)
-    file_system_path = self.attachment_options[:path_prefix]
-    Rails.root.join(file_system_path, file_name_for(self.id))
-  end
-  
-  def file_name_for(asset = nil)
-    extension = filename.scan(/\.\w+$/)
-    return "#{asset}_#{filename}"
+  def url_content
+	  data.url
+	end
+	
+	def url_thumb
+	  extname = File.extname(filename)
+    
+    case extname.to_s
+      when '.swf' then '/javascripts/ckeditor/images/swf.gif'
+      when '.pdf' then '/javascripts/ckeditor/images/pdf.gif'
+      when '.doc', '.txt' then '/javascripts/ckeditor/images/doc.gif'
+      when '.mp3' then '/javascripts/ckeditor/images/mp3.gif'
+      when '.rar', '.zip', '.tg' then '/javascripts/ckeditor/images/rar.gif'
+      when '.xls' then '/javascripts/ckeditor/images/xls.gif'
+      else '/javascripts/ckeditor/images/ckfnothumb.gif'
+    end
+	end
+	
+	def to_json(options = {})
+	  options[:methods] ||= []
+	  options[:methods] << :url_content
+	  options[:methods] << :url_thumb
+	  super options
+
   end
 end

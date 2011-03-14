@@ -64,10 +64,12 @@ module ApplicationHelper
     title = options[:title] || ""
     id = options[:id] || title
     button = options[:button] || ""
+    click = options[:click]
+    dis = options[:display]
     concat(content_tag(:div, :class => "edit_profile", :id => id) do
         content_tag(:span, " ", :class => "edit_profile_top") +
-          content_tag(:h2,title,:class => "edit_profile_title") +
-          content_tag(:div, :class => "edit_panel_profile") do
+          content_tag(:h2,title,:class => "edit_profile_title", :onclick => "content_show_hide(#{id}_body,#{click})") +
+          content_tag(:div, :class => "edit_panel_profile", :id =>"#{id}_body", :style => "display: #{dis};") do
           capture(&block)
         end +
           content_tag(:div, "", :class => "clear_div") +
