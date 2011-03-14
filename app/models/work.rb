@@ -11,3 +11,4 @@ class Work < ActiveRecord::Base
     str.starts_with?('http') ? str : "http://#{str}"
   end
 end
+

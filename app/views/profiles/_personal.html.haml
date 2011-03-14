@@ -16,7 +16,7 @@
   /= show_field(@profile.activities, "Activity" , "activities").html_safe
 - if !@profile.about_me.blank? && @profile.can_see_field("about_me", @p)
   %h3 About
-  %p= @profile.about_me
+  %p=@profile.about_me
 - if !@profile.activities.blank? && @profile.can_see_field("activities", @p)
   %h3 Activities
-  %p= @profile.activities
+  %p=@profile.activities

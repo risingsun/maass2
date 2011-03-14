@@ -1,11 +1,11 @@
-require 'mime/types'
 
+require 'mime/types'
 class Ckeditor::Asset < ActiveRecord::Base
   set_table_name "ckeditor_assets"
   
   belongs_to :user
   belongs_to :assetable, :polymorphic => true
-  
+
   before_validation :make_content_type
   before_create :make_dimensions
   
@@ -32,6 +32,10 @@ class Ckeditor::Asset < ActiveRecord::Base
   
   def styles
     data.styles
+  scope :masters, where("parent_id IS NULL")
+  
+  def url(*args)
+    public_filename(*args)
   end
   
   def format_created_at
@@ -85,4 +89,18 @@ class Ckeditor::Asset < ActiveRecord::Base
         self.data_content_type = content_types.first.to_s unless content_types.empty?
       end
     end
+  xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
+
+    xml.tag!(self.read_attribute(:type).to_s.downcase) do
+      xml.filename{ xml.cdata!(self.filename) }
+      xml.size self.size
+      xml.path{ xml.cdata!(self.public_filename) }
+      
+      xml.thumbnails do
+        self.thumbnails.each do |t|
+          xml.tag!(t.thumbnail, self.public_filename(t.thumbnail))
+        end
+      end unless self.thumbnails.empty?
+    end
+  end
 end

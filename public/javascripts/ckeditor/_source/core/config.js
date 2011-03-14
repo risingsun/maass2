@@ -261,6 +261,7 @@ CKEDITOR.config =
 		'entities,' +
 		'filebrowser,' +
 		'find,' +
+		'flash,' +
 		'font,' +
 		'format,' +
 		'forms,' +
@@ -319,7 +320,7 @@ CKEDITOR.config =
 	 * @example
 	 * config.removePlugins = 'elementspath,save,font';
 	 */
-	removePlugins : 'flash',
+	removePlugins : '',
 
 	/**
 	 * List of regular expressions to be executed over the input HTML,

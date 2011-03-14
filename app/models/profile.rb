@@ -44,6 +44,8 @@ class Profile < ActiveRecord::Base
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
   scope :active, :conditions => {:is_active => true}
 
+  cattr_accessor :featured_profile
+  @@featured_profile = {:date=>Date.today-4, :profile=>nil}
   @@days = ()
 
   after_update :create_my_feed
@@ -75,6 +77,22 @@ class Profile < ActiveRecord::Base
     indexes :country
     indexes :landline
     indexes :mobile
+  end
+
+  def self.todays_featured_profile
+    unless featured_profile[:date] == Date.today
+      featured_profile[:profile] = featured
+      featured_profile[:date] = Date.today
+    end
+    featured_profile[:profile]
+  end
+
+  def self.featured
+    unless @featured
+      ids = connection.select_all("select id from profiles where is_active = true and about_me != ''")
+      @featured = find(ids[rand(ids.length)]["id"].to_i) unless ids.blank?
+    end
+    @featured
   end
 
   def is_me?(another_profile)

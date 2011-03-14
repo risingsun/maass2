@@ -36,5 +36,6 @@ class Ckeditor::AttachmentFile < Ckeditor::Asset
 	  options[:methods] << :url_content
 	  options[:methods] << :url_thumb
 	  super options
+
   end
 end

@@ -10,12 +10,14 @@ CKEDITOR.editorConfig = function( config )
   config.language = 'en';
    config.uiColor = 'orange';
 
+
   //config.ContextMenu = ['Generic','Anchor','Flash','Select','Textarea','Checkbox','Radio','TextField','HiddenField','ImageButton','Button','BulletedList','NumberedList','Table','Form'] ; 
   
   config.height = '400px';
   config.width = '600px';
-  
+
   config.resize_enabled = false;
+
   //config.resize_maxHeight = 2000;
   //config.resize_maxWidth = 750;
   
@@ -23,7 +25,7 @@ CKEDITOR.editorConfig = function( config )
   
   // works only with en, ru, uk languages
   config.extraPlugins = "embed,attachment";
-  config.removePlugins = "save, preview"
+
   
   config.toolbar = 'Easy';
   
