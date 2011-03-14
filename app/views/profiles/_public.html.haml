@@ -1,10 +1,9 @@
 .widget_large
   %span.widget_lrg_top
-  = rounded_med_corner(:id => 'personal', :title => 'Personal Info') do
-    .middle_panel_profile
-      #personal_info
-    .slidecontent
-      = render :partial => "personal"
+  = slide_up_down_header('hide','personal_info','Personal Info') 
+  .middle_panel_profile
+  .slidecontent
+    = render :partial => "personal"
 .widget_large
   %span.widget_lrg_top
   = rounded_med_corner(:id => 'work_info', :title => 'Work Info') do

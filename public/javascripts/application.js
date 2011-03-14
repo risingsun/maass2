@@ -51,6 +51,11 @@ function cancel_comment(c){
   jQuery("#form"+c).hide();
 }
 
+function content_show_hide(element,tagid, head){
+  jQuery('#personal_info_header').toggle();
+}
+
+
 Effect.SlideUpAndDown = function(element,tagid, head) {
   element = $(element);
   tagid = $(tagid);

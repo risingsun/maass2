@@ -129,7 +129,7 @@ module ApplicationHelper
       inner_panel_id,
       header_text)
     img_src = inner_panel_style == 'hide' ? 'show.jpg' : 'hide.jpg'
-    @template.content_tag:h2,
+    content_tag:a,
       :class => "widget_lrg_title",
       :id => inner_panel_id+"_header",
       :onclick => "new Effect.SlideUpAndDown('#{inner_panel_id}', '#{inner_panel_id}_header', this);" do
@@ -188,6 +188,6 @@ module ApplicationHelper
   def message_count(profile = @p)
     c = profile.unread_messages.size
     "(#{c})" if c > 0
-   end
+  end
 
 end
