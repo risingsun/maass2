@@ -1,16 +1,17 @@
 .flash_message_class= formatted_error_message :profile,:user
 %h2.edit_profile Edit Profile
 = render "profiles/set_status"
-.large_panel_side
-  = render "profiles/general_info"
-  = render "profiles/contact_info"
-  = render "profiles/google_map"
-.large_panel_side
-  = render "profiles/web_info"
-  = render "profiles/education_info"
-  = render "profiles/work_info"
-  = render "profiles/upload_icon"
-.clear_div
-  .large_btn_container
+= semantic_form_for @profile do |form|
+  .large_panel_side
+    = render :partial => "profiles/general_info", :locals => {:f => form}
+    = render :partial => "profiles/contact_info", :locals => {:f => form}
+    =# render :partial => "profiles/google_map", :locals => {:f => form}
+    %button.buttons{:type => "submit"}
+      = image_tag('Update.png')
+  .large_panel_side
+    = render :partial => "profiles/web_info", :locals => {:f => form}
+    = render :partial => "profiles/education_info", :locals => {:f => form}
+    = render :partial => "profiles/work_info", :locals => {:f => form}
+    = render :partial => "profiles/upload_icon", :locals => {:f => form}
     %button.buttons{:type => "submit"}
       = image_tag('Update.png')
