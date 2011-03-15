@@ -65,10 +65,11 @@ module ApplicationHelper
     id = options[:id] || title
     button = options[:button] || ""
     click = options[:click]
+    dis = options[:display]
     concat(content_tag(:div, :class => "edit_profile", :id => id) do
         content_tag(:span, " ", :class => "edit_profile_top") +
           content_tag(:h2,title,:class => "edit_profile_title", :onclick => "content_show_hide(#{id}_body,#{click})") +
-          content_tag(:div, :class => "edit_panel_profile", :id =>"#{id}_body") do
+          content_tag(:div, :class => "edit_panel_profile", :id =>"#{id}_body", :style => "display: #{dis};") do
           capture(&block)
         end +
           content_tag(:div, "", :class => "clear_div") +
@@ -124,6 +125,18 @@ module ApplicationHelper
 
   def theme_image(img, options = {})
     "#{image_tag((THEME_IMG + "/" + img), options)}"
+  end
+
+  def slide_up_down_header(inner_panel_style,
+      inner_panel_id,
+      header_text)
+    img_src = inner_panel_style == 'hide' ? 'show.jpg' : 'hide.jpg'
+    content_tag:a,
+      :class => "widget_lrg_title",
+      :id => inner_panel_id+"_header",
+      :onclick => "new Effect.SlideUpAndDown('#{inner_panel_id}', '#{inner_panel_id}_header', this);" do
+      header_text
+    end
   end
 
   def display_standard_flashes(message = 'There were some problems with your submission:')

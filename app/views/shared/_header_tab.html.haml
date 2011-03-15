@@ -27,7 +27,7 @@
   %span.menu_text= full_name(current_user.profile)
   = link_to 'Edit Account', edit_account_profile_path(current_user)
   = link_to image_tag('edit.png', :title => "Edit Profile", :class => "img01"), edit_profile_path(current_user.profile) if current_user.profile
-  = link_to "Edit Profile", edit_profile_path(current_user.profile)
+  = link_to "Edit Profile", edit_profile_path(current_user.profile) if current_user.profile
   = link_to(image_tag("logout.png", :title=>"Logout", :align=>"top"), destroy_user_session_path ,:class=>"logoutuser")
   = link_to('Logout', destroy_user_session_path)
 

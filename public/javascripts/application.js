@@ -52,35 +52,11 @@ function cancel_comment(c){
 }
 
 function content_show_hide(div_id, click){
-  id=jQuery(div_id)
+  id = jQuery(div_id)
   if(click == true)
   {
     jQuery(id).slideToggle();
   }
 }
 
-Effect.SlideUpAndDown = function(element,tagid, head) {
-  element = $(element);
-  tagid = $(tagid);
-
-  if(element.visible(element))
-  {
-    new Effect.SlideUp(element, {
-      duration: 0.25
-    });
-    //$(tagid).removeClassName('active');
-    $(head.id+"_img").src = replace($(head.id+"_img").src, 'hide', 'show')
-
-
-  }
-  else {
-    new Effect.SlideDown(element, {
-      duration: 0.25
-    });
-    //$(tagid).addClassName('active');
-    $(head.id+"_img").src = replace($(head.id+"_img").src, 'show', 'hide')
-  //lnk.childNodes[0].src = replace(lnk.childNodes[0].src, 'show', 'hide')
-  }
-
-}
 
