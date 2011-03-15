@@ -1,35 +1,27 @@
 .widget_large
   %span.widget_lrg_top
-  = rounded_med_corner(:id => 'personal', :title => 'Personal Info', :click => true) do
-    .middle_panel_profile
-      #personal_info
-        .slidecontent
-          = render :partial => "personal"
+  = slide_up_down_header('personal_info','Personal Info')
+  .middle_panel_profile
+    #personal_info{:style => "display:none;align:left;"}
+      .slidecontent
+        = render :partial => "personal"
   %span.widget_lrg_btm
 .widget_large
   %span.widget_lrg_top
-  = rounded_med_corner(:id => 'work_info', :title => 'Work Info', :click => true) do
-    .middle_panel_profile
-      #work_info
-    .slidecontent
-      = render 'profiles/work' if !@profile.works.blank?
+  = slide_up_down_header('work_info','Work Info')
+  .middle_panel_profile
+    #work_info{:style => "display:none;align:left;"}
+      .slidecontent
+        = render 'profiles/work' if !@profile.works.blank?
   %span.widget_lrg_btm
 .widget_large
   %span.widget_lrg_top
-  = rounded_med_corner(:id => 'education', :title => 'Education Info') do
-    .middle_panel_profile
-      #education_info
-    .slidecontent
-      = render 'profiles/education' if !@profile.educations.blank?
+  = slide_up_down_header('education_info','Education Info')
+  .middle_panel_profile
+    #education_info{:style => "display:none;align:left;"}
+      .slidecontent
+        = render 'profiles/education' if !@profile.educations.blank?
   %span.widget_lrg_btm
 = render :partial => 'profiles/recent_activity'
 = render :partial => 'polls/list'
-.widget_large
-  %span.widget_lrg_top
-  = rounded_corner(:id => 'comment', :title => 'Comment') do
-    .middle_panel_profile
-      #comment{:style => "display:none;align:left;"}
-    .slidecontent
-      = render 'comments/form', :commt => @profile
-      = render 'comments/show_comments', :commt => @profile
-  %span.widget_lrg_btm
+= render 'comments/comment_list'

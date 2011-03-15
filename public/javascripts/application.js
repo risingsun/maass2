@@ -51,12 +51,9 @@ function cancel_comment(c){
   jQuery("#form"+c).hide();
 }
 
-function content_show_hide(div_id, click){
+function content_show_hide(div_id, style){
   id=jQuery(div_id)
-  if(click == true)
-  {
-    jQuery(id).slideToggle();
-  }
+  jQuery(id).slideToggle();
 }
 
 Effect.SlideUpAndDown = function(element,tagid, head) {
