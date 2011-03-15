@@ -82,7 +82,7 @@ module ApplicationHelper
           content_tag(:button, theme_image(button), :class => "buttons", :type => "submit")
         end))
     ""
-      end
+  end
 
     def slide_up_down_header(inner_panel_id, header_text)
     self.content_tag :h2,

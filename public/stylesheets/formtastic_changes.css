@@ -62,3 +62,6 @@ form.formtastic fieldset > ol > li.string input {
     max-width: 74%;
 }
 
+form.formtastic fieldset > ol > li.optional {
+
+}
