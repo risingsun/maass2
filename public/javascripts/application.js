@@ -52,10 +52,9 @@ function cancel_comment(c){
 }
 
 
-function content_show_hide(div_id, style){
+function content_show_hide(div_id){
   id=jQuery(div_id)
   jQuery(id).slideToggle();
-
 }
 
 jQuery('#search_q').live('focus.search_query_field', function(){
