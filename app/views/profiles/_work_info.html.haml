@@ -1,9 +1,7 @@
 = rounded_med_corner(:title => "Work Details", :id => "work_details") do
-  = semantic_form_for(@profile) do |form1|
-    - if @profile.works.blank?
-      - @profile.works.build
-    = form1.semantic_fields_for(:works) do |builder|
-      = render "work_fields", :f => builder
-      .row_light2
-        = link_to_add_fields(image_tag('add-button.png'), form1 , :works)
-        = form1.commit_button "Update"
+  - if @profile.works.blank?
+    - @profile.works.build
+  = f.semantic_fields_for(:works) do |builder|
+    = render "work_fields", :f => builder
+  .row_light2
+    = link_to_add_fields(image_tag('add-button.png'), f , :works)
