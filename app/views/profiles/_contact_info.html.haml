@@ -2,10 +2,10 @@
   = semantic_form_for @profile do |f|
     = f.inputs do
       = f.input :location, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :address_line1, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :address_line2, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :address_line1, :as => :string, :label => "Address Line1", :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :address_line2, :as => :string, :label => "Address Line2", :wrap_class => cycle(:row_light2, :row_dark2)
       = f.input :city, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :postal_code, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :postal_code, :as => :string, :label => "Postal Code", :wrap_class => cycle(:row_light2, :row_dark2)
       = f.input :country, :priority_countries =>['India'],:required => true, :as => :country, :wrap_class => cycle(:row_light2, :row_dark2)
       = f.input :state, :as => :select, :collection => INDIA_STATES, :prompt => false, :wrap_class => cycle(:row_light2, :row_dark2)
       = f.input :landline, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)

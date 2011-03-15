@@ -1,17 +1,17 @@
 = rounded_med_corner(:id => "address_details", :title => "Web Info") do
   = semantic_form_for @profile do |f|
     = f.inputs do
-      = f.input :website, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :blog, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :flicker_username,:as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :website, :as => :string, :class => "web_info", :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :blog, :as => :string, :class => "web_info", :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :flicker_username,:as => :string, :label => "Flicker Screen Name", :class => "flickr_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)
       = f.input :linkedin_name, :label => "LinkedIn Public URL",:as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :twitter_username, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :aim_name, :label => "AIM",:as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :msn_username, :label => "MSN",:as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :yahoo_name,:label => "Yahoo UserId", :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :gtalk_name, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :skype_name, :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :delicious_name, :label => "delicious name", :as => :string, :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :twitter_username, :as => :string, :label => "Twitter Login", :class => "twitter_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :aim_name, :label => "AIM",:as => :string, :class => "aim_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :msn_username, :label => "MSN",:as => :string, :class => "msn_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :yahoo_name,:label => "Yahoo UserId", :as => :string, :class => "yahoo_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :gtalk_name, :as => :string, :label => "GTalk Name", :class => "gtalk_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :skype_name, :as => :string, :label => "Skype Name", :class => "skype_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :delicious_name, :label => "Del.icio.us Name", :as => :string, :class => "delicious_icon input_text_with_icon", :wrap_class => cycle(:row_light2, :row_dark2)
     = f.commit_button :label => "Update"
 
 
