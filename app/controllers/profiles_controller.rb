@@ -68,8 +68,8 @@ class ProfilesController < ApplicationController
   end
 
   def search
-    if params[:profile][:search_by] && params[:profile][:search_by]== "blog"
-      @blogs= Blog.search params["profile"]["search_value"], :match_mode=> :boolean
+    if params[:search][:key] && params[:search][:key]== "blog"
+      @blogs= Blog.search params[:search][:q], :match_mode=> :boolean
       @title = "Search"
       render :template => "blogs/search_blog"
     else
@@ -79,7 +79,7 @@ class ProfilesController < ApplicationController
   end
 
   def friend_search
-    @results=Profile.search params["profile"]["search_value"]
+    @results=Profile.search params[:search][:q]
     @title = "Search"
     render :template=>'profiles/user_friends'
   end
