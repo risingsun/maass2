@@ -1,3 +1,3 @@
-= semantic_form_for(:profile, :url=>friend_search_profiles_path, :method=>:get) do |f|
-  = f.input :search_value, :label=>"", :as => :string,:input_html=>{ :class => "search_textbox"}
-  = f.commit_button :button_html => {:value=>"", :class => "search_btn" }
+- form_tag friend_search_profiles_path, :method => :get do
+  = text_field_tag 'search[q]', (params[:search] && params[:search][:q] ?  @q : 'Search for Friends'), :id => 'search_q', :class => "search_textbox"
+  %button.search_btn{:type => "submit"}

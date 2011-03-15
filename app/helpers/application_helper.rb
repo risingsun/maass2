@@ -127,7 +127,7 @@ module ApplicationHelper
     "#{image_tag((THEME_IMG + "/" + img), options)}"
   end
 
-   def slide_up_down_header(inner_panel_style,
+  def slide_up_down_header(inner_panel_style,
       inner_panel_id,
       header_text)
     img_src = inner_panel_style == 'hide' ? 'show.jpg' : 'hide.jpg'
@@ -139,7 +139,7 @@ module ApplicationHelper
     end
   end
 
- def display_standard_flashes(message = 'There were some problems with your submission:')
+  def display_standard_flashes(message = 'There were some problems with your submission:')
     if flash[:notice]
       flash_to_display, level = flash[:notice], 'notice'
       flash_message_class = 'notice_msg'

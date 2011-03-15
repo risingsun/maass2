@@ -4,8 +4,9 @@ class ApplicationController < ActionController::Base
   before_filter :set_profile, :pagination_defaults
 
   def search_results
-    p = params[:profile] ? params[:profile].dup : {}
+    p = params[:search] ? params[:search].dup : {}
     @title = "Search"
+    @q , @q_val = p[:key] ? ["Search for Friends",p[:q]] : [p[:q],"Search"]
     @results = Profile.search_by_keyword(p)
   end
   
