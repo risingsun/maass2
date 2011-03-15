@@ -51,12 +51,11 @@ function cancel_comment(c){
   jQuery("#form"+c).hide();
 }
 
-function content_show_hide(div_id, click){
-  id = jQuery(div_id)
-  if(click == true)
-  {
-    jQuery(id).slideToggle();
-  }
+
+function content_show_hide(div_id, style){
+  id=jQuery(div_id)
+  jQuery(id).slideToggle();
+
 }
 
 jQuery('#search_q').live('focus.search_query_field', function(){

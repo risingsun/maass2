@@ -29,4 +29,8 @@ class Comment < ActiveRecord::Base
      by_me?(profile) or on_my_profile?(profile) or on_my_commentable?(profile)
   end
 
+  def self.comments_on_object(obj)
+    Comment.where(:commentable_id => obj, :commentable_type => obj.class.name)
+  end
+
 end
