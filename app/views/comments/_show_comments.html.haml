@@ -1,4 +1,4 @@
--@comments = Comment.find(:all, :conditions => { :commentable_id => commt.id, :commentable_type => commt.class.name})
+-@comments = Comment.find(:all, :conditions => { :commentable_id => @commt.id, :commentable_type => @commt.class.name})
 -@comments.each do |comment|
   %div{:id => "#{comment.id}_comment"}
     .comments

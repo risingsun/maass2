@@ -51,12 +51,33 @@ function cancel_comment(c){
   jQuery("#form"+c).hide();
 }
 
-function content_show_hide(div_id, click){
-  id = jQuery(div_id)
-  if(click == true)
-  {
-    jQuery(id).slideToggle();
-  }
+
+function content_show_hide(div_id, style){
+  id=jQuery(div_id)
+  jQuery(id).slideToggle();
+
 }
 
+jQuery('#search_q').live('focus.search_query_field', function(){
+  if(jQuery(this).val()=='Search for Friends'){
+    jQuery(this).val('');
+  }
+});
 
+jQuery('#search_q').live('blur.search_query_field', function(){
+  if(jQuery(this).val()==''){
+    jQuery(this).val('Search for Friends');
+  }
+});
+
+jQuery('#search_all').live('focus.search_query_field', function(){
+  if(jQuery(this).val()=='Search'){
+    jQuery(this).val('');
+  }
+});
+
+jQuery('#search_all').live('blur.search_query_field', function(){
+  if(jQuery(this).val()==''){
+    jQuery(this).val('Search');
+  }
+});

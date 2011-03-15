@@ -5,13 +5,12 @@
 - unless blogs.empty?
   .widget_large
     %span.widget_lrg_top
-    - title = "Most Recent Blog Posts (latest " +blogs.count.to_s + " of " + "#{total > size ? link_to( total, profile_blogs_path(profile)) : total} )"
-    = rounded_med_corner(:id => 'list_blogs', :title => title.html_safe, :click => true) do
-      #blogs_info
-        .complete_middle_panel
-          - blogs.each do |b|
-            .comments
-              %img{:src => "/images/blog.gif"}
-              = link_to b.title, profile_blog_path(@profile, b)
-              posted at #{b.updated_at.to_datetime.to_formatted_s(:rfc822)}
-      %span.widget_lrg_btm
+    = slide_up_down_header('blogs_info', "Most Recent Blog Posts (latest " +blogs.count.to_s + " of " + "#{total > size ? link_to( total, profile_blogs_path(profile)) : total} )")
+    #blogs_info
+      .complete_middle_panel
+        - blogs.each do |b|
+          .comments
+            %img{:src => "/images/blog.gif"}
+            = link_to b.title, profile_blog_path(@profile, b)
+            posted at #{b.updated_at.to_datetime.to_formatted_s(:rfc822)}
+    %span.widget_lrg_btm

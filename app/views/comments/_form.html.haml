@@ -1,11 +1,12 @@
+- comment = Comment.new
 #new_comment
-= form_for(Comment.new) do |c|
+= form_for(comment) do |c|
   = c.text_area :comment, :class=> "textarea"
-  = c.hidden_field :commentable_id, :value => commt.id
-  = c.hidden_field :commentable_type, :value => commt.class.name
+  = c.hidden_field :commentable_id, :value => comment_on.id
+  = c.hidden_field :commentable_type, :value => comment_on.class.name
   .comment_btn_container
     %button.buttons{:type => "submit"}
       = image_tag("add-comment.png")
-    - if commt.class.name != "Profile"
-      %button.buttons#cancel{:type => "button",:onclick => "cancel_comment(#{commt.id})"}
+    - if comment_on.class.name != "Profile"
+      %button.buttons#cancel{:type => "button",:onclick => "cancel_comment(#{comment_on.id})"}
         = image_tag("cancel-button.png")
