@@ -55,7 +55,7 @@ module ApplicationHelper
           content_tag(:h2,title,:class => "widget_#{size}_title", :onclick => "content_show_hide(#{id}_body,#{click})") +
           content_tag(:div, :id =>"#{id}_body") do
           capture(&block)
-          end +
+        end +
           content_tag(:div, "", :class => "clear_div") +
           content_tag(:span, "", :class => "widget_#{size}_btm")
       end)
@@ -82,9 +82,9 @@ module ApplicationHelper
           content_tag(:button, theme_image(button), :class => "buttons", :type => "submit")
         end))
     ""
-      end
+  end
 
-    def slide_up_down_header(inner_panel_id, header_text)
+  def slide_up_down_header(inner_panel_id, header_text)
     self.content_tag :h2,
       :class => "widget_lrg_title",
       :id => inner_panel_id+"_header",
@@ -140,7 +140,7 @@ module ApplicationHelper
     "#{image_tag((THEME_IMG + "/" + img), options)}"
   end
 
- def display_standard_flashes(message = 'There were some problems with your submission:')
+  def display_standard_flashes(message = 'There were some problems with your submission:')
     if flash[:notice]
       flash_to_display, level = flash[:notice], 'notice'
       flash_message_class = 'notice_msg'
