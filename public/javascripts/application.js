@@ -51,33 +51,33 @@ function cancel_comment(c){
   jQuery("#form"+c).hide();
 }
 
+
 function content_show_hide(div_id, style){
   id=jQuery(div_id)
   jQuery(id).slideToggle();
-}
-
-Effect.SlideUpAndDown = function(element,tagid, head) {
-  element = $(element);
-  tagid = $(tagid);
-
-  if(element.visible(element))
-  {
-    new Effect.SlideUp(element, {
-      duration: 0.25
-    });
-    //$(tagid).removeClassName('active');
-    $(head.id+"_img").src = replace($(head.id+"_img").src, 'hide', 'show')
-
-
-  }
-  else {
-    new Effect.SlideDown(element, {
-      duration: 0.25
-    });
-    //$(tagid).addClassName('active');
-    $(head.id+"_img").src = replace($(head.id+"_img").src, 'show', 'hide')
-  //lnk.childNodes[0].src = replace(lnk.childNodes[0].src, 'show', 'hide')
-  }
 
 }
 
+jQuery('#search_q').live('focus.search_query_field', function(){
+    if(jQuery(this).val()=='Search for Friends'){
+      jQuery(this).val('');
+    }
+  });
+
+  jQuery('#search_q').live('blur.search_query_field', function(){
+    if(jQuery(this).val()==''){
+      jQuery(this).val('Search for Friends');
+    }
+  });
+
+  jQuery('#search_all').live('focus.search_query_field', function(){
+    if(jQuery(this).val()=='Search'){
+      jQuery(this).val('');
+    }
+  });
+
+  jQuery('#search_all').live('blur.search_query_field', function(){
+    if(jQuery(this).val()==''){
+      jQuery(this).val('Search');
+    }
+  });

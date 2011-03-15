@@ -1,5 +1,5 @@
 = rounded_corner(:title => 'Search', :size => 'small') do
-  = semantic_form_for(:profile, :url=>search_profiles_path, :method=>:get) do |f|
-    = f.input :search_by, :label=>"Select",:as => :select, :collection => SEARCH_KEYS.map{ |k| [k.titleize,k]},:prompt=>false,:input_html=>{ :class => "search_blog_textbox"}
-    = f.input :search_value,:label=>"Search", :as => :string,:input_html=>{ :class => "search_blog_textbox"}
-    = f.commit_button :button_html => {:value=>"", :class => "search_blog_bt" }
+  = form_tag search_profiles_path, :method => :get, :class => "search_form" do
+    = select(:search, :key, SEARCH_KEYS.map{ |k| [k.titleize,k]}, {:selected => (params[:search] && params[:search][:key])}, {:class => "search_blog_textbox"})
+    = text_field_tag 'search[q]', (params[:search] && params[:search][:q] ? @q_val : 'Search'), :id => 'search_all', :class=>"search_blog_textbox"
+    %button.search_blog_bt{:type => "submit"}

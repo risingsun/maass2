@@ -23,5 +23,8 @@
         = render 'profiles/education' if !@profile.educations.blank?
   %span.widget_lrg_btm
 = render :partial => 'profiles/recent_activity'
+- cache "profile_#{@profile.id}/profile_page_blogs" do
+  = render :partial => 'blogs/list'
 = render :partial => 'polls/list'
 = render 'comments/comment_list'
+
