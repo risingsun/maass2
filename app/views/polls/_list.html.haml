@@ -6,7 +6,7 @@
   .widget_large
     %span.widget_lrg_top
     - title = "Most Recent Polls (latest " + "#{polls.size }" + " of " + "#{total > size ? link_to( total, polls_path(profile)) : total} )"
-    = rounded_med_corner(:id => 'poll', :title => title) do
+    = rounded_med_corner(:id => 'poll', :title => title, :click => true) do
       .middle_panel_profile
         #polls_info{:style => "display:none;align:left;"}
       .slidecontent
