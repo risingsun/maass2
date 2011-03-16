@@ -2,26 +2,28 @@
   %span.widget_lrg_top
   = slide_up_down_header('personal_info','Personal Info')
   .middle_panel_profile
-    #personal_info{:style => "display:none;align:left;"}
+    #personal_info{:style => "display:none;"}
       .slidecontent
-        = render :partial => "personal"
+        = render 'profiles/personal'
   %span.widget_lrg_btm
-.widget_large
-  %span.widget_lrg_top
-  = slide_up_down_header('work_info','Work Info')
-  .middle_panel_profile
-    #work_info{:style => "display:none;align:left;"}
-      .slidecontent
-        = render 'profiles/work' if !@profile.works.blank?
-  %span.widget_lrg_btm
-.widget_large
-  %span.widget_lrg_top
-  = slide_up_down_header('education_info','Education Info')
-  .middle_panel_profile
-    #education_info{:style => "display:none;align:left;"}
-      .slidecontent
-        = render 'profiles/education' if !@profile.educations.blank?
-  %span.widget_lrg_btm
+- if @profile.can_see_field("work_informations", @p)
+  .widget_large
+    %span.widget_lrg_top
+    = slide_up_down_header('work_info','Work Info')
+    .middle_panel_profile
+      #work_info{:style => "display:none;align:left;"}
+        .slidecontent
+          = render 'profiles/work' if !@profile.works.blank?
+    %span.widget_lrg_btm
+- if @profile.can_see_field("educations", @p)
+  .widget_large
+    %span.widget_lrg_top
+    = slide_up_down_header('education_info','Education Info')
+    .middle_panel_profile
+      #education_info{:style => "display:none;"}
+        .slidecontent
+          = render 'profiles/education' if !@profile.educations.blank?
+    %span.widget_lrg_btm
 = render :partial => 'profiles/recent_activity'
 - cache "profile_#{@profile.id}/profile_page_blogs" do
   = render :partial => 'blogs/list'

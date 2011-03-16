@@ -8,6 +8,3 @@
   = render "poll_option_fields", :f => form
 %p
   = link_to_add_fields("Add More Option",f,:poll_options)
-  .row_normal
-    = f.input :public, :label => "Public?", :as => :boolean, :input_html=>{:class=>"poll_check_box"}
-  = f.commit_button
