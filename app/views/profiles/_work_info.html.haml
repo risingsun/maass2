@@ -1,7 +1,8 @@
-= rounded_med_corner(:title => "Work Details", :id => "work_details") do
-  - if @profile.works.blank?
-    - @profile.works.build
-  = f.semantic_fields_for(:works) do |builder|
-    = render "work_fields", :f => builder
-  .row_light2
-    = link_to_add_fields(image_tag('add-button.png'), f , :works)
+= rounded_med_corner( :id => "work_details", :title => "Work Details") do
+  #work_informations
+    - if @profile.works.blank?
+      - @profile.works.build
+    = f.semantic_fields_for(:works) do |builder|
+      = render "work_fields", :f => builder
+    .row_light2
+      = link_to_add_fields(image_tag('add-button.png'), f , :works)
