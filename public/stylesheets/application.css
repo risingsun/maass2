@@ -3805,3 +3805,25 @@ img{
   width: 996px;
   height: 128px;
 }
+.row_dark2 {
+    background-color: #FEF2E1;
+    border-bottom-color: #FFFFFF;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    float: left;
+    height: 30px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 460px;
+}
+.row_light2 {
+    background-color: #FFF7EE;
+    border-bottom-color: #FFFFFF;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    float: left;
+    height: 30px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 460px;
+}

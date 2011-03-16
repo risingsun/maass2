@@ -17,5 +17,5 @@
       = f.input :anniversary_date, :as => :string, :label => "Anniversary",:input_html => {:class => "datebalks" }, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
       = f.input :spouse_name, :as => :string, :label => "Spouse Name", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
       = f.input :professional_qualification, :as => :string, :label => "Professional Qualification",  :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :about_me,  :as => :text, :label => "About Me"
-      = f.input :activities, :as => :text, :label => "Activities"
+      = f.input :about_me,  :as => :text, :label => "About Me", :wrapper_html => {:class => "row_dark_large2"}
+      = f.input :activities, :as => :text, :label => "Activities", :wrapper_html => {:class => "row_light_large2"}
