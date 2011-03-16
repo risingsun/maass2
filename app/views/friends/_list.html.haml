@@ -3,7 +3,7 @@
 - total = list.count
 .widget_large
   %span.widget_lrg_top
-  = slide_up_down_header('show',type,"#{type}")
+  = slide_up_down_header(type,"#{type}")
   %div{:id =>"#{type}_info"}
     %div{:id => type}
       - if !list.blank?
