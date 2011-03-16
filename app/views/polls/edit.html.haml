@@ -1,3 +1,10 @@
 = rounded_corner(:title => "Edit Poll") do
   = semantic_form_for [@profile, @poll] do |f|
     = render :partial => 'form',:locals =>{:f => f}
+    .row_normal
+      - if @p.is_active
+        .poll_check_box
+          = check_box :poll, :public
+          Public?
+    %button.buttons{:type => "submit"}
+      = image_tag("Update.png")
