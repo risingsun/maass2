@@ -64,3 +64,13 @@ INDIA_STATES = [ "Andhra Pradesh",
   "West Bengal"]
 
 SEARCH_KEYS = ['name','location','blood_group','year','blog','phone','address']
+
+smtp_settings = THEME_CONFIG[:smtp_settings].symbolize_keys
+ActionMailer::Base.smtp_settings = {
+  :address => smtp_settings[:address],
+  :port => smtp_settings[:port],
+  :domain => smtp_settings[:domain],
+  :authentication => smtp_settings[:authentication].to_sym,
+  :user_name => smtp_settings[:user_name],
+  :password => smtp_settings[:password]
+}

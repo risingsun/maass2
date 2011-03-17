@@ -28,18 +28,18 @@
 class User < ActiveRecord::Base
 
   include Humanizer
-
-  has_one :profile
-  accepts_nested_attributes_for :profile
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :confirmable,
+    :recoverable, :rememberable, :trackable, :validatable
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login
   attr_accessible :humanizer_answer, :humanizer_question_id
   require_human_on :create
 
   validates :login, :presence => true,
-                         :length => { :maximum => 20 },
-                         :uniqueness => true
+    :length => { :maximum => 20 },
+    :uniqueness => true
+  has_one :profile
+  accepts_nested_attributes_for :profile
+
   def is_admin
     return true if self.admin == true
   end
