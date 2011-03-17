@@ -48,14 +48,10 @@ module ApplicationHelper
     options.symbolize_keys!
     size = (options[:size] || :lrg).to_s
     title = options[:title] || ""
-    id = options[:id] || title
-    click = options[:click] || false
     concat(content_tag(:div, :class => "widget_#{size}") do
         content_tag(:span, " ", :class => "widget_#{size}_top") +
-          content_tag(:h2,title,:class => "widget_#{size}_title", :onclick => "content_show_hide(#{id}_body,#{click})") +
-          content_tag(:div, :id =>"#{id}_body") do
-          capture(&block)
-        end +
+          content_tag(:h2,title,:class => "widget_#{size}_title") +
+          capture(&block) +
           content_tag(:div, "", :class => "clear_div") +
           content_tag(:span, "", :class => "widget_#{size}_btm")
       end)
@@ -68,12 +64,10 @@ module ApplicationHelper
     title = options[:title] || ""
     id = options[:id] || title
     button = options[:button] || ""
-    click = options[:click]
-    dis = options[:display]
     concat(content_tag(:div, :class => "edit_profile", :id => id) do
         content_tag(:span, " ", :class => "edit_profile_top") +
-          content_tag(:h2,title,:class => "edit_profile_title", :onclick => "content_show_hide(#{id}_body,#{click})") +
-          content_tag(:div, :class => "edit_panel_profile", :id =>"#{id}_body", :style => "display: #{dis};") do
+          content_tag(:h2,title,:class => "edit_profile_title") +
+          content_tag(:div, :class => "edit_panel_profile") do
           capture(&block)
         end +
           content_tag(:div, "", :class => "clear_div") +
