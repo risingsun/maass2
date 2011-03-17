@@ -5,11 +5,12 @@
     = f.input :email, :as => :string
     = f.input :password, :as => :password
     = f.input :password_confirmation, :as => :password
-    = f.input :first_name, :as => :string
-    = f.input :middle_name, :as => :string
-    = f.input :last_name, :as => :string
-    = f.input :maiden_last_name, :as => :string
-    = f.input :gender, :as => :select, :collection => User::SEX, :prompt => false
-    = f.input :groups, :as => :select, :collection => User::GROUP, :prompt => false
+    = f.semantic_fields_for(:profile) do |user|
+      = user.input :first_name, :as => :string
+      = user.input :middle_name, :as => :string
+      = user.input :last_name, :as => :string
+      = user.input :maiden_name, :as => :string
+      = user.input :gender, :as => :select, :collection => User::SEX, :prompt => false
+      = user.input :group, :as => :select, :collection => User::GROUP, :prompt => false
     = f.commit_button :label => "Sign Up"
   = render :partial => "devise/shared/links"
