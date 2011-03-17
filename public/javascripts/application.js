@@ -24,6 +24,22 @@ jQuery(document).ready(function()
       CKEDITOR.instances[instance].updateElement();
     }
   });
+
+  var submit_handler = function(element, id, value) {
+    alert("Edited id '" + id + "' value '" + value + "'");
+    return true;
+  };
+
+  var cancel_handler = function(element) {
+    // Nothing
+    return true;
+  };
+
+ jQuery("#in-place-edit").inPlaceEdit({
+    submit : submit_handler,
+    cancel : cancel_handler
+  });
+
 });
 
 
@@ -80,3 +96,14 @@ jQuery('#search_all').live('blur.search_query_field', function(){
     jQuery(this).val('Search');
   }
 });
+
+jQuery('#cancel').click(function(){
+    $j('#status').hide();
+    $j('#status_show').show();
+  });
+
+jQuery('#status_show').click(function(){
+    $j('#status').show();
+    $j('#status_show').hide();
+  });
+
