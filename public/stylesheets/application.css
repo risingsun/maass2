@@ -1566,7 +1566,7 @@ label.label_margin{
   position: relative;
 }
 
-* html .button_small_button, 
+* html .button_small_button
 {
   background: none;
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/images/btn_small.png');
@@ -1661,7 +1661,7 @@ div.profile_pic_panel span.even {
 .checkbox{
   float: left;
   margin-left: 70px;
-  * margin-left:66px;
+  margin-left:66px;
   position: relative;
 }   
 .login_checkbox{
@@ -3804,4 +3804,26 @@ img{
   background-image: url(/images/header.jpg);
   width: 996px;
   height: 128px;
+}
+.row_dark2 {
+    background-color: #FEF2E1;
+    border-bottom-color: #FFFFFF;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    float: left;
+    height: 30px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 460px;
+}
+.row_light2 {
+    background-color: #FFF7EE;
+    border-bottom-color: #FFFFFF;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    float: left;
+    height: 30px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 460px;
 }

@@ -1,21 +1,21 @@
 = rounded_med_corner(:id => 'general_info', :title => 'General Info') do
   = f.semantic_fields_for(:user) do |u|
     = u.inputs do
-      = u.input :login, :as => :string, :value => current_user.login, :input_html => {:wrap_class => cycle(:row_light2, :row_dark2)}
+      = u.input :login, :as => :string, :value => current_user.login, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
     = f.inputs do
-      = f.input :title, :as => :select, :collection => TITLE, :include_blank => true, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :first_name, :as => :string, :label => "First Name", :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :middle_name, :as => :string, :label => "Middle Name",:wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :last_name, :as => :string, :label => "Last Name",:wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :maiden_name, :as => :string, :label => "Maiden Name",:wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :gender, :as => :select, :collection => SEX, :include_blank => true, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :blood_group, :as => :select, :collection => BLOOD_GROUP, :label => "Blood Group",:include_blank => true, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :group, :collection => GROUPS, :include_blank => true, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :house_name, :as => :select, :collection => HOUSE_NAME, :label => "House Name",:include_blank => true, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :date_of_birth, :as => :string, :label => "Date Of Birth ",:input_html => {:class => "datebalks" }
-      = f.input :relationship_status, :as => :select, :collection => RELATIONSHIP_STATUS, :label => "Relationship Status",:include_blank => true, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :anniversary_date, :as => :string, :label => "Anniversary",:input_html => {:class => "datebalks" }, :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :spouse_name, :as => :string, :label => "Spouse Name",:wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :professional_qualification, :as => :string, :label => "Professional Qualification", :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :about_me,  :as => :text, :label => "About Me", :wrap_class => cycle(:row_light2, :row_dark2)
-      = f.input :activities, :as => :text, :label => "Activities", :wrap_class => cycle(:row_light2, :row_dark2)
+      = f.input :title, :as => :select, :collection => TITLE, :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :first_name, :as => :string, :label => "First Name", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :middle_name, :as => :string, :label => "Middle Name", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :last_name, :as => :string, :label => "Last Name", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :maiden_name, :as => :string, :label => "Maiden Name", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :gender, :as => :select, :collection => SEX, :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :blood_group, :as => :select, :collection => BLOOD_GROUP, :label => "Blood Group", :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :group, :collection => GROUPS, :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :house_name, :as => :select, :collection => HOUSE_NAME, :label => "House Name",:include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :date_of_birth, :as => :string, :label => "Date Of Birth ", :input_html => {:class => "datebalks" }
+      = f.input :relationship_status, :as => :select, :collection => RELATIONSHIP_STATUS, :label => "Relationship Status",:include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :anniversary_date, :as => :string, :label => "Anniversary",:input_html => {:class => "datebalks" }, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :spouse_name, :as => :string, :label => "Spouse Name", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :professional_qualification, :as => :string, :label => "Professional Qualification",  :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :about_me,  :as => :text, :label => "About Me", :wrapper_html => {:class => "row_dark_large2"}
+      = f.input :activities, :as => :text, :label => "Activities", :wrapper_html => {:class => "row_light_large2"}
