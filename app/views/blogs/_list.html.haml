@@ -2,10 +2,11 @@
 - size ||= 10
 - blogs ||= profile.blogs.find(:all, :limit => size)
 - total = profile.blogs.count
+- title = "Most Recent Blog Posts (latest " +blogs.count.to_s + " of " + "#{total > size ? link_to( total, profile_blogs_path(profile)) : total} )"
 - unless blogs.empty?
   .widget_large
     %span.widget_lrg_top
-    = slide_up_down_header('blogs_info', "Most Recent Blog Posts (latest " +blogs.count.to_s + " of " + "#{total > size ? link_to( total, profile_blogs_path(profile)) : total} )")
+    = slide_up_down_header('blogs_info', title.html_safe)
     #blogs_info
       .complete_middle_panel
         - blogs.each do |b|

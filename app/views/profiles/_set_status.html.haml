@@ -1,9 +1,16 @@
-= semantic_form_for @profile do |f|
+= form_for @profile do |f|
   .large_panel_side
-    = rounded_med_corner(:title => "Status", :id => "status", :click => true) do
-      .in-place-edit
-        = f.input :status_message, :label => "status"
-        %button.buttons{:type => "submit"}
-          = image_tag('Update.png')
-        %button.buttons{:type => "submit"}
-          = image_tag('cancel-button.png')
+    #status_show{:onclick => "show_status()"}
+      %p
+        - if @profile.status_message == nil || @profile.status_message == ""
+          = f.label "Click here to set status", :class => "cursor"
+        - else
+          .cursor
+            %p
+              = @profile.status_message
+    #status_form{:style => "display: none;"}
+      = f.text_field :status_message
+      %button.buttons{:type => "submit"}
+        = image_tag('Update.png')
+      %button.buttons#cancel{:type => "button",:onclick => "cancel_status()"}
+        = image_tag("cancel-button.png")
