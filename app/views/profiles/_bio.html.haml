@@ -6,4 +6,6 @@
     .profile_links
       %strong Location:
       = profile.location
-    
+      - if me
+        .profile_links
+          = link_to "Send Invites", new_profile_invitation_path(@p)

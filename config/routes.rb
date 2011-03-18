@@ -31,6 +31,7 @@ Maass2::Application.routes.draw do
     end
 
     resources :feed_items
+    resources :invitations
 
     post 'load_profile', :on => :collection
     get 'edit_account', :on => :member
