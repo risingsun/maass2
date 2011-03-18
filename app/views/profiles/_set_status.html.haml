@@ -10,6 +10,7 @@
               = @profile.status_message
     #status_form{:style => "display: none;"}
       = f.text_field :status_message
+      %br
       %button.buttons{:type => "submit"}
         = image_tag('Update.png')
       %button.buttons#cancel{:type => "button",:onclick => "cancel_status()"}
