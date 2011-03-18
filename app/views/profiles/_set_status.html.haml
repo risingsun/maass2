@@ -1,14 +1,16 @@
 = form_for @profile do |f|
   .large_panel_side
-    = rounded_med_corner(:title => "Status") do
-      #status_show{:onclick => "show_status()"}
+    #status_show{:onclick => "show_status()"}
+      %p
         - if @profile.status_message == nil || @profile.status_message == ""
-          = f.label :click_here_to_set_status
+          = f.label "Click here to set status", :class => "cursor"
         - else
-          = @profile.status_message
-      #status_form{:style => "display: none;"}
-        = f.text_field :status_message
-        %button.buttons{:type => "submit"}
-          = image_tag('Update.png')
-        %button.buttons#cancel{:type => "button",:onclick => "cancel_status()"}
-          = image_tag("cancel-button.png")
+          .cursor
+            %p
+              = @profile.status_message
+    #status_form{:style => "display: none;"}
+      = f.text_field :status_message
+      %button.buttons{:type => "submit"}
+        = image_tag('Update.png')
+      %button.buttons#cancel{:type => "button",:onclick => "cancel_status()"}
+        = image_tag("cancel-button.png")
