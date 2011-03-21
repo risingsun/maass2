@@ -13,6 +13,15 @@ jQuery(document).ready(function()
     prevText: ""
 
   });
+   jQuery('.datetime').datetimepicker({
+         duration: '',
+         showTime: true,
+         constrainInput: false,
+         stepMinutes: 1,
+         stepHours: 1,
+         altTimeField: '',
+         time24h: false
+      });
 
   jQuery("a.select_all").click(function(){
 

@@ -2,8 +2,8 @@
   %head
     %title
       = @title || 'Maass'
-    = stylesheet_link_tag "/maass/stylesheets/application",'jquery-ui-1.8.7.custom','formtastic','formtastic_changes', 'application',"ckeditor/content.css"
-    = javascript_include_tag 'jquery.min','jquery-ui.min','application','rails', 'status_button','clusterer','geoRssOverlay','markerGroup','wms-gs','ym4r-gm','rs_maps'
+    = stylesheet_link_tag "/maass/stylesheets/application",'jquery-ui-1.8.7.custom','formtastic','formtastic_changes', 'application'
+    = javascript_include_tag 'jquery.min','jquery-ui.min','application','rails', 'status_button','clusterer','geoRssOverlay','markerGroup','wms-gs','ym4r-gm','rs_maps', 'jquery-ui-timepicker-addon'
     = javascript_include_tag :ckeditor
     = csrf_meta_tag
   %body
@@ -31,6 +31,8 @@
         = render :partial => "shared/rsidebar"
         = yield :right_side_panel
       .clear_div
+        #footer
+          = render :partial => 'shared/footer'
       .clear_div
     .clear_div
     .btm_div

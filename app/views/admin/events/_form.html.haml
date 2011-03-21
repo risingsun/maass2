@@ -1,4 +1,4 @@
-= form_for(@event) do |f|
+- form_for @event, :url => admin_events_path, :html => {:method=>:post, :class=>" "} do |f|
   %br/
   %div
     = f.label :title

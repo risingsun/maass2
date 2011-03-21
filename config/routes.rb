@@ -3,8 +3,11 @@ Maass2::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users"}
 
   resources :users
-  resources :events
+  namespace :admin do
+    resources :events
+  end
   resources :votes
+  resources :feedbacks
   resources :profiles do
 
     resource :friendship, :only => [:create, :update, :destroy]

@@ -1,7 +1,7 @@
 class UsersController < Devise::RegistrationsController
 
   include Devise
-
+ 
   def create
     build_resource
     if resource.save
@@ -71,5 +71,5 @@ class UsersController < Devise::RegistrationsController
     send(:"authenticate_#{resource_name}!", true)
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
   end
-
+  
 end

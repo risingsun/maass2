@@ -15,6 +15,7 @@ class Profile < ActiveRecord::Base
   has_many :comments
   has_many :profile_comments, :class_name => "Comment", :as => :commentable
   has_one :marker
+  has_many :feedbacks
   has_one :notification_control
   has_many :polls, :dependent => :destroy
   has_many :poll_responses, :dependent => :destroy
