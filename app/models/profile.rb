@@ -189,4 +189,8 @@ class Profile < ActiveRecord::Base
     n
   end
 
+  def self.greetings(type)
+    Profile.all(:conditions => ["#{type} is not NULL" ], :order => "#{type} ASC")
+  end
+
 end

@@ -5,6 +5,9 @@ Maass2::Application.routes.draw do
   resources :users
   namespace :admin do
     resources :events
+    resources :home do
+      get 'greetings', :on => :member
+    end
   end
   resources :votes
   resources :feedbacks
@@ -51,7 +54,6 @@ Maass2::Application.routes.draw do
 
   resources :homes do
     get 'polls', :on => :member
-    get 'admin', :on => :member
   end
 
   match '/edit',  :to => 'profiles#edit'

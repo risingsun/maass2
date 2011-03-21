@@ -21,7 +21,7 @@
     - if @is_admin
       %li.menu_text
         |
-        = link_to('Admin', admin_home_path(current_user))
+        = link_to('Admin', admin_home_index_path())
 .logout_container
   = link_to image_tag(set_icon(current_user.profile,'small_20')), homes_path
   %span.menu_text= full_name(current_user.profile)
