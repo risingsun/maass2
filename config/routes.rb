@@ -9,10 +9,10 @@ Maass2::Application.routes.draw do
       get 'greetings', :on => :member
       get 'blogs', :on => :member
     end
+    resources :announcements
   end
   resources :votes
   resources :feedbacks
-  resources :announcements
   resources :profiles do
 
     resource :friendship, :only => [:create, :update, :destroy]

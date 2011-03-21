@@ -1,0 +1,2 @@
+- form_for @announcement, :url => admin_announcement_path, :html => {:method=> :put} do |form|
+  = render :partial => 'form', :locals => {:f => form}

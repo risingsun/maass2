@@ -1,9 +1,10 @@
-class AnnouncementsController < ApplicationController
+class  Admin::AnnouncementsController < ApplicationController
 
   def index
     @announcements = Announcement.find(:all, :order => 'starts_at desc')
     if @announcements.blank?
-      redirect_to new_announcement_path
+      flash[:notice] = "You have not created any announcement !"
+      redirect_to new_admin_announcement_path
     end
   end
   
@@ -15,10 +16,10 @@ class AnnouncementsController < ApplicationController
     @announcement = Announcement.new(params[:announcement])
     if @announcement.save
       flash[:notice] = 'Announcement was successfully created.'
-      redirect_to announcements_path 
+      redirect_to admin_announcements_path
     else
       flash[:notice] = 'Announcement was not Successfully created'
-      render :action => "new" 
+      render 'new'
     end
  end
 
@@ -30,18 +31,18 @@ class AnnouncementsController < ApplicationController
   @announcement = Announcement.find(params[:id])
   if @announcement.update_attributes(params[:announcement])
     flash[:notice] = 'Announcement was successfully updated.'
-    redirect_to announcements_path
+    redirect_to admin_announcements_path
   else
     flash[:notice] = 'Announcement was not successfully updated'
-    render :action => "edit"
+    render 'edit'
   end
  end
 
  def destroy
    @announcement = Announcement.find(params[:id])
    @announcement.destroy
-   flash[:notice] = 'Announcement has been successfully delected'
-   redirect_to announcements_path
+   flash[:notice] = 'Announcement has been successfully deleted'
+   redirect_to admin_announcements_path
  end
 
 end
