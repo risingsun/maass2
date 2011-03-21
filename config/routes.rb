@@ -8,6 +8,7 @@ Maass2::Application.routes.draw do
   end
   resources :votes
   resources :feedbacks
+  resources :announcements
   resources :profiles do
 
     resource :friendship, :only => [:create, :update, :destroy]
@@ -33,6 +34,7 @@ Maass2::Application.routes.draw do
     end
 
     resources :feed_items
+    resources :invitations
 
     post 'load_profile', :on => :collection
     get 'edit_account', :on => :member

@@ -20,6 +20,8 @@ class Profile < ActiveRecord::Base
   has_many :polls, :dependent => :destroy
   has_many :poll_responses, :dependent => :destroy
 
+  has_many :invitations
+
   accepts_nested_attributes_for :notification_control
   accepts_nested_attributes_for :blogs
   accepts_nested_attributes_for :user

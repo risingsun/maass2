@@ -5,7 +5,7 @@ THEME_CONFIG = YAML.load(theme_config).symbolize_keys
 SITE = Rails.env.production? ? THEME_CONFIG[:site_production_domain] : THEME_CONFIG[:site_development_domain]
 
 SITE_FULL_NAME = THEME_CONFIG[:site_full_name]
-
+SITE_NAME = THEME_CONFIG[:site_name]
 GOOGLE_CHART_COLOUR_ARRAY = %w(3CD983 C4D925 BABF1B BFA20F A66D03 732C02)
 SEX = ["Male","Female"]
 USER_TYPE = ["Teacher","Guest"]
@@ -64,6 +64,8 @@ INDIA_STATES = [ "Andhra Pradesh",
   "West Bengal"]
 
 SEARCH_KEYS = ['name','location','blood_group','year','blog','phone','address']
+
+MAILER_FROM_ADDRESS = THEME_CONFIG[:mailer_from_address]
 
 smtp_settings = THEME_CONFIG[:smtp_settings].symbolize_keys
 ActionMailer::Base.smtp_settings = {

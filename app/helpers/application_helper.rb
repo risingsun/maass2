@@ -48,14 +48,10 @@ module ApplicationHelper
     options.symbolize_keys!
     size = (options[:size] || :lrg).to_s
     title = options[:title] || ""
-    id = options[:id] || title
-    click = options[:click] || false
     concat(content_tag(:div, :class => "widget_#{size}") do
         content_tag(:span, " ", :class => "widget_#{size}_top") +
-          content_tag(:h2,title,:class => "widget_#{size}_title", :onclick => "content_show_hide(#{id}_body,#{click})") +
-          content_tag(:div, :id =>"#{id}_body") do
-          capture(&block)
-        end +
+          content_tag(:h2,title,:class => "widget_#{size}_title") +
+          capture(&block) +
           content_tag(:div, "", :class => "clear_div") +
           content_tag(:span, "", :class => "widget_#{size}_btm")
       end)
@@ -68,12 +64,10 @@ module ApplicationHelper
     title = options[:title] || ""
     id = options[:id] || title
     button = options[:button] || ""
-    click = options[:click]
-    dis = options[:display]
     concat(content_tag(:div, :class => "edit_profile", :id => id) do
         content_tag(:span, " ", :class => "edit_profile_top") +
-          content_tag(:h2,title,:class => "edit_profile_title", :onclick => "content_show_hide(#{id}_body,#{click})") +
-          content_tag(:div, :class => "edit_panel_profile", :id =>"#{id}_body", :style => "display: #{dis};") do
+          content_tag(:h2,title,:class => "edit_profile_title") +
+          content_tag(:div, :class => "edit_panel_profile") do
           capture(&block)
         end +
           content_tag(:div, "", :class => "clear_div") +
@@ -150,7 +144,7 @@ module ApplicationHelper
     elsif flash[:error]
       flash_message_class = 'error_msg'
       level = 'error'
-      if flash[:error].instance_of?( ActiveRecord::Errors) || flash[:error].is_a?( Hash)
+      if flash[:error].is_a?( Hash)
         flash_to_display = message
         flash_to_display << activerecord_error_list(flash[:error])
       else
@@ -186,6 +180,14 @@ module ApplicationHelper
     flash_message_class = flash_message_class.to_s + " " + "widget_large_flash_msg"
     flash_msg = flash_to_display.to_s + "<span class='widget_large_flash_msg_btm'></span>"
     content_tag 'div', flash_msg.html_safe, :class => flash_message_class, :id => "flash_message"
+  end
+
+  def activerecord_error_list(errors)
+    error_list = '<ul class="error_list">'
+    error_list << errors.collect do |e, m|
+      "<li>#{e.humanize unless e == "base"} #{m}</li>"
+    end.to_s << '</ul>'
+    error_list
   end
  
   def message_count(profile = @p)
