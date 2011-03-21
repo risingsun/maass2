@@ -1,12 +1,11 @@
 - rounded_corner(:title => "Announcement Create/Update", :size => 'lrg') do
-  - form_for @announcement,:url => admin_announcements_path, :html => {:method=>:post} do |f|
-    = f.label :Message
-    = f.text_area :message, :rows => 5
-    %div{:class => cycle(:row_light2, :row_dark2)}
-      %label.label_margin{:for => "announcement_starts_at"} Starts at
-      = f.text_field :starts_at, :class => "datetime"
-    %div{:class => cycle(:row_light2, :row_dark2)}
-      %label.label_margin{:for => "announcement_ends_at"} Ends at
-      = f.text_field :ends_at, :class => "datetime"
-    .large_btn_container2
-      = f.submit 'Save'
+  = f.label :Message
+  = f.text_area :message, :rows => 5
+  %div{:class => cycle(:row_light2, :row_dark2)}
+    %label.label_margin{:for => "announcement_starts_at"} Starts at
+    = f.text_field :starts_at, :class => "datetime"
+  %div{:class => cycle(:row_light2, :row_dark2)}
+    %label.label_margin{:for => "announcement_ends_at"} Ends at
+    = f.text_field :ends_at, :class => "datetime"
+  .large_btn_container2
+    = f.submit 

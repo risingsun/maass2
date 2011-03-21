@@ -1,5 +1,5 @@
 - rounded_corner(:title => "Announcements", :size => 'lrg') do
-  = button_to "Create New Announcement", new_admin_announcement_path()
+  = button_to "Create New Announcement", admin_announcements_path, :html => {:method=> :post}
   %table
     %tr
       %th Message
