@@ -17,6 +17,28 @@ class AnnouncementsController < ApplicationController
       flash[:notice] = 'Announcement was not Successfully created'
       render :action => "new" 
     end
+ end
+
+ def edit
+  @announcement = Announcement.find(params[:id])
+ end
+
+ def update
+  @announcement = Announcement.find(params[:id])
+  if @announcement.update_attributes(params[:announcement])
+    flash[:notice] = 'Announcement was successfully updated.'
+    redirect_to announcements_path
+  else
+    flash[:notice] = 'Announcement was not successfully updated'
+    render :action => "edit"
   end
-  
+ end
+
+ def destroy
+   @announcement = Announcement.find(params[:id])
+   @announcement.destroy
+   flash[:notice] = 'Announcement has been successfully delected'
+   redirect_to announcements_path
+ end
+
 end
