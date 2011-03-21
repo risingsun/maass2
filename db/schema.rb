@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110318063338) do
+ActiveRecord::Schema.define(:version => 20110321065251) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(:version => 20110318063338) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
-    t.date     "starts_at"
-    t.date     "ends_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
   end
 
   create_table "blogs", :force => true do |t|
