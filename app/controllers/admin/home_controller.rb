@@ -10,4 +10,7 @@ class Admin::HomeController < ApplicationController
   def admin
     @profile = @p
   end
+
+  def blogs
+  end
 end

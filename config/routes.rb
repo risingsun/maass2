@@ -7,6 +7,7 @@ Maass2::Application.routes.draw do
     resources :events
     resources :home do
       get 'greetings', :on => :member
+      get 'blogs', :on => :member
     end
   end
   resources :votes

@@ -35,7 +35,7 @@ class Admin::EventsController < ApplicationController
       render :action => 'new'
     else
       flash[:notice] = "Successfully updated event."
-      redirect_to events_path
+      redirect_to admin_events_path
     end
   end
 

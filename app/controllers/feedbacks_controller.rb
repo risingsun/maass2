@@ -1,5 +1,8 @@
 class FeedbacksController < ApplicationController
 
+  def index
+    @feedbacks = Feedback.all
+  end
   def new
     @feedback = Feedback.new
   end
@@ -15,11 +18,16 @@ class FeedbacksController < ApplicationController
 
     if @feedback.save
       flash[:notice] = "Create feedback succussfully"
-      redircet_to :root
+      redirect_to :root
     else
       flash[:notice] = "Can not create feedback"
       render :new
     end
+  end
 
+  def destroy
+    @feedback = Feedback.find(params[:id])
+    @feedback.destroy
+    redirect_to feedbacks_path
   end
 end

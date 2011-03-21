@@ -193,4 +193,8 @@ class Profile < ActiveRecord::Base
     Profile.all(:conditions => ["#{type} is not NULL" ], :order => "#{type} ASC")
   end
 
+  def admin_blogs
+    self.blogs.all(:conditions => {:is_sent =>:false}, :order => "created_at DESC")
+  end
+
 end

@@ -1,0 +1,6 @@
+- if !@feedbacks.blank?
+  %table
+    - @feedbacks.each do |feedback|
+      %tr
+        %td= link_to feedback.subject, feedback
+        %td= link_to "Destroy", feedback, :method => :delete

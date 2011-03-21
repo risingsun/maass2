@@ -1,1 +1,2 @@
-= render 'form'
+- form_for @event, :url => admin_event_path, :html => {:method=>:put} do |form|
+  = render :partial => 'form' , :locals =>{:f => form}

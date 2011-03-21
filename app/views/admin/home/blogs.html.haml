@@ -1,0 +1,8 @@
+= rounded_corner(:title => 'Blogs') do
+  - blogs = @p.admin_blogs()
+  %table
+    - blogs.each do |blog|
+      %tr
+        %td= blog.title
+        %td= link_to "Send this blog to all" ,"#"
+
