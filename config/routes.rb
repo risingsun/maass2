@@ -5,10 +5,10 @@ Maass2::Application.routes.draw do
   resources :users
   namespace :admin do
     resources :events
+    resources :announcements
   end
   resources :votes
   resources :feedbacks
-  resources :announcements
   resources :profiles do
 
     resource :friendship, :only => [:create, :update, :destroy]
