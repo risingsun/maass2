@@ -1,0 +1,14 @@
+%table
+%tr
+  %td= event.title
+  %td{:align => "right", :width => "100px"}
+    = link_to image_tag('edit.png', :border =>0), edit_admin_event_path(event)
+    = link_to image_tag('delete.png',:border =>0), admin_event_path(event), :method => :delete
+%tr
+  %td= event.start_date
+  %td= event.end_date
+%tr
+  %te= event.place
+%tr
+  %td{:colspan => "2"}= event.description.html_safe
+

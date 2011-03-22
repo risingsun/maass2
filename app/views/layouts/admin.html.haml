@@ -1,0 +1,19 @@
+%body
+  .main_container
+    = render :partial => 'layouts/header'
+    .content_container
+      #info.login_container
+        - if @u.nil? or @u.new_record? or !@u.email_verified
+          %span.welcome_msg
+            Welcome to #{SITE_FULL_NAME}.
+        - else
+          = render :partial => "shared/header_tab"
+      .clear_div
+      = display_standard_flashes_in_large_size
+      .admin_panel
+        = render :partial => "admin/shared/admin_header"
+        .clear_div
+        = yield
+    .clear_div
+  .clear_div
+  .btm_div
