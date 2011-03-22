@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110321065251) do
+ActiveRecord::Schema.define(:version => 20110322095440) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -185,6 +185,17 @@ ActiveRecord::Schema.define(:version => 20110321065251) do
     t.string   "profile_id"
     t.string   "permission_field"
     t.string   "permission_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.string   "caption"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.integer  "profile_id"
+    t.boolean  "set_as_blurb"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

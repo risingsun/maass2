@@ -1,6 +1,6 @@
 class FeedbacksController < ApplicationController
 
-  before_filter :hide_side_panels
+  before_filter :hide_side_panels, :except => [:new, :create]
 
   def index
     @feedbacks = Feedback.all

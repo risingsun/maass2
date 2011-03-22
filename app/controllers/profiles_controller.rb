@@ -8,6 +8,9 @@ class ProfilesController < ApplicationController
   def index
     if @is_admin
       @profiles = Profile.all
+      @title = "Users"
+    else
+      redircet_to :back
     end
   end
 

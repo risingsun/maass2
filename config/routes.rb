@@ -18,6 +18,7 @@ Maass2::Application.routes.draw do
     resource :friendship, :only => [:create, :update, :destroy]
 
     resources :friends
+    resources :photos
 
     resources :messages do
       get 'direct_message', :on => :collection

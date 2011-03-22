@@ -123,11 +123,15 @@ module ApplicationHelper
   end
 
   def set_icon(profile, size)
-    if profile.icon_file_name.blank?
+    if profile.icon_file_name.blank? || profile
       "#{profile.gender}_#{size}.png"
     else
       profile.icon.url(size)
     end
+  end
+
+  def set_image(photo, size)
+    photo.image.url(size)
   end
 
   def theme_image(img, options = {})

@@ -13,6 +13,7 @@ class Profile < ActiveRecord::Base
   has_many :works, :dependent => :destroy
   has_many :blogs
   has_many :comments
+  has_many :photos
   has_many :profile_comments, :class_name => "Comment", :as => :commentable
   has_one :marker
   has_many :feedbacks
@@ -21,7 +22,7 @@ class Profile < ActiveRecord::Base
   has_many :poll_responses, :dependent => :destroy
 
   has_many :invitations
-
+  has_many :sent_blogs, :class_name => 'Blog', :order => 'created_at desc', :conditions => "is_sent = #{false}"
   accepts_nested_attributes_for :notification_control
   accepts_nested_attributes_for :blogs
   accepts_nested_attributes_for :user

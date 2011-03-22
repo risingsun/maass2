@@ -12,6 +12,7 @@ class Admin::HomeController < ApplicationController
   end
 
   def blogs
+    @blogs = @p.sent_blogs
   end
 
   private

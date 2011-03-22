@@ -11,6 +11,6 @@
     %div= link_to "Site Content", "#"
     %div= link_to "Preferences", "#"
     %div= link_to "Google Map Locations", "#"
-    %div= link_to "Photos", "#"
-    %div= link_to "Blurb Images", "#"
+    %div= link_to "Photos", profile_photos_path(@p, :blurb_image => false)
+    %div= link_to "Blurb Images", profile_photos_path(@p, :blurb_image => true)
     %div= link_to "Nomination Forms", "#"
