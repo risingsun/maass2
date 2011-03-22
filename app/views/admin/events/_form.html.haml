@@ -1,10 +1,11 @@
-= f.label :title
-= f.text_field :title
-= f.label :place
-= f.text_field :place
-= f.label :start_date
-= f.date_select :start_date
-= f.label :end_date
-= f.date_select :end_date
-= f.label :description
-= f.text_area :description
+.widget_complete
+  %span.widget_complete_top
+  %h2.widget_compelete_title New Event
+  = f.inputs do
+    = f.input :title, :as => :string, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
+    = f.input :place, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
+    = f.input :start_date, :label => "Start Date", :as => :string, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}, :input_html => {:class => "datetime" }
+    = f.input :end_date, :as => :string, :label => "End Date", :as => :string, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}, :input_html => {:class => "datetime" }
+    = f.input :description, :as => :text, :wrapper_html => {:class => cycle(:row_complete_light_large2, :row_complete_dark_large2)}
+    %button.buttons{:type => "submit"}
+      = image_tag("save.png")

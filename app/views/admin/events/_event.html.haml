@@ -1,14 +1,24 @@
-%table
-%tr
-  %td= event.title
-  %td{:align => "right", :width => "100px"}
+.widget_complete{:id => "event_#{event.id}"}
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width
+    =# link_to image_tag(set_icon(profile,'small')), homes_path
+    = event.title
     = link_to image_tag('edit.png', :border =>0), edit_admin_event_path(event)
     = link_to image_tag('delete.png',:border =>0), admin_event_path(event), :method => :delete
-%tr
-  %td= event.start_date
-  %td= event.end_date
-%tr
-  %te= event.place
-%tr
-  %td{:colspan => "2"}= event.description.html_safe
-
+    .created_date
+      Posted by #{event.organizers.first} at #{event.updated_at.to_date.to_formatted_s(:rfc822)}
+    .forum_text
+      = event.description.html_safe
+      .event_location
+        .event_start_date
+          %span.event_address Start Date :
+          = event.start_date.to_date.to_formatted_s(:rfc822)if event.start_date
+        .event_end_date
+          %span.event_address End Date :
+          = event.end_date.to_date.to_formatted_s(:rfc822)if event.end_date
+        %br
+        %div
+          %span.event_address Address :
+          %br
+          = event.place
+  %span.widget_complete_btm

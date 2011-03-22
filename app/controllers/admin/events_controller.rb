@@ -16,7 +16,7 @@ class Admin::EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
-    if params[:preview_button] || !@event.save
+    if !@event.save
       render :action => 'new'
       flash[:notice] = "Event Creation Failed."
     else
