@@ -1,5 +1,7 @@
 class  Admin::AnnouncementsController < ApplicationController
 
+  before_filter :hide_side_panels
+
   def index
     @announcements = Announcement.find(:all, :order => 'starts_at desc')
     if @announcements.blank?
@@ -43,6 +45,12 @@ class  Admin::AnnouncementsController < ApplicationController
    @announcement.destroy
    flash[:notice] = 'Announcement has been successfully deleted'
    redirect_to admin_announcements_path
+ end
+
+ private
+
+ def hide_side_panels
+   @hide_panels = true
  end
 
 end
