@@ -1,16 +1,9 @@
-#column_l>
+#column_l
   %h2.page_title
     = SITE_NAME
     Events
-    =link_to image_tag('add_new_post.png',  :title=>"Create New Event",  :class=>"add_new_post2"),  new_admin_event_path()
-    - if @events.empty?
-      .widget_large
-        .comments
-          = SITE_NAME
-          has no event posts.
-          %span.widget_lrg_btm
-    - else
-      = render :partial => 'admin/events/event', :collection => @events
-      .clear_div
+    = link_to image_tag('add_new_post.png',  :title=>"Create New Event",  :class=>"add_new_post2"),  new_admin_event_path()
+  = render :partial => 'admin/events/event', :collection => @events
+  .clear_div
 
      
