@@ -1,1 +1,2 @@
-= render :partial => 'shared/mini_profile', :collection => @profiles
+= rounded_corner(:title => @title.titleize, :size => 'lrg') do
+  = render :partial => 'shared/mini_profile', :collection => @profiles

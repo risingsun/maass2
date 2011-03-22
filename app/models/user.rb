@@ -27,6 +27,8 @@
 
 class User < ActiveRecord::Base
 
+#  after_create :build_profile
+
   include Humanizer
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
@@ -43,5 +45,14 @@ class User < ActiveRecord::Base
   def is_admin
     return true if self.admin == true
   end
+
+  private
+
+#    def build_profile
+#      debugger
+#        self.build_user_profile
+#    end
+
+
 
 end

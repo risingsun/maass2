@@ -482,7 +482,7 @@ a.button_large:hover{
   color: #000000;
   font-weight: bold;
   border-bottom: 1px solid #f7d8cd;
-  width: 542px;
+  width: 950px;
   height: auto;
   line-height: 24px;
   margin: 0px;
@@ -1702,7 +1702,7 @@ div.profile_pic_panel span.even {
   margin-bottom: 2px;
   color: #FF0000;
   font-weight: normal;
-  width: 125px;
+  width: 442px;
 }
 
 
@@ -3377,7 +3377,7 @@ a.editor_cancel{
   padding-bottom:10px;
   font-size: 12px;
   color: #000000;
-  border-bottom:1px solid #fce8e0;
+  border-bottom: 1px solid #fce8e0;
   margin-top: -5px;
   overflow: hidden;
 }
@@ -3828,13 +3828,19 @@ img{
     width: 460px;
 }
 
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+
 /*ul.in-place-edit { list-style: none; margin-left: 0; }
   ul.in-place-edit li { width: 150px; margin: 0px; padding: 3px; }
 
   .in-place-edit .field {
     width: 99%;
   }*/
-
 
 .cursor {
   cursor: text;
@@ -3856,3 +3862,4 @@ img{
 .underline {
   text-decoration: underline;
 }*/
+

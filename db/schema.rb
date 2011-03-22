@@ -10,13 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110321064559) do
+ActiveRecord::Schema.define(:version => 20110322095057) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
     t.string   "default_permission"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "announcements", :force => true do |t|
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
   end
 
   create_table "blogs", :force => true do |t|
@@ -74,6 +82,16 @@ ActiveRecord::Schema.define(:version => 20110321064559) do
   end
 
   add_index "feed_items", ["item_id", "item_type"], :name => "index_feed_items_on_item_id_and_item_type"
+
+  create_table "feedbacks", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "feeds", :force => true do |t|
     t.integer "profile_id"
@@ -153,6 +171,17 @@ ActiveRecord::Schema.define(:version => 20110321064559) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", :force => true do |t|
+    t.string   "caption"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.integer  "profile_id"
+    t.boolean  "set_as_blurb"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "poll_options", :force => true do |t|
     t.string   "option"
     t.integer  "poll_id"
@@ -177,6 +206,14 @@ ActiveRecord::Schema.define(:version => 20110321064559) do
     t.datetime "updated_at"
     t.boolean  "status",      :default => true
     t.integer  "votes_count", :default => 0
+  end
+
+  create_table "profile_events", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "event_id"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "profiles", :force => true do |t|

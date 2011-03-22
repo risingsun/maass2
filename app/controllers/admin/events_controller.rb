@@ -1,12 +1,12 @@
-class EventsController < ApplicationController
+class Admin::EventsController < ApplicationController
 
-  before_filter :load_event, :only => [:edti, :update, :destroy]
+  before_filter :load_event, :only => [:edit, :update, :destroy]
+  before_filter :hide_side_panels
 
- 
   def index
     @events = Event.all
     if @events.blank?
-      redirect_to new_event_path
+      redirect_to new_admin_event_path
     end
   end
 
@@ -16,12 +16,13 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
-    if params[:preview_button] || !@event.save
+    if !@event.save
       render :action => 'new'
       flash[:notice] = "Event Creation Failed."
     else
       flash[:notice] = "Successfully created Event."
-      redirect_to :events
+      @event.set_organizer(@p)
+      redirect_to admin_events_path
     end
   end
 
@@ -35,19 +36,27 @@ class EventsController < ApplicationController
       render :action => 'new'
     else
       flash[:notice] = "Successfully updated event."
-      redirect_to events_path
+      redirect_to admin_events_path
     end
+  end
+
+  def show
+    @event = Event.find(params[:id])
   end
 
   def destroy
     @event.destroy
     flash[:notice] = "Successfully destroyed event."
-    redirect_to events_path
+    redirect_to admin_events_path
   end
 
   private
 
   def load_event
     @event = Event.find(params[:id])
+  end
+
+  def hide_side_panels
+    @hide_panels = true
   end
 end

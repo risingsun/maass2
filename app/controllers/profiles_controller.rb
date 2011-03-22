@@ -3,10 +3,14 @@ class ProfilesController < ApplicationController
   before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user, :batch_mates]
   before_filter :search_results, :only => [:search]
   before_filter :show_panels, :only => [:show, :user_friends, :batch_mates]
+  before_filter :hide_side_panels, :only => [:edit, :edit_account, :index]
 
   def index
     if @is_admin
       @profiles = Profile.all
+      @title = "Users"
+    else
+      redircet_to :back
     end
   end
 
@@ -37,7 +41,7 @@ class ProfilesController < ApplicationController
     else
       @profile.update_attributes params[:profile]
       flash[:notice] = "Profile updated."
-      redirect_to edit_profile_path(@p)
+      redirect_to :back
     end
   end
 
@@ -106,6 +110,11 @@ class ProfilesController < ApplicationController
 
   def show_panels
     @show_profile_side_panel = true
+    @side_panels = true
+  end
+
+  def hide_side_panels
+    @hide_panels = true
   end
 
 end

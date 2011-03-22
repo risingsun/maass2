@@ -3,13 +3,23 @@ Maass2::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users"}
 
   resources :users
-  resources :events
+  resources :events,:has_many => [:comments]
+  namespace :admin do
+    resources :events
+    resources :home do
+      get 'greetings', :on => :member
+      get 'blogs', :on => :member
+    end
+    resources :announcements
+  end
   resources :votes
+  resources :feedbacks
   resources :profiles do
 
     resource :friendship, :only => [:create, :update, :destroy]
 
     resources :friends
+    resources :photos
 
     resources :messages do
       get 'direct_message', :on => :collection
@@ -53,7 +63,6 @@ Maass2::Application.routes.draw do
 
   resources :homes do
     get 'polls', :on => :member
-    get 'admin', :on => :member
   end
 
   match '/edit',  :to => 'profiles#edit'

@@ -1,0 +1,15 @@
+- rounded_corner(:title => "Announcements", :size => 'lrg') do
+  = button_to "Create New Announcement", admin_announcements_path, :html => {:method=> :post}
+  %table
+    %tr
+      %th Message
+      %th Start
+      %th End
+    - for announcement in @announcements
+      %tr
+        %td= announcement.message
+        %td= announcement.starts_at.to_s(:rfc822)
+        %td= announcement.ends_at.to_s(:rfc822)
+        %td= link_to image_tag('edit.png', :title => "Edit Announcement"),  edit_admin_announcement_path(announcement)
+        %td= link_to image_tag('delete.png', :title => "Delete Announcement"), admin_announcement_path(announcement), :method => :delete
+  .clear_div
