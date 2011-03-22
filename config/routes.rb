@@ -3,6 +3,7 @@ Maass2::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users"}
 
   resources :users
+  resources :events,:has_many => [:comments]
   namespace :admin do
     resources :events
     resources :home do

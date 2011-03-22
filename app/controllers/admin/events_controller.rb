@@ -16,11 +16,12 @@ class Admin::EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
-    if params[:preview_button] || !@event.save
+    if !@event.save
       render :action => 'new'
       flash[:notice] = "Event Creation Failed."
     else
       flash[:notice] = "Successfully created Event."
+      @event.set_organizer(@p)
       redirect_to admin_events_path
     end
   end
@@ -37,6 +38,10 @@ class Admin::EventsController < ApplicationController
       flash[:notice] = "Successfully updated event."
       redirect_to admin_events_path
     end
+  end
+
+  def show
+    @event = Event.find(params[:id])
   end
 
   def destroy

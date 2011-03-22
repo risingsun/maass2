@@ -21,11 +21,13 @@
           -else
             = render 'shared/header_tab'
       .clear_div
+        = display_standard_flashes_in_large_size
+        .admin_panel
+          =# render :partial => "admin/shared/admin_header"
       .side_panel
         = render :partial => "shared/lsidebar"
         = yield :left_side_panel
       .middle_panel
-        = display_standard_flashes
         %span#main_container= yield
       .side_panel
         = render :partial => "shared/rsidebar"

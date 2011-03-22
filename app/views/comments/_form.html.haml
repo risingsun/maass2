@@ -4,9 +4,10 @@
   = c.text_area :comment, :class=> "textarea"
   = c.hidden_field :commentable_id, :value => comment_on.id
   = c.hidden_field :commentable_type, :value => comment_on.class.name
-  .comment_btn_container
-    %button.buttons{:type => "submit"}
-      = image_tag("add-comment.png")
-    - if comment_on.class.name != "Profile"
-      %button.buttons#cancel{:type => "button",:onclick => "cancel_comment(#{comment_on.id})"}
-        = image_tag("cancel-button.png")
+  %div{:id => "#{dom_id(@event)}_comment_div"}
+    .comment_btn_container
+      %button.buttons{:type => "submit"}
+        = image_tag("add-comment.png")
+      - unless comment_on.class.name == "Profile" || comment_on.class.name == "Event"
+        %button.buttons#cancel{:type => "button",:onclick => "cancel_comment(#{comment_on.id})"}
+          = image_tag("cancel-button.png")
