@@ -1,5 +1,7 @@
 class FeedbacksController < ApplicationController
 
+  before_filter :hide_side_panels
+
   def index
     @feedbacks = Feedback.all
   end
@@ -25,9 +27,20 @@ class FeedbacksController < ApplicationController
     end
   end
 
+  def show
+    @feedback = Feedback.find(params[:id])
+  end
+
   def destroy
     @feedback = Feedback.find(params[:id])
     @feedback.destroy
     redirect_to feedbacks_path
   end
+
+  private
+
+  def hide_side_panels
+    @hide_panels = true
+  end
+  
 end

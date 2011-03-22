@@ -1,4 +1,4 @@
-- unless (params[:controller] != "profile"  && params[:controller] != "polls" && params[:controller] != "blogs") && (params[:action] == "edit_account" || params[:action] == "edit")
+- unless @hide_panels
   = render :partial=>'profiles/featured'
   = render :partial=>'shared/search_by_keyword', :profile=>@profile if !current_user.blank?
   = render :partial => 'profiles/greets' if @p
