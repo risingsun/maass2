@@ -20,7 +20,8 @@ class Profile < ActiveRecord::Base
   has_many :poll_responses, :dependent => :destroy
 
   has_many :invitations
-
+  has_one :student_check
+  
   accepts_nested_attributes_for :notification_control
   accepts_nested_attributes_for :blogs
   accepts_nested_attributes_for :user
@@ -44,7 +45,10 @@ class Profile < ActiveRecord::Base
   my_default_permission_field :default_permission
 
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
+  scope :group_batch, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
   scope :active, :conditions => {:is_active => true}
+
+  scope :name_ordered, :order => 'profiles.group, first_name, last_name'
 
   cattr_accessor :featured_profile
   @@featured_profile = {:date=>Date.today-4, :profile=>nil}
@@ -186,6 +190,10 @@ class Profile < ActiveRecord::Base
       n = user.login rescue 'Deleted user'
     end
     n
+  end
+
+  def self.batch_names(year)
+    active.group_batch(year).name_ordered.all(:select => 'title,first_name, middle_name, last_name, id')
   end
 
 end

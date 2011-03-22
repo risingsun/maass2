@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110318063338) do
+ActiveRecord::Schema.define(:version => 20110321064559) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -238,6 +238,38 @@ ActiveRecord::Schema.define(:version => 20110318063338) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "student_checks", :force => true do |t|
+    t.string   "name"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.date     "birth_date"
+    t.string   "sex"
+    t.string   "f_name"
+    t.string   "m_name"
+    t.string   "f_desg"
+    t.string   "m_desg"
+    t.string   "r_add1"
+    t.string   "r_add2"
+    t.string   "r_add3"
+    t.string   "o_add1"
+    t.string   "o_add2"
+    t.string   "o_add3"
+    t.string   "o_ph_no"
+    t.string   "r_ph_no"
+    t.string   "mobile"
+    t.string   "enroll_no"
+    t.string   "year"
+    t.string   "roll_no"
+    t.string   "classname"
+    t.string   "house_name"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "e_mail_1"
+    t.string   "e_mail_2"
   end
 
   create_table "taggings", :force => true do |t|
