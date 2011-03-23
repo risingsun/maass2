@@ -4,7 +4,7 @@
   = c.text_area :comment, :class=> "textarea"
   = c.hidden_field :commentable_id, :value => comment_on.id
   = c.hidden_field :commentable_type, :value => comment_on.class.name
-  %div{:id => "#{dom_id(@event)}_comment_div"}
+  %div{:id => "#{comment_on.id}_comment_div"}
     .comment_btn_container
       %button.buttons{:type => "submit"}
         = image_tag("add-comment.png")

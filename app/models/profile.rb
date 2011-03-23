@@ -54,6 +54,8 @@ class Profile < ActiveRecord::Base
 
   scope :name_ordered, :order => 'profiles.group, first_name, last_name'
 
+  scope :new_joined, :order => 'created_at desc'
+
   cattr_accessor :featured_profile
   @@featured_profile = {:date=>Date.today-4, :profile=>nil}
   @@days = ()
@@ -196,8 +198,20 @@ class Profile < ActiveRecord::Base
     n
   end
 
+  def self.batch_details(group, opts)
+    Profile.active.group_batch(group).name_ordered.paginate(opts)
+  end
+
   def self.batch_names(year)
     active.group_batch(year).name_ordered.all(:select => 'title,first_name, middle_name, last_name, id')
+  end
+
+  def self.get_batch_count
+    active.all(:group => 'profiles.group', :order => 'profiles.group', :select => 'profiles.group, count(*) as count')
+  end  
+
+  def self.latest_in_batch(group)
+    group(group).active.new_joined.first
   end
 
   def self.greetings(type)

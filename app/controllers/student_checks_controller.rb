@@ -1,5 +1,7 @@
 class StudentChecksController < ApplicationController
 
+  before_filter :hide_side_panels
+
   def index
     if params[:year] || params[:all]
       @student_checks = StudentCheck.get_students(params)
@@ -68,7 +70,11 @@ class StudentChecksController < ApplicationController
     end
   end
 
-  private
+  private    
+
+  def hide_side_panels
+    @hide_panels = true
+  end
   
   def next_dest
     case params[:commit]

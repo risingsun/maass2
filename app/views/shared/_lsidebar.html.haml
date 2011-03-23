@@ -8,3 +8,4 @@
     = render :partial => "devise/sessions/login"
   - unless @hide_panels
     = render "profiles/members", :members => Profile.new_member, :type => "Newest Members"
+= render :partial => "profiles/find_batch_details" if @p && !@hide_panels

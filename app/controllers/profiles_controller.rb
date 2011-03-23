@@ -99,6 +99,17 @@ class ProfilesController < ApplicationController
     render :template => "profiles/user_friends"
   end
 
+  def batch_details
+    @group = params[:group]
+    if valid_batch_range
+      @students  = StudentCheck.unregistered_batch_members(@group)
+      @profiles = Profile.batch_details(@group, {:page => @page, :per_page =>PROFILE_PER_PAGE})
+    else
+      flash[:error] = 'Group is invalid! Sorry, please enter a valid group'
+      redirect_to :back
+    end
+  end
+
   private
 
   def load_profile
@@ -115,6 +126,10 @@ class ProfilesController < ApplicationController
 
   def hide_side_panels
     @hide_panels = true
+  end
+
+  def valid_batch_range(group = @group)
+    !group.blank? && GROUPS.include?([group])
   end
 
 end
