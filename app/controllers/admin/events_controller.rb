@@ -2,6 +2,7 @@ class Admin::EventsController < ApplicationController
 
   before_filter :load_event, :only => [:edit, :update, :destroy]
   before_filter :hide_side_panels
+  before_filter :show_events_side_panels, :only => [:show]
 
   def index
     @events = Event.all
@@ -58,5 +59,9 @@ class Admin::EventsController < ApplicationController
 
   def hide_side_panels
     @hide_panels = true
+  end
+
+  def show_events_side_panels
+    @event_panel = true
   end
 end
