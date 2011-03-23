@@ -1,4 +1,5 @@
 module CommentsHelper
+
  def check_comment(comment)
   return true if @p.id == comment.profile_id
   if comment.commentable_type == 'Blog'
@@ -8,5 +9,7 @@ module CommentsHelper
   elsif comment.commentable_type  == 'Event'
     return true if current_user.is_admin
   end
+ end
+
 end
-end
+

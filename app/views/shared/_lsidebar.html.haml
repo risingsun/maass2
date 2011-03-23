@@ -7,5 +7,6 @@
     = render :partial => "devise/sessions/login"
   - unless @hide_panels
     = render "profiles/members", :members => Profile.new_member, :type => "Newest Members"
-  - if @event_panel
-    = render :partial => "admin/events/lsidebar"
+= render :partial => "profiles/find_batch_details" if @p && !@hide_panels
+- if @event_panel
+  = render :partial => "admin/events/lsidebar"
