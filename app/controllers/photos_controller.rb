@@ -1,10 +1,10 @@
 class PhotosController < ApplicationController
 
-  #before_filter :hide_side_panels
+  before_filter :hide_side_panels
   before_filter :blurb_image, :only => [:index, :new]
 
   def index
-    @photos = @p.photos.all
+    @photos = @p.admin_images(@blurb_image)
     if @photos.blank?
       redirect_to new_profile_photo_path(@p, :blurb_image => @blurb_image)
     end
@@ -33,7 +33,8 @@ class PhotosController < ApplicationController
  end
 
  def blurb_image
-   @blurb_image = params[:blurb_image]
+   @blurb_image = params[:blurb_image].eql?("true")
+   @title = @blurb_image == "true" ? "Blurb Image" : "Image"
  end
 
 end
