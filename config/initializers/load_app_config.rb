@@ -8,8 +8,6 @@ SITE_FULL_NAME = THEME_CONFIG[:site_full_name]
 SITE_NAME = THEME_CONFIG[:site_name]
 GOOGLE_CHART_COLOUR_ARRAY = %w(3CD983 C4D925 BABF1B BFA20F A66D03 732C02)
 SEX = ["Male","Female"]
-USER_TYPE = ["Teacher","Guest"]
-GROUPS = USER_TYPE + (1992..Date.today.year+1).to_a
 BLOOD_GROUP = ["A+","A-","B+","B-","AB+","AB-","O+","O-"]
 TITLE = ["Ms.","Mr.","Mrs.","Dr.","Er.","Lt.","Capt.","Col.","Maj.","Prof.","Advct."]
 EDU_YEAR=(1990..Date.today.year+5).to_a
@@ -64,6 +62,11 @@ INDIA_STATES = [ "Andhra Pradesh",
   "West Bengal"]
 
 SEARCH_KEYS = ['name','location','blood_group','year','blog','phone','address']
+
+BATCH_RANGE = THEME_CONFIG[:batch_start]..(Date.today.year + 1)
+DISABLE_STUDENT_CHECKING = !!THEME_CONFIG[:student_checking]
+USER_TYPE = THEME_CONFIG[:user_types].map{|x|[x]}
+GROUPS = USER_TYPE + BATCH_RANGE.to_a.map{|x|[x.to_s]}
 
 MAILER_FROM_ADDRESS = THEME_CONFIG[:mailer_from_address]
 

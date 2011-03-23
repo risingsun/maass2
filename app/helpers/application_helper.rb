@@ -199,4 +199,13 @@ module ApplicationHelper
     "(#{c})" if c > 0
   end
 
+  def display_alpha_index(list)
+    str = ""
+    list.each do |i|
+      str << link_to(i, "##{i}_div")
+      str << " "
+    end
+    str
+  end
+
 end

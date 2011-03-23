@@ -52,6 +52,12 @@ Maass2::Application.routes.draw do
   end
 
   resources :comments
+  
+  resources :student_checks do
+    get 'view_year_students', :on=> :collection
+    post 'send_bulk_invite', :on=> :collection
+    post 'send_invite', :on=> :member
+  end
 
   root :to=>"homes#index"
 
