@@ -222,4 +222,8 @@ class Profile < ActiveRecord::Base
     self.blogs.all(:conditions => {:is_sent =>:false}, :order => "created_at DESC")
   end
 
+  def admin_images(image)
+    self.photos.all(:conditions => {:set_as_blurb => image})
+  end
+
 end
