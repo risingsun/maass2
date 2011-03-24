@@ -21,10 +21,23 @@ class StudentCheck < ActiveRecord::Base
   scope :ordered, lambda { |*order| { :order => order.flatten.first}}
   scope :with_profile, :include => :profile
 
+  scope :unregistered, :conditions => ["profile_id is null"]
+
   def fix_name
     if self.name.blank?
       self.name = self.full_name
     end
+  end
+
+  def self.unregistered_batch_members(year)
+    year(year).unregistered.name_order.all
+  end
+
+  def self.unregistered_batch_count
+    details = unregistered.all(:group => 'student_checks.year', :order => 'student_checks.year', :select => 'student_checks.year, count(*) as count')
+    details_hash = {}
+    details.each {|p| details_hash[p.year] = p.count.to_i}
+    details_hash
   end
 
   def full_name
@@ -44,7 +57,7 @@ class StudentCheck < ActiveRecord::Base
     scope = scope.ordered("student_checks.year,student_checks.first_name,student_checks.last_name")
     scope = scope.with_profile
     scope = scope.year(options[:year]) unless options[:year].blank?
-    scope = scope.all(options[:all]) unless options[:all].blank?
+    scope = scope.all unless options[:all].blank?
     scope
   end
 

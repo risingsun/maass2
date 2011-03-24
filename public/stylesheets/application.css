@@ -482,7 +482,7 @@ a.button_large:hover{
   color: #000000;
   font-weight: bold;
   border-bottom: 1px solid #f7d8cd;
-  width: 950px;
+  width: 542px;
   height: auto;
   line-height: 24px;
   margin: 0px;
@@ -3848,18 +3848,3 @@ img{
  p:hover {
   color: orange;
 }
-
-/*.editing { background: white; border-top: 5px solid #ccc; }
-.disabled { background: none; color: black; }
-.buttons input {
-  font-size: 10px;
-}
-
-#info {
-  color: #00aa00;
-}
-
-.underline {
-  text-decoration: underline;
-}*/
-

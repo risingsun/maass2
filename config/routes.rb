@@ -1,11 +1,15 @@
 Maass2::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "users"}
-
   resources :users
-  resources :events,:has_many => [:comments]
+  resources :events,:has_many => [:comments] 
   namespace :admin do
-    resources :events
+    resources :events do
+      get 'rsvp', :on => :member
+      get 'attending_members', :on => :member
+      get 'not_attending_members', :on => :member
+      get 'may_be_attending_members', :on => :member
+    end
     resources :home do
       get 'greetings', :on => :member
       get 'blogs', :on => :member
@@ -49,6 +53,7 @@ Maass2::Application.routes.draw do
     get 'active_user', :on => :member
     get 'user_friends', :on => :member
     get 'batch_mates', :on => :member
+    get 'batch_details', :on=>:collection
   end
 
   resources :comments

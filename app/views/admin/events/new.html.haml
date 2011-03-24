@@ -1,3 +1,11 @@
-- semantic_form_for @event, :url => admin_events_path, :html => {:method=>:post} do |form|
-  = render :partial => 'form' , :locals =>{:f => form}
+.widget_complete
+  %span.widget_complete_top
+  %h2.widget_compelete_title New Event
+  - form_for @event, :url => admin_events_path, :html => {:method=>:post} do |form|
+    = render :partial => 'form' , :locals =>{:f => form}
+    %div
+      %button.buttons.gmap{:type => "submit"}
+        = image_tag("save.png")
+  %span.widget_complete_btm
+
   

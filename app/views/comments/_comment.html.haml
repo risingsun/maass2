@@ -6,5 +6,6 @@
       commented
       #{time_ago_in_words comment.created_at} ago
     .comment_tex= sanitize(comment.comment)
-  = link_to(image_tag('delete.png',:border =>0), comment, :class => 'delete', :method => :delete) if comment.destroyable_by?(@p)
+  - if !comment.blank? && @p && check_comment(comment)
+    = link_to(image_tag('delete.png',:border =>0), comment, :class => 'delete', :method => :delete) if comment.destroyable_by?(@p)
 

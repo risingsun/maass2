@@ -172,7 +172,7 @@ module ApplicationHelper
     elsif flash[:error]
       flash_message_class = 'error_msg'
       level = 'error'
-      if flash[:error].instance_of?( ActiveRecord::Errors) || flash[:error].is_a?( Hash)
+      if flash[:error].is_a?( Hash)
         flash_to_display = message
         flash_to_display << activerecord_error_list(flash[:error])
       else
@@ -205,7 +205,14 @@ module ApplicationHelper
       str << link_to(i, "##{i}_div")
       str << " "
     end
-    str
+    str.html_safe
+  end
+
+  def inline_bar_graph(fill,batch_count)
+    content_tag(:div, content_tag(:div,
+        content_tag(:p, "#{batch_count} Members", :class => "filled_text"),
+        :class => "filled",
+        :style => "width: #{fill}%;"),:class =>"fill_bar")
   end
 
 end
