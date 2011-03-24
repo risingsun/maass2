@@ -51,6 +51,27 @@ class Admin::EventsController < ApplicationController
     redirect_to admin_events_path
   end
 
+   def rsvp
+    event = Event.find(params[:id])
+    pe = ProfileEvent.find(:first,:conditions => {:event_id => event.id,:profile_id => @p.id})
+    unless pe
+      pe = ProfileEvent.create(:event_id => event.id,:profile_id => @p.id)
+    end
+    pe.update_attribute('role',params[:event_rsvp])unless pe.is_organizer?
+    respond_to do |wants|
+      wants.js do
+        render :update do |page|
+          if params[:status]== 'home_page'
+            page.replace_html "event_rsvp_#{event.id}", :partial => 'admin/events/event_response',:locals => {:event => event}
+          else
+            page.replace_html "event_rsvp_#{event.id}", :partial => 'admin/events/rsvp',:locals => {:event => event}
+          end
+        end
+      end
+    end
+  end
+
+  
   private
 
   def load_event

@@ -12,7 +12,7 @@ module FeedItemsHelper
     when 'Blog'
       "<strong>#{link_to_if in_html, comment.profile.full_name, comment.profile} commented on #{link_to_if in_html, h(parent.title), profile_blog_path(parent.profile, parent)} </strong>"
     when 'Event'
-      "<strong>#{link_to_if in_html, comment.profile.full_name,comment.profile}</strong>"
+      "<strong>#{link_to_if in_html, comment.profile.full_name, comment.profile}</strong>"
     end
   end
   #safe_helper :commentable_text, :x_feed_link
