@@ -27,6 +27,11 @@ jQuery(document).ready(function()
    jQuery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
   });
 
+//jQuery("#student_check_year").change(function(){
+//  year = jQuery("#student_check_year option:selected").val();
+//   jQuery("#student_check_profile_id").replaceWith("<select id = student_check_profile_id name=>");
+//  });
+  
  jQuery('form[data-remote]').bind("ajax:before", function(){
    for (instance in CKEDITOR.instances){
      CKEDITOR.instances[instance].updateElement();
@@ -38,8 +43,50 @@ jQuery(document).ready(function()
    jQuery("#in-place-edit").show();
    });
 
+ jQuery("#student_check_year").change(function() {
+ year = this.value
+ jQuery.ajax({
+	url: "/student_checks/view_year_students",
+	dataType: "json",
+	type: "GET",
+	data: {group: year},
+    success: function(data){
+      jQuery('#student_check_profile_id').find('option').remove() ;
+      var options = '' ;
+      var year = data
+      for (var i = 0; i < year.length; i++) {
+        if (i==0)
+        {
+          options += '<option selected value="' + year[i][1] + '">' + year[i][0] + '</option>';
+        }
+        else
+        {
+          options += '<option value="' + year[i][1] + '">' + year[i][0] + '</option>';
+        }
+
+      }
+    jQuery('#student_check_profile_id').html(options);   // populate select box with array
+    }
+  });
+//    jQuery('#student_check_profile_id').find('option').remove() ;
+//    var options = '' ;
+//    for (var i = 0; i < year.length; i++) {
+//      if (i==0)
+//      {
+//        options += '<option selected value="' + year[i][0] + '">' + year[i][1] + '</option>';
+//      }
+//      else
+//      {
+//        options += '<option value="' + year[i][0] + '">' + year[i][1] + '</option>';}
+//      }
+//      jQuery('#student_check_profile_id').html(options);   // populate select box with array
+  })
+
+
 });
 
+ //    jQuery("#profile_field").replaceWith('<h2>New heading</h2>'+year[0][0]);
+ 
 
   function remove_fields(link) {
     $j(link).prev("input[type=hidden]").val("1");
