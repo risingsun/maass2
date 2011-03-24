@@ -1,6 +1,6 @@
 .widget_large{:id => "event_#{@event.id}"}
   %span.widget_lrg_top
-  %h3.blog_head_show
+  %h3.blog_head
     = link_to image_tag(set_icon(@event.organizers.first,'small')), homes_path
     = link_to sanitize(@event.title),admin_event_path(@event)
     = link_to image_tag('edit.png', :border =>0), edit_admin_event_path(@event)

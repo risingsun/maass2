@@ -25,6 +25,9 @@ RESULTS_PER_PAGE = THEME_CONFIG[:results_per_page]
 PROFILE_PER_PAGE = THEME_CONFIG[:profile_per_page]
 POLLS_ON_PROFILE = THEME_CONFIG[:polls_on_profile]
 POLLS_PER_PAGE = THEME_CONFIG[:polls_per_page]
+BLOGS_ON_PROFILE = THEME_CONFIG[:blogs_on_profile]
+BLOGS_PER_PAGE = THEME_CONFIG[:blogs_per_page]
+BLOGS_ON_HOME_PAGE = THEME_CONFIG[:blogs_on_home_page]
 
 INDIA_STATES = [ "Andhra Pradesh",
   "Arunachal Pradesh",

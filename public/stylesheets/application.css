@@ -482,7 +482,7 @@ a.button_large:hover{
   color: #000000;
   font-weight: bold;
   border-bottom: 1px solid #f7d8cd;
-  width: 950px;
+  width: 542px;
   height: auto;
   line-height: 24px;
   margin: 0px;
@@ -3847,25 +3847,4 @@ img{
 }
  p:hover {
   color: orange;
-}
-.blog_head_show {
-    border-bottom-color: #F7D8CD;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
-    height: auto;
-    line-height: 24px;
-    margin-bottom: 0;
-    margin-left: 5px;
-    margin-right: 0;
-    margin-top: 0;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    padding-bottom: 5px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
-    width: 529px;
 }

@@ -3,7 +3,7 @@
   %h3.blog_head
     = link_to image_tag(set_icon(poll.profile,'small')), profile_path(poll.profile)
     = link_to (poll.question),profile_poll_path(poll.profile, poll)
-    - if current_user.profile && me(poll.profile)
+    - if @p && me(poll.profile)
       = link_to image_tag('cancel.png', :title => "Close poll"),poll_close_profile_poll_path(poll.profile, poll) unless poll.poll_close?
       = link_to image_tag('edit.png', :title => "Edit poll"),edit_profile_poll_path(poll.profile, poll) if poll.can_edit?
       = link_to image_tag('delete.png', :title => "Delete poll"),profile_poll_path(poll.profile, poll),:method => :delete
@@ -14,7 +14,7 @@
       at
       ="#{poll.created_at.to_date.to_formatted_s(:rfc822)}"
   .poll_text
-    - if !current_user.profile || (poll.responded? current_user.profile)
+    - if !@p || (poll.responded? current_user.profile)
       = render :partial => 'polls/poll_response', :locals =>{:poll => poll}
     - else
       - div_id = "#{poll.id}"
