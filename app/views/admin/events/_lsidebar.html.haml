@@ -1,3 +1,5 @@
 - rounded_corner(:title => 'RSVP', :size => 'small') do
   = render :partial => 'admin/events/rsvp'
-
+= render "profiles/members", :members => @event.list('attending'), :type => "Attending"
+= render "profiles/members", :members => @event.list('not_attending'), :type => "Not Attending"
+= render "profiles/members", :members => @event.list('may_be_attending'), :type => "May Be Attending"

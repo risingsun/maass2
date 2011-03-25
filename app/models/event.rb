@@ -13,5 +13,8 @@ class Event < ActiveRecord::Base
   def set_organizer(profile)
     ProfileEvent.create(:event_id => self.id,:profile_id => profile.id,:role =>"Organizer")
   end
-  
+
+  def list(type,size=6)
+    self.send(type).find(:all, :limit => size, :order => 'RAND()') rescue []
+  end
 end

@@ -49,8 +49,7 @@ class User < ActiveRecord::Base
   private
 
 #    def build_profile
-#      debugger
-#        self.build_user_profile
+#       self.build_user_profile
 #    end
 
 

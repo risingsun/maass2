@@ -51,7 +51,7 @@ class Admin::EventsController < ApplicationController
     redirect_to admin_events_path
   end
 
-   def rsvp
+  def rsvp
     event = Event.find(params[:id])
     pe = ProfileEvent.find(:first,:conditions => {:event_id => event.id,:profile_id => @p.id})
     unless pe
@@ -59,11 +59,25 @@ class Admin::EventsController < ApplicationController
     end
     pe.update_attribute('role',params[:group])unless pe.is_organizer?
     respond_to do |format|
+      format.html { render :partial =>  'admin/events/rsvp' }
       format.js
     end
   end
 
-  
+  def attending_members
+    @event = Event.find(params[:id])
+  end
+
+  def not_attending_members
+    @event = Event.find(params[:id])
+    @results = @event.not_attending
+  end
+
+  def may_be_attending_members
+    @event = Event.find(params[:id])
+    @results = @event.may_be_attending
+  end
+
   private
 
   def load_event
@@ -77,4 +91,5 @@ class Admin::EventsController < ApplicationController
   def show_events_side_panels
     @event_panel = true
   end
+
 end
