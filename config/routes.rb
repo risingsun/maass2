@@ -72,6 +72,7 @@ Maass2::Application.routes.draw do
 
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
+  match '/ue/:hash/:profile_id', :to=> 'profiles#update_email', :as=>:update_email
   #  match '/blog_archive/:month/:year', :to => 'blogs#blog_archive'
 
   #  match '/user/:user_id/profile/:id',  :to => 'profiles#show'

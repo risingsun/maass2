@@ -228,8 +228,8 @@ class Profile < ActiveRecord::Base
 
   def self.change_group(year)
     years = Profile.where(:group => year, :is_active => true)
-    goup = years.map{|p| [p.full_name(), p.id]}
-    return goup
+    group = years.map{|p| [p.full_name(), p.id]}
+    return group
   end
 
 end

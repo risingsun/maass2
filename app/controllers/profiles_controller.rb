@@ -37,7 +37,15 @@ class ProfilesController < ApplicationController
       redirect_to edit_account_profile_path(@p)
     when "Update Notification"
       @profile.update_attributes(params[:profile])
-      redirect_to edit_account_profile_path(@p)
+      redirect_to edit_account_profile_path(@p)      
+    when "Change Email"
+      if @user.request_email_change!(params[:profile][:user_attributes][:requested_new_email])
+        AccountMailer.new_email_request(@user).deliver
+        flash[:notice] = "Email confirmation request has been sent to the new email address."
+        redirect_to edit_account_profile_url(@profile)
+      else
+        render :action=> :edit_account
+      end
     else
       @profile.update_attributes params[:profile]
       flash[:notice] = "Profile updated."
@@ -108,6 +116,21 @@ class ProfilesController < ApplicationController
       flash[:error] = 'Group is invalid! Sorry, please enter a valid group'
       redirect_to :back
     end
+  end
+
+  def update_email
+    @profile = Profile.find(params[:profile_id])
+    unless @profile.user.match_confirmation?(params[:hash])
+      flash[:notice] = "We're sorry but it seems that the confirmation did not go thru. You may have provided an expired key." 
+    else
+      @profile.email =  @profile.user.requested_new_email
+      if  @profile.save
+        flash[:notice] = "Your email has been updated"
+      else
+        flash[:notice] = "This email has already been taken"
+      end
+    end
+    redirect_to homes_path
   end
 
   private

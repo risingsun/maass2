@@ -18,10 +18,15 @@
     %p
       = f.label :year
       %br
-      = f.select :year, (1992..2011)
+      = f.select :year, (1992..2012)
+      %br
       %br
       #profile_field
+        = f.label :profile
+        %br
         = f.select :profile_id, ""
+        %br
+        %br
     %p
       = f.label :email
       %br

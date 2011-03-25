@@ -37,24 +37,6 @@ ActiveRecord::Schema.define(:version => 20110322095440) do
     t.integer  "comments_count", :default => 0
   end
 
-  create_table "ckeditor_assets", :force => true do |t|
-    t.string   "data_file_name",                                 :null => false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
-    t.string   "assetable_type",    :limit => 30
-    t.string   "type",              :limit => 25
-    t.string   "guid",              :limit => 10
-    t.integer  "locale",            :limit => 1,  :default => 0
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "fk_assetable"
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_assetable_type"
-  add_index "ckeditor_assets", ["user_id"], :name => "fk_user"
-
   create_table "comments", :force => true do |t|
     t.text     "comment"
     t.integer  "commentable_id"
@@ -147,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20110322095440) do
     t.text     "body"
     t.integer  "sender_id"
     t.integer  "receiver_id"
-    t.boolean  "read",           :default => false
+    t.boolean  "read",           :default => false, :null => false
     t.boolean  "sender_flag",    :default => true
     t.boolean  "receiver_flag",  :default => true
     t.boolean  "system_message", :default => false
@@ -224,13 +206,6 @@ ActiveRecord::Schema.define(:version => 20110322095440) do
     t.datetime "updated_at"
     t.boolean  "status",      :default => true
     t.integer  "votes_count", :default => 0
-  end
-
-  create_table "posts", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "profile_events", :force => true do |t|

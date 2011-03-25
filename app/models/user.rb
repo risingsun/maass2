@@ -27,7 +27,7 @@
 
 class User < ActiveRecord::Base
 
-#  after_create :build_profile
+  #  after_create :build_profile
 
   include Humanizer
   devise :database_authenticatable, :registerable, :confirmable,
@@ -46,12 +46,33 @@ class User < ActiveRecord::Base
     return true if self.admin == true
   end
 
+  def generate_confirmation_hash!(secret_word = "pimpim")
+    self.email_verification = Digest::SHA1.hexdigest(secret_word + DateTime.now.to_s)
+  end
+
+  def confirm_email!
+    self.email_verified = true
+    self.email_verification = nil
+  end
+
+  def match_confirmation?(user_hash)
+    (user_hash.to_s == self.email_verification)
+  end
+
+  def request_email_change!(new_email)
+    self.errors.add( :requested_new_email, "Cannot be Blank") and
+      return false if new_email.blank?
+    self.requested_new_email = new_email
+    self.generate_confirmation_hash!
+    self.save
+  end
+
   private
 
-#    def build_profile
-#      debugger
-#        self.build_user_profile
-#    end
+  #    def build_profile
+  #      debugger
+  #        self.build_user_profile
+  #    end
 
 
 

@@ -10,7 +10,7 @@ class BlogsController < ApplicationController
         redirect_to new_profile_blog_path
       end
     end
-    @blogs = @blogs.order("created_at desc").paginate(:page => params[:page],:per_page => 5)
+    @blogs = @blogs.order("created_at desc").paginate(:page => params[:page],:per_page => BLOGS_PER_PAGE)
   end
 
   def show
