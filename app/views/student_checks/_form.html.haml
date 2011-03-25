@@ -18,13 +18,10 @@
     %p
       = f.label :year
       %br
-      = select_tag "student_check[year]",                                     |
-        options_for_select((BATCH_RANGE).inject([]){ |ar , d| ar << d.to_s }, |
-        selected = @student_check.year.to_s),                                 |
-        :onchange => "jQuery.post('#{view_year_students_student_checks_path}', {'_method':'get', 'year':this.value} );"
+      = f.select :year, (1992..2011)
       %br
-      %br
-      = render :partial=> 'student_checks/profile', :locals => {:year => @student_check.year ,:student_check => @student_check,:form=>f }
+      #profile_field
+        = f.select :profile_id, ""
     %p
       = f.label :email
       %br

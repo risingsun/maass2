@@ -56,19 +56,14 @@ class StudentChecksController < ApplicationController
     redirect_to student_checks_path
   end
 
-  def view_year_students
-    year = params[:year]
-    @student_check = StudentCheck.new
-    respond_to do |format|
-      format.js do
-        render :update do |page|
-          page.replace_html "profile_field",
-            :partial => 'profile',
-            :locals => {:year => year}
-        end
-      end
-    end
-  end
+ def view_year_students
+   @years = Profile.change_group(params[:group])
+   respond_to do |format|
+     format.js do
+       render :json => @years.to_json
+     end
+   end
+ end
 
   private    
 

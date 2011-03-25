@@ -226,4 +226,10 @@ class Profile < ActiveRecord::Base
     self.photos.all(:conditions => {:set_as_blurb => image})
   end
 
+  def self.change_group(year)
+    years = Profile.where(:group => year, :is_active => true)
+    goup = years.map{|p| [p.full_name(), p.id]}
+    return goup
+  end
+
 end
