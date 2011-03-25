@@ -21,6 +21,13 @@
         %span.event_address Address :
         %br
         = event.place
-  .poll_text
-    %strong RSVP:
+   - if @p && @p.user
+    .poll_text
+      .poll_option{:id => "event_rsvp_#{event.id}"}
+        - if event.responded? @p
+          = render :partial => 'admin/events/event_response',:locals => {:event => event}
+        - else
+          %strong RSVP:
+          %br
+          = render :partial => 'admin/events/rsvp',:locals => {:event => event,:status => 'home_page'}
   %span.widget_complete_btm

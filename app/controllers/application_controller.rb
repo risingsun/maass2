@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     @per_page = params[:per_page]
   end
 
-  def sorted_results(args)
+  def sorted_results(*args)
     args.flatten.sort_by(&:created_at).reverse
   end
     

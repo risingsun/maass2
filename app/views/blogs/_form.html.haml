@@ -11,9 +11,10 @@
     %br= f.text_field :tag_list, :title => "Tags",:class => "big_text_field", :wrap_class => :row_complete
     .blog_text Comma Seperated
     .row_normal
-      .blog_check_box
-        = f.check_box :is_sent
-        Public?
+      - if @p.is_active
+        .blog_check_box
+          = f.check_box :public
+          Public?
     .blog_btn_container
       %button.buttons{:type => "submit"}
         = image_tag("save.png")

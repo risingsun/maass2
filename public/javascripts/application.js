@@ -155,7 +155,25 @@ jQuery(document).ready(function()
       jQuery(this).val('Search');
     }
   });
+function processingTime(name,ids)
+{
+  var a = ids;
+  spi = 'spinner_' +  a.toString();
+  link = name.toString() + a.toString();
+  Element.hide(link);
+  Element.show(spi);
 
+}
+function processingCompleted(name,ids)
+{
+  var a = ids;
+  spi = 'spinner_' +  a.toString();
+  link = name.toString() + a.toString();
+  Element.hide(spi);
+  Element.show(link);
+
+
+}
 
 
 

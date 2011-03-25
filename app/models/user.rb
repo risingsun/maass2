@@ -73,7 +73,9 @@ class User < ActiveRecord::Base
   #      debugger
   #        self.build_user_profile
   #    end
-
+#    def build_profile
+#       self.build_user_profile
+#    end
 
 
 end

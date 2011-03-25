@@ -1,7 +1,8 @@
 - size = members.size
 - see_all = (size > 6) ? link_to_friends(type) : ""
+- count = @event ?  "(#{size})" : ""
 - members = members[0, 6]
-= rounded_corner(:title => "#{type.titleize} #{see_all}".html_safe, :size => 'small') do
+= rounded_corner(:title => "#{type.titleize}#{count} #{see_all}".html_safe, :size => 'small') do
   - members.each do |member|
     .profile_pic_panel
       .profile_img_wrap

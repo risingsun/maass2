@@ -1,0 +1,25 @@
+%html
+  %head
+    %title= @title || (SITE_NAME + ": " + SITE_FULL_NAME)
+    = stylesheet_link_tag "/maass/stylesheets/application",'jquery-ui-1.8.7.custom','formtastic','formtastic_changes', 'application'
+    = javascript_include_tag 'jquery.min','jquery-ui.min','application','rails', 'status_button','clusterer','geoRssOverlay','markerGroup','wms-gs','ym4r-gm','rs_maps', 'jquery-ui-timepicker-addon'
+    = javascript_include_tag :ckeditor
+    = csrf_meta_tag
+  %body
+    .main_container
+      = render :partial => 'layouts/header'
+      .content_container
+        #info.login_container
+          - if @u.nil? or @u.new_record? or !@u.email_verified
+            %span.welcome_msg
+              Welcome to #{SITE_FULL_NAME}.
+          .clear_div
+          = render :partial => "shared/header_tab"
+        .clear_div
+        = display_standard_flashes_in_large_size
+        = yield
+      .clear_div
+      .footer{:style => "z-index:9000"}= render :partial => 'shared/footer'
+      .clear_div
+    .clear_div
+    .btm_div

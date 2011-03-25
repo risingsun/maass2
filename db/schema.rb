@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110322095440) do
+ActiveRecord::Schema.define(:version => 20110325134457) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(:version => 20110322095440) do
     t.string   "profile_id"
     t.string   "title"
     t.string   "body"
-    t.boolean  "is_sent"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "comments_count", :default => 0
+    t.boolean  "public",         :default => false
+    t.boolean  "is_sent",        :default => false
   end
 
   create_table "comments", :force => true do |t|
