@@ -14,7 +14,12 @@ class Event < ActiveRecord::Base
     ProfileEvent.create(:event_id => self.id,:profile_id => profile.id,:role =>"Organizer")
   end
 
-  def list(type,size=6)
+  def responded?(profile)
+    profile.events.find(:first,:conditions =>{:id => self.id})
+  end
+
+  def list(type,size = 6)
     self.send(type).find(:all, :limit => size, :order => 'RAND()') rescue []
   end
+  
 end

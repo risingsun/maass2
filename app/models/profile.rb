@@ -13,6 +13,8 @@ class Profile < ActiveRecord::Base
   has_many :works, :dependent => :destroy
   has_many :blogs
   has_many :comments
+  has_many :profile_events,:dependent => :destroy
+  has_many :events, :through => :profile_events
   has_many :photos
   has_many :profile_comments, :class_name => "Comment", :as => :commentable
   has_one :marker
