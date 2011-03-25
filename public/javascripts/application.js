@@ -27,6 +27,8 @@ jQuery(document).ready(function()
    jQuery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
   });
 
+  
+
  jQuery('form[data-remote]').bind("ajax:before", function(){
    for (instance in CKEDITOR.instances){
      CKEDITOR.instances[instance].updateElement();

@@ -1,1 +1,28 @@
-rsvp slide bar
+- pe = ProfileEvent.find(:first,:conditions => {:event_id => @event.id,:profile_id => @p.id})
+- role = pe.role if pe
+- status ||= 'show_page'
+%form
+  %div{:id => "rsvp_#{@event.id}"}
+    %div
+      = radio_button_tag "event","Attending", :loading =>"jQuery('spinner_#{@event.id}').show();", :complete =>"jQuery('spinner_#{@event.id}').hide();"
+      Attending
+      %br
+      = radio_button_tag "event","Not Attending", :loading =>"jQuery('spinner_#{@event.id}').show();", :complete =>"jQuery('spinner_#{@event.id}').hide();"
+      Not Attending
+      %br
+      = radio_button_tag "event","May Be Attending", :loading =>"jQuery('spinner_#{@event.id}').show();", :complete =>"jQuery('spinner_#{@event.id}').hide();"
+      May Be Attending
+%div{:id => "spinner_#{@event.id}", :style => "display: none;"}= image_tag('spinner.gif')
+:javascript
+  jQuery("input:radio").click(function() {
+     var type = jQuery("input:radio[name='event']:checked").val();
+      jQuery.ajax({
+        url: "/admin/events/" + "#{@event.id}" + "/rsvp",
+        dataType: "json",
+        type: "GET",
+        data: {group: type},
+        success: function(data){
+
+        }
+  });
+  });
