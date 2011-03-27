@@ -3,6 +3,7 @@ class Admin::EventsController < ApplicationController
   before_filter :load_event, :only => [:edit, :update, :destroy]
   before_filter :hide_side_panels
   before_filter :show_events_side_panels, :only => [:show]
+  respond_to :html, :json
 
   def index
     @events = Event.all
@@ -58,10 +59,7 @@ class Admin::EventsController < ApplicationController
       pe = ProfileEvent.create(:event_id => event.id,:profile_id => @p.id)
     end
     pe.update_attribute('role',params[:group])unless pe.is_organizer?
-    respond_to do |format|
-      format.html { render :partial =>  'admin/events/rsvp' }
-      format.js
-    end
+    respond_with(pe.role.to_json, :location => event_path(event))
   end
 
   def attending_members
