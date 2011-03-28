@@ -112,6 +112,10 @@ function show_comment(c){
     jQuery("#show"+c).toggle();
 }
 
+function show_partial(p){
+    jQuery("#par_"+p).show();
+}
+
 function cancel_comment(c){
     jQuery("#form"+c).hide();
 }

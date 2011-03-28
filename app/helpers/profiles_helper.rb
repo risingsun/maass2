@@ -34,5 +34,9 @@ module ProfilesHelper
       link_to("See All", user_friends_profile_path(@profile, :friend_type => type))
     end
   end
+
+  def link_to_event_friends(type,event)
+     link_to("See All", event_members_admin_event_path(event, :member_type => type ))
+  end
   
 end

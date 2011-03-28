@@ -22,7 +22,9 @@
   - @home_data.each do|d|
     - if d.class.name == 'Poll'
       = render :partial => 'polls/poll',:locals => {:home_page_blog => true,:poll => d}
-    - else
+    - elsif(d.class.name == 'Blog')
       = render :partial => 'blogs/blog',:locals => {:blog => d}
+    - else
+      = render :partial => 'shared/event', :locals =>{:event => d}
   .clear_div
   = will_paginate @home_data
