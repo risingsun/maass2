@@ -84,6 +84,31 @@ jQuery(document).ready(function()
 
 });
 
+function event_change(id){
+  var type = jQuery("input:radio[name='event']:checked").val();
+  jQuery.ajax({
+    beforeSend: function(){
+      jQuery(".spinner").show();
+    },
+    complete: function(){
+      jQuery(".spinner").hide();
+    },
+    url: "/admin/events/"+id+"/rsvp",
+    dataType: "json",
+    type: "GET",
+    data: {
+      group: type
+    },
+    success: function(data){
+      if(data == 'Organizer') {
+        jQuery("input:radio[id='event_Attending']").attr('checked', true);
+      }
+      else{
+        jQuery("input:radio[name='event']:checked").attr('checked', true);
+      }
+    }
+  });
+}
 
 function remove_fields(link) {
   $j(link).prev("input[type=hidden]").val("1");
@@ -105,7 +130,7 @@ function show_comment(c){
 }
 
 function show_partial(p){
-    jQuery("#par_"+p).show();
+  jQuery("#par_"+p).show();
 }
 
 function cancel_comment(c){

@@ -70,7 +70,7 @@ class Admin::EventsController < ApplicationController
   private
 
   def load_event
-    @event = Event.find(params[:id])
+    @event = @p ? Event.find(params[:id]) : redirect_to(new_user_session_path)
   end
 
   def hide_side_panels
