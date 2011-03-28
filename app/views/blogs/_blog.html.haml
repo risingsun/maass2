@@ -4,7 +4,7 @@
   %h3.blog_head
     = link_to image_tag(set_icon(blog.profile,'small')), homes_path
     = link_to sanitize(blog.title), profile_blog_path(blog.profile, blog)
-    = link_to image_tag('edit.png', :title => "Edit blog post"), edit_profile_blog_path(blog.profile, blog)if @p == blog.profile
+    = link_to image_tag('edit.png', :title => "Edit blog post"), edit_profile_blog_path(blog.profile, blog) if @p == blog.profile
     = link_to image_tag('delete.png', :title => "Delete blog post"), profile_blog_path(blog.profile, blog), :method => :delete if @p == blog.profile
     = link_to image_tag('email_go.png', :title => "Send mail to all"), '#' if current_user.is_admin
     .created_date
