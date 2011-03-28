@@ -19,12 +19,27 @@ class PhotosController < ApplicationController
     @photo.save
     redirect_to profile_photos_path(@p)
   end
+  
+  def edit
+    @photo = Photo.find(params[:id])
+  end
+
+  def update
+    @photo = Photo.find(params[:id])
+    if @photo.update_attributes(params[:photo])
+      flash[:notice] = "Successfully updated user."
+      redirect_to profile_photos_path(@p)
+    else
+      render :action => 'edit'
+    end
+  end
 
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
     redirect_to profile_photos_path(@p)
   end
+  
 
  private
 

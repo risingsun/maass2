@@ -1,0 +1,12 @@
+.widget_complete
+  %span.widget_complete_top
+  .clear_div
+  = semantic_form_for [@p, @photo],:html => { :multipart => true } do |f|
+    = f.inputs do
+      = f.error_messages
+      = render :partial => is_blurb_image?(@blurb_image)  ? "photos/edit_blurb_image" : "photos/edit_photo",:locals => {:photo => @photo,:f => f}
+      #cropresults
+        = f.input :caption, :wrapper_html => { :class => cycle(:row_complete_light, :row_complete_dark)}
+      %button.buttons{:type => "submit"}
+        = image_tag("save.png")
+  %span.widget_complete_btm
