@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110325134457) do
+ActiveRecord::Schema.define(:version => 20110328081326) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -134,6 +134,16 @@ ActiveRecord::Schema.define(:version => 20110325134457) do
     t.boolean  "sender_flag",    :default => true
     t.boolean  "receiver_flag",  :default => true
     t.boolean  "system_message", :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "nominations", :force => true do |t|
+    t.integer  "profile_id"
+    t.string   "contact_details"
+    t.string   "occupational_details"
+    t.text     "reason_for_nomination"
+    t.text     "suggestions"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

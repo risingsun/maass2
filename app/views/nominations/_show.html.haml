@@ -1,0 +1,26 @@
+.widget_large
+  %span.widget_lrg_top
+  %h2.blog_head
+    Your Nomination Details
+    = link_to image_tag('edit.png', :title => "Edit Nomination details"), edit_profile_nomination_path(@p,nomination)
+  .middle_panel_profile
+    #personal_info
+      .slidecontent
+        %table
+          %tr
+            %th{:align => "right"} Contact details
+            %td
+              = nomination.contact_details
+          %tr
+            %th{:align => "right"} Occupation details
+            %td
+              = nomination.occupational_details
+          %tr
+            %th{:align => "right"} What is the reason for your nomination ?
+            %td
+              = nomination.reason_for_nomination
+          %tr
+            %th{:align => "right"} What difference can you make to the association ?
+            %td
+              = nomination.suggestions
+  %span.widget_lrg_btm
