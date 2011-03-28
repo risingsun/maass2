@@ -1,5 +1,4 @@
 class Admin::EventsController < ApplicationController
-
   before_filter :load_event, :only => [:edit, :update, :destroy]
   before_filter :hide_side_panels
   before_filter :show_events_side_panels, :only => [:show]
