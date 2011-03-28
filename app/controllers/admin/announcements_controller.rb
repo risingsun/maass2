@@ -1,5 +1,4 @@
 class  Admin::AnnouncementsController < ApplicationController
-
   before_filter :hide_side_panels
 
   def index
