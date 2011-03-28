@@ -4,13 +4,13 @@
 %form
   %div{:id => "rsvp_#{event.id}"}
     %div
-      = radio_button_tag "event","Attending", checked = checked?(pe, 'Attending')
+      = radio_button_tag "event","Attending", checked = checked?(role, 'Attending'), options = {:onclick => "event_change(#{event.id})"}
       Attending
       %br
-      = radio_button_tag "event","Not Attending", checked = checked?(pe, 'Not Attending')
+      = radio_button_tag "event","Not Attending", checked = checked?(role, 'Not Attending'), options = {:onclick => "event_change(#{event.id})"}
       Not Attending
       %br
-      = radio_button_tag "event","May Be Attending", checked = checked?(pe, 'May Be Attending')
+      = radio_button_tag "event","May Be Attending", checked = checked?(role, 'May Be Attending'), options = {:onclick => "event_change(#{event.id})"}
       May Be Attending
 %div{:class => "spinner",:id => "spinner_#{event.id}", :style => "display: none;"}= image_tag('spinner.gif')
 

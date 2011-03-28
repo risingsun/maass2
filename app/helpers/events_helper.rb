@@ -1,9 +1,9 @@
 module EventsHelper
-  def checked?(event, role)
-    if event.role.eql?("Organizer") && role.eql?("Attending")
+  def checked?(p_role, f_role )
+    if p_role.eql?("Organizer") && f_role.eql?("Attending")
       return true
     else
-      if event.role.eql?(role)
+      if p_role.eql?(f_role)
         return true
       else
         return false

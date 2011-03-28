@@ -65,43 +65,43 @@ jQuery(document).ready(function()
             }
         });
     })
-
-    jQuery("input:radio[name = 'event']").click(function() {
-        var type = jQuery("input:radio[name='event']:checked").val();
-        jQuery.ajax({
-            beforeSend: function(){
-                jQuery(".spinner").show();
-            },
-            complete: function(){
-                jQuery(".spinner").hide();
-            },
-            url: window.location + "/rsvp",
-            dataType: "json",
-            type: "GET",
-            data: {
-                group: type
-            },
-            success: function(data){
-                if(data == 'Organizer') {
-                    jQuery("input:radio[id='event_Attending']").attr('checked', true);
-                }
-                else{
-                    jQuery("input:radio[name='event']:checked").attr('checked', true);
-                }
-            }
-        });
-    });
 });
 
 function remove_fields(link) {
-    $j(link).prev("input[type=hidden]").val("1");
-    $j(link).closest(".fields").hide();
+    jQuery(link).prev("input[type=hidden]").val("1");
+    jQuery.closest(".fields").hide();
 }
 
 function add_fields(link, association, content) {
     var new_id = new Date().getTime();
     var regexp = new RegExp("new_" + association, "g")
-    $j(link).parent().before(content.replace(regexp, new_id));
+    jQuery(link).parent().before(content.replace(regexp, new_id));
+}
+
+function event_change(id){
+    var type = jQuery("input:radio[name='event']:checked").val();
+    jQuery.ajax({
+        beforeSend: function(){
+            jQuery(".spinner").show();
+        },
+        complete: function(){
+            jQuery(".spinner").hide();
+        },
+        url: "/admin/events/"+id+"/rsvp",
+        dataType: "json",
+        type: "GET",
+        data: {
+            group: type
+        },
+        success: function(data){
+            if(data == 'Organizer') {
+                jQuery("input:radio[id='event_Attending']").attr('checked', true);
+            }
+            else{
+                jQuery("input:radio[name='event']:checked").attr('checked', true);
+            }
+        }
+    });
 }
 
 function add_comment(c){
