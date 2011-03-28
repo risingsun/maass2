@@ -17,6 +17,9 @@
           = render :partial => "shared/header_tab"
         .clear_div
         = display_standard_flashes_in_large_size
+        .admin_panel
+          = render :partial => "admin/shared/admin_header"
+          .clear_div
         = yield
       .clear_div
       .footer{:style => "z-index:9000"}= render :partial => 'shared/footer'

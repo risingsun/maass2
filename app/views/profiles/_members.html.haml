@@ -1,6 +1,9 @@
 - size = members.size
-- see_all = (size > 6) ? link_to_friends(type) : ""
-- count = @event ?  "(#{size})" : ""
+- if @event
+  - see_all = (size > 6) ? link_to_event_friends(type, @event) : ""
+  - count = "(#{size})"
+- else
+  - see_all = (size > 6) ? link_to_friends(type) : ""
 - members = members[0, 6]
 = rounded_corner(:title => "#{type.titleize}#{count} #{see_all}".html_safe, :size => 'small') do
   - members.each do |member|

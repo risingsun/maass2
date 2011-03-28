@@ -15,14 +15,14 @@
         .login_container
           -if current_user.blank?
             %span
-              .welcome
+              .welcome_msg
                 = "Welcome to #{SITE_FULL_NAME}."
                 =# render 'layouts/header'
           -else
             = render 'shared/header_tab'
       .clear_div
         .admin_panel
-          =# render :partial => "admin/shared/admin_header"
+          = render :partial => "admin/shared/admin_header" if @hide_panels
       .side_panel
         = render :partial => "shared/lsidebar"
         = yield :left_side_panel

@@ -10,4 +10,12 @@ module EventsHelper
       end
     end
   end
+
+  def check_permission?(event)
+    if @p && event.is_organizer?(@p)
+      return true
+    else
+      return false
+    end
+  end
 end

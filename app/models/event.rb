@@ -11,15 +11,19 @@ class Event < ActiveRecord::Base
   has_many :comments, :as => :commentable, :order => "created_at DESC"
 
   def set_organizer(profile)
-    ProfileEvent.create(:event_id => self.id,:profile_id => profile.id,:role =>"Organizer")
+    ProfileEvent.create(:event_id => self.id,:profile_id => profile, :role =>"Organizer")
   end
 
   def responded?(profile)
-    profile.events.find(:first,:conditions =>{:id => self.id})
+    profile.events.find(:first,:conditions =>{:id => self})
   end
 
-  def list(type,size = 6)
-    self.send(type).find(:all, :limit => size, :order => 'RAND()') rescue []
+  def list(type)
+    self.send(type).find(:all, :order => 'RAND()') rescue []
+  end
+
+  def is_organizer?(profile)
+    self.organizers.first.eql?(profile)
   end
   
 end

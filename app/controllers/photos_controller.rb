@@ -9,6 +9,7 @@ class PhotosController < ApplicationController
       redirect_to new_profile_photo_path(@p, :blurb_image => @blurb_image)
     end
   end
+
   def new
     @photo = Photo.new
     @photo.set_as_blurb = @blurb_image
@@ -16,8 +17,13 @@ class PhotosController < ApplicationController
 
   def create
     @photo = @p.photos.build(params[:photo])
-    @photo.save
-    redirect_to profile_photos_path(@p)
+    if @photo.save
+      flash[:notice] = "Image successfully created."
+      redirect_to profile_photos_path(@p)
+    else
+      flash[:notice] = "Image was not successfully created."
+      redirect_to :back
+    end
   end
   
   def edit
@@ -27,9 +33,10 @@ class PhotosController < ApplicationController
   def update
     @photo = Photo.find(params[:id])
     if @photo.update_attributes(params[:photo])
-      flash[:notice] = "Successfully updated user."
+      flash[:notice] = "Successfully updated image."
       redirect_to profile_photos_path(@p)
     else
+      flash[:notice] = "Image was not succesfully updated"
       render :action => 'edit'
     end
   end

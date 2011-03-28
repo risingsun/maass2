@@ -1,17 +1,17 @@
 .admin_panel_main_links
   = link_to "Events", admin_events_path
   |
-  = link_to "Feedbacks", "#"
+  = link_to "Feedbacks", feedbacks_path
   |
-  = link_to "Blogs", "#"
+  = link_to "Blogs", blogs_admin_home_path(@p)
   |
-  = link_to "Greetings", "#"
+  = link_to "Greetings",  greetings_admin_home_path(@p)
   |
   = link_to "Student Checks", student_checks_path
   |
-  = link_to "Announcement", admin_announcements_path
+  = link_to "Announcement",admin_announcements_path
   |
-  = link_to "Users", "#"
+  = link_to "Users",profiles_path
   |
   = link_to "Site Content", "#"
   |
@@ -19,6 +19,8 @@
   |
   = link_to "Google Map Locations", "#"
   |
-  = link_to "Photos", "#"
+  = link_to "Photos",profile_photos_path(@p, :blurb_image => false)
   |
-  = link_to "Blurb Images", "#"
+  = link_to "Blurb Images",profile_photos_path(@p, :blurb_image => true)
+  |
+  = link_to "Nomination Forms", "#"

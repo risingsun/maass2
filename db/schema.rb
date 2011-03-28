@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(:version => 20110328081326) do
     t.text     "body"
     t.integer  "sender_id"
     t.integer  "receiver_id"
-    t.boolean  "read",           :default => false, :null => false
+    t.boolean  "read",           :default => false
     t.boolean  "sender_flag",    :default => true
     t.boolean  "receiver_flag",  :default => true
     t.boolean  "system_message", :default => false
@@ -217,6 +217,13 @@ ActiveRecord::Schema.define(:version => 20110328081326) do
     t.datetime "updated_at"
     t.boolean  "status",      :default => true
     t.integer  "votes_count", :default => 0
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "profile_events", :force => true do |t|
