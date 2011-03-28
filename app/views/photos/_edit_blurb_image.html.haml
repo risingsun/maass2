@@ -1,0 +1,8 @@
+#cropwrap
+  = display_image(photo,{},{:id => 'cropBlurbImage'})
+#cropresults
+  = f.input :x, :label => "", :class => "hidden"
+  = f.labelled_text_field "", :x,:class=>"hidden"
+  = f.labelled_text_field "", :y, :class=>"hidden"
+  = f.labelled_text_field "", :width, :class=>"hidden"
+  = f.labelled_text_field "", :height, :class=>"hidden"
