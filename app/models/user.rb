@@ -39,6 +39,9 @@ class User < ActiveRecord::Base
   validates :login, :presence => true,
     :length => { :maximum => 20 },
     :uniqueness => true
+
+  validates :requested_new_email, :format=> {:with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>'does not look like an email address.', :if => proc {|obj| !obj.requested_new_email.blank?}}
+
   has_one :profile
   accepts_nested_attributes_for :profile
 
@@ -48,11 +51,6 @@ class User < ActiveRecord::Base
 
   def generate_confirmation_hash!(secret_word = "pimpim")
     self.email_verification = Digest::SHA1.hexdigest(secret_word + DateTime.now.to_s)
-  end
-
-  def confirm_email!
-    self.email_verified = true
-    self.email_verification = nil
   end
 
   def match_confirmation?(user_hash)
@@ -73,9 +71,9 @@ class User < ActiveRecord::Base
   #      debugger
   #        self.build_user_profile
   #    end
-#    def build_profile
-#       self.build_user_profile
-#    end
+  #    def build_profile
+  #       self.build_user_profile
+  #    end
 
 
 end
