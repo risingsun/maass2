@@ -1,9 +1,10 @@
-%h2 Sign in
 = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  =f.inputs do
-    = f.input :email, :as => :string
-    = f.input :password, :as => :password
-  - if devise_mapping.rememberable?
-    = f.input :remember_me, :as => :check_boxes, :collection =>["remember me"], :label => ""
-    = f.commit_button :label => "Sign In"
-= render :partial => "devise/shared/links"
+  - rounded_corner(:title => 'Login') do
+    = f.inputs do
+      = f.input :email, :as => :string
+      = f.input :password, :as => :password
+    - if devise_mapping.rememberable?
+      = f.input :remember_me, :as => :check_boxes, :collection =>["remember me"], :label => ""
+      %button.buttons{:type => "submit"}
+        = image_tag('login.png')
+    = render :partial => "devise/shared/links"

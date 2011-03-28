@@ -15,7 +15,7 @@
         .login_container
           -if current_user.blank?
             %span
-              .welcome
+              .welcome_msg
                 = "Welcome to #{SITE_FULL_NAME}."
                 =# render 'layouts/header'
           -else
