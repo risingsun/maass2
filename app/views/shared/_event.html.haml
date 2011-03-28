@@ -1,13 +1,13 @@
-.widget_complete{:id => "event_#{event.id}"}
-  %span.widget_complete_top
-  %h3.blog_head.event_head_width
+.widget_large{:id => "event_#{event.id}"}
+  %span.widget_lrg_top
+  %h3.blog_head
     = link_to image_tag(set_icon(event.organizers.first,'small')), event.organizers.first
-    = link_to sanitize(event.title),admin_event_path(event)
+    = link_to sanitize(event.title),admin_event_path(event)  
     = link_to image_tag('edit.png', :border =>0), edit_admin_event_path(event) if check_permission?(event)
     = link_to image_tag('delete.png',:border =>0), admin_event_path(event), :method => :delete if check_permission?(event)
     .created_date
       Posted by #{event.organizers.first.full_name} at #{event.updated_at.to_date.to_formatted_s(:rfc822)}
-  .forum_text
+  .blog_text
     = event.description.html_safe
     .event_location
       .event_start_date
@@ -30,4 +30,5 @@
           %strong RSVP:
           %br
           = render :partial => 'admin/events/rsvp',:locals => {:event => event,:status => 'home_page'}
-  %span.widget_complete_btm
+  %span.widget_lrg_btm
+  

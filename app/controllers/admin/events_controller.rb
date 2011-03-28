@@ -1,8 +1,9 @@
 class Admin::EventsController < ApplicationController
-  before_filter :load_event, :only => [:edit, :update, :destroy]
+
+  before_filter :load_event, :only => [:edit, :update, :show, :destroy, :event_members]
   before_filter :hide_side_panels
   before_filter :show_events_side_panels, :only => [:show]
-  respond_to :html, :json
+  respond_to :html, :json, :only =>[:rsvp]
 
   def index
     @events = Event.all
@@ -32,17 +33,16 @@ class Admin::EventsController < ApplicationController
 
   def update
     @event.attributes = params[:event]
-    if params[:preview_button] || !@event.save
-      flash[:notice]= "Update Failed."
-      render :action => 'new'
-    else
+    if @event.save
       flash[:notice] = "Successfully updated event."
       redirect_to admin_events_path
+    else
+      flash[:notice]= "Update Failed."
+      render :action => 'new'
     end
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def destroy
@@ -61,18 +61,10 @@ class Admin::EventsController < ApplicationController
     respond_with(pe.role.to_json, :location => event_path(event))
   end
 
-  def attending_members
-    @event = Event.find(params[:id])
-  end
-
-  def not_attending_members
-    @event = Event.find(params[:id])
-    @results = @event.not_attending
-  end
-
-  def may_be_attending_members
-    @event = Event.find(params[:id])
-    @results = @event.may_be_attending
+  def event_members
+    @results = @event.send(params[:member_type].downcase)
+    @title = "#{params[:member_type]} Members"
+    render 'profiles/user_friends'
   end
 
   private
