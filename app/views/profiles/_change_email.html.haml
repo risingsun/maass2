@@ -1,9 +1,10 @@
 = rounded_med_corner(:id => "change_email", :title => "Email") do
   = semantic_form_for @p do |f|
     = f.semantic_fields_for(:user) do |u|
-      = u.label "Current Email"
-      %br
-      = @p.email
-      %br
-      = u.input :requested_new_email
+      %div{:class => cycle(:row_light2, :row_dark2)}
+        %label.label_margin Current Email
+        %label.label_margin
+          = @p.email
+      %div{:class => cycle(:row_light2, :row_dark2)}
+        = u.input :requested_new_email
     = f.commit_button "Change Email"
