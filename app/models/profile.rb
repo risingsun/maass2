@@ -244,4 +244,13 @@ class Profile < ActiveRecord::Base
     Profile.admins.map(&:email)
   end
 
+
+  def wants_email_notification?(type)
+    self.notification_control && (self.notification_control.send(type) == NotificationControl::EMAIL_BIT || self.notification_control.send(type) == NotificationControl::ALL_NOTIFICATION )
+  end
+
+  def wants_message_notification?(type)
+    self.notification_control && (self.notification_control.send(type) == NotificationControl::INTERNAL_MESSAGE_BIT || self.notification_control.send(type) == NotificationControl::ALL_NOTIFICATION)
+  end
+  
 end

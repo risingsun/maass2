@@ -11,6 +11,7 @@ Maass2::Application.routes.draw do
       get 'not_attending_members', :on => :member
       get 'may_be_attending_members', :on => :member
       get 'event_members', :on => :member
+      post 'send_event_mail', :on => :member
     end
     resources :home do
       get 'greetings', :on => :member

@@ -1,4 +1,5 @@
 .widget_large
+  %span.widget_lrg_top
   = render :partial => 'messages/header_links'
   - form_for :message, :url => delete_messages_profile_messages_path(@p), :html => {:id => "message_list"} do |f|
     - @receive_messages.each do |message|
@@ -6,10 +7,11 @@
       %div{:class => "comments"}
         %input.left{:id => message.id, :name => "check[]", :type => "checkbox", :value => message.id}
         = link_to image_tag(set_icon(profile,'small')), profile, {:class => "featured_mem_pic"}, {:class => "featured_mem_text"}
-        = link_to profile.full_name, profile
-        %br
-        = time_ago_in_words message.created_at
-        ago
+        .messagebox_profilename_unread
+          = link_to profile.full_name, profile
+        %span.messagebox_date
+          = time_ago_in_words message.created_at
+          ago
         .messagebox_subject= link_to message.subject, profile_message_path(@profile, message)
         .messagebox_message_preview
           = message.body
@@ -17,3 +19,4 @@
     = link_to image_tag("select_all.png"), '#', :class => "select_all"
     %button.buttons{:type => "submit"}
       = image_tag("delete-selected.png")
+  %span.widget_lrg_btm
