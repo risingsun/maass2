@@ -30,4 +30,11 @@ class NotificationControl < ActiveRecord::Base
     return sum
   end
 
+  def check_email_notification?(type)
+    self.send(type) == EMAIL_BIT || self.send(type) == ALL_NOTIFICATION 
+  end
+
+  def check_message_notification?(type)
+    self.send(type) == INTERNAL_MESSAGE_BIT || self.send(type) == ALL_NOTIFICATION
+  end
 end
