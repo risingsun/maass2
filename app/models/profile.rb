@@ -28,6 +28,8 @@ class Profile < ActiveRecord::Base
 
   has_many :sent_blogs, :class_name => 'Blog', :order => 'created_at desc', :conditions => "is_sent = #{false}"
 
+  has_one :nomination
+
   accepts_nested_attributes_for :notification_control
   accepts_nested_attributes_for :blogs
   accepts_nested_attributes_for :user
@@ -232,6 +234,14 @@ class Profile < ActiveRecord::Base
     years = Profile.where(:group => year, :is_active => true)
     group = years.map{|p| [p.full_name(), p.id]}
     return group
+  end
+
+  def self.admins
+    self.all(:conditions => ["users.admin = true"], :include => "user")
+  end
+
+  def self.admin_emails
+    Profile.admins.map(&:email)
   end
 
 end

@@ -13,4 +13,4 @@
     %div= link_to "Google Map Locations", "#"
     %div= link_to "Photos", profile_photos_path(@p, :blurb_image => false)
     %div= link_to "Blurb Images", profile_photos_path(@p, :blurb_image => true)
-    %div= link_to "Nomination Forms", "#"
+    %div= link_to "Nomination Forms", nominations_path unless DISABLE_NOMINATION_FORM

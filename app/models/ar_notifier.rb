@@ -18,5 +18,15 @@ class ArNotifier < ActionMailer::Base
     @from            = MAILER_FROM_ADDRESS
     @sent_on         = Time.new
   end
+
+  def nomination_mail(nomination,rec_profile)
+    @subject          = "[#{SITE_NAME} Nomination] #{nomination.profile.full_name} (#{nomination.profile.group})"
+    @recipients       = rec_profile
+    @cc               = rec_profile
+    @body['nomination'] = nomination
+    @body['name']     = nomination.profile.full_name
+    @from             = MAILER_FROM_ADDRESS
+    @sent_on          = Time.new
+  end
   
 end

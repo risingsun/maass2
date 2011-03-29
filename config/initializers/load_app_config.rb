@@ -72,6 +72,8 @@ DISABLE_STUDENT_CHECKING = !!THEME_CONFIG[:student_checking]
 USER_TYPE = THEME_CONFIG[:user_types].map{|x|[x]}
 GROUPS = USER_TYPE + BATCH_RANGE.to_a.map{|x|[x.to_s]}
 
+DISABLE_NOMINATION_FORM = !!!THEME_CONFIG[:nomination_form]
+
 MAILER_FROM_ADDRESS = THEME_CONFIG[:mailer_from_address]
 
 smtp_settings = THEME_CONFIG[:smtp_settings].symbolize_keys
