@@ -30,4 +30,8 @@ class Blog < ActiveRecord::Base
       :order => "year DESC, MONTH(created_at) DESC" )
   end
 
+  def sent_by
+    profile.full_name
+  end
+
 end

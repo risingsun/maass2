@@ -16,6 +16,7 @@ Maass2::Application.routes.draw do
     resources :home do
       get 'greetings', :on => :member
       get 'blogs', :on => :member
+      get 'send_blog', :on=> :member
     end
     resources :announcements
   end
