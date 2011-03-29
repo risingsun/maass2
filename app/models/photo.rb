@@ -16,4 +16,8 @@ class Photo < ActiveRecord::Base
     image.reprocess!
   end
 
+  def self.blurb_images
+    Photo.where(:set_as_blurb => true)
+  end
+  
 end
