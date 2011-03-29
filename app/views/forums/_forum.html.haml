@@ -1,0 +1,5 @@
+.forum_text
+  = image_tag('forum.png')
+  .forum_title= link_to sanitize(forum.name),forum_path(forum)
+  .forum_description
+    = forum.description

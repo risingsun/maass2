@@ -1,0 +1,12 @@
+.forum_links
+  = link_to "Back to Forums", forums_path
+.widget_complete
+  %span.widget_complete_top
+  %h3.forum_head
+    .froum_page_title= sanitize(@forum.name)
+    - if @is_admin
+      = link_to image_tag('edit.png', :title => "Edit forum"),edit_forum_path(@forum)
+      = link_to image_tag('delete.png', :title => "Delete forum"),forum_path(@forum),:method => :delete                                         |
+  .forum_text= @forum.description
+  .clear_div
+  %span.widget_complete_btm
