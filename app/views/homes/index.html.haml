@@ -1,5 +1,3 @@
-- cache 'blurb' do
-  = render :partial => 'blurb'
 .widget_large
   %span.widget_lrg_top
   .blurb_image_div
@@ -16,18 +14,24 @@
         |
         = link_to("Credits","#")
         |
-        = link_to("Forums","#")
-    .slideshow
+        = link_to("Forums", forums_path)
+    .image_cycle
       - @blurb_image.each do |photo|
         = raw image_tag(photo.image.url,:class=>"image_on_blurb")
-  %span.widget_lrg_btm
+    %span.widget_lrg_btm
+- if @p
+  - unless DISABLE_NOMINATION_FORM
+    - if @nomination.new_record?
+      = render :partial => 'nominations/form', :locals => {:nomination => @nomination}
+    - else
+      = render :partial => 'nominations/show', :locals => {:nomination => @nomination}
 - unless @home_data.blank?
   - @home_data.each do|d|
-    - if d.class.name == 'Poll'
-      = render :partial => 'polls/poll',:locals => {:home_page_blog => true,:poll => d}
-    - elsif(d.class.name == 'Blog')
-      = render :partial => 'blogs/blog',:locals => {:blog => d}
-    - else
+    - if d.class.name == 'Event'
       = render :partial => 'shared/event', :locals =>{:event => d}
+    - elsif d.class.name == 'Poll'
+      = render :partial => 'polls/poll', :locals => {:home_page_blog => true,:poll => d}
+    - else
+      = render :partial => 'blogs/blog', :locals => {:blog => d}
   .clear_div
   = will_paginate @home_data

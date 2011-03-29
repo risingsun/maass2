@@ -1,8 +1,9 @@
 #column_l
   %h2.page_title
-    = @title.titleize
+    = SITE_NAME
+    = page_title(@blurb_image).pluralize
     = link_to image_tag('add_new_post.png',                                  |
       :title=> "Create New image",                     |
       :class=>"add_new_post2"),                                              |
       new_profile_photo_path(@p)
-    = render :partial => 'photos/photo', :collection => @photos
+  = render :partial => 'photos/photo', :collection => @photos

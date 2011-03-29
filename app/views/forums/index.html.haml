@@ -1,0 +1,20 @@
+%h2.page_title
+  = SITE_NAME
+  Forums
+  =link_to image_tag('add_new_post.png',  :title=>"Create New Forum",  :class=>"add_new_post2"),  new_forum_path if @is_admin
+- if @forums.empty?
+  .widget_complete
+    .comments
+      = SITE_NAME
+      has no forums.
+    %span.widget_complete_btm
+- else
+  .widget_complete
+    %span.widget_complete_top
+    %h3.forum_head
+      Forum
+      %span.posts Posts
+      %span.last_post Last Post
+    = render :partial => 'forum', :collection => @forums
+    .clear_div
+    %span.widget_complete_btm

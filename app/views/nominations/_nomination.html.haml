@@ -1,0 +1,30 @@
+.widget_large
+  %span.widget_lrg_top
+  %h2.blog_head
+    = nomination.profile.full_name
+    's Nomination Details
+  .middle_panel_profile
+    #personal_info
+      .slidecontent
+        %table
+          %tr
+            %th{:align => "right"} Batch
+            %td
+              = nomination.profile.group
+          %tr
+            %th{:align => "right"} Contact details
+            %td
+              = nomination.contact_details
+          %tr
+            %th{:align => "right"} Occupation details
+            %td
+              = nomination.occupational_details
+          %tr
+            %th{:align => "right"} What is the reason for your nomination ?
+            %td
+              = nomination.reason_for_nomination
+          %tr
+            %th{:align => "right"} What difference can you make to the association ?
+            %td
+              = nomination.suggestions         
+  %span.widget_lrg_btm

@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
   def create
     @photo = @p.photos.build(params[:photo])
     if @photo.save
-      flash[:notice] = "Image successfully created."
+      flash[:notice] = "Image was successfully created."
       redirect_to profile_photos_path(@p)
     else
       flash[:notice] = "Image was not successfully created."

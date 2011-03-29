@@ -16,5 +16,6 @@
           = p.input :group, :as => :select, :collection => GROUPS, :prompt => false
           = f.input :humanizer_answer, :label => @user.humanizer_question
           = f.hidden_field :humanizer_question_id
-      = f.commit_button :label => "Sign Up"
+      %button.buttons{:type => "submit"}
+        = image_tag('sign-me-up.png')
       = render :partial => "devise/shared/links"

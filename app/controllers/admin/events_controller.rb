@@ -22,7 +22,7 @@ class Admin::EventsController < ApplicationController
       render :action => 'new'
       flash[:notice] = "Event Creation Failed."
     else
-      flash[:notice] = "Successfully created Event."
+      flash[:error] = "Successfully created Event."
       @event.set_organizer(@p)
       redirect_to admin_events_path
     end
@@ -37,7 +37,7 @@ class Admin::EventsController < ApplicationController
       flash[:notice] = "Successfully updated event."
       redirect_to admin_events_path
     else
-      flash[:notice]= "Update Failed."
+      flash[:error]= "Update Failed."
       render :action => 'new'
     end
   end
@@ -48,6 +48,20 @@ class Admin::EventsController < ApplicationController
   def destroy
     @event.destroy
     flash[:notice] = "Successfully destroyed event."
+    redirect_to admin_events_path
+  end
+
+  def send_event_mail
+    @event = Event.find(params[:id])
+    @profiles = Profile.find(:all, :conditions => {:is_active => true})    
+    @profiles.each do|profile|
+      ArNotifier.send_event_mail(profile,@event).deliver if profile.wants_email_notification?("event")
+      Profile.admins.first.sent_messages.create(:subject => "[#{SITE_NAME} Events] Latest event",
+        :body =>"#{@event.title}, #{@event.description}",
+        :receiver => profile,
+        :system_message => true) if profile.wants_message_notification?("event")
+    end
+    flash[:notice] = 'Mail was successfully sent'
     redirect_to admin_events_path
   end
 

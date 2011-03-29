@@ -28,6 +28,8 @@ class Profile < ActiveRecord::Base
 
   has_many :sent_blogs, :class_name => 'Blog', :order => 'created_at desc', :conditions => "is_sent = #{false}"
 
+  has_one :nomination
+
   accepts_nested_attributes_for :notification_control
   accepts_nested_attributes_for :blogs
   accepts_nested_attributes_for :user
@@ -234,4 +236,21 @@ class Profile < ActiveRecord::Base
     return group
   end
 
+  def self.admins
+    self.all(:conditions => ["users.admin = true"], :include => "user")
+  end
+
+  def self.admin_emails
+    Profile.admins.map(&:email)
+  end
+
+
+  def wants_email_notification?(type)
+    self.notification_control && (self.notification_control.send(type) == NotificationControl::EMAIL_BIT || self.notification_control.send(type) == NotificationControl::ALL_NOTIFICATION )
+  end
+
+  def wants_message_notification?(type)
+    self.notification_control && (self.notification_control.send(type) == NotificationControl::INTERNAL_MESSAGE_BIT || self.notification_control.send(type) == NotificationControl::ALL_NOTIFICATION)
+  end
+  
 end

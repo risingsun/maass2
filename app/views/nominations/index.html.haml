@@ -1,0 +1,10 @@
+#column_l
+  - if @nominations.empty?
+    .widget_large
+      .comments
+        = SITE_NAME
+        has no nomination forms.
+      %span.widget_lrg_btm
+  - else
+    = render :partial => 'nominations/nomination', :collection => @nominations
+    .clear_div

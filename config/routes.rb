@@ -2,7 +2,8 @@ Maass2::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "users"}
   resources :users
-  resources :events,:has_many => [:comments] 
+  resources :events,:has_many => [:comments]
+  resources :nominations
   namespace :admin do
     resources :events do
       get 'rsvp', :on => :member
@@ -10,6 +11,7 @@ Maass2::Application.routes.draw do
       get 'not_attending_members', :on => :member
       get 'may_be_attending_members', :on => :member
       get 'event_members', :on => :member
+      post 'send_event_mail', :on => :member
     end
     resources :home do
       get 'greetings', :on => :member
@@ -17,6 +19,7 @@ Maass2::Application.routes.draw do
     end
     resources :announcements
   end
+  resources :forums
   resources :votes
   resources :feedbacks
   resources :profiles do
@@ -46,6 +49,7 @@ Maass2::Application.routes.draw do
 
     resources :feed_items
     resources :invitations
+    resources :nominations,:except => [:index]
 
     post 'load_profile', :on => :collection
     get 'edit_account', :on => :member
