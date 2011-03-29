@@ -2,6 +2,7 @@ class NotificationControl < ActiveRecord::Base
 
   EMAIL_BIT = 1
   INTERNAL_MESSAGE_BIT = 2
+  ALL_NOTIFICATION = 3
   NOTIFICATION_FIELDS = %w(news event message blog_comment profile_comment follow delete_friend )
 
   belongs_to :profile
