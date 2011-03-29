@@ -38,6 +38,7 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     acts-as-taggable-on (2.0.6)
+    acts_as_list (0.1.2)
     annotate (2.4.0)
     arel (2.0.6)
     autotest (4.4.6)
@@ -198,6 +199,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  acts_as_list
   annotate
   autotest
   avatar (= 0.0.5)

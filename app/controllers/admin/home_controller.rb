@@ -19,5 +19,6 @@ class Admin::HomeController < ApplicationController
 
   def hide_side_panels
     @hide_panels = true
+    @show_admin_header = true
   end
 end

@@ -27,6 +27,7 @@ group :development, :test do
 #  gem 'tiny_mce'
   gem 'avatar', '0.0.5'
   gem 'ckeditor', '3.4.2.pre'
+  gem 'acts_as_list'
 end
 
 gem 'mysql2'
