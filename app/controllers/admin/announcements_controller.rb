@@ -19,7 +19,7 @@ class  Admin::AnnouncementsController < ApplicationController
       flash[:notice] = 'Announcement was successfully created.'
       redirect_to admin_announcements_path
     else
-      flash[:notice] = 'Announcement was not Successfully created'
+      flash[:error] = 'Announcement was not Successfully created'
       render 'new'
     end
  end
@@ -34,7 +34,7 @@ class  Admin::AnnouncementsController < ApplicationController
     flash[:notice] = 'Announcement was successfully updated.'
     redirect_to admin_announcements_path
   else
-    flash[:notice] = 'Announcement was not successfully updated'
+    flash[:error] = 'Announcement was not successfully updated'
     render 'edit'
   end
  end

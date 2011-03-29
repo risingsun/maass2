@@ -20,11 +20,11 @@
   %span.widget_lrg_btm
 - unless @home_data.blank?
   - @home_data.each do|d|
-    - if d.class.name == 'Poll'
-      = render :partial => 'polls/poll',:locals => {:home_page_blog => true,:poll => d}
-    - elsif(d.class.name == 'Blog')
-      = render :partial => 'blogs/blog',:locals => {:blog => d}
-    - else
+    - if d.class.name == 'Event'
       = render :partial => 'shared/event', :locals =>{:event => d}
+    - elsif d.class.name == 'Poll'
+      = render :partial => 'polls/poll', :locals => {:home_page_blog => true,:poll => d}
+    - else
+      = render :partial => 'blogs/blog', :locals => {:blog => d}
   .clear_div
   = will_paginate @home_data

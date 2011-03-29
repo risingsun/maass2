@@ -37,7 +37,7 @@ class BlogsController < ApplicationController
   def update
     @blog.attributes = params[:blog]
     if params[:preview_button] || !@blog.save
-      flash[:notice]= "Update Failed."
+      flash[:error]= "Update Failed."
       render :action => 'new'
     else
       flash[:notice] = "Successfully updated blog."
