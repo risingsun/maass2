@@ -1695,7 +1695,7 @@ div.profile_pic_panel span.even {
   margin-left: 5px;
 }
 
-.error{
+/*.error{
   font-size: 11px;
   line-height: 10px;
   margin-top: 4px;
@@ -1705,11 +1705,11 @@ div.profile_pic_panel span.even {
   margin-bottom: 2px;
   color: #FF0000;
   font-weight: normal;
-  width: 125px;
-}
+  width: 80%;
+}*/
 
 
-.invitation_error{
+/*.invitation_error{
   font-size: 11px;
   line-height: 10px;
   margin-top: -160px;
@@ -1720,7 +1720,7 @@ div.profile_pic_panel span.even {
   color: #FF0000;
   font-weight: normal;
   width: 125px;
-}
+}*/
 
 .sys_message{
   font-size: 11px;
@@ -2867,16 +2867,18 @@ table.greetings {
   height: auto;
 }
 .linkedin_icon{
-  background-image: url(/images/linkedin.jpg);
-  background-repeat: no-repeat;
+  background:#FFFFFF url(/images/linkedin.jpg) no-repeat 4px 4px;
+  padding:4px 4px 4px 22px;
 }                   
 .yahoo_icon{
   background-image: url(/images/yahoo.png);
   background-repeat: no-repeat;
+  padding:4px 4px 4px 22px;
 }  
 .skype_icon{
   background-image: url(/images/skype.ico);
   background-repeat: no-repeat;
+  padding:4px 4px 4px 22px;
 }    
 .msn_icon{
   background-image: url(/images/live.png);
@@ -2901,7 +2903,7 @@ table.greetings {
   background-repeat: no-repeat;
 }
 .input_text_with_icon{
-  padding-left :20px;
+/*  padding-left :20px;*/
   width: 209px
 }
 .happy_day_class{

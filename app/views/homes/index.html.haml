@@ -17,6 +17,9 @@
         = link_to("Credits","#")
         |
         = link_to("Forums","#")
+    .slideshow
+      - @blurb_image.each do |photo|
+        = raw image_tag(photo.image.url,:class=>"image_on_blurb")
   %span.widget_lrg_btm
 - unless @home_data.blank?
   - @home_data.each do|d|

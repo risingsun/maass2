@@ -10,6 +10,11 @@ class Photo < ActiveRecord::Base
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
 
+  def self.blurb_images
+    Photo.where(:set_as_blurb => true)
+  end
+
+
   private
 
   def reprocess_avatar
