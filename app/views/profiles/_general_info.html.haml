@@ -10,7 +10,7 @@
       = f.input :maiden_name, :as => :string, :label => "Maiden Name", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
       = f.input :gender, :as => :select, :collection => SEX, :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
       = f.input :blood_group, :as => :select, :collection => BLOOD_GROUP, :label => "Blood Group", :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :group, :collection => GROUPS, :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :group, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :include_blank => false, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
       = f.input :house_name, :as => :select, :collection => HOUSE_NAME, :label => "House Name",:include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
       = f.input :date_of_birth, :as => :string, :label => "Date Of Birth ", :input_html => {:class => "datebalks" }
       = f.input :relationship_status, :as => :select, :collection => RELATIONSHIP_STATUS, :label => "Relationship Status",:include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}

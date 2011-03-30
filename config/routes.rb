@@ -62,6 +62,7 @@ Maass2::Application.routes.draw do
     get 'user_friends', :on => :member
     get 'batch_mates', :on => :member
     get 'batch_details', :on=>:collection
+    get 'search_group', :on=>:collection
   end
 
   resources :comments
