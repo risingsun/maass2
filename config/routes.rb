@@ -20,7 +20,9 @@ Maass2::Application.routes.draw do
     end
     resources :announcements
   end
-  resources :forums
+  resources :forums do
+    resources :forum_topics
+  end
   resources :votes
   resources :feedbacks
   resources :profiles do

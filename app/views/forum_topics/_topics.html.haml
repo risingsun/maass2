@@ -1,0 +1,5 @@
+.forum_text
+  = image_tag('topic.png')
+  - topics.each do |forum_topic|
+    .topic_title= forum_topic.title
+    .topic_starter_name= (forum_topic.owner.full_name)
