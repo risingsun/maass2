@@ -2,6 +2,15 @@ class ArNotifier < ActionMailer::Base
   
   helper :profiles, :application
 
+  def sent_news(blog,user)
+    @subject      = "[#{SITE_NAME} News] #{blog.title} by #{blog.sent_by}"
+    @recipients   = user.email
+    @body['blog'] = blog
+    @body['user'] = user
+    @from         = MAILER_FROM_ADDRESS
+    @sent_on      = Time.new    
+  end
+
   def send_event_mail(profile,event)
     @subject         = "[#{SITE_NAME} Events] Latest event"
     @recipients      = profile.email

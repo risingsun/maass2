@@ -1,7 +1,11 @@
 var $j = jQuery.noConflict();
 jQuery(document).ready(function()
 {
-  $j('.datebalks').datepicker({
+jQuery('.slideshow').cycle({
+		fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+	});
+
+  jQuery('.datebalks').datepicker({
     dateFormat:'dd M yy',
     showOn: "both",
     buttonImage: "/images/calendar.gif",
@@ -81,7 +85,6 @@ jQuery(document).ready(function()
     jQuery('#photo_crop_w').val(coords.w);
     jQuery('#photo_crop_h').val(coords.h);
   }
-
 });
 
 function event_change(id){
@@ -108,6 +111,7 @@ function event_change(id){
       }
     }
   });
+
 }
 
 function remove_fields(link) {
