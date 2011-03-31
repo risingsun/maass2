@@ -98,8 +98,13 @@ class ProfilesController < ApplicationController
 
   def search_group
     @title = "Search"
-    @group = params[:group]
-    @results = Profile.batch_details(@group, {:page => @page, :per_page =>PROFILE_PER_PAGE})
+    @results = Profile.search params[:search][:group]
+    render :template=>'profiles/user_friends'
+  end
+
+  def search_location    
+    @title = "Search"
+    @results= Profile.search params[:search][:location]
     render :template=>'profiles/user_friends'
   end
 

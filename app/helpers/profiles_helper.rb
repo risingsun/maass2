@@ -14,8 +14,13 @@ module ProfilesHelper
     @map.record_init("create_draggable_marker_for_edit(#{marker.lat},#{marker.lng},#{marker.zoom});")
   end
 
+  def location_link profile = @p
+    return profile.location if profile.location == Profile::NOWHERE
+    link_to(profile.location, search_location_profiles_path('search[location]' => profile.location))
+  end
+
   def year_link profile
-    link_to(profile.group, search_group_profiles_path(:group => profile.group))
+    link_to(profile.group, search_group_profiles_path('search[group]' => profile.group))
   end
 
   def before_after(field_index)
@@ -36,7 +41,7 @@ module ProfilesHelper
   end
 
   def link_to_event_friends(type,event)
-     link_to("See All", event_members_admin_event_path(event, :member_type => type ))
+    link_to("See All", event_members_admin_event_path(event, :member_type => type ))
   end
   
 end

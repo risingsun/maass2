@@ -7,6 +7,8 @@ class Profile < ActiveRecord::Base
 
   belongs_to :user
 
+  Profile::NOWHERE = 'Nowhere'
+
   attr_protected :is_active
 
   has_many :educations, :dependent => :destroy
@@ -93,6 +95,11 @@ class Profile < ActiveRecord::Base
     indexes :country
     indexes :landline
     indexes :mobile
+  end
+
+  def location
+    return Profile::NOWHERE if attributes['location'].blank?
+    attributes['location']
   end
 
   def self.todays_featured_profile
