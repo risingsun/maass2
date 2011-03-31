@@ -5,7 +5,7 @@
     %h2= h profile.f(18, :is_long => true)
     .profile_links
       %strong Location:
-      = profile.location
+      = location_link profile
       - if me
         .profile_links
           = link_to "Send Invites", new_profile_invitation_path(@p)
