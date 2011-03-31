@@ -96,6 +96,13 @@ class ProfilesController < ApplicationController
     render :template=>'profiles/user_friends'
   end
 
+  def search_group
+    @title = "Search"
+    @group = params[:group]
+    @results = Profile.batch_details(@group, {:page => @page, :per_page =>PROFILE_PER_PAGE})
+    render :template=>'profiles/user_friends'
+  end
+
   def user_friends
     @results = @profile.send(params[:friend_type].downcase)
     @title = params[:friend_type]

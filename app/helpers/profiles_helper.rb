@@ -15,7 +15,7 @@ module ProfilesHelper
   end
 
   def year_link profile
-    link_to profile.group, "#"
+    link_to(profile.group, search_group_profiles_path(:group => profile.group))
   end
 
   def before_after(field_index)

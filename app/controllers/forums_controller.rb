@@ -43,6 +43,7 @@ class ForumsController < ApplicationController
   end
   
   def destroy
+    @forum = Forum.find(params[:id])
     @forum.destroy
     flash[:notice] = "Successfully destroyed forum."
     redirect_to forums_path

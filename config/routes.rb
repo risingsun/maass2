@@ -16,10 +16,13 @@ Maass2::Application.routes.draw do
     resources :home do
       get 'greetings', :on => :member
       get 'blogs', :on => :member
+      get 'send_blog', :on=> :member
     end
     resources :announcements
   end
-  resources :forums
+  resources :forums do
+    resources :forum_topics
+  end
   resources :votes
   resources :feedbacks
   resources :profiles do
@@ -59,6 +62,7 @@ Maass2::Application.routes.draw do
     get 'user_friends', :on => :member
     get 'batch_mates', :on => :member
     get 'batch_details', :on=>:collection
+    get 'search_group', :on=>:collection
   end
 
   resources :comments
