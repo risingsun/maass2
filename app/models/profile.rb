@@ -173,7 +173,10 @@ class Profile < ActiveRecord::Base
     return  happy_days
   end
 
-
+  def self.active_profiles
+    self.active.all
+  end
+  
   def gender_str
     gender.downcase
   end

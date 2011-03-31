@@ -14,8 +14,9 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
-    @to_list = @profile.friends + @profile.followers  + @profile.followings
-    if @to_list.blank?
+    @friends = @profile.friends + @profile.followers  + @profile.followings
+    @to_list = @profile == @p ? @friends : [@profile]
+    if @friends.blank?
       redirect_to profile_messages_path(@profile)
     end
   end
@@ -69,7 +70,7 @@ class MessagesController < ApplicationController
    private
 
    def load_profile
-     @profile = @p
+     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
      @show_profile_side_panel = true
    end
 
