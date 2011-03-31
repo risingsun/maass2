@@ -1,18 +1,14 @@
-.forum_text{:id => post.dom_id}
+.forum_text
   .author_panel
-    = icon post.owner
+    =link_to image_tag(set_icon(@forum_topic.owner,'small')), "#"
     .profile_links
       %div
-        %strong= link_to(post.owner.f(18, :is_long => true), profile_path(post.owner))
+        %strong= link_to @forum_topic.owner.f, "#"
       Location:
-      =location_link post.owner
+      = link_to @forum_topic.owner.location
       %div
         Group:
-        =post.owner.group
+        = @forum_topic.owner.group
       %div
         Posted:
-        =post.created_at.to_date.to_formatted_s(:rfc822)
-  .message_panel
-    %div= post.body
-    - if @u.is_admin? || owner(post)
-      .delete_post= link_to_remote "Delete Post", {:url => forum_topic_post_path(@forum, @topic, post), :confirm => 'Are you sure?', :method => :delete}, {:class=> "destroy", :id => "#{post.dom_id}_destroy_link"}
+       

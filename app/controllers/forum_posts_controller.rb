@@ -27,17 +27,4 @@ class ForumPostsController < ApplicationController
     @topic = @forum.topics.find(params[:forum_topic_id])
   end
 
-
-#  def create 
-#    @forum = Forum.find(params[:forum_id])
-#    @topic = @forum.topics.find(params[:topic_id])
-#    
-#    @post = @topic.posts.build(params[:forum_post])
-#    if @post.save
-#      flash[:notice] = "Forum Post was successfully created."
-#      redirect_to forum_path(@forum)
-#    else
-#      
-#    end
-#  end
 end

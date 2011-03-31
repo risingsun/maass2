@@ -1,11 +1,7 @@
 class ForumTopicsController < ApplicationController
 
   before_filter :hide_side_panels
-
-  def index
-    @forum = Forum.find(params[:id])
-    @forum_topics = @forum.topics
-  end
+  before_filter :load_forum, :except => [:new, :create]
 
   def new
     @forum = Forum.find(params[:forum_id])
@@ -20,18 +16,31 @@ class ForumTopicsController < ApplicationController
   end
 
   def show
-    @forum = Forum.find(params[:forum_id])
-    @forum_topic = params[:id] ? @forum.topics.find(params[:id]) : @forum.topics.build
+  end
+
+  def edit
+  end
+
+  def update
+    @forum_topic.attributes = params[:forum_topic]
+    @forum_topic.save
+    redirect_to forum_path(@forum)
   end
 
   def destroy
     @forum_topic.destroy
-    redirect_to forums_path
+    redirect_to forum_path(@forum)
   end
+
   private
 
   def hide_side_panels
     @hide_panels = true
+  end
+
+  def load_forum
+    @forum = Forum.find(params[:forum_id])
+    @forum_topic = @forum.topics.find(params[:id])
   end
 
 end
