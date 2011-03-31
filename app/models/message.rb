@@ -11,6 +11,7 @@ class Message < ActiveRecord::Base
       self.save
     elsif profile_id == self.receiver_id
       self.receiver_flag = false
+      self.read = true
       self.save
     end
     if (self.sender_flag == false) && (self.receiver_flag == false)

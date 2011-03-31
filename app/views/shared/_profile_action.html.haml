@@ -2,7 +2,7 @@
   .profile_div
     .profile_links
       %div= render "homes/friend_status", :profile => @profile
-      %div= link_to 'Direct Message', direct_message_profile_messages_path(@profile)
+      %div= link_to 'Direct Message', new_profile_message_path(@profile)
       %div= link_to('Read My Blogs', profile_blogs_path(@profile))
       %div= link_to('See My Polls', profile_polls_path(@profile))
  
