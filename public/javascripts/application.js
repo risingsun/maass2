@@ -1,7 +1,7 @@
 var $j = jQuery.noConflict();
 jQuery(document).ready(function()
 {
-jQuery('.slideshow').cycle({
+    jQuery('.slideshow').cycle({
 		fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
 	});
 

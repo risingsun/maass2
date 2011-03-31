@@ -19,11 +19,10 @@ class ForumTopicsController < ApplicationController
     redirect_to forums_path()
   end
 
-#  def destroy
-#    @forum.forum_topics.destroy
-#    flash[:notice] = "Successfully destroyed forum."
-#    redirect_to forums_path
-#  end
+  def destroy
+    @forum_topic.destroy
+   redirect_ro forums_path
+  end
   private
 
   def hide_side_panels
