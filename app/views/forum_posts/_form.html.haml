@@ -1,5 +1,5 @@
 = form_for :post, :url => forum_forum_topic_forum_posts_path(@forum, @forum_topic) do |f|
-  = f.label "Post By Followup"
+  = f.label "Post By Followup", :class => 'label_margin'
   = f.text_area :body, :class => :post_text_area_width, :for=>:followup_post_body ,:wrap_class => :row_complete_large_for_post
   = f.hidden_field :owner_id, :value => @p.id
   %button.buttons{:type => "submit"}

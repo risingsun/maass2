@@ -8,11 +8,10 @@
     .froum_page_title= sanitize(@forum_topic.title)
     .forum_links
       - if @is_admin
-        = link_to image_tag('edit.png', :title => "Edit Topic"), "#"
-        = link_to image_tag('delete.png', :title => "Delete Topic"), "#"
+        = link_to image_tag('edit.png', :title => "Edit Topic"),  edit_forum_forum_topic_path(@forum)
+        = link_to image_tag('delete.png', :title => "Delete Topic"), forum_forum_topic_path(@forum), :method => :delete
   .forum_text
-    - unless @posts.blank?
-      = render :partial => 'forum_posts/post', :post => @posts
+    = render :partial => 'forum_posts/post', :locals => {:post => @post}
     = render :partial => "forum_posts/form"
   .clear_div
   %span.widget_complete_btm
