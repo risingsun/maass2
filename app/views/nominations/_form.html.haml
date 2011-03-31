@@ -1,6 +1,6 @@
 = rounded_corner(:title => "Nominate yourself for AGM & COMMITTEE ELECTIONS ") do
   .edit_panel_profile
-    - form_for([@p,@nomination]) do |p|
+    = form_for([@p,@nomination]) do |p|
       %div{:class => cycle(:row_light, :row_dark)}
         %label.label_margin Name
         %label.label_margin

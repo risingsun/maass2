@@ -20,7 +20,7 @@ class Admin::HomeController < ApplicationController
   def send_blog
     blog = Blog.find(params[:id])
     blog.update_attribute(:is_sent,true)
-    @profiles = Profile.active.all
+    @profiles = Profile.active_profiles
     admin_sender = Profile.admins.first
     @profiles.each do|profile|
       ArNotifier.sent_news(blog,profile).deliver if profile.wants_email_notification?("news")
