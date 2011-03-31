@@ -4,24 +4,29 @@ class ForumTopicsController < ApplicationController
 
   def index
     @forum = Forum.find(params[:id])
-    @forum_topics = @forum.forum_topics
+    @forum_topics = @forum.topics
   end
 
   def new
     @forum = Forum.find(params[:forum_id])
-    @forum_topic = @forum.forum_topics.new
+    @forum_topic = @forum.topics.new
   end
 
   def create
     @forum = Forum.find(params[:forum_id])
-    @forum_topic = @forum.forum_topics.build(params[:forum_topic])
+    @forum_topic = @forum.topics.build(params[:forum_topic])
     @forum_topic.save
-    redirect_to forums_path()
+    redirect_to forum_path(@forum)
+  end
+
+  def show
+    @forum = Forum.find(params[:forum_id])
+    @forum_topic = params[:id] ? @forum.topics.find(params[:id]) : @forum.topics.build
   end
 
   def destroy
     @forum_topic.destroy
-   redirect_ro forums_path
+    redirect_to forums_path
   end
   private
 

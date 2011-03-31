@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110329114642) do
+ActiveRecord::Schema.define(:version => 20110331060222) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -100,6 +100,14 @@ ActiveRecord::Schema.define(:version => 20110329114642) do
   end
 
   add_index "feeds", ["profile_id", "feed_item_id"], :name => "index_feeds_on_profile_id_and_feed_item_id"
+
+  create_table "forum_posts", :force => true do |t|
+    t.text     "body"
+    t.integer  "owner_id"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "forum_topics", :force => true do |t|
     t.string   "title"

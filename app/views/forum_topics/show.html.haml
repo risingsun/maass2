@@ -1,0 +1,18 @@
+.forum_links
+  = link_to "Back to Forums", forums_path
+  |
+  = link_to "Back to #{@forum.name}", forum_path(@forum)
+.widget_complete
+  %span.widget_complete_top
+  %h3.forum_head
+    .froum_page_title= sanitize(@forum_topic.title)
+    .forum_links
+      - if @is_admin
+        = link_to image_tag('edit.png', :title => "Edit Topic"), "#"
+        = link_to image_tag('delete.png', :title => "Delete Topic"), "#"
+  .forum_text
+    - unless @posts.blank?
+      = render :partial => 'forum_posts/post', :post => @posts
+    = render :partial => "forum_posts/form"
+  .clear_div
+  %span.widget_complete_btm

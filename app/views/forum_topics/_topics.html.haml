@@ -1,5 +1,5 @@
 .forum_text
   = image_tag('topic.png')
   - topics.each do |forum_topic|
-    .topic_title= forum_topic.title
+    .topic_title= link_to forum_topic.title, forum_forum_topic_path(@forum, forum_topic)
     .topic_starter_name= (forum_topic.owner.full_name)
