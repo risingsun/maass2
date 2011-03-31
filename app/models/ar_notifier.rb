@@ -20,6 +20,33 @@ class ArNotifier < ActionMailer::Base
     @sent_on         = Time.new    
   end
 
+  def message_send(message,p)
+    @subject         = "[#{SITE_NAME} Message] #{p.full_name} sent you a message : #{message.subject}"
+    @recipients      = message.receiver.email
+    @body['message'] = message
+    @body['p']       = p
+    @from            = MAILER_FROM_ADDRESS
+    @sent_on         = Time.new    
+  end
+
+  def comment_send_on_blog(comment,profile,p)
+    @subject         = "[#{SITE_NAME} Blog] #{p.full_name} wrote on your blog"
+    @recipients      = profile.email
+    @body['comment'] = comment
+    @body['p']       = p
+    @from            = MAILER_FROM_ADDRESS
+    @sent_on         = Time.new
+  end
+
+  def comment_send_on_profile(comment,profile,p)
+    @subject         = "[#{SITE_NAME} Wall] #{p.full_name} wrote on your wall"
+    @recipients      = profile.email
+    @body['comment'] = comment
+    @body['p']       = p
+    @from            = MAILER_FROM_ADDRESS
+    @sent_on         = Time.new
+  end
+
   def invite(student)
     @subject         = "Hi #{student.full_name}, Get back to the future with #{SITE_NAME} on http://#{SITE}"
     @recipients      = student.emails

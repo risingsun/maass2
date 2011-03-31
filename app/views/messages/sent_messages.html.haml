@@ -1,5 +1,6 @@
 - sent_messages ||= @sent_messages
 .widget_large
+  %span.widget_lrg_top
   = render :partial => 'messages/header_links'
   - if sent_messages.empty?
     .comments No Message
@@ -21,3 +22,5 @@
       = link_to image_tag("select_all.png"), '#',:class => "select_all"
       %button.buttons{:type => "submit"}
         = image_tag("delete-selected.png")
+    .clear_div
+  %span.widget_lrg_btm
