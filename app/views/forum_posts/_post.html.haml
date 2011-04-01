@@ -11,4 +11,7 @@
         = @forum_topic.owner.group
       %div
         Posted:
-       
+        = post.created_at.to_date.to_formatted_s(:rfc822)
+  .message_panel
+    %div= post.body
+    

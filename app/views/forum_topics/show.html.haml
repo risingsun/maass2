@@ -11,7 +11,7 @@
         = link_to image_tag('edit.png', :title => "Edit Topic"),  edit_forum_forum_topic_path(@forum)
         = link_to image_tag('delete.png', :title => "Delete Topic"), forum_forum_topic_path(@forum), :method => :delete
   .forum_text
-    = render :partial => 'forum_posts/post', :locals => {:post => @post}
+    = render :partial => 'forum_posts/post', :collection => @forum_topic.posts
     = render :partial => "forum_posts/form"
   .clear_div
   %span.widget_complete_btm
