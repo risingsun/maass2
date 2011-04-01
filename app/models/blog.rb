@@ -34,4 +34,8 @@ class Blog < ActiveRecord::Base
     profile.full_name
   end
 
+  def commented_users(profile)
+    self.comments.comments_without_self(profile).uniq
+  end
+
 end

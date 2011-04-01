@@ -24,6 +24,7 @@ class MessagesController < ApplicationController
   def create
     @message = @profile.sent_messages.build(params[:message])
     if @message.save
+      ArNotifier.message_send(@message,@profile).deliver if @profile.wants_email_notification?("message")
       flash[:notice] = "Your Message has been sent."
     else
       flash[:notice] = @message.errors.to_s
