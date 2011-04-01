@@ -8,6 +8,8 @@ class Comment < ActiveRecord::Base
 
   validates :comment, :presence => true
 
+  scope :comments_without_self, lambda {|id| { :conditions => ['profiles.id != ? and commentable_type = ?',id, "Blog"],:joins => :profile }}
+
   include UserFeeds
 
   after_create :create_my_feed

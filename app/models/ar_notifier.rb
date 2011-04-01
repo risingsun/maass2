@@ -47,6 +47,15 @@ class ArNotifier < ActionMailer::Base
     @sent_on         = Time.new
   end
 
+  def comment_send_on_blog_to_others(comment,profile,p,blog_profile)
+    @subject         = "[#{SITE_NAME} Blog] #{comment.profile.full_name} wrote on #{blog_profile.full_name} blog"
+    @recipients      = profile.email
+    @body['comment'] = comment
+    @body['p']       = p
+    @from            = MAILER_FROM_ADDRESS
+    @sent_on         = Time.new
+  end
+
   def invite(student)
     @subject         = "Hi #{student.full_name}, Get back to the future with #{SITE_NAME} on http://#{SITE}"
     @recipients      = student.emails
