@@ -1,5 +1,7 @@
 .forum_text
   = image_tag('forum.png')
   .forum_title= link_to sanitize(forum.name),forum_path(forum)
+  .forum_details= forum_details(forum)
+  .forum_post= raw forum_last_post_info(forum)
   .forum_description
     = forum.description
