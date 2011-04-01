@@ -97,6 +97,10 @@ class Profile < ActiveRecord::Base
     indexes :mobile
   end
 
+  def status
+    is_active? ? 'activated' : 'deactivated'
+  end
+
   def location
     return Profile::NOWHERE if attributes['location'].blank?
     attributes['location']

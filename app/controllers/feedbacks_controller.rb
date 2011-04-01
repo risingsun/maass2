@@ -3,8 +3,9 @@ class FeedbacksController < ApplicationController
   before_filter :hide_side_panels, :except => [:new, :create]
 
   def index
-    @feedbacks = Feedback.all
+    @feedbacks = Feedback.order("created_at desc").paginate(:page => @page, :per_page => NEWEST_MEMBER)
   end
+  
   def new
     @feedback = Feedback.new
   end
@@ -19,7 +20,7 @@ class FeedbacksController < ApplicationController
     end
 
     if @feedback.save
-      flash[:notice] = "Create feedback succussfully"
+      flash[:notice] = "Thank you for your message.  A member of our team will respond to you shortly."
       redirect_to :root
     else
       flash[:notice] = "Can not create feedback"
