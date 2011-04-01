@@ -38,6 +38,15 @@ class ArNotifier < ActionMailer::Base
     @sent_on         = Time.new
   end
 
+  def comment_send_on_blog_to_others(comment,profile,p,blog_profile)
+    @subject         = "[#{SITE_NAME} Blog] #{comment.profile.full_name} wrote on #{blog_profile.full_name} blog"
+    @recipients      = profile.email
+    @body['comment'] = comment
+    @body['p']       = p
+    @from            = MAILER_FROM_ADDRESS
+    @sent_on         = Time.new
+  end
+
   def comment_send_on_profile(comment,profile,p)
     @subject         = "[#{SITE_NAME} Wall] #{p.full_name} wrote on your wall"
     @recipients      = profile.email
@@ -47,13 +56,23 @@ class ArNotifier < ActionMailer::Base
     @sent_on         = Time.new
   end
 
-  def comment_send_on_blog_to_others(comment,profile,p,blog_profile)
-    @subject         = "[#{SITE_NAME} Blog] #{comment.profile.full_name} wrote on #{blog_profile.full_name} blog"
-    @recipients      = profile.email
-    @body['comment'] = comment
-    @body['p']       = p
-    @from            = MAILER_FROM_ADDRESS
-    @sent_on         = Time.new
+  def follow inviter, invited, description
+    @subject             = "[#{SITE_NAME} Notice] #{inviter.full_name} is now following you"
+    @recipients          = invited.email
+    @body['inviter']     = inviter
+    @body['invited']     = invited
+    @body['description'] = description
+    @from                = MAILER_FROM_ADDRESS
+    @sent_on             = Time.new
+  end
+
+  def delete_friend user, friend
+    @subject        = "[#{SITE_NAME} Notice] Delete friend notice"
+    @recipients     = friend.email
+    @body['user']   = user
+    @body['friend'] = friend
+    @from           = MAILER_FROM_ADDRESS
+    @sent_on        = Time.new
   end
 
   def invite(student)

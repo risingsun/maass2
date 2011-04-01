@@ -9,6 +9,7 @@ class Friend < ActiveRecord::Base
   PENDING = 0
 
   after_save :create_feed_item
+  after_create :after_following
 
   def create_feed_item
     unless(status == ACCEPTED)
@@ -25,6 +26,13 @@ class Friend < ActiveRecord::Base
   def description user
     return 'friend' if is_accepted?
     return 'follower' if user == inviter
+  end
+
+  def after_following
+    ArNotifier.follow(inviter, invited, description(inviter)).deliver if invited.wants_email_notification?("follow")
+    Profile.admins.first.sent_messages.create( :subject => "[#{SITE_NAME} Notice] #{inviter.full_name} is now following you",
+      :body => description(inviter),
+      :receiver => invited, :system_message => true ) if invited.wants_message_notification?("follow")
   end
 
   def self.check_relation(user, friend)

@@ -23,9 +23,13 @@ class FriendshipsController < ApplicationController
   end
 
   # Stop following (become just followers)
-  def destroy
+  def destroy    
     if @profile.stop_following(@friend)
-      flash[:notice] = ""
+      ArNotifier.delete_friend(@profile, @friend).deliver if @friend.wants_email_notification?("delete_friend")
+      Profile.admins.first.sent_messages.create( :subject => "[#{SITE_NAME} Notice] Delete friend notice",
+        :body => "#{@profile.full_name} is Deleted you on #{SITE_NAME}",
+        :receiver => @friend, :system_message => true ) if @friend.wants_message_notification?("delete_friend")
+      flash[:notice] = ""      
     else
       flash[:error] = ""
     end
@@ -34,8 +38,9 @@ class FriendshipsController < ApplicationController
 
   private
 
-    def load_resource
-      @profile = current_user.profile
-      @friend = Profile.find(params[:profile_id])
-    end
+  def load_resource
+    @profile = current_user.profile
+    @friend = Profile.find(params[:profile_id])
+  end
+  
 end
