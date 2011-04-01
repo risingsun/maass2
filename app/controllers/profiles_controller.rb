@@ -27,26 +27,26 @@ class ProfilesController < ApplicationController
     @map = initialize_map()
     @map.zoom = :bound
     @icon_org = Cartographer::Gicon.new(:name => "org",
-          :image_url => '/images/org_icon.gif',
-          :shadow_url => '/images/org_icon.gif',
-          :width => 32,
-          :height => 23,
-          :shadow_width => 32,
-          :shadow_height => 23,
-          :anchor_x => 0,
-          :anchor_y => 20,
-          :info_anchor_x => 5,
-          :info_anchor_y => 1)
+      :image_url => '/images/org_icon.gif',
+      :shadow_url => '/images/org_icon.gif',
+      :width => 32,
+      :height => 23,
+      :shadow_width => 32,
+      :shadow_height => 23,
+      :anchor_x => 0,
+      :anchor_y => 20,
+      :info_anchor_x => 5,
+      :info_anchor_y => 1)
     # Add the icons to map
     @map.icons <<  @icon_org
     @marker1 = Cartographer::Gmarker.new(:name=> "org11", :marker_type => "Organization",
-              :position => [27.173006,78.042086],
-              :info_window_url => "/welcome/sample_ajax",
-              :icon => @icon_org)
+      :position => [27.173006,78.042086],
+      :info_window_url => "/welcome/sample_ajax",
+      :icon => @icon_org)
     @marker2 = Cartographer::Gmarker.new(:name=> "org12", :marker_type => "Organization",
-              :position => [28.614309,77.201353],
-              :info_window_url => "/welcome/sample_ajax",
-              :icon => @icon_org)
+      :position => [28.614309,77.201353],
+      :info_window_url => "/welcome/sample_ajax",
+      :icon => @icon_org)
 
     @map.markers << @marker1
     @map.markers << @marker2
@@ -105,7 +105,8 @@ class ProfilesController < ApplicationController
   end
 
   def active_user
-    @porfile.toggle!(:is_active)
+    @profile.toggle!(:is_active)
+    ArNotifier.user_status(@profile).deliver
     redirect_to profiles_path
   end
 
@@ -196,7 +197,5 @@ class ProfilesController < ApplicationController
   def valid_batch_range(group = @group)
     !group.blank? && GROUPS.include?([group])
   end
-
-
 
 end

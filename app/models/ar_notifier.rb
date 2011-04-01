@@ -56,6 +56,17 @@ class ArNotifier < ActionMailer::Base
     @sent_on         = Time.new
   end
 
+  def feedback_mail(feedback,rec_profile)
+    @subject          = "[#{SITE_NAME} Feedback] #{feedback.subject}"
+    @recipients       = rec_profile
+    @cc               = rec_profile
+    @body['feedback'] = feedback
+    @body['name']     = feedback.profile ? feedback.profile.full_name : feedback.name
+    @body['email']    = feedback.profile ? feedback.profile.email : feedback.email
+    @from             = MAILER_FROM_ADDRESS
+    @sent_on          = Time.new
+  end
+
   def follow inviter, invited, description
     @subject             = "[#{SITE_NAME} Notice] #{inviter.full_name} is now following you"
     @recipients          = invited.email
@@ -73,6 +84,14 @@ class ArNotifier < ActionMailer::Base
     @body['friend'] = friend
     @from           = MAILER_FROM_ADDRESS
     @sent_on        = Time.new
+  end
+
+  def user_status(profile)
+    @subject         = "[#{SITE_NAME} Notice] New status change"
+    @recipients      = profile.email
+    @body['profile'] = profile
+    @from            = MAILER_FROM_ADDRESS
+    @sent_on         = Time.new
   end
 
   def invite(student)
