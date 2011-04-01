@@ -9,15 +9,11 @@ class ForumPostsController < ApplicationController
   def create
     @post = @topic.posts.build(params[:post])
     @post.save
-    redirect_to forum_path(@forum)
+    redirect_to :back
   end
 
   def edit
     @post = @topic.posts.find(params[:id])
-  end
-
-  def destroy
-    
   end
 
   private

@@ -7,7 +7,7 @@
       = render 'set_status'
     = render :partial => "profiles/general_info", :locals => {:f => form}
     = render :partial => "profiles/contact_info", :locals => {:f => form}
-    =# render :partial => "profiles/google_map", :locals => {:f => form}
+    = render :partial => "profiles/google_map", :locals => {:f => form}
     %button.buttons{:type => "submit"}
       = image_tag('Update.png')
   .large_panel_side

@@ -1,17 +1,17 @@
-- ##locals
 - profile ||= @profile
 - size ||= 10
-- posts ||= profile.forum_posts.find :all, :limit => size
+- posts ||= profile.forum_posts.find(:all, :limit => size)
 - total = profile.forum_posts.count
+- title = "Most Recent Forums Post<span> (latest #{posts.size } of #{total})</span>"
 - unless posts.empty?
   .widget_large
     %span.widget_lrg_top
-    = slide_up_down_header('show','posts_info',"Most Recent Forums Post<span> (latest #{posts.size } of #{total})</span>".html_safe!)
+    = slide_up_down_header('posts_info',title.html_safe)
     #posts_info
       .complete_middle_panel
         - posts.each do |post|
           .comments
             %img{:src => "/images/post-icon.png"}
-            = forum_posts_li post
+            = forum_posts_list post
     .clear_div
     %span.widget_lrg_btm
