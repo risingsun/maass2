@@ -8,33 +8,29 @@
     = javascript_include_tag :ckeditor
     = csrf_meta_tag
   %body
-  .main_container
-    .header_container
+    .main_container
       = render :partial=> "layouts/header"
-    .content_container
-      #info
-        .login_container
-          -if current_user.blank?
-            %span
-              .welcome_msg
-                = "Welcome to #{SITE_FULL_NAME}."
-          -else
+      .content_container
+        #info.login_container
+          - if current_user.blank?
+            %span.welcome_msg
+              Welcome to #{SITE_FULL_NAME}.
+          - else
             = render 'shared/header_tab'
-      .clear_div
+        .clear_div
         .admin_panel
           = render :partial => "admin/shared/admin_header" if @show_admin_header
-      .side_panel
-        = render :partial => "shared/lsidebar"
-        = yield :left_side_panel
-      .middle_panel
-        = display_standard_flashes
-        %span#main_container= yield
-      .side_panel
-        = render :partial => "shared/rsidebar"
-        = yield :right_side_panel
+        .side_panel
+          = render :partial => "shared/lsidebar"
+          = yield :left_side_panel
+        .middle_panel
+          = display_standard_flashes
+          %span#main_container= yield
+        .side_panel
+          = render :partial => "shared/rsidebar"
+          = yield :right_side_panel
       .clear_div
-        #footer
-          = render :partial => 'shared/footer'
+      .footer= render :partial => 'shared/footer'
       .clear_div
     .clear_div
     .btm_div
