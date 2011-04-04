@@ -1,9 +1,8 @@
-= rounded_med_corner(:title => "Education", :id => "education_information") do
-  #educations
-    - if @profile.educations.blank?
-      - @profile.educations.build
-    = f.semantic_fields_for(:educations) do |builder|
-      = render "education_fields", :f => builder
-    .row_dark2
-      = link_to_add_fields(image_tag('add-button.png'), f , :educations)
+#educations
+  - if @profile.educations.blank?
+    - @profile.educations.build
+  = f.semantic_fields_for(:educations) do |builder|
+    = render "education_fields", :f => builder
+  .row_dark2
+    = link_to_add_fields(image_tag('add-button.png'), f , :educations)
 
