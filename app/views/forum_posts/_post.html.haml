@@ -1,17 +1,16 @@
 .forum_text
   .author_panel
-    =link_to image_tag(set_icon(@forum_topic.owner,'small')), "#"
+    =link_to image_tag(set_icon(post.owner,'small')), post.owner
     .profile_links
       %div
-        %strong= link_to @forum_topic.owner.f, "#"
+        %strong= link_to post.owner.full_name, post.owner
       Location:
-      = link_to @forum_topic.owner.location
+      = link_to post.owner.location
       %div
         Group:
-        = @forum_topic.owner.group
+        = post.owner.group
       %div
         Posted:
         = post.created_at.to_date.to_formatted_s(:rfc822)
   .message_panel
     %div= post.body
-    

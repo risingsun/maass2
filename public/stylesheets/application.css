@@ -12,6 +12,7 @@ a{
   color: #b93232;
   text-decoration: underline;
   position: relative;
+  font-size: 10px;
 }
 a:hover{
   text-decoration: none;
