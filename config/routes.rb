@@ -66,6 +66,7 @@ Maass2::Application.routes.draw do
     get 'batch_details', :on=>:collection
     get 'search_group', :on=>:collection
     get 'search_location', :on=>:collection
+    get 'sample_ajax', :on => :member
   end
 
   resources :comments

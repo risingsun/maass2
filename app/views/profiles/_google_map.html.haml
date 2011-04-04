@@ -1,4 +1,10 @@
-= raw Cartographer::Header.new.to_s
-= raw @map.to_html
-%div{:style=>"width:600px;height:400px;", :id=>"map"}
-  [Map]
+= rounded_med_corner(:id => 'map_info', :title => 'Map Location') do
+  - @profile.marker.nil? ? new_map : edit_map(@profile.marker)
+  = raw GMap.header()
+  = raw @map.to_html
+  = raw @map.div(:width => 460, :height => 400)
+  -@marker = @profile.marker || @profile.build_marker
+  =f.semantic_fields_for(:marker) do |m|
+    = m.hidden_field(:lat,:id=>'map_lat')
+    = m.hidden_field(:lng,:id=>'map_lng')
+    = m.hidden_field(:zoom,:id=>'map_zoom')

@@ -262,5 +262,11 @@ class Profile < ActiveRecord::Base
   def wants_message_notification?(type)
     self.notification_control && (self.notification_control.send(type) == NotificationControl::INTERNAL_MESSAGE_BIT || self.notification_control.send(type) == NotificationControl::ALL_NOTIFICATION)
   end
+
+  def friends_on_google_map(profile)
+    f = (profile.friends + profile.followers + profile.followings).select {|p| p.can_see_field('marker', self)}
+    friends = f.select {|p| p.marker}
+    return friends
+  end
   
 end
