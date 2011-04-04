@@ -24,10 +24,16 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+<<<<<<< HEAD
+=======
+    render :layout => "plain"
+>>>>>>> 8ad74fcf5d6d32e1060e2e8cb0d53db1f7f17fec
   end
+
   def sample_ajax
     render :text => "Success"
   end
+
   def update
     case params[:commit]
     when "Update Permissions"
@@ -42,7 +48,7 @@ class ProfilesController < ApplicationController
       redirect_to edit_account_profile_path(@p)      
     when "Change Email"
       if @user.request_email_change!(params[:profile][:user_attributes][:requested_new_email])
-        AccountMailer.new_email_request(@user).deliver
+        AccountMailer.delay.new_email_request(@user)
         flash[:notice] = "Email confirmation request has been sent to the new email address."
         redirect_to edit_account_profile_url(@profile)
       else
@@ -75,10 +81,12 @@ class ProfilesController < ApplicationController
   def edit_account
     @permissions = @profile.permissions || @profile.build_permissions
     @notification = @profile.notification_control || @profile.build_notification_control
+    render :layout => "plain"
   end
 
   def active_user
     @profile.toggle!(:is_active)
+    ArNotifier.delay.user_status(@profile)
     redirect_to profiles_path
   end
 

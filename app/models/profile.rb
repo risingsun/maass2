@@ -24,7 +24,7 @@ class Profile < ActiveRecord::Base
   has_one :notification_control
   has_many :polls, :dependent => :destroy
   has_many :poll_responses, :dependent => :destroy
-
+  has_many :forum_posts, :foreign_key => 'owner_id', :dependent => :destroy
   has_many :invitations
   has_one :student_check  
 
@@ -95,6 +95,10 @@ class Profile < ActiveRecord::Base
     indexes :country
     indexes :landline
     indexes :mobile
+  end
+
+  def status
+    is_active? ? 'activated' : 'deactivated'
   end
 
   def location

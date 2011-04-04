@@ -12,6 +12,7 @@ a{
   color: #b93232;
   text-decoration: underline;
   position: relative;
+  font-size: 10px;
 }
 a:hover{
   text-decoration: none;
@@ -1088,33 +1089,31 @@ a.grey_links_sml3:hover{
 * html .delete {
   position: relative;
 }
-.large_panel_side{
-  float: left;
-  width: 482px;
-  height: auto;
-  padding-right: 10px;
+
+.large_panel_side {
+    float: left;
+    height: auto;
+    padding-right: 10px;
+    width: 482px;
 }
-
-* html .large_panel_side{
-  padding-right: 0px;
-}     
-
-.large_panel_side .edit_profile{
-  background-image: url(/images/edit_profile_bg.gif);
-  background-repeat: repeat-y;
-  width: 482px;
-  height: auto;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  float: left;
+* html .large_panel_side {
+    padding-right: 0;
 }
-
-* html .large_panel_side .edit_profile{ /** IE 6 hack **/
-  background-image:none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/images/edit_profile_bg.png');
-  overflow: hidden;
-  margin-left: 5px;
-} 
+.large_panel_side .edit_profile {
+    background-image: url("/maass/images/edit_profile_bg.gif");
+    background-repeat: repeat-y;
+    float: left;
+    height: auto;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 482px;
+}
+* html .large_panel_side .edit_profile {
+    background-image: none;
+    margin-left: 5px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
 
 .edit_profile_btm{
   background-image: url(/images/edit_profile_btm.gif);

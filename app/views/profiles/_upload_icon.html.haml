@@ -1,4 +1,3 @@
-= rounded_med_corner(:title => "Upload Icon", :id => "upload_photo") do
-  = form_for @profile,:html => { :multipart => true } do |f|
-    = f.label "Upload your Icon (<=5Mb)"
-    = f.file_field :icon, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= form_for @profile,:html => { :multipart => true } do |f|
+  = f.label "Upload your Icon (<=5Mb)"
+  = f.file_field :icon, :input_html => {:class => "text_field file_field"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}

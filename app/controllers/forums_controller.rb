@@ -52,6 +52,9 @@ class ForumsController < ApplicationController
   private
 
   def hide_side_panels
+    if !current_user
+      redirect_to new_user_session_path()
+    end
     @hide_panels = true
   end
   

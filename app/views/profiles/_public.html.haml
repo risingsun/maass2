@@ -40,6 +40,7 @@
 - cache "profile_#{@profile.id}/profile_page_blogs" do
   = render :partial => 'blogs/list'
 = render :partial => 'polls/list'
+= render :partial => 'forum_posts/list'
 = render 'comments/comment_list'
 - if @friends 
   .widget_large
