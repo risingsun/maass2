@@ -8,7 +8,7 @@ class Feedback < ActiveRecord::Base
 
   def send_feedback_to_admin    
     rec_profile = Profile.admin_emails
-    ArNotifier.feedback_mail(self.reload, rec_profile).deliver
+    ArNotifier.delay.feedback_mail(self.reload, rec_profile)
   end
   
 end

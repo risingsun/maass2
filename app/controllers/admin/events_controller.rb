@@ -55,7 +55,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find(params[:id])
     @profiles = Profile.find(:all, :conditions => {:is_active => true})    
     @profiles.each do|profile|
-      ArNotifier.send_event_mail(profile,@event).deliver if profile.wants_email_notification?("event")
+      ArNotifier.delay.send_event_mail(profile,@event) if profile.wants_email_notification?("event")
       Profile.admins.first.sent_messages.create(:subject => "[#{SITE_NAME} Events] Latest event",
         :body =>"#{@event.title}, #{@event.description}",
         :receiver => profile,

@@ -44,14 +44,14 @@ class StudentChecksController < ApplicationController
 
   def send_bulk_invite
     @students = StudentCheck.with_emails
-    @students.each {|s| ArNotifier.invite(s).deliver unless s.emails.empty?}
+    @students.each {|s| ArNotifier.delay.invite(s) unless s.emails.empty?}
     flash[:notice] = 'Bulk Invites sent.'
     redirect_to student_checks_path
   end
 
   def send_invite
     @student = StudentCheck.find(params[:id])
-    ArNotifier.invite(@student).deliver unless @student.emails.empty?
+    ArNotifier.delay.invite(@student) unless @student.emails.empty?
     flash[:notice] = 'Invite sent.'
     redirect_to student_checks_path
   end

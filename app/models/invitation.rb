@@ -37,7 +37,7 @@ class Invitation < ActiveRecord::Base
   end
 
   def send_invite
-    ArNotifier.deliver_invite_batchmates(self) if (self.status != :already_invited and self.status != :already_existing)
+    ArNotifier.delay.invite_batchmates(self) if (self.status != :already_invited and self.status != :already_existing)
     true
   end
 

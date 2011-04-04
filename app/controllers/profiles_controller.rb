@@ -70,7 +70,7 @@ class ProfilesController < ApplicationController
       redirect_to edit_account_profile_path(@p)      
     when "Change Email"
       if @user.request_email_change!(params[:profile][:user_attributes][:requested_new_email])
-        AccountMailer.new_email_request(@user).deliver
+        AccountMailer.delay.new_email_request(@user)
         flash[:notice] = "Email confirmation request has been sent to the new email address."
         redirect_to edit_account_profile_url(@profile)
       else
@@ -106,7 +106,7 @@ class ProfilesController < ApplicationController
 
   def active_user
     @profile.toggle!(:is_active)
-    ArNotifier.user_status(@profile).deliver
+    ArNotifier.delay.user_status(@profile)
     redirect_to profiles_path
   end
 
