@@ -23,7 +23,7 @@ class Admin::HomeController < ApplicationController
     @profiles = Profile.active_profiles
     admin_sender = Profile.admins.first
     @profiles.each do|profile|
-      ArNotifier.sent_news(blog,profile).deliver if profile.wants_email_notification?("news")
+      ArNotifier.delay.sent_news(blog,profile) if profile.wants_email_notification?("news")
       admin_sender.sent_messages.create(:subject => "[#{SITE_NAME} News] #{blog.title} by #{blog.sent_by}",
         :body => blog.body, :receiver => profile, :system_message => true) if profile.wants_message_notification?("news")
     end

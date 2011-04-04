@@ -29,7 +29,7 @@ class Friend < ActiveRecord::Base
   end
 
   def after_following
-    ArNotifier.follow(inviter, invited, description(inviter)).deliver if invited.wants_email_notification?("follow")
+    ArNotifier.delay.follow(inviter, invited, description(inviter)) if invited.wants_email_notification?("follow")
     Profile.admins.first.sent_messages.create( :subject => "[#{SITE_NAME} Notice] #{inviter.full_name} is now following you",
       :body => description(inviter),
       :receiver => invited, :system_message => true ) if invited.wants_message_notification?("follow")

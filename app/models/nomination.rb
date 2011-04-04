@@ -10,7 +10,7 @@ class Nomination < ActiveRecord::Base
 
   def send_mail_to_admin
     rec_profile = Profile.admin_emails
-    ArNotifier.nomination_mail(self, rec_profile).deliver
+    ArNotifier.delay.nomination_mail(self, rec_profile)
   end
 
 end
