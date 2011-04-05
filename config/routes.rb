@@ -20,6 +20,7 @@ Maass2::Application.routes.draw do
       get 'google_map_locations', :on => :member
     end
     resources :announcements
+    resources :site_contents
   end
   resources :forums do
     resources :forum_topics do

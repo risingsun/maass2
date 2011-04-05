@@ -1,7 +1,7 @@
 class Admin::HomeController < ApplicationController
 
-  before_filter :hide_side_panels
-  
+  layout "admin"
+
   def index
     @profile = @p
   end
@@ -36,12 +36,10 @@ class Admin::HomeController < ApplicationController
     @friends = profiles.select{|p| p.marker}
   end
 
-  private
-
   def hide_side_panels
     @hide_panels = true
     @show_admin_header = true
     @profile = @p
   end
-  
+
 end

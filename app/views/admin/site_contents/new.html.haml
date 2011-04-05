@@ -1,0 +1,10 @@
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width New Site Contents
+  .blog_text
+    = semantic_form_for @site_content, :url => admin_site_contents_path, :html => {:method=>:post, :class=>" "} do |f|
+      = render :partial => "form", :locals => {:f => f}
+      %button.buttons{:type => "submit"}
+        = image_tag('save.png')
+      = link_to 'Back', admin_site_contents_path
+  %span.widget_complete_btm

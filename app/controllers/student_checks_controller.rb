@@ -1,6 +1,6 @@
 class StudentChecksController < ApplicationController
 
-  before_filter :hide_side_panels
+  layout "admin"
 
   def index
     if params[:year] || params[:all]
@@ -67,10 +67,6 @@ class StudentChecksController < ApplicationController
 
   private    
 
-  def hide_side_panels
-    @hide_panels = true
-  end
-  
   def next_dest
     case params[:commit]
     when "Update and Return"
