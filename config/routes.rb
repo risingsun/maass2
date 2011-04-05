@@ -19,6 +19,7 @@ Maass2::Application.routes.draw do
       get 'send_blog', :on=> :member
     end
     resources :announcements
+    resources :site_contents
   end
   resources :forums do
     resources :forum_topics do
