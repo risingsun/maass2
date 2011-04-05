@@ -1,8 +1,6 @@
-.widget_complete
-  %span.widget_complete_top
-  %h2.widget_compelete_title New Site Content
+- rounded_corner(:title => "New Site Content", :size => 'lrg') do
   = semantic_form_for @site_content, :url => admin_site_contents_path, :html => {:method=>:post, :class=>" "} do |f|
     = render :partial => "form", :locals => {:f => f}
-    = f.submit "Create"
-  %span.widget_complete_btm
-  = link_to 'Back', admin_site_contents_path
+    %button.buttons{:type => "submit"}
+      = image_tag('save.png')
+= link_to 'Back', admin_site_contents_path

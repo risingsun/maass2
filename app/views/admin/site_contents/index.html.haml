@@ -1,8 +1,14 @@
-%h1 Listing Site Contents
+%h4 Listing Site Contents
 %table{:border => "1px"}
   %tr
     %th Parent
     %th Name
+  - for site_content in @site_contents
     %tr
+      %td= site_content.parent.name if site_content.parent
+      %td= site_content.name
+      %td= link_to 'Show', admin_site_content_path(site_content)
+      %td= link_to 'Edit', edit_admin_site_content_path(site_content)
+      %td= link_to 'Destroy', admin_site_content_path(site_content), :confirm => 'Are you sure?', :method => :delete
 %br
 = link_to 'New Site Content', new_admin_site_content_path

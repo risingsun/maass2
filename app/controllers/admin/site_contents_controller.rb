@@ -42,6 +42,11 @@ class Admin::SiteContentsController < ApplicationController
     end
   end
 
+  def destroy
+    @site_content = SiteContent.find(params[:id])
+    @site_content.destroy
+    redirect_to :back
+  end
   private
 
   def hide_side_panels
