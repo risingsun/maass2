@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/collectiveidea/delayed_job.git
+  revision: cdae1d256ed1fd206de1fb6ac86b838d93a4b883
+  specs:
+    delayed_job (2.1.4)
+      activesupport (~> 3.0)
+      daemons
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: e23d7f5
   specs:
@@ -72,6 +80,7 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.13)
+    daemons (1.1.2)
     database_cleaner (0.6.0)
     devise (1.1.5)
       bcrypt-ruby (~> 2.1.2)
@@ -209,6 +218,7 @@ DEPENDENCIES
   cucumber
   cucumber-rails
   database_cleaner
+  delayed_job!
   devise
   devise_invitable
   factory_girl_rails
