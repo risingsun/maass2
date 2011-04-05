@@ -7,7 +7,7 @@
       = render 'set_status'
     = render :partial => "profiles/general_info", :locals => {:f => form}
     = render :partial => "profiles/contact_info", :locals => {:f => form}
-    =# render :partial => "profiles/google_map", :locals => {:f => form}
+    = render :partial => "profiles/google_map", :locals => {:f => form}
   .large_panel_side
     = rounded_med_corner(:id => "address_details", :title => "Web Info") do
       = render :partial => "profiles/web_info", :locals => {:f => form}
@@ -17,7 +17,5 @@
       = render :partial => "profiles/work_info", :locals => {:f => form}
     = rounded_med_corner(:title => "Upload Icon", :id => "upload_photo") do
       = render :partial => "profiles/upload_icon", :locals => {:f => form}
-  .clear_div
-  .large_btn_container
-    %button.buttons{:type => "submit"}
-      = image_tag('Update.png')
+  = form.submit
+    

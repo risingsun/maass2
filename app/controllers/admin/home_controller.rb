@@ -30,12 +30,18 @@ class Admin::HomeController < ApplicationController
     redirect_to :back
     flash[:notice] = "Mail was successfully sent"
   end
+  
+  def google_map_locations
+    profiles = Profile.active.all.select{|f|f.can_see_field('marker',@p)}
+    @friends = profiles.select{|p| p.marker}
+  end
 
   private
 
   def hide_side_panels
     @hide_panels = true
     @show_admin_header = true
+    @profile = @p
   end
   
 end
