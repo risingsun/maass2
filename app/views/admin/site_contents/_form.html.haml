@@ -1,12 +1,5 @@
-%p
-  = f.label :parent_id
-  %br
-  = f.collection_select(:parent_id,SiteContent.all,:id,:name,:include_blank => true)
-%p
-  = f.label :name
-  %br
-  = f.text_field :name
-%p
-  = f.label :content
-  %br
-  = f.text_area :content
+= f.inputs do
+  = f.input :parent_id, :as => :select, :collection => SiteContent.find(:all)
+  = f.input :name, :as => :string
+  = f.input :content, :as => :text
+  =# select("post", "person_id", Person.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'})

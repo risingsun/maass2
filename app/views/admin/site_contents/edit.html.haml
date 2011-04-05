@@ -1,10 +1,12 @@
-- rounded_corner(:title => "Edit Site Content", :size => 'lrg') do
-  - form_for(@site_content,:url =>admin_site_content_path(@site_content),:html => {:method => :put, :class=>" "}) do |f|
-    = f.error_messages
-    = render :partial => "form", :locals => {:f => f}
-    %p
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width Edit Site Contents
+  .blog_text
+    = semantic_form_for(@site_content,:url =>admin_site_content_path(@site_content),:html => {:method => :put, :class=>" "}) do |f|
+      = render :partial => "form", :locals => {:f => f}
       %button.buttons{:type => "submit"}
         = image_tag('Update.png')
-  = link_to 'Show', admin_site_content_path(@site_content)
-  |
-  =link_to 'Back', admin_site_contents_path
+      = link_to 'Show', admin_site_content_path(@site_content)
+      |
+      =link_to 'Back', admin_site_contents_path
+  %span.widget_complete_btm

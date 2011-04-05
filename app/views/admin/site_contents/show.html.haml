@@ -1,11 +1,14 @@
-- rounded_corner(:title => "Show Site Content", :size => 'lrg') do
-  %br
-  %b Parent:
-  = @site_content.parent_id
-  %br
-  %b Name:
-  = @site_content.name
-  %br
-  = link_to 'Edit', edit_admin_site_content_path(@site_content)
-  |
-  =link_to 'Back', admin_site_contents_path
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width Listing Site Contents
+  .blog_text
+    %b Parent:
+    = @site_content.parent_id
+    %br
+    %b Name:
+    = @site_content.name
+    %br
+    = link_to 'Edit', edit_admin_site_content_path(@site_content)
+    |
+    =link_to 'Back', admin_site_contents_path
+  %span.widget_complete_btm
