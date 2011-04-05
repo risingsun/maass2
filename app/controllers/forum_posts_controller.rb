@@ -16,6 +16,12 @@ class ForumPostsController < ApplicationController
     @post = @topic.posts.find(params[:id])
   end
 
+  def destroy
+    @post = @topic.posts.find(params[:id])
+    @post.destroy
+    redirect_to :back
+  end
+
   private
 
   def load_forum_post

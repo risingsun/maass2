@@ -24,10 +24,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-<<<<<<< HEAD
-=======
     render :layout => "plain"
->>>>>>> 8ad74fcf5d6d32e1060e2e8cb0d53db1f7f17fec
   end
 
   def sample_ajax

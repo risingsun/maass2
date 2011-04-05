@@ -6,6 +6,9 @@ module ForumPostsHelper
     end
   end
   
-  
+  def owner(post)
+    post.owner == @p
+  end
+
 end
 
