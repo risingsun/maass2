@@ -1,8 +1,7 @@
 class PhotosController < ApplicationController
 
-  before_filter :hide_side_panels
   before_filter :blurb_image, :only => [:index, :new]
-
+  layout "admin"
   def index
     @photos = @p.admin_images(@blurb_image)
     if @photos.blank?
@@ -49,10 +48,6 @@ class PhotosController < ApplicationController
   
 
  private
-
- def hide_side_panels
-   @hide_panels = true
- end
 
  def blurb_image
    @blurb_image = params[:blurb_image].eql?("true")

@@ -1,6 +1,6 @@
 class Admin::SiteContentsController < ApplicationController
 
-  before_filter :hide_side_panels
+  layout "admin"
 
   def index
     @site_content =  SiteContent.new
@@ -46,11 +46,6 @@ class Admin::SiteContentsController < ApplicationController
     @site_content = SiteContent.find(params[:id])
     @site_content.destroy
     redirect_to :back
-  end
-  private
-
-  def hide_side_panels
-    @hide_panels = true
   end
 
 end

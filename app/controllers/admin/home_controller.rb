@@ -1,7 +1,7 @@
 class Admin::HomeController < ApplicationController
 
-  before_filter :hide_side_panels
-  
+  layout "admin"
+
   def index
     @profile = @p
   end
@@ -31,11 +31,4 @@ class Admin::HomeController < ApplicationController
     flash[:notice] = "Mail was successfully sent"
   end
 
-  private
-
-  def hide_side_panels
-    @hide_panels = true
-    @show_admin_header = true
-  end
-  
 end

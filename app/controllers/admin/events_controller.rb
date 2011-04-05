@@ -1,9 +1,11 @@
 class Admin::EventsController < ApplicationController
 
   before_filter :load_event, :only => [:edit, :update, :show, :destroy, :event_members]
-  before_filter :hide_side_panels
   before_filter :show_events_side_panels, :only => [:show]
+
   respond_to :html, :json, :only =>[:rsvp]
+
+  layout "admin"
 
   def index
     @events = Event.all
@@ -85,10 +87,6 @@ class Admin::EventsController < ApplicationController
 
   def load_event
     @event = @p ? Event.find(params[:id]) : redirect_to(new_user_session_path)
-  end
-
-  def hide_side_panels
-    @hide_panels = true
   end
 
   def show_events_side_panels
