@@ -24,32 +24,10 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @map = initialize_map()
-    @map.zoom = :bound
-    @icon_org = Cartographer::Gicon.new(:name => "org",
-      :image_url => '/images/org_icon.gif',
-      :shadow_url => '/images/org_icon.gif',
-      :width => 32,
-      :height => 23,
-      :shadow_width => 32,
-      :shadow_height => 23,
-      :anchor_x => 0,
-      :anchor_y => 20,
-      :info_anchor_x => 5,
-      :info_anchor_y => 1)
-    # Add the icons to map
-    @map.icons <<  @icon_org
-    @marker1 = Cartographer::Gmarker.new(:name=> "org11", :marker_type => "Organization",
-      :position => [27.173006,78.042086],
-      :info_window_url => "/welcome/sample_ajax",
-      :icon => @icon_org)
-    @marker2 = Cartographer::Gmarker.new(:name=> "org12", :marker_type => "Organization",
-      :position => [28.614309,77.201353],
-      :info_window_url => "/welcome/sample_ajax",
-      :icon => @icon_org)
-
-    @map.markers << @marker1
-    @map.markers << @marker2
+<<<<<<< HEAD
+=======
+    render :layout => "plain"
+>>>>>>> 8ad74fcf5d6d32e1060e2e8cb0d53db1f7f17fec
   end
 
   def sample_ajax
@@ -89,6 +67,7 @@ class ProfilesController < ApplicationController
   def show
     if !current_user.blank?
       @feed_items = @profile.feeds_with_item
+      @friends = @p.friends_on_google_map(@profile) if @profile.can_see_field('marker', @p)
       respond_to do |wants|
         wants.html
         wants.rss {render :layout => false}
@@ -102,6 +81,7 @@ class ProfilesController < ApplicationController
   def edit_account
     @permissions = @profile.permissions || @profile.build_permissions
     @notification = @profile.notification_control || @profile.build_notification_control
+    render :layout => "plain"
   end
 
   def active_user

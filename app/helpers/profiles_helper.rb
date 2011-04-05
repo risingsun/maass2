@@ -1,6 +1,6 @@
 module ProfilesHelper
 
-  def new_map
+def new_map
     @map = GMap.new("map_div")
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([26.6670958011,75.849609375],4)
@@ -12,6 +12,22 @@ module ProfilesHelper
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([marker.lat,marker.lng],marker.zoom)
     @map.record_init("create_draggable_marker_for_edit(#{marker.lat},#{marker.lng},#{marker.zoom});")
+  end
+
+  def show_map
+    @map = GMap.new("map_div")
+    @profiles = @profile.marker.nil? ? @friends : @friends + [@profile]
+    unless @profiles.blank?
+      @map.control_init(:large_map => true,:map_type => true)
+      @map.set_map_type_init(GMapType::G_HYBRID_MAP)
+      markers = @profiles.collect do |f|
+        GMarker.new([f.marker.lat,f.marker.lng],
+          :title => "#{f.full_name({:is_short => 1})}")
+      end
+      centre = @profile.marker.nil? ? @friends.first.marker : @profile.marker
+      @map.center_zoom_init([centre.lat,centre.lng],centre.zoom)
+      @map.overlay_global_init(GMarkerGroup.new(true,markers),"my_friends")
+    end
   end
 
   def location_link profile = @p

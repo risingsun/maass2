@@ -7,4 +7,5 @@
           = @p.email
       %div{:class => cycle(:row_dark2, :row_light2)}
         = u.input :requested_new_email, :label => "Requested New Email"
-    = f.commit_button "Change Email"
+    %button.buttons{:type => "submit"}
+      = image_tag('change-email.png')

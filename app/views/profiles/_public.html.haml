@@ -42,4 +42,17 @@
 = render :partial => 'polls/list'
 = render :partial => 'forum_posts/list'
 = render 'comments/comment_list'
+- if @friends 
+  .widget_large
+    %span.widget_lrg_top
+    = slide_up_down_header('google_map','Google Map')
+    .middle_panel_profile
+      #google_map
+        .slidecontent
+          = raw GMap.header()
+          = javascript_include_tag("markerGroup")
+          - show_map()
+          = raw @map.to_html
+          = raw @map.div(:width => 530, :height => 400)
+    %span.widget_lrg_btm
 

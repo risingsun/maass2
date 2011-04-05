@@ -11,4 +11,5 @@
             %td= p.label x
             %td= p.check_box(x,{:multiple => true, :checked => p.object.wants_email?(x)},NotificationControl::EMAIL_BIT,0)
             %td= p.check_box(x,{:multiple => true, :checked => p.object.wants_interenal_message?(x)},NotificationControl::INTERNAL_MESSAGE_BIT,0)
-      = a.commit_button 'Update Notifications'
+      %button.buttons{:type => "submit"}
+        = image_tag('update-notifications.png')

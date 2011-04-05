@@ -1,16 +1,14 @@
-= rounded_med_corner(:id => "address_details", :title => "Web Info") do
-  = f.inputs do
-    = f.input :website, :as => :string, :input_html  => {:class => "web_info"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :blog, :as => :string, :input_html  => {:class => "web_info"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :flicker_username,:as => :string, :label => "Flicker Screen Name", :input_html => {:class => "web_info flickr_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :linkedin_name, :label => "LinkedIn Public URL",:as => :string, :input_html => {:class => "linkedin_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :twitter_username, :as => :string, :label => "Twitter Login", :input_html => {:class => "web_info twitter_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :aim_name, :label => "AIM",:as => :string, :input_html => {:class => "web_info aim_icon input_text_with_icon"},  :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :msn_username, :label => "MSN",:as => :string, :input_html => {:class => "web_info msn_icon input_text_with_icon"},  :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :yahoo_name,:label => "Yahoo UserId", :as => :string, :input_html => {:class => "web_info yahoo_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :gtalk_name, :as => :string, :label => "GTalk Name", :input_html => {:class => "web_info gtalk_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :skype_name, :as => :string, :label => "Skype Name", :input_html => {:class => "web_info skype_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :delicious_name, :label => "Del.icio.us Name", :as => :string, :input_html => {:class => "delicious_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :website, :as => :string, :input_html  => {:class => "web_info"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :blog, :as => :string, :input_html  => {:class => "web_info"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :flicker_username,:as => :string, :label => "Flicker Screen Name", :input_html => {:class => "flickr_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :linkedin_name, :label => "LinkedIn Public URL",:as => :string, :input_html => {:class => "web_info linkedin_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :twitter_username, :as => :string, :label => "Twitter Login", :input_html => {:class => "web_info twitter_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :aim_name, :label => "AIM",:as => :string, :input_html => {:class => "web_info aim_icon input_text_with_icon"},  :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :msn_username, :label => "MSN",:as => :string, :input_html => {:class => "web_info msn_icon input_text_with_icon"},  :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :yahoo_name,:label => "Yahoo UserId", :as => :string, :input_html => {:class => "web_info yahoo_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :gtalk_name, :as => :string, :label => "GTalk Name", :input_html => {:class => "web_info gtalk_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :skype_name, :as => :string, :label => "Skype Name", :input_html => {:class => "web_info skype_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :delicious_name, :label => "Del.icio.us Name", :as => :string, :input_html => {:class => "delicious_icon input_text_with_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
 
 
 
