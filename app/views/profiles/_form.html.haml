@@ -7,7 +7,7 @@
       = render 'set_status'
     = render :partial => "profiles/general_info", :locals => {:f => form}
     = render :partial => "profiles/contact_info", :locals => {:f => form}
-    =# render :partial => "profiles/google_map", :locals => {:f => form}
+    = render :partial => "profiles/google_map", :locals => {:f => form}
   .large_panel_side
     = rounded_med_corner(:id => "address_details", :title => "Web Info") do
       = render :partial => "profiles/web_info", :locals => {:f => form}
