@@ -2892,6 +2892,7 @@ table.greetings {
 .aim_icon{
   background-image: url(/images/aim.jpg);
   background-repeat: no-repeat;
+  padding: 4px 4px 4px 22px;
 
 }   
 .flickr_icon{
@@ -2908,7 +2909,7 @@ table.greetings {
 }
 .input_text_with_icon{
   padding-left :20px;
-  width: 183px
+  padding: 4px 4px 4px 22px;
 }
 .happy_day_class{
   font-size: 11px;

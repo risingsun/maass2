@@ -1,9 +1,14 @@
 Maass2::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "users"}
+
   resources :users
   resources :events,:has_many => [:comments]
   resources :nominations
+  resources :votes
+  resources :feedbacks
+  resources :comments
+
   namespace :admin do
     resources :events do
       get 'rsvp', :on => :member
@@ -19,7 +24,6 @@ Maass2::Application.routes.draw do
       get 'send_blog', :on=> :member
       get 'google_map_locations', :on => :member
     end
-    resources :announcements
     resources :preferences do
       get 'new_title', :on=> :collection
       put 'add_title', :on=> :collection
@@ -32,6 +36,7 @@ Maass2::Application.routes.draw do
       put 'update_house_name', :on=> :collection      
       delete 'delete_house_name', :on => :member
     end
+    resources :announcements
     resources :site_contents
   end
 
@@ -40,37 +45,28 @@ Maass2::Application.routes.draw do
       resources :forum_posts
     end
   end
-  resources :votes
-  resources :feedbacks
+
   resources :profiles do
-
     resource :friendship, :only => [:create, :update, :destroy]
-
     resources :friends
+    resources :feed_items
+    resources :invitations
+    resources :nominations,:except => [:index]
     resources :photos
-
     resources :messages do
       get 'direct_message', :on => :collection
       get 'sent_messages', :on => :collection
       get 'reply_message', :on => :member
       post 'delete_messages', :on => :collection
     end
-
-
     resources :blogs  do
       get 'blog_archive', :on => :member
       get 'show_blogs', :on => :member
     end
-
     resources :polls do
       get 'poll_close', :on => :member
       get 'search_poll', :on => :member
     end
-
-    resources :feed_items
-    resources :invitations
-    resources :nominations,:except => [:index]
-
     post 'load_profile', :on => :collection
     get 'edit_account', :on => :member
     get 'search', :on=>:collection
@@ -83,21 +79,16 @@ Maass2::Application.routes.draw do
     get 'search_location', :on=>:collection
     get 'sample_ajax', :on => :member
   end
-
-  resources :comments
-  
   resources :student_checks do
     get 'view_year_students', :on=> :collection
     post 'send_bulk_invite', :on=> :collection
     post 'send_invite', :on=> :member
   end
-
-  root :to=>"homes#index"
-
   resources :homes do
     get 'polls', :on => :member
   end
 
+  root :to=>"homes#index"
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
   match '/ue/:hash/:profile_id', :to=> 'profiles#update_email', :as=>:update_email

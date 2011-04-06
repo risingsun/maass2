@@ -1,4 +1,5 @@
 class StudentCheck < ActiveRecord::Base
+
   belongs_to :profile
 
   alias_attribute :house, :house_name

@@ -1,6 +1,6 @@
 class ForumTopic < ActiveRecord::Base
   
-  validates :title, :presence => true
+  validates :title, :presence => true, :length => { :maximum => 20 }
 
   belongs_to :forum
   belongs_to :owner, :class_name => "Profile"
