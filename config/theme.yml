@@ -3,7 +3,7 @@
 
 site_full_name: "Mansinghites' Alumni Association"
 site_name: "MAASS"
-site_desc: 'Coming Together is a Beginning, Keeping Together is Progress, Working Together is Success'
+site_desc: "Coming Together is a Beginning, Keeping Together is Progress, Working Together is Success"
 site_production_domain: 'maass.in'
 site_development_domain: 'localhost:8000'
 

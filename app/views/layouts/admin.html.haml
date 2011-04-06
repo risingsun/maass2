@@ -10,11 +10,11 @@
       = render :partial => 'layouts/header'
       .content_container
         #info.login_container
-          - if @u.nil? or @u.new_record? or !@u.email_verified
+          - if current_user.blank?
             %span.welcome_msg
               Welcome to #{SITE_FULL_NAME}.
-          .clear_div
-          = render :partial => "shared/header_tab"
+          - else
+            = render :partial => "shared/header_tab"
         .clear_div
         = display_standard_flashes_in_large_size
         .admin_panel

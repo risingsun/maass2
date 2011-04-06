@@ -17,6 +17,7 @@ Maass2::Application.routes.draw do
       get 'greetings', :on => :member
       get 'blogs', :on => :member
       get 'send_blog', :on=> :member
+      get 'google_map_locations', :on => :member
     end
     resources :announcements
     resources :preferences do
@@ -31,7 +32,9 @@ Maass2::Application.routes.draw do
       put 'update_house_name', :on=> :collection      
       delete 'delete_house_name', :on => :member
     end
+    resources :site_contents
   end
+
   resources :forums do
     resources :forum_topics do
       resources :forum_posts

@@ -17,7 +17,5 @@
       = render :partial => "profiles/work_info", :locals => {:f => form}
     = rounded_med_corner(:title => "Upload Icon", :id => "upload_photo") do
       = render :partial => "profiles/upload_icon", :locals => {:f => form}
-  .clear_div
-  .large_btn_container
-    %button.buttons{:type => "submit"}
-      = image_tag('Update.png')
+  = form.submit
+    

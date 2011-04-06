@@ -136,6 +136,40 @@ function event_change(id){
 
 }
 
+function friend_status(id, r_type){
+  jQuery.ajax({
+    beforeSend: function(){
+      jQuery("#spinner_"+id).show();
+    },
+    complete: function(){
+      jQuery("#spinner_"+id).hide();
+    },
+    url: "/profiles/"+id+"/friendship",
+    dataType: "html",
+    type: r_type,
+    success: function(response){
+     jQuery("#friend_status_"+id).html(response);
+    }
+  });
+}
+
+function user_status(id){
+  jQuery.ajax({
+    beforeSend: function(){
+      jQuery("#spinner_"+id).show();
+    },
+    complete: function(){
+      jQuery("#spinner_"+id).hide();
+    },
+    url: "/profiles/"+id+"/active_user",
+    dataType: "json",
+    type: 'GET',
+    success: function(data){
+     jQuery("a#user_status_"+id).text(data);
+    }
+  });
+}
+
 function remove_fields(link) {
   $j(link).prev("input[type=hidden]").val("1");
   $j(link).closest(".fields").hide();
