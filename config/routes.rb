@@ -17,6 +17,7 @@ Maass2::Application.routes.draw do
       get 'greetings', :on => :member
       get 'blogs', :on => :member
       get 'send_blog', :on=> :member
+      get 'google_map_locations', :on => :member
     end
     resources :announcements
     resources :site_contents

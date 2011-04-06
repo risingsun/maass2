@@ -65,9 +65,9 @@ class ProfilesController < ApplicationController
     if !current_user.blank?
       @feed_items = @profile.feeds_with_item
       @friends = @p.friends_on_google_map(@profile) if @profile.can_see_field('marker', @p)
-      respond_to do |wants|
-        wants.html
-        wants.rss {render :layout => false}
+      respond_to do |format|
+        format.html
+        format.rss {render :layout => false}
       end
     else
       redirect_to homes_path
@@ -84,7 +84,11 @@ class ProfilesController < ApplicationController
   def active_user
     @profile.toggle!(:is_active)
     ArNotifier.delay.user_status(@profile)
-    redirect_to profiles_path
+    respond_to do |format|
+     format.js do
+       render :json => (@profile.is_active ? 'Deactive' : 'Active').to_json
+     end
+    end
   end
 
   def search
