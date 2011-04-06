@@ -1,0 +1,15 @@
+- @titles= Title.find_titles
+.widget_large
+  %span.widget_lrg_top
+  .admin_class
+    %h2.widget_title Titles
+    #title
+      - @titles.each do |title|
+        .preference_key
+          = title.name.titlecase
+        .delete_title
+          = link_to image_tag('delete.png'), delete_title_admin_preference_path(title.id), :method => :delete
+      = link_to image_tag('add-button.png',:title => "Add"), "#", :onclick=>"add_title('new_title','GET')"
+      = link_to "Edit", '#', :onclick=>"add_title('edit_title','GET')"
+  .clear_div
+  %span.widget_lrg_btm

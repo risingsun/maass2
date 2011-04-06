@@ -1,9 +1,9 @@
 var $j = jQuery.noConflict();
 jQuery(document).ready(function()
 {
-    jQuery('.slideshow').cycle({
-		fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
-	});
+  jQuery('.slideshow').cycle({
+    fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+  });
 
   jQuery('.datebalks').datepicker({
     dateFormat:'dd M yy',
@@ -86,6 +86,28 @@ jQuery(document).ready(function()
     jQuery('#photo_crop_h').val(coords.h);
   }
 });
+
+function add_title(fun,method){
+  jQuery.ajax({
+    url: "/admin/preferences/"+fun,
+    dataType: "html",
+    type: method,
+    success: function(response){
+      jQuery("#title").html(response)
+    }
+  });
+}
+
+function add_house(fun,method){
+  jQuery.ajax({
+    url: "/admin/preferences/"+fun,
+    dataType: "html",
+    type: method,
+    success: function(response){
+      jQuery("#house_name").html(response)
+    }
+  });
+}
 
 function event_change(id){
   var type = jQuery("input:radio[name='event']:checked").val();

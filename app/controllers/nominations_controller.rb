@@ -1,10 +1,10 @@
 class NominationsController < ApplicationController
 
   before_filter :setup,  :except => [:index]
-  before_filter :hide_side_panels, :only=>[:index]
   
   def index
-    @nominations=Nomination.all    
+    @nominations=Nomination.all
+    render :layout => "admin"
   end
   
   def create    
@@ -36,11 +36,6 @@ class NominationsController < ApplicationController
   def setup    
     @my_nomination = params[:profile_id].to_i == @p.id
     @profile = @my_nomination  ? @p : Profile.find(params[:profile_id])
-  end
-
-  def hide_side_panels
-    @hide_panels = true
-    @show_admin_header = true
   end
   
 end
