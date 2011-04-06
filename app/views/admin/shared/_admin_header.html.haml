@@ -15,12 +15,12 @@
   |
   = link_to "Site Content", "#"
   |
-  = link_to "Preferences", "#"
+  = link_to "Preferences", admin_preferences_path
   |
   = link_to "Google Map Locations", "#"
   |
   = link_to "Photos",profile_photos_path(@p, :blurb_image => false)
   |
   = link_to "Blurb Images",profile_photos_path(@p, :blurb_image => true)
-  |
-  = link_to "Nomination Forms", nominations_path
+- unless DISABLE_NOMINATION_FORM
+  =link_to "Nomination Forms",nominations_path

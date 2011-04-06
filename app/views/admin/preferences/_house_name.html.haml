@@ -1,0 +1,15 @@
+- @house_names = HouseName.find_house_names
+.widget_large
+  %span.widget_lrg_top
+  .admin_class
+    %h2.widget_title House Name
+    #house_name
+      - @house_names.each do |house_name|
+        .preference_key
+          = house_name.name
+        .delete_title
+          = link_to image_tag('delete.png'), delete_house_name_admin_preference_path(house_name.id), :method => :delete
+      = link_to image_tag('add-button.png',:title => "Add"), "#", :onclick=>"add_house('new_house_name','GET')"
+      = link_to "Edit", '#', :onclick=>"add_house('edit_house_name','GET')"
+  .clear_div
+  %span.widget_lrg_btm

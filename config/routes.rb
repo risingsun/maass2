@@ -19,6 +19,18 @@ Maass2::Application.routes.draw do
       get 'send_blog', :on=> :member
     end
     resources :announcements
+    resources :preferences do
+      get 'new_title', :on=> :collection
+      put 'add_title', :on=> :collection
+      get 'edit_title', :on=> :collection
+      put 'update_title', :on=> :collection
+      delete 'delete_title', :on => :member
+      get 'new_house_name', :on=> :collection
+      put 'add_house_name', :on=> :collection
+      get 'edit_house_name', :on=> :collection
+      put 'update_house_name', :on=> :collection      
+      delete 'delete_house_name', :on => :member
+    end
   end
   resources :forums do
     resources :forum_topics do
