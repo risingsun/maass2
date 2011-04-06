@@ -6,6 +6,7 @@ SITE = Rails.env.production? ? THEME_CONFIG[:site_production_domain] : THEME_CON
 
 SITE_FULL_NAME = THEME_CONFIG[:site_full_name]
 SITE_NAME = THEME_CONFIG[:site_name]
+SITE_DESC = THEME_CONFIG[:site_desc]
 GOOGLE_CHART_COLOUR_ARRAY = %w(3CD983 C4D925 BABF1B BFA20F A66D03 732C02)
 SEX = ["Male","Female"]
 BLOOD_GROUP = ["A+","A-","B+","B-","AB+","AB-","O+","O-"]
