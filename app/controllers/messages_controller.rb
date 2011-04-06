@@ -1,15 +1,12 @@
 class MessagesController < ApplicationController
 
   before_filter :load_profile
+  before_filter :load_message, :only => [:show, :destroy, :reply_message]
 
   def index
     @message = Message.new
     @to_list = @profile.friends + @profile.followers  + @profile.followings
     @receive_messages = @profile.received_messages
-  end
-
-  def sent_messages
-    @sent_messages = @profile.sent_messages
   end
 
   def new
@@ -32,8 +29,14 @@ class MessagesController < ApplicationController
     redirect_to profile_messages_path(@profile)
   end
 
+  def show
+    if !@message.blank?
+      @message.read = true
+      @message.save!
+    end
+  end
+
   def destroy
-    @message = Message.find(params[:id])
     @message.delete_message(@profile.id)
     redirect_to :back
   end
@@ -48,31 +51,24 @@ class MessagesController < ApplicationController
     redirect_to :back
   end
 
-  def direct_message
-    @message = Message.new
-    @to_list = [Profile.find(params[:profile_id])]
-    render :action => "new"
-  end
-
   def reply_message
-    @message = Message.find(params[:id])
     @to_list = [@message.sender]
     render :action => "new"
   end
 
-  def show
-    @message = Message.find(params[:id])
-    if !@message.blank?
-      @message.read = true
-      @message.save!
-    end
+  def sent_messages
+    @sent_messages = @profile.sent_messages
   end
 
-   private
+  private
 
-   def load_profile
-     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
-     @show_profile_side_panel = true
-   end
+  def load_profile
+    @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
+    @show_profile_side_panel = true
+  end
+
+  def load_message
+    @message = Message.find(params[:id])
+  end
 
 end

@@ -1,5 +1,7 @@
 class  Admin::AnnouncementsController < ApplicationController
 
+  before_filter :load_announcement, :except => [:index, :new, :create]
+
   layout "admin"
 
   def index
@@ -26,11 +28,9 @@ class  Admin::AnnouncementsController < ApplicationController
   end
 
   def edit
-    @announcement = Announcement.find(params[:id])
   end
 
   def update
-    @announcement = Announcement.find(params[:id])
     if @announcement.update_attributes(params[:announcement])
       flash[:notice] = 'Announcement was successfully updated.'
       redirect_to admin_announcements_path
@@ -41,10 +41,15 @@ class  Admin::AnnouncementsController < ApplicationController
   end
 
   def destroy
-    @announcement = Announcement.find(params[:id])
     @announcement.destroy
     flash[:notice] = 'Announcement has been successfully deleted'
     redirect_to admin_announcements_path
+  end
+
+  private
+
+  def load_announcement
+    @announcement = Announcement.find(params[:id])
   end
 
 end

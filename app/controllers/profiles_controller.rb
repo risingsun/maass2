@@ -14,21 +14,8 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def create
-    if @profile.save
-      flash[:notice] = "Profile created."
-    else
-      flash[:notice] = "Failed creation."
-    end
-    render 'edit'
-  end
-
   def edit
     render :layout => "plain"
-  end
-
-  def sample_ajax
-    render :text => "Success"
   end
 
   def update

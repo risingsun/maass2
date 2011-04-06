@@ -2,19 +2,19 @@ class Admin::HomeController < ApplicationController
 
   layout "admin"
 
+  before_filter :load_profile
+
   def index
-    @profile = @p
   end
  
   def greetings
   end
 
   def admin
-    @profile = @p
   end
 
   def blogs
-    @blogs = @p.sent_blogs
+    @blogs = @profile.sent_blogs
   end
 
   def send_blog
@@ -36,9 +36,9 @@ class Admin::HomeController < ApplicationController
     @friends = profiles.select{|p| p.marker}
   end
 
-  def hide_side_panels
-    @hide_panels = true
-    @show_admin_header = true
+  private
+  
+  def load_profile
     @profile = @p
   end
 

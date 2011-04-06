@@ -1,6 +1,6 @@
 class NominationsController < ApplicationController
 
-  before_filter :setup,  :except=>[:index]
+  before_filter :setup,  :except => [:index]
   before_filter :hide_side_panels, :only=>[:index]
   
   def index
