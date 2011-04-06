@@ -1,7 +1,7 @@
 class Admin::PreferencesController < ApplicationController
 
-  before_filter :hide_side_panels
-
+  layout "admin"
+ 
   def index
     
   end
@@ -88,13 +88,6 @@ class Admin::PreferencesController < ApplicationController
     @housename =HouseName.find(params[:id])
     @housename.destroy if @housename
     redirect_to admin_preferences_path
-  end
-
-  private
-
-  def hide_side_panels
-    @hide_panels = true
-    @show_admin_header = true
   end
 
 end
