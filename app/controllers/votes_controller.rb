@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+
   def create
     @profile = current_user.profile
     @option = PollOption.find(params[:poll]["poll_options"]["option"])
@@ -8,4 +9,5 @@ class VotesController < ApplicationController
       format.js
     end
   end
+
 end

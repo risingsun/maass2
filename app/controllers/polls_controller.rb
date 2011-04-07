@@ -10,13 +10,6 @@ class PollsController < ApplicationController
     end
   end
 
-  def show
-    @profile =  current_user.profile
-    unless @poll = @profile.polls.find_by_id(params[:id])
-      @poll = Poll.find(params[:id])
-    end
-  end
-  
   def new
     @poll = @profile.polls.new
   end
@@ -30,6 +23,13 @@ class PollsController < ApplicationController
     else
       flash.now[:error] = 'Poll was not successfully created.'
       render 'new'
+    end
+  end
+
+  def show
+    @profile =  current_user.profile
+    unless @poll = @profile.polls.find_by_id(params[:id])
+      @poll = Poll.find(params[:id])
     end
   end
 

@@ -1,7 +1,9 @@
 class PhotosController < ApplicationController
 
   before_filter :blurb_image, :only => [:index, :new]
+
   layout "admin"
+
   def index
     @photos = @p.admin_images(@blurb_image)
     if @photos.blank?
@@ -46,7 +48,6 @@ class PhotosController < ApplicationController
     redirect_to profile_photos_path(@p)
   end
   
-
  private
 
  def blurb_image

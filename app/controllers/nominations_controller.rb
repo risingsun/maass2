@@ -1,6 +1,6 @@
 class NominationsController < ApplicationController
 
-  before_filter :setup,  :except=>[:index]  
+  before_filter :setup,  :except => [:index]
   
   def index
     @nominations=Nomination.all

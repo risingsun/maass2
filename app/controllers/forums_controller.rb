@@ -1,6 +1,7 @@
 class ForumsController < ApplicationController
 
   before_filter :hide_side_panels
+  before_filter :load_forum, :except => [:index, :new, :create]
 
   layout "plain"
 
@@ -9,10 +10,6 @@ class ForumsController < ApplicationController
     @forums = Forum.find(:all)
   end
   
-  def show
-    @forum = Forum.find(params[:id])
-  end
-
   def new
     @forum = Forum.new
   end
@@ -27,12 +24,13 @@ class ForumsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
-    @forum = Forum.find(params[:id])
   end
 
   def update
-    @forum = Forum.find(params[:id])
     @forum.attributes = params[:forum]
     if @forum.save
       flash[:notice] = "Successfully Updated Forum."
@@ -44,7 +42,6 @@ class ForumsController < ApplicationController
   end
   
   def destroy
-    @forum = Forum.find(params[:id])
     @forum.destroy
     flash[:notice] = "Successfully Destroyed Forum."
     redirect_to forums_path
@@ -58,5 +55,9 @@ class ForumsController < ApplicationController
     end
     @hide_panels = true
   end
-  
+
+  def load_forum
+    @forum = Forum.find(params[:id])
+  end
+
 end

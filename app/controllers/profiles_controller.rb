@@ -3,7 +3,6 @@ class ProfilesController < ApplicationController
   before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user, :batch_mates]
   before_filter :search_results, :only => [:search]
   before_filter :show_panels, :only => [:show, :user_friends, :batch_mates]
-  before_filter :hide_side_panels, :only => [:edit, :edit_account, :index]
 
   def index
     if @is_admin
@@ -14,21 +13,8 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def create
-    if @profile.save
-      flash[:notice] = "Profile created."
-    else
-      flash[:notice] = "Failed creation."
-    end
-    render 'edit'
-  end
-
   def edit
     render :layout => "plain"
-  end
-
-  def sample_ajax
-    render :text => "Success"
   end
 
   def update
@@ -135,7 +121,7 @@ class ProfilesController < ApplicationController
     @group = params[:group]
     if valid_batch_range
       @students  = StudentCheck.unregistered_batch_members(@group)
-      @profiles = Profile.batch_details(@group, {:page => @page, :per_page =>PROFILE_PER_PAGE})
+      @profiles = Profile.batch_details(@group, {:page => @page, :per_page => PROFILE_PER_PAGE})
     else
       flash[:error] = 'Group is invalid! Sorry, please enter a valid group'
       redirect_to :back
@@ -169,10 +155,6 @@ class ProfilesController < ApplicationController
   def show_panels
     @show_profile_side_panel = true
     @side_panels = true
-  end
-
-  def hide_side_panels
-    @hide_panels = true
   end
 
   def valid_batch_range(group = @group)

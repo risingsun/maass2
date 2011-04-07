@@ -1,13 +1,12 @@
 class Comment < ActiveRecord::Base
 
+  validates :comment, :presence => true
+
   belongs_to :commentable, :polymorphic => true, :counter_cache => true
   belongs_to :blog
   belongs_to :profile
 
   default_scope :order => 'created_at ASC'
-
-  validates :comment, :presence => true
-
   scope :comments_without_self, lambda {|id| { :conditions => ['profiles.id != ? and commentable_type = ?',id, "Blog"],:joins => :profile }}
 
   include UserFeeds

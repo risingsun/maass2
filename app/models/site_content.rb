@@ -1,6 +1,7 @@
 class SiteContent < ActiveRecord::Base
   
   acts_as_tree :order => "name" 
+
   validates :name, :presence => true, :uniqueness => true
 
   def self.get_content(name,child = "")

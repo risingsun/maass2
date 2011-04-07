@@ -2,6 +2,8 @@ class StudentChecksController < ApplicationController
 
   layout "admin"
 
+  before_filter :load_student_checks, :only => [:edit, :update, :destroy, :send_invite]
+
   def index
     if params[:year] || params[:all]
       @student_checks = StudentCheck.get_students(params)
@@ -10,10 +12,6 @@ class StudentChecksController < ApplicationController
 
   def new
     @student_check=StudentCheck.new
-  end
-
-  def edit
-    @student_check = StudentCheck.find(params[:id])
   end
 
   def create
@@ -26,8 +24,10 @@ class StudentChecksController < ApplicationController
     end
   end
  
+  def edit
+  end
+
   def update
-    @student_check = StudentCheck.find(params[:id])
     if @student_check.update_attributes(params[:student_check])
       flash[:notice] = 'StudentCheck was successfully updated.'
       redirect_to(next_dest)
@@ -37,7 +37,6 @@ class StudentChecksController < ApplicationController
   end
 
   def destroy
-    @student_check = StudentCheck.find(params[:id])
     @student_check.destroy
     redirect_to student_checks_path
   end
@@ -50,7 +49,6 @@ class StudentChecksController < ApplicationController
   end
 
   def send_invite
-    @student = StudentCheck.find(params[:id])
     ArNotifier.delay.invite(@student) unless @student.emails.empty?
     flash[:notice] = 'Invite sent.'
     redirect_to student_checks_path
@@ -80,4 +78,7 @@ class StudentChecksController < ApplicationController
     end
   end
 
+  def load_student_checks
+    @student_check = StudentCheck.find(params[:id])
+  end
 end

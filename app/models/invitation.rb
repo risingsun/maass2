@@ -1,6 +1,7 @@
 class Invitation < ActiveRecord::Base
 
   belongs_to :profile
+
   validates :profile, :presence=>true
   validates_uniqueness_of :email, :scope => :profile_id
   validates :email, :presence => true, :uniqueness=>true, :format=> {:with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>' does not look valid.<br/>'}
