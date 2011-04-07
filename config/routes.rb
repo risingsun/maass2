@@ -64,8 +64,7 @@ Maass2::Application.routes.draw do
       get 'show_blogs', :on => :member
     end
     resources :polls do
-      get 'poll_close', :on => :member
-      get 'search_poll', :on => :member
+      get 'poll_close', :on => :member      
     end
     post 'load_profile', :on => :collection
     get 'edit_account', :on => :member

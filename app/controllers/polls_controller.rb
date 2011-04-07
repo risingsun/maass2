@@ -67,12 +67,6 @@ class PollsController < ApplicationController
     redirect_to root_url
   end
 
-  def search_poll
-    @profile=Profile.find(params[:id])
-    @polls=Poll.where(:profile_id=>params[:id]).order("created_at desc").paginate(:page => params[:page],:per_page => 10)
-    render 'index'
-  end
-
   private
 
   def load_profile
