@@ -32,6 +32,8 @@ class Ckeditor::Asset < ActiveRecord::Base
   
   def styles
     data.styles
+  end
+  
   scope :masters, where("parent_id IS NULL")
   
   def url(*args)
@@ -89,18 +91,17 @@ class Ckeditor::Asset < ActiveRecord::Base
         self.data_content_type = content_types.first.to_s unless content_types.empty?
       end
     end
-  xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
-
-    xml.tag!(self.read_attribute(:type).to_s.downcase) do
-      xml.filename{ xml.cdata!(self.filename) }
-      xml.size self.size
-      xml.path{ xml.cdata!(self.public_filename) }
-      
-      xml.thumbnails do
-        self.thumbnails.each do |t|
-          xml.tag!(t.thumbnail, self.public_filename(t.thumbnail))
-        end
-      end unless self.thumbnails.empty?
-    end
-  end
+#  xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
+#
+#    xml.tag!(self.read_attribute(:type).to_s.downcase) do
+#      xml.filename{ xml.cdata!(self.filename) }
+#      xml.size self.size
+#      xml.path{ xml.cdata!(self.public_filename) }
+#
+#      xml.thumbnails do
+#        self.thumbnails.each do |t|
+#          xml.tag!(t.thumbnail, self.public_filename(t.thumbnail))
+#        end
+#      end unless self.thumbnails.empty?
+#    end
 end

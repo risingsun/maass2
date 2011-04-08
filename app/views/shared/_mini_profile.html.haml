@@ -4,6 +4,7 @@
     = link_to image_tag('edit.png', :title => "Edit Profile", :class => "img01"), edit_profile_path(@p) if me(mini_profile)
   .text_div
     %h3.name= link_to (mini_profile.f(20)), mini_profile, :class => "profile_name"
+    %br
     %p= year_link(mini_profile)
     %p= render('homes/friend_status' , :profile => mini_profile) unless me(mini_profile)
     %p= link_to 'Direct Message', direct_message_profile_messages_path(mini_profile) unless me(mini_profile)

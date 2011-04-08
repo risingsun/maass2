@@ -6,11 +6,11 @@ class ProfilesController < ApplicationController
 
   def index
     if @is_admin
-      @profiles = Profile.all
+      @profiles = Profile.all.paginate(:page => @page, :per_page=>PROFILE_PER_PAGE)
       @title = "Users"
     else
       redircet_to :back
-    end
+    end  
   end
 
   def edit
