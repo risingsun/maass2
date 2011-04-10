@@ -1,4 +1,4 @@
-var $j = jQuery.noConflict();
+
 jQuery(document).ready(function()
 {
   jQuery('.slideshow').cycle({
@@ -26,6 +26,7 @@ jQuery(document).ready(function()
     altTimeField: '',
     time24h: false
   });
+ 
 
   jQuery("a.select_all").click(function(){
     jQuery("input[type='checkbox']:not([disabled='disabled'])").attr('checked', true);
@@ -171,14 +172,14 @@ function user_status(id){
 }
 
 function remove_fields(link) {
-  $j(link).prev("input[type=hidden]").val("1");
-  $j(link).closest(".fields").hide();
+  jQuery(link).prev("input[type=hidden]").val("1");
+  jQuery(link).closest(".fields").hide();
 }
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
-  $j(link).parent().before(content.replace(regexp, new_id));
+  jQuery(link).parent().before(content.replace(regexp, new_id));
 }
 
 function add_comment(c){
@@ -241,3 +242,34 @@ jQuery('#search_all').live('blur.search_query_field', function(){
     jQuery(this).val('Search');
   }
 });
+function twitter_blog(user){
+  new TWTR.Widget({
+ version: 2,
+  type: 'profile',
+  rpp: 4,
+  interval: 6000,
+  width: 'auto',
+  height: 300,
+  id: 'twtr-widget',
+  theme: {
+    shell: {
+      background: '#d9c1a7',
+      color: '#141214'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#5c573a',
+      links: '#417fb5'
+    }
+  },
+  features: {
+    scrollbar: false,
+    loop: true,
+    live: true,
+    hashtags: true,
+    timestamp: true,
+    avatars: true,
+    behavior: 'default'
+  }
+}).render().setUser(user).start();
+}

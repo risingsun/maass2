@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   validates :requested_new_email, :format=> {:with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>'does not look like an email address.', :if => proc {|obj| !obj.requested_new_email.blank?}}
 
   has_one :profile
+  has_many :authentications
   accepts_nested_attributes_for :profile
 
   def is_admin

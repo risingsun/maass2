@@ -37,6 +37,7 @@ gem 'will_paginate'
 gem 'formtastic'
 
 gem 'devise'
+gem 'omniauth'
 gem 'devise_invitable'
 gem 'humanizer'
 gem 'cancan'
