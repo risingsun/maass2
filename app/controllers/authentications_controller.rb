@@ -1,5 +1,6 @@
-class SessionsController < ApplicationController
- def create
+class AuthenticationsController < ApplicationController
+
+  def create
    omniauth = request.env["omniauth.auth"]
    authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
    if authentication
@@ -13,4 +14,5 @@ class SessionsController < ApplicationController
      redirect_to new_user_registration_path
    end
  end
+
 end

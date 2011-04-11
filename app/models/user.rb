@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     self.save
   end
 
+  def check_authentication(type)
+    self.authentications.find(:all, :conditions => [:provider => type])
+  end
+
   private
 
   #    def build_profile

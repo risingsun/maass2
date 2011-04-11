@@ -7,8 +7,8 @@
 - if @event_panel
   = render :partial => "admin/events/rsidebar"
 - if @p
-  - if @p.twitter_username
-  %div{:id=>'twtr-widget', :class =>'twitter_update'}
-    = javascript_include_tag 'http://twitter.com/javascripts/widgets/widget.js'
-    %script
-      twitter_blog('#{@p.twitter_username}')
+  - if !@profile.twitter_username.blank?
+    %div{:id=>'twtr-widget', :class =>'twitter_update'}
+      = javascript_include_tag 'http://twitter.com/javascripts/widgets/widget.js'
+      %script
+        twitter_blog('#{@profile.twitter_username}')

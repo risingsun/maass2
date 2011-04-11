@@ -19,25 +19,6 @@ ActiveRecord::Schema.define(:version => 20110410073457) do
     t.datetime "updated_at"
   end
 
-  create_table "admins", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
-  add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
-
   create_table "announcements", :force => true do |t|
     t.text     "message"
     t.datetime "created_at"
@@ -252,7 +233,7 @@ ActiveRecord::Schema.define(:version => 20110410073457) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.string   "profile_id"
+    t.string   "account_id"
     t.string   "news_notification"
     t.string   "event_notification"
     t.string   "message_notification"
@@ -448,7 +429,7 @@ ActiveRecord::Schema.define(:version => 20110410073457) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "login"
-    t.boolean  "is_admin"
+    t.boolean  "admin"
     t.boolean  "can_send_messages"
     t.string   "time_zone"
     t.string   "email_verification"
@@ -463,12 +444,9 @@ ActiveRecord::Schema.define(:version => 20110410073457) do
     t.text     "additional_message"
     t.string   "requested_new_email"
     t.integer  "facebook_uid"
-    t.boolean  "admin"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "provider"
-    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

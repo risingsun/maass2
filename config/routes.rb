@@ -2,8 +2,8 @@ Maass2::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "users"}
 
-  get "sessions/create"
-  match "/auth/:provider/callback" => "sessions#create"
+  match "/auth/:provider/callback" => "authentications#create"
+  resources :authentications
   resources :users
   resources :events,:has_many => [:comments]
   resources :nominations
