@@ -2,8 +2,10 @@
 %h2.edit_profile Edit Account
 .large_panel_side
   = render :partial => "set_permissions"
-  = rounded_med_corner(:title => "Facebook Connect") do
-    = render :partial => '/shared/fbconnect_button'
+  = rounded_med_corner(:title => "Connect With...") do
+    = link_to image_tag('twitter_64.png'), "/auth/twitter"
+    = link_to image_tag('facebook_64.png'), "/auth/facebook"
+    = link_to image_tag('linkedin_64.png'), "/auth/linked_in"
 .large_panel_side
   = render :partial => "notification"
   = render :partial => "users/change_password"

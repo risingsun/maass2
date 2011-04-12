@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   validates :requested_new_email, :format=> {:with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>'does not look like an email address.', :if => proc {|obj| !obj.requested_new_email.blank?}}
 
   has_one :profile
+  has_many :authentications
   accepts_nested_attributes_for :profile
 
   def is_admin
@@ -36,6 +37,10 @@ class User < ActiveRecord::Base
     self.requested_new_email = new_email
     self.generate_confirmation_hash!
     self.save
+  end
+
+  def check_authentication(type)
+    self.authentications.find(:all, :conditions => [:provider => type])
   end
 
   private

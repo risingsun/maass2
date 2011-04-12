@@ -37,6 +37,7 @@ gem 'will_paginate'
 gem 'formtastic'
 
 gem 'devise'
+gem 'omniauth'
 gem 'devise_invitable'
 gem 'humanizer'
 gem 'cancan'
@@ -49,6 +50,7 @@ gem 'acts-as-taggable-on'
 
 gem 'thinking-sphinx', '2.0.0', :require => 'thinking_sphinx'
 gem "delayed_job",  :git => 'git://github.com/collectiveidea/delayed_job.git'
+gem 'oa-openid'
 
 
 
