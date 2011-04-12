@@ -50,10 +50,8 @@ gem 'acts-as-taggable-on'
 
 gem 'thinking-sphinx', '2.0.0', :require => 'thinking_sphinx'
 gem "delayed_job",  :git => 'git://github.com/collectiveidea/delayed_job.git'
-gem 'oa-openid'
 gem 'icalendar'
-
-
+gem 'oa-openid', :require => 'omniauth/openid'
 
 
 

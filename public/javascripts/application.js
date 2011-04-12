@@ -242,6 +242,8 @@ jQuery('#search_all').live('blur.search_query_field', function(){
     jQuery(this).val('Search');
   }
 });
+
+// To Display twitter updates
 function twitter_blog(user){
   new TWTR.Widget({
  version: 2,
@@ -273,3 +275,4 @@ function twitter_blog(user){
   }
 }).render().setUser(user).start();
 }
+
