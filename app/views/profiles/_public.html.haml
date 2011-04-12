@@ -55,25 +55,3 @@
           = raw @map.to_html
           = raw @map.div(:width => 530, :height => 400)
     %span.widget_lrg_btm
-- if @profile.can_see_field('delicious_name',@p)
-  - rounded_corner(:title => "Del.icio.us Links: #{@profile.delicious_name}") do
-    #delicious_container.middle_panel_profile.delicious-posts
-      %script{:src => "http://del.icio.us/feeds/json/#{@profile.delicious_name}", :type => "text/javascript"}
-      :javascript
-        var ul = document.createElement('ul')
-        for (var i=0, post; post = Delicious.posts[i]; i++) {
-          var li = document.createElement('li')
-          li.className = 'delicious-post'
-          var a = document.createElement('a')
-          var img = document.createElement('img')
-          img.style.position = 'absolute'
-          img.style.display = 'none'
-          img.height = img.width = 16
-          a.setAttribute('href', post.u)
-          a.appendChild(document.createTextNode(post.d))
-          li.appendChild(img)
-          li.appendChild(a)
-          ul.appendChild(li)
-        }
-        document.getElementById('delicious_container').appendChild(ul)
-
