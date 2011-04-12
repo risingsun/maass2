@@ -6,6 +6,18 @@
     .profile_links
       %strong Location:
       = location_link profile
+    - if profile.can_see_field("website", @p)
+      .profile_links
+        %strong Website:
+        = link_to h(profile.website), h(profile.website)
+    - if profile.can_see_field("blog", @p)
+      .profile_links
+        %strong Blog:
+        = link_to h(profile.blog), h(profile.blog)
+    - if profile.can_see_field("linkedin_name", @p)
+      = javascript_include_tag 'http://www.linkedin.com/js/public-profile/widget-os.js'
+      .profile_links
+        = linkedin_badge(profile.linkedin_name)
       - if me
         .profile_links
           = link_to "Send Invites", new_profile_invitation_path(@p)

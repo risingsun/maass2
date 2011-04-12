@@ -1,6 +1,6 @@
 module ProfilesHelper
 
-def new_map
+  def new_map
     @map = GMap.new("map_div")
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([26.6670958011,75.849609375],4)
@@ -58,6 +58,15 @@ def new_map
 
   def link_to_event_friends(type,event)
     link_to("See All", event_members_admin_event_path(event, :member_type => type ))
+  end
+
+  def linkedin_badge(linkedin_name)
+    str = ""
+    unless linkedin_name.blank?
+      str = "<a href='#{linkedin_name}' class = 'linkedin-profileinsider-popup'>"
+      str += "<img src='http://www.linkedin.com/img/webpromo/btn_myprofile_160x33.gif' width='160' height='33' border='0' alt='View #{@profile.full_name}'s profile on LinkedIn' style='background:none;'></a>"
+    end
+    str.html_safe
   end
   
 end
