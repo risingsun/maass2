@@ -77,6 +77,7 @@ GROUPS = USER_TYPE + BATCH_RANGE.to_a.map{|x|[x.to_s]}
 DISABLE_NOMINATION_FORM = !!!THEME_CONFIG[:nomination_form]
 
 MAILER_FROM_ADDRESS = THEME_CONFIG[:mailer_from_address]
+MAILER_TO_ADDRESS = "info@#{THEME_CONFIG[:site]}"
 
 smtp_settings = THEME_CONFIG[:smtp_settings].symbolize_keys
 ActionMailer::Base.smtp_settings = {

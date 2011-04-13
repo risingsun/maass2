@@ -6,9 +6,12 @@
       - profile = Profile.find(message.sender_id)
       %div{:class => "comments"}
         %input.left{:id => message.id, :name => "check[]", :type => "checkbox", :value => message.id}
-        = link_to image_tag(set_icon(profile,'small')), profile, {:class => "featured_mem_pic"}, {:class => "featured_mem_text"}
-        .messagebox_profilename_unread
-          = link_to profile.full_name, profile
+        - if !message.system_message
+          = link_to image_tag(set_icon(profile,'small')), profile, {:class => "featured_mem_pic"}, {:class => "featured_mem_text"}        
+          = link_to profile.full_name,  profile, :class=>"messagebox_profilename_unread"
+        - else
+          %span.messagebox_profilename_unread
+          = MAILER_TO_ADDRESS
         %span.messagebox_date
           = time_ago_in_words message.created_at
           ago
@@ -19,4 +22,6 @@
     = link_to image_tag("select_all.png"), '#', :confirm => 'Are You Sure', :class => "select_all"
     %button.buttons{:type => "submit"}
       = image_tag("delete-selected.png")
+  .clear_div
+    = will_paginate @receive_messages
   %span.widget_lrg_btm
