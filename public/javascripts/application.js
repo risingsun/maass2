@@ -249,7 +249,7 @@ function twitter_blog(user){
  version: 2,
   type: 'profile',
   rpp: 4,
-  interval: 6000,
+  interval: 3000,
   width: 'auto',
   height: 300,
   id: 'twtr-widget',
@@ -270,7 +270,7 @@ function twitter_blog(user){
     live: true,
     hashtags: true,
     timestamp: true,
-    avatars: true,
+    avatars: false,
     behavior: 'default'
   }
 }).render().setUser(user).start();
