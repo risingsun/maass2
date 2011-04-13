@@ -205,10 +205,10 @@ class Profile < ActiveRecord::Base
   end
 
   def f(tr=15, options={})
-    full_name(:length => tr)
+    full_name(options).truncate(tr)
   end
 
-  def full_name(options={})
+  def full_name(options={})    
     n = [(title if options[:is_long]),first_name,(middle_name unless options[:is_short]),last_name].reject(&:blank?).compact.join(' ').titleize
     if n.blank?
       n = user.login rescue 'Deleted user'

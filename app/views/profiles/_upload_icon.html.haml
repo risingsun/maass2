@@ -1,3 +1,4 @@
-= form_for @profile,:html => { :multipart => true } do |f|
-  = f.label "Upload your Icon (<=5Mb)"
-  = f.file_field :icon, :input_html => {:class => "text_field file_field"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= rounded_med_corner(:title => "Upload Icon", :id => "upload_photo") do
+  = semantic_form_for @profile,:html => { :multipart => true } do |f|
+    = f.inputs do
+      = f.input :icon, :label => "Upload your Icon (<=5Mb)", :input_html => {:class => "text_field"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}

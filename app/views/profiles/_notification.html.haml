@@ -1,7 +1,7 @@
 = semantic_form_for @profile do |a|
   = rounded_med_corner(:id => "notifications", :title => "Notifications") do
     = a.semantic_fields_for :notification_control do |p|
-      %table{:name => "notification_table"}
+      %table.permission_table
         %tr
           %td Notification
           %td Email Notification
