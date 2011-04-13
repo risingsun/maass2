@@ -1843,7 +1843,7 @@ div.profile_pic_panel span.even {
   float: left;
   width: 170px;
   text-align: right;
-  margin-top: 2px;
+  margin-top: 5px;
   position: relative;
 }
 
@@ -1867,6 +1867,7 @@ div.profile_pic_panel span.even {
   font-weight: normal;
   color: #000000;
   margin-left: 5px;
+  margin-top: 5px;
   margin-bottom: 4px;
   margin-right: 5px;
   line-height: 12px;
@@ -2659,8 +2660,9 @@ table.greetings {
 }
 .permission_table{
   position: relative;
+  font-size: 12px;
+  font-weight: bold;
 }
-
 .comment_text{
   margin-left: 55px;
 }
@@ -3057,6 +3059,8 @@ table.greetings {
   font-weight:bold;
   height:38px;
   padding-bottom:19px;
+  margin-left: 5px;
+  margin-top: -5px;
 }
 .editor_ok_button {
   background: none;

@@ -3,7 +3,7 @@
     %link{:href => "/favicon.ico", :rel => "shortcut icon" }
     %title
       = @title || (SITE_NAME + ": " + SITE_FULL_NAME)
-    = stylesheet_link_tag "/maass/stylesheets/application",'jquery-ui-1.8.7.custom','formtastic','formtastic_changes'
+    = stylesheet_link_tag "/maass/stylesheets/application",zz'jquery-ui-1.8.7.custom','formtastic','formtastic_changes'
     = javascript_include_tag 'jquery','jquery.min','jquery-ui.min','application','rails','rs_maps', 'jquery-ui-timepicker-addon', 'jquery.jcrop.min', 'jquery.cycle.all', 'jquery.cycle', 'jquery.cycle.lite'
     = javascript_include_tag :ckeditor
     = csrf_meta_tag
