@@ -6,9 +6,6 @@ class Admin::HomeController < ApplicationController
 
   def index
   end
- 
-  def greetings
-  end
 
   def admin
   end

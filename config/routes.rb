@@ -4,8 +4,7 @@ Maass2::Application.routes.draw do
 
   match "/auth/:provider/callback" => "authentications#create"
   resources :authentications
-  resources :users
-  resources :events,:has_many => [:comments]
+  resources :users  
   resources :nominations
   resources :votes
   resources :feedbacks
@@ -87,6 +86,10 @@ Maass2::Application.routes.draw do
   end
   resources :homes do
     get 'polls', :on => :member
+  end
+
+  resources :events do
+    get 'alumni_friends', :on=> :collection
   end
 
   root :to=>"homes#index"

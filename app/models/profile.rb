@@ -232,10 +232,6 @@ class Profile < ActiveRecord::Base
     group(group).active.new_joined.first
   end
 
-  def self.greetings(type)
-    Profile.all(:conditions => ["#{type} is not NULL" ], :order => "#{type} ASC")
-  end
-
   def admin_blogs
     self.blogs.all(:conditions => {:is_sent =>:false}, :order => "created_at DESC")
   end
@@ -271,6 +267,97 @@ class Profile < ActiveRecord::Base
     f = (profile.friends + profile.followers + profile.followings).select {|p| p.can_see_field('marker', self)}
     friends = f.select {|p| p.marker}
     return friends
+  end
+
+  def spouse_name
+    self[:spouse_name].titlecase unless self[:spouse_name].blank?
+  end
+
+  def self.birthdays
+    return @birthdays if @birthdays
+    conditions = ['date_of_birth is not null']
+    @birthdays = find(:all,:conditions => conditions).group_by {|d| d.date_of_birth.month }
+    @birthdays.keys.each do |key|
+      @birthdays[key].sort!{|a,b| a.date_of_birth.strftime("%e%m%Y") <=> b.date_of_birth.strftime("%e%m%Y") }
+    end
+    @birthdays
+  end
+
+  def self.anniversaries
+    return @anniversaries if @anniversaries
+    conditions = ['anniversary_date is not null']
+    @anniversaries = find(:all,:conditions => conditions).group_by {|d| d.anniversary_date.month }
+    @anniversaries.keys.each do |key|
+      @anniversaries[key].sort!{|a,b| a.anniversary_date.strftime("%e%m%Y") <=> b.anniversary_date.strftime("%e%m%Y") }
+    end
+    @anniversaries
+  end
+
+  def self.today_birthday
+    @profiles = self.all(
+      :conditions => ["month(date_of_birth) =? and day(date_of_birth) = ?",
+        Date.today.month, Date.today.day])
+  end
+
+  def self.today_anniversary
+    @profiles = self.all(
+      :conditions => ["month(anniversary_date) =? and day(anniversary_date) = ?",
+        Date.today.month, Date.today.day])
+  end
+
+  def birthdate_next
+    nextb = nil
+    current_year = Date.today.year
+    unless date_of_birth.blank?
+      year = date_of_birth.strftime("%m%d") < Date.today.strftime("%m%d") ? current_year + 1 : current_year
+      nextb = Date.civil(year,date_of_birth.month,date_of_birth.day) rescue nil
+    end
+    nextb
+  end
+
+  def anniversary_next
+    nexta = nil
+    current_year = Date.today.year
+    unless anniversary_date.blank?
+      year = anniversary_date.strftime("%m%d") < Date.today.strftime("%m%d") ? current_year + 1 : current_year
+      nexta = Date.civil(year,anniversary_date.month,anniversary_date.day) rescue nil
+    end
+    nexta
+  end
+
+  def to_ical_birthday_event
+    unless date_of_birth.blank?
+      summary = "#{full_name}'s birthday"
+      description = "#{full_name} (#{group}) has their birthday today. They were born on #{date_of_birth.to_formatted_s(:long_ordinal)}."
+      description += "\n Wish them on http://localhost:3000/profiles/#{self.id}"
+      return ical_event(birthdate_next,summary,description,'Birthdays')
+    end
+  end
+
+  def to_ical_anniversary_event
+    unless anniversary_date.blank?
+      summary = "#{full_name}'s anniversary"
+      description = "#{full_name} (#{group}) has their anniversary today. They were married "
+      description += ' to ' + spouse_name unless spouse_name.blank?
+      description += " on #{anniversary_date.to_formatted_s(:long_ordinal)}."
+      description += "\n Wish them on http://#{SITE}/profiles/#{self.id}"
+      description.squeeze!(' ')
+      return ical_event(anniversary_next,summary,description,'Anniversaries')
+    end
+  end
+
+  private
+
+  def ical_event(event_date,summary,description,category)
+    return nil if event_date.blank?
+    event = Icalendar::Event.new
+    event.start = event_date.strftime("%Y%m%dT%H%M%S")
+    event.duration = 'PT24H'
+    event.summary = summary
+    event.description = description
+    event.add_category(category) if category
+    event.add_recurrence_rule('FREQ=YEARLY')    
+    return event
   end
   
 end
