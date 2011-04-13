@@ -4,6 +4,10 @@ jQuery(document).ready(function()
   jQuery('.slideshow').cycle({
     fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
   });
+   jQuery('#mycarousel').jcarousel({
+        vertical: true,
+        scroll: 2
+    });
 
   jQuery('.datebalks').datepicker({
     dateFormat:'dd M yy',
@@ -275,4 +279,38 @@ function twitter_blog(user){
   }
 }).render().setUser(user).start();
 }
-
+function gallery(){
+  jQuery('div.navigation').css({
+    'width' : '300px',
+    'float' : 'left'
+  });
+  jQuery('div.content').css('display', 'block');
+  jQuery('.content').galleriffic('#thumbs', {
+    delay:                  2000,
+    numThumbs:              12,
+    preloadAhead:           0,
+    enableTopPager:         true,
+    enableBottomPager:      false,
+    imageContainerSel:      '#slideshow',
+    controlsContainerSel:   '#controls',
+    loadingContainerSel:    '#loading',
+    captionContainerSel:    '#caption',
+    playLinkText:           'Play Slideshow',
+    pauseLinkText:          'Pause Slideshow',
+    prevLinkText:           '&lsaquo; Previous Photo',
+    nextLinkText:           'Next Photo &rsaquo',
+    onPageTransitionIn: function() {
+      jQuery('#thumbs ul.thumbs').fadeIn('fast');
+      jQuery('#thumbs ul.thumbs > li:visible').each(function(){
+        if(jQuery(this).children("a:has('img')").length == 1){
+        }else{
+          jQuery(this).children('a').append("<img src = " + jQuery(this).attr('title') + "></img>");
+          jQuery(this).removeAttr("title");
+        }
+      });
+    },
+    onPageTransitionOut: function(callback) {
+      jQuery('#thumbs ul.thumbs').fadeOut('slow', callback);
+    }
+  });
+}

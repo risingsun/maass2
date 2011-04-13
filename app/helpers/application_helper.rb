@@ -215,4 +215,10 @@ module ApplicationHelper
         :style => "width: #{fill}%;"),:class =>"fill_bar")
   end
 
+  def sets_pictures_link(album = nil)
+    img = album.photos[0]
+    link_to(image_tag(img.source, :alt => "PhotoSet", :width => 80, :height => 75),
+       photo_gallery_homes_path(:photoset => album.name),:class=>'thickbox',:title => img.name)
+  end
+
 end
