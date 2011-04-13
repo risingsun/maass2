@@ -6,21 +6,7 @@
     .profile_links
       %strong Location:
       = location_link profile
-    - if profile.can_see_field("website", @p)
-      .profile_links
-        - unless profile.website.blank?
-          %strong Website:
-          = link_to h(profile.website), h(profile.website)
-    - if profile.can_see_field("blog", @p)
-      .profile_links
-        - unless profile.blog.blank?
-          %strong Blog:
-          = link_to h(profile.blog), h(profile.blog)
-    - if profile.can_see_field("gtalk_name", @p)
-      .profile_links
-        - unless profile.gtalk_name.blank?
-          %strong GTalk:
-          %a{:href => "xmpp:#{h profile.gtalk_name}"}= h profile.gtalk_name
+   
     - if profile.can_see_field("yahoo_name", @p)
       .profile_links
         = yahoo_status(profile.yahoo_name)
@@ -35,6 +21,21 @@
       = javascript_include_tag 'http://www.linkedin.com/js/public-profile/widget-os.js'
       .profile_links
         = linkedin_badge(profile.linkedin_name)
+    - if profile.can_see_field("gtalk_name", @p)
+      .profile_links
+        - unless profile.gtalk_name.blank?
+          %strong GTalk:
+          = h profile.gtalk_name
+    - if profile.can_see_field("website", @p)
+      .profile_links
+        - unless profile.website.blank?
+          %strong Website:
+          = link_to h(profile.website), h(profile.website)
+    - if profile.can_see_field("blog", @p)
+      .profile_links
+        - unless profile.blog.blank?
+          %strong Blog:
+          = link_to h(profile.blog), h(profile.blog)
       - if me
         .profile_links
           = link_to 'My Greetings Calendar',alumni_friends_events_path(:ics)

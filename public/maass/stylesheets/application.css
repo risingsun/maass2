@@ -2663,6 +2663,14 @@ table.greetings {
   font-size: 12px;
   font-weight: bold;
 }
+.x {
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    height: auto;
+    margin: 5px 10px;
+    width: 482px;
+}
 .comment_text{
   margin-left: 55px;
 }
