@@ -56,8 +56,9 @@ class BlogsController < ApplicationController
     render '_blog_archive'
   end
 
-  def show_blogs
+  def show_blogs    
     @blogs = Blog.tagged_with(params[:id])
+    @title = "Blogs about #{params[:id]}"
   end
 
   private
