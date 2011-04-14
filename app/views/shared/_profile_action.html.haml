@@ -6,5 +6,5 @@
       %div= link_to 'Direct Message', new_profile_message_path(@profile)
       %div= link_to('Read My Blogs', profile_blogs_path(@profile))
       %div= link_to('See My Polls', profile_polls_path(@profile))
- 
- 
+      - if @p.has_wall_with(@profile)
+        %div= link_to 'Our Wall-to-Wall', profile_comments_path(@profile)
