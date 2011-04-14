@@ -1,17 +1,16 @@
 = f.inputs do
   .large_panel_side
     #status_show{:onclick => "show_status()"}
-      %p
-        - if @profile.status_message == nil || @profile.status_message == ""
-          = f.label "Click here to set status", :class => "cursor"
-        - else
-          .cursor
-            %p
-              = @profile.status_message
-    #status_form{:style => "display: none;"}
-      = f.input :status_message
-      %br
-      %button.buttons{:type => "submit"}
-        = image_tag('Update.png')
-      %button.buttons#cancel{:type => "button",:onclick => "cancel_status()"}
-        = image_tag("cancel-button.png")
+      - if @profile.status_message == nil || @profile.status_message == ""
+        = f.label "Click here to set status", :class => "cursor"
+      - else
+        .cursor
+          = @profile.status_message
+  #status_form{:style => "display: none;"}
+    = f.text_field :status_message, :class => "large_text_box"
+    %br
+    %br
+    %button.buttons{:type => "submit"}
+      = image_tag('Update.png')
+    %button.buttons#cancel{:type => "button",:onclick => "cancel_status()"}
+      = image_tag("cancel-button.png")

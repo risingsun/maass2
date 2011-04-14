@@ -54,3 +54,54 @@ form.formtastic fieldset > ol > li.string input {
 form.formtastic fieldset > ol > li.optional {
 
 }
+
+  form.formtastic input.linkedin_icon{
+    background-image: url(/images/linkedin.jpg);
+    background-repeat: no-repeat;
+    padding:4px 4px 4px 20px;
+  }
+  form.formtastic input.twitter_icon{
+    background-image: url(/images/twitter_icon.png);
+    background-repeat: no-repeat;
+    padding:4px 4px 4px 20px;
+  }
+  form.formtastic input.yahoo_icon{
+    background-image: url(/images/yahoo.png);
+    background-repeat: no-repeat;
+    padding:4px 4px 4px 20px;
+  }
+  form.formtastic input.skype_icon{
+    background-image: url(/images/skype.ico);
+    background-repeat: no-repeat;
+    padding:4px 4px 4px 20px;
+  }
+  form.formtastic input.msn_icon{
+    background-image: url(/images/live.png);
+    background-repeat: no-repeat;
+    padding: 4px 4px 4px 20px;
+  }
+  form.formtastic input.aim_icon{
+    background-image: url(/images/aim.jpg);
+    background-repeat: no-repeat;
+    padding: 4px 4px 4px 20px;
+
+  }
+  form.formtastic input.flickr_icon{
+    background-image: url(/images/flickr.jpg);
+    background-repeat: no-repeat;
+    padding: 4px 4px 4px 20px;
+  }
+  form.formtastic input.gtalk_icon{
+    background-image: url(/images/gtalk.jpg);
+    background-repeat: no-repeat;
+    padding: 4px 4px 4px 20px;
+  }
+  form.formtastic input.delicious_icon{
+    background-image: url(/images/delicious.jpg);
+    background-repeat: no-repeat;
+    padding: 4px 4px 4px 20px;
+  }
+  form.formtastic input.large_text_box{
+    width: 450px;
+    border: #CCCCCC 1px solid;
+  }

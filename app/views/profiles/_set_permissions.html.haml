@@ -6,7 +6,7 @@
         %td Just Me
         %td My Friends
         %td Everyone
-      = form.fields_for :permissions, @profile.profile_permissions do |pf|
+      = form.semantic_fields_for :permissions, @profile.profile_permissions do |pf|
         %tr
           %td
             %label= pf.object.field_name

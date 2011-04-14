@@ -2872,7 +2872,7 @@ table.greetings {
   float: none;
   height: auto;
 }
-.linkedin_icon{
+/*.linkedin_icon{
   background-image: url(/images/linkedin.jpg);
   background-repeat: no-repeat;
 }                   
@@ -2910,7 +2910,7 @@ table.greetings {
 .input_text_with_icon{
   padding-left :20px;
   padding: 4px 4px 4px 22px;
-}
+}*/
 .happy_day_class{
   font-size: 11px;
   color: #000000;

@@ -2876,7 +2876,7 @@ table.greetings {
   float: none;
   height: auto;
 }
-.linkedin_icon{
+/*.linkedin_icon{
   background-image: url(/images/linkedin.jpg);
   background-repeat: no-repeat;
   padding:4px 4px 4px 22px;
@@ -2921,11 +2921,11 @@ table.greetings {
   background-image: url(/images/delicious.jpg);
   background-repeat: no-repeat;
   padding: 4px 4px 4px 22px;
-}
-.input_text_with_icon{
-/*  padding-left :20px;*/
+}*/
+/*.input_text_with_icon{
+  padding-left :20px;
   width: 209px
-}
+}*/
 .happy_day_class{
   font-size: 11px;
   color: #000000;
