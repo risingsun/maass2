@@ -55,6 +55,7 @@ Maass2::Application.routes.draw do
     resources :invitations
     resources :nominations,:except => [:index]
     resources :photos
+    resources :comments
     resources :messages do
       get 'direct_message', :on => :collection
       get 'sent_messages', :on => :collection

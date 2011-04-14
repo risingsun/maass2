@@ -1,5 +1,12 @@
 class CommentsController < ApplicationController
 
+  before_filter :load_profile, :only=>[:index]
+
+  def index    
+    @comments = Comment.between_profiles(@p, @profile).paginate(:page => @page, :per_page => @per_page)
+    redirect_to @p and return if @p == @profile
+  end
+
   def create
     @comment = @p.comments.create(params[:comment])
     if @comment.save
@@ -27,6 +34,12 @@ class CommentsController < ApplicationController
     @comment.destroy
     flash[:notice] = "Successfully destroyed blog."
     redirect_to request.referer
+  end
+
+  private
+
+  def load_profile        
+    @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
   end
   
 end

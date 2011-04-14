@@ -106,6 +106,11 @@ class Profile < ActiveRecord::Base
     attributes['location']
   end
 
+  def has_wall_with profile
+    return false if profile.blank?
+    !Comment.between_profiles(self, profile).empty?
+  end
+
   def self.todays_featured_profile
     unless featured_profile[:date] == Date.today
       featured_profile[:profile] = featured
