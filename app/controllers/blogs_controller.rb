@@ -52,12 +52,13 @@ class BlogsController < ApplicationController
   end
   
   def blog_archive
-    @blogs = Blog.by_month_year(params[:id], params[:format]).all.paginate(:page => params[:page],:per_page => 3)
+    @blogs = Blog.by_month_year(params[:id], params[:format]).all.paginate(:page => params[:page],:per_page => BLOGS_PER_PAGE )
     render '_blog_archive'
   end
 
-  def show_blogs
+  def show_blogs    
     @blogs = Blog.tagged_with(params[:id])
+    @title = "Blogs about #{params[:id]}"
   end
 
   private

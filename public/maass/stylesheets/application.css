@@ -2877,9 +2877,15 @@ table.greetings {
   height: auto;
 }
 .linkedin_icon{
-  background:#FFFFFF url(/images/linkedin.jpg) no-repeat 4px 4px;
+  background-image: url(/images/linkedin.jpg);
+  background-repeat: no-repeat;
   padding:4px 4px 4px 22px;
-}                   
+}
+.twitter_icon{
+  background-image: url(/images/twitter_icon.png);
+  background-repeat: no-repeat;
+  padding:4px 4px 4px 22px;
+}  
 .yahoo_icon{
   background-image: url(/images/yahoo.png);
   background-repeat: no-repeat;
@@ -2893,24 +2899,28 @@ table.greetings {
 .msn_icon{
   background-image: url(/images/live.png);
   background-repeat: no-repeat;
-
+  padding: 4px 4px 4px 22px;
 }  
 .aim_icon{
   background-image: url(/images/aim.jpg);
   background-repeat: no-repeat;
+  padding: 4px 4px 4px 22px;
 
 }   
 .flickr_icon{
   background-image: url(/images/flickr.jpg);
   background-repeat: no-repeat;
+  padding: 4px 4px 4px 22px;
 }        
 .gtalk_icon{
   background-image: url(/images/gtalk.jpg);
   background-repeat: no-repeat;
+  padding: 4px 4px 4px 22px;
 } 
 .delicious_icon{
   background-image: url(/images/delicious.jpg);
   background-repeat: no-repeat;
+  padding: 4px 4px 4px 22px;
 }
 .input_text_with_icon{
 /*  padding-left :20px;*/
