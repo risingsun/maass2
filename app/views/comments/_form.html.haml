@@ -1,6 +1,6 @@
-- comment = Comment.new
+- comment = @profile.comments.new
 #new_comment
-= form_for(comment) do |c|
+= form_for comment do |c|
   = c.text_area :comment, :class=> "textarea"
   = c.hidden_field :commentable_id, :value => comment_on.id
   = c.hidden_field :commentable_type, :value => comment_on.class.name

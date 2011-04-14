@@ -52,7 +52,7 @@ class BlogsController < ApplicationController
   end
   
   def blog_archive
-    @blogs = Blog.by_month_year(params[:id], params[:format]).all.paginate(:page => params[:page],:per_page => BLOGS_PER_PAGE )
+    @blogs = Blog.by_month_year(params[:id], params[:format]).all.paginate(:page => params[:page],:per_page => BLOGS_PER_PAGE)
     render '_blog_archive'
   end
 
