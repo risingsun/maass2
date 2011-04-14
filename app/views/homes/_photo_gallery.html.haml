@@ -1,0 +1,22 @@
+- if @pictures.blank?
+  .comments
+    = SITE_NOT_RECORD_MSG
+- else
+  #gallery.content
+    #controls.controls
+    #loading.loader
+    #slideshow.slideshow
+    #caption.embox
+  #thumbs.navigation
+    %ul.thumbs.noscript
+      - @pictures.photos.each do |f|
+        %li{:title => f.name}
+          %a.thumb{:href => f.source}
+          .caption
+            .image-title
+              - f.comments.each do |c|
+                = "#{c.from.name} :- #{c.message}"
+                %br
+:javascript
+  gallery();
+

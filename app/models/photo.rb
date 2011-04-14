@@ -14,6 +14,13 @@ class Photo < ActiveRecord::Base
     Photo.where(:set_as_blurb => true)
   end
 
+  def self.get_photosets
+    auth= Authentication.find{ |a| a.provider == 'facebook' && a.user_id == 1}
+
+    user = auth.blank? ? '' : FbGraph::User.fetch(auth.uid, :access_token => auth.access_token)
+    albums = user.albums
+    return albums
+  end
 
   private
 

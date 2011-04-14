@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110410073457) do
+ActiveRecord::Schema.define(:version => 20110413055315) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20110410073457) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "access_token"
   end
 
   create_table "blogs", :force => true do |t|
@@ -201,7 +202,7 @@ ActiveRecord::Schema.define(:version => 20110410073457) do
     t.text     "body"
     t.integer  "sender_id"
     t.integer  "receiver_id"
-    t.boolean  "read",           :default => false, :null => false
+    t.boolean  "read",           :default => false
     t.boolean  "sender_flag",    :default => true
     t.boolean  "receiver_flag",  :default => true
     t.boolean  "system_message", :default => false
@@ -228,19 +229,6 @@ ActiveRecord::Schema.define(:version => 20110410073457) do
     t.integer  "profile_comment", :default => 1
     t.integer  "follow",          :default => 1
     t.integer  "delete_friend",   :default => 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "notifications", :force => true do |t|
-    t.string   "account_id"
-    t.string   "news_notification"
-    t.string   "event_notification"
-    t.string   "message_notification"
-    t.string   "blog_comment_notification"
-    t.string   "profile_comment_notification"
-    t.string   "follow_notification"
-    t.string   "delete_friend_notification"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -288,6 +276,13 @@ ActiveRecord::Schema.define(:version => 20110410073457) do
     t.datetime "updated_at"
     t.boolean  "status",      :default => true
     t.integer  "votes_count", :default => 0
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "profile_events", :force => true do |t|

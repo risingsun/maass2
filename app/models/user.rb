@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def check_authentication(type)
-    self.authentications.find(:all, :conditions => [:provider => type])
+    self.authentications.where(:provider => type)
   end
 
   private
