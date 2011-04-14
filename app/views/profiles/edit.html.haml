@@ -1,2 +1,21 @@
 .flash_message_class= formatted_error_message :profile,:user
-= render :partial=>'form'
+= semantic_form_for @profile do |form|
+  %h2.edit_profile Edit Profile
+  = form.commit_button
+  .large_panel_side
+    = rounded_med_corner(:id => "set_status", :title => "Status") do
+      = render 'set_status'
+    = render :partial => "profiles/general_info", :locals => {:f => form}
+    = render :partial => "profiles/contact_info", :locals => {:f => form}
+    = render :partial => "profiles/google_map", :locals => {:f => form}
+  = form.commit_button
+  .large_panel_side
+    = rounded_med_corner(:id => "address_details", :title => "Web Info") do
+      = render :partial => "profiles/web_info", :locals => {:f => form}
+    = rounded_med_corner(:title => "Education", :id => "education_information") do
+      = render :partial => "profiles/education_info", :locals => {:f => form}
+    = rounded_med_corner( :id => "work_details", :title => "Work Details") do
+      = render :partial => "profiles/work_info", :locals => {:f => form}
+    = rounded_med_corner(:title => "Upload Icon", :id => "upload_photo") do
+      = render :partial => "profiles/upload_icon", :locals => {:f => form}
+    = form.commit_button
