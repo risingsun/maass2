@@ -4,10 +4,10 @@ jQuery(document).ready(function()
   jQuery('.slideshow').cycle({
     fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
   });
-   jQuery('#mycarousel').jcarousel({
-        vertical: true,
-        scroll: 2
-    });
+ jQuery('#mycarousel').jcarousel({
+    size:jQuery("ul#mycarousel > li").length,
+    vertical: true
+  });
 
   jQuery('.datebalks').datepicker({
     dateFormat:'dd M yy',
