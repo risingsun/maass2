@@ -1,4 +1,4 @@
-= form_for @profile do |f|
+= f.inputs do
   .large_panel_side
     #status_show{:onclick => "show_status()"}
       %p
@@ -9,7 +9,7 @@
             %p
               = @profile.status_message
     #status_form{:style => "display: none;"}
-      = f.text_field :status_message
+      = f.input :status_message
       %br
       %button.buttons{:type => "submit"}
         = image_tag('Update.png')
