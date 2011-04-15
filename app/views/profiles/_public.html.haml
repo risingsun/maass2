@@ -6,7 +6,8 @@
       #display_status
         .slidecontent
           - if me
-            = render 'profiles/set_status'
+            = semantic_form_for @profile do |form|
+              = render :partial => 'profiles/set_status', :locals => {:f => form}
           - else
             = @profile.status_message
     %span.widget_lrg_btm

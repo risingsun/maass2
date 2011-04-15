@@ -24,7 +24,7 @@
         = link_to('Admin', admin_home_index_path())
 .logout_container
   = link_to image_tag(set_icon(current_user.profile,'small_20')), homes_path
-  %span.menu_text= full_name(current_user.profile)
+  %span.menu_text= @p.full_name()
   = link_to 'Edit Account', edit_account_profile_path(current_user.profile)
   = link_to image_tag('edit.png', :title => "Edit Profile", :class => "img01"), edit_profile_path(current_user.profile) if current_user.profile
   = link_to "Edit Profile", edit_profile_path(current_user.profile) if current_user.profile
