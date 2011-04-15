@@ -1,14 +1,13 @@
 - unless @hide_panels
-  = render :partial=>'profiles/featured'
+  =# render :partial=>'profiles/featured'
   = render :partial=>'shared/search_by_keyword', :profile=>@profile if !current_user.blank?
   = render :partial => 'profiles/greets' if @p
   = render 'blogs/archives' if @p
   = render 'blogs/tag_clouds' if @p  
 - if @event_panel
   = render :partial => "admin/events/rsidebar"
-- if @p
-  - if !@profile.twitter_username.blank?
-    %div{:id=>'twtr-widget', :class =>'twitter_update'}
-      = javascript_include_tag 'http://twitter.com/javascripts/widgets/widget.js'
-      %script
-        twitter_blog('#{@profile.twitter_username}')
+- if @profile && !@profile.twitter_username.blank?
+  %div{:id=>'twtr-widget', :class =>'twitter_update'}
+    = javascript_include_tag 'http://twitter.com/javascripts/widgets/widget.js'
+    %script
+      twitter_blog('#{@profile.twitter_username}')

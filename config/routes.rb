@@ -49,8 +49,7 @@ Maass2::Application.routes.draw do
   end
 
   resources :profiles do
-    resource :friendship, :only => [:create, :update, :destroy]
-    resources :friends
+    resources :friendships
     resources :feed_items
     resources :invitations
     resources :nominations,:except => [:index]

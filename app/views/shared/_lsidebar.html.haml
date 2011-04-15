@@ -20,3 +20,6 @@
 = render :partial => "profiles/find_batch_details" if @p && !@hide_panels
 - if @event_panel
   = render :partial => "admin/events/lsidebar"
+
+:javascript
+  show_gallery();
