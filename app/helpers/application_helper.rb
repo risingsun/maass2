@@ -123,7 +123,7 @@ module ApplicationHelper
   end
 
   def set_icon(profile, size)
-    if profile.icon_file_name.blank? || profile
+    if profile.icon_file_name.blank?
       "#{profile.gender}_#{size}.png"
     else
       profile.icon.url(size)
@@ -217,7 +217,7 @@ module ApplicationHelper
 
   def sets_pictures_link(album = nil)
     img = album.photos[0]
-    link_to(image_tag(img.source, :alt => "PhotoSet", :width => 80, :height => 75),
+    link_to(image_tag(img.source, :alt => album.name, :width => 80, :height => 75),
        photo_gallery_homes_path(:photoset => album.name),:class=>'thickbox',:title => img.name)
   end
 

@@ -1,14 +1,7 @@
 
 jQuery(document).ready(function()
 {
-  jQuery('.slideshow').cycle({
-    fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
-  });
- jQuery('#mycarousel').jcarousel({
-    size:jQuery("ul#mycarousel > li").length,
-    vertical: true
-  });
-
+  
   jQuery('.datebalks').datepicker({
     dateFormat:'dd M yy',
     showOn: "both",
@@ -153,7 +146,7 @@ function friend_status(id, r_type){
     dataType: "html",
     type: r_type,
     success: function(response){
-     jQuery("#friend_status_"+id).html(response);
+      jQuery("#friend_status_"+id).html(response);
     }
   });
 }
@@ -170,7 +163,7 @@ function user_status(id){
     dataType: "json",
     type: 'GET',
     success: function(data){
-     jQuery("a#user_status_"+id).text(data);
+      jQuery("a#user_status_"+id).text(data);
     }
   });
 }
@@ -250,35 +243,36 @@ jQuery('#search_all').live('blur.search_query_field', function(){
 // To Display twitter updates
 function twitter_blog(user){
   new TWTR.Widget({
- version: 2,
-  type: 'profile',
-  rpp: 4,
-  interval: 3000,
-  width: 'auto',
-  height: 300,
-  id: 'twtr-widget',
-  theme: {
-    shell: {
-      background: '#d9c1a7',
-      color: '#141214'
+    version: 2,
+    type: 'profile',
+    rpp: 4,
+    interval: 3000,
+    width: 'auto',
+    height: 300,
+    id: 'twtr-widget',
+    theme: {
+      shell: {
+        background: '#d9c1a7',
+        color: '#141214'
+      },
+      tweets: {
+        background: '#ffffff',
+        color: '#5c573a',
+        links: '#417fb5'
+      }
     },
-    tweets: {
-      background: '#ffffff',
-      color: '#5c573a',
-      links: '#417fb5'
+    features: {
+      scrollbar: false,
+      loop: true,
+      live: true,
+      hashtags: true,
+      timestamp: true,
+      avatars: false,
+      behavior: 'default'
     }
-  },
-  features: {
-    scrollbar: false,
-    loop: true,
-    live: true,
-    hashtags: true,
-    timestamp: true,
-    avatars: false,
-    behavior: 'default'
-  }
-}).render().setUser(user).start();
+  }).render().setUser(user).start();
 }
+
 function gallery(){
   jQuery('div.navigation').css({
     'width' : '300px',
@@ -312,5 +306,18 @@ function gallery(){
     onPageTransitionOut: function(callback) {
       jQuery('#thumbs ul.thumbs').fadeOut('slow', callback);
     }
+  });
+}
+
+function show_blurb_panel(){
+  jQuery('.slideshow').cycle({
+    fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+  });
+}
+
+function show_gallery(){
+  jQuery('#mycarousel').jcarousel({
+    size:jQuery("ul#mycarousel > li").length,
+    vertical: true
   });
 }

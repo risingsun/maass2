@@ -6,9 +6,8 @@
   = render 'blogs/tag_clouds' if @p  
 - if @event_panel
   = render :partial => "admin/events/rsidebar"
-- if @profile
-  - if !@profile.twitter_username.blank?
-    %div{:id=>'twtr-widget', :class =>'twitter_update'}
-      = javascript_include_tag 'http://twitter.com/javascripts/widgets/widget.js'
-      %script
-        twitter_blog('#{@profile.twitter_username}')
+- if @profile && !@profile.twitter_username.blank?
+  %div{:id=>'twtr-widget', :class =>'twitter_update'}
+    = javascript_include_tag 'http://twitter.com/javascripts/widgets/widget.js'
+    %script
+      twitter_blog('#{@profile.twitter_username}')
