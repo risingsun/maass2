@@ -37,7 +37,7 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :marker
   accepts_nested_attributes_for :educations, :allow_destroy => true,
-    :reject_if => proc { |attrs| reject = %w(education_from_year education_fo_year institution).all?{|a| attrs[a].blank?} }
+    :reject_if => proc { |attrs| reject = %w(education_from_year education_to_year institution).all?{|a| attrs[a].blank?} }
   accepts_nested_attributes_for :works, :allow_destroy => true, :reject_if => proc { |attrs| reject = %w(occupation industry company_name company_website job_description).all?{|a| attrs[a].blank?} }
 
   has_attached_file :icon,
@@ -95,6 +95,14 @@ class Profile < ActiveRecord::Base
     indexes :country
     indexes :landline
     indexes :mobile
+    indexes educations.education_from_year
+    indexes educations.education_to_year
+    indexes educations.institution
+    indexes works.occupation
+    indexes works.industry
+    indexes works.company_name
+    indexes works.company_website
+    indexes works.job_description
   end
 
   def status
