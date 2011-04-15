@@ -5,11 +5,12 @@
     .middle_panel_profile
       #display_status
         .slidecontent
-          - if me
-            = semantic_form_for @profile do |form|
-              = render :partial => 'profiles/set_status', :locals => {:f => form}
-          - else
-            = @profile.status_message
+          %h2
+            - if me
+              = semantic_form_for @profile do |form|
+                = render :partial => 'profiles/set_status', :locals => {:f => form}
+            - else
+              = @profile.status_message
     %span.widget_lrg_btm
 .widget_large
   %span.widget_lrg_top
