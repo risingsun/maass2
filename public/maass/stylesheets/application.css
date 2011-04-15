@@ -1,3 +1,9 @@
+*{
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+}
+
 @charset "utf-8";
 body {
   background-color: #ffc600;
@@ -685,6 +691,7 @@ a.button_large:hover{
   color: #000000;
   text-decoration: none;
   position: relative;
+  font-size: 10px;
 } 
 
 .profile_pic_panel a:hover{
@@ -1088,6 +1095,13 @@ a.grey_links_sml3:hover{
   position: relative;
 }
 .large_panel_side{
+  float: left;
+  width: 482px;
+  height: auto;
+  padding-right: 10px;
+}
+
+.large_panel_side_for_status .edit_profile{
   float: left;
   width: 482px;
   height: auto;
@@ -1606,6 +1620,7 @@ div.profile_pic_panel span.odd {
 
 div.profile_pic_panel span.even {
   bottom: 0px;
+
 }
 
 .comments img.del_png{
@@ -2690,6 +2705,7 @@ table.greetings {
 
 * html .slidecontent{
   margin-left: 10px;
+  font-size: 12px;
 }
 
 .profile_card{
@@ -4022,3 +4038,5 @@ Patched by Herryanto Siatono, Pluit Solutions to solve background 'none' call to
 div.profile_links a{
   background:none !important;
 }
+/* new css */
+

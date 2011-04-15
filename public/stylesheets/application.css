@@ -1,3 +1,4 @@
+
 @charset "utf-8";
 body {
   background-color: #ffc600;
@@ -687,7 +688,7 @@ a.button_large:hover{
   color: #000000;
   text-decoration: none;
   position: relative;
-} 
+ } 
 
 .profile_pic_panel a:hover{
   text-decoration: underline;

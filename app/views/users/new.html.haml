@@ -16,5 +16,7 @@
           = p.input :group, :as => :select, :collection => GROUPS, :prompt => false
           = f.input :humanizer_answer, :label => @user.humanizer_question
           = f.hidden_field :humanizer_question_id
+      = f.inputs do
+        = render :partial=> "referral_form", :locals=> {:f=> f}
       %button.buttons{:type => "submit"}
         = image_tag('sign-me-up.png')
