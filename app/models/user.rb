@@ -5,7 +5,11 @@ class User < ActiveRecord::Base
   include Humanizer
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :login
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :login,
+    :first_referral_person_name, :first_referral_person_year,
+    :second_referral_person_name, :second_referral_person_year,
+    :third_referral_person_name,:third_referral_person_year,
+    :additional_message
   attr_accessible :humanizer_answer, :humanizer_question_id
   require_human_on :create
 
