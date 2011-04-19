@@ -1,0 +1,3 @@
+= rounded_corner(:title => "New Photo Upload", :id => "upload_photo") do
+  - @albums.each do |a|
+    = link_to "#{a}", facebook_album_photos_albums_path(:name => a)

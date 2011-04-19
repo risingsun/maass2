@@ -10,11 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110413055315) do
+ActiveRecord::Schema.define(:version => 20110418053004) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
     t.string   "default_permission"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -202,7 +209,7 @@ ActiveRecord::Schema.define(:version => 20110413055315) do
     t.text     "body"
     t.integer  "sender_id"
     t.integer  "receiver_id"
-    t.boolean  "read",           :default => false, :null => false
+    t.boolean  "read",           :default => false
     t.boolean  "sender_flag",    :default => true
     t.boolean  "receiver_flag",  :default => true
     t.boolean  "system_message", :default => false
@@ -233,19 +240,6 @@ ActiveRecord::Schema.define(:version => 20110413055315) do
     t.datetime "updated_at"
   end
 
-  create_table "notifications", :force => true do |t|
-    t.string   "account_id"
-    t.string   "news_notification"
-    t.string   "event_notification"
-    t.string   "message_notification"
-    t.string   "blog_comment_notification"
-    t.string   "profile_comment_notification"
-    t.string   "follow_notification"
-    t.string   "delete_friend_notification"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "permissions", :force => true do |t|
     t.string   "profile_id"
     t.string   "permission_field"
@@ -259,7 +253,7 @@ ActiveRecord::Schema.define(:version => 20110413055315) do
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
-    t.integer  "profile_id"
+    t.integer  "album_id"
     t.boolean  "set_as_blurb"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -289,6 +283,13 @@ ActiveRecord::Schema.define(:version => 20110413055315) do
     t.datetime "updated_at"
     t.boolean  "status",      :default => true
     t.integer  "votes_count", :default => 0
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "profile_events", :force => true do |t|

@@ -1,4 +1,4 @@
-- cache 'featured_member',1.day.from_now do
+- cache 'featured_member' do
   - profile = Profile.todays_featured_profile
   = profile && rounded_corner(:size => :small,:title => image_tag("star.gif",:class => "featured_mem") + "Featured Member") do
     .featured_mem_div

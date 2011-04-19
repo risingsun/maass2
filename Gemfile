@@ -53,6 +53,7 @@ gem "delayed_job",  :git => 'git://github.com/collectiveidea/delayed_job.git'
 gem 'icalendar'
 gem 'oa-openid', :require => 'omniauth/openid'
 gem 'fb_graph'
+gem 'disqus'
 
 
 

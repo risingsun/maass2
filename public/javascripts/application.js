@@ -142,7 +142,7 @@ function friend_status(id, r_type){
     complete: function(){
       jQuery("#spinner_"+id).hide();
     },
-    url: "/profiles/"+id+"/friendship",
+    url: "/profiles/4/friendship",
     dataType: "html",
     type: r_type,
     success: function(response){

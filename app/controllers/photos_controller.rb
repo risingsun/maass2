@@ -26,16 +26,18 @@ class PhotosController < ApplicationController
       redirect_to :back
     end
   end
-  
+
   def edit
-    @photo = Photo.find(params[:id])
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.find(params[:id])
   end
 
   def update
-    @photo = Photo.find(params[:id])
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.find(params[:id])
     if @photo.update_attributes(params[:photo])
       flash[:notice] = "Successfully updated image."
-      redirect_to profile_photos_path(@p)
+      redirect_to album_path(@album)
     else
       flash[:notice] = "Image was not succesfully updated"
       render :action => 'edit'
@@ -43,11 +45,12 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.find(params[:id])
     @photo.destroy
-    redirect_to profile_photos_path(@p)
+    redirect_to album_path(@album)
   end
-  
+
  private
 
  def blurb_image
