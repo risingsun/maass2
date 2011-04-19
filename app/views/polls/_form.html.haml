@@ -1,7 +1,7 @@
 - if @poll.poll_options.blank?
-  - @poll.poll_options.build
+  - 2.times{@poll.poll_options.build}
 = f.input :question, :as => :string, :label =>"Enter the poll question?",:input_html=>{:class=>'poll_input_text'},:wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
 = f.semantic_fields_for(:poll_options) do |form|
   = render "poll_option_fields", :f => form
-  .row_dark2
-    = link_to_add_fields(image_tag('add-button.png'),f,:poll_options)
+.row_dark2
+  = link_to_add_fields(image_tag('add-button.png'),f,:poll_options)

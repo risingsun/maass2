@@ -42,4 +42,8 @@ class Comment < ActiveRecord::Base
       })
   end
 
+  def self.recent_comments(limit = 6)
+    ordered.profile_comments.all(:limit => limit)
+  end
+
 end

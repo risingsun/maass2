@@ -5,7 +5,8 @@
     = stylesheet_link_tag "/maass/stylesheets/application",'jquery-ui-1.8.7.custom','formtastic','formtastic_changes','skin','thickbox','galleriffic','jcarousel'
     = javascript_include_tag 'jquery.min','jquery-ui.min','application','rails','rs_maps', 'jquery-ui-timepicker-addon', 'jquery.jcrop.min', 'jquery.cycle','jquery.jcarousel','thickbox','jquery.galleriffic'
     = javascript_include_tag :ckeditor
-    = csrf_meta_tag
+    = yield :head
+    = csrf_meta_tag    
   %body
     .main_container
       = render :partial=> "layouts/header"

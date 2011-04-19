@@ -97,6 +97,8 @@ Maass2::Application.routes.draw do
   match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
   match '/ue/:hash/:profile_id', :to=> 'profiles#update_email', :as=>:update_email
+  match '/latest_comments.rss', :to=> 'homes#latest_comments', :as=>:latest_comments, :format=>'rss'
+  match '/newest_members.rss', :to=> 'homes#newest_members', :as=>:newest_members, :format=>'rss'
   #  match '/blog_archive/:month/:year', :to => 'blogs#blog_archive'
 
   #  match '/user/:user_id/profile/:id',  :to => 'profiles#show'

@@ -17,10 +17,10 @@
         = p.text_field :occupational_details, :class=>"text_field"
       .row_light_large
         = p.label 'What is the reason for your nomination ?'
-        = p.text_area (:reason_for_nomination, :class=>"text_area")
+        = p.text_area(:reason_for_nomination, :class=>"text_area")
       .row_dark_large
         = p.label 'What difference can you make to the association ?'
-        = p.text_area (:suggestions, :class=>"text_area")
+        = p.text_area(:suggestions, :class=>"text_area")
       %div{:class => "#{cycle(:row_light, :row_dark)} tag"}
         %span
           *Applicant must be based in Jaipur.

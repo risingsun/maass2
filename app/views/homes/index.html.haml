@@ -1,3 +1,6 @@
+- content_for :head do
+  = auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments")
+  = auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members")
 .widget_large
   %span.widget_lrg_top
   .blurb_image_div

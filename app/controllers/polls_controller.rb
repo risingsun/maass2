@@ -8,6 +8,10 @@ class PollsController < ApplicationController
       flash[:notice] = 'You have not create any polls. Try creating one now.'
       redirect_to new_profile_poll_path
     end
+    respond_to do |format|
+      format.html
+      format.rss {render :layout => false}
+    end
   end
 
   def new

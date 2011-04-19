@@ -1,3 +1,5 @@
+- content_for :head do
+  = auto_discovery_link_tag :rss, profile_polls_url(@profile, :rss), :title=>"#{@profile.full_name}'s Polls"
 #column_l
   %h2.page_title
     = @profile.full_name
