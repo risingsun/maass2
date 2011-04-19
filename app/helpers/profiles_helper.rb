@@ -96,5 +96,12 @@ module ProfilesHelper
     end
     str.html_safe
   end
-
+  def show_field(field_value,field_name,field)
+    if !field_value.blank? && @profile.can_see_field(field, @p)
+      "<tr><th align='right'>#{field_name} </th><td>#{field_value}</td></tr>"
+    else
+      ""
+    end
+  end
+  
 end
