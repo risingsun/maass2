@@ -1,8 +1,8 @@
-*{
+/**{
   padding: 0;
   margin: 0;
   font-size: 12px;
-}
+}*/
 
 @charset "utf-8";
 body {
@@ -962,9 +962,9 @@ a.grey_links_sml3:hover{
   margin-right: 10px;
 } 
 
-* html .middle_panel_profile{
+*.middle_panel_profile{
   margin-right: -50px;
-  margin-left: 0px;
+  margin-left: 4px;
 }
 
 .middle_panel_profile h2{
@@ -974,7 +974,7 @@ a.grey_links_sml3:hover{
   padding: 0px;
 }
 
-.middle_panel_profile h3{
+/*.middle_panel_profile h3{
   font-size: 13px;
   font-weight: bold;
   margin: 0px;
@@ -982,7 +982,16 @@ a.grey_links_sml3:hover{
   margin-top: 4px;
   width: 500px;
   float: left;
-} 
+} */
+
+.middle_panel_profile h3 {
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 4px 4px 0;
+    padding: 0;
+    width: 500px;
+}
 
 .middle_panel_profile h3 a{
   color: #000000;
@@ -993,13 +1002,21 @@ a.grey_links_sml3:hover{
   text-decoration: none;
 }   
 
-.middle_panel_profile p{
+/*.middle_panel_profile p{
   margin: 0px;
   padding: 0px;
   width: 540px;
   float: left;
-} 
-.middle_panel_profile div p{
+} */
+
+.middle_panel_profile p {
+    float: left;
+    margin: 4px 4px 0;
+    padding: 0;
+    width: 540px;
+}
+
+.middle_panel_profile div table p{
   margin: 0px;
   line-height:1.5em;
   padding: 0px;

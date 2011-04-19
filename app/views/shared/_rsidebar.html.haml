@@ -1,5 +1,5 @@
 - unless @hide_panels
-  = render :partial=>'profiles/featured'
+  =# render :partial=>'profiles/featured'
   = render :partial=>'shared/search_by_keyword', :profile=>@profile if !current_user.blank?
   = render :partial => 'profiles/greets' if @p
   = render 'blogs/archives' if @p
