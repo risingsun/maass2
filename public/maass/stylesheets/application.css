@@ -4008,6 +4008,8 @@ Patched by Herryanto Siatono, Pluit Solutions to solve background 'none' call to
   width:226px !important;
 }
 
+/*New CSS For Facebook Ablum*/
+
 div.album_links a{
   background:none !important;
 }
@@ -4015,9 +4017,9 @@ div.album_links a{
 
 .album_pic_panel{
   float: left;
-  width: 171px;
-  height: 137px;
-  background-color: #efefef;
+  width: 180px;
+  height: 160px;
+  background-color: #FBB917;
   border: #bebebe 1px solid;
   margin-left: 5px;
   margin-right: 6px;
@@ -4035,6 +4037,9 @@ div.album_links a{
   color: #000000;
   text-decoration: none;
   position: relative;
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0 8 0;
 }
 
 .album_pic_panel a:hover{
@@ -4058,4 +4063,36 @@ div.album_links a{
     overflow: hidden;
     padding: 0 0 5px;
     width: 166px;
+}
+.album_head img{
+  float: right;
+  margin: 4px 4px;
+}
+.album_header {
+    border-bottom: 1px solid #F7D8CD;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    height: auto;
+    line-height: 24px;
+    margin: 0 0 0 5px;
+    overflow: hidden;
+    padding: 0 0 5px;
+    width: 962px;
+}
+.album_photos{
+  float: left;
+  width: 180px;
+  height: 160px;
+  background-color: Linen;
+  border: #bebebe 1px black;
+  margin-left: 5px;
+  margin-right: 6px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+.facebook_album {
+    font-size: 14px;
+    margin: 10px;
 }

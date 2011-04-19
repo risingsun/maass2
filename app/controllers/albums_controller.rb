@@ -11,7 +11,7 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
-    @photos =  1.upto(3) { @album.photos.build }
+    @photos = @album.photos.build 
   end
 
   def create

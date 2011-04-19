@@ -2,10 +2,11 @@ class Photo < ActiveRecord::Base
 
   require "open-uri"
 
+  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+  validates :image_file_name, :presence => true
   belongs_to :album
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   has_attached_file :image, :styles  => { :original => "975x800>" }, :processors => [:cropper]
-  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   after_update :reprocess_avatar, :if => :cropping?
 
   def cropping?
