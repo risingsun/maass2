@@ -1,0 +1,14 @@
+.widget_complete
+  %span.widget_complete_top
+  %h3.album_header
+    MAASS Albums
+    = link_to image_tag('add_new_post.png', :title => "Add More Albums"), new_album_path()
+  -@albums.each do |a|
+    .album_pic_panel
+      %h3.album_head
+        = link_to(a.name, album_path(a))
+        = link_to(image_tag('edit.png'), edit_album_path(a))
+        = link_to(image_tag('delete.png'), album_path(a), :method =>:delete)
+      .album_img_wrap
+        = link_to(image_tag(a.photos.first.image.url('original'), :width => 160, :height => 115), album_path(a)) if !a.photos.blank?
+  %span.widget_complete_btm

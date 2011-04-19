@@ -19,8 +19,8 @@
   |
   = link_to "Google Map Locations", google_map_locations_admin_home_path(@is_admin)
   |
-  = link_to "Photos",profile_photos_path(@p, :blurb_image => false)
+  = link_to "Photos","#"
   |
-  = link_to "Blurb Images",profile_photos_path(@p, :blurb_image => true)
+  = link_to "Blurb Images","#"
 - unless DISABLE_NOMINATION_FORM
   =link_to "Nomination Forms",nominations_path

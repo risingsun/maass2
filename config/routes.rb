@@ -10,6 +10,11 @@ Maass2::Application.routes.draw do
   resources :votes
   resources :feedbacks
   resources :comments
+  resources :albums do
+    resources :photos
+    get 'facebook_album', :on => :collection
+    get 'facebook_album_photos', :on => :collection
+  end
 
   namespace :admin do
     resources :events do
@@ -53,7 +58,6 @@ Maass2::Application.routes.draw do
     resources :feed_items
     resources :invitations
     resources :nominations,:except => [:index]
-    resources :photos
     resources :comments
     resources :messages do
       get 'direct_message', :on => :collection

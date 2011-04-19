@@ -1,7 +1,7 @@
 .widget_complete
   %span.widget_complete_top
   .clear_div
-  = semantic_form_for [@p, @photo],:html => { :multipart => true } do |f|
+  = semantic_form_for [@album,@photo], :html => { :multipart => true } do |f|
     = f.inputs do
       = f.error_messages
       = render :partial => is_blurb_image?(@blurb_image)  ? "photos/edit_blurb_image" : "photos/edit_photo",:locals => {:photo => @photo,:f => f}
