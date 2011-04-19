@@ -9,6 +9,7 @@ class FriendshipsController < ApplicationController
     @following_friends= @profile.followings
     @albums = Photo.get_photosets
   end
+  
   # Start Following
   def create
      @profile.start_following(@friend)
@@ -47,6 +48,7 @@ class FriendshipsController < ApplicationController
   private
 
   def load_resource
+    debugger
     @profile = current_user.profile
     @friend = Profile.find(params[:profile_id])
   end

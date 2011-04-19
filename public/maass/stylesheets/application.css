@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 /**{
   padding: 0;
   margin: 0;
   font-size: 12px;
 }*/
 
+=======
+>>>>>>> 29e37a4fc506555f0d3caff24d6786b3531b76c2
 @charset "utf-8";
 body {
   background-color: #ffc600;
@@ -39,7 +42,7 @@ p{
   padding: 0px;
   margin: 0px;
   float: none;
-} 
+}
 
 .clear_div{
   clear: both;
@@ -51,7 +54,7 @@ img{
 
 .left{
   float: left;
-} 
+}
 
 
 /****** Content CSS ******/
@@ -65,7 +68,7 @@ img{
 * html .main_container{ /** IE 6 hack **/
   background-image:none;
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='/maass/images/main_container_bg.png');
-} 
+}
 
 .header_container{
   background-image: url(/maass/images/header.jpg);
@@ -81,12 +84,12 @@ img{
   float: right;
   margin-top: 43px;
   margin-right: 10px;
-} 
+}
 
 * html .search_container{ /** IE 6 hack **/
   background-image:none;
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='/images/search_bg.png');
-} 
+}
 
 .search_textbox{
   border: 1px solid #fff;
@@ -99,7 +102,7 @@ img{
   margin-top: 13px;
   float: left;
   position: relative;
-} 
+}
 
 .search_btn{
   background:none;
@@ -119,7 +122,7 @@ img{
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=image,src='/images/search_glass.png');
   cursor: hand;
   position: relative;
-}   
+}
 
 .content_container{
   background-image: url(/maass/images/content_header.jpg);
@@ -127,7 +130,7 @@ img{
   height: auto;
   width: 996px;
   float: left;
-} 
+}
 
 .button_small {
   background: none;
@@ -153,7 +156,7 @@ img{
   background-image: none;
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/images/btn_small.png');
   position: relative;
-} 
+}
 
 a.button_small{
   text-decoration: none;
@@ -162,7 +165,7 @@ a.button_small{
 a.button_small:hover{
   text-decoration: none;
   color: #F3E094;
-} 
+}
 .button_large{
   background: none;
   border: none;
@@ -194,7 +197,7 @@ a.button_large{
 a.button_large:hover{
   text-decoration: none;
   color: #F3E094;
-} 
+}
 
 .textbox_normal{
   width: 136px;
@@ -223,7 +226,7 @@ a.button_large:hover{
   padding-left: 2px;
   padding-right:2px;
   position: relative;
-}   
+}
 
 .login_container{
   height: 30px;
@@ -238,7 +241,7 @@ a.button_large:hover{
   margin-bottom: 10px;
 }
 
-* html .login_container{ /** IE 6 hack **/  
+* html .login_container{ /** IE 6 hack **/
   margin-left: 3px;
 }
 
@@ -252,7 +255,7 @@ a.button_large:hover{
 .login_two{
   float: left;
   margin-left: 100px;
-} 
+}
 
 .btm_div{
   background-image: url(/maass/images/footer.png);
@@ -266,7 +269,7 @@ a.button_large:hover{
 * html .btm_div{ /** IE 6 hack **/
   background-image:none;
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=image,src='/maass/images/footer.png');
-} 
+}
 
 .widget_small{
   background-image: url(/maass/images/widget_small_bg.gif);
@@ -282,7 +285,7 @@ a.button_large:hover{
   margin-left: 9px;
   width: 202px;
 
-} 
+}
 
 .widget_med{
   background-image: url(/maass/images/panel_med.png);
@@ -290,7 +293,7 @@ a.button_large:hover{
   width: 292px;
   margin-left: 10px;
   margin-bottom: 10px;
-} 
+}
 
 .widget_lrg, .widget_large{
   background: url(/maass/images/widget_lrg_bg.gif) white repeat-y;
@@ -300,7 +303,7 @@ a.button_large:hover{
   float: left;
 }
 
-*html .widget_lrg, * html .widget_large{ /** IE 6 hack **/ 
+*html .widget_lrg, * html .widget_large{ /** IE 6 hack **/
   margin-left: 5px;
   margin-right: -70px;
 }
@@ -385,7 +388,7 @@ a.button_large:hover{
   display: block;
   float: left;
   margin-left: -10px;
-}	
+}
 
 
 .flash_msg{
@@ -432,7 +435,7 @@ a.button_large:hover{
   float: right;
   margin-right: -5px;
 
-} 
+}
 
 .widget_med_title{
   font-size: 11px;
@@ -445,7 +448,7 @@ a.button_large:hover{
   margin: 0px;
   padding: 0px;
   margin-left: 5px;
-} 
+}
 
 .widget_lrg_title{
   font-size: 16px;
@@ -459,7 +462,7 @@ a.button_large:hover{
   margin-left: 10px;
   position: relative;
   margin-top: 0px;
-}   
+}
 
 .widget_lrg_title a, .blog_head a{
   /*font-weight: normal;
@@ -507,7 +510,7 @@ a.button_large:hover{
 
 .grey{
   color: #666666;
-}     
+}
 
 .widget_small_btm, .widget_btm{
   background-image: url(/maass/images/widget_small_btm.gif);
@@ -541,7 +544,7 @@ a.button_large:hover{
 * html .ad_widget_btm{ /** IE 6 hack **/
   width: 203px;
   margin-bottom: -12px;
-} 
+}
 
 .widget_med_btm{
   background-image: url(/maass/images/panel_med_btm.png);
@@ -549,7 +552,7 @@ a.button_large:hover{
   width: 292px;
   height: 6px;
   display: block;
-} 
+}
 
 .widget_lrg_top{
   background-image: url(/maass/images/widget_lrg_top.gif);
@@ -567,7 +570,7 @@ a.button_large:hover{
   height: 6px;
   display: block;
   float: left;
-} 
+}
 
 * html .widget_lrg_btm{ /** IE 6 hack **/
   margin-bottom: -12px;
@@ -583,7 +586,7 @@ a.button_large:hover{
   float: left;
   width: 292px;
   height: auto;
-} 
+}
 
 .middle_panel{
   float: left;
@@ -691,12 +694,11 @@ a.button_large:hover{
   color: #000000;
   text-decoration: none;
   position: relative;
-  font-size: 10px;
-} 
+}
 
 .profile_pic_panel a:hover{
   text-decoration: underline;
-}   
+}
 
 .profile_pic_sml{
   margin: 3px;
@@ -709,7 +711,7 @@ a.button_large:hover{
   margin-left: 10px;
   margin-bottom: 10px;
   text-align: center;
-} 
+}
 
 .ad img{
   margin: 5px 2px 0px 2px;
@@ -725,7 +727,7 @@ a.button_large:hover{
 * html .ad{ /** IE 6 hack **/
   margin-left: 9px;
   width: 202px;
-} 
+}
 
 .comments{
   width: 517px;
@@ -737,7 +739,7 @@ a.button_large:hover{
   color: #333333;
   border-bottom:1px solid #fce8e0;
   overflow: hidden;
-} 
+}
 
 * html .comments { /** IE 6 hack **/
   position: relative;
@@ -747,7 +749,7 @@ a.button_large:hover{
 .comments img,.poll_option{
   margin-right: 5px;
   float: left;
-} 
+}
 
 
 
@@ -764,7 +766,7 @@ li{
   margin: 0;
   float: left;
   list-style: none;
-} 
+}
 
 .menu{
   margin-left: 5px;
@@ -801,7 +803,7 @@ li{
 
 .logout_container a:hover{
   text-decoration: none;
-}         
+}
 
 .logout_container img{
   margin-right: 3px;
@@ -818,7 +820,7 @@ li{
   background-repeat: no-repeat;
   padding-left: 10px;
   height: 30px;
-}                           
+}
 
 .selected_tab a{
   color: #982a2a;
@@ -844,7 +846,7 @@ li{
   background-repeat: no-repeat;
   padding-left: 10px;
   margin-top: 3px;
-} 
+}
 
 .active_tab a{
   color: #ffffff;
@@ -862,7 +864,7 @@ li{
   height: 27px;
   width: 3px;
   float: left;
-} 
+}
 
 .tab_container{
   height: 30px;
@@ -876,7 +878,7 @@ li{
   margin-top: 10px;
   margin-bottom: 10px;
   padding-right: 5px;
-} 
+}
 
 .grey_links_sml{
   font-size: 10px;
@@ -893,7 +895,7 @@ a.grey_links_sml{
 a.grey_links_sml:hover{
   text-decoration:none;
   color: #666666;
-}   
+}
 
 .grey_links_sml3{
   font-size: 10px;
@@ -908,7 +910,7 @@ a.grey_links_sml3{
 a.grey_links_sml3:hover{
   text-decoration:none;
   color: #999999;
-}   
+}
 
 
 .grey_links_sml2{
@@ -927,7 +929,7 @@ a.grey_links_sml3:hover{
 .grey_links_sml2 a:hover{
   text-decoration:underline;
   color: #999999;
-}   
+}
 
 
 .middle_panel_left{
@@ -939,7 +941,7 @@ a.grey_links_sml3:hover{
   margin-top: 10px;
   overflow: hidden;
   font-size: 12px;
-} 
+}
 
 .middle_panel_left a{
   color: #666666;
@@ -950,7 +952,7 @@ a.grey_links_sml3:hover{
 
 .middle_panel_left a:hover{
   text-decoration: none;
-}   
+}
 
 
 .middle_panel_profile{
@@ -960,7 +962,7 @@ a.grey_links_sml3:hover{
   font-size: 12px;
   margin-left: 10px;
   margin-right: 10px;
-} 
+}
 
 *.middle_panel_profile{
   margin-right: -50px;
@@ -973,16 +975,6 @@ a.grey_links_sml3:hover{
   margin: 0px;
   padding: 0px;
 }
-
-/*.middle_panel_profile h3{
-  font-size: 13px;
-  font-weight: bold;
-  margin: 0px;
-  padding: 0px;
-  margin-top: 4px;
-  width: 500px;
-  float: left;
-} */
 
 .middle_panel_profile h3 {
     float: left;
@@ -1000,14 +992,7 @@ a.grey_links_sml3:hover{
 
 .middle_panel_profile h3 a:hover{
   text-decoration: none;
-}   
-
-/*.middle_panel_profile p{
-  margin: 0px;
-  padding: 0px;
-  width: 540px;
-  float: left;
-} */
+}
 
 .middle_panel_profile p {
     float: left;
@@ -1016,7 +1001,7 @@ a.grey_links_sml3:hover{
     width: 540px;
 }
 
-.middle_panel_profile div table p{
+.middle_panel_profile div p{
   margin: 0px;
   line-height:1.5em;
   padding: 0px;
@@ -1043,7 +1028,7 @@ a.grey_links_sml3:hover{
   margin-bottom: 10px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 11px;
-}   
+}
 
 * html .textarea {
   position: relative;
@@ -1065,12 +1050,12 @@ a.grey_links_sml3:hover{
   font-size: 16px;
   font-weight: bold;
   margin-left: 5px;
-} 
+}
 
 .profile_div img{
   margin-top: 10px;
   margin-bottom: 5px;
-} 
+}
 
 .profile_links{
   color: #000000;
@@ -1091,12 +1076,12 @@ a.grey_links_sml3:hover{
 
 .profile_links a:hover{
   text-decoration: none;
-} 
+}
 
 .comment_btn_container{
   float: left;
   margin-left: 2px;
-} 
+}
 
 * html .comment_btn_container{
   margin-left: -10px;
@@ -1106,7 +1091,7 @@ a.grey_links_sml3:hover{
   margin-left: 3  px;
   margin-right: 7px;
   margin-top: 10px;
-}     
+}
 
 * html .delete {
   position: relative;
@@ -1118,16 +1103,9 @@ a.grey_links_sml3:hover{
   padding-right: 10px;
 }
 
-.large_panel_side_for_status .edit_profile{
-  float: left;
-  width: 482px;
-  height: auto;
-  padding-right: 10px;
-}
-
 * html .large_panel_side{
   padding-right: 0px;
-}     
+}
 
 .large_panel_side .edit_profile{
   background-image: url(/maass/images/edit_profile_bg.gif);
@@ -1144,7 +1122,7 @@ a.grey_links_sml3:hover{
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/maass/images/edit_profile_bg.png');
   overflow: hidden;
   margin-left: 5px;
-} 
+}
 
 .edit_profile_btm{
   background-image: url(/maass/images/edit_profile_btm.gif);
@@ -1153,7 +1131,7 @@ a.grey_links_sml3:hover{
   height: 6px;
   display: block;
   float: left;
-} 
+}
 
 * html .edit_profile_btm{
   margin-bottom: -12px;
@@ -1166,7 +1144,7 @@ a.grey_links_sml3:hover{
   height: 6px;
   display: block;
   float: left;
-}   
+}
 
 .edit_profile_title{
   font-size: 14px;
@@ -1184,7 +1162,7 @@ a.grey_links_sml3:hover{
 
 * html .edit_profile_title{
   margin-left: 5px;
-} 
+}
 
 h2.edit_profile{
   margin: 0;
@@ -1196,11 +1174,11 @@ h2.edit_profile{
   margin-bottom: 5px;
   background-image: none;
   float: left;
-} 
+}
 
 * html h2.edit_profile{
   margin-left: 5px;
-}   
+}
 
 .title_links{
   float: left;
@@ -1212,7 +1190,7 @@ h2.edit_profile{
 
 .title_links a{
   margin-right: 10px;
-} 
+}
 
 .edit_panel_profile{
   height: auto;
@@ -1224,11 +1202,11 @@ h2.edit_profile{
   margin-right: 10px;
   width: 482px;
   font-weight: bold;
-} 
+}
 
 * html .edit_panel_profile{
   margin-left: 5px;
-} 
+}
 
 .edit_panel_profile p{
   margin: 0;
@@ -1241,7 +1219,7 @@ h2.edit_profile{
   width: 762px;
   line-height: 20px;
   height: 20px;
-}             
+}
 
 .status{
   font-size: 16px;
@@ -1274,12 +1252,12 @@ h2.edit_profile{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
-} 
+}
 
 label.label_margin{
   margin-top: 7px;
   *margin-top: 8px;
-} 
+}
 
 .row_dark{
   float: left;
@@ -1300,13 +1278,13 @@ label.label_margin{
   float: left;
   width: 170px;
   text-align: right;
-} 
+}
 
 .row_dark input{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
-}   
+}
 
 * html .row_dark input{
   position: relative;
@@ -1347,7 +1325,7 @@ label.label_margin{
   padding-bottom: 2px;
   padding-top: 4px;
   border-bottom: 1px solid #fff;
-} 
+}
 
 .label_dark{
   background-color: #fef2e1;
@@ -1373,7 +1351,7 @@ label.label_margin{
   padding-bottom: 2px;
   padding-top: 4px;
   border-bottom: 1px solid #fff;
-}   
+}
 
 .field_dark2{
   background-color: #fef2e1;
@@ -1384,7 +1362,7 @@ label.label_margin{
   padding-bottom: 2px;
   padding-top: 4px;
   border-bottom: 1px solid #fff;
-}     
+}
 
 .text_field, .password_field{
   border: #CCCCCC 1px solid;
@@ -1427,7 +1405,7 @@ label.label_margin{
 
 * html .textarea_edit{
   left: 0px;
-} 
+}
 
 .label_dark_textarea{
   background-color: #fef2e1;
@@ -1458,7 +1436,7 @@ label.label_margin{
   padding-top: 4px;
   padding-bottom: 2px;
   border-bottom: 1px solid #fff;
-} 
+}
 
 .label_alt_textarea{
   background-color: #fff7ee;
@@ -1474,7 +1452,7 @@ label.label_margin{
   padding-bottom: 2px;
   border-bottom: 1px solid #fff;
   position: relative;
-}     
+}
 
 .label_alt_textarea2{
   background-color: #fff7ee;
@@ -1490,13 +1468,13 @@ label.label_margin{
   padding-bottom: 2px;
   border-bottom: 1px solid #fff;
   position: relative;
-}       
+}
 
 .editfield_div{
   width: 482px;
   float: left;
   font-weight: normal;
-}         
+}
 
 .editfield_div2{
   width: 530px;
@@ -1505,7 +1483,7 @@ label.label_margin{
   background-color: #fff;
   margin-bottom: 5px;
   margin-left: 5px;
-} 
+}
 
 .editfield_div2 label{
   text-align: left;
@@ -1513,11 +1491,11 @@ label.label_margin{
   margin-right: 10px;
   font-size: 12px;
   margin-left: 2px;
-}           
+}
 
 .editfield_div2 input{
   margin-top: 0px;
-} 
+}
 
 .editfield_div2 div {
   font-size: 11px;
@@ -1557,11 +1535,11 @@ label.label_margin{
   width: 482px;
   margin-left: 10px;
   margin-top: -7px;
-} 
+}
 
 * html .large_btn_container{
   margin-left: -1px;
-} 
+}
 
 .large_btn_container2{
   float: left;
@@ -1571,18 +1549,18 @@ label.label_margin{
 }
 * html .large_btn_container2{
   margin-left: 2px;
-} 
+}
 .large_btn_container3{
   float: left;
   width: 482px;
   margin-left: 5px;
   margin-top: 2px;
-}       
+}
 
 .editfield_div2 p{
   margin-left: 2px;
   margin-bottom: 5px;
-} 
+}
 
 
 .button_small_button{
@@ -1600,7 +1578,7 @@ label.label_margin{
   position: relative;
 }
 
-* html .button_small_button, 
+* html .button_small_button,
 {
   background: none;
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/maass/images/btn_small.png');
@@ -1629,7 +1607,7 @@ label.label_margin{
 input.button_small_button:hover, input.button_large_button:hover{
   text-decoration: none;
   color: #F3E094;
-} 
+}
 
 div.profile_pic_panel span.odd {
   vertical-align: bottom;
@@ -1637,12 +1615,11 @@ div.profile_pic_panel span.odd {
 
 div.profile_pic_panel span.even {
   bottom: 0px;
-
 }
 
 .comments img.del_png{
   float: none;
-} 
+}
 
 .hidden{
   display: none;
@@ -1677,7 +1654,7 @@ div.profile_pic_panel span.even {
 
 * html .div_field {
   margin-left: 2px;
-} 
+}
 
 .div_field .label_text{
   font-size: 12px;
@@ -1691,22 +1668,22 @@ div.profile_pic_panel span.even {
 * html .label_text{
   margin-left: 0px;
   width: 63px;
-} 
+}
 
 .checkbox{
   float: left;
   margin-left: 70px;
   *margin-left:66px;
   position: relative;
-}   
+}
 .login_checkbox{
   position: relative;
-}   
+}
 
 
 .login_btn_container{
   margin-left: 65px;
-}   
+}
 
 .login_links_container{
   margin-top: -5px;
@@ -1718,7 +1695,7 @@ div.profile_pic_panel span.even {
 
 *  html .login_links_container{
   margin-left: 35px;
-} 
+}
 
 .welcome_msg{
   color: #b93232;
@@ -1765,7 +1742,7 @@ div.profile_pic_panel span.even {
   color: #669900;
   font-weight: normal;
   width: 125px;
-}   
+}
 
 .calendar_img{
   margin-top: 6px;
@@ -1804,7 +1781,7 @@ div.profile_pic_panel span.even {
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
-} 
+}
 
 .row_light_medium{
   float: left;
@@ -1883,7 +1860,7 @@ div.profile_pic_panel span.even {
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
-}   
+}
 
 .row_dark2{
   float: left;
@@ -1906,13 +1883,13 @@ div.profile_pic_panel span.even {
   float: left;
   width: 170px;
   text-align: right;
-} 
+}
 
 .row_dark2 input,select{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
-}   
+}
 
 .row_light_large2{
   float: left;
@@ -2013,18 +1990,18 @@ label.label_margin2{
   color: #669900;
   font-weight: normal;
   width: 70px;
-}   
+}
 
 label.radio_label{
   text-align: left;
   width: auto;
   margin-top: 8px;
-} 
+}
 
 label.radio_label input{
   margin-top: -1px;
   *margin-top: -5px;
-} 
+}
 
 h2.page_title{
   float: left;
@@ -2037,7 +2014,7 @@ h2.page_title{
 
 * html h2.page_title{
   margin-left: 5px;
-} 
+}
 
 .row_normal{
   float: left;
@@ -2069,7 +2046,7 @@ h2.page_title{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
-} 
+}
 
 .row_normal_large{
   float: left;
@@ -2096,14 +2073,14 @@ h2.page_title{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
-}   
+}
 
 .blog_btn_container{
   float: left;
   width: 460px;
   margin-left: -5px;
   padding-left: 2px
-} 
+}
 
 * html .blog_btn_container{
   margin-left: -8px;
@@ -2121,7 +2098,7 @@ h2.page_title{
   width: 556px;
   text-align: right;
   margin-top: -20px;
-} 
+}
 
 .breadcrumbs a{
   color: #666666;
@@ -2131,12 +2108,12 @@ h2.page_title{
 .breadcrumbs a:hover{
   color: #666666;
   text-decoration: none;
-}     
+}
 
 .edit{
   margin-left: 2px;
   margin-bottom: -2px;
-} 
+}
 
 .created_date{
   font-size: 11px;
@@ -2145,7 +2122,7 @@ h2.page_title{
   line-height: 24px;
   margin-top: -3px;
   margin-left: 5px;
-} 
+}
 
 .blog_text{
   width: 530px;
@@ -2158,7 +2135,7 @@ h2.page_title{
   border-bottom:1px solid #fce8e0;
   margin-top: -5px;
   overflow: hidden;
-} 
+}
 
 .static_blog{
   width: 530px;
@@ -2172,7 +2149,7 @@ h2.page_title{
   overflow: hidden;
 }
 
-.static_blog p{  
+.static_blog p{
   margin: 7px;
 }
 
@@ -2190,23 +2167,23 @@ h2.page_title{
 .blog_text img{
   margin-right: 5px;
   float: left;
-}   
+}
 
 .blog_text .add_comment{
   float: none;
   margin-left: 5px;
   margin-bottom: -5px;
-} 
+}
 
 .add_new_post{
   margin-left: 5px;
   margin-bottom: -5px;
-} 
+}
 
 .add_new_post2{
   margin-left: 5px;
   margin-bottom: -5px;
-} 
+}
 
 .pagination{
   font-size: 12px;
@@ -2231,17 +2208,17 @@ h2.page_title{
   border-bottom:1px solid #fce8e0;
   margin-top: -5px;
   font-weight: bold;
-} 
+}
 
 .pagination a:hover{
   text-decoration: none;
-} 
+}
 
 .show_hide_img{
   float: right;
   margin-top: -15px;
   margin-right: 5px;
-}   
+}
 
 @media screen and (-webkit-min-device-pixel-ratio:0) { /* Safari Hacks */
   .show_hide_img { margin-top: 10px; }
@@ -2302,7 +2279,7 @@ a.messagebox_profilename_unread{
   width: 215px;
   margin-left: 250px;
 
-}   
+}
 
 * html .messagebox_message_preview {
   float: none;
@@ -2323,11 +2300,11 @@ a.messagebox_profilename_unread{
 .profile_pic_panel2 a{
   color: #000000;
   text-decoration: none;
-} 
+}
 
 .profile_pic_panel2 a:hover{
   text-decoration: underline;
-}   
+}
 
 .profile_pic_panel2 .imgwrap{
   width: 95px;
@@ -2357,7 +2334,7 @@ a.messagebox_profilename_unread{
   margin-right: 13px;
   margin-top: 5px;
   margin-bottom: 10px;
-} 
+}
 
 .admin_panel{
   width: 967px;
@@ -2375,17 +2352,17 @@ a.messagebox_profilename_unread{
   margin-top: -5px;
   margin-bottom: 10px;
   margin-left: 10px;
-} 
+}
 
-.admin_panel_main_links a{    
+.admin_panel_main_links a{
   color: #a96c6c;
   text-decoration: none;
 }
 
-.admin_panel_main_links a:hover{    
+.admin_panel_main_links a:hover{
   color: #a96c6c;
   text-decoration:underline;
-} 
+}
 
 .event_form_container{
   float: left;
@@ -2411,7 +2388,7 @@ img.featured_mem{
   position: relative;
   float: left;
   display: block;
-} 
+}
 
 .featured_mem_pic{
   margin-left: 3px;
@@ -2442,14 +2419,14 @@ a.featured_mem_text:hover{
   margin-bottom: 10px;
   margin-left:6px;
   float: left;
-}     
+}
 
 .profile_img_wrap{
   width: 83px;
   margin-bottom: 3px;
   height: 62px;
   margin-left: 2px;
-}   
+}
 
 .signup{
   text-align: center;
@@ -2477,12 +2454,12 @@ a.featured_mem_text:hover{
   position: relative;
   margin-left: 5px;
   margin-right: 5px;
-}   
+}
 
 .flickr_pix img{
   margin-right: 5px;
   float: left;
-} 
+}
 
 
 .flickr_text{
@@ -2498,7 +2475,7 @@ a.featured_mem_text:hover{
   width: 538px;
   height: 246px;
   float: left;
-} 
+}
 
 * html .blurb_img{
   position: relative;
@@ -2530,7 +2507,7 @@ a.featured_mem_text:hover{
 
 .blurb_img li a:hover{
   text-decoration: underline;
-}   
+}
 
 .disabled_first, .disabled_last, .disabled_next, .disabled_previous  {
   color: #999999;
@@ -2722,7 +2699,6 @@ table.greetings {
 
 * html .slidecontent{
   margin-left: 10px;
-  font-size: 12px;
 }
 
 .profile_card{
@@ -2772,7 +2748,7 @@ table.greetings {
 .profile_card .text_div .name a:hover{
   font-size: 13px;
   text-decoration: none;
-}     
+}
 
 .profile_card .text_div p{
   float: left;
@@ -2780,10 +2756,10 @@ table.greetings {
   color: #000000;
   font-size: 11px;
   margin-bottom: 3px;
-}   
+}
 
 .text_div p.student_batch
-{    
+{
   width: 138px;
   color: #000000;
   font-size: 11px;
@@ -2792,7 +2768,7 @@ table.greetings {
 }
 
 *html .find_student
-{    
+{
   margin-bottom: -3px;
 }
 
@@ -2805,12 +2781,12 @@ table.greetings {
 .profile_card .text_div a:hover{
   font-size: 11px;
   text-decoration: none;
-}     
+}
 
 .profile_card .img01{
   margin-bottom: -3px;
   margin-left: 3px;
-}   
+}
 .unread_message{
   background: #FEECD4;
 
@@ -2909,56 +2885,46 @@ table.greetings {
   float: none;
   height: auto;
 }
-/*.linkedin_icon{
-  background-image: url(/images/linkedin.jpg);
-  background-repeat: no-repeat;
+.linkedin_icon{
+  background:#FFFFFF url(/images/linkedin.jpg) no-repeat 4px 4px;
   padding:4px 4px 4px 22px;
 }
-.twitter_icon{
-  background-image: url(/images/twitter_icon.png);
-  background-repeat: no-repeat;
-  padding:4px 4px 4px 22px;
-}  
 .yahoo_icon{
   background-image: url(/images/yahoo.png);
   background-repeat: no-repeat;
   padding:4px 4px 4px 22px;
-}  
+}
 .skype_icon{
   background-image: url(/images/skype.ico);
   background-repeat: no-repeat;
   padding:4px 4px 4px 22px;
-}    
+}
 .msn_icon{
   background-image: url(/images/live.png);
   background-repeat: no-repeat;
-  padding: 4px 4px 4px 22px;
-}  
+
+}
 .aim_icon{
   background-image: url(/images/aim.jpg);
   background-repeat: no-repeat;
-  padding: 4px 4px 4px 22px;
 
-}   
+}
 .flickr_icon{
   background-image: url(/images/flickr.jpg);
   background-repeat: no-repeat;
-  padding: 4px 4px 4px 22px;
-}        
+}
 .gtalk_icon{
   background-image: url(/images/gtalk.jpg);
   background-repeat: no-repeat;
-  padding: 4px 4px 4px 22px;
-} 
+}
 .delicious_icon{
   background-image: url(/images/delicious.jpg);
   background-repeat: no-repeat;
-  padding: 4px 4px 4px 22px;
-}*/
-/*.input_text_with_icon{
-  padding-left :20px;
+}
+.input_text_with_icon{
+/*  padding-left :20px;*/
   width: 209px
-}*/
+}
 .happy_day_class{
   font-size: 11px;
   color: #000000;
@@ -2987,7 +2953,7 @@ table.greetings {
   width: 25%;
 }
 
-.admin_class{ 
+.admin_class{
   margin-bottom: 10px;
   margin-top: 10px;
   margin-left: 10px;
@@ -3061,11 +3027,11 @@ table.greetings {
   float: left;
   width: 460px;
   margin-left: 170px;
-} 
+}
 *html .feedback_btn_container{
   margin-left: 85px;
   margin-right: -50px;
-} 
+}
 .ajax_loader{
   height: 30px;
   position: relative;
@@ -3093,9 +3059,9 @@ table.greetings {
   color: #333333;
   border-bottom:1px solid #DDEAF4;
   overflow: hidden;
-} 
+}
 
-* html .signup_thanks { 
+* html .signup_thanks {
   position: relative;
   margin-left: 5px;
 }
@@ -3166,7 +3132,7 @@ a.editor_cancel{
   border-bottom:1px solid #fce8e0;
   margin-top: -5px;
   overflow: hidden;
-} 
+}
 * html .poll_text{
   position: relative;
 }
@@ -3206,7 +3172,7 @@ a.editor_cancel{
   float: left;
 }
 
-* html .widget_complete{ /** IE 6 hack **/ 
+* html .widget_complete{ /** IE 6 hack **/
   position: relative;
   margin-left: 5px;
 }
@@ -3238,13 +3204,13 @@ a.editor_cancel{
   margin-left:184px;
   margin-top:-22px;
   width: 336px;
-} 
+}
 
 .preference a{
   float:right;
   margin-top:-22px;
   width:26px;
-} 
+}
 
 .widget_complete_btm{
   background-image: url(/maass/images/widget_llrg_btm.gif);
@@ -3259,7 +3225,7 @@ a.editor_cancel{
 .preference{
   width:552px;
   margin-left:-6px;
-} 
+}
 
 .group{
   font-size: 17px;
@@ -3659,7 +3625,7 @@ a.editor_cancel{
   margin-left: -10px;
   float: left;
   height: 6px;
-}	
+}
 * html .widget_large_flash_msg_btm{  /** IE 6 hack **/
   position: relative;
   margin-left: -5px;
@@ -3700,7 +3666,7 @@ a.editor_cancel{
   margin-bottom: 4px;
   float: left;
   width: 455px;
-} 
+}
 .row_complete_dark{
   float: left;
   width: 967px;
@@ -3720,14 +3686,14 @@ a.editor_cancel{
   float: left;
   width: 170px;
   text-align: right;
-} 
+}
 
 .row_complete_dark input{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
   width: 455px;
-} 
+}
 .row_complete_light_large2{
   float: left;
   width: 967px;
@@ -3835,19 +3801,19 @@ a.editor_cancel{
 .tag_text{
   margin-left: 10px;
 }
-.css1 { 
+.css1 {
   font-size: 2.0em;
   margin-left: 4px;
 }
-.css2 { 
+.css2 {
   font-size: 1.2em;
   margin-left: 4px;
 }
-.css3 { 
+.css3 {
   font-size: 1.4em;
   margin-left: 4px;
 }
-.css4 { 
+.css4 {
   font-size: 1.6em;
   margin-left: 4px;
 }
@@ -4026,9 +3992,9 @@ div.tag span{
   font-weight:normal;
   padding-left:11px;
 }
-/* CSS PNG Transparency fix by Rogie King, Komodo Media  
+/* CSS PNG Transparency fix by Rogie King, Komodo Media
 Patched by Herryanto Siatono, Pluit Solutions to solve background 'none' call to the server */
-* html .png, 
+* html .png,
 *html img {
   azimuth: expression(
   this.pngSet?
@@ -4052,8 +4018,54 @@ Patched by Herryanto Siatono, Pluit Solutions to solve background 'none' call to
   width:226px !important;
 }
 
-div.profile_links a{
+div.album_links a{
   background:none !important;
 }
-/* new css */
 
+
+.album_pic_panel{
+  float: left;
+  width: 171px;
+  height: 137px;
+  background-color: #efefef;
+  border: #bebebe 1px solid;
+  margin-left: 5px;
+  margin-right: 6px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+* html .album_pic_panel{ /** IE 6 hack **/
+  margin-left: 3px;
+  margin-right: 4px;
+}
+
+.album_pic_panel a{
+  color: #000000;
+  text-decoration: none;
+  position: relative;
+}
+
+.album_pic_panel a:hover{
+  text-decoration: underline;
+}
+
+.album_pic_sml{
+  margin: 3px;
+}
+.span_album{
+  text-align: right;
+}
+.album_head{
+ border-bottom: 1px solid #F7D8CD;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    height: auto;
+    line-height: 24px;
+    margin: 0 0 0 5px;
+    overflow: hidden;
+    padding: 0 0 5px;
+    width: 166px;
+}

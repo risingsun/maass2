@@ -216,9 +216,8 @@ module ApplicationHelper
   end
 
   def sets_pictures_link(album = nil)
-    img = album.photos[0]
-    link_to(image_tag(img.source, :alt => album.name, :width => 80, :height => 75),
-       photo_gallery_homes_path(:photoset => album.name),:class=>'thickbox',:title => img.name)
+    link_to(image_tag(album[1], :alt => album[0], :width => 80, :height => 75),
+       photo_gallery_homes_path(:photoset => album[0]),:class=>'thickbox',:title => album[0])
   end
 
 end

@@ -34,19 +34,4 @@ class Friend < ActiveRecord::Base
       :body => description(inviter),
       :receiver => invited, :system_message => true ) if invited.wants_message_notification?("follow")
   end
-
-  def self.check_relation(user, friend)
-    @friend =  find_by_inviter_id_and_invited_id_and_status(user, friend, ACCEPT_FRIEND)
-    @following =  find_by_inviter_id_and_invited_id_and_status(user, friend, PENDING_FRIEND)
-    @follower =  find_by_inviter_id_and_invited_id_and_status(friend, user, PENDING_FRIEND)
-    if !@friend.blank?
-      return "friend"
-    elsif !@following.blank?
-      return "following"
-    elsif !@follower.blank?
-      return "follower"
-    else
-      return "nothing"
-    end
-  end
 end
