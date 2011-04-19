@@ -11,5 +11,6 @@
     %div= link_to "Site Content", admin_site_contents_path
     %div= link_to "Preferences", admin_preferences_path
     %div= link_to "Google Map Locations", google_map_locations_admin_home_path(@is_admin)
-    %div= link_to "Albums", albums_path()
+    %div= link_to "Photos", albums_path()
+    %div= link_to "Blurb Images", "#"
     %div= link_to "Nomination Forms", nominations_path unless DISABLE_NOMINATION_FORM
