@@ -2,19 +2,19 @@
   #login_form.edit_panel_profile
     = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = f.inputs do
-        = f.input :login, :as => :string
-        = f.input :email, :as => :string
-        = f.input :password, :as => :password
-        = f.input :password_confirmation, :as => :password
+        = f.input :login, :as => :string, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+        = f.input :email, :as => :string, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+        = f.input :password, :as => :password, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+        = f.input :password_confirmation, :as => :password, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
       = semantic_fields_for(:profile) do |p|
         = p.inputs do
-          = p.input :first_name, :as => :string
-          = p.input :middle_name, :as => :string
-          = p.input :last_name, :as => :string
-          = p.input :maiden_name, :as => :string
-          = p.input :gender, :as => :select, :collection => SEX, :prompt => false
-          = p.input :group, :as => :select, :collection => GROUPS, :prompt => false
-          = f.input :humanizer_answer, :label => @user.humanizer_question
+          = p.input :first_name, :as => :string, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+          = p.input :middle_name, :as => :string, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+          = p.input :last_name, :as => :string, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+          = p.input :maiden_name, :as => :string, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+          = p.input :gender, :as => :select, :collection => SEX, :prompt => false, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+          = p.input :group, :as => :select, :collection => GROUPS, :prompt => false, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+          = f.input :humanizer_answer, :label => @user.humanizer_question, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
           = f.hidden_field :humanizer_question_id
       = f.inputs do
         = render :partial=> "referral_form", :locals=> {:f=> f}
