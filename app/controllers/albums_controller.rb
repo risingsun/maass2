@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
 
   layout "admin"
+
   def index
     @albums = @p.albums
     if @albums.blank?
@@ -20,7 +21,6 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-
     @album = Album.find(params[:id])
     @photos = @album.photos
     @title = "Update #{@ablum.name} album"
@@ -52,19 +52,19 @@ class AlbumsController < ApplicationController
     @albums = @a.map {|a| a.name if !Album.check_album(a.name)}
   end
 
-   def facebook_album_photos
-     @a = Photo.get_photosets
-     @a.each do |a|
-       @al= a if a.name.eql?(params[:name])
-     end
-     @album = @p.albums.new(:name => @al.name)
-     @album.save
-     @al.photos.count.times do |c|
-       a=@album.photos.build()
-       a.photo_from_url(@al.photos[c].source)
-       a.save
-     end
-     redirect_to album_path(@album)
+  def facebook_album_photos
+    @a = Photo.get_photosets
+    @a.each do |a|
+      @al= a if a.name.eql?(params[:name])
+    end
+    @album = @p.albums.new(:name => @al.name)
+    @album.save
+    @al.photos.count.times do |c|
+      a=@album.photos.build()
+      a.photo_from_url(@al.photos[c].source)
+      a.save
+    end
+    redirect_to album_path(@album)
   end
   
 end

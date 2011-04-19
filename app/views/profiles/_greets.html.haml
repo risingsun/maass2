@@ -5,7 +5,7 @@
   - event_hash = Profile.find_all_happy_days
   - title = "Recent Events"
 = rounded_corner(:size => :small, :title => title) do
-  %table.greetings
+  %table.widget_small.greetings
     - counter = ""
     - event_hash.each do |b|
       - klass = before_after(b[1][:from_today])
