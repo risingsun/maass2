@@ -47,8 +47,7 @@ class FriendshipsController < ApplicationController
 
   private
 
-  def load_resource
-    debugger
+  def load_resource    
     @profile = current_user.profile
     @friend = Profile.find(params[:profile_id])
   end
