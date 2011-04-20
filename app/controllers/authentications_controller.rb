@@ -1,21 +1,21 @@
 class AuthenticationsController < ApplicationController
 
   def create
-   omniauth = request.env["omniauth.auth"]
-   authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-   if authentication
-     flash[:notice] = "Signed in successfully."
-     sign_in_and_redirect(:user, authentication.user)
-   elsif current_user
-     current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'], :access_token=> omniauth['credentials']['token'])
-     flash[:notice] = "Authentication successful."
-     redirect_to :root
-   else
-     redirect_to new_user_registration_path
-   end
- end
+    omniauth = request.env["omniauth.auth"]
+    authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+    if authentication
+      flash[:notice] = "Signed in successfully."
+      sign_in_and_redirect(:user, authentication.user)
+    elsif current_user
+      current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'], :access_token=> omniauth['credentials']['token'])
+      flash[:notice] = "Authentication successful."
+      redirect_to :root
+    else
+      redirect_to new_user_registration_path
+    end
+  end
 
- def failure
+  def failure
     flash[:notice] = "Sorry, You din't authorize"
     redirect_to root_url
   end
@@ -26,4 +26,11 @@ class AuthenticationsController < ApplicationController
     @authorization.destroy
     redirect_to profile_path(@p)
   end
+
+  private
+
+  def allow_to
+    super :all, :all=>true
+  end
+
 end

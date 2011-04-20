@@ -34,6 +34,11 @@ class InvitationsController < ApplicationController
 
   private
 
+  def allow_to
+    super :owner, :all => true
+    super :active_user, :all => true
+  end
+
   def load_profile
     @profile = params[:profile_id].to_i == @p.id ? @p : Profile[params[:profile_id]]
     @user = @profile.user

@@ -62,6 +62,11 @@ class MessagesController < ApplicationController
 
   private
 
+  def allow_to
+    super :owner, :all => true
+    super :active_user, :only => [:new]
+  end
+
   def load_profile
     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
     @show_profile_side_panel = true

@@ -12,11 +12,11 @@ class FriendshipsController < ApplicationController
   
   # Start Following
   def create
-     @profile.start_following(@friend)
+    @profile.start_following(@friend)
     respond_to do |format|
-     format.js do
-       render :partial => 'homes/friend_status', :locals => {:profile =>@friend}
-     end
+      format.js do
+        render :partial => 'homes/friend_status', :locals => {:profile =>@friend}
+      end
     end
   end
 
@@ -24,9 +24,9 @@ class FriendshipsController < ApplicationController
   def update
     @profile.make_friend(@friend)
     respond_to do |format|
-     format.js do
-       render :partial => 'homes/friend_status', :locals => {:profile =>@friend}
-     end
+      format.js do
+        render :partial => 'homes/friend_status', :locals => {:profile =>@friend}
+      end
     end
   end
 
@@ -39,13 +39,18 @@ class FriendshipsController < ApplicationController
         :receiver => @friend, :system_message => true ) if @friend.wants_message_notification?("delete_friend")
     end
     respond_to do |format|
-     format.js do
-       render :partial => 'homes/friend_status', :locals => {:profile =>@friend}
-     end
-   end
+      format.js do
+        render :partial => 'homes/friend_status', :locals => {:profile =>@friend}
+      end
+    end
   end
 
   private
+
+  def allow_to
+    super :user, :all => true
+    super :non_user, :only => :index
+  end
 
   def load_resource    
     @profile = current_user.profile

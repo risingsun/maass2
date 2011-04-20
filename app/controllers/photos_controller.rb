@@ -25,4 +25,11 @@ class PhotosController < ApplicationController
     @photo.destroy
     redirect_to album_path(@album)
   end
+
+  private
+
+  def allow_to
+    super :admin, :all => true
+  end
+
 end

@@ -84,8 +84,13 @@ class Admin::EventsController < ApplicationController
   end
 
   private
+  
+  def allow_to
+    super :admin, :all => true
+    super :active_user, :only => [:show, :rsvp, :event_members]
+  end
 
-  def load_event
+  def load_event    
     @event = @p ? Event.find(params[:id]) : redirect_to(new_user_session_path)
   end
 

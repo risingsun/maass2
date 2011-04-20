@@ -145,6 +145,12 @@ class ProfilesController < ApplicationController
 
   private
 
+  def allow_to
+    super :owner, :all => true
+    super :active_user, :only => [:show, :index, :search, :friend_search, :search_group , :search_location, :batch_mates, :batch_details]
+    super :all, :only => [:update_email]
+  end
+
   def load_profile
     @profile = params[:id] == @p ? @p : Profile.find(params[:id])
     @educations = @profile.educations || @profile.educations.build
@@ -160,5 +166,5 @@ class ProfilesController < ApplicationController
   def valid_batch_range(group = @group)
     !group.blank? && GROUPS.include?([group])
   end
-
+  
 end

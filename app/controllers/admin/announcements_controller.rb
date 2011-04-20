@@ -48,6 +48,10 @@ class  Admin::AnnouncementsController < ApplicationController
 
   private
 
+  def allow_to
+    super :admin, :all => true
+  end
+
   def load_announcement
     @announcement = Announcement.find(params[:id])
   end

@@ -13,4 +13,10 @@ class FeedItemsController < ApplicationController
     end
   end
 
+  protected
+
+  def allow_to
+    super :user, :only => [:destroy]
+  end
+
 end

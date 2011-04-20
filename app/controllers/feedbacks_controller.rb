@@ -40,6 +40,12 @@ class FeedbacksController < ApplicationController
 
   private
 
+  def allow_to
+    super :admin, :all => true
+    super :non_user, :only => [:new, :create]
+    super :user, :only => [:new, :create]
+  end
+
   def hide_side_panels
     @hide_panels = true
   end

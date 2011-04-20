@@ -33,5 +33,11 @@ class HomesController < ApplicationController
       wants.rss {render :layout=>false}
     end
   end
+
+  private
+   
+  def allow_to
+    super :all, :all=>true
+  end
   
 end

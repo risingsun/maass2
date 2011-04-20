@@ -77,5 +77,10 @@ class PollsController < ApplicationController
     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
     @show_profile_side_panel = true
   end
+  
+  def allow_to
+    super :owner, :all => true 
+    super :active_user, :only => [:index, :show]
+  end
 
 end

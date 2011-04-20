@@ -54,16 +54,20 @@ class StudentChecksController < ApplicationController
     redirect_to student_checks_path
   end
 
- def view_year_students
-   @years = Profile.change_group(params[:group])
-   respond_to do |format|
-     format.js do
-       render :json => @years.to_json
-     end
-   end
- end
+  def view_year_students
+    @years = Profile.change_group(params[:group])
+    respond_to do |format|
+      format.js do
+        render :json => @years.to_json
+      end
+    end
+  end
 
-  private    
+  private
+
+  def allow_to
+    super :admin, :all => true
+  end
 
   def next_dest
     case params[:commit]
@@ -81,4 +85,5 @@ class StudentChecksController < ApplicationController
   def load_student_checks
     @student_check = StudentCheck.find(params[:id])
   end
+
 end
