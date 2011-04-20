@@ -946,19 +946,26 @@ a.grey_links_sml3:hover{
 }
 
 
-.middle_panel_profile{
+/*.middle_panel_profile{
   height: auto;
   float: left;
   overflow: hidden;
   font-size: 12px;
   margin-left: 10px;
   margin-right: 10px;
+}*/
+.middle_panel_profile {
+    float: left;
+    font-size: 12px;
+    height: auto;
+    margin: 0 4px;
+    overflow: hidden;
 }
 
-*.middle_panel_profile{
+/**.middle_panel_profile{
   margin-right: -50px;
   margin-left: 4px;
-}
+}*/
 
 .middle_panel_profile h2{
   font-size: 16px;
