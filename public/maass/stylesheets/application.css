@@ -1825,7 +1825,7 @@ div.profile_pic_panel span.even {
 
 .row_light2{
   float: left;
-  width: 460px;
+  width: 530px;
   background-color: #fff7ee;
   border-bottom: 1px solid #fff;
   height: 30px;
@@ -1854,7 +1854,7 @@ div.profile_pic_panel span.even {
 
 .row_dark2{
   float: left;
-  width: 460px;
+  width: 530px;
   height: 30px;
   background-color: #fef2e1;
   border-bottom: 1px solid #fff;
@@ -1883,7 +1883,7 @@ div.profile_pic_panel span.even {
 
 .row_light_large2{
   float: left;
-  width: 460px;
+  width: 530px;
   background-color: #fff7ee;
   border-bottom: 1px solid #fff;
   height: 167px;

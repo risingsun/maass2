@@ -13,7 +13,8 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
-    @photos = @album.photos.build 
+    @photos = @album.photos.build
+    @title = "New Album"
   end
 
   def create
@@ -24,7 +25,7 @@ class AlbumsController < ApplicationController
 
   def edit
     @photos = @album.photos
-    @title = "Update #{@album.name} album"
+    @title = "Update #{@album.name}"
   end
 
   def update

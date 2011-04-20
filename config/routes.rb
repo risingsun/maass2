@@ -54,13 +54,13 @@ Maass2::Application.routes.draw do
   end
 
   resources :profiles do
-    resources :friendships
+    resources :friends
+    resource :friendship, :only => [:create, :update, :destroy]
     resources :feed_items
     resources :invitations
     resources :nominations,:except => [:index]
     resources :comments
     resources :messages do
-      get 'direct_message', :on => :collection
       get 'sent_messages', :on => :collection
       get 'reply_message', :on => :member
       post 'delete_messages', :on => :collection
@@ -72,7 +72,6 @@ Maass2::Application.routes.draw do
     resources :polls do
       get 'poll_close', :on => :member      
     end
-    post 'load_profile', :on => :collection
     get 'edit_account', :on => :member
     get 'search', :on=>:collection
     get 'friend_search', :on=>:collection
@@ -82,7 +81,6 @@ Maass2::Application.routes.draw do
     get 'batch_details', :on=>:collection
     get 'search_group', :on=>:collection
     get 'search_location', :on=>:collection
-    get 'sample_ajax', :on => :member
   end
   resources :student_checks do
     get 'view_year_students', :on=> :collection
