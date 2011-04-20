@@ -7,4 +7,11 @@ class FriendsController < ApplicationController
     @following_friends= @p.followings
     @albums = @p.albums
   end
+  
+  private
+
+   def allow_to
+     super :user, :all => true
+     super :non_user, :only => :index
+   end
 end
