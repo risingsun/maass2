@@ -105,3 +105,16 @@ form.formtastic fieldset > ol > li.optional {
     width: 450px;
     border: #CCCCCC 1px solid;
   }
+  form.formtastic fieldset > ol > li p.inline-errors {
+    color: #CC0000;
+    margin: 0.5em 0 10px 71%;
+  }
+  form.formtastic fieldset > ol > li.password input{
+    max-width: 20em;
+  }
+  form.formtastic ol, form.formtastic ul .cursor{
+    list-style:none;
+    margin: 0 6 0;
+    font-size: medium;
+  }
+ 

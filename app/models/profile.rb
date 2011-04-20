@@ -49,6 +49,7 @@ class Profile < ActiveRecord::Base
     :small_60 =>  "60x60#",
     :small_20 =>  "20x20#"
   }
+  validates :first_name,:middle_name,:last_name,:maiden_name,:spouse_name,:professional_qualification, :length => { :maximum => 30 }
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   permissible_fields PERMISSION_FIELDS
@@ -278,7 +279,7 @@ class Profile < ActiveRecord::Base
   end
 
   def friends_on_google_map(profile)
-    f = (profile.friends + profile.followers + profile.followings).select {|p| p.can_see_field('marker', self)}
+    f = (self.friends + self.followers + self.followings).select {|p| p.can_see_field('marker', profile)}
     friends = f.select {|p| p.marker}
     return friends
   end

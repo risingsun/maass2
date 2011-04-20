@@ -1,7 +1,6 @@
 
 jQuery(document).ready(function()
 {
-  
   jQuery('.datebalks').datepicker({
     dateFormat:'dd M yy',
     showOn: "both",
@@ -38,6 +37,14 @@ jQuery(document).ready(function()
   jQuery("#status").click(function(){
     jQuery("#status").hide();
     jQuery("#in-place-edit").show();
+  });
+
+  jQuery(".cursor").hover(
+    function(){
+      jQuery(this).css('background-color', '#FFF380')
+    },
+    function(){
+      jQuery(this).css('background-color', 'transparent')
   });
 
   jQuery("#student_check_year").change(function() {
@@ -142,7 +149,7 @@ function friend_status(id, r_type){
     complete: function(){
       jQuery("#spinner_"+id).hide();
     },
-    url: "/profiles/4/friendship",
+    url: "/profiles/"+id+"/friendship",
     dataType: "html",
     type: r_type,
     success: function(response){
@@ -291,8 +298,8 @@ function gallery(){
     captionContainerSel:    '#caption',
     playLinkText:           'Play Slideshow',
     pauseLinkText:          'Pause Slideshow',
-    prevLinkText:           '&lsaquo; Previous Photo',
-    nextLinkText:           'Next Photo &rsaquo',
+    prevLinkText:           'Previous',
+    nextLinkText:           'Next',
     onPageTransitionIn: function() {
       jQuery('#thumbs ul.thumbs').fadeIn('fast');
       jQuery('#thumbs ul.thumbs > li:visible').each(function(){

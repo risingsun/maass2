@@ -1,21 +1,13 @@
 class FriendshipsController < ApplicationController
 
   before_filter :load_resource
-
-  #Show all friends, followers and followings
-  def index
-    @friends = @profile.friends
-    @follower_friends = @profile.followers
-    @following_friends= @profile.followings
-    @albums = Photo.get_photosets
-  end
   
   # Start Following
   def create
     @profile.start_following(@friend)
     respond_to do |format|
       format.js do
-        render :partial => 'homes/friend_status', :locals => {:profile =>@friend}
+        render :partial => 'friends/friend_status', :locals => {:profile =>@friend}
       end
     end
   end
@@ -25,7 +17,7 @@ class FriendshipsController < ApplicationController
     @profile.make_friend(@friend)
     respond_to do |format|
       format.js do
-        render :partial => 'homes/friend_status', :locals => {:profile =>@friend}
+        render :partial => 'friends/friend_status', :locals => {:profile =>@friend}
       end
     end
   end
@@ -40,7 +32,7 @@ class FriendshipsController < ApplicationController
     end
     respond_to do |format|
       format.js do
-        render :partial => 'homes/friend_status', :locals => {:profile =>@friend}
+        render :partial => 'friends/friend_status', :locals => {:profile =>@friend}
       end
     end
   end
