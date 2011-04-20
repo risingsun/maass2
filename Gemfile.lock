@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/collectiveidea/delayed_job.git
-  revision: fde9720fbbda599d43cfffdc7901d95bad40d09f
+  revision: fde9720
   specs:
     delayed_job (2.1.4)
       activesupport (~> 3.0)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/thoughtbot/paperclip.git
-  revision: 484ddddc33964dfdc1571b4aa4fc943fcb7aee53
+  revision: 484dddd
   specs:
     paperclip (2.3.10)
       activerecord (>= 2.3.0)
