@@ -7,6 +7,7 @@
   -@album.photos.each do |a|
     .album_photos
       %h3.album_head
+        = a.caption
         = link_to(image_tag('edit.png'), edit_album_photo_path(@album,a))
         = link_to(image_tag('delete.png'), album_photo_path(@album,a), :method =>:delete)
       .album_img_wrap

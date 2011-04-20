@@ -4053,16 +4053,16 @@ div.album_links a{
   text-align: right;
 }
 .album_head{
- border-bottom: 1px solid #F7D8CD;
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
-    height: auto;
-    line-height: 24px;
-    margin: 0 0 0 5px;
-    overflow: hidden;
-    padding: 0 0 5px;
-    width: 166px;
+  border-bottom: 1px solid #F7D8CD;
+  color: #000000;
+  font-size: 12px;
+  font-weight: normal;
+  height: auto;
+  line-height: 24px;
+  margin: 0 0 0 5px;
+  overflow: hidden;
+  padding: 0 0 5px;
+  width: 166px;
 }
 .album_head img{
   float: right;
@@ -4090,7 +4090,7 @@ div.album_links a{
   margin-right: 6px;
   margin-top: 5px;
   margin-bottom: 5px;
-  font-size: 16px;
+  font-size: 12px;
 }
 .facebook_album {
     font-size: 14px;
