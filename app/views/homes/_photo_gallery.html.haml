@@ -9,15 +9,13 @@
     #caption.embox
   #thumbs.navigation
     %ul.thumbs.noscript
-      - @pictures.photos.each do |f|
+      - @pictures.each do |f|
         %li
-          %a.thumb{:href => f.source}
-            = image_tag(f.source, :alt => @pictures.name, :width => 75, :height => 75)
+          %a.thumb{:href => f.image.url('original')}
+            = image_tag(f.image.url('original'), :alt => @pictures.name, :width => 75, :height => 75)
           .caption
             .image-title
-              - f.comments.each do |c|
-                = "#{c.from.name} :- #{c.message}"
-                %br
+              = f.caption
 :javascript
   gallery();
 

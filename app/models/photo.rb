@@ -13,10 +13,6 @@ class Photo < ActiveRecord::Base
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
 
-  def self.blurb_images
-    Photo.where(:set_as_blurb => true)
-  end
-
   def self.get_photosets
     user = User.find{ |u| u.admin == true}
     auth= user.authentications.where(:provider => 'facebook').first
@@ -35,7 +31,8 @@ class Photo < ActiveRecord::Base
   end
 
   def self.blurb_images
-    Photo.where(:set_as_blurb => true)
+    a = Album.check_album('blurb')
+    a.photos if !a.blank?
   end
 
 end

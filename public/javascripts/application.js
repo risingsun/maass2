@@ -291,8 +291,8 @@ function gallery(){
     captionContainerSel:    '#caption',
     playLinkText:           'Play Slideshow',
     pauseLinkText:          'Pause Slideshow',
-    prevLinkText:           '&lsaquo; Previous Photo',
-    nextLinkText:           'Next Photo &rsaquo',
+    prevLinkText:           'Previous',
+    nextLinkText:           'Next',
     onPageTransitionIn: function() {
       jQuery('#thumbs ul.thumbs').fadeIn('fast');
       jQuery('#thumbs ul.thumbs > li:visible').each(function(){
