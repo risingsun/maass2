@@ -2,6 +2,8 @@ class AlbumsController < ApplicationController
 
   layout "admin"
 
+  before_filter :load_album, :only => [:edit, :update, :show, :destroy]
+
   def index
     @albums = @p.albums
     if @albums.blank?
@@ -22,13 +24,11 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-    @album = Album.find(params[:id])
     @photos = @album.photos
     @title = "Update #{@album.name}"
   end
 
   def update
-    @album = Album.find(params[:id])
     if @album.update_attributes(params[:album])
       flash[:notice] = "Successfully updated album."
       redirect_to albums_path(@album)
@@ -39,11 +39,9 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = Album.find(params[:id])
   end
 
   def destroy
-    @album = Album.find(params[:id])
     @album.destroy
     redirect_to albums_path
   end
@@ -67,5 +65,11 @@ class AlbumsController < ApplicationController
     end
     redirect_to album_path(@album)
   end
-  
+
+  private
+
+  def load_album
+    @album = Album.find(params[:id])
+  end
+
 end
