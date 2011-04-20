@@ -11,7 +11,8 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
-    @photos = @album.photos.build 
+    @photos = @album.photos.build
+    @title = "New Album"
   end
 
   def create
@@ -23,7 +24,7 @@ class AlbumsController < ApplicationController
   def edit
     @album = Album.find(params[:id])
     @photos = @album.photos
-    @title = "Update #{@ablum.name} album"
+    @title = "Update #{@album.name}"
   end
 
   def update

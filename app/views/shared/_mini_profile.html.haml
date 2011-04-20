@@ -6,8 +6,8 @@
     %h3.name= link_to (mini_profile.f(20)), mini_profile, :class => "profile_name"
     %br
     %p= year_link(mini_profile)
-    %p= render('friendships/friend_status' , :profile => mini_profile) unless me(mini_profile)
-    %p= link_to 'Direct Message', direct_message_profile_messages_path(mini_profile) unless me(mini_profile)
+    %p= render('friends/friend_status' , :profile => mini_profile) unless me(mini_profile)
+    %p= link_to 'Direct Message', new_profile_message_path(mini_profile) unless me(mini_profile)
     %p= link_to('Read My Blogs', profile_blogs_path(mini_profile))
     %p= link_to('See My Polls', profile_polls_path(mini_profile))
     %p= link_to("#{mini_profile.is_active ? 'Deactivate' : 'Active'}", '#', |

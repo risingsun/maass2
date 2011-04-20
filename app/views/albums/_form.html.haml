@@ -1,5 +1,5 @@
 = semantic_form_for @album, :html => { :multipart => true } do |f|
-  = rounded_corner(:title => "New Photo Upload", :id => "upload_photo") do
+  = rounded_corner(:title => @title, :id => "upload_photo") do
     = f.inputs do
       = f.input :name, :label => "Album Name", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
     = f.semantic_fields_for(:photos) do |p|
