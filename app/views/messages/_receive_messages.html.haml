@@ -4,7 +4,7 @@
   = form_for :message, :url => delete_messages_profile_messages_path(@p), :html => {:id => "message_list"} do |f|
     - @receive_messages.each do |message|
       - profile = Profile.find(message.sender_id)
-      %div{:class => "comments"}
+      %div{:class => "comments #{unread_message_class(message, "inbox")}"}
         %input.left{:id => message.id, :name => "check[]", :type => "checkbox", :value => message.id}
         - if !message.system_message
           = link_to image_tag(set_icon(profile,'small')), profile, {:class => "featured_mem_pic"}, {:class => "featured_mem_text"}        
@@ -19,9 +19,10 @@
         .messagebox_message_preview
           = message.body.html_safe
       = link_to image_tag('delete.png', :class => 'delete') ,profile_message_path(@profile, message), :method => :delete
-    = link_to image_tag("select_all.png"), '#', :confirm => 'Are You Sure', :class => "select_all"
-    %button.buttons{:type => "submit"}
-      = image_tag("delete-selected.png")
+    %div{:class => "message_button_container"}
+      = link_to image_tag("select_all.png"), '#', :confirm => 'Are You Sure', :class => "select_all"
+      %button.buttons{:type => "submit"}
+        = image_tag("delete-selected.png")
   .clear_div
     = will_paginate @receive_messages
   %span.widget_lrg_btm
