@@ -17,6 +17,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.3)
     ZenTest (4.5.0)
     abstract (1.0.0)
     actionmailer (3.0.3)
@@ -272,6 +273,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   acts-as-taggable-on
   acts_as_list
   annotate
