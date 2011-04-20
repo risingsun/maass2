@@ -54,6 +54,7 @@ gem 'icalendar'
 gem 'oa-openid', :require => 'omniauth/openid'
 gem 'fb_graph'
 gem 'disqus'
+gem 'RedCloth'
 
 
 

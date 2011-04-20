@@ -7,7 +7,7 @@ xml.item do
     xml.title commentable_text(c, false)
     xml.link profile_feed_item_url(@profile, c)
     xml.guid profile_feed_item_url(@profile, c)
-    xml.description c.comment
+    xml.description sanitize(textilize(c.comment))
     xml.author "#{c.profile.email} (#{c.profile.full_name})"
     xml.pubDate c.updated_at
   end
