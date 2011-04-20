@@ -71,9 +71,9 @@ class ProfilesController < ApplicationController
     @profile.toggle!(:is_active)
     ArNotifier.delay.user_status(@profile)
     respond_to do |format|
-     format.js do
-       render :json => (@profile.is_active ? 'Deactive' : 'Active').to_json
-     end
+      format.js do
+        render :json => (@profile.is_active ? 'Deactive' : 'Active').to_json
+      end
     end
   end
 

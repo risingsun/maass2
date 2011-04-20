@@ -16,7 +16,22 @@ class HomesController < ApplicationController
     @albums = FbGraph::User.fetch(auth.uid, :access_token => auth.access_token).albums
     @pictures = @albums.find{|a| a.name == params['photoset']}
     respond_to do |formats|
-        formats.html{render :partial => 'photo_gallery'}
+      formats.html{render :partial => 'photo_gallery'}
     end
   end
+
+  def newest_members
+    respond_to do |wants|
+      wants.html {render :action=>'index'}
+      wants.rss {render :layout=>false}
+    end
+  end
+
+  def latest_comments
+    respond_to do |wants|
+      wants.html {render :action=>'index'}
+      wants.rss {render :layout=>false}
+    end
+  end
+  
 end
