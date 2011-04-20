@@ -956,8 +956,8 @@ a.grey_links_sml3:hover{
 }
 
 *.middle_panel_profile{
-  margin-right: -50px;
-  margin-left: 4px;
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 .middle_panel_profile h2{

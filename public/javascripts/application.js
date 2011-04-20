@@ -1,7 +1,6 @@
 
 jQuery(document).ready(function()
 {
-  
   jQuery('.datebalks').datepicker({
     dateFormat:'dd M yy',
     showOn: "both",
@@ -39,6 +38,14 @@ jQuery(document).ready(function()
     jQuery("#status").hide();
     jQuery("#in-place-edit").show();
   });
+
+  jQuery(".cursor").hover(
+    function(){
+      jQuery(this).css('background-color', 'yellow')
+    },
+    function(){
+      jQuery(this).css('background-color', 'transparent')
+    });
 
   jQuery("#student_check_year").change(function() {
     year = this.value
