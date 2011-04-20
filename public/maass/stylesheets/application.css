@@ -945,20 +945,30 @@ a.grey_links_sml3:hover{
   text-decoration: none;
 }
 
-
-.middle_panel_profile{
+.middle_panel_profile {
+    float: left;
+    font-size: 12px;
+    height: auto;
+    margin: 0 4px;
+    overflow: hidden;
+}
+/*.middle_panel_profile{
   height: auto;
   float: left;
   overflow: hidden;
   font-size: 12px;
   margin-left: 10px;
   margin-right: 10px;
-}
+}*/
 
 *.middle_panel_profile{
   margin-right: 0px;
   margin-left: 0px;
 }
+/**.middle_panel_profile{
+  margin-right: -50px;
+  margin-left: 4px;
+}*/
 
 .middle_panel_profile h2{
   font-size: 16px;
@@ -4048,9 +4058,11 @@ div.album_links a{
 .album_pic_sml{
   margin: 3px;
 }
+
 .span_album{
   text-align: right;
 }
+
 .album_head{
   border-bottom: 1px solid #F7D8CD;
   color: #000000;
@@ -4063,10 +4075,12 @@ div.album_links a{
   padding: 0 0 5px;
   width: 166px;
 }
+
 .album_head img{
   float: right;
   margin: 4px 4px;
 }
+
 .album_header {
     border-bottom: 1px solid #F7D8CD;
     color: #000000;
@@ -4079,6 +4093,7 @@ div.album_links a{
     padding: 0 0 5px;
     width: 962px;
 }
+
 .album_photos{
   float: left;
   width: 180px;
@@ -4091,6 +4106,7 @@ div.album_links a{
   margin-bottom: 5px;
   font-size: 12px;
 }
+
 .facebook_album {
     font-size: 14px;
     margin: 10px;

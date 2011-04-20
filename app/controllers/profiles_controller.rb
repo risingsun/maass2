@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
     if @is_admin
       @profiles = Profile.all.paginate(:page => @page, :per_page=>PROFILE_PER_PAGE)
       @title = "Users"
+      render :layout => "plain"
     else
       redircet_to :back
     end  

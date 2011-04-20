@@ -3,7 +3,7 @@
     #status_show{:onclick => "show_status()"}
       %span{:class => "cursor"}
         - if @profile.status_message == nil || @profile.status_message == ""
-          = f.label "Click here to set status", :class => "cursor"
+          = f.label "Set your status!!", :class => "cursor"
         - else
           = @profile.status_message
   #status_form{:style => "display: none;"}
