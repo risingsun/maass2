@@ -40,6 +40,14 @@ jQuery(document).ready(function()
     jQuery("#in-place-edit").show();
   });
 
+  jQuery(".cursor").hover(
+    function(){
+      jQuery(this).css('background-color', '#FFF380')
+    },
+    function(){
+      jQuery(this).css('background-color', 'transparent')
+  });
+
   jQuery("#student_check_year").change(function() {
     year = this.value
     jQuery.ajax({
