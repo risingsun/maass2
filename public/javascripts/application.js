@@ -328,3 +328,18 @@ function show_gallery(){
     vertical: true
   });
 }
+
+function delete_comment(p_id, c_id){
+  
+  jQuery.ajax({
+    url: "/profiles/"+p_id+"/comment",
+    dataType: "json",
+    type: 'DELETE',
+    data: { id: c_id },
+    success: function(data){
+      jQuery("#comment_"+c_id).fadeOut("slow");
+      jQuery("#profile_"+p_id).text(data).fadeIn("fast");
+    }
+  });
+
+}
