@@ -12,7 +12,7 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = @p.album.new
+    @album = @p.albums.new
     @photos = @album.photos.build
     @title = "New Album"
   end

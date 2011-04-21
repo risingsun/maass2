@@ -1,6 +1,6 @@
 class Admin::EventsController < ApplicationController
 
-  before_filter :load_event
+  before_filter :load_event, :except=>[:index]
   respond_to :html, :json, :only =>[:rsvp]
 
   layout "application"
