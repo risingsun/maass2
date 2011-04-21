@@ -1,6 +1,37 @@
 
 jQuery(document).ready(function()
 {
+  
+  jQuery(".show-comments").click(function() {
+    jQuery(this).parents('.commentable').find('.blog_comments').toggle();
+    return false;
+  });
+
+  jQuery(".add-comment").click(function() {
+    jQuery(this).parents('.commentable').find('.comment_form').toggle();
+    return false;
+  });
+ 
+  jQuery(".delete-comment").click(function(){
+    delete_link = jQuery(this);
+    rel = jQuery(this).parents('.commentable').find('.show-comments');
+    jQuery.ajax({
+      url: jQuery(this).attr('href'),
+      dataType: "json",
+      type: 'DELETE',
+      success: function(data){
+        jQuery(delete_link).parents('.comment').fadeOut("slow");
+        jQuery(rel).text(data).fadeIn("fast");
+      }
+    });
+    return false;
+  });
+
+  jQuery(".comment-form-cancel").click(function(){
+    jQuery(this).parents('.comment_form').hide();
+    return false;
+  });
+
   jQuery('.datebalks').datepicker({
     dateFormat:'dd M yy',
     showOn: "both",
@@ -186,22 +217,9 @@ function add_fields(link, association, content) {
   jQuery(link).parent().before(content.replace(regexp, new_id));
 }
 
-function add_comment(c){
-  jQuery("#form"+c).toggle();
-}
-
-function show_comment(c){
-  jQuery("#show"+c).toggle();
-}
-
 function show_partial(p){
   jQuery("#par_"+p).show();
 }
-
-function cancel_comment(c){
-  jQuery("#form"+c).hide();
-}
-
 
 function content_show_hide(div_id){
   id=jQuery(div_id)
@@ -327,19 +345,4 @@ function show_gallery(){
     size:jQuery("ul#mycarousel > li").length,
     vertical: true
   });
-}
-
-function delete_comment(p_id, c_id){
-  
-  jQuery.ajax({
-    url: "/profiles/"+p_id+"/comment",
-    dataType: "json",
-    type: 'DELETE',
-    data: { id: c_id },
-    success: function(data){
-      jQuery("#comment_"+c_id).fadeOut("slow");
-      jQuery("#profile_"+p_id).text(data).fadeIn("fast");
-    }
-  });
-
 }

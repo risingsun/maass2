@@ -3,13 +3,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_profile, :pagination_defaults, :allow_to, :check_access_permissions
 
-  def search_results
-    p = params[:search] ? params[:search].dup : {}
-    @title = "Search"
-    @q , @q_val = p[:key] ? ["Search for Friends",p[:q]] : [p[:q],"Search"]
-    @results = Profile.search_by_keyword(p)
-  end
-  
   def set_profile
     if current_user
       @p = current_user.profile

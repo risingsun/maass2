@@ -1,12 +1,14 @@
 - @profile = blog.profile
-.widget_large{:id => "blog_#{blog.id}"}
+- comment_count = blog.comments_count
+.widget_large.commentable[blog]
   %span.widget_lrg_top
   %h3.blog_head
     = link_to image_tag(set_icon(blog.profile,'small')), homes_path
     = link_to sanitize(blog.title), profile_blog_path(blog.profile, blog)
-    = link_to image_tag('edit.png', :title => "Edit blog post"), edit_profile_blog_path(blog.profile, blog) if @p == blog.profile
-    = link_to image_tag('delete.png', :title => "Delete blog post"), profile_blog_path(blog.profile, blog), :method => :delete if @p == blog.profile
-    = link_to image_tag('email_go.png', :title => "Send Blog",:class => 'add_comment'), send_blog_admin_home_path(blog), :confirm => 'Are you sure? Do you  want to send email to all users?' if @is_admin && !blog.is_sent?
+    - if @p == blog.profile
+      = link_to image_tag('edit.png', :title => "Edit blog post"), edit_profile_blog_path(blog.profile, blog)
+      = link_to image_tag('delete.png', :title => "Delete blog post"), profile_blog_path(blog.profile, blog), :method => :delete
+    = link_to image_tag('email_go.png', :title => "Send Blog"), send_blog_admin_home_path(blog), :confirm => 'Are you sure? Do you  want to send email to all users?' if @is_admin && !blog.is_sent?
     .created_date
       Posted by #{blog.profile.full_name} at #{blog.updated_at.to_date.to_formatted_s(:rfc822)}
   .blog_text
@@ -15,17 +17,13 @@
     - else
       = raw highlight(blog.body,@q,"<span class = 'tag_class'>#{params[:search][:blog]}</span>")
   .blog_text
-    - if !@p.blank?
-      = link_to image_tag('add_comment.png',:border =>0), '#', :onclick => "add_comment(#{blog.id})"
-      = link_to "#{blog.comments_count} Comments", '#', :onclick => "show_comment('#{blog.id}')", :id => "profile_#{@p.id}"
+    - if @p.present?
+      = link_to image_tag('add_comment.png'), "#", :class => "add-comment"
+      = link_to_if comment_count > 0, "#{comment_count} Comments", "#", :class => "show-comments"
       Tags:
       - blog.tags.each do |blog_tag|
-        - if @q.nil?
-          = link_to blog_tag.name, show_blogs_profile_blog_path(@p,blog_tag.name)
-        - else
-          = link_to highlight(blog_tag.name,@q,"<span class = 'tag_class'>#{params[:search][:blog]}</span>"), show_blogs_profile_blog_path(@p,blog_tag.name)
-  %div{:id => "show"+blog.id.to_s,:style => "display: none;"}
-    = render 'comments/show_comments', :comment_on => blog
-  %div{:id => "form"+blog.id.to_s,:style => "display: none;"}
-    = render 'comments/form', :comment_on => blog
+        = link_to highlight(blog_tag.name,@q.to_s,"<span class = 'tag_class'>#{params[:search].try(:[],:blog)}</span>"), show_blogs_profile_blog_path(@p,blog_tag.name)
+  .blog_comments
+    = render :partial => 'comments/comment', :collection => blog.comments
+  = render 'comments/form', :commentable => blog
   %span.widget_lrg_btm

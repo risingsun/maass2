@@ -9,7 +9,6 @@ class HomesController < ApplicationController
     @blurb_image = Photo.blurb_images
     @home_data = sorted_results(blogs,polls,events).paginate(:page => @page,:per_page => BLOGS_PER_PAGE)
     @albums = Album.all
-    debugger
   end
 
   def photo_gallery

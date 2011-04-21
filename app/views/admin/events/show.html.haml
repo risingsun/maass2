@@ -1,4 +1,4 @@
-.widget_large{:id => "event_#{@event.id}"}
+.widget_large.commentable{:id => "event_#{@event.id}"}
   %span.widget_lrg_top
   %h3.blog_head
     = link_to image_tag(set_icon(@event.organizers.first,'small')), @event.organizers.first
@@ -25,7 +25,7 @@
       .event_value= @event.place
   .blog_text
     %strong RSVP:
-    = render 'comments/form', :comment_on => @event
-    = render 'comments/show_comments', :comment_on => @event
+    = render 'comments/form', :commentable => @event
+    = render :partial => "/comments/comment", :collection => @event.comments.reject{|x|x.new_record?}
     .clear_div
   %span.widget_lrg_btm
