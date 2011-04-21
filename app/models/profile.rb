@@ -279,9 +279,9 @@ class Profile < ActiveRecord::Base
   end
 
   def friends_on_google_map(profile)
-    f = (self.friends + self.followers + self.followings).select {|p| p.can_see_field('marker', profile)} + self
-    friends  = f.select {|p| p.marker}
-    return friends
+    f = (self.friends + self.followers + self.followings).select {|p| p.can_see_field('marker', profile)}.insert(self)
+    users  = f.select {|p| p.marker}
+    return users
   end
 
   def spouse_name

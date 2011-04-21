@@ -1,4 +1,5 @@
-- comment = @profile.comments.new
+- profile = @profile || profile
+- comment = profile.comments.new
 #new_comment
 = form_for comment do |c|
   = c.text_area :comment, :class=> "textarea"

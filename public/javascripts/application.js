@@ -330,7 +330,6 @@ function show_gallery(){
 }
 
 function delete_comment(p_id, c_id){
-  
   jQuery.ajax({
     url: "/profiles/"+p_id+"/comment",
     dataType: "json",
@@ -341,5 +340,4 @@ function delete_comment(p_id, c_id){
       jQuery("#profile_"+p_id).text(data).fadeIn("fast");
     }
   });
-
 }

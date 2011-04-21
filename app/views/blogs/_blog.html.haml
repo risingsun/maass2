@@ -1,4 +1,4 @@
-- @profile = blog.profile
+- profile = blog.profile
 .widget_large{:id => "blog_#{blog.id}"}
   %span.widget_lrg_top
   %h3.blog_head
@@ -27,5 +27,5 @@
   %div{:id => "show"+blog.id.to_s,:style => "display: none;"}
     = render 'comments/show_comments', :comment_on => blog
   %div{:id => "form"+blog.id.to_s,:style => "display: none;"}
-    = render 'comments/form', :comment_on => blog
+    = render('comments/form', :comment_on => blog, :profile => profile)
   %span.widget_lrg_btm
