@@ -961,6 +961,10 @@ a.grey_links_sml3:hover{
   margin-right: 10px;
 }*/
 
+*.middle_panel_profile{
+  margin-right: 0px;
+  margin-left: 0px;
+}
 /**.middle_panel_profile{
   margin-right: -50px;
   margin-left: 4px;

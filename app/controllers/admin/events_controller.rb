@@ -1,21 +1,21 @@
 class Admin::EventsController < ApplicationController
 
-  before_filter :load_event, :only => [:edit, :update, :show, :destroy, :event_members]
-  before_filter :show_events_side_panels, :only => [:show]
-
+  before_filter :load_event
   respond_to :html, :json, :only =>[:rsvp]
 
-  layout "admin"
+  layout "application"
 
   def index
     @events = Event.all
     if @events.blank?
       redirect_to new_admin_event_path
     end
+    render :layout => "admin"
   end
 
   def new
     @event = Event.new
+    render :layout => "admin"
   end
 
   def create
@@ -25,12 +25,13 @@ class Admin::EventsController < ApplicationController
       flash[:notice] = "Event Creation Failed."
     else
       flash[:error] = "Successfully created Event."
-      @event.set_organizer(@p)
+      @event.set_organizer(@profile)
       redirect_to admin_events_path
     end
   end
 
   def edit
+    render :layout => "admin"
   end
 
   def update
@@ -69,9 +70,9 @@ class Admin::EventsController < ApplicationController
 
   def rsvp
     event = Event.find(params[:id])
-    pe = ProfileEvent.find(:first,:conditions => {:event_id => event.id,:profile_id => @p.id})
+    pe = ProfileEvent.find(:first,:conditions => {:event_id => event.id,:profile_id => @profile.id})
     unless pe
-      pe = ProfileEvent.create(:event_id => event.id,:profile_id => @p.id)
+      pe = ProfileEvent.create(:event_id => event.id,:profile_id => @profile.id)
     end
     pe.update_attribute('role',params[:group])unless pe.is_organizer?
     respond_with(pe.role.to_json, :location => event_path(event))
@@ -84,13 +85,19 @@ class Admin::EventsController < ApplicationController
   end
 
   private
-
-  def load_event
-    @event = @p ? Event.find(params[:id]) : redirect_to(new_user_session_path)
+  
+  def allow_to
+    super :admin, :all => true
+    super :active_user, :only => [:show, :rsvp, :event_members]
   end
 
   def show_events_side_panels
     @event_panel = true
+  end
+
+  def load_event
+    @profile = @p
+    @event = @profile ? Event.find(params[:id]) : redirect_to(new_user_session_path)
   end
 
 end

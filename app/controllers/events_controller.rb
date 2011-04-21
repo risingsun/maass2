@@ -39,5 +39,12 @@ class EventsController < ApplicationController
       end
     end
   end
+
+  private
+
+  def allow_to
+    super :admin, :all => true
+    super :active_user, :only => [:alumni_friends]
+  end
   
 end

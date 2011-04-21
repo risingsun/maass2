@@ -8,7 +8,7 @@ class HomesController < ApplicationController
     @nomination = @p.nomination || @p.build_nomination if @p
     @blurb_image = Photo.blurb_images
     @home_data = sorted_results(blogs,polls,events).paginate(:page => @page,:per_page => BLOGS_PER_PAGE)
-    @albums = @p.albums
+    @albums = Album.all
 
   end
 
@@ -41,6 +41,12 @@ class HomesController < ApplicationController
       wants.html {render :action=>'index'}
       wants.rss {render :layout=>false}
     end
+  end
+
+  private
+   
+  def allow_to
+    super :all, :all=>true
   end
   
 end

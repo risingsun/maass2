@@ -90,4 +90,10 @@ class Admin::PreferencesController < ApplicationController
     redirect_to admin_preferences_path
   end
 
+  private
+  
+  def allow_to
+    super :admin, :all => true
+  end
+
 end

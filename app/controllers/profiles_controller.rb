@@ -2,7 +2,6 @@ class ProfilesController < ApplicationController
 
   before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user, :batch_mates]
   before_filter :search_results, :only => [:search]
-  before_filter :show_panels, :only => [:show, :user_friends, :batch_mates]
 
   def index
     if @is_admin
@@ -49,9 +48,9 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    if !current_user.blank?
+    unless current_user.blank?
       @feed_items = @profile.feeds_with_item
-      @friends = @p.friends_on_google_map(@profile) if @profile.can_see_field('marker', @p)
+      @friends = @profile.friends_on_google_map(@p) if @profile.can_see_field('marker', @p)
       respond_to do |format|
         format.html
         format.rss {render :layout => false}
@@ -146,20 +145,22 @@ class ProfilesController < ApplicationController
 
   private
 
+  def allow_to
+    super :owner, :all => true
+    super :active_user, :only => [:show, :index, :search, :friend_search, :search_group , :search_location, :batch_mates, :batch_details]
+    super :all, :only => [:update_email]
+  end
+
   def load_profile
     @profile = params[:id] == @p ? @p : Profile.find(params[:id])
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
     @user=@profile.user
-  end
-
-  def show_panels
     @show_profile_side_panel = true
-    @side_panels = true
   end
 
   def valid_batch_range(group = @group)
     !group.blank? && GROUPS.include?([group])
   end
-
+  
 end

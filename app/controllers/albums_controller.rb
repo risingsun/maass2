@@ -12,7 +12,7 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = Album.new
+    @album = @p.album.new
     @photos = @album.photos.build
     @title = "New Album"
   end
@@ -68,6 +68,10 @@ class AlbumsController < ApplicationController
 
   private
 
+  def allow_to
+    super :admin, :all => true
+  end
+  
   def load_album
     @album = Album.find(params[:id])
   end

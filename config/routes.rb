@@ -1,6 +1,6 @@
 Maass2::Application.routes.draw do
 
-  devise_for :users, :controllers => {:registrations => "users"}
+  devise_for :users, :controllers => {:registrations => "users", :sessions => "sessions"}
 
   match "/auth/:provider/callback" => "authentications#create"
   match "/auth/failure" => "authentications#failure"
@@ -59,7 +59,7 @@ Maass2::Application.routes.draw do
     resources :feed_items
     resources :invitations
     resources :nominations,:except => [:index]
-    resources :comments
+    resource :comment,:only => [:create, :destroy, :show]
     resources :messages do
       get 'sent_messages', :on => :collection
       get 'reply_message', :on => :member

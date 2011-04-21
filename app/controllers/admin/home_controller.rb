@@ -34,6 +34,10 @@ class Admin::HomeController < ApplicationController
   end
 
   private
+
+  def allow_to
+    super :admin, :all => true
+  end
   
   def load_profile
     @profile = @p

@@ -11,7 +11,7 @@ class ForumPostsController < ApplicationController
   def create
     @post = @topic.posts.build(params[:post])
     if @post.save
-     flash[:notice] = "Successfully Created ForumPost."
+      flash[:notice] = "Successfully Created ForumPost."
     else
       flash[:error] = "ForumPost Was Not Successfully Created."
     end
@@ -26,6 +26,11 @@ class ForumPostsController < ApplicationController
   end
 
   private
+
+  def allow_to
+    super :admin, :all => true
+    super :active_user, :only => [:new, :create, :destroy]
+  end
 
   def load_forum_post
     @forum = Forum.find(params[:forum_id])

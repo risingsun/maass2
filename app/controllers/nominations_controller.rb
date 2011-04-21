@@ -33,6 +33,11 @@ class NominationsController < ApplicationController
 
   protected
 
+  def allow_to
+    super :owner, :all => true
+    super :admin, :only => [:index]
+  end
+
   def setup    
     @my_nomination = params[:profile_id].to_i == @p.id
     @profile = @my_nomination  ? @p : Profile.find(params[:profile_id])

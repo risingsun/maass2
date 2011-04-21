@@ -18,16 +18,20 @@
           - else
             = render 'shared/header_tab'
         .clear_div
-        .admin_panel
-          = render :partial => "admin/shared/admin_header" if @show_admin_header
         .side_panel
-          = render :partial => "shared/lsidebar"
+          - if @event
+            = render :partial => "admin/events/lsidebar"
+          - else
+            = render :partial => "shared/lsidebar"
           = yield :left_side_panel
         .middle_panel
           = display_standard_flashes
           %span#main_container= yield
         .side_panel
-          = render :partial => "shared/rsidebar"
+          - if @event
+            = render :partial => "admin/events/rsidebar"
+          - else
+            = render :partial => "shared/rsidebar"
           = yield :right_side_panel
       .clear_div
       .footer= render :partial => 'shared/footer'

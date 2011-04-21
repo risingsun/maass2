@@ -71,5 +71,9 @@ class UsersController < Devise::RegistrationsController
     send(:"authenticate_#{resource_name}!", true)
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
   end
+
+  def allow_to
+    super :all, :all=>true
+  end
   
 end
