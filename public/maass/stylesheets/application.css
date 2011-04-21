@@ -3067,7 +3067,7 @@ table.greetings {
 
 .buttons{
   background:transparent repeat scroll 0%;
-  float: none;
+  float: left;
   border:medium none;
   color:#FFFFFF;
   cursor:pointer;

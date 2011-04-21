@@ -1,9 +1,10 @@
-- profile = Profile.todays_featured_profile
-= profile && rounded_corner(:size => :small,:title => image_tag("star.gif",:class => "featured_mem") + "Featured Member") do
-  .featured_mem_div
-    = link_to image_tag(set_icon(profile,'small_60')), profile_path(profile), {:class => "featured_mem_pic"}
-    = link_to profile.f(20), profile, :class => "featured_mem_text"
-    %br
-    =profile.group
-    %br
-    .featured_mem_lower_text= truncate(profile.about_me, :length => 90, :omission => "...")
+- cache('featured_member', :time_to_live => 1.day.from_now) do
+  - profile = Profile.todays_featured_profile
+  = profile && rounded_corner(:size => :small,:title => image_tag("star.gif",:class => "featured_mem") + "Featured Member") do
+    .featured_mem_div
+      = link_to image_tag(set_icon(profile,'small_60')), profile_path(profile), {:class => "featured_mem_pic"}
+      = link_to profile.f(20), profile, :class => "featured_mem_text"
+      %br
+      =profile.group
+      %br
+      .featured_mem_lower_text= truncate(profile.about_me, :length => 90, :omission => "...")

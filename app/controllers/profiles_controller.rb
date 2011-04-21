@@ -48,7 +48,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    if !current_user.blank?
+    unless current_user.blank?
       @feed_items = @profile.feeds_with_item
       @friends = @profile.friends_on_google_map(@p) if @profile.can_see_field('marker', @p)
       respond_to do |format|

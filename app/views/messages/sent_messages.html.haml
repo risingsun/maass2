@@ -20,7 +20,7 @@
             = message.body
         = link_to image_tag('delete.png', :class => 'delete'), profile_message_path(@profile, message), :method => :delete
       .message_button_container
-        = link_to image_tag("select_all.png"), '#',:class => "select_all"
+        = link_to image_tag("select_all.png"), '#',:class => "select_all buttons"
         %button.buttons{:type => "submit"}
           = image_tag("delete-selected.png")
     .clear_div
