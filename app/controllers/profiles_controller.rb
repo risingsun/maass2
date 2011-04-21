@@ -156,6 +156,7 @@ class ProfilesController < ApplicationController
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
     @user=@profile.user
+    @show_profile_side_panel = true
   end
 
   def valid_batch_range(group = @group)

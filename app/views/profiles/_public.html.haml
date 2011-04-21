@@ -44,7 +44,7 @@
 = render :partial => 'polls/list'
 = render :partial => 'forum_posts/list'
 = render :partial=> 'comments/comment_list', :locals => {:with_form => true, :with_wall_to_wall => true}
-- if @profile.marker || !@friends.blank?
+- if !@friends.blank?
   .widget_large
     %span.widget_lrg_top
     = slide_up_down_header('google_map','Google Map')
