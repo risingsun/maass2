@@ -55,15 +55,9 @@ class ApplicationController < ActionController::Base
   end
 
   def failed_check_access_permissions
-    if !@development
-      flash[:error] = 'It looks like you don\'t have permission to view that page.'
-      redirect_to :back and return true
-    else
-      flash[:error] = 'It looks like you don\'t have permission to view that page.'
-      redirect_to :back and return true
-    end
-    @level = []
-    false
+    flash[:error] = 'It looks like you don\'t have permission to view that page.'
+    session[:return_to] ||= request.referer
+    redirect_to session[:return_to]
   end
     
 end

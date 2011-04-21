@@ -48,7 +48,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    if !current_user.blank?
+    unless current_user.blank?
       @feed_items = @profile.feeds_with_item
       @friends = @profile.friends_on_google_map(@p) if @profile.can_see_field('marker', @p)
       respond_to do |format|
@@ -156,6 +156,7 @@ class ProfilesController < ApplicationController
     @educations = @profile.educations || @profile.educations.build
     @works = @profile.works || @profile.works.build
     @user=@profile.user
+    @show_profile_side_panel = true
   end
 
   def valid_batch_range(group = @group)
