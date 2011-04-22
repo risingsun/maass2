@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 - @profile = blog.profile
 - comment_count = blog.comments_count
 .widget_large.commentable[blog]
+=======
+- profile = blog.profile
+.widget_large{:id => "blog_#{blog.id}"}
+>>>>>>> 8842bf21b90adb652a9725dc458853dbd6e92057
   %span.widget_lrg_top
   %h3.blog_head
     = link_to image_tag(set_icon(blog.profile,'small')), homes_path
@@ -22,8 +27,19 @@
       = link_to_if comment_count > 0, "#{comment_count} Comments", "#", :class => "show-comments"
       Tags:
       - blog.tags.each do |blog_tag|
+<<<<<<< HEAD
         = link_to highlight(blog_tag.name,@q.to_s,"<span class = 'tag_class'>#{params[:search].try(:[],:blog)}</span>"), show_blogs_profile_blog_path(@p,blog_tag.name)
   .blog_comments
     = render :partial => 'comments/comment', :collection => blog.comments
   = render 'comments/form', :commentable => blog
+=======
+        - if @q.nil?
+          = link_to blog_tag.name, show_blogs_profile_blog_path(@p,blog_tag.name)
+        - else
+          = link_to highlight(blog_tag.name,@q,"<span class = 'tag_class'>#{params[:search][:blog]}</span>"), show_blogs_profile_blog_path(@p,blog_tag.name)
+  %div{:id => "show"+blog.id.to_s,:style => "display: none;"}
+    = render 'comments/show_comments', :comment_on => blog
+  %div{:id => "form"+blog.id.to_s,:style => "display: none;"}
+    = render('comments/form', :comment_on => blog, :profile => profile)
+>>>>>>> 8842bf21b90adb652a9725dc458853dbd6e92057
   %span.widget_lrg_btm
