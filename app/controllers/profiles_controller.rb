@@ -1,7 +1,6 @@
 class ProfilesController < ApplicationController
 
   before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user, :batch_mates]
-  before_filter :search_results, :only => [:search]
 
   def index
     if @is_admin
@@ -78,12 +77,12 @@ class ProfilesController < ApplicationController
   end
 
   def search
-    if params[:search][:key] && params[:search][:key]== "blog"
-      @blogs= Blog.search params[:search][:q], :match_mode=> :boolean
-      @title = "Search"
+    @title = "Search"
+    if params[:search].try(:[],:key) == "blog"
+      @blogs = Blog.search params[:search][:q], :match_mode=> :boolean
       render :template => "blogs/search_blog"
     else
-      @title = "Search"
+      @results = Profile.search_by_keyword(params[:search])
       render :template=>'profiles/user_friends'
     end
   end

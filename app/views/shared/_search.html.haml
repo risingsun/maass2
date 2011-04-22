@@ -1,3 +1,4 @@
 = form_tag friend_search_profiles_path, :method => :get do
-  = text_field_tag 'search[q]', (params[:search] && params[:search][:q] ?  @q : 'Search for Friends'), :id => 'search_q', :class => "search_textbox"
+  - default_text = params[:search].try(:[],:q)
+  = text_field_tag 'search[q]', default_text, :id => 'search_q', :class => "search_textbox", :placeholder => "Search for Friends"
   %button.search_btn{:type => "submit"}

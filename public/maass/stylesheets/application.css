@@ -720,7 +720,7 @@ a.button_large:hover{
   width: 202px;
 }
 
-.comments{
+.comments {
   width: 517px;
   float: left;
   margin-left: 10px;
@@ -1086,14 +1086,14 @@ a.grey_links_sml3:hover{
 * html .comment_btn_container{
   margin-left: -10px;
 }
-.delete{
+.delete-comment {
   float: right;
   margin-left: 3  px;
   margin-right: 7px;
   margin-top: 10px;
 }
 
-* html .delete {
+* html .delete-comment {
   position: relative;
 }
 .large_panel_side{
@@ -4111,8 +4111,12 @@ div.album_links a{
     font-size: 14px;
     margin: 10px;
 }
-/*label.label_margin {
-    font-size: small;
-    margin: 8px 8px 2px;
+.blog_label_margin {
+    font-size: 12px;
+    margin: 10px 8px 5px;
     position: relative;
-}*/
+}
+
+.blog .blog_comments, .blog .comment_form {
+  display: none;
+}

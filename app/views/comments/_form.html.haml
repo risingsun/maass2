@@ -1,14 +1,10 @@
-- profile = @profile || profile
-- comment = profile.comments.new
-#new_comment
-= form_for comment do |c|
-  = c.text_area :comment, :class=> "textarea"
-  = c.hidden_field :commentable_id, :value => comment_on.id
-  = c.hidden_field :commentable_type, :value => comment_on.class.name
-  %div{:id => "#{comment_on.id}_comment_div"}
+.comment_form
+  = form_for [@p,commentable.comments.build] do |c|
+    = c.text_area :comment, :class=> "textarea"
+    = c.hidden_field :commentable_id
+    = c.hidden_field :commentable_type
     .comment_btn_container
       %button.buttons{:type => "submit"}
         = image_tag("add-comment.png")
-      - unless comment_on.class.name == "Profile" || comment_on.class.name == "Event"
-        %button.buttons#cancel{:type => "button",:onclick => "cancel_comment(#{comment_on.id})"}
-          = image_tag("cancel-button.png")
+      - if show_form_cancel?(commentable)
+        %button.buttons.comment-form-cancel= image_tag("cancel-button.png")

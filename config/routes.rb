@@ -59,7 +59,7 @@ Maass2::Application.routes.draw do
     resources :feed_items
     resources :invitations
     resources :nominations,:except => [:index]
-    resource :comment,:only => [:create, :destroy, :show]
+    resource :comments, :only => [:create, :show]
     resources :messages do
       get 'sent_messages', :on => :collection
       get 'reply_message', :on => :member

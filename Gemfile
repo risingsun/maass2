@@ -1,11 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
+  gem 'mongrel'
   gem 'hpricot'
   gem 'ruby_parser'
   gem 'rspec'
@@ -55,11 +56,6 @@ gem 'oa-openid', :require => 'omniauth/openid'
 gem 'fb_graph'
 gem 'disqus'
 gem 'RedCloth'
-
-
-
-
-
 
 # Use unicorn as the web server
 # gem 'unicorn'
