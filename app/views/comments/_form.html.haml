@@ -1,19 +1,8 @@
-<<<<<<< HEAD
 .comment_form
   = form_for [@p,commentable.comments.build] do |c|
     = c.text_area :comment, :class=> "textarea"
     = c.hidden_field :commentable_id
     = c.hidden_field :commentable_type
-=======
-- profile = @profile || profile
-- comment = profile.comments.new
-#new_comment
-= form_for comment do |c|
-  = c.text_area :comment, :class=> "textarea"
-  = c.hidden_field :commentable_id, :value => comment_on.id
-  = c.hidden_field :commentable_type, :value => comment_on.class.name
-  %div{:id => "#{comment_on.id}_comment_div"}
->>>>>>> 8842bf21b90adb652a9725dc458853dbd6e92057
     .comment_btn_container
       %button.buttons{:type => "submit"}
         = image_tag("add-comment.png")
