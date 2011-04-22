@@ -68,6 +68,18 @@ jQuery(document).ready(function()
     return false;
   });
 
+  jQuery(".status-form-cancel").click(function(){
+    jQuery('#status_form').hide();
+    jQuery('#status_show').show();
+    return false;
+  });
+
+   jQuery("#status_show").click(function(){
+    jQuery('#status_form').show();
+    jQuery('#status_show').hide();
+    return false;
+  });
+
   jQuery('.datebalks').datepicker({
     dateFormat:'dd M yy',
     showOn: "both",
@@ -239,21 +251,6 @@ function content_show_hide(div_id){
   id=jQuery(div_id)
   jQuery(id).slideToggle();
 }
-
-function show_status(){
-  jQuery("#status_show").hide();
-  jQuery("#status_form").show();
-}
-
-function cancel_status(){
-  jQuery("#status_show").show();
-  jQuery("#status_form").hide();
-}
-
-jQuery('#cancel').click(function(){
-  jQuery('#status').hide();
-  jQuery('#status_show').show();
-});
 
 jQuery('#search_q').live('focus.search_query_field', function(){
   if(jQuery(this).val()=='Search for Friends'){

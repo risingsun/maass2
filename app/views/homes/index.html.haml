@@ -5,19 +5,17 @@
   %span.widget_lrg_top
   .blurb_image_div
     .blurb_image_head
-      %div
-        = SITE_FULL_NAME
+      = SITE_FULL_NAME
     .blurb_image_footer
-      %div
-        = link_to("About The School","#")
-        |
-        = link_to("Feedback","#")
-        |
-        = link_to("Contact Us","#")
-        |
-        = link_to("Credits","#")
-        |
-        = link_to("Forums", forums_path)
+      = link_to("About The School","#")
+      |
+      = link_to("Feedback","#")
+      |
+      = link_to("Contact Us","#")
+      |
+      = link_to("Credits","#")
+      |
+      = link_to("Forums", forums_path)
     .slideshow
       -if @blurb_image
         - @blurb_image.each do |photo|

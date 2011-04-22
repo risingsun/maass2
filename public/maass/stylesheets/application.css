@@ -2852,7 +2852,7 @@ table.greetings {
 }
 
 .header_back{
-  position: fixed;
+  position: absolute;
 }
 
 *html .header_back{
@@ -4117,6 +4117,12 @@ div.album_links a{
     position: relative;
 }
 
-.blog .blog_comments, .blog .comment_form {
+.blog .blog_comments, .blog .comment_form, .hide_info{
   display: none;
+}
+.delete {
+  float: right;
+  margin-left: 3  px;
+  margin-right: 7px;
+  margin-top: 10px;
 }

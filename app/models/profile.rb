@@ -65,7 +65,7 @@ class Profile < ActiveRecord::Base
   scope :new_joined, :order => 'created_at desc'
 
   cattr_accessor :featured_profile
-  @@featured_profile = {:date=>Date.today-4, :profile=>nil}
+  @@featured_profile = {:date => Date.today-4, :profile => nil}
   @@days = ()
 
   after_update :create_my_feed
