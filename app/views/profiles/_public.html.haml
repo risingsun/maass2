@@ -16,7 +16,7 @@
   %span.widget_lrg_top
   = slide_up_down_header('personal_info','Personal Info')
   .middle_panel_profile
-    #personal_info{:style => "display:none;"}
+    #personal_info.hide_info
       .slidecontent
         = render 'profiles/personal'
   %span.widget_lrg_btm
@@ -25,7 +25,7 @@
     %span.widget_lrg_top
     = slide_up_down_header('work_info','Work Info')
     .middle_panel_profile
-      #work_info{:style => "display:none;align:left;"}
+      #work_info.hide_info
         .slidecontent
           = render 'profiles/work' if !@profile.works.blank?
     %span.widget_lrg_btm
@@ -34,7 +34,7 @@
     %span.widget_lrg_top
     = slide_up_down_header('education_info','Education Info')
     .middle_panel_profile
-      #education_info{:style => "display:none;"}
+      #education_info.hide_info
         .slidecontent
           = render 'profiles/education' if !@profile.educations.blank?
     %span.widget_lrg_btm

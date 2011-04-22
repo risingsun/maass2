@@ -3,8 +3,7 @@
     = f.semantic_fields_for(:user) do |u|
       %div{:class => cycle(:row_dark2, :row_light2)}
         %label.label_margin Current Email
-        %label.label_margin
-          = @p.email
+        %label.label_margin= @p.email
       %div{:class => cycle(:row_dark2, :row_light2)}
         = u.input :requested_new_email, :label => "Requested New Email"
   %button.buttons{:type => "submit"}

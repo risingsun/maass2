@@ -3,8 +3,8 @@
   = raw GMap.header()
   = raw @map.to_html
   = raw @map.div(:width => 460, :height => 400)
-  -@marker = @profile.marker || @profile.build_marker
-  =f.semantic_fields_for(:marker) do |m|
+  - @marker = @profile.marker || @profile.build_marker
+  = f.semantic_fields_for(:marker) do |m|
     = m.hidden_field(:lat,:id=>'map_lat')
     = m.hidden_field(:lng,:id=>'map_lng')
     = m.hidden_field(:zoom,:id=>'map_zoom')

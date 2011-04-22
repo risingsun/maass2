@@ -14,6 +14,5 @@
           = inline_bar_graph(per,p.count)
           .batch_newest_member
             = link_to(last_person.full_name, profile_path(last_person))
-            %br
             joined on #{(last_person.created_at).to_date.to_formatted_s(:rfc822)}
         .clear_div

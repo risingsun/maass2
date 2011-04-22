@@ -5,7 +5,7 @@
     %th University
   -@educations.each do |x|
     %tr
-      %td{:width => "70px"}= x.education_from_year
-      %td{:width => "70px"}= x.education_to_year
-      %td{:width => "70px"}= x.institution
+      %td= x.education_from_year
+      %td= x.education_to_year
+      %td= x.institution
     

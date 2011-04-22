@@ -1,8 +1,8 @@
 .fields
-  = f.input :occupation, :input_html => {:class => "text_field"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :industry, :input_html => {:class => "text_field"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :company_name, :label => "Company Name", :input_html => {:class => "text_field"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :company_website, :label => "Company Website", :input_html => {:class => "text_field"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :job_description, :as => :text, :label => "Job Description", :input_html => {:class => "text_area"}, :wrapper_html => {:class => "row_light_large2"}
+  = f.input :occupation,:wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+  = f.input :industry,:wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+  = f.input :company_name, :label => "Company Name",:wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+  = f.input :company_website, :label => "Company Website", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+  = f.input :job_description, :as => :text, :label => "Job Description", :wrapper_html => {:class => "row_light_large2"}
   %div{:class => cycle(:row_light2, :row_dark2)}
     = link_to_remove_fields(image_tag("remove.png"), f)
