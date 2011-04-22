@@ -146,7 +146,7 @@ class ProfilesController < ApplicationController
 
   def allow_to
     super :owner, :all => true
-    super :active_user, :only => [:show, :index, :search, :friend_search, :search_group , :search_location, :batch_mates, :batch_details]
+    super :active_user, :only => [:show, :index, :search, :friend_search, :search_group , :search_location, :batch_mates, :batch_details, :active_user]
     super :all, :only => [:update_email]
   end
 
