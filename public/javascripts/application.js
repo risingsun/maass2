@@ -27,6 +27,42 @@ jQuery(document).ready(function()
     return false;
   });
 
+  jQuery(".delete_title").click(function(){
+    jQuery.ajax({
+      url: jQuery(this).attr('href'),
+      dataType: "html",
+      type: 'DELETE',
+      success: function(response){
+        jQuery('#titles').html(response);
+      }
+    });
+    return false;
+  });
+
+  jQuery(".add_title").click(function(){
+    jQuery.ajax({
+      url: jQuery(this).attr('href'),
+      dataType: "html",
+      type: 'GET',
+      success: function(response){
+        jQuery("#titles").html(response)
+      }
+    });
+    return false;
+  });
+
+  jQuery(".add_house").click(function(){
+    jQuery.ajax({
+      url: jQuery(this).attr('href'),
+      dataType: "html",
+      type: 'GET',
+      success: function(response){
+        jQuery("#houses").html(response)
+      }
+    });
+    return false;
+  });
+
   jQuery(".comment-form-cancel").click(function(){
     jQuery(this).parents('.comment_form').hide();
     return false;
@@ -76,7 +112,7 @@ jQuery(document).ready(function()
     },
     function(){
       jQuery(this).css('background-color', 'transparent')
-  });
+    });
 
   jQuery("#student_check_year").change(function() {
     year = this.value
@@ -122,28 +158,6 @@ jQuery(document).ready(function()
     jQuery('#photo_crop_h').val(coords.h);
   }
 });
-
-function add_title(fun,method){
-  jQuery.ajax({
-    url: "/admin/preferences/"+fun,
-    dataType: "html",
-    type: method,
-    success: function(response){
-      jQuery("#title").html(response)
-    }
-  });
-}
-
-function add_house(fun,method){
-  jQuery.ajax({
-    url: "/admin/preferences/"+fun,
-    dataType: "html",
-    type: method,
-    success: function(response){
-      jQuery("#house_name").html(response)
-    }
-  });
-}
 
 function event_change(id){
   var type = jQuery("input:radio[name='event']:checked").val();
