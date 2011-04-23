@@ -7,8 +7,8 @@
     %th Company Website
   -@works.each do |x|
     %tr
-      %td= x.company_name
-      %td= x.industry
-      %td= x.occupation
-      %td= x.job_description
+      %td{:width => "70px"}= x.company_name
+      %td{:width => "70px"}= x.industry
+      %td{:width => "70px"}= x.occupation
+      %td{:width => "200px"}= x.job_description
       %td= link_to x.company_website, x.company_website if x.company_website
