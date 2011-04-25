@@ -20,9 +20,7 @@ class StudentCheck < ActiveRecord::Base
   scope :unregistered, :conditions => ["profile_id is null"]
   scope :name_order, :order => 'first_name, last_name'
   scope :ordered, lambda { |*order| { :order => order.flatten.first}}
-  scope :with_profile, :include => :profile
-
-  scope :unregistered, :conditions => ["profile_id is null"]
+  scope :with_profile, :include => :profile  
 
   def fix_name
     if self.name.blank?

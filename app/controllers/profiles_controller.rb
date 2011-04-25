@@ -76,13 +76,13 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def search
+  def search    
     @title = "Search"
     if params[:search].try(:[],:key) == "blog"
-      @blogs = Blog.search params[:search][:q], :match_mode=> :boolean
+      @blogs = Blog.search params[:search][:q], :match_mode=> :boolean, :page => params[:page], :per_page => PROFILE_PER_PAGE
       render :template => "blogs/search_blog"
     else
-      @results = Profile.search_by_keyword(params[:search])
+      @results = Profile.search params[:search][:q], :match_mode=> :boolean, :page => params[:page], :per_page => PROFILE_PER_PAGE
       render :template=>'profiles/user_friends'
     end
   end
