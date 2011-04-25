@@ -1,3 +1,9 @@
-- if !@feedbacks.blank?
-  = render :partial => 'feedback', :collection => @feedbacks
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width Feedbacks
+  - if !@feedbacks.blank?
+    = render :partial => 'feedback', :collection => @feedbacks
+  - else
+    No Feedbacks To Display!
+  %span.widget_complete_btm
 = will_paginate @feedbacks

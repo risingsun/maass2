@@ -1,4 +1,4 @@
-.fields
-  = f.inputs do
-    = f.input :image, :label => "Upload your Image (<=5Mb)", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :caption, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.file_field :image, :label => "Upload your Image (<=5Mb)", :input_html => {:multiple => true, :name => 'file[]'}
+= f.text_field :caption
+.file_upload_label
+  Upload files

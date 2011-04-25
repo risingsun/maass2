@@ -1,7 +1,9 @@
-- rounded_corner(:title => "Announcements", :size => 'lrg') do
-  %br
-  = button_to "New", admin_announcements_path, :html => {:method=> :post}
-  %table
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width
+    Announcements
+    = link_to image_tag('add_new_post.png', :title=>"Create New Announcement", :class=>"add_new_post2"), new_admin_announcement_path
+  %table.announcements.comments
     %tr
       %th Message
       %th Start
@@ -14,3 +16,4 @@
         %td= link_to image_tag('edit.png', :title => "Edit Announcement"),  edit_admin_announcement_path(announcement)
         %td= link_to image_tag('delete.png', :title => "Delete Announcement"), admin_announcement_path(announcement), :method => :delete
   .clear_div
+  %span.widget_complete_btm

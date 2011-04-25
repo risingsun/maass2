@@ -1,6 +1,10 @@
-= form_for @announcement,:url => admin_announcements_path, :html => {:method=> :post} do |form|
-  = rounded_corner(:title => "Create Announcement", :size => 'lrg') do
-    = render :partial => 'form', :locals => {:f => form}
-    .large_btn_container2
-      %button.buttons{:type => "submit"}
-        = image_tag('save.png')
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width Create Announcement
+  .blog_text
+    = semantic_form_for @announcement,:url => admin_announcements_path, :html => {:method=> :post} do |form|
+      = render :partial => 'form', :locals => {:f => form}
+      .large_btn_container2
+        %button.buttons{:type => "submit"}
+          = image_tag('save.png')
+  %span.widget_complete_btm

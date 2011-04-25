@@ -1,8 +1,12 @@
-= semantic_form_for [@p, @photo],:html => { :multipart => true } do |f|
-  = rounded_corner(:title => "New Photo Upload", :id => "upload_photo") do
-    = f.inputs do
-      = f.input :image, :label => "Upload your Image (<=5Mb)", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :caption, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.hidden_field :set_as_blurb
-    %button.buttons{:type => "submit"}
-      = image_tag("save.png")
+= javascript_include_tag 'jquery.fileupload-ui','jquery.fileupload'
+= stylesheet_link_tag 'jquery.fileupload-ui'
+.files
+  = semantic_form_for [@album,@photo],:html => { :class => "upload", :multipart => true } do |f|
+    = rounded_corner(:title => "Upload #{@album.name}'s Photos", :id => "upload_photo") do
+      = f.inputs do
+        = f.input :caption, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+        = f.input :image, :as => :file, :input_html => {:multiple => true, :name => 'photo[image]'}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+.widget_complete
+  %span.widget_complete_top
+  %table.upload_files
+  %table.download_files
