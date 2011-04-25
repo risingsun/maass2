@@ -8,8 +8,9 @@
         - @titles.each do |title|
           .preference_key
             = title.name.titlecase
-            = link_to(image_tag('delete.png'), delete_title_admin_preference_path(title.id), :class=>'delete_title')
-        = link_to(image_tag('add-button.png',:title => "Add"),new_title_admin_preferences_path, :class=>'add_title')
+          .delete_title
+            = link_to image_tag('delete.png'), delete_title_admin_preference_path(title.id), :class=>'delete_titles'
+        = link_to image_tag('add-button.png',:title => "Add"),new_title_admin_preferences_path, :class=>'add_title'
         = link_to "Edit", edit_title_admin_preferences_path, :class=>'add_title'
     .clear_div
     %span.widget_lrg_btm

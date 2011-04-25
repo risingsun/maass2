@@ -27,7 +27,7 @@ jQuery(document).ready(function()
     return false;
   });
 
-  jQuery(".delete_title").click(function(){
+  jQuery(".delete_titles").click(function(){
     jQuery.ajax({
       url: jQuery(this).attr('href'),
       dataType: "html",
@@ -39,13 +39,25 @@ jQuery(document).ready(function()
     return false;
   });
 
+  jQuery(".delete_house").click(function(){
+    jQuery.ajax({
+      url: jQuery(this).attr('href'),
+      dataType: "html",
+      type: 'DELETE',
+      success: function(response){
+        jQuery('#houses').html(response);
+      }
+    });
+    return false;
+  });
+
   jQuery(".add_title").click(function(){
     jQuery.ajax({
       url: jQuery(this).attr('href'),
       dataType: "html",
       type: 'GET',
       success: function(response){
-        jQuery("#titles").html(response)
+        jQuery("#title").html(response)
       }
     });
     return false;
@@ -57,7 +69,7 @@ jQuery(document).ready(function()
       dataType: "html",
       type: 'GET',
       success: function(response){
-        jQuery("#houses").html(response)
+        jQuery("#house_name").html(response)
       }
     });
     return false;
@@ -74,7 +86,7 @@ jQuery(document).ready(function()
     return false;
   });
 
-   jQuery("#status_show").click(function(){
+  jQuery("#status_show").click(function(){
     jQuery('#status_form').show();
     jQuery('#status_show').hide();
     return false;

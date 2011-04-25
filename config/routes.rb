@@ -7,7 +7,7 @@ Maass2::Application.routes.draw do
   resources :authentications
   resources :users  
   resources :nominations
-  resources :votes
+  resources :votes, :only => [:create]
   resources :feedbacks
   resources :comments
   resources :albums do
