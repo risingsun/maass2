@@ -8,8 +8,9 @@
         - @house_names.each do |house_name|
           .preference_key
             = house_name.name
-            = link_to(image_tag('delete.png'), delete_house_name_admin_preference_path(house_name.id), :class=>'delete_title')
-        = link_to(image_tag('add-button.png',:title => "Add"), new_house_name_admin_preferences_path, :class=>'add_house')
+          .delete_title
+            = link_to image_tag('delete.png'), delete_house_name_admin_preference_path(house_name.id), :class=>"delete_house"
+        = link_to image_tag('add-button.png',:title => "Add"), new_house_name_admin_preferences_path, :class=>'add_house'
         = link_to "Edit", edit_house_name_admin_preferences_path, :class=>'add_house'
     .clear_div
     %span.widget_lrg_btm
