@@ -2,6 +2,20 @@ class PhotosController < ApplicationController
 
   layout "admin"
 
+  def new
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.new
+  end
+  def create
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.build(params[:photo])
+    if @photo.save
+        render :json => { :pic_path => @photo.image.url.to_s , :name => @photo.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
+      else
+        render :json => { :pic_path => "/images/image_missing.png" , :name => "Undefine Format Of Photo" }, :content_type => 'text/html'
+      end
+  end
+
   def edit
     @album = Album.find(params[:album_id])
     @photo = @album.photos.find(params[:id])
@@ -24,6 +38,10 @@ class PhotosController < ApplicationController
     @photo = @album.photos.find(params[:id])
     @photo.destroy
     redirect_to album_path(@album)
+  end
+
+  def show
+    debugger
   end
 
   private

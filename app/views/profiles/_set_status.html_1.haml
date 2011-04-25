@@ -1,0 +1,11 @@
+= f.inputs do
+  #status_show
+    - if @profile.status_message == nil || @profile.status_message == ""
+      = f.label "Set your status!!", :class => "cursor"
+    - else
+      = @profile.status_message
+#status_form.hide_info
+  = f.text_field :status_message, :class => "large_text_box"
+  %button.buttons{:type => "submit"}
+    = image_tag('Update.png')
+  %button.buttons.status-form-cancel= image_tag("cancel-button.png")

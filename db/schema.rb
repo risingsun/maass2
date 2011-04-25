@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418053004) do
+ActiveRecord::Schema.define(:version => 20110425052000) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20110418053004) do
     t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "set_as_blurb"
+    t.text     "description"
   end
 
   create_table "announcements", :force => true do |t|
@@ -209,7 +211,7 @@ ActiveRecord::Schema.define(:version => 20110418053004) do
     t.text     "body"
     t.integer  "sender_id"
     t.integer  "receiver_id"
-    t.boolean  "read",           :default => false, :null => false
+    t.boolean  "read",           :default => false
     t.boolean  "sender_flag",    :default => true
     t.boolean  "receiver_flag",  :default => true
     t.boolean  "system_message", :default => false
@@ -236,19 +238,6 @@ ActiveRecord::Schema.define(:version => 20110418053004) do
     t.integer  "profile_comment", :default => 1
     t.integer  "follow",          :default => 1
     t.integer  "delete_friend",   :default => 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "notifications", :force => true do |t|
-    t.string   "account_id"
-    t.string   "news_notification"
-    t.string   "event_notification"
-    t.string   "message_notification"
-    t.string   "blog_comment_notification"
-    t.string   "profile_comment_notification"
-    t.string   "follow_notification"
-    t.string   "delete_friend_notification"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -298,6 +287,13 @@ ActiveRecord::Schema.define(:version => 20110418053004) do
     t.integer  "votes_count", :default => 0
   end
 
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "profile_events", :force => true do |t|
     t.integer  "profile_id"
     t.integer  "event_id"
@@ -342,7 +338,6 @@ ActiveRecord::Schema.define(:version => 20110418053004) do
     t.string   "landline"
     t.string   "mobile"
     t.string   "professional_qualification"
-    t.string   "default_permission",         :default => "Everyone"
     t.string   "middle_name"
     t.string   "linkedin_name"
     t.string   "msn_username"
@@ -357,6 +352,7 @@ ActiveRecord::Schema.define(:version => 20110418053004) do
     t.string   "icon_content_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "default_permission"
   end
 
   create_table "site_contents", :force => true do |t|

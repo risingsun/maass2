@@ -1,0 +1,16 @@
+= semantic_form_for @profile do |a|
+  = rounded_med_corner(:id => "notifications", :title => "Notifications") do
+    = a.semantic_fields_for :notification_control do |p|
+      %table.permission_table
+        %tr
+          %td Notification
+          %td Email Notification
+          %td Message Notification
+        - NotificationControl::NOTIFICATION_FIELDS.each do |x|
+          %tr
+            %td= p.label x
+            %td= p.check_box(x,{:multiple => true, :checked => p.object.wants_email?(x)},NotificationControl::EMAIL_BIT,0)
+            %td= p.check_box(x,{:multiple => true, :checked => p.object.wants_interenal_message?(x)},NotificationControl::INTERNAL_MESSAGE_BIT,0)
+  %button.buttons{:type => "submit"}
+    = image_tag('update-notifications.png')
+  = hidden_field_tag "commit", value="Update Notification"

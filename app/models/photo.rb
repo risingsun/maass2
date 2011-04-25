@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
   validates :image_file_name, :presence => true
   belongs_to :album
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  has_attached_file :image, :styles  => { :original => "975x800>" }, :processors => [:cropper]
+  has_attached_file :image, :styles  => { :original => "975x800>" }, :processors => [:cropper], :default_url => "/images/image_missing.png"
   after_update :reprocess_avatar, :if => :cropping?
 
   def cropping?

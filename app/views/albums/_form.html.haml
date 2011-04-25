@@ -1,12 +1,9 @@
-= semantic_form_for @album, :html => { :multipart => true } do |f|
+= semantic_form_for @album do |f|
   = rounded_corner(:title => @title, :id => "upload_photo") do
     = f.inputs do
-      = f.input :name, :label => "Album Name", :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.semantic_fields_for(:photos) do |p|
-      = render "photo_fields", :f => p
-    .row_dark2
-      = link_to_add_fields(image_tag('add-button.png'), f , :photos)
+      = f.input :name
+      = f.input :description
+      = f.input :set_as_blurb ,:as=>:radio
+    = f.commit_button
     %button.buttons{:type => "submit"}
-      = image_tag("save.png")
-= rounded_corner(:title => "Creat Album by Facebook", :id => "facebook_upload_photo") do
-  = link_to image_tag("connect_facebook.gif"), facebook_album_albums_path
+    = image_tag("save.png")

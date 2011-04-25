@@ -1,0 +1,11 @@
+%table.middle_panel_profile{:width => "540px"}
+  %tr{:align => "left", :valign => "top"}
+    %th From
+    %th To
+    %th University
+  -@educations.each do |x|
+    %tr
+      %td{:width => "20px"}= x.education_from_year
+      %td{:width => "20px"}= x.education_to_year
+      %td= word_wrap(x.institution, :line_width => 15)
+    
