@@ -2,16 +2,16 @@
   #login_form.edit_panel_profile
     = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = f.inputs do
-        = f.input :login, :as => :string, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-        = f.input :email, :as => :string, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+        = f.input :login, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+        = f.input :email, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
         = f.input :password, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
         = f.input :password_confirmation, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
       = semantic_fields_for(:profile) do |p|
         = p.inputs do
-          = p.input :first_name, :as => :string, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = p.input :middle_name, :as => :string, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = p.input :last_name, :as => :string, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = p.input :maiden_name, :as => :string, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :first_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :middle_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :last_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :maiden_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = p.input :gender, :as => :select, :collection => SEX, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = p.input :group, :as => :select, :collection => GROUPS, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = f.input :humanizer_answer, :label => @user.humanizer_question, :wrapper_html => {:class => cycle(:row_light, :row_dark)}

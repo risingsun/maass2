@@ -5,7 +5,7 @@
     %th University
   -@educations.each do |x|
     %tr
-      %td= x.education_from_year
-      %td= x.education_to_year
-      %td= x.institution
+      %td{:width => "20px"}= x.education_from_year
+      %td{:width => "20px"}= x.education_to_year
+      %td= word_wrap(x.institution, :line_width => 15)
     

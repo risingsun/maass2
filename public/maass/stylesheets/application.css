@@ -4126,3 +4126,22 @@ div.album_links a{
   margin-right: 7px;
   margin-top: 10px;
 }
+.login_links_container2 {
+    float: left;
+    font-size: 11px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-top: 6px;
+    width: 300px;
+}
+
+
+.login_btn_container2{
+  float: left;
+  margin: 10px 0px;
+}
+
+.remember_links {
+  font-size: 11px;
+  margin: 5px;
+}

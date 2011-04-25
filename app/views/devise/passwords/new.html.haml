@@ -1,9 +1,7 @@
-%h2 Forgot your password?
-= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-  = devise_error_messages!
-  %p
-    = f.label :email
-    %br/
-    = f.text_field :email
-  %p= f.submit "Send me reset password instructions"
-= render :partial => "devise/shared/links"
+= semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+  - rounded_corner(:title => 'Forgot your password?') do
+    = f.inputs do
+      = f.input :email, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+      = f.submit "Send me reset password instructions"
+    .remember_links
+      = render :partial => "devise/shared/links"

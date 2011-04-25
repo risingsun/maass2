@@ -1,9 +1,8 @@
-%h2 Resend confirmation instructions
-= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
-  = devise_error_messages!
-  %p
-    = f.label :email
-    %br/
-    = f.text_field :email
-  %p= f.submit "Resend confirmation instructions"
-= render :partial => "devise/shared/links"
+= devise_error_messages!
+= semantic_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+  = rounded_corner(:title => 'Resend confirmation instructions') do
+    = f.inputs do
+      = f.input :email, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+      = f.submit "Resend confirmation instructions"
+    .remember_links
+      = render :partial => "devise/shared/links"
