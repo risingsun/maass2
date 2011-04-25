@@ -3076,7 +3076,7 @@ table.greetings {
   height:38px;
   padding-bottom:19px;
   margin-left: 5px;
-  margin-top: -5px;
+  margin-top: 0px;
 }
 .editor_ok_button {
   background: none;
@@ -4144,4 +4144,12 @@ div.album_links a{
 .remember_links {
   font-size: 11px;
   margin: 5px;
+}
+
+.forgot_password_info {
+    float: left;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 5px 10px;
+    width: 482px;
 }

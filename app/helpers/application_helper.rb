@@ -27,7 +27,7 @@ module ApplicationHelper
       :resource => @current_user)
 
     html = <<-HTML
-       <div id="error_explanation">
+       <div id="error_explanation"zz>
        <h2>#{sentence}</h2>
        <ul>#{messages}</ul>
        </div>
