@@ -1,6 +1,7 @@
-= rounded_corner(:title => "Admin Actions", :size => 'lrg') do
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width Admin Actions
   .admin_class
-    .clear_div
     %div= link_to "Events", admin_events_path
     %div= link_to "Feedbacks", feedbacks_path
     %div= link_to "Blogs", blogs_admin_home_path(@is_admin)
@@ -13,3 +14,4 @@
     %div= link_to "Google Map Locations", google_map_locations_admin_home_path(@is_admin)
     %div= link_to "Albums", albums_path()
     %div= link_to "Nomination Forms", nominations_path unless DISABLE_NOMINATION_FORM
+  %span.widget_complete_btm

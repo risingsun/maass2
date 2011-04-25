@@ -1,6 +1,6 @@
 class Admin::EventsController < ApplicationController
 
-  before_filter :load_event, :except =>[:index]
+  before_filter :load_event
   respond_to :html, :json, :only =>[:rsvp]
 
   layout "application"
@@ -9,8 +9,9 @@ class Admin::EventsController < ApplicationController
     @events = Event.all
     if @events.blank?
       redirect_to new_admin_event_path
+    else
+      render :layout => "admin"
     end
-    render :layout => "admin"
   end
 
   def new
