@@ -1,0 +1,20 @@
+- if (params[:profile_id] || @show_profile_side_panel)
+  - event_hash = Profile.find_all_happy_days(@profile)
+  - title = "Recent Events in Network"
+- else
+  - event_hash = Profile.find_all_happy_days
+  - title = "Recent Events"
+= rounded_corner(:size => :small, :title => title) do
+  %table.widget_small.greetings
+    - counter = ""
+    - event_hash.each do |b|
+      - klass = before_after(b[1][:from_today])
+      - unless counter == klass
+        - counter = klass
+        %tr.happy_days
+          %td &nbsp;
+          %td &nbsp;
+          %td
+            %b= klass.titlecase
+      = render :partial => 'profiles/greet_row', :collection => b[1][:birthdays], :locals => {:klass => klass, :field => 'date_of_birth', :title => 'Birthday'}
+      = render :partial => 'profiles/greet_row', :collection =>  b[1][:anniversaries], :locals => {:klass => klass, :field => 'anniversary_date', :title => 'Anniversary'}

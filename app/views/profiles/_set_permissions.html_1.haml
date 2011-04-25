@@ -1,0 +1,19 @@
+= semantic_form_for(@profile) do |form|
+  = rounded_med_corner(:id => "set_permissions", :title => "Permissions") do
+    %table.permission_table
+      %tr
+        %td &nbsp;
+        %td Just Me
+        %td My Friends
+        %td Everyone
+      = form.semantic_fields_for :permissions, @profile.profile_permissions do |pf|
+        %tr
+          %td
+            %label= pf.object.field_name
+            = pf.hidden_field(:permission_field)
+          %td= pf.radio_button :permission_type, "Myself"
+          %td= pf.radio_button :permission_type, "Friends"
+          %td= pf.radio_button :permission_type, "Everyone"
+  %button.buttons{:type => "submit"}
+    = image_tag('update-permissions.png')
+  = hidden_field_tag "commit", value = "Update Permissions"
