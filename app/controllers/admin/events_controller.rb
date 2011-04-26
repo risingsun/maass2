@@ -1,6 +1,6 @@
 class Admin::EventsController < ApplicationController
 
-  before_filter :load_event
+  before_filter :load_event, :except => [:index, :new, :create]
   respond_to :html, :json, :only =>[:rsvp]
 
   layout "application"
@@ -26,7 +26,7 @@ class Admin::EventsController < ApplicationController
       flash[:notice] = "Event Creation Failed."
     else
       flash[:error] = "Successfully created Event."
-      @event.set_organizer(@profile)
+      @event.set_organizer(@p)
       redirect_to admin_events_path
     end
   end
@@ -56,7 +56,6 @@ class Admin::EventsController < ApplicationController
   end
 
   def send_event_mail
-    @event = Event.find(params[:id])
     @profiles = Profile.find(:all, :conditions => {:is_active => true})    
     @profiles.each do|profile|
       ArNotifier.delay.send_event_mail(profile,@event) if profile.wants_email_notification?("event")
@@ -70,13 +69,12 @@ class Admin::EventsController < ApplicationController
   end
 
   def rsvp
-    event = Event.find(params[:id])
-    pe = ProfileEvent.find(:first,:conditions => {:event_id => event.id,:profile_id => @profile.id})
+    pe = ProfileEvent.find(:first,:conditions => {:event_id => @event,:profile_id => @profile})
     unless pe
-      pe = ProfileEvent.create(:event_id => event.id,:profile_id => @profile.id)
+      pe = ProfileEvent.create(:event_id => @event,:profile_id => @profile)
     end
     pe.update_attribute('role',params[:group])unless pe.is_organizer?
-    respond_with(pe.role.to_json, :location => event_path(event))
+    respond_with(pe.role.to_json, :location => event_path(@event))
   end
 
   def event_members
@@ -92,13 +90,9 @@ class Admin::EventsController < ApplicationController
     super :active_user, :only => [:show, :rsvp, :event_members]
   end
 
-  def show_events_side_panels
-    @event_panel = true
-  end
-
   def load_event
     @profile = @p
-    @event = @profile ? Event.find(params[:id]) : redirect_to(new_user_session_path)
+    @event = Event.find(params[:id])
   end
 
 end
