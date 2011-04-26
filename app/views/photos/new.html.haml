@@ -6,8 +6,6 @@
       = f.inputs do
         = f.input :caption, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
         = f.input :image, :as => :file, :input_html => {:multiple => true, :name => 'photo[image]'}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      %button.buttons{:type => "submit"}
-        = image_tag("save.png")
 .widget_complete
   %span.widget_complete_top
   %table.upload_files

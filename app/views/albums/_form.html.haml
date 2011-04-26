@@ -1,9 +1,12 @@
-= semantic_form_for @album do |f|
-  = rounded_corner(:title => @title, :id => "upload_photo") do
-    = f.inputs do
-      = f.input :name
-      = f.input :description
-      = f.input :set_as_blurb ,:as=>:radio
-    = f.commit_button
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width New Album
+  = form_for @album do |f|
+    Name
+    = f.text_field :name    
+    Description
+    = f.text_area :description
+    = check_box_tag("album[set_as_blurb]", value = "1", checked = false)
     %button.buttons{:type => "submit"}
-    = image_tag("save.png")
+      = image_tag("save.png")
+  %span.widget_complete_btm

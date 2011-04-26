@@ -68,9 +68,7 @@ class Profile < ActiveRecord::Base
   @@featured_profile = {:date => Date.today-4, :profile => nil}
   @@days = ()
 
-  after_update :create_my_feed
-
-  #attr_accessor :key, :search[q]
+  after_update :create_my_feed  
 
   define_index do
     indexes :first_name
@@ -139,24 +137,6 @@ class Profile < ActiveRecord::Base
 
   def is_me?(another_profile)
     self == (another_profile.kind_of?(User) ? another_profile.profile : another_profile)
-  end
-
-  def self.search_by_keyword(p)
-    conditions=[]
-    if p[:key] == "name"
-      conditions = [" first_name LIKE ? OR last_name LIKE ? ","%#{p[:q]}%","%#{p[:q]}%"]
-    elsif p[:key] == "location"
-      conditions = [" location LIKE ?","%#{p[:q]}%" ]
-    elsif p[:key] == "blood_group"
-      conditions = [" blood_group LIKE ? ","%#{p[:q]}%"]
-    elsif p[:key] == "year"
-      conditions = [" profiles.group LIKE ? ","%#{p[:q]}%"]
-    elsif p[:key] == "phone"
-      conditions = [" mobile LIKE ? OR landline LIKE ? ","%#{p[:q]}%","%#{p[:q]}%"]
-    elsif p[:key] == "address"
-      conditions = [" address_line1 LIKE ? OR address_line2 LIKE ? ","%#{p[:q]}%","%#{p[:q]}%"]
-    end
-    Profile.where(conditions).all
   end
 
   def self.happy_day(days=self.happy_day_range,profile=nil,f='date_of_birth')
@@ -233,10 +213,6 @@ class Profile < ActiveRecord::Base
 
   def self.batch_details(group, opts)
     Profile.active.group_batch(group).name_ordered.paginate(opts)
-  end
-
-  def self.batch_names(year)
-    active.group_batch(year).name_ordered.all(:select => 'title,first_name, middle_name, last_name, id')
   end
 
   def self.get_batch_count

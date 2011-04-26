@@ -22,11 +22,10 @@
           = raw image_tag(photo.image.url,:class=>"image_on_blurb")
   %span.widget_lrg_btm
 - if @p
-  - unless DISABLE_NOMINATION_FORM
-    - if @nomination.new_record?
-      = render :partial => 'nominations/form', :locals => {:nomination => @nomination}
-    - else
-      = render :partial => 'nominations/show', :locals => {:nomination => @nomination}
+  - if @nomination.new_record?
+    = render :partial => 'nominations/form', :locals => {:nomination => @nomination}
+  - else
+    = render :partial => 'nominations/show', :locals => {:nomination => @nomination}
 - unless @home_data.blank?
   - @home_data.each do|d|
     - if d.class.name == 'Event'

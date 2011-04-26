@@ -1,20 +1,23 @@
-= rounded_corner(:title => 'Birthdays') do
+.widget_complete
+  %span.widget_complete_top 
+  %h3.blog_head.event_head_width Birthdays
   - birthdays = Profile.birthdays
   - birthdays.keys.sort.each do |month|
-    %b= Date::MONTHNAMES[month]
-    %ul#student_check_list
-      - birthdays[month].each do |b|
-        %li
-          = b.date_of_birth.to_formatted_s(:rfc822)
-          =": #{b.full_name} (#{b.group})"
-    .clear_div
-= rounded_corner(:title => 'Anniversaries') do
+    %i.forum_text= Date::MONTHNAMES[month]
+    - birthdays[month].each do |b|
+      .forum_text
+        = b.date_of_birth.to_formatted_s(:rfc822)
+        =": #{b.full_name} (#{b.group})"
+  %span.widget_complete_btm
+
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width Anniversaries
   - anniversaries = Profile.anniversaries
   - anniversaries.keys.sort.each do |month|
-    %b= Date::MONTHNAMES[month]
-    %ul#student_check_list
-      - anniversaries[month].each do |b|
-        %li
-          = b.anniversary_date.to_formatted_s(:rfc822)
-          =": #{b.full_name} (#{b.group})"
-    .clear_div
+    %i.forum_text= Date::MONTHNAMES[month]
+    - anniversaries[month].each do |b|
+      .forum_text
+        = b.anniversary_date.to_formatted_s(:rfc822)
+        =": #{b.full_name} (#{b.group})"
+  %span.widget_complete_btm
