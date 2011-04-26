@@ -23,26 +23,27 @@ jQuery(document).ready(function()
  });
 
  jQuery('.friend_status').live('click',function(){
-     rel = jQuery(this).parents('.profile_card').find('.profile');
-     spi = jQuery(this).parents('.profile_card').find('.spinner');
-     path = jQuery(this).attr('href');
-     method = jQuery(this).attr('type');
-    jQuery.ajax({
-      beforeSend: function(){
-        jQuery(spi).show();
-      },
-      complete: function(){
-        jQuery(spi).hide();
-      },
-      url: path,
-      dataType: "html",
-      type: method,
-      success: function(response){
-        jQuery(rel).replaceWith(response)
-      }
-    });
-    return false;
+   rel = jQuery(this).parents('.profile_card').find('.profile');
+   spi = jQuery(this).parents('.profile_card').find('.spinner');
+   path = jQuery(this).attr('href');
+   method = jQuery(this).attr('type');
+   jQuery.ajax({
+     beforeSend: function(){
+       jQuery(spi).show();
+     },
+     complete: function(){
+       jQuery(spi).hide();
+     },
+     url: path,
+     dataType: "html",
+     type: method,
+     success: function(response){
+       jQuery(rel).replaceWith(response)
+     }
+   });
+   return false;
  });
+
   jQuery('.event').click(function(){
 
     var path = jQuery(this).attr('url');
@@ -73,22 +74,22 @@ jQuery(document).ready(function()
 
   jQuery("#photo_image").click(function(){
     jQuery('.upload').fileUploadUI({
-          uploadTable: jQuery('.upload_files'),
-          downloadTable: jQuery('.download_files'),
-          buildUploadRow: function (files, index) {
-              var file = files[index];
-              return jQuery('<tr><td>' + file.name + '<\/td>' +
-                      '<td class="file_upload_progress"><div><\/div><\/td>' +
-                      '<td class="file_upload_cancel">' +
-                      '<button class="ui-state-default ui-corner-all" title="Cancel">' +
-                      '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
-                      '<\/button><\/td><\/tr>');
-          },
-          buildDownloadRow: function (file) {
-              return jQuery('<img alt="Photo" width="160" height="150" src="' + file.pic_path + '"><br><span>'+file.name+'</span><br>');
-          }
-      });
+      uploadTable: jQuery('.upload_files'),
+      downloadTable: jQuery('.download_files'),
+      buildUploadRow: function (files, index) {
+        var file = files[index];
+        return jQuery('<tr><td>' + file.name + '<\/td>' +
+          '<td class="file_upload_progress"><div><\/div><\/td>' +
+          '<td class="file_upload_cancel">' +
+          '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+          '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+          '<\/button><\/td><\/tr>');
+      },
+      buildDownloadRow: function (file) {
+        return jQuery('<img alt="Photo" width="160" height="150" src="' + file.pic_path + '"><br><span>'+file.name+'</span><br>');
+      }
     });
+  });
   
   jQuery(".show-comments").click(function() {
     jQuery(this).parents('.commentable').find('.blog_comments').toggle();
@@ -115,13 +116,25 @@ jQuery(document).ready(function()
     return false;
   });
 
-  jQuery(".delete_title").live('click',function(){
+  jQuery(".delete_titles").live('click',function(){
     jQuery.ajax({
       url: jQuery(this).attr('href'),
       dataType: "html",
       type: 'DELETE',
       success: function(response){
-        jQuery('#titles').html(response);
+        jQuery('#title').html(response);
+      }
+    });
+    return false;
+  });
+
+  jQuery(".delete_house").live('click',function(){
+    jQuery.ajax({
+      url: jQuery(this).attr('href'),
+      dataType: "html",
+      type: 'DELETE',
+      success: function(response){
+        jQuery('#house_name').html(response);
       }
     });
     return false;
@@ -133,7 +146,7 @@ jQuery(document).ready(function()
       dataType: "html",
       type: 'GET',
       success: function(response){
-        jQuery("#titles").html(response)
+        jQuery("#title").html(response)
       }
     });
     return false;
@@ -145,7 +158,7 @@ jQuery(document).ready(function()
       dataType: "html",
       type: 'GET',
       success: function(response){
-        jQuery("#houses").html(response)
+        jQuery("#house_name").html(response)
       }
     });
     return false;
@@ -162,7 +175,7 @@ jQuery(document).ready(function()
     return false;
   });
 
-   jQuery("#status_show").click(function(){
+  jQuery("#status_show").click(function(){
     jQuery('#status_form').show();
     jQuery('#status_show').hide();
     return false;
