@@ -2,27 +2,47 @@
 jQuery(document).ready(function()
 {
 
-  jQuery('.friend_status').live('click',function(){
-    rel = jQuery(this).parents('.profile_card').find('.profile');
-    spi = jQuery(this).parents('.profile_card').find('.spinner');
-    path = jQuery(this).attr('href');
-    method = jQuery(this).attr('type');
-    jQuery.ajax({
+ jQuery('.user_status').click(function(){
+   spi = jQuery(this).parents('.profile_card').find('.spinner');
+   rel = this
+   jQuery.ajax({
       beforeSend: function(){
         jQuery(spi).show();
       },
       complete: function(){
         jQuery(spi).hide();
       },
-      url: path,
-      dataType: "html",
-      type: method,
-      success: function(response){
-        jQuery(rel).replaceWith(response)
-      }
-    });
-    return false;
-  });
+     url: jQuery(this).attr('href'),
+     dataType: "json",
+     type: 'GET',
+     success: function(data){
+       jQuery(rel).text(data).fadeIn("fast");
+     }
+   });
+   return false;
+ });
+
+ jQuery('.friend_status').live('click',function(){
+   rel = jQuery(this).parents('.profile_card').find('.profile');
+   spi = jQuery(this).parents('.profile_card').find('.spinner');
+   path = jQuery(this).attr('href');
+   method = jQuery(this).attr('type');
+   jQuery.ajax({
+     beforeSend: function(){
+       jQuery(spi).show();
+     },
+     complete: function(){
+       jQuery(spi).hide();
+     },
+     url: path,
+     dataType: "html",
+     type: method,
+     success: function(response){
+       jQuery(rel).replaceWith(response)
+     }
+   });
+   return false;
+ });
 
   jQuery('.event').click(function(){
 
@@ -251,23 +271,6 @@ jQuery(document).ready(function()
     jQuery('#photo_crop_h').val(coords.h);
   }
 });
-
-function user_status(id){
-  jQuery.ajax({
-    beforeSend: function(){
-      jQuery("#spinner_"+id).show();
-    },
-    complete: function(){
-      jQuery("#spinner_"+id).hide();
-    },
-    url: "/profiles/"+id+"/active_user",
-    dataType: "json",
-    type: 'GET',
-    success: function(data){
-      jQuery("a#user_status_"+id).text(data);
-    }
-  });
-}
 
 function remove_fields(link) {
   jQuery(link).prev("input[type=hidden]").val("1");

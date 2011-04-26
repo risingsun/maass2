@@ -1,4 +1,4 @@
-.widget_complete{:id => "event_#{event.id}"}
+.widget_complete[event]
   %span.widget_complete_top
   %h3.blog_head.event_head_width
     = link_to image_tag(set_icon(event.organizers.first,'small')), event.organizers.first
@@ -24,7 +24,7 @@
         = event.place
   - if @p && @p.user
     .poll_text
-      .poll_option{:id => "event_rsvp_#{event.id}"}
+      .poll_option
         - if event.responded? @p
           = render :partial => 'admin/events/event_response',:locals => {:event => event}
         - else

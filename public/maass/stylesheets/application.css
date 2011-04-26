@@ -208,7 +208,7 @@ a.button_large:hover{
   width: 110px;
   height: 15px;
   line-height: 15px;
-  font-size: 11px;
+  font-size: 10px;
   color: #000000;
   float: left;
   margin-right: 5px;
@@ -2778,8 +2778,7 @@ table.greetings {
   margin-bottom: 3px;
 }
 
-.text_div p.student_batch
-{
+.text_div p.student_batch{
   width: 138px;
   color: #000000;
   font-size: 11px;
@@ -3751,8 +3750,6 @@ a.editor_cancel{
   left: 0px;
   font-family: Arial, Helvetica, sans-serif;
   float: left;
-  overflow-x: hidden;
-  overflow-y: auto;
   padding: 3px;
   position: relative;
 }
@@ -4138,7 +4135,7 @@ div.album_links a{
     position: relative;
 }
 
-.blog .blog_comments, .blog .comment_form, .hide_info, .spinner{
+.blog .blog_comments, .blog .comment_form, .hide_info, .spinner, show_rsvp{
   display: none;
 }
 .delete {
@@ -4173,4 +4170,16 @@ div.album_links a{
     font-weight: normal;
     margin: 5px 10px;
     width: 482px;
+}
+.event_text {
+    border-bottom: 13px solid #FCE8E0;
+    color: #333333;
+    float: none;
+    font-size: 12px;
+    margin-left: 13px;
+    margin-top: 0;
+    overflow: hidden;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 945px;
 }

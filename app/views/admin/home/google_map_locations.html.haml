@@ -1,12 +1,10 @@
-.widget_large
-  %span.widget_lrg_top
-  = slide_up_down_header('google_map','Google Map')
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width Location Of All Users
   .middle_panel_profile
-    #google_map
-      .slidecontent
-        = raw GMap.header()
-        = javascript_include_tag("markerGroup")
-        - show_map()
-        = raw @map.to_html
-        = raw @map.div(:width => 530, :height => 400)
-  %span.widget_lrg_btm
+    = raw GMap.header()
+    = javascript_include_tag("markerGroup")
+    - show_map()
+    = raw @map.to_html
+    = raw @map.div(:width => 975, :height => 600)
+  %span.widget_complete_btm
