@@ -1,1 +1,7 @@
-= render :partial => 'blogs/blog', :collection => @blogs if !@blogs.blank?
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width
+    Admin Blogs
+    = link_to image_tag('add_new_post.png', :title=>"Create New Blog Post", :class=>"add_new_post2"), new_profile_blog_path(@profile)
+  = render :partial => 'blogs/blog', :collection => @blogs if !@blogs.blank?
+  %span.widget_complete_btm

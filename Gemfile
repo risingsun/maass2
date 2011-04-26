@@ -56,7 +56,6 @@ gem 'oa-openid', :require => 'omniauth/openid'
 gem 'fb_graph'
 gem 'disqus'
 gem 'RedCloth'
-gem 'memcache-client'
 
 # Use unicorn as the web server
 # gem 'unicorn'

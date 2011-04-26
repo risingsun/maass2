@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
     redirect_to @p and return if @p == @profile
   end
 
-  def create
-    @comment = @p.comments.create(params[:comment])
+  def create    
+    @comment = @p.profile_comments.create(params[:comment])
     if @comment.save
       if @comment.commentable_type == "Blog"
         @blog = Blog.find(params[:comment][:commentable_id])
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    flash[:notice] = "Successfully destroyed blog."
+    flash[:notice] = "Successfully destroyed comment."
     comment_count = @comment.commentable.comments_count - 1
     respond_to do |format|
       format.js do

@@ -68,7 +68,7 @@ class PollsController < ApplicationController
     @profile =  current_user.profile
     @poll = @profile.polls.find(params[:id])
     @poll.update_attributes(:status => false)
-    redirect_to root_url
+    redirect_to profile_polls_path
   end
 
   private

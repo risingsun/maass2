@@ -7,4 +7,4 @@
       #{time_ago_in_words comment.created_at} ago
     .comment_text= sanitize(comment.comment)
   - if comment_deleteable?(comment)
-    = link_to(image_tag('delete.png'), comment_path(comment), :class => 'delete-comment')
+    = link_to(image_tag('delete.png'), profile_comment_path(comment.profile,comment), :class => 'delete-comment')

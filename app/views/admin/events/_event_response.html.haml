@@ -1,7 +1,7 @@
-- pe = ProfileEvent.find(:first,:conditions => {:event_id => event.id,:profile_id => @p.id})
+- pe = ProfileEvent.find(:first, :conditions => {:event_id => event.id,:profile_id => @p.id})
 - role = pe.role if pe
 .event_location
-  %span.event_address Your RSVP :&nbsp;&nbsp;
+  %span.event_address Your RSVP :&nbsp;
   %span{:id => "span_#{event.id}"}
     = pe.is_organizer? ? 'Attending':role
     \&nbsp;

@@ -23,9 +23,9 @@ class Admin::EventsController < ApplicationController
     @event = Event.new(params[:event])
     if !@event.save
       render :action => 'new'
-      flash[:notice] = "Event Creation Failed."
+      flash[:error] = "Event Creation Failed."
     else
-      flash[:error] = "Successfully created Event."
+      flash[:notice] = "Successfully created Event."
       @event.set_organizer(@p)
       redirect_to admin_events_path
     end
