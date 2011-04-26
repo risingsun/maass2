@@ -6,29 +6,16 @@
   %span.widget_lrg_top
   - unless hide_header
     = render :partial => "header_links"
-  .blog_text
-    = semantic_form_for :message, :url => profile_messages_path(@p) do |f|
-      = f.inputs do
-        = f.input :receiver_id, :label => "To", :as => :select, :collection => [@to_list.map{|p| [full_name(p), p.id]}], :input_html  => {:class => "big_text_field"}, :title => "To List"
-        =# f.hidden_field :sender_id, :value => current_user.profile.id
-        = f.input :subject, :title => "Subject", :input_html => {:class => "big_text_field"}
-        = f.input :body, :as => :text, :title => "Body", :input_html => {:class => "big_text_field"}
-        .blog_btn_container
-          %button.buttons{:type => "submit"}
-            = image_tag("send-message.png")
-  %span.widget_lrg_btm
-
-
-- form_for :message, :url => profile_messages_path(@p) do |f|
-  .row_complete
-    %label{:for => "message_to"} To
-    = f.select :receiver_id, @to_list.map{|p| [full_name(p), p.id]},:class => "big_text_field",:title => "To List"
-    = f.hidden_field :sender_id, :value => current_user.profile.id
-  %label{:for => "message_to"} Subject
-  = f.text_field :subject, :title => "Subject",:class => "big_text_field" ,:wrap_class => "row_complete"
-  %label{:for => "message_to"} Body
-  = f.text_area :body, :title => "Body",:class => "big_text_area",:wrap_class => "row_complete_large"
-  .blog_btn_container
-    %button.buttons{:type => "submit"}
-      = image_tag("send-message.png")
+  - form_for :message, :url => profile_messages_path(@p) do |f|
+    .row_complete
+      %label{:for => "message_to"} To
+      = f.select :receiver_id, @to_list.map{|p| [full_name(p), p.id]},:class => "big_text_field",:title => "To List"
+      = f.hidden_field :sender_id, :value => current_user.profile.id
+    %label{:for => "message_to"} Subject
+    = f.text_field :subject, :title => "Subject",:class => "big_text_field" ,:wrap_class => "row_complete"
+    %label{:for => "message_to"} Body
+    = f.text_area :body, :title => "Body",:class => "big_text_area",:wrap_class => "row_complete_large"
+    .blog_btn_container
+      %button.buttons{:type => "submit"}
+        = image_tag("send-message.png")
 %span.widget_lrg_btm
