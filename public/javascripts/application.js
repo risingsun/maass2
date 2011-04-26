@@ -102,7 +102,7 @@ jQuery(document).ready(function()
       dataType: "html",
       type: 'DELETE',
       success: function(response){
-        jQuery('#title').html(response);
+        jQuery('#titles').html(response);
       }
     });
     return false;
@@ -114,7 +114,7 @@ jQuery(document).ready(function()
       dataType: "html",
       type: 'DELETE',
       success: function(response){
-        jQuery('#house_name').html(response);
+        jQuery('#houses').html(response);
       }
     });
     return false;

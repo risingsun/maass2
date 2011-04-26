@@ -1,7 +1,7 @@
 class VotesController < ApplicationController
 
   def create
-    @args = params.size == 6 ? true : false
+    @args = params.size == 5 ? true : false
     if @args
       @profile = current_user.profile
       @option = PollOption.find(params[:poll]["poll_options"]["option"])

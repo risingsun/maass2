@@ -40,8 +40,7 @@ class PhotosController < ApplicationController
     redirect_to album_path(@album)
   end
 
-  def show
-    debugger
+  def show    
   end
 
   private
