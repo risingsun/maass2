@@ -13,4 +13,5 @@
     %p= link_to("#{mini_profile.is_active ? 'Deactivate' : 'Active'}", '#', |
                 :id => "user_status_#{mini_profile.id}", |
                 :onclick =>"if(confirm('Are you sure?')){user_status(#{mini_profile.id})}") if @is_admin
-  %span{:id => "spinner_#{mini_profile.id}", :style => "display: none;"}= image_tag('spinner.gif')
+  .spinner= image_tag('spinner.gif')
+

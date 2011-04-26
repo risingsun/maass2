@@ -4138,7 +4138,7 @@ div.album_links a{
     position: relative;
 }
 
-.blog .blog_comments, .blog .comment_form, .hide_info{
+.blog .blog_comments, .blog .comment_form, .hide_info, .spinner{
   display: none;
 }
 .delete {
