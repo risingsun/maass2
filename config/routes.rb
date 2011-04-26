@@ -9,7 +9,6 @@ Maass2::Application.routes.draw do
   resources :nominations
   resources :votes, :only => [:create]
   resources :feedbacks
-  resources :comments
   resources :albums do
     resources :photos
     get 'facebook_album', :on => :collection
@@ -19,9 +18,6 @@ Maass2::Application.routes.draw do
   namespace :admin do
     resources :events do
       get 'rsvp', :on => :member
-      get 'attending_members', :on => :member
-      get 'not_attending_members', :on => :member
-      get 'may_be_attending_members', :on => :member
       get 'event_members', :on => :member
       post 'send_event_mail', :on => :member
     end
@@ -59,7 +55,7 @@ Maass2::Application.routes.draw do
     resources :feed_items
     resources :invitations
     resources :nominations,:except => [:index]
-    resource :comments, :only => [:create, :show]
+    resources :comments, :only => [:create, :index, :destroy]
     resources :messages do
       get 'sent_messages', :on => :collection
       get 'reply_message', :on => :member

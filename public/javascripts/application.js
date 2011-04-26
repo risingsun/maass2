@@ -2,6 +2,10 @@
 jQuery(document).ready(function()
 {
 
+ jQuery('.widget_lrg_title').click(function(){
+   jQuery(this).parents('.widget_large').find('.slidecontent').slideToggle();
+   return false;
+ });
  jQuery('.user_status').click(function(){
    spi = jQuery(this).parents('.profile_card').find('.spinner');
    rel = this
@@ -44,7 +48,7 @@ jQuery(document).ready(function()
    return false;
  });
 
-  jQuery('.event').click(function(){
+  jQuery('.rsvp_event').click(function(){
 
     var path = jQuery(this).attr('url');
     var type = jQuery(this).val();
@@ -122,7 +126,7 @@ jQuery(document).ready(function()
       dataType: "html",
       type: 'DELETE',
       success: function(response){
-        jQuery('#title').html(response);
+        jQuery('#titles').html(response);
       }
     });
     return false;
@@ -134,7 +138,7 @@ jQuery(document).ready(function()
       dataType: "html",
       type: 'DELETE',
       success: function(response){
-        jQuery('#house_name').html(response);
+        jQuery('#houses').html(response);
       }
     });
     return false;
@@ -288,8 +292,8 @@ function show_partial(p){
 }
 
 function content_show_hide(div_id){
-  id=jQuery(div_id)
-  jQuery(id).slideToggle();
+//  id=jQuery(div_id)
+//  jQuery(id).slideToggle();
 }
 
 jQuery('#search_q').live('focus.search_query_field', function(){

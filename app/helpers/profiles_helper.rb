@@ -103,5 +103,14 @@ module ProfilesHelper
       ""
     end
   end
-  
+
+  def see_all_user(profiles, type)
+    size = profiles.size
+    if @event
+      see_all = (size > 6) ? "(#{size}) #{link_to_event_friends(type, @event)}" : ""
+    else
+      see_all = (size > 6) ? link_to_friends(type) : ""
+    end
+    return see_all
+ end
 end

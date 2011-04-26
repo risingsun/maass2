@@ -23,7 +23,7 @@
       Tags:
       - blog.tags.each do |blog_tag|
         = link_to highlight(blog_tag.name,@q.to_s,"<span class = 'tag_class'>#{params[:search].try(:[],:blog)}</span>"), show_blogs_profile_blog_path(@p,blog_tag.name)
-  .blog_comments
-    = render :partial => 'comments/comment', :collection => blog.comments
-  = render 'comments/form', :commentable => blog
+      .blog_comments
+        = render :partial => 'comments/comment', :collection => blog.comments
+      = render 'comments/form', :commentable => blog
   %span.widget_lrg_btm

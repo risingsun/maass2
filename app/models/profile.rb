@@ -15,10 +15,10 @@ class Profile < ActiveRecord::Base
   has_many :works, :dependent => :destroy
   has_many :blogs, :dependent => :destroy
   has_many :albums, :dependent => :destroy
-  has_many :comments
+  has_many :comments, :as => :commentable
   has_many :profile_events,:dependent => :destroy
   has_many :events, :through => :profile_events
-  has_many :profile_comments, :class_name => "Comment", :as => :commentable
+  has_many :profile_comments, :class_name => "Comment"
   has_one :marker
   has_many :feedbacks
   has_one :notification_control

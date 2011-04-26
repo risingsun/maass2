@@ -4,10 +4,11 @@
 .widget_large
   %span.widget_lrg_top
   = slide_up_down_header(type,"#{type}")
-  %div{:id =>"#{type}_info"}
-    %div{:id => type}
-      - if !list.blank?
-        = render :partial  => "shared/mini_profile", :collection => list
-      -else
-        %span.comments= "Not Found"
+  .slidecontent
+    %div{:id =>"#{type}_info"}
+      %div{:id => type}
+        - if !list.blank?
+          = render :partial  => "shared/mini_profile", :collection => list
+        -else
+          %span.comments= "Not Found"
   %span.widget_lrg_btm
