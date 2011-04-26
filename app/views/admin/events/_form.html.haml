@@ -1,15 +1,6 @@
-%div{:class => cycle(:row_complete_light, :row_complete_dark)}
-  %label.label_margin{:for => "event_title"} Title
-  = f.text_field :title, :class => "text_field"
-%div{:class => cycle(:row_complete_light, :row_complete_dark)}
-  %label.label_margin{:for => "event_place"} Place
-  = f.text_field :place, :class => "text_field"
-%div{:class => cycle(:row_complete_light, :row_complete_dark)}
-  %label.label_margin{:for => "event_start_date"} Start Date
-  = f.text_field :start_date, :class => "text_field datetime"
-%div{:class => cycle(:row_complete_light, :row_complete_dark)}
-  %label.label_margin{:for => "event_end_date"} End Date
-  = f.text_field :end_date, :class => "text_field datetime"
-%div{:class => cycle(:row_complete_light_large2, :row_complete_dark_large2)}
-  %label.label_margin{:for => "event_description"} Description
-  = f.text_area :description, :class => "large_text_area"
+= f.inputs do
+  = f.input :title, :input_html => {:class => "big_text_field"}, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
+  = f.input :place, :input_html => {:class => "big_text_field"}, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
+  = f.input :start_date, :as => :string, :input_html => {:class => "big_text_field datetime"}, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
+  = f.input :end_date, :as => :string, :input_html => {:class => "big_text_field datetime"}, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
+  = f.input :description, :as => :text, :input_html => {:class => "big_text_area"}, :wrapper_html => {:class => cycle(:row_complete_light_large2, :row_complete_dark_large2)}

@@ -1,11 +1,11 @@
-.widget_large.commentable{:id => "event_#{@event.id}"}
+.widget_large.commentable[@event]
   %span.widget_lrg_top
   %h3.blog_head
     = link_to image_tag(set_icon(@event.organizers.first,'small')), @event.organizers.first
     = link_to sanitize(@event.title),admin_event_path(@event)
-    = link_to image_tag('edit.png', :border =>0), edit_admin_event_path(@event) if check_permission?(@event)
-    = link_to image_tag('delete.png',:border =>0), admin_event_path(@event), :method => :delete if check_permission?(@event)
-    = link_to image_tag("email_go.png",:title => "Send Event",:class => 'add_comment'), send_event_mail_admin_event_path(@event),:method => :post,:confirm => 'Are you sure? Do you want to send email to all users?'
+    = link_to image_tag('edit.png'), edit_admin_event_path(@event) if check_permission?(@event)
+    = link_to image_tag('delete.png'), admin_event_path(@event), :method => :delete if check_permission?(@event)
+    = link_to image_tag('email_go.png',:title => "Send Event",:class => 'add_comment'), send_event_mail_admin_event_path(@event),:method => :post,:confirm => 'Are you sure? Do you want to send email to all users?'
     .created_date
       Posted by #{@event.organizers.first.full_name} at #{@event.updated_at.to_date.to_formatted_s(:rfc822)}
   .blog_text
