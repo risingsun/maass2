@@ -1,12 +1,12 @@
-%div{:id => "friend_status_#{profile.id}"}
+%div[profile]
   - current_profile = current_user.profile
   - if current_profile.friends_with?(profile)
-    = link_to("Stop Being Friends", '#',:onclick =>"if(confirm('Are you sure?')){friend_status(#{profile.id}, 'DELETE')}")
+    = link_to("Stop Being Friends", profile_friendship_path(profile), :class=>"friend_status", :type=> "DELETE")
   - elsif current_profile.follows?(profile)
-    = link_to("Stop Following", '#', :onclick =>"if(confirm('Are you sure?')){friend_status(#{profile.id}, 'DELETE')}")
+    = link_to("Stop Following", profile_friendship_path(profile), :class=>"friend_status", :type=> "DELETE")
   - elsif current_profile.is_followed_by?(profile)
-    = link_to("Be Friends", '#', :onclick =>"friend_status(#{profile.id}, 'PUT')")
+    = link_to("Be Friends", profile_friendship_path(profile), :class=>"friend_status", :type=> "PUT")
     %br
-    = link_to("Stop Follower", '#', :onclick =>"if(confirm('Are you sure?')){friend_status(#{profile.id}, 'DELETE')}")
+    = link_to("Stop Follower", profile_friendship_path(profile), :class=>"friend_status", :type=> "DELETE")
   - else
-    = link_to("Start Following", '#', :onclick =>"friend_status(#{profile.id}, 'POST')")
+    = link_to("Start Following", profile_friendship_path(profile), :class=>"friend_status",  :type=> "POST")

@@ -1,6 +1,56 @@
 
 jQuery(document).ready(function()
 {
+
+ jQuery('.friend_status').live('click',function(){
+     rel = jQuery(this).parents('.profile_card').find('.profile');
+     spi = jQuery(this).parents('.profile_card').find('.spinner');
+     path = jQuery(this).attr('href');
+     method = jQuery(this).attr('type');
+    jQuery.ajax({
+      beforeSend: function(){
+        jQuery(spi).show();
+      },
+      complete: function(){
+        jQuery(spi).hide();
+      },
+      url: path,
+      dataType: "html",
+      type: method,
+      success: function(response){
+        jQuery(rel).replaceWith(response)
+      }
+    });
+    return false;
+ });
+  jQuery('.event').click(function(){
+
+    var path = jQuery(this).attr('url');
+    var type = jQuery(this).val();
+    jQuery.ajax({
+      beforeSend: function(){
+        jQuery(".spinner").show();
+      },
+      complete: function(){
+        jQuery(".spinner").hide();
+      },
+      url: path,
+      dataType: "json",
+      type: "GET",
+      data: {
+        group: type
+      },
+      success: function(data){
+        if(data == 'Organizer') {
+          jQuery("input:radio[id='event_Attending']").attr('checked', true);
+        }
+        else{
+          jQuery("input:radio[name='event']:checked").attr('checked', true);
+        }
+      }
+    })
+  });
+
   jQuery("#photo_image").click(function(){
     jQuery('.upload').fileUploadUI({
           uploadTable: jQuery('.upload_files'),
@@ -45,7 +95,7 @@ jQuery(document).ready(function()
     return false;
   });
 
-  jQuery(".delete_title").click(function(){
+  jQuery(".delete_title").live('click',function(){
     jQuery.ajax({
       url: jQuery(this).attr('href'),
       dataType: "html",
@@ -57,7 +107,7 @@ jQuery(document).ready(function()
     return false;
   });
 
-  jQuery(".add_title").click(function(){
+  jQuery(".add_title").live('click',function(){
     jQuery.ajax({
       url: jQuery(this).attr('href'),
       dataType: "html",
@@ -69,7 +119,7 @@ jQuery(document).ready(function()
     return false;
   });
 
-  jQuery(".add_house").click(function(){
+  jQuery(".add_house").live('click',function(){
     jQuery.ajax({
       url: jQuery(this).attr('href'),
       dataType: "html",
@@ -188,50 +238,6 @@ jQuery(document).ready(function()
     jQuery('#photo_crop_h').val(coords.h);
   }
 });
-
-function event_change(id){
-  var type = jQuery("input:radio[name='event']:checked").val();
-  jQuery.ajax({
-    beforeSend: function(){
-      jQuery(".spinner").show();
-    },
-    complete: function(){
-      jQuery(".spinner").hide();
-    },
-    url: "/admin/events/"+id+"/rsvp",
-    dataType: "json",
-    type: "GET",
-    data: {
-      group: type
-    },
-    success: function(data){
-      if(data == 'Organizer') {
-        jQuery("input:radio[id='event_Attending']").attr('checked', true);
-      }
-      else{
-        jQuery("input:radio[name='event']:checked").attr('checked', true);
-      }
-    }
-  });
-
-}
-
-function friend_status(id, r_type){
-  jQuery.ajax({
-    beforeSend: function(){
-      jQuery("#spinner_"+id).show();
-    },
-    complete: function(){
-      jQuery("#spinner_"+id).hide();
-    },
-    url: "/profiles/"+id+"/friendship",
-    dataType: "html",
-    type: r_type,
-    success: function(response){
-      jQuery("#friend_status_"+id).html(response);
-    }
-  });
-}
 
 function user_status(id){
   jQuery.ajax({
