@@ -2,12 +2,12 @@
 - with_form ||= false
 - with_wall_to_wall ||= false
 - comments ||= @comments
--title = "Comments #{link_to '(Our Wall-to-Wall)', profile_comments_path(profile) if @p && with_wall_to_wall && !me && @p.has_wall_with(profile)}"
 - @comments = Comment.comments_on_object(@profile)
 #comment.widget_large
   %span.widget_lrg_top
-  = slide_up_down_header('user_comments',title.html_safe)
-  #user_comments
+  /#user_comments
+  = slide_up_down_header('user_comments',"Comments #{link_to '(Our Wall-to-Wall)', profile_comments_path(profile) if @p && with_wall_to_wall && !me && @p.has_wall_with(profile)}".html_safe)
+  .slidecontent
     = render :partial => 'comments/form', :locals => {:commentable => @profile}
     %div{:id => "#{@p.id}_comments"}
       = render @comments    

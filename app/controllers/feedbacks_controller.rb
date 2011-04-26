@@ -46,8 +46,4 @@ class FeedbacksController < ApplicationController
     super :user, :only => [:new, :create]
   end
 
-  def hide_side_panels
-    @hide_panels = true
-  end
-  
 end

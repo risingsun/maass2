@@ -18,9 +18,6 @@ Maass2::Application.routes.draw do
   namespace :admin do
     resources :events do
       get 'rsvp', :on => :member
-      get 'attending_members', :on => :member
-      get 'not_attending_members', :on => :member
-      get 'may_be_attending_members', :on => :member
       get 'event_members', :on => :member
       post 'send_event_mail', :on => :member
     end
