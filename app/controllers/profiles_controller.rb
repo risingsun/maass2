@@ -106,7 +106,7 @@ class ProfilesController < ApplicationController
   end
 
   def user_friends
-    @results = @profile.send(params[:friend_type].downcase)
+    @results = @profile.send(params[:friend_type].downcase).all.paginate(:page=>params[:page], :per_page=>PROFILE_PER_PAGE)
     @title = params[:friend_type]
   end
 

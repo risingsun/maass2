@@ -1,14 +1,14 @@
-- pe = ProfileEvent.find(:first,:conditions => {:event_id => event.id,:profile_id => @p.id})
+- pe = ProfileEvent.find(:first,:conditions => {:event_id => event,:profile_id => @p})
 - role = pe.role if pe
 - status ||= 'show_page'
 %div[event]
-  = radio_button_tag "event","Attending", checked = checked?(role, 'Attending'), options = {:class => "event", :url=>"#{rsvp_admin_event_path(event)}"}
+  = radio_button_tag "event","Attending", checked = checked?(role, 'Attending'), options = {:class => "rsvp_event", :url=>"#{rsvp_admin_event_path(event)}"}
   Attending
   %br
-  = radio_button_tag "event","Not Attending", checked = checked?(role, 'Not Attending'), options = {:class => "event", :url=>"#{rsvp_admin_event_path(event)}"}
+  = radio_button_tag "event","Not Attending", checked = checked?(role, 'Not Attending'), options = {:class => "rsvp_event", :url=>"#{rsvp_admin_event_path(event)}"}
   Not Attending
   %br
-  = radio_button_tag "event","May Be Attending", checked = checked?(role, 'May Be Attending'), options = {:class => "event", :url=>"#{rsvp_admin_event_path(event)}"}
+  = radio_button_tag "event","May Be Attending", checked = checked?(role, 'May Be Attending'), options = {:class => "rsvp_event", :url=>"#{rsvp_admin_event_path(event)}"}
   May Be Attending
 .spinner= image_tag('spinner.gif')
 

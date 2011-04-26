@@ -69,7 +69,6 @@ class MessagesController < ApplicationController
 
   def load_profile
     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
-    @show_profile_side_panel = true
   end
 
   def load_message

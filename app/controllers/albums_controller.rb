@@ -22,9 +22,8 @@ class AlbumsController < ApplicationController
     if @album.save
       redirect_to new_album_photo_path(@album)
     else
-      redirect_to :back
+      render :action => 'new'
     end
-
   end
 
   def edit
@@ -78,19 +77,6 @@ class AlbumsController < ApplicationController
 
   def load_album
     @album = Album.find(params[:id])
-  end
-
-  def update_param
-    h= Hash.new
-    h[:album]={:name=>params[:album][:name]}
-    caption = params[:album][:photos_attributes]["0"][:caption]
-    h[:album][:photos_attributes] = {}
-    if !params[:photos].blank?
-      params[:photos].count.times do |c|
-        h[:album][:photos_attributes][c] = {:image=>params[:photos][c], :caption=>caption}
-      end
-    end
-    return h
   end
 
 end

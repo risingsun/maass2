@@ -6,7 +6,7 @@
   .widget_large
     %span.widget_lrg_top
     = slide_up_down_header('polls_info',"Most Recent Polls (latest " + "#{polls.size }" + " of " + "#{total > size ? link_to( total, profile_polls_path(profile)) : total} )")
-    #polls_info
+    .slidecontent
       .complete_middle_panel
         - polls.each do |p|
           .comments

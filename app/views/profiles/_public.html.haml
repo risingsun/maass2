@@ -3,40 +3,36 @@
     %span.widget_lrg_top
     = slide_up_down_header('display_status','Status')
     .middle_panel_profile
-      #display_status
-        .slidecontent
-          %h2
-            - if me
-              = semantic_form_for @profile do |form|
-                = render :partial => 'profiles/set_status', :locals => {:f => form}
-            - else
-              = @profile.status_message
+      .slidecontent
+        %h2
+          - if me
+            = semantic_form_for @profile do |form|
+              = render :partial => 'profiles/set_status', :locals => {:f => form}
+          - else
+            = @profile.status_message
     %span.widget_lrg_btm
 .widget_large
   %span.widget_lrg_top
   = slide_up_down_header('personal_info','Personal Info')
   .middle_panel_profile
-    #personal_info.hide_info
-      .slidecontent
-        = render 'profiles/personal'
+    .slidecontent.hide_info
+      = render 'profiles/personal'
   %span.widget_lrg_btm
 - if @profile.can_see_field("work_informations", @p)
   .widget_large
     %span.widget_lrg_top
     = slide_up_down_header('work_info','Work Info')
     .middle_panel_profile
-      #work_info.hide_info
-        .slidecontent
-          = render 'profiles/work' if !@profile.works.blank?
+      .slidecontent.hide_info
+        = render 'profiles/work' if !@profile.works.blank?
     %span.widget_lrg_btm
 - if @profile.can_see_field("educations", @p)
   .widget_large
     %span.widget_lrg_top
     = slide_up_down_header('education_info','Education Info')
     .middle_panel_profile
-      #education_info.hide_info
-        .slidecontent
-          = render 'profiles/education' if !@profile.educations.blank?
+      .slidecontent.hide_info
+        = render 'profiles/education' if !@profile.educations.blank?
     %span.widget_lrg_btm
 = render :partial => 'profiles/recent_activity'
 - cache "profile_#{@profile.id}/profile_page_blogs" do
@@ -49,11 +45,10 @@
     %span.widget_lrg_top
     = slide_up_down_header('google_map','Google Map')
     .middle_panel_profile
-      #google_map
-        .slidecontent
-          = raw GMap.header()
-          = javascript_include_tag("markerGroup")
-          - show_map()
-          = raw @map.to_html
-          = raw @map.div(:width => 530, :height => 400)
+      .slidecontent
+        = raw GMap.header()
+        = javascript_include_tag("markerGroup")
+        - show_map()
+        = raw @map.to_html
+        = raw @map.div(:width => 530, :height => 400)
     %span.widget_lrg_btm

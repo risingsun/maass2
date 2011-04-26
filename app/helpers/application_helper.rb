@@ -81,8 +81,7 @@ module ApplicationHelper
   def slide_up_down_header(inner_panel_id, header_text)
     self.content_tag :h2,
       :class => "widget_lrg_title",
-      :id => inner_panel_id+"_header",
-      :onclick => "content_show_hide(#{inner_panel_id});" do
+      :id => inner_panel_id+"_header" do
       header_text
     end
   end

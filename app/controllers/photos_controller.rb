@@ -1,11 +1,14 @@
 class PhotosController < ApplicationController
 
+  before_filter :load_album, :except => [:new, :create]
+
   layout "admin"
 
   def new
     @album = Album.find(params[:album_id])
     @photo = @album.photos.new
   end
+
   def create
     @album = Album.find(params[:album_id])
     @photo = @album.photos.build(params[:photo])
@@ -17,13 +20,9 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @album = Album.find(params[:album_id])
-    @photo = @album.photos.find(params[:id])
   end
 
   def update
-    @album = Album.find(params[:album_id])
-    @photo = @album.photos.find(params[:id])
     if @photo.update_attributes(params[:photo])
       flash[:notice] = "Successfully updated image."
       redirect_to album_path(@album)
@@ -34,14 +33,8 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @album = Album.find(params[:album_id])
-    @photo = @album.photos.find(params[:id])
     @photo.destroy
     redirect_to album_path(@album)
-  end
-
-  def show
-    debugger
   end
 
   private
@@ -50,4 +43,8 @@ class PhotosController < ApplicationController
     super :admin, :all => true
   end
 
+  def load_album
+     @album = Album.find(params[:album_id])
+     @photo = @album.photos.find(params[:id])
+  end
 end

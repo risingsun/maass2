@@ -1,6 +1,5 @@
 class ForumsController < ApplicationController
 
-  before_filter :hide_side_panels
   before_filter :load_forum, :except => [:index, :new, :create]
 
   layout "plain"
@@ -52,13 +51,6 @@ class ForumsController < ApplicationController
   def allow_to
     super :admin, :all => true
     super :active_user, :only => [:index, :show]
-  end
-
-  def hide_side_panels
-    if !current_user
-      redirect_to new_user_session_path()
-    end
-    @hide_panels = true
   end
 
   def load_forum

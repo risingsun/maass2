@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
 
-  before_filter :load_profile, :only=>[:show]
+  before_filter :load_profile, :only=>[:index]
 
-  def show
+  def index
     @comments = Comment.between_profiles(@p, @profile).paginate(:page => @page, :per_page => @per_page)
     redirect_to @p and return if @p == @profile
   end

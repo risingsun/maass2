@@ -71,10 +71,10 @@ class Admin::EventsController < ApplicationController
   def rsvp
     pe = ProfileEvent.find(:first,:conditions => {:event_id => @event,:profile_id => @profile})
     unless pe
-      pe = ProfileEvent.create(:event_id => @event,:profile_id => @profile)
+      pe = ProfileEvent.create(:event_id => @event,:profile_id => @profile.id)
     end
     pe.update_attribute('role',params[:group])unless pe.is_organizer?
-    respond_with(pe.role.to_json, :location => event_path(@event))
+    respond_with(pe.role.to_json, :location => admin_event_path(@event))
   end
 
   def event_members
