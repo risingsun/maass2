@@ -2,14 +2,15 @@
 jQuery(document).ready(function()
 {
 
-  jQuery('.widget_lrg_title').click(function(){
-    jQuery(this).parents('.widget_large').find('.slidecontent').slideToggle();
-    return false;
-  });
-  jQuery('.user_status').click(function(){
-    spi = jQuery(this).parents('.profile_card').find('.spinner');
-    rel = this
-    jQuery.ajax({
+ jQuery('.sliding').click(function(){
+   jQuery(this).parents('.widget_large').find('.slidecontent').slideToggle();
+   return false;
+ });
+
+ jQuery('.user_status').click(function(){
+   spi = jQuery(this).parents('.profile_card').find('.spinner');
+   rel = this
+   jQuery.ajax({
       beforeSend: function(){
         jQuery(spi).show();
       },
@@ -110,9 +111,9 @@ jQuery(document).ready(function()
         var file = files[index];
         return jQuery('<tr><td>' + file.name + '<\/td>' +
           '<td class="file_upload_progress"><div><\/div><\/td>' +
-          '<td class="file_upload_cancel">' +
-          '<button class="ui-state-default ui-corner-all" title="Cancel">' +
-          '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+          '<td>' +
+          '<button title="Cancel">' +
+          '<span>Cancel<\/span>' +
           '<\/button><\/td><\/tr>');
       },
       buildDownloadRow: function (file) {

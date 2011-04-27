@@ -35,7 +35,7 @@ class AlbumsController < ApplicationController
       flash[:notice] = "Successfully updated album."
       redirect_to albums_path(@album)
     else
-      flash[:notice] = "Album was not succesfully updated"
+      flash[:error] = "Album was not succesfully updated"
       render :action => 'edit'
     end
   end

@@ -6,12 +6,11 @@
 - unless blogs.empty?
   .widget_large
     %span.widget_lrg_top
-    = slide_up_down_header('blogs_info', title.html_safe)
-    .slidecontent
-      .complete_middle_panel
-        - blogs.each do |b|
-          .comments
-            %img{:src => "/images/blog.gif"}
-            = link_to b.title, profile_blog_path(@profile, b)
-            posted at #{b.updated_at.to_datetime.to_formatted_s(:rfc822)}
+    = slide_up_down_header('blogs_info', title.html_safe, 'sliding')
+    .slidecontent.complete_middle_panel
+      - blogs.each do |b|
+        .comments
+          %img{:src => "/images/blog.gif"}
+          = link_to b.title, profile_blog_path(@profile, b)
+          posted at #{b.updated_at.to_datetime.to_formatted_s(:rfc822)}
     %span.widget_lrg_btm

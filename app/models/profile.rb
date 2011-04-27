@@ -51,6 +51,7 @@ class Profile < ActiveRecord::Base
   }
   validates :first_name,:middle_name,:last_name,:maiden_name,:spouse_name,:professional_qualification, :length => { :maximum => 30 }
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+  
 
   permissible_fields PERMISSION_FIELDS
   

@@ -2,15 +2,14 @@
   %span.widget_complete_top
   %h3.blog_head.event_head_width New Album
   .blog_text
-    = form_for @album do |f|
-      = f.label :Name
-      = f.text_field :name, :class => "big_text_field"
-      %br
-      = f.label :Description
-      = f.text_area :description, :class => "big_text_area"
-      %br
-      = f.label :set_as_blurb
-      = check_box_tag("album[set_as_blurb]", value = "1", checked = false)
+    = semantic_form_for @album do |f|
+      = f.inputs do
+        = f.input :name, :label => "Album Name"
+        = f.input :description
+      .album_text
+        = label_tag "set_as_blurb"
+        &nbsp
+        = check_box_tag("album[set_as_blurb]", value = "1", checked = false)
       .blog_btn_container
         %button.buttons{:type => "submit"}
           = image_tag("save.png")
