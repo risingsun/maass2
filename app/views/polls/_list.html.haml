@@ -6,7 +6,7 @@
 - unless polls.empty?
   .widget_large
     %span.widget_lrg_top
-    = slide_up_down_header('polls_info',title.html_safe)
+    = slide_up_down_header('polls_info',title.html_safe, 'sliding')
     .slidecontent
       .complete_middle_panel
         - polls.each do |p|

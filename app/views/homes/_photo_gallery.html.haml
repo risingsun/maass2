@@ -1,6 +1,5 @@
 - if @pictures.blank?
-  .comments
-    = SITE_NOT_RECORD_MSG
+  .comments= SITE_NOT_RECORD_MSG
 - else
   #gallery.content
     #controls.controls
@@ -13,9 +12,7 @@
         %li
           %a.thumb{:href => f.image.url('original')}
             = image_tag(f.image.url('original'), :alt => @pictures.name, :width => 75, :height => 75)
-          .caption
-            .image-title
-              = f.caption
+          .caption.image-title= f.caption
 :javascript
   gallery();
 

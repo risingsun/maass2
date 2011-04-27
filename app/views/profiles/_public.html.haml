@@ -13,7 +13,7 @@
     %span.widget_lrg_btm
 .widget_large
   %span.widget_lrg_top
-  = slide_up_down_header('personal_info','Personal Info')
+  = slide_up_down_header('personal_info','Personal Info','sliding')
   .middle_panel_profile
     .slidecontent.hide_info
       = render 'profiles/personal'
@@ -21,7 +21,7 @@
 - if @profile.can_see_field("work_informations", @p)
   .widget_large
     %span.widget_lrg_top
-    = slide_up_down_header('work_info','Work Info')
+    = slide_up_down_header('work_info','Work Info','sliding')
     .middle_panel_profile
       .slidecontent.hide_info
         = render 'profiles/work' if !@profile.works.blank?
@@ -29,7 +29,7 @@
 - if @profile.can_see_field("educations", @p)
   .widget_large
     %span.widget_lrg_top
-    = slide_up_down_header('education_info','Education Info')
+    = slide_up_down_header('education_info','Education Info','sliding')
     .middle_panel_profile
       .slidecontent.hide_info
         = render 'profiles/education' if !@profile.educations.blank?
@@ -42,7 +42,7 @@
 - if !@friends.blank?
   .widget_large
     %span.widget_lrg_top
-    = slide_up_down_header('google_map','Google Map')
+    = slide_up_down_header('google_map','Google Map','sliding')
     .middle_panel_profile
       .slidecontent
         = raw GMap.header()
