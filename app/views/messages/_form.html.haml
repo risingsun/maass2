@@ -6,7 +6,7 @@
   %span.widget_lrg_top
   - unless hide_header
     = render :partial => "header_links"
-  - form_for :message, :url => profile_messages_path(@p) do |f|
+  = form_for :message, :url => profile_messages_path(@p) do |f|
     .row_complete
       %label{:for => "message_to"} To
       = f.select :receiver_id, @to_list.map{|p| [full_name(p), p.id]},:class => "big_text_field",:title => "To List"
@@ -18,4 +18,4 @@
     .blog_btn_container
       %button.buttons{:type => "submit"}
         = image_tag("send-message.png")
-%span.widget_lrg_btm
+  %span.widget_lrg_btm
