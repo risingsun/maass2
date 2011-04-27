@@ -84,9 +84,9 @@ jQuery(document).ready(function()
         var file = files[index];
         return jQuery('<tr><td>' + file.name + '<\/td>' +
           '<td class="file_upload_progress"><div><\/div><\/td>' +
-          '<td class="file_upload_cancel">' +
-          '<button class="ui-state-default ui-corner-all" title="Cancel">' +
-          '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+          '<td>' +
+          '<button title="Cancel">' +
+          '<span>Cancel<\/span>' +
           '<\/button><\/td><\/tr>');
       },
       buildDownloadRow: function (file) {

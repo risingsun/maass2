@@ -35,8 +35,7 @@
         = render 'profiles/education' if !@profile.educations.blank?
     %span.widget_lrg_btm
 = render :partial => 'profiles/recent_activity'
-- cache "profile_#{@profile.id}/profile_page_blogs" do
-  = render :partial => 'blogs/list'
+= render :partial => 'blogs/list'
 = render :partial => 'polls/list'
 = render :partial => 'forum_posts/list'
 = render :partial=> 'comments/comment_list', :locals => {:with_form => true, :with_wall_to_wall => true}
