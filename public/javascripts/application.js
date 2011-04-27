@@ -76,8 +76,6 @@ jQuery(document).ready(function()
   });
 
   jQuery('.rsvp_event').click(function(){
-
-
     var path = jQuery(this).attr('url');
     var type = jQuery(this).val();
     jQuery.ajax({
@@ -143,6 +141,19 @@ jQuery(document).ready(function()
       success: function(data){
         jQuery(delete_link).parents('.comment').fadeOut("slow");
         jQuery(rel).text(data).fadeIn("fast");
+      }
+    });
+    return false;
+  });
+
+  jQuery(".delete_feed").click(function(){
+    rel = jQuery(this).parents('.feed_item');
+    jQuery.ajax({
+      url: jQuery(this).attr('href'),
+      dataType: "json",
+      type: 'DELETE',
+      success: function(){
+        jQuery(rel).fadeOut("slow");
       }
     });
     return false;
