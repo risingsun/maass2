@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "Comment created successfully."
       redirect_to request.referer
     else
-      flash[:notice] = "Comment not created successfully."
+      flash[:error] = "Comment not created successfully."
       redirect_to request.referer
     end
   end

@@ -1,6 +1,6 @@
 %h2.widget_title= @title.titlecase
 - if @blogs.blank?
-  %span.comments= "Not Found"
+  %span.comments Not Found
 - else
   = render :partial=>'blogs/blog', :collection=> @blogs
 = will_paginate @blogs

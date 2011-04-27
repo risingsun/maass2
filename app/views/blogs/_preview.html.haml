@@ -1,7 +1,6 @@
-%div{:id => "blog_#{@blog.id}"}
-  %span.widget_lrg_top
-  %h3.blog_head
-    = @blog.title
-  .blog_text
-    = @blog.body.html_safe
-  %span.widget_lrg_btm
+%span.widget_lrg_top
+%h3.blog_head
+  = @blog.title
+.blog_text
+  = @blog.body.html_safe
+%span.widget_lrg_btm

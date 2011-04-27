@@ -60,7 +60,7 @@ class PollsController < ApplicationController
     if @poll.destroy
       redirect_to profile_polls_path
     else
-      flash[:notice] = "Poll was not successfully destroyed."
+      flash[:error] = "Poll was not successfully destroyed."
     end
   end
 

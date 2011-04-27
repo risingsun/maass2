@@ -31,6 +31,4 @@
             = link_to image_tag("cross.png", :title => 'Delete', :alt => 'Delete'), student_check_path(student_check), :method => :delete, :confirm => 'Are you sure?' |
           %td
             = link_to image_tag("email_go.png", :title => 'Invite', :alt => 'Invite'), send_invite_student_check_path(student_check),:method => :post,:confirm => 'Send Invitation email?' unless  student_check.emails.blank? |
-    %br
-    = link_to image_tag("user_add.png", :title => 'New Student Check', :alt => 'New Student Check'), new_student_check_path
   %span.widget_complete_btm

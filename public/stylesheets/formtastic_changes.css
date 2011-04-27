@@ -116,6 +116,7 @@ form.formtastic fieldset > ol > li.optional {
   form.formtastic fieldset > ol > li p.inline-errors {
     color: #CC0000;
     margin: 0.5em 0 10px 71%;
+    font-size: 11px;
   }
   form.formtastic fieldset > ol > li.password input{
     max-width: 20em;
