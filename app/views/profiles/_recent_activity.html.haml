@@ -2,7 +2,7 @@
 - unless feed_items.empty?
   .widget_large
     %span.widget_lrg_top
-    = slide_up_down_header('recent_activities','Recent Activity')
+    = slide_up_down_header('recent_activities','Recent Activity', 'sliding')
     .slidecontent
       - feed_items.each do |feed_item|
         - next unless feed_item.item

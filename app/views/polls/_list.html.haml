@@ -5,12 +5,11 @@
 - unless polls.empty?
   .widget_large
     %span.widget_lrg_top
-    = slide_up_down_header('polls_info',"Most Recent Polls (latest " + "#{polls.size }" + " of " + "#{total > size ? link_to( total, profile_polls_path(profile)) : total} )")
-    .slidecontent
-      .complete_middle_panel
-        - polls.each do |p|
-          .comments
-            %img{:src => "/images/poll_icon.png"}
-            = link_to p.question, profile_poll_path(p.profile,p)
-            written #{time_ago_in_words p.created_at} ago
+    = slide_up_down_header('polls_info',"Most Recent Polls (latest " + "#{polls.size }" + " of " + "#{total > size ? link_to( total, profile_polls_path(profile)) : total} )", 'sliding')
+    .complete_middle_panel.slidecontent
+      - polls.each do |p|
+        .comments
+          %img{:src => "/images/poll_icon.png"}
+          = link_to p.question, profile_poll_path(p.profile,p)
+          written #{time_ago_in_words p.created_at} ago
     %span.widget_lrg_btm

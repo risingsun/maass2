@@ -78,9 +78,9 @@ module ApplicationHelper
     ""
   end
 
-  def slide_up_down_header(inner_panel_id, header_text)
+  def slide_up_down_header(inner_panel_id, header_text, sliding="")
     self.content_tag :h2,
-      :class => "widget_lrg_title",
+      :class => "widget_lrg_title #{sliding}",
       :id => inner_panel_id+"_header" do
       header_text
     end

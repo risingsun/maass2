@@ -2,10 +2,11 @@
 jQuery(document).ready(function()
 {
 
- jQuery('.widget_lrg_title').click(function(){
+ jQuery('.sliding').click(function(){
    jQuery(this).parents('.widget_large').find('.slidecontent').slideToggle();
    return false;
  });
+
  jQuery('.user_status').click(function(){
    spi = jQuery(this).parents('.profile_card').find('.spinner');
    rel = this
