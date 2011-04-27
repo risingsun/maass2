@@ -2,54 +2,80 @@
 jQuery(document).ready(function()
 {
 
- jQuery('.widget_lrg_title').click(function(){
-   jQuery(this).parents('.widget_large').find('.slidecontent').slideToggle();
-   return false;
- });
- jQuery('.user_status').click(function(){
-   spi = jQuery(this).parents('.profile_card').find('.spinner');
-   rel = this
-   jQuery.ajax({
+  jQuery('.widget_lrg_title').click(function(){
+    jQuery(this).parents('.widget_large').find('.slidecontent').slideToggle();
+    return false;
+  });
+  jQuery('.user_status').click(function(){
+    spi = jQuery(this).parents('.profile_card').find('.spinner');
+    rel = this
+    jQuery.ajax({
       beforeSend: function(){
         jQuery(spi).show();
       },
       complete: function(){
         jQuery(spi).hide();
       },
-     url: jQuery(this).attr('href'),
-     dataType: "json",
-     type: 'GET',
-     success: function(data){
-       jQuery(rel).text(data).fadeIn("fast");
-     }
-   });
-   return false;
- });
+      url: jQuery(this).attr('href'),
+      dataType: "json",
+      type: 'GET',
+      success: function(data){
+        jQuery(rel).text(data).fadeIn("fast");
+      }
+    });
+    return false;
+  });
 
- jQuery('.friend_status').live('click',function(){
-   rel = jQuery(this).parents('.profile_card').find('.profile');
-   spi = jQuery(this).parents('.profile_card').find('.spinner');
-   path = jQuery(this).attr('href');
-   method = jQuery(this).attr('type');
-   jQuery.ajax({
-     beforeSend: function(){
-       jQuery(spi).show();
-     },
-     complete: function(){
-       jQuery(spi).hide();
-     },
-     url: path,
-     dataType: "html",
-     type: method,
-     success: function(response){
-       jQuery(rel).replaceWith(response)
-     }
-   });
-   return false;
- });
+  jQuery('.friend_status').live('click',function(){
+    rel = jQuery(this).parents('.profile_card').find('.profile');
+    spi = jQuery(this).parents('.profile_card').find('.spinner');
+    path = jQuery(this).attr('href');
+    method = jQuery(this).attr('type');
+    jQuery.ajax({
+      beforeSend: function(){
+        jQuery(spi).show();
+      },
+      complete: function(){
+        jQuery(spi).hide();
+      },
+      url: path,
+      dataType: "html",
+      type: method,
+      success: function(response){
+        jQuery(rel).replaceWith(response)
+      }
+    });
+    return false;
+  });
+
+  jQuery('.vote').live('click',function(){
+    rel = jQuery(this).parents('.poll_text').find('.poll');
+    spi = jQuery(this).parents('.poll_text').find('.spinner');
+    path = jQuery(this).attr('url');
+    method = jQuery(this).attr('type');
+    value= jQuery("input:radio[name='poll[poll_options][option]']:checked").attr('value');
+    jQuery.ajax({
+      beforeSend: function(){
+        jQuery(spi).show();
+      },
+      complete: function(){
+        jQuery(spi).hide();
+      },
+      url: path,
+      dataType: "html",
+      type: method,
+      data:{
+        option: value
+      }
+    //     success: function(response){
+    //
+    //       jQuery(rel).replaceWith(response)
+    //     }
+    });
+    return false;
+  });
 
   jQuery('.rsvp_event').click(function(){
-
     var path = jQuery(this).attr('url');
     var type = jQuery(this).val();
     jQuery.ajax({
@@ -115,6 +141,19 @@ jQuery(document).ready(function()
       success: function(data){
         jQuery(delete_link).parents('.comment').fadeOut("slow");
         jQuery(rel).text(data).fadeIn("fast");
+      }
+    });
+    return false;
+  });
+
+  jQuery(".delete_feed").click(function(){
+    rel = jQuery(this).parents('.feed_item');
+    jQuery.ajax({
+      url: jQuery(this).attr('href'),
+      dataType: "json",
+      type: 'DELETE',
+      success: function(){
+        jQuery(rel).fadeOut("slow");
       }
     });
     return false;

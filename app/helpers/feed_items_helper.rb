@@ -1,7 +1,7 @@
 module FeedItemsHelper
 
   def x_feed_link feed_item
-    link_to image_tag('delete.png', :class => 'delete'),profile_feed_item_path(@profile, feed_item), :remote=>true, :method => :delete
+    link_to(image_tag('delete.png',:class=>'delete'), profile_feed_item_path(@profile, feed_item), :class => 'delete_feed')
   end
 
   def commentable_text comment, in_html = true
