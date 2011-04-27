@@ -1,17 +1,1 @@
-= javascript_include_tag 'jquery.fileupload-ui','jquery.fileupload'
-= stylesheet_link_tag 'jquery.fileupload-ui'
-.forum_links= link_to "Back To Albums", albums_path()
-.widget_complete
-  %span.widget_complete_top
-  %h3.blog_head.event_head_width= "Upload #{@album.name}'s Photos"
-  .blog_text
-    = semantic_form_for [@album,@photo],:html => { :class => "upload", :multipart => true } do |f|
-      = f.inputs do
-        = f.input :caption
-        = f.input :image, :as => :file, :input_html => {:multiple => true, :name => 'photo[image]'}
-  %span.widget_complete_btm
-.widget_complete
-  %span.widget_complete_top
-  %table.upload_files
-  %table.download_files
-  %span.widget_complete_btm
+= render 'form'
