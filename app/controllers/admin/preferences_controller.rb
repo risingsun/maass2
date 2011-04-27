@@ -19,7 +19,7 @@ class Admin::PreferencesController < ApplicationController
     @title = Title.new(params[:title])
     unless params[:title][:name].blank?
       unless @title.save
-        flash[:notice] = " Not created successfully"
+        flash[:error] = " Not created successfully"
       end
     end
     redirect_to admin_preferences_path
@@ -65,7 +65,7 @@ class Admin::PreferencesController < ApplicationController
     @house_name = HouseName.new(params[:house_name])
     unless params[:house_name][:name].blank?
       unless @house_name.save
-        flash[:notice] = " Not created successfully"
+        flash[:error] = " Not created successfully"
       end
     end
     redirect_to admin_preferences_path

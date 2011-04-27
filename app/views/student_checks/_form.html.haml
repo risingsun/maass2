@@ -1,45 +1,20 @@
-= rounded_corner(:title => 'Student Checks Update/Create') do
-  = form_for(@student_check) do |f|
-    = f.error_messages
-    %p
-      = f.label :first_name
-      %br
-      %br
-      %br
-      = f.text_field :first_name
-    %p
-      = f.label :middle_name
-      %br
-      = f.text_field :middle_name
-    %p
-      = f.label :last_name
-      %br
-      = f.text_field :last_name
-    %p
-      = f.label :year
-      %br
-      = f.select :year, (1992..2012)
-      %br
-      %br
-      #profile_field
-        = f.label :profile
-        %br
-        = f.select :profile_id, ""
-        %br
-        %br
-    %p
-      = f.label :email
-      %br
-      = f.text_field :e_mail_1
-    %p
-      = f.label :alt_email
-      %br
-      = f.text_field :e_mail_2
-    %p
-      = f.submit "Update and Return"
-      = f.submit "Update and Add Another"
-      = f.submit "Update and Edit"
-    - unless @student_check.new_record?
-      %p
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width Student Checks Update/Create
+  .blog_text
+    = semantic_form_for(@student_check) do |f|
+      = f.inputs do
+        = f.input :first_name
+        = f.input :middle_name
+        = f.input :last_name
+        = f.input :year, :as => :select, :collection => BATCH_RANGE
+        = f.input :profile_id, :as => :select, :label => "Profile", :id => "profile_field"
+        = f.input :e_mail_1, :label => "Email Id"
+        = f.input :e_mail_2, :label => "Alternate Email Id"
+      %br= f.commit_button "Update and Return"
+      %br= f.commit_button "Update and Add Another"
+      %br= f.commit_button "Update and Edit"
+      - unless @student_check.new_record?
         = link_to image_tag("cross.png", :title => 'Delete', :alt => 'Delete'), student_check_path(@student_check), :method => :delete
         = link_to image_tag("email_go.png", :title => 'Invite', :alt => 'Invite'), send_invite_student_check_path(@student_check), :method => :post unless @student_check.emails.empty?
+  %span.widget_complete_btm

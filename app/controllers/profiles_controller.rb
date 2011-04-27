@@ -56,7 +56,7 @@ class ProfilesController < ApplicationController
       end
     else
       redirect_to homes_path
-      flash[:notice] = "It looks like you don't have permission to view that page."
+      flash[:error] = "It looks like you don't have permission to view that page."
     end
   end
 
@@ -130,13 +130,13 @@ class ProfilesController < ApplicationController
   def update_email
     @profile = Profile.find(params[:profile_id])
     unless @profile.user.match_confirmation?(params[:hash])
-      flash[:notice] = "We're sorry but it seems that the confirmation did not go thru. You may have provided an expired key." 
+      flash[:error] = "We're sorry but it seems that the confirmation did not go thru. You may have provided an expired key."
     else
       @profile.email =  @profile.user.requested_new_email
       if  @profile.save
         flash[:notice] = "Your email has been updated"
       else
-        flash[:notice] = "This email has already been taken"
+        flash[:error] = "This email has already been taken"
       end
     end
     redirect_to homes_path

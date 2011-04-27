@@ -17,40 +17,66 @@ jQuery(document).ready(function()
       complete: function(){
         jQuery(spi).hide();
       },
-     url: jQuery(this).attr('href'),
-     dataType: "json",
-     type: 'GET',
-     success: function(data){
-       jQuery(rel).text(data).fadeIn("fast");
-     }
-   });
-   return false;
- });
+      url: jQuery(this).attr('href'),
+      dataType: "json",
+      type: 'GET',
+      success: function(data){
+        jQuery(rel).text(data).fadeIn("fast");
+      }
+    });
+    return false;
+  });
 
- jQuery('.friend_status').live('click',function(){
-   rel = jQuery(this).parents('.profile_card').find('.profile');
-   spi = jQuery(this).parents('.profile_card').find('.spinner');
-   path = jQuery(this).attr('href');
-   method = jQuery(this).attr('type');
-   jQuery.ajax({
-     beforeSend: function(){
-       jQuery(spi).show();
-     },
-     complete: function(){
-       jQuery(spi).hide();
-     },
-     url: path,
-     dataType: "html",
-     type: method,
-     success: function(response){
-       jQuery(rel).replaceWith(response)
-     }
-   });
-   return false;
- });
+  jQuery('.friend_status').live('click',function(){
+    rel = jQuery(this).parents('.profile_card').find('.profile');
+    spi = jQuery(this).parents('.profile_card').find('.spinner');
+    path = jQuery(this).attr('href');
+    method = jQuery(this).attr('type');
+    jQuery.ajax({
+      beforeSend: function(){
+        jQuery(spi).show();
+      },
+      complete: function(){
+        jQuery(spi).hide();
+      },
+      url: path,
+      dataType: "html",
+      type: method,
+      success: function(response){
+        jQuery(rel).replaceWith(response)
+      }
+    });
+    return false;
+  });
+
+  jQuery('.vote').live('click',function(){
+    rel = jQuery(this).parents('.poll_text').find('.poll');
+    spi = jQuery(this).parents('.poll_text').find('.spinner');
+    path = jQuery(this).attr('url');
+    method = jQuery(this).attr('type');
+    value= jQuery("input:radio[name='poll[poll_options][option]']:checked").attr('value');
+    jQuery.ajax({
+      beforeSend: function(){
+        jQuery(spi).show();
+      },
+      complete: function(){
+        jQuery(spi).hide();
+      },
+      url: path,
+      dataType: "html",
+      type: method,
+      data:{
+        option: value
+      }
+    //     success: function(response){
+    //
+    //       jQuery(rel).replaceWith(response)
+    //     }
+    });
+    return false;
+  });
 
   jQuery('.rsvp_event').click(function(){
-
     var path = jQuery(this).attr('url');
     var type = jQuery(this).val();
     jQuery.ajax({
@@ -85,9 +111,9 @@ jQuery(document).ready(function()
         var file = files[index];
         return jQuery('<tr><td>' + file.name + '<\/td>' +
           '<td class="file_upload_progress"><div><\/div><\/td>' +
-          '<td class="file_upload_cancel">' +
-          '<button class="ui-state-default ui-corner-all" title="Cancel">' +
-          '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+          '<td>' +
+          '<button title="Cancel">' +
+          '<span>Cancel<\/span>' +
           '<\/button><\/td><\/tr>');
       },
       buildDownloadRow: function (file) {
@@ -116,6 +142,19 @@ jQuery(document).ready(function()
       success: function(data){
         jQuery(delete_link).parents('.comment').fadeOut("slow");
         jQuery(rel).text(data).fadeIn("fast");
+      }
+    });
+    return false;
+  });
+
+  jQuery(".delete_feed").click(function(){
+    rel = jQuery(this).parents('.feed_item');
+    jQuery.ajax({
+      url: jQuery(this).attr('href'),
+      dataType: "json",
+      type: 'DELETE',
+      success: function(){
+        jQuery(rel).fadeOut("slow");
       }
     });
     return false;

@@ -23,7 +23,7 @@ class FeedbacksController < ApplicationController
       flash[:notice] = "Thank you for your message.  A member of our team will respond to you shortly."
       redirect_to :root
     else
-      flash[:notice] = "Can not create feedback"
+      flash[:error] = "Can not create feedback"
       render :new
     end
   end

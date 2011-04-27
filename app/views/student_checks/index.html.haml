@@ -1,4 +1,6 @@
-= rounded_corner(:title => "Student Checks") do
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width Student Checks
   - BATCH_RANGE.each do |b|
     = link_to(b, student_checks_path(:year => b).to_param)
   = link_to("All", student_checks_path(:all => "all").to_param)
@@ -7,15 +9,8 @@
   = display_alpha_index(StudentCheck.alpha_index) unless @student_checks.blank?
   %br
   %br
-  = link_to image_tag("user_add.png",        |
-              :title => 'New Student Check', |
-              :alt => 'New Student Check'),  |
-              new_student_check_path         
-  = link_to image_tag("lightning_go.png",               |
-               :title => 'Send Invite to All',          |
-               :alt => 'Send Invite to All'),           |
-     send_bulk_invite_student_checks_path,              |
-     :method => :post, :confirm => 'Send email to ALL?' |
+  = link_to image_tag("user_add.png", :title => 'New Student Check', :alt => 'New Student Check'), new_student_check_path         
+  = link_to image_tag("lightning_go.png", :title => 'Send Invite to All', :alt => 'Send Invite to All'), send_bulk_invite_student_checks_path, :method => :post, :confirm => 'Send email to ALL?' |
   %table
     %tr
       %th Name
@@ -29,24 +24,11 @@
         %td= h student_check.year
         - if student_check.profile
           %td
-            = link_to(image_tag("user_orange.png",                 |
-                        :title => student_check.profile.full_name, |
-                        :alt => student_check.profile.full_name),  |
-              profile_path(student_check.profile))                 |
+            = link_to(image_tag("user_orange.png", :title => student_check.profile.full_name, :alt => student_check.profile.full_name), profile_path(student_check.profile))                 |
         - else
           %td
           %td
-            = link_to image_tag("cross.png",                  |
-                        :title => 'Delete',                   |
-                        :alt => 'Delete'),                    |
-              student_check_path(student_check),              |
-              :method => :delete, :confirm => 'Are you sure?' |
+            = link_to image_tag("cross.png", :title => 'Delete', :alt => 'Delete'), student_check_path(student_check), :method => :delete, :confirm => 'Are you sure?' |
           %td
-            = link_to image_tag("email_go.png",                                        |
-                        :title => 'Invite',                                            |
-                        :alt => 'Invite'),                                             |
-              send_invite_student_check_path(student_check),                           |
-              :method => :post,                                                        |
-              :confirm => 'Send Invitation email?' unless  student_check.emails.blank? |
-    %br
-    = link_to image_tag("user_add.png", :title => 'New Student Check', :alt => 'New Student Check'), new_student_check_path
+            = link_to image_tag("email_go.png", :title => 'Invite', :alt => 'Invite'), send_invite_student_check_path(student_check),:method => :post,:confirm => 'Send Invitation email?' unless  student_check.emails.blank? |
+  %span.widget_complete_btm

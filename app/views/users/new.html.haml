@@ -1,5 +1,5 @@
 = rounded_corner(:title => "Sign-up Now", :class => "help") do
-  #login_form.edit_panel_profile
+  .edit_panel_profile
     = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = f.inputs do
         = f.input :login, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
