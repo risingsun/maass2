@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  #  after_create :build_profile
-
   include Humanizer
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
@@ -9,7 +7,7 @@ class User < ActiveRecord::Base
     :first_referral_person_name, :first_referral_person_year,
     :second_referral_person_name, :second_referral_person_year,
     :third_referral_person_name,:third_referral_person_year,
-    :additional_message
+    :additional_message, :profile_attributes
   attr_accessible :humanizer_answer, :humanizer_question_id
   require_human_on :create
 
@@ -46,16 +44,5 @@ class User < ActiveRecord::Base
   def check_authentication(type)
     self.authentications.where(:provider => type)
   end
-
-  private
-
-  #    def build_profile
-  #      debugger
-  #        self.build_user_profile
-  #    end
-  #    def build_profile
-  #       self.build_user_profile
-  #    end
-
 
 end

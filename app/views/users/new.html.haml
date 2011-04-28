@@ -6,7 +6,8 @@
         = f.input :email, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
         = f.input :password, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
         = f.input :password_confirmation, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-      = semantic_fields_for(:profile) do |p|
+      - resource.build_profile
+      = f.semantic_fields_for(:profile) do |p|
         = p.inputs do
           = p.input :first_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = p.input :middle_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}

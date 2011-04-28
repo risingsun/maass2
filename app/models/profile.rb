@@ -50,6 +50,7 @@ class Profile < ActiveRecord::Base
     :small_20 =>  "20x20#"
   }
   validates :first_name,:middle_name,:last_name,:maiden_name,:spouse_name,:professional_qualification, :length => { :maximum => 30 }
+  validates :first_name, :presence => true
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   
 
@@ -252,7 +253,7 @@ class Profile < ActiveRecord::Base
   end
 
   def friends_on_google_map(profile)
-    f = (self.friends + self.followers + self.followings).select {|p| p.can_see_field('marker', profile)}.push(self)
+    f = (self.friends + self.followers + self.followings).select {|p| p.can_see_field('marker', profile)}.insert(0,self)
     users  = f.select {|p| p.marker}
     return users
   end
