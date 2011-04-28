@@ -2,4 +2,58 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  formtastic:
+    labels:
+      profile:
+        # general info
+        first_name: First Name
+        middle_name: Middle Name
+        last_name: Last Name
+        maiden_name: Maiden Name
+        blood_group: Blood Group
+        house_name: House Name
+        date_of_birth: Date Of Birth
+        relationship_status: Relationship Status
+        anniversary_date: Anniversary Date
+        spouse_name: Spouse Name
+        professional_qualification: Professional Qualification
+        about_me: About Me
+        # contact info 
+        address_line1: Address Line1
+        address_line2: Address Line2
+        postal_code: Postal Code
+        # web info 
+        flicker_username: Flickr Screen Name
+        linkedin_name: LinkedIn Public URL
+        twitter_username: Twitter Login
+        aim_name: AIM
+        msn_username: MSN
+        yahoo_name: Yahoo UserId
+        gtalk_name: GTalk Name
+        skype_name: Skype Name
+        delicious_name: Del.icio.us Name
+        # upload icon
+        icon: Upload your Icon (<=5Mb)
+        # default permission
+        default_permission: Default Permission
+
+      education:
+        education_from_year: From Year
+        education_to_year: To Year
+
+      work:
+        company_name: Company Name
+        company_website: Company Website
+        job_description: Job Description
+
+      event:
+        start_date: Start Date
+        end_date: End Date
+
+      announcement:
+        starts_at: Starts At
+        ends_at: Ends At
+
+      album:
+        name: Album Name
+        

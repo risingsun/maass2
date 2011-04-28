@@ -13,7 +13,7 @@
         %ul#mycarousel.jcarousel-skin-ie7
           - @albums.each do |f|
             %li
-              = sets_pictures_link(f)
+              = sets_pictures_link(f) if !f.photos.blank?
               %span.flickr_text= f.name
       - else
         Photos are unavailable at this time

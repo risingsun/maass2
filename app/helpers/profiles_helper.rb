@@ -79,7 +79,7 @@ module ProfilesHelper
     str = ""
     unless linkedin_name.blank?
       str = "<a href='#{linkedin_name}' class = 'linkedin-profileinsider-popup'>"
-      str += "<img src='http://www.linkedin.com/img/webpromo/btn_myprofile_160x33.gif' width='160' height='33' border='0' alt='View #{@profile.full_name}'s profile on LinkedIn' style='background:none;'></a>"
+      str += "<img src='http://www.linkedin.com/img/webpromo/btn_myprofile_160x33.gif' width='160' height='33' border='0' alt='View #{@profile.full_name}'s profile on LinkedIn' style='background:none;' class = 'linkedin-profileinsider-popup'></a>"
     end
     str.html_safe
   end
@@ -87,19 +87,17 @@ module ProfilesHelper
   def skype_status(skype_account)
     str = ""
     unless skype_account.blank?
-      str = '<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>'
-      str += "<a href='skype:#{skype_account}?call'><img src='http://mystatus.skype.com/bigclassic/#{skype_account}' style='border: none;' width='182' height='44' alt='My status' /></a>"
+      str = "<br /><b>Skype:</b> #{skype_account}"
+      str += '<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>'
+      str += "<img src='http://mystatus.skype.com/bigclassic/#{skype_account}' style='border: none;' width='182' height='44' alt='My status' />"
     end
     str.html_safe
   end
 
-
   def msn_status(msn_account)
     str = ""
     unless msn_account.blank?
-      str = "<a href='msnim:add?contact=#{msn_account}'>"
-      str += '<img src="http://microsoftwlmessengermkt.112.2o7.net/b/ss/mswlmmktbuttoncom/1/H.9--NS/1?ns=microsoftwlmessengermkt&pageName=Button&20Impression&c7=B&c8=Orange&c9=Connect&c10=B:Orange:Connect" width="1" height="1" border="0" />'
-      str += '<img src="http://global.msads.net/ads/pronws/B_Orange_Connect.png" style="Clear: Both; Padding-Bottom: 10px; Border: 0px" /></a>'
+      str = "<b>MSN:</b> #{msn_account}<br/>"
     end
     str.html_safe
   end
@@ -107,10 +105,11 @@ module ProfilesHelper
   def yahoo_status(yahoo_username)
     str = ""
     unless yahoo_username.blank?
-      str = "<b>Yahoo:</b> #{yahoo_username}<br/><img src='http://opi.yahoo.com/online?u=#{yahoo_username}&m=g&t=2&l=us&opi.jpg'/>"
+      str = "<b>Yahoo:</b> #{yahoo_username}<br/>"
     end
     str.html_safe
   end
+
   def show_field(field_value,field_name,field)
     if !field_value.blank? && @profile.can_see_field(field, @p)
       "<tr><th align='right'>#{field_name} </th><td>#{field_value}</td></tr>".html_safe

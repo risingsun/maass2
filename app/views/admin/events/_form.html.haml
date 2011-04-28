@@ -1,9 +1,9 @@
 = f.inputs do
-  = f.input :title, :input_html => {:class => "big_text_field"}, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
-  = f.input :place, :input_html => {:class => "big_text_field"}, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
-  = f.input :start_date, :as => :string, :input_html => {:class => "big_text_field datetime"}, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
-  = f.input :end_date, :as => :string, :input_html => {:class => "big_text_field datetime"}, :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
-  = f.input :description, :as => :text, :input_html => {:class => "big_text_area"}, :wrapper_html => {:class => cycle(:row_complete_light_large2, :row_complete_dark_large2)}
+  = f.input :title, :input_html => {:class => "big_text_field"}
+  = f.input :place, :input_html => {:class => "big_text_field"}
+  = f.input :start_date, :as => :string, :input_html => {:class => "big_text_field datetime"}
+  = f.input :end_date, :as => :string, :input_html => {:class => "big_text_field datetime"}
+  = f.input :description, :as => :text, :input_html => {:class => "big_text_area"}
   - @event.marker.blank? ? new_map : edit_map(@event.marker)
   %div{:class => cycle(:row_complete_light_large2, :row_complete_dark_large2)}
     .google_map

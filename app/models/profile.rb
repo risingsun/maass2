@@ -225,10 +225,6 @@ class Profile < ActiveRecord::Base
     self.blogs.all(:conditions => {:is_sent =>:false}, :order => "created_at DESC")
   end
 
-  def admin_images(image)
-    self.photos.all(:conditions => {:set_as_blurb => image})
-  end
-
   def self.change_group(year)
     years = Profile.where(:group => year, :is_active => true)
     group = years.map{|p| [p.full_name(), p.id]}
