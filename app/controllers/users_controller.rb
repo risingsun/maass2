@@ -1,5 +1,6 @@
 class UsersController < Devise::RegistrationsController
 
+  layout "plain"
   def update
     @profile =  current_user.profile
     @permission =@profile.permissions || @profile.permissions.build
