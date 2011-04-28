@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     :first_referral_person_name, :first_referral_person_year,
     :second_referral_person_name, :second_referral_person_year,
     :third_referral_person_name,:third_referral_person_year,
-    :additional_message
+    :additional_message, :profile_attributes
   attr_accessible :humanizer_answer, :humanizer_question_id
   require_human_on :create
 

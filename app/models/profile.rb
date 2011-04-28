@@ -188,10 +188,6 @@ class Profile < ActiveRecord::Base
     gender.downcase
   end
 
-  def batch_mates
-    Profile.find()
-  end
-
   def self.new_member
     Profile.find(:all, :conditions => {:is_active => true}, :limit => 6, :order => 'created_at DESC')
   end

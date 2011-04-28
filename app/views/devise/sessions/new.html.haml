@@ -1,5 +1,5 @@
 = semantic_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  - rounded_corner(:title => 'Login') do
+  = rounded_corner(:title => 'Login') do
     = f.inputs do
       = f.input :email, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
       = f.input :password, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
