@@ -38,7 +38,7 @@ CKEDITOR.lang['en-au'] =
 	editor	: 'Rich Text Editor', // MISSING
 
 	// Toolbar buttons without dialogs.
-    source			: 'Source',
+	source			: 'Source',
 	newPage			: 'New Page',
 	save			: 'Save',
 	preview			: 'Preview',
