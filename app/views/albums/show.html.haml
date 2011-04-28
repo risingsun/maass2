@@ -1,10 +1,10 @@
+.forum_links
+  = link_to "back to MAASS albums", albums_path()
 .widget_complete
   %span.widget_complete_top
   %h3.blog_head.event_head_width
     = "#{@album.name} 's Photos"
-    %div{:class => "forum_links"}
-      = link_to "back to MAASS albums", albums_path()
-  -@album.photos.each do |a|
+  - @album.photos.each do |a|
     .album_photos
       %h3.album_head
         = a.caption

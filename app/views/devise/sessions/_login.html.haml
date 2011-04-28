@@ -1,7 +1,7 @@
 - resource = User.new
 - resource_name = :user
-- rounded_corner(:size => :small, :title => 'Login') do
-  - form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+= rounded_corner(:size => :small, :title => 'Login') do
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     .div_field
       %label.label_text{:for => "username"} Username
       = f.text_field :email, :class => "textbox_small", :id=> "username"
