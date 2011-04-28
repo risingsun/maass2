@@ -33,4 +33,14 @@ class Event < ActiveRecord::Base
   def users_on_google_map
     return self.attending.collect{|u| u.marker if u.marker}.push(self.marker)
   end
+
+  def set_role_of_user(profile, type)
+    debugger
+    pe = self.profile_events.find(:first,:conditions => {:profile_id => profile})
+    unless pe
+      pe = self.profile_events.create(:profile_id => @profile)
+    end
+    pe.update_attribute('role',type)unless pe.is_organizer?
+    return pe
+  end
 end

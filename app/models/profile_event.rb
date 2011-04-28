@@ -7,4 +7,6 @@ class ProfileEvent < ActiveRecord::Base
   def is_organizer?
     self.role =='Organizer'
   end
+
+  
 end
