@@ -5,11 +5,9 @@ class FeedItemsController < ApplicationController
     @feed = @profile.feeds.find(:first, :conditions => {:feed_item_id=>params[:id]})
     @feed.destroy if @feed
     respond_to do |wants|
-      wants.html do
-        flash[:notice] = 'Item successfully removed from the recent activities list.'
-        redirect_to @profile
+      wants.js do
+        render :json => ("Item successfully removed from the recent activities list.").to_json
       end
-      wants.js
     end
   end
 

@@ -3,9 +3,10 @@
   %h3.blog_head
     = link_to image_tag(set_icon(@event.organizers.first,'small')), @event.organizers.first
     = link_to sanitize(@event.title),admin_event_path(@event)
-    = link_to image_tag('edit.png'), edit_admin_event_path(@event) if check_permission?(@event)
-    = link_to image_tag('delete.png'), admin_event_path(@event), :method => :delete if check_permission?(@event)
-    = link_to image_tag('email_go.png',:title => "Send Event",:class => 'add_comment'), send_event_mail_admin_event_path(@event),:method => :post,:confirm => 'Are you sure? Do you want to send email to all users?'
+    - if check_permission(@event)?
+      = link_to image_tag('edit.png'), edit_admin_event_path(@event)
+      = link_to image_tag('delete.png'), admin_event_path(@event), :method => :delete
+      = link_to image_tag('email_go.png',:title => "Send Event",:class => 'add_comment'), send_event_mail_admin_event_path(@event),:method => :post,:confirm => 'Are you sure? Do you want to send email to all users?'
     .created_date
       Posted by #{@event.organizers.first.full_name} at #{@event.updated_at.to_date.to_formatted_s(:rfc822)}
   .blog_text
@@ -29,3 +30,15 @@
     = render :partial => "/comments/comment", :collection => @event.comments.reject{|x|x.new_record?}
     .clear_div
   %span.widget_lrg_btm
+- if !@friends.blank?
+  .widget_large
+    %span.widget_lrg_top
+    = slide_up_down_header('google_map','Google Map','sliding')
+    .middle_panel_profile
+      .slidecontent
+        = raw GMap.header()
+        = javascript_include_tag("markerGroup")
+        - show_map_for_events()
+        = raw @map.to_html
+        = raw @map.div(:width => 530, :height => 400)
+      %span.widget_lrg_btm

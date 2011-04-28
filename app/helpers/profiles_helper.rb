@@ -30,6 +30,21 @@ module ProfilesHelper
     end
   end
 
+  def show_map_for_events
+    @map = GMap.new("map_div")
+    unless @friends.blank?
+      @map.control_init(:large_map => true,:map_type => true)
+      @map.set_map_type_init(GMapType::G_HYBRID_MAP)
+      markers = @friends.collect do |f|
+        GMarker.new([f.lat,f.lng],
+          :title => "")
+      end
+       centre = @event.marker
+      @map.center_zoom_init([centre.lat,centre.lng],centre.zoom)
+      @map.overlay_global_init(GMarkerGroup.new(true,markers),"my_friends")
+    end
+  end
+
   def location_link profile = @p
     return profile.location if profile.location == Profile::NOWHERE
     link_to(profile.location, search_location_profiles_path('search[location]' => profile.location))

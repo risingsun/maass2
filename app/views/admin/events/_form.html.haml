@@ -4,3 +4,14 @@
   = f.input :start_date, :as => :string, :input_html => {:class => "big_text_field datetime"}
   = f.input :end_date, :as => :string, :input_html => {:class => "big_text_field datetime"}
   = f.input :description, :as => :text, :input_html => {:class => "big_text_area"}
+  - @event.marker.blank? ? new_map : edit_map(@event.marker)
+  %div{:class => cycle(:row_complete_light_large2, :row_complete_dark_large2)}
+    .google_map
+      = raw GMap.header()
+      = raw @map.to_html
+      = raw @map.div(:width => 520, :height => 400)
+      -@marker = @event.marker || @event.build_marker
+      = f.semantic_fields_for(:marker) do |m|
+        = m.hidden_field(:lat,:id=>'map_lat')
+        = m.hidden_field(:lng,:id=>'map_lng')
+        = m.hidden_field(:zoom,:id=>'map_zoom')

@@ -1,10 +1,10 @@
 - pe = ProfileEvent.find(:first, :conditions => {:event_id => event.id,:profile_id => @p.id})
 - role = pe.role if pe
-.event_location
+.event_location.commentable
   %span.event_address Your RSVP :&nbsp;
   %span{:id => "span_#{event.id}"}
-    = pe.is_organizer? ? 'Attending':role
+    = event.is_organizer?(@p) ? 'Attending':role
     \&nbsp;
-  = link_to(image_tag('edit.png', :title => "Change RSVP"), "#", :onclick => "show_partial('rsvp_#{event.id}')")unless pe.is_organizer?                     |
-%div{:id => "par_rsvp_#{event.id}", :style => "display: none;"}
-  = render :partial => 'admin/events/rsvp',:locals => {:event => event,:status => 'home_page'}
+  = image_tag('edit.png', :title => "Change RSVP", :class =>'add-comment') unless event.is_organizer?(@p)                     |
+  .comment_form.hide_info
+    = render :partial => 'admin/events/rsvp',:locals => {:event => event,:status => 'home_page'}

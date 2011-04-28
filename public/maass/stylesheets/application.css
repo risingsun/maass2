@@ -4186,3 +4186,8 @@ div.album_links a{
 .album_text{
   margin-left: 113px;
 }
+
+.google_map {
+    float: left;
+    margin-left: 187px;
+}

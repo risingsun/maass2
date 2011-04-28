@@ -18,4 +18,6 @@ module EventsHelper
       return false
     end
   end
+
+  
 end
