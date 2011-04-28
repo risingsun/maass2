@@ -439,7 +439,7 @@ ActiveRecord::Schema.define(:version => 20110425052000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "login"
-    t.boolean  "is_admin"
+    t.boolean  "admin"
     t.boolean  "can_send_messages"
     t.string   "time_zone"
     t.string   "email_verification"

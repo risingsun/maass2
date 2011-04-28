@@ -1,7 +1,7 @@
-= f.input :first_referral_person_name, :as=> :string, :label=>"Referral Person Name", :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-= f.input :first_referral_person_year, :as=> :string, :label=> "Referral Person Year", :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-= f.input :second_referral_person_name, :as=> :string, :label=> "Referral Person Name", :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-= f.input :second_referral_person_year, :as=> :string, :label=> "Referral Person Year", :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-= f.input :third_referral_person_name, :as=> :string, :label=> "Referral Person Name", :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-= f.input :third_referral_person_year, :as=> :string, :label=> "Referral Person Year", :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-= f.input :additional_message, :as=>:text, :label=> "Additional Message", :input_html=>{:cols=>"200", :rows=>"10"}, :wrapper_html=>{:class=> "#{cycle(:row_dark, :row_light)}_large"}
+= f.input :first_referral_person_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+= f.input :first_referral_person_year, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+= f.input :second_referral_person_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+= f.input :second_referral_person_year, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+= f.input :third_referral_person_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+= f.input :third_referral_person_year, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+= f.input :additional_message, :as => :text, :input_html=>{:cols=>"200", :rows=>"10"}, :wrapper_html=>{:class=> "#{cycle(:row_dark, :row_light)}_large"}
