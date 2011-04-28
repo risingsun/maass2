@@ -28,8 +28,8 @@ jQuery(document).ready(function()
   });
 
   jQuery('.friend_status').live('click',function(){
-    rel = jQuery(this).parents('.profile_card').find('.profile');
-    spi = jQuery(this).parents('.profile_card').find('.spinner');
+    rel = jQuery(this).parents('.profile_action').find('.profile');
+    spi = jQuery(this).parents('.profile_action').find('.spinner');
     path = jQuery(this).attr('href');
     method = jQuery(this).attr('type');
     jQuery.ajax({
@@ -78,13 +78,14 @@ jQuery(document).ready(function()
 
   jQuery('.rsvp_event').click(function(){
     var path = jQuery(this).attr('url');
+    spi = jQuery(this).parents('.event').find('.spinner');
     var type = jQuery(this).val();
     jQuery.ajax({
       beforeSend: function(){
-        jQuery(".spinner").show();
+        jQuery(spi).show();
       },
       complete: function(){
-        jQuery(".spinner").hide();
+        jQuery(spi).hide();
       },
       url: path,
       dataType: "json",

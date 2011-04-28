@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
 
   belongs_to :marker
+  belongs_to :profile
   
   validates :title, :place, :start_date, :end_date, :description, :presence => true
 
@@ -31,16 +32,15 @@ class Event < ActiveRecord::Base
   end
 
   def users_on_google_map
-    return self.attending.collect{|u| u.marker if u.marker}.push(self.marker)
+    return self.attending.collect{|u| u.marker}.insert(0,self.marker).compact
   end
 
   def set_role_of_user(profile, type)
-    debugger
     pe = self.profile_events.find(:first,:conditions => {:profile_id => profile})
     unless pe
-      pe = self.profile_events.create(:profile_id => @profile)
+      pe = self.profile_events.create(:profile => profile)
     end
-    pe.update_attribute('role',type)unless pe.is_organizer?
+    pe.update_attribute('role',type)unless is_organizer?(profile)
     return pe
   end
 end
