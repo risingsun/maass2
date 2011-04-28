@@ -47,6 +47,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def show
+    @friends = @event.users_on_google_map
   end
 
   def destroy

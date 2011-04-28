@@ -6,6 +6,7 @@ class Profile < ActiveRecord::Base
   include UserFeeds
 
   belongs_to :user
+  belongs_to :marker
 
   Profile::NOWHERE = 'Nowhere'
 
@@ -19,7 +20,6 @@ class Profile < ActiveRecord::Base
   has_many :profile_events,:dependent => :destroy
   has_many :events, :through => :profile_events
   has_many :profile_comments, :class_name => "Comment"
-  has_one :marker
   has_many :feedbacks
   has_one :notification_control
   has_many :polls, :dependent => :destroy
@@ -256,7 +256,7 @@ class Profile < ActiveRecord::Base
   end
 
   def friends_on_google_map(profile)
-    f = (self.friends + self.followers + self.followings).select {|p| p.can_see_field('marker', profile)}.insert(self)
+    f = (self.friends + self.followers + self.followings).select {|p| p.can_see_field('marker', profile)}.push(self)
     users  = f.select {|p| p.marker}
     return users
   end

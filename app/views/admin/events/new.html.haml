@@ -2,7 +2,7 @@
   %span.widget_complete_top
   %h2.widget_compelete_title New Event
   .event_text
-    = form_for @event, :url => admin_events_path, :html => {:method=>:post} do |form|
+    = semantic_form_for @event, :url => admin_events_path, :html => {:method=>:post} do |form|
       = render :partial => 'form' , :locals =>{:f => form}
       .large_btn_container2
         %button.buttons.gmap{:type => "submit"}

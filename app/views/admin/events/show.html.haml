@@ -29,3 +29,14 @@
     = render :partial => "/comments/comment", :collection => @event.comments.reject{|x|x.new_record?}
     .clear_div
   %span.widget_lrg_btm
+.widget_large
+  %span.widget_lrg_top
+  = slide_up_down_header('google_map','Google Map','sliding')
+  .middle_panel_profile
+    .slidecontent
+      = raw GMap.header()
+      = javascript_include_tag("markerGroup")
+      - show_map_for_events()
+      = raw @map.to_html
+      = raw @map.div(:width => 530, :height => 400)
+    %span.widget_lrg_btm
