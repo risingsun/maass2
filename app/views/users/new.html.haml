@@ -1,19 +1,20 @@
 = rounded_corner(:title => "Sign-up Now", :class => "help") do
   .edit_panel_profile
-    = semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    = semantic_form_for(resource, :as => resource_name, :url => user_registration_path) do |f|
       = f.inputs do
         = f.input :login, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
         = f.input :email, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
         = f.input :password, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
         = f.input :password_confirmation, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-      = semantic_fields_for(:profile) do |p|
+      - resource.build_profile
+      = f.semantic_fields_for(:profile) do |p|
         = p.inputs do
           = p.input :first_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = p.input :middle_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = p.input :last_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = p.input :maiden_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = p.input :gender, :as => :select, :collection => SEX, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = p.input :group, :as => :select, :collection => GROUPS, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :group, :as => :select, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = f.input :humanizer_answer, :label => @user.humanizer_question, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = f.hidden_field :humanizer_question_id
       = f.inputs do

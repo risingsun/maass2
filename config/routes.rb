@@ -4,8 +4,7 @@ Maass2::Application.routes.draw do
 
   match "/auth/:provider/callback" => "authentications#create"
   match "/auth/failure" => "authentications#failure"
-  resources :authentications
-  resources :users  
+  resources :authentications  
   resources :nominations
   resources :votes, :only => [:create]
   resources :feedbacks

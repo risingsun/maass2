@@ -50,6 +50,7 @@ class Profile < ActiveRecord::Base
     :small_20 =>  "20x20#"
   }
   validates :first_name,:middle_name,:last_name,:maiden_name,:spouse_name,:professional_qualification, :length => { :maximum => 30 }
+  validates :first_name, :presence => true
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   
 
@@ -224,10 +225,6 @@ class Profile < ActiveRecord::Base
     self.blogs.all(:conditions => {:is_sent =>:false}, :order => "created_at DESC")
   end
 
-  def admin_images(image)
-    self.photos.all(:conditions => {:set_as_blurb => image})
-  end
-
   def self.change_group(year)
     years = Profile.where(:group => year, :is_active => true)
     group = years.map{|p| [p.full_name(), p.id]}
@@ -252,7 +249,7 @@ class Profile < ActiveRecord::Base
   end
 
   def friends_on_google_map(profile)
-    f = (self.friends + self.followers + self.followings).select {|p| p.can_see_field('marker', profile)}.push(self)
+    f = (self.friends + self.followers + self.followings).select {|p| p.can_see_field('marker', profile)}.insert(0,self)
     users  = f.select {|p| p.marker}
     return users
   end
