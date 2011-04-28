@@ -9,7 +9,7 @@ CKEDITOR.editorConfig = function( config )
   // Define changes to default configuration here. For example:
   config.language = 'en';
   // config.uiColor = '#AADC6E';
-
+  config.uiColor = 'orange';
   //config.ContextMenu = ['Generic','Anchor','Flash','Select','Textarea','Checkbox','Radio','TextField','HiddenField','ImageButton','Button','BulletedList','NumberedList','Table','Form'] ;
 
   config.height = '400px';
@@ -23,19 +23,13 @@ CKEDITOR.editorConfig = function( config )
 
   // works only with en, ru, uk languages
   config.extraPlugins = "newpage";
-  config.removePlugins = 'save,preview,templates,cut,copy,pastetext,pastefromword,about,unlink,anchor,embed,flash,table,pagebreak,attachment,blockquote';
+  config.removePlugins = 'source,save,preview,templates,cut,copy,pastetext,pastefromword,about,unlink,anchor,embed,flash,table,pagebreak,attachment,blockquote';
 
   config.toolbar = 'Easy';
 
   config.toolbar_Easy =
     [
-        ['Source','-'],['NewPage'],
-        ['Paste'],
-        ['Maximize'],
-        ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat','-','Image','HorizontalRule','Smiley','SpecialChar','-','Link'],
-        ['Styles','Format','Font'],
-        ['Bold','Italic','Underline','Strike','-','Subscript','Superscript', 'TextColor'],
-        ['NumberedList','BulletedList','-','Outdent','Indent'],
-        ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+        ['NewPage','Paste','Maximize','Undo','Redo','Find','Replace','SelectAll','RemoveFormat','Image','HorizontalRule','Smiley','SpecialChar','Link','Subscript','Superscript','TextColor','Strike','NumberedList','BulletedList'],
+        ['Bold','Italic','Underline','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],['Styles','Format','Font']
     ];
 };
