@@ -133,10 +133,6 @@ module ApplicationHelper
     photo.image.url(size)
   end
 
-  def theme_image(img, options = {})
-    "#{image_tag((THEME_IMG + "/" + img), options)}"
-  end
-
   def display_standard_flashes(message = 'There were some problems with your submission:')
     if flash[:notice]
       flash_to_display, level = flash[:notice], 'notice'

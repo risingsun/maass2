@@ -1,5 +1,5 @@
 = rounded_corner(:size => :small, :title => 'Profile Actions') do
-  .profile_links
+  .profile_links.profile_action
     .spinner= image_tag('spinner.gif')
     %div= render "friends/friend_status", :profile => @profile
     %div= link_to 'Direct Message', new_profile_message_path(@profile)

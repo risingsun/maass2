@@ -47,6 +47,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def show
+    @friends = @event.users_on_google_map
   end
 
   def destroy
@@ -69,11 +70,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def rsvp
-    pe = ProfileEvent.find(:first,:conditions => {:event_id => @event,:profile_id => @profile})
-    unless pe
-      pe = ProfileEvent.create(:event_id => @event,:profile_id => @profile.id)
-    end
-    pe.update_attribute('role',params[:group])unless pe.is_organizer?
+    pe = @event.set_role_of_user(@profile, params[:group])
     respond_with(pe.role.to_json, :location => admin_event_path(@event))
   end
 

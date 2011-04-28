@@ -3,7 +3,7 @@
   %h2.widget_compelete_title Edit Event
   .event_text
   = semantic_form_for @event, :url => admin_event_path(@event), :html => {:method=> :put} do |form|
-    = render :partial => 'form' , :locals =>{:f => form}
+    = render :partial => 'form' , :locals => {:f => form}
     .large_btn_container2
       %button.buttons.gmap{:type => "submit"}
         = image_tag("Update.png")

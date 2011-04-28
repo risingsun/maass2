@@ -14,9 +14,9 @@
   .large_panel_side
     = rounded_med_corner(:id => "address_details", :title => "Web Info") do
       = render :partial => "profiles/web_info", :locals => {:f => form}
-    = rounded_med_corner(:title => "Education", :id => "education_information") do
+    = rounded_med_corner(:title => "Education Info", :id => "education_information") do
       = render :partial => "profiles/education_info", :locals => {:f => form}
-    = rounded_med_corner( :id => "work_details", :title => "Work Details") do
+    = rounded_med_corner( :id => "work_details", :title => "Work Info") do
       = render :partial => "profiles/work_info", :locals => {:f => form}
     = rounded_med_corner(:title => "Upload Icon", :id => "upload_photo") do
       = render :partial => "profiles/upload_icon", :locals => {:f => form}
