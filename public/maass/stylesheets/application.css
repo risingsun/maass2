@@ -1111,7 +1111,7 @@ table.middle_panel_profile{
   float: right;
   margin-left: 3px;
   margin-right: 7px;
-  margin-top: 10px;
+  margin-top: -29px;
 }
 
 * html .delete-comment {
@@ -1277,7 +1277,7 @@ h2.edit_profile{
 
 label.label_margin{
   margin-top: 7px;
-  *margin-top: 8px;
+  margin-top: 8px;
 }
 
 .row_dark{
@@ -4122,7 +4122,7 @@ div.album_links a{
   float: right;
   margin-left: 3px;
   margin-right: 7px;
-  margin-top: 10px;
+  margin-top: -29px;
 }
 .login_links_container2 {
     float: left;
