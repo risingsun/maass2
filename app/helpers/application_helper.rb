@@ -107,7 +107,7 @@ module ApplicationHelper
       end
       options[:object_name] ||= params.first
       options[:message] ||= 'There were some problems with your submission:' unless options.include?(:message)
-      error_messages = objects.map {|object| object.errors.full_messages}
+      error_messages = objects.map {|obj| obj.errors.full_messages}
       content_tag(:div,html) do
         content_tag(:ul) do
           error_messages.flatten.map do |msg|
