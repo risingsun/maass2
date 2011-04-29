@@ -29,7 +29,7 @@ CKEDITOR.editorConfig = function( config )
 
   config.toolbar_Easy =
     [
-        ['NewPage','Paste','Maximize','Undo','Redo','Find','Replace','SelectAll','RemoveFormat','Image','HorizontalRule','Smiley','SpecialChar','Link','Subscript','Superscript','TextColor','Strike','NumberedList','BulletedList'],
-        ['Bold','Italic','Underline','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],['Styles','Format','Font']
+        ['Bold','Italic','Underline','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],['Styles','Format','Font'],
+        ['NewPage','Paste','Maximize','Undo','Redo','Find','Replace','SelectAll','RemoveFormat','Image','HorizontalRule','Smiley','SpecialChar','Link','Subscript','Superscript','TextColor','Strike','NumberedList','BulletedList']
     ];
 };
