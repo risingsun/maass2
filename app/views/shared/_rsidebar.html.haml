@@ -1,5 +1,5 @@
 = render :partial=>'profiles/featured'
-- if @profile.blank?
+- if !@profile.blank?
   = render :partial=>'shared/search_by_keyword', :profile=>@profile 
   = render :partial => 'profiles/greets'
   = render 'blogs/archives'
