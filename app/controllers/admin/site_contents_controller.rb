@@ -5,7 +5,7 @@ class Admin::SiteContentsController < ApplicationController
   before_filter :load_site_content, :except => [:index, :new, :create]
 
   def index
-    @site_contents = SiteContent.find(:all)
+    @site_contents = SiteContent.all
     if @site_contents.blank?
       redirect_to new_admin_site_content_path
     end

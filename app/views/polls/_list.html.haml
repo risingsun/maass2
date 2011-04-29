@@ -1,6 +1,6 @@
 - profile ||= @profile
 - size ||= 10
-- polls ||= profile.polls.find :all, :limit => size
+- polls ||= profile.polls.limit(size).all
 - total = profile.polls.count
 - title = "Most Recent Polls (latest " + "#{polls.size }" + " of " + "#{total > size ? link_to( total, profile_polls_path(profile)) : total} )"
 - unless polls.empty?

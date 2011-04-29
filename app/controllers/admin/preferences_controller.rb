@@ -36,7 +36,7 @@ class Admin::PreferencesController < ApplicationController
 
   def update_title    
     params[:titles].values.each do |title|
-      @title = Title.find(:first, :conditions => ['id =?',title[:id]])      
+      @title = Title.where("id =?", title[:id]).first
       @title.update_attributes(title)
     end
     redirect_to admin_preferences_path
@@ -82,7 +82,7 @@ class Admin::PreferencesController < ApplicationController
 
   def update_house_name
     params[:house_names].values.each do |house_name|
-      @house_name = HouseName.find(:first, :conditions => ['id =?',house_name[:id]])
+      @house_name = HouseName.where("id =?", house_name[:id]).first
       @house_name.update_attributes(house_name)
     end
     redirect_to admin_preferences_path

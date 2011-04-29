@@ -42,11 +42,11 @@ class Poll < ActiveRecord::Base
   end
   
   def options_in_count_asc
-    self.poll_options.find(:all,:order => "poll_responses_count ASC")
+    self.poll_options.order("poll_responses_count ASC").all
   end
 
   def graph_data_in_count_desc
-    self.poll_options.find(:all,:order => "poll_responses_count DESC")
+    self.poll_options.order("poll_responses_count DESC").all
   end
 
   def get_url
