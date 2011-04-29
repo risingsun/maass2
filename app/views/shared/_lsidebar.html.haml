@@ -6,20 +6,17 @@
   - if current_user.blank?
     = render :partial => "devise/sessions/login"
     = render :partial => "devise/sessions/login_with_other"
-  - unless @hide_panels
-    = render "profiles/members", :members => Profile.new_member, :type => "Newest Members"
-    = rounded_corner(:title => "#{SITE_NAME} Picture Gallery", :size => 'small') do
-      - unless @albums.blank?
-        %ul#mycarousel.jcarousel-skin-ie7
-          - @albums.each do |f|
-            %li
-              = sets_pictures_link(f) if !f.photos.blank?
-              %span.flickr_text= f.name
-      - else
-        Photos are unavailable at this time
-= render :partial => "profiles/find_batch_details" if @p && !@hide_panels
-- if @event_panel
-  = render :partial => "admin/events/lsidebar"
+  = render "profiles/members", :members => Profile.new_member, :type => "Newest Members"
+  = rounded_corner(:title => "#{SITE_NAME} Picture Gallery", :size => 'small') do
+    - unless @albums.blank?
+      %ul#mycarousel.jcarousel-skin-ie7
+        - @albums.each do |f|
+          %li
+            = sets_pictures_link(f) if !f.photos.blank?
+            %span.flickr_text= f.name
+    - else
+      Photos are unavailable at this time
+= render :partial => "profiles/find_batch_details" if @profile
 
 :javascript
   show_gallery();

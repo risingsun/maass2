@@ -61,8 +61,6 @@ class ProfilesController < ApplicationController
   end
 
   def edit_account
-    @permissions = @profile.permissions || @profile.build_permissions
-    @notification = @profile.notification_control || @profile.build_notification_control
     render :layout => "plain"
   end
 
