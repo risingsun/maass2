@@ -1,20 +1,22 @@
-- if params[:preview_button]
-  = render 'preview'
-%br
-= form_for [@profile, @blog] do |f|
-  %br= f.text_field :title, :title => "Title",:class => "big_text_field", :wrap_class => :row_complete
-  %br= f.label :Body
-  %br= f.cktext_area :body, :toolbar => 'Easy', :width => '525px', :height => '350px'
-  %br= f.label :Tags
-  %br= f.text_field :tag_list, :title => "Tags",:class => "big_text_field", :wrap_class => :row_complete
-  .blog_text Comma Seperated
-  .row_normal
-    - if @p.is_active
-      .blog_check_box
-        = f.check_box :public
-        Public?
-  .blog_btn_container
-    %button.buttons{:type => "submit"}
-      = image_tag("save.png")
-    %button.buttons{:name => 'preview_button'}
-      = image_tag("preview.png")
+= rounded_corner(:title => "New Post") do
+  - if params[:preview_button]
+    = render 'preview'
+  %br
+  = form_for [@profile, @blog] do |f|
+    %br= f.label :Heading
+    %br= f.text_field :title, :title => "Title",:class => "big_text_field", :wrap_class => :row_complete
+    %br= f.label :Body
+    %br= f.cktext_area :body, :toolbar => 'Easy', :width => '525px', :height => '350px'
+    %br= f.label :Tags
+    %br= f.text_field :tag_list, :title => "Tags",:class => "big_text_field", :wrap_class => :row_complete
+    .blog_text Comma Seperated
+    .row_normal
+      - if @p.is_active
+        .blog_check_box
+          = f.check_box :public
+          Public?
+    .blog_btn_container
+      %button.buttons{:type => "submit"}
+        = image_tag("save.png")
+      %button.buttons{:name => 'preview_button'}
+        = image_tag("preview.png")
