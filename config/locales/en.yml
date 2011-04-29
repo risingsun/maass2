@@ -58,6 +58,8 @@ en:
         name: Album Name
 
       user:
+        current_password: Current Password
+        password: New Password
         password_confirmation: Password Confirmation
         email: Email-Id
         first_referral_person_name: Referral Person Name
@@ -67,7 +69,19 @@ en:
         third_referral_person_name: Referral Person Name
         third_referral_person_year: Referral Person Year
         additional_message: Additional Message
+        requested_new_email: Requested New Email
 
-  labels:
-    blog:
-      title: Heading
+      student_check:
+        profile_id: Profile
+        e_mail_1: Email Id
+        e_mail_2: Alternate Email Id
+
+      poll:
+        question: Enter the poll question?
+        option: Option
+
+      nomination:
+        contact_details: Contact details
+        occupational_details: Occupation details
+        reason_for_nomination: What is the reason for your nomination ?
+        suggestions: What difference can you make to the association ?
