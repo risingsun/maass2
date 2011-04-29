@@ -4,7 +4,7 @@
       %div{:class => cycle(:row_dark2, :row_light2)}
         %label.label_margin Current Email
         %label.label_margin= @p.email
-      = u.input :requested_new_email, :label => "Requested New Email", :wrapper_html => {:class => cycle(:row_dark2, :row_light2)}
+      = u.input :requested_new_email, :wrapper_html => {:class => cycle(:row_dark2, :row_light2)}
   %button.buttons{:type => "submit"}
     = image_tag('change-email.png')
   = hidden_field_tag "commit", value="Change Email"

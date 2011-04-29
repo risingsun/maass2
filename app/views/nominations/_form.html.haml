@@ -8,10 +8,10 @@
         %div{:class => cycle(:row_light, :row_dark)}
           %label.label_margin Batch
           %label.label_margin= @p.group
-        = f.input :contact_details, :label => "Contact details", :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-        = f.input :occupational_details, :label => "Occupation details", :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-        = f.input :reason_for_nomination, :as => :text, :label => "What is the reason for your nomination ?", :wrapper_html => {:class => "row_light_large"}
-        = f.input :suggestions, :as => :text, :label => "What difference can you make to the association ?", :wrapper_html => {:class => "row_dark_large"}
+        = f.input :contact_details, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+        = f.input :occupational_details, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+        = f.input :reason_for_nomination, :as => :text, :wrapper_html => {:class => "row_light_large"}
+        = f.input :suggestions, :as => :text, :wrapper_html => {:class => "row_dark_large"}
         %div{:class => "#{cycle(:row_light, :row_dark)} tag"}
           %span
             *Applicant must be based in Jaipur.

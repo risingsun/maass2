@@ -8,9 +8,9 @@
         = f.input :middle_name
         = f.input :last_name
         = f.input :year, :as => :select, :collection => BATCH_RANGE
-        = f.input :profile_id, :as => :select, :label => "Profile", :id => "profile_field"
-        = f.input :e_mail_1, :label => "Email Id"
-        = f.input :e_mail_2, :label => "Alternate Email Id"
+        = f.input :profile_id, :as => :select, :id => "profile_field"
+        = f.input :e_mail_1
+        = f.input :e_mail_2
       %br= f.commit_button "Update and Return"
       %br= f.commit_button "Update and Add Another"
       %br= f.commit_button "Update and Edit"
