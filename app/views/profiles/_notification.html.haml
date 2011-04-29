@@ -1,3 +1,4 @@
+- @profile.notification_control || @profile.build_notification_control
 = semantic_form_for @profile do |a|
   = rounded_med_corner(:id => "notifications", :title => "Notifications") do
     = a.semantic_fields_for :notification_control do |p|
@@ -8,7 +9,7 @@
           %td Message Notification
         - NotificationControl::NOTIFICATION_FIELDS.each do |x|
           %tr
-            %td= p.label x
+            %td= "#{x.titleize} Notification"
             %td= p.check_box(x,{:multiple => true, :checked => p.object.wants_email?(x)},NotificationControl::EMAIL_BIT,0)
             %td= p.check_box(x,{:multiple => true, :checked => p.object.wants_interenal_message?(x)},NotificationControl::INTERNAL_MESSAGE_BIT,0)
   %button.buttons{:type => "submit"}

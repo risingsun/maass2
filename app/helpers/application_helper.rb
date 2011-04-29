@@ -81,7 +81,7 @@ module ApplicationHelper
   def slide_up_down_header(inner_panel_id, header_text, sliding="")
     self.content_tag :h2,
       :class => "widget_lrg_title #{sliding}",
-      :id => inner_panel_id+"_header" do
+      :id => inner_panel_id + "_header" do
       header_text
     end
   end
@@ -107,7 +107,7 @@ module ApplicationHelper
       end
       options[:object_name] ||= params.first
       options[:message] ||= 'There were some problems with your submission:' unless options.include?(:message)
-      error_messages = objects.map {|object| object.errors.full_messages}
+      error_messages = objects.map {|obj| obj.errors.full_messages}
       content_tag(:div,html) do
         content_tag(:ul) do
           error_messages.flatten.map do |msg|
