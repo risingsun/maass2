@@ -17,7 +17,6 @@ form.formtastic input, form.formtastic select, form.formtastic text_field, form.
   font-size: 11px;
   width: 200px;
   margin-right: 5px;
-  cursor: help;
   position: relative;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -161,7 +160,6 @@ form.formtastic fieldset > ol > li.optional {
     width: 520px;
     margin-right: 5px;
     padding:3px;
-    cursor: help;
     margin-left: 5px;
   }
  
