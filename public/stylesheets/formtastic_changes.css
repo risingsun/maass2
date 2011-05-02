@@ -109,7 +109,7 @@ form.formtastic fieldset > ol > li.optional {
     width: 226px;
   }
   form.formtastic input.large_text_box{
-    width: 450px;
+    width: 231px;
     border: #CCCCCC 1px solid;
   }
   form.formtastic fieldset > ol > li p.inline-errors {
