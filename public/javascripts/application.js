@@ -102,24 +102,19 @@ jQuery(document).ready(function()
     })
   });
 
-  jQuery("#photo_image").click(function(){
-    jQuery('.upload').fileUploadUI({
-      uploadTable: jQuery('.upload_files'),
-      downloadTable: jQuery('.download_files'),
-      buildUploadRow: function (files, index) {
-        var file = files[index];
-        return jQuery('<tr><td>' + file.name + '<\/td>' +
-          '<td class="file_upload_progress"><div><\/div><\/td>' +
-          '<td>' +
-          '<button title="Cancel">' +
-          '<span>Cancel<\/span>' +
-          '<\/button><\/td><\/tr>');
-      },
-      buildDownloadRow: function (file) {
-        return jQuery('<img alt="Photo" width="160" height="150" src="' + file.pic_path + '"><br><span>'+file.name+'</span><br>');
-      }
+//  jQuery("#photo_image").click(function(){
+   $('#file_upload').fileUploadUIX({
+        // Wait for user interaction before starting uploads:
+        autoUpload: false,
+        // Upload bigger files in chunks of 10 MB (remove or set to null to disable):
+        maxChunkSize: 10000000,
+        // Request uploaded filesize prior upload and upload remaining bytes:
+        continueAbortedUploads: true,
+        // Open download dialogs via iframes, to prevent aborting current uploads:
+        forceIframeDownload: true
+
     });
-  });
+//  });
   
   jQuery(".show-comments").click(function() {
     jQuery(this).parents('.commentable').find('.blog_comments').toggle();

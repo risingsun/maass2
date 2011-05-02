@@ -1,24 +1,52 @@
-= javascript_include_tag 'jquery.fileupload-ui','jquery.fileupload'
-= stylesheet_link_tag 'jquery.fileupload-ui'
+= javascript_include_tag 'jquery.fileupload-ui','jquery.fileupload','jquery.fileupload-uix'
+= stylesheet_link_tag 'jquery.fileupload-ui','jquery-ui-1.8.7.custom'
 .forum_links= link_to "Back To Albums", albums_path()
-.widget_complete
-  %span.widget_complete_top
-  %h3.blog_head.event_head_width= "Upload #{@album.name}'s Photos"
-  .blog_text
-    = semantic_form_for [@album,@photo],:html => { :class => "upload", :multipart => true } do |f|
-      = f.semantic_fields_for :album do |a|
-        = a.inputs do
-          = a.input :name
-          = a.input :description
-      .album_text
-        = label_tag "set_as_blurb"
-        &nbsp
-        = check_box_tag("photo[album_attributes][set_as_blurb]", value = "1", checked = false)
-      = f.inputs do
-        = f.input :image, :as => :file, :input_html => {:multiple => true, :name => 'photo[image]'}
-  %span.widget_complete_btm
-.widget_complete
-  %span.widget_complete_top
-  %table.upload_files
-  %table.download_files
-  %span.widget_complete_btm
+#file_upload
+  .widget_complete
+    %span.widget_complete_top
+    %h3.blog_head.event_head_width= "Upload #{@album.name}'s Photos"
+    .blog_text
+      = semantic_form_for [@album,@photo],:html => { :class => "upload", :multipart => true } do |f|
+        = f.semantic_fields_for :album do |a|
+          = a.inputs do
+            = a.input :name
+            = a.input :description
+        .album_text
+          = label_tag "set_as_blurb"
+          &nbsp
+          = check_box_tag("photo[album_attributes][set_as_blurb]", value = "1", checked = false)
+        = f.inputs do
+          = f.input :image, :as => :file, :input_html => {:multiple => true, :name => 'photo[image]'}
+    %span.widget_complete_btm
+  .widget_complete
+    %table{:class=>"files"}
+      %tr{:class=>"file_upload_template", :style=>"display:none;"}
+        %td{:class=>"file_upload_preview"}
+        %td{:class => "file_caption"}
+        %td{:class=>"file_name",:width =>'25px'}
+        %td{:class=>"file_size"}
+        %td{:class=>"file_upload_progress"}
+          %div
+        %td{:class=>"file_upload_start"}
+          %button.buttons
+            Start
+        %td{:class=>"file_upload_cancel"}
+          %button.buttons
+            Cancel
+      %tr{:class=>"file_download_template", :style=>"display:none;"}
+        %td{:class=>"file_download_preview"}
+        %td{:class=>"file_name"}
+          %a
+        %td{:class=>"file_size"}
+        %td{:class=>"file_download_delete", :colspan=>"3"}
+          %button.buttons
+            Delete
+      .file_upload_overall_progress
+      %div{:style=>"display:none;"}
+      .file_upload_buttons
+      %button.file_upload_start
+        Start All
+      %button.file_upload_cancel
+        Cancel All
+      %button.file_download_delete
+        Delete All

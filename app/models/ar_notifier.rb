@@ -19,7 +19,7 @@ class ArNotifier < ActionMailer::Base
   def message_send(message,p)
     @message=message
     @p=p
-    mail(:to=> @message.receiver.email,
+    mail(:to=> @message.receiver.user.email,
       :subject=> "[#{SITE_NAME} Message] #{@p.full_name} sent you a message : #{@message.subject}")
   end
 

@@ -1,11 +1,16 @@
 class PhotosController < ApplicationController
 
-  before_filter :load_album, :except => [:new, :create]
+  before_filter :load_album, :except => [:new, :create,:index]
 
   layout "admin"
 
+  def index
+    @album = Album.find(params[:album_id])
+    render :json => { :pic_path => params[:file] }
+  end
+
   def new
-    @album = @p.albums.find(params[:album_id])
+    @album = @p.albums.create(:name => Date.current)
     @photo = @album.photos.build
   end
 
@@ -13,9 +18,9 @@ class PhotosController < ApplicationController
     @album = Album.find(params[:album_id])
     @photo = @album.photos.new(params[:photo])
     if @photo.save
-        render :json => { :pic_path => @photo.image.url.to_s , :name => @photo.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
+        render :json => { :thumbnail=> @photo.image.url(:thumbnail).to_s, :id => @photo.id , :name => @photo.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
       else
-        render :json => { :pic_path => "/images/image_missing.png" , :name => "Undefine Format Of Photo" }, :content_type => 'text/html'
+        render :json => { :url => "/images/image_missing.png" , :name => "Undefine Format Of Photo" }, :content_type => 'text/html'
       end
   end
 
@@ -31,7 +36,7 @@ class PhotosController < ApplicationController
       render :action => 'edit'
     end
   end
-
+  
   def destroy
     @photo.destroy
     redirect_to album_path(@album)
