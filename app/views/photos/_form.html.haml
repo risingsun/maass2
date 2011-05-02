@@ -16,9 +16,20 @@
           &nbsp
           = check_box_tag("photo[album_attributes][set_as_blurb]", value = "1", checked = false)
         = f.inputs do
-          = f.input :image, :as => :file, :input_html => {:multiple => true, :name => 'photo[image]'}
+          = f.input :image, :as => :file, :input_html => {:multiple => true, :name => 'photo[image]', :class => "large_text_box"}
     %span.widget_complete_btm
   .widget_complete
+    %span.widget_complete_top
+    %h3.blog_head.event_head_width
+      .file_upload_buttons.hide_info
+        %button.file_upload_start
+          Start All
+        %button.file_upload_cancel
+          Cancel All
+        %button.file_download_delete
+          Delete All
+      .file_upload_overall_progress
+        %div{:style=>"display:none;"}
     %table{:class=>"files"}
       %tr{:class=>"file_upload_template", :style=>"display:none;"}
         %td{:class=>"file_upload_preview"}
@@ -41,12 +52,4 @@
         %td{:class=>"file_download_delete", :colspan=>"3"}
           %button.buttons
             Delete
-    .file_upload_overall_progress
-      %div{:style=>"display:none;"}
-    .file_upload_buttons.hide_info
-      %button.file_upload_start
-        Start All
-      %button.file_upload_cancel
-        Cancel All
-      %button.file_download_delete
-        Delete All
+    %span.widget_complete_btm
