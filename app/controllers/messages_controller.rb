@@ -18,6 +18,7 @@ class MessagesController < ApplicationController
     end
   end
 
+
   def create
     @message = @profile.sent_messages.build(params[:message])
     if @message.save

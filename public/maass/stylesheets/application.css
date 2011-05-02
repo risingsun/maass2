@@ -4122,7 +4122,7 @@ div.album_links a{
   float: right;
   margin-left: 3px;
   margin-right: 7px;
-  margin-top: -29px;
+  margin-top: 10px;
 }
 .login_links_container2 {
     float: left;
@@ -4183,4 +4183,11 @@ div.album_links a{
     font-size: 14px;
     margin: 5px 10px;
     width: 530px;
+}
+select{
+  border: 1px solid #CCCCCC;
+  font-size: 12px;
+  margin: 5px 10px;
+  padding: 3px;
+  width: 530px;
 }
