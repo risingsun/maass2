@@ -1,4 +1,4 @@
-- pe = ProfileEvent.find(:first, :conditions => {:event_id => event.id,:profile_id => @p.id})
+- pe = ProfileEvent.where(:event_id => event.id, :profile_id => @p.id).first
 - role = pe.role if pe
 .event_location.commentable
   %span.event_address Your RSVP :&nbsp;

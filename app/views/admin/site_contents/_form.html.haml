@@ -2,4 +2,3 @@
   = f.input :parent_id, :as => :select, :collection => SiteContent.find(:all)
   = f.input :name, :as => :string
   = f.input :content, :as => :text
-  =# select("post", "person_id", Person.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'})

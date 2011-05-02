@@ -6,7 +6,7 @@ class ForumsController < ApplicationController
 
   def index
     @forum =  Forum.new
-    @forums = Forum.find(:all)
+    @forums = Forum.all
   end
   
   def new

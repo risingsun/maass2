@@ -20,10 +20,10 @@ class Event < ActiveRecord::Base
   end
 
   def responded?(profile)
-    profile.events.find(:first,:conditions =>{:id => self})
+    profile.events.where(:id => self).first
   end
 
-  def list(type)
+  def list(type)    
     self.send(type).find(:all, :order => 'RAND()') rescue []
   end
 
@@ -36,7 +36,7 @@ class Event < ActiveRecord::Base
   end
 
   def set_role_of_user(profile, type)
-    pe = self.profile_events.find(:first,:conditions => {:profile_id => profile})
+    pe = self.profile_events.where(:profile_id => profile).first
     unless pe
       pe = self.profile_events.create(:profile => profile)
     end

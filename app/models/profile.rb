@@ -190,7 +190,7 @@ class Profile < ActiveRecord::Base
   end
 
   def self.new_member
-    Profile.find(:all, :conditions => {:is_active => true}, :limit => 6, :order => 'created_at DESC')
+    Profile.where(:is_active => true).limit(6).order('created_at DESC').all
   end
 
   def group_member
@@ -219,10 +219,6 @@ class Profile < ActiveRecord::Base
 
   def self.latest_in_batch(group)
     group(group).active.new_joined.first
-  end
-
-  def admin_blogs
-    self.blogs.all(:conditions => {:is_sent =>:false}, :order => "created_at DESC")
   end
 
   def self.change_group(year)

@@ -1,6 +1,6 @@
 - profile ||= @profile
 - size ||= 10
-- posts ||= profile.forum_posts.find(:all, :limit => size)
+- posts ||= profile.forum_posts.limit(size).all
 - total = profile.forum_posts.count
 - title = "Most Recent Forums Post<span> (latest #{posts.size } of #{total})</span>"
 - unless posts.empty?

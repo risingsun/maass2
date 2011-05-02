@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
       ArNotifier.delay.message_send(@message,@profile) if @profile.wants_email_notification?("message")
       flash[:notice] = "Your Message has been sent."
     else
-      flash[:error] = @message.errors.to_s
+      flash[:error] = "Your Message has not been sent"
     end
     redirect_to profile_messages_path(@profile)
   end

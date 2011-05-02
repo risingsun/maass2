@@ -5,7 +5,7 @@ class  Admin::AnnouncementsController < ApplicationController
   layout "admin"
 
   def index
-    @announcements = Announcement.find(:all, :order => 'starts_at desc')
+    @announcements = Announcement.order('starts_at desc').all
     if @announcements.blank?
       flash[:notice] = "You have not created any announcement !"
       redirect_to new_admin_announcement_path

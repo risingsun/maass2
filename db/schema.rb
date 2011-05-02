@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110425052000) do
+ActiveRecord::Schema.define(:version => 20110429120204) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -198,7 +198,6 @@ ActiveRecord::Schema.define(:version => 20110425052000) do
   end
 
   create_table "markers", :force => true do |t|
-    t.string   "profile_id"
     t.decimal  "lat",        :precision => 15, :scale => 10
     t.decimal  "lng",        :precision => 15, :scale => 10
     t.integer  "zoom"

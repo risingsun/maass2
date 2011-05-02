@@ -5,8 +5,8 @@ class EventsController < ApplicationController
   def index
     respond_to do |format|
       format.ics do
-        @birthdays = Profile.find(:all,:conditions => 'date_of_birth is not null')
-        @anniversaries = Profile.find(:all, :conditions => 'anniversary_date is not null')
+        @birthdays = Profile.where("date_of_birth is not null").all
+        @anniversaries = Profile.where("anniversary_date is not null").all
         @calendar = Icalendar::Calendar.new
         @birthdays.each { |e| @calendar.add e.to_ical_birthday_event }
         @anniversaries.each { |e| @calendar.add e.to_ical_anniversary_event }
