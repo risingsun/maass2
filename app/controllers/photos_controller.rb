@@ -10,7 +10,7 @@ class PhotosController < ApplicationController
   end
 
   def new
-    @album = @p.albums.create(:name => Date.current)
+    @album = @p.albums.find(params[:album_id])
     @photo = @album.photos.build
   end
 

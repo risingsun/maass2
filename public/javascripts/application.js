@@ -102,7 +102,7 @@ jQuery(document).ready(function()
     })
   });
 
-//  jQuery("#photo_image").click(function(){
+  jQuery("#photo_image").click(function(){
    $('#file_upload').fileUploadUIX({
         // Wait for user interaction before starting uploads:
         autoUpload: false,
@@ -114,7 +114,7 @@ jQuery(document).ready(function()
         forceIframeDownload: true
 
     });
-//  });
+ });
   
   jQuery(".show-comments").click(function() {
     jQuery(this).parents('.commentable').find('.blog_comments').toggle();
