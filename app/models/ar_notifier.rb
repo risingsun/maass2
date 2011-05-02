@@ -16,10 +16,11 @@ class ArNotifier < ActionMailer::Base
       :subject=> "[#{SITE_NAME} Events] Latest event")
   end
 
+
   def message_send(message,p)
-    @message=message
-    @p=p
-    mail(:to=> @message.receiver.user.email,
+    @message = message
+    @p = p
+    mail(:to=> @message.receiver.email,
       :subject=> "[#{SITE_NAME} Message] #{@p.full_name} sent you a message : #{@message.subject}")
   end
 
@@ -48,7 +49,7 @@ class ArNotifier < ActionMailer::Base
     @name  = feedback.profile ? feedback.profile.full_name : feedback.name
     @email = feedback.profile ? feedback.profile.email : feedback.email
     mail(:to=> rec_profile,
-      :cc=> rec_profile,
+      :cc => rec_profile,
       :subject => "[#{SITE_NAME} Feedback] #{@feedback.subject}")
   end
 
