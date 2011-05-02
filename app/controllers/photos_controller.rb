@@ -5,7 +5,6 @@ class PhotosController < ApplicationController
   layout "admin"
 
   def index
-    debugger
     @album = Album.find(params[:album_id])
     @photos = @album.photos
     if !@photos.blank?
