@@ -5,12 +5,18 @@ class PhotosController < ApplicationController
   layout "admin"
 
   def index
+    debugger
     @album = Album.find(params[:album_id])
-    render :json => { :pic_path => params[:file] }
+    @photos = @album.photos
+    if !@photos.blank?
+      render :json => { :thumbnail=> @photos.first.image.url(:thumbnail).to_s, :url => @photos.first.image.url, :id => @photos.first.id , :name => @photos.first.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
+    else
+      render :json => { :pic_path => params[:file] }
+    end
   end
 
   def new
-    @album = @p.albums.create(:name => Date.current)
+    @album = Album.find(params[:album_id])
     @photo = @album.photos.build
   end
 
@@ -18,7 +24,7 @@ class PhotosController < ApplicationController
     @album = Album.find(params[:album_id])
     @photo = @album.photos.new(params[:photo])
     if @photo.save
-        render :json => { :thumbnail=> @photo.image.url(:thumbnail).to_s, :id => @photo.id , :name => @photo.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
+        render :json => { :thumbnail=> @photo.image.url(:thumbnail).to_s, :url => @photo.image.url, :id => @photo.id , :name => @photo.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
       else
         render :json => { :url => "/images/image_missing.png" , :name => "Undefine Format Of Photo" }, :content_type => 'text/html'
       end

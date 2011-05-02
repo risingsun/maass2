@@ -102,7 +102,7 @@ jQuery(document).ready(function()
     })
   });
 
-//  jQuery("#photo_image").click(function(){
+ // jQuery("#photo_image").click(function(){
    $('#file_upload').fileUploadUIX({
         // Wait for user interaction before starting uploads:
         autoUpload: false,
@@ -114,7 +114,15 @@ jQuery(document).ready(function()
         forceIframeDownload: true
 
     });
-//  });
+  //});
+
+   $.getJSON($('#file_upload').fileUploadUIX('option', 'url'), function (files) {
+        var fileUploadOptions = $('#file_upload').fileUploadUIX('option');
+        $.each(files, function (index, file) {
+            fileUploadOptions.buildDownloadRow(file, fileUploadOptions)
+                .appendTo(fileUploadOptions.downloadTable).fadeIn();
+        });
+    });
   
   jQuery(".show-comments").click(function() {
     jQuery(this).parents('.commentable').find('.blog_comments').toggle();
