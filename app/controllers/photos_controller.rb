@@ -5,13 +5,13 @@ class PhotosController < ApplicationController
   layout "admin"
 
   def new
-    @album = Album.find(params[:album_id])
-    @photo = @album.photos.new
+    @album = @p.albums.find(params[:album_id])
+    @photo = @album.photos.build
   end
 
   def create
     @album = Album.find(params[:album_id])
-    @photo = @album.photos.build(params[:photo])
+    @photo = @album.photos.new(params[:photo])
     if @photo.save
         render :json => { :pic_path => @photo.image.url.to_s , :name => @photo.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
       else

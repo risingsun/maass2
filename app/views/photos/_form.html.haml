@@ -6,8 +6,15 @@
   %h3.blog_head.event_head_width= "Upload #{@album.name}'s Photos"
   .blog_text
     = semantic_form_for [@album,@photo],:html => { :class => "upload", :multipart => true } do |f|
+      = f.semantic_fields_for :album do |a|
+        = a.inputs do
+          = a.input :name
+          = a.input :description
+      .album_text
+        = label_tag "set_as_blurb"
+        &nbsp
+        = check_box_tag("photo[album_attributes][set_as_blurb]", value = "1", checked = false)
       = f.inputs do
-        = f.input :caption
         = f.input :image, :as => :file, :input_html => {:multiple => true, :name => 'photo[image]'}
   %span.widget_complete_btm
 .widget_complete

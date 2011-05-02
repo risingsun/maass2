@@ -49,32 +49,30 @@ jQuery(document).ready(function()
     return false;
   });
 
-  jQuery('.vote').live('click',function(){
-    rel = jQuery(this).parents('.poll_text').find('.poll');
-    spi = jQuery(this).parents('.poll_text').find('.spinner');
-    path = jQuery(this).attr('url');
-    method = jQuery(this).attr('type');
-    value= jQuery("input:radio[name='poll[poll_options][option]']:checked").attr('value');
-    jQuery.ajax({
-      beforeSend: function(){
-        jQuery(spi).show();
-      },
-      complete: function(){
-        jQuery(spi).hide();
-      },
-      url: path,
-      dataType: "html",
-      type: method,
-      data:{
-        option: value
-      }
-    //     success: function(response){
-    //
-    //       jQuery(rel).replaceWith(response)
-    //     }
-    });
-    return false;
-  });
+//  jQuery('.vote').live('click',function(){
+//    rel = jQuery(this).parents('.poll_text').find('.poll');
+//    spi = jQuery(this).parents('.poll_text').find('.spinner');
+//    path = jQuery(this).attr('url');
+//    value= jQuery("input:radio[name='poll[poll_options][option]']:checked").attr('value');
+//    jQuery.ajax({
+//      beforeSend: function(){
+//        jQuery(spi).show();
+//      },
+//      complete: function(){
+//        jQuery(spi).hide();
+//      },
+//      url: path,
+//      dataType: "html",
+//      type: 'POST',
+//      data:{
+//        option: value[0]
+//      },
+//      success: function(response){
+//        jQuery(rel).replaceWith(response)
+//       }
+//     })
+//    return false;
+//  });
 
   jQuery('.rsvp_event').click(function(){
     var path = jQuery(this).attr('url');

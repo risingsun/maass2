@@ -15,7 +15,7 @@
           = p.input :maiden_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = p.input :gender, :as => :select, :collection => SEX, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = p.input :group, :as => :select, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = f.input :humanizer_answer, :label => @user.humanizer_question, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = f.input :humanizer_answer, :label => resource.humanizer_question, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = f.hidden_field :humanizer_question_id
       = f.inputs do
         = render :partial=> "referral_form", :locals=> {:f=> f}
