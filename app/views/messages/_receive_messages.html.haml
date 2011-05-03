@@ -7,7 +7,7 @@
       %div{:class => "comments #{unread_message_class(message, "inbox")}"}
         %input.left{:id => message.id, :name => "check[]", :type => "checkbox", :value => message.id}
         - if !message.system_message
-          = link_to image_tag(set_icon(profile,'small')), profile, {:class => "featured_mem_pic"}, {:class => "featured_mem_text"}        
+          = link_to image_tag(set_icon(profile,'small')), profile, {:class => "featured_mem_pic"}, {:class => "featured_mem_text"}
           = link_to profile.full_name,  profile, :class=>"messagebox_profilename_unread"
         - else
           %span.messagebox_profilename_unread

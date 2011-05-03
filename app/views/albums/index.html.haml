@@ -2,8 +2,11 @@
   %span.widget_complete_top
   %h3.album_header
     MAASS Albums
-    = link_to image_tag('add_new_post.png', :title => "Add More Albums"), new_album_path()
-  -@albums.each do |a|
+    .forum_links
+      = link_to "Fetch Photos From Facebook", facebook_album_albums_path()
+      |
+      = link_to "Create Album Manually", new_album_path()
+  - @albums.each do |a|
     .album_pic_panel
       %h3.album_head
         = link_to(a.name, album_path(a))

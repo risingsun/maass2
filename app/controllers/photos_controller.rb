@@ -1,21 +1,31 @@
 class PhotosController < ApplicationController
 
-  before_filter :load_album, :except => [:new, :create]
+  before_filter :load_album, :except => [:new, :create,:index]
 
   layout "admin"
 
+  def index
+    @album = Album.find(params[:album_id])
+    @photos = @album.photos
+    if !@photos.blank?
+      render :json => { :thumbnail=> @photos.first.image.url(:thumbnail).to_s, :url => @photos.first.image.url, :id => @photos.first.id , :name => @photos.first.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
+    else
+      render :json => { :pic_path => params[:file] }
+    end
+  end
+
   def new
     @album = Album.find(params[:album_id])
-    @photo = @album.photos.new
+    @photo = @album.photos.build
   end
 
   def create
     @album = Album.find(params[:album_id])
-    @photo = @album.photos.build(params[:photo])
+    @photo = @album.photos.new(params[:photo])
     if @photo.save
-        render :json => { :pic_path => @photo.image.url.to_s , :name => @photo.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
+        render :json => { :thumbnail=> @photo.image.url(:thumbnail).to_s, :url => @photo.image.url, :id => @photo.id , :name => @photo.image.instance.attributes["image_file_name"] }, :content_type => 'text/html'
       else
-        render :json => { :pic_path => "/images/image_missing.png" , :name => "Undefine Format Of Photo" }, :content_type => 'text/html'
+        render :json => { :url => "/images/image_missing.png" , :name => "Undefine Format Of Photo" }, :content_type => 'text/html'
       end
   end
 
@@ -31,7 +41,7 @@ class PhotosController < ApplicationController
       render :action => 'edit'
     end
   end
-
+  
   def destroy
     @photo.destroy
     redirect_to album_path(@album)

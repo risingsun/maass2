@@ -12,8 +12,8 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = @p.albums.new
-    @title = "New Album"
+    @album = @p.albums.create(:name => Date.current)
+    redirect_to new_album_photo_path(@album)
   end
 
   def create

@@ -2796,7 +2796,8 @@ table.greetings {
 }
 .unread_message{
   background: #FEECD4;
-
+  border-bottom: 1px solid peachPuff;
+  width: 530px;
 }
 
 .flickr_card{
@@ -4097,7 +4098,7 @@ div.album_links a{
   width: 180px;
   height: 160px;
   background-color: Linen;
-  border: #black 1px black;
+  border: 1px black;
   margin-left: 5px;
   margin-right: 6px;
   margin-top: 5px;
@@ -4121,7 +4122,7 @@ div.album_links a{
 .delete {
   float: right;
   margin-left: 3px;
-  margin-right: 7px;
+  margin-right: 15px;
   margin-top: -29px;
 }
 .login_links_container2 {
@@ -4132,7 +4133,6 @@ div.album_links a{
     margin-top: 6px;
     width: 300px;
 }
-
 
 .login_btn_container2{
   float: left;
@@ -4183,4 +4183,11 @@ div.album_links a{
     font-size: 14px;
     margin: 5px 10px;
     width: 530px;
+}
+select{
+  border: 1px solid #CCCCCC;
+  font-size: 12px;
+  margin: 5px 10px;
+  padding: 3px;
+  width: 530px;
 }
