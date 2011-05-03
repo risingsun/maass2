@@ -1,6 +1,6 @@
 .widget_large
   %span.widget_lrg_top
-  = render :partial => 'messages/header_links'
+  = render 'header_links'
   = form_for :message, :url => delete_messages_profile_messages_path(@p), :html => {:id => "message_list"} do |f|
     - @messages.each do |message|
       - profile = Profile.find(message.sender_id)

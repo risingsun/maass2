@@ -72,8 +72,6 @@ GEM
       ffi (~> 1.0.6)
     ckeditor (3.4.2.pre)
       mime-types (>= 1.16)
-    client_side_validations (3.0.4)
-      activesupport (~> 3.0.0)
     columnize (0.3.2)
     configuration (1.2.0)
     cucumber (0.10.2)
@@ -292,7 +290,6 @@ DEPENDENCIES
   cancan
   capybara
   ckeditor (= 3.4.2.pre)
-  client_side_validations
   cucumber
   cucumber-rails
   database_cleaner
