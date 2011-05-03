@@ -44,16 +44,15 @@
         %td{:class=>"file_upload_cancel"}
           %button.buttons
             Cancel
-      - @album.photos.each do |p|
-        %tr{:class=>"file_download_template", 'data-id'=>p.id}
-          %td{:class=>"file_download_preview"}
-            = link_to(image_tag(p.image.url(:thumbnail)),p.image.url)
-          %td{:class=>"file_name"}
-            = link_to(p.image_file_name, p.image.url )
-          %td{:class=>"file_size"}
-          %td{:class=>"file_download_delete", :colspan=>"3"}
-            %button.buttons.ui-icon-cancel.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-icon-primary.ui-button-icon-only{:role=>"button", :title=>"Delete"}
-              %span{:class=>"ui-button-icon-primary ui-icon ui-icon-trash"}
-              %span{:class=>"ui-button-text"}
-                Delete
+      %tr{:class=>"file_download_template", :style=>"display:none;"}
+        %td{:class=>"file_download_preview"}
+        %td{:class=>"file_name"}
+          %a
+        %td{:class=>"file_size"}
+        %td{:class=>"file_download_delete", :colspan=>"3"}
+          %button.buttons
+            Delete
+      = render :partial => "album_photo" , :locals => {:photos => @album.photos}
     %span.widget_complete_btm
+:javascript
+  show_album_photo_uploader();
