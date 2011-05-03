@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110429120204) do
+ActiveRecord::Schema.define(:version => 20110503133314) do
 
   create_table "accounts", :force => true do |t|
     t.string   "user_id"
@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(:version => 20110429120204) do
   create_table "blogs", :force => true do |t|
     t.string   "profile_id"
     t.string   "title"
-    t.string   "body"
+    t.text     "body",           :limit => 2147483647
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "comments_count", :default => 0
-    t.boolean  "public",         :default => false
-    t.boolean  "is_sent",        :default => false
+    t.integer  "comments_count",                       :default => 0
+    t.boolean  "public",                               :default => false
+    t.boolean  "is_sent",                              :default => false
   end
 
   create_table "ckeditor_assets", :force => true do |t|

@@ -19,7 +19,7 @@ class ForumsController < ApplicationController
       flash[:notice] = "Successfully Created Forum."
       redirect_to forums_path
     else
-      render :action => 'new'
+      render 'new'
     end
   end
 

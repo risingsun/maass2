@@ -22,7 +22,7 @@ class Admin::EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     if !@event.save
-      render :action => 'new'
+      render 'new'
       flash[:error] = "Event Creation Failed."
     else
       flash[:notice] = "Successfully created Event."
@@ -42,7 +42,7 @@ class Admin::EventsController < ApplicationController
       redirect_to admin_events_path
     else
       flash[:error]= "Update Failed."
-      render :action => 'new'
+      render 'new'
     end
   end
 
