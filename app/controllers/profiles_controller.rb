@@ -125,12 +125,16 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def update_email
+  def update_email    
     @profile = Profile.find(params[:profile_id])
-    unless @profile.user.match_confirmation?(params[:hash])
+    @user= @profile.user
+    unless @user.match_confirmation?(params[:hash])
       flash[:error] = "We're sorry but it seems that the confirmation did not go thru. You may have provided an expired key."
     else
-      @profile.email =  @profile.user.requested_new_email
+      @user.email =  @user.requested_new_email
+      @user.requested_new_email= nil
+      @user.confirmation_token= nil
+      @user.confirmed_at= DateTime.now
       if  @profile.save
         flash[:notice] = "Your email has been updated"
       else
