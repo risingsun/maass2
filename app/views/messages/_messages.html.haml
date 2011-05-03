@@ -2,9 +2,9 @@
   %span.widget_lrg_top
   = render :partial => 'messages/header_links'
   = form_for :message, :url => delete_messages_profile_messages_path(@p), :html => {:id => "message_list"} do |f|
-    - @receive_messages.each do |message|
+    - @messages.each do |message|
       - profile = Profile.find(message.sender_id)
-      %div{:class => "comments #{unread_message_class(message, "inbox")}"}
+      %div{:class => "comments #{unread_message_class(message)}"}
         %input.left{:id => message.id, :name => "check[]", :type => "checkbox", :value => message.id}
         - if !message.system_message
           = link_to image_tag(set_icon(profile,'small')), profile, {:class => "featured_mem_pic"}, {:class => "featured_mem_text"}
@@ -24,5 +24,5 @@
       %button.buttons{:type => "submit"}
         = image_tag("delete-selected.png")
   .clear_div
-    = will_paginate @receive_messages
+    = will_paginate @messages
   %span.widget_lrg_btm
