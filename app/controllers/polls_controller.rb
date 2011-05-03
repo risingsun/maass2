@@ -1,6 +1,7 @@
 class PollsController < ApplicationController
 
-  before_filter :load_profile, :except => [:show,:search]
+  before_filter :load_profile
+  before_filter :load_resource, :except=>[:index,:show,:create,:new]
 
   def index
     @polls = @profile.polls.order("created_at desc").paginate(:page => @page, :per_page => POLLS_PER_PAGE)
@@ -30,21 +31,16 @@ class PollsController < ApplicationController
     end
   end
 
-  def show
-    @profile =  current_user.profile
+  def show    
     unless @poll = @profile.polls.find_by_id(params[:id])
       @poll = Poll.find(params[:id])
     end
   end
 
-  def edit
-    @profile =  current_user.profile 
-    @poll = @profile.polls.find(params[:id])
+  def edit    
   end
 
-  def update
-    @profile =  current_user.profile
-    @poll = @profile.polls.find(params[:id])
+  def update    
     if @poll.update_attributes!(params[:poll])
       flash[:notice] = 'Poll was successfully updated.'
       redirect_to profile_poll_path(@poll)
@@ -54,9 +50,7 @@ class PollsController < ApplicationController
     end
   end
 
-  def destroy
-    @profile =  current_user.profile
-    @poll = @profile.polls.find(params[:id])
+  def destroy    
     if @poll.destroy
       redirect_to profile_polls_path
     else
@@ -64,9 +58,7 @@ class PollsController < ApplicationController
     end
   end
 
-  def poll_close
-    @profile =  current_user.profile
-    @poll = @profile.polls.find(params[:id])
+  def poll_close    
     @poll.update_attributes(:status => false)
     redirect_to profile_polls_path
   end
@@ -76,6 +68,11 @@ class PollsController < ApplicationController
   def load_profile
     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
     @show_profile_side_panel = true
+  end
+
+  def load_resource
+    @profile =  current_user.profile
+    @poll = @profile.polls.find(params[:id])
   end
   
   def allow_to
