@@ -3,13 +3,13 @@
 -profile = Profile.find(@message.sender_id)
 .widget_large
   %span.widget_lrg_top
-  = render :partial => "header_links"
+  = render 'header_links'
   .comments
     From:
-    =link_to profile.full_name, profile
+    = link_to profile.full_name, profile
     %br
     When:
-    =time_ago_in_words @message.created_at
+    = time_ago_in_words @message.created_at
     ago
     %br
     %strong

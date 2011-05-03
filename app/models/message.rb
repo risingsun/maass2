@@ -5,25 +5,22 @@ class Message < ActiveRecord::Base
   validates :body, :presence => true
   validates :subject, :presence => true
 
-  def delete_message(profile_id)
-    if self.sender_id == self.receiver_id
+  def delete_message(profile)
+    if self.sender == self.receiver
       self.destroy and return if self.system_message
     end
-
-    if profile_id == self.sender_id
+    if profile == self.sender
       self.sender_flag = false
       self.save
-    elsif profile_id == self.receiver_id
+    elsif profile == self.receiver
       self.receiver_flag = false
       self.read = true
       self.save
       self.destroy and return if self.system_message
     end
-    
     if (self.sender_flag == false) && (self.receiver_flag == false)
       self.destroy
     end
-
   end
 
 end

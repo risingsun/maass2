@@ -101,7 +101,7 @@ jQuery(document).ready(function()
       }
     })
   });
-//  jQuery("#photo_image").click(function(){
+  jQuery("#file_upload").load(function(){
    $('#file_upload').fileUploadUIX({
         // Wait for user interaction before starting uploads:
         autoUpload: false,
@@ -113,7 +113,7 @@ jQuery(document).ready(function()
         forceIframeDownload: true
 
     });
-// });
+ });
   
   jQuery(".show-comments").click(function() {
     jQuery(this).parents('.commentable').find('.blog_comments').toggle();
@@ -433,4 +433,17 @@ function show_gallery(){
     size:jQuery("ul#mycarousel > li").length,
     vertical: true
   });
+}
+function show_album_photo_uploader(){
+   jQuery('#file_upload').fileUploadUIX({
+        // Wait for user interaction before starting uploads:
+        autoUpload: false,
+        // Upload bigger files in chunks of 10 MB (remove or set to null to disable):
+        maxChunkSize: 10000000,
+        // Request uploaded filesize prior upload and upload remaining bytes:
+        continueAbortedUploads: true,
+        // Open download dialogs via iframes, to prevent aborting current uploads:
+        forceIframeDownload: true
+
+    });
 }

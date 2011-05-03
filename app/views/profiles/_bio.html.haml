@@ -19,11 +19,11 @@
       - if profile.can_see_field("gtalk_name", @p)
         - unless profile.gtalk_name.blank?
           %strong GTalk:
-          = h profile.gtalk_name
+          = profile.gtalk_name
       - if profile.can_see_field("website", @p)
         - unless profile.website.blank?
           %strong Website:
-          = link_to h(profile.website), h(profile.website)
+          = link_to (profile.website), h(profile.website)
       - if profile.can_see_field("blog", @p)
         - unless profile.blog.blank?
           %strong Blog:

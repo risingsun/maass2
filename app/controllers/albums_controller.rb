@@ -26,8 +26,8 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-    @photos = @album.photos
     @title = "Update #{@album.name}"
+    redirect_to new_album_photo_path(@album)
   end
 
   def update
