@@ -1,7 +1,7 @@
 
 jQuery(document).ready(function()
 {
-
+  
   jQuery('.sliding').click(function(){
     jQuery(this).parents('.widget_large').find('.slidecontent').slideToggle();
     return false;
