@@ -5,7 +5,7 @@ class AccountMailer < ActionMailer::Base
   def new_email_request(user)
     @profile = user.profile
     @name = user.profile.full_name
-    @user_verification = user.email_verification
+    @user_verification = user.confirmation_token
     mail(:to=> user.requested_new_email, :subject=> "[#{SITE_NAME} Notice] New email requested")
   end
   
