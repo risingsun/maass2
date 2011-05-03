@@ -8,7 +8,7 @@ class HomesController < ApplicationController
     @nomination = @p.nomination || @p.build_nomination if @p
     @blurb_image = Photo.blurb_images
     @home_data = sorted_results(blogs,polls,events).paginate(:page => @page,:per_page => BLOGS_PER_PAGE)
-    @albums = Album.all
+    @albums = Album.all.map{|a| a if !a.photos.blank?}.compact
   end
 
   def photo_gallery
