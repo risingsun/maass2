@@ -163,3 +163,5 @@ form.formtastic fieldset > ol > li.optional {
     margin-left: 5px;
   }
 
+  form.formtastic fieldset > ol > li.required .ckeditor_for_event{    
+}

@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
 
   before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user, :batch_mates]
-
+  respond_to :html, :json, :only =>[:active_user]
   def index
     if @is_admin
       @profiles = Profile.all.paginate(:page => @page, :per_page => PROFILE_PER_PAGE)
@@ -18,28 +18,26 @@ class ProfilesController < ApplicationController
 
   def update
     case params[:commit]
-    when "Update Permissions"
-      @profile.update_attributes(params[:profile])
-      redirect_to edit_account_profile_path(@p)
     when "Set Default"
       @profile.update_attributes(params[:profile])
       @profile.permissions.each {|p| p.destroy}
+      flash[:notice] = "Default Permission updated."
       redirect_to edit_account_profile_path(@p)
-    when "Update Notification"
-      @profile.update_attributes(params[:profile])
-      redirect_to edit_account_profile_path(@p)      
     when "Change Email"
       if @user.request_email_change!(params[:profile][:user_attributes][:requested_new_email])
         AccountMailer.delay.new_email_request(@user)
         flash[:notice] = "Email confirmation request has been sent to the new email address."
-        redirect_to edit_account_profile_url(@profile)
       else
-        render :action=> :edit_account
+        flash[:error] = "Requested New Email Can not be Blank"
       end
+       redirect_to edit_account_profile_url(@profile)
     else
-      @profile.update_attributes params[:profile]
-      flash[:notice] = "Profile updated."
-      redirect_to :back
+      if @profile.update_attributes params[:profile]
+        flash[:notice] = params[:commit] ? "#{params[:commit]} updated." : "Profile updated."
+        redirect_to :back
+      else
+        render 'profiles/edit'
+      end
     end
   end
 
@@ -47,17 +45,12 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    unless current_user.blank?
       @feed_items = @profile.feeds_with_item
       @friends = @profile.friends_on_google_map(@p) if @profile.can_see_field('marker', @p)
       respond_to do |format|
         format.html
         format.rss {render :layout => false}
       end
-    else
-      redirect_to homes_path
-      flash[:error] = "It looks like you don't have permission to view that page."
-    end
   end
 
   def edit_account
@@ -67,11 +60,7 @@ class ProfilesController < ApplicationController
   def active_user
     @profile.toggle!(:is_active)
     ArNotifier.delay.user_status(@profile)
-    respond_to do |format|
-      format.js do
-        render :json => (@profile.is_active ? 'Deactive' : 'Active').to_json
-      end
-    end
+    respond_with((@profile.is_active ? 'Deactive' : 'Active').to_json, :location => :back)
   end
 
   def search    
