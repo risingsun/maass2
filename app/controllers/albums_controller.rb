@@ -12,7 +12,7 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = @p.albums.create(:name => Date.current)
+    @album = @p.albums.create(:name => Date.current.strftime("%d %B %Y"))
     redirect_to new_album_photo_path(@album)
   end
 
@@ -21,7 +21,7 @@ class AlbumsController < ApplicationController
     if @album.save
       redirect_to new_album_photo_path(@album)
     else
-      render :action => 'new'
+      render :new
     end
   end
 
@@ -36,7 +36,7 @@ class AlbumsController < ApplicationController
       redirect_to albums_path(@album)
     else
       flash[:error] = "Album was not succesfully updated"
-      render :action => 'edit'
+      render :edit
     end
   end
 
@@ -49,12 +49,12 @@ class AlbumsController < ApplicationController
   end
 
   def facebook_album
-    @a = Photo.get_photosets
+    @a = Photo.get_photosets(current_user)
     @albums = @a.map {|a| a.name if !Album.check_album(a.name)}
   end
 
   def facebook_album_photos
-    @a = Photo.get_photosets
+    @a = Photo.get_photosets(current_user)
     @a.each do |a|
       @al= a if a.name.eql?(params[:name])
     end

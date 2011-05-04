@@ -14,9 +14,8 @@ class Photo < ActiveRecord::Base
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
 
-  def self.get_photosets
-    user = User.find{ |u| u.admin == true}
-    auth= user.authentications.where(:provider => 'facebook').first
+  def self.get_photosets(user)
+    auth= user.authentications.where(:provider => 'facebook', :user_id => user).first
     return auth.blank? ? '' : FbGraph::User.fetch(auth.uid, :access_token => auth.access_token).albums
   end
 

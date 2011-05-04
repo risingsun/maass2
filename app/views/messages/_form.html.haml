@@ -1,11 +1,9 @@
-- hide_header ||= false
 - unless @message.new_record?
   - @message.subject = "RE: " + @message.subject
   - @message.body = "\n\n\n\n\n\n\n\n\n" + @message.body.gsub(/^/, '> ')
 .widget_large
   %span.widget_lrg_top
-  - unless hide_header
-    = render :partial => "header_links"
+  = render :partial => "header_links"
   = form_for :message, :url => profile_messages_path(@p) do |f|
     = f.label :To, :class => "blog_labels"
     = f.select(:receiver_id, @to_list.map{|p| [full_name(p), p.id]}, :class => "message")

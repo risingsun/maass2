@@ -25,12 +25,12 @@ class User < ActiveRecord::Base
     return true if self.admin == true
   end
 
-  def generate_confirmation_hash!(secret_word = "pimpim")
-    self.email_verification = Digest::SHA1.hexdigest(secret_word + DateTime.now.to_s)
+  def generate_confirmation_hash!(secret_word= "pimpim")
+    self.confirmation_token = Digest::SHA1.hexdigest(secret_word + DateTime.now.to_s)
   end
 
   def match_confirmation?(user_hash)
-    (user_hash.to_s == self.email_verification)
+    (user_hash.to_s == self.confirmation_token)
   end
 
   def request_email_change!(new_email)
@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
       return false if new_email.blank?
     self.requested_new_email = new_email
     self.generate_confirmation_hash!
+    self.confirmation_sent_at= DateTime.now
     self.save
   end
 

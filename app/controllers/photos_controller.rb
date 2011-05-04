@@ -38,7 +38,7 @@ class PhotosController < ApplicationController
       redirect_to album_path(@album)
     else
       flash[:error] = "Image was not succesfully updated"
-      render :action => 'edit'
+      render 'edit'
     end
   end
   

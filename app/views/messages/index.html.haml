@@ -1,7 +1,7 @@
 - if @messages.empty?
   .widget_large
     %span.widget_lrg_top
-    = render :partial => 'messages/header_links'
+    = render 'header_links'
     .comments No Message
     %span.widget_lrg_btm
 - else

@@ -1,18 +1,17 @@
 class FeedbacksController < ApplicationController
 
-
   layout 'admin'
+
   def index
     @feedbacks = Feedback.order("created_at desc").paginate(:page => @page, :per_page => NEWEST_MEMBER)
   end
   
   def new
     @feedback = Feedback.new
-    render :layout => "application"
+    render :layout=>"application"
   end
 
   def create
-    debugger
     if @p.blank?
       @feedback = Feedback.new(params[:feedback])
     else
