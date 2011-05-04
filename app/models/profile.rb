@@ -232,7 +232,7 @@ class Profile < ActiveRecord::Base
   end
 
   def self.admin_emails
-    Profile.admins.map(&:email)
+    User.all(:conditions => ["users.admin = true"]).map(&:email)
   end
 
 

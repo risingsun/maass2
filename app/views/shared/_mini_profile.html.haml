@@ -10,6 +10,6 @@
     %p= link_to 'Direct Message', new_profile_message_path(mini_profile) unless me(mini_profile)
     %p= link_to('Read My Blogs', profile_blogs_path(mini_profile))
     %p= link_to('See My Polls', profile_polls_path(mini_profile))
-    %p= link_to("#{mini_profile.is_active ? 'Deactivate' : 'Active'}",  active_user_profile_path(mini_profile), :class => "user_status")
+    %p= link_to("#{mini_profile.is_active ? 'Deactivate' : 'Active'}",  active_user_profile_path(mini_profile), :class => "user_status") if @is_admin
   .spinner= image_tag('spinner.gif')
 
