@@ -23,13 +23,13 @@ CKEDITOR.editorConfig = function( config )
 
   // works only with en, ru, uk languages
   config.extraPlugins = "newpage";
-  config.removePlugins = 'source,save,preview,templates,cut,copy,pastetext,pastefromword,about,unlink,anchor,embed,flash,table,pagebreak,attachment,blockquote';
+  config.removePlugins = 'save,preview,templates,cut,copy,pastetext,pastefromword,about,unlink,anchor,embed,flash,table,pagebreak,attachment,blockquote';
 
   config.toolbar = 'Easy';
 
   config.toolbar_Easy =
     [
-        ['Bold','Italic','Underline','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],['Styles','Format','Font'],
+       ['Source','Bold','Italic','Underline','Outdent','Indent','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],['Styles','Format','Font'],
         ['NewPage','Paste','Maximize','Undo','Redo','Find','Replace','SelectAll','RemoveFormat','Image','HorizontalRule','Smiley','SpecialChar','Link','Subscript','Superscript','TextColor','Strike','NumberedList','BulletedList']
     ];
 };

@@ -1,4 +1,6 @@
-= f.inputs do
-  = f.input :parent_id, :as => :select, :collection => SiteContent.find(:all)
-  = f.input :name, :as => :string
-  = f.input :content, :as => :text
+= f.label :Parent, :class => "blog_labels"
+= f.select :parent_id, SiteContent.all.map{|s| [s.name, s.id]},{:include_blank => true}
+= f.label :Name, :class => "blog_labels"
+= f.text_field :name, :title => "Name", :class => "blog_fields"
+%br= f.label :Content, :class => "blog_labels"
+%br= f.cktext_area :content, :toolbar => 'Easy', :width => '525px', :height => '350px', :class => "blog_fields"
