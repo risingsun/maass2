@@ -38,7 +38,7 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @message.delete_message(@profile.id)
+    @message.delete_message(@profile)
     redirect_to :back
   end
 
@@ -46,7 +46,7 @@ class MessagesController < ApplicationController
     if !params[:check].blank?
       params[:check].each do |ch|
         message = Message.find(ch)
-        message.delete_message(@p.id)
+        message.delete_message(@p)
       end
     end
     redirect_to :back

@@ -24,7 +24,7 @@ class BlogsController < ApplicationController
   def create
     @blog = @profile.blogs.build(params[:blog])
     if params[:preview_button] || !@blog.save
-      render :action => 'new'
+      render 'new'
     else
       flash[:notice] = "Successfully created Blog."
       redirect_to profile_blogs_path
@@ -38,7 +38,7 @@ class BlogsController < ApplicationController
     @blog.attributes = params[:blog]
     if params[:preview_button] || !@blog.save
       flash[:error]= "Update Failed."
-      render :action => 'new'
+      render 'new'
     else
       flash[:notice] = "Successfully updated blog."
       redirect_to profile_blogs_path
