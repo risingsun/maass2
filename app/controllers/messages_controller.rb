@@ -31,14 +31,14 @@ class MessagesController < ApplicationController
   end
 
   def show
-    if !@message.blank?
+    if @profile.received_messages.include?(@message)
       @message.read = true
       @message.save!
     end
   end
 
   def destroy
-    @message.delete_message(@profile.id)
+    @message.delete_message(@profile)
     redirect_to :back
   end
 

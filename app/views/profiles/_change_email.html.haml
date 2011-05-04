@@ -3,7 +3,7 @@
     = f.semantic_fields_for(:user) do |u|
       %div{:class => cycle(:row_dark2, :row_light2)}
         %label.label_margin Current Email
-        %label.label_margin= @p.email
+        %label.label_margin= current_user.email
       = u.input :requested_new_email, :wrapper_html => {:class => cycle(:row_dark2, :row_light2)}
   %button.buttons{:type => "submit"}
     = image_tag('change-email.png')
