@@ -13,7 +13,8 @@ class StudentCheck < ActiveRecord::Base
 
   validates :name, :presence=>true
   validates :year, :presence=>true
-
+  
+  before_save :titlecase_fields, :split_name
   before_validation :fix_name
 
   scope :year, lambda{|y| {:conditions => {:year => y}}}
@@ -22,10 +23,42 @@ class StudentCheck < ActiveRecord::Base
   scope :ordered, lambda { |*order| { :order => order.flatten.first}}
   scope :with_profile, :include => :profile  
 
+  def titlecase_fields
+    %w[ name first_name middle_name last_name].each do |attribute|
+      if (attribute_present?(attribute) and !self[attribute].blank?)
+        self[attribute] = self[attribute].strip.titlecase
+      end
+    end
+    true
+  end
+
+  def split_name
+    if first_name.blank? 
+      names = self.name.split(" ") 
+      self.first_name = names.shift 
+      self.last_name = names.pop 
+      self.middle_name = names.join(" ") 
+    end 
+    true
+  end 
+  
   def fix_name
     if self.name.blank?
       self.name = self.full_name
     end
+  end
+
+  def self.match_details?(profile,update=true)
+    return true if DISABLE_STUDENT_CHECKING
+    student = StudentCheck.where(["first_name like ? and last_name like ? and student_checks.year = ? and (profile_id is null or profile_id = ?)" ,
+        profile.first_name, profile.premarital_lastname, profile.group, profile]).first
+    if student
+      if update
+        student.update_attribute('profile',profile)
+      end
+      return true
+    end
+    return false
   end
 
   def self.unregistered_batch_members(year)

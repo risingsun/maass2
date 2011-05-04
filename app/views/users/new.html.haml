@@ -1,12 +1,13 @@
+- resource.build_profile if resource.profile.blank?
 = rounded_corner(:title => "Sign-up Now", :class => "help") do
-  .edit_panel_profile
-    = semantic_form_for(resource, :as => resource_name, :url => user_registration_path) do |f|
+  = semantic_form_for(resource, :as => resource_name, :url => user_registration_path) do |f|
+    = f.semantic_errors
+    .edit_panel_profile
       = f.inputs do
         = f.input :login, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
         = f.input :email, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
         = f.input :password, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
         = f.input :password_confirmation, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-      - resource.build_profile
       = f.semantic_fields_for(:profile) do |p|
         = p.inputs do
           = p.input :first_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}

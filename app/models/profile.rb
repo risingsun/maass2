@@ -184,6 +184,18 @@ class Profile < ActiveRecord::Base
   def self.active_profiles
     self.active.all
   end
+
+  def female?
+    gender.downcase == 'female'
+  end
+
+  def maiden_name
+    self[:maiden_name].titlecase unless self[:maiden_name].blank?
+  end
+
+  def premarital_lastname
+    (female? and !maiden_name.blank?) ? maiden_name : last_name
+  end
   
   def gender_str
     gender.downcase

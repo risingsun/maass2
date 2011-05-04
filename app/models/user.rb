@@ -10,17 +10,18 @@ class User < ActiveRecord::Base
     :additional_message, :profile_attributes
   attr_accessible :humanizer_answer, :humanizer_question_id
   require_human_on :create
+  before_save :require_references
 
   validates :login, :presence => true,
     :length => { :maximum => 20 },
     :uniqueness => true
 
   validates :requested_new_email, :format=> {:with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>'does not look like an email address.', :if => proc {|obj| !obj.requested_new_email.blank?}}
-
+  
   has_one :profile
   has_many :authentications
   accepts_nested_attributes_for :profile
-
+  
   def is_admin
     return true if self.admin == true
   end
@@ -44,6 +45,21 @@ class User < ActiveRecord::Base
 
   def check_authentication(type)
     self.authentications.where(:provider => type)
+  end
+
+  def match_details
+    StudentCheck.match_details?(self.profile, false)
+  end
+
+  def require_references
+    if !profile.is_active && !match_details && [first_referral_person_name, first_referral_person_year,
+        second_referral_person_name,second_referral_person_year,
+        third_referral_person_name, third_referral_person_year, additional_message ].reject!(&:blank?).blank?
+      errors.add_to_base("Hey! It seems our database from school is incomplete, or has a poor spelling of your name.
+                  Do you mind giving us some references so we can activate you manually instead?")
+      return false
+    end
+    return true
   end
 
 end
