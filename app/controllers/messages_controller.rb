@@ -31,7 +31,7 @@ class MessagesController < ApplicationController
   end
 
   def show
-    if !@message.blank?
+    if @profile.received_messages.include?(@message)
       @message.read = true
       @message.save!
     end

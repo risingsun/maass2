@@ -14,4 +14,4 @@
             %td= p.check_box(x,{:multiple => true, :checked => p.object.wants_interenal_message?(x)},NotificationControl::INTERNAL_MESSAGE_BIT,0)
   %button.buttons{:type => "submit"}
     = image_tag('update-notifications.png')
-  = hidden_field_tag "commit", value="Update Notification"
+  = hidden_field_tag "commit", value="Notification"

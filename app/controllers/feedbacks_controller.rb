@@ -1,5 +1,5 @@
 class FeedbacksController < ApplicationController
-  
+
   layout 'admin'
 
   def index

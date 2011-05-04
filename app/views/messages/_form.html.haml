@@ -6,7 +6,7 @@
   = render :partial => "header_links"
   = form_for :message, :url => profile_messages_path(@p) do |f|
     = f.label :To, :class => "blog_labels"
-    = f.select :receiver_id, @to_list.map{|p| [full_name(p), p.id]}
+    = f.select(:receiver_id, @to_list.map{|p| [full_name(p), p.id]}, :class => "message")
     = f.hidden_field :sender_id, :value => current_user.profile.id
     = f.label :Subject, :class => "blog_labels"
     = f.text_field :subject, :title => "Subject",:class => "blog_fields"
