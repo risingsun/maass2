@@ -1,5 +1,6 @@
 class FeedbacksController < ApplicationController
-
+  
+  layout 'admin'
 
   def index
     @feedbacks = Feedback.order("created_at desc").paginate(:page => @page, :per_page => NEWEST_MEMBER)
@@ -7,6 +8,7 @@ class FeedbacksController < ApplicationController
   
   def new
     @feedback = Feedback.new
+    render :layout=>"application"
   end
 
   def create
