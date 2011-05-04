@@ -3790,6 +3790,7 @@ a.editor_cancel{
 }
 
 .search_blog_textbox{
+  border: 1px solid #CCCCCC;
   width: 137px;
   margin-left: 12px;
   margin-top: 13px;

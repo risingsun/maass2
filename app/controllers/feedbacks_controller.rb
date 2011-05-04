@@ -1,6 +1,5 @@
 class FeedbacksController < ApplicationController
 
-  before_filter :hide_side_panels, :except => [:new, :create]
 
   def index
     @feedbacks = Feedback.order("created_at desc").paginate(:page => @page, :per_page => NEWEST_MEMBER)

@@ -11,6 +11,16 @@ class HomesController < ApplicationController
     @albums = Album.all.map{|a| a if !a.photos.blank?}.compact
   end
 
+  def show
+    if params[:page] == "tos"
+      render :action => params[:page], :layout => false
+    elsif params[:page] == 'credits'
+      render :action => params[:page] , :layout=> "plain"
+    else
+      render :action => params[:page]
+    end
+  end
+
   def photo_gallery
     @album = Album.check_album(params[:photoset])
     @pictures = @album.photos
