@@ -7,14 +7,16 @@ class User < ActiveRecord::Base
     :first_referral_person_name, :first_referral_person_year,
     :second_referral_person_name, :second_referral_person_year,
     :third_referral_person_name,:third_referral_person_year,
-    :additional_message, :profile_attributes
-  attr_accessible :humanizer_answer, :humanizer_question_id
+    :additional_message, :profile_attributes, :terms_of_service
+  attr_accessible :humanizer_answer, :humanizer_question_id  
   require_human_on :create
   before_save :require_references
 
   validates :login, :presence => true,
     :length => { :maximum => 20 },
     :uniqueness => true
+  
+  validates_acceptance_of  :terms_of_service, :message => "Must be accepted"
 
   validates :requested_new_email, :format=> {:with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>'does not look like an email address.', :if => proc {|obj| !obj.requested_new_email.blank?}}
   
