@@ -2,6 +2,11 @@
 jQuery(document).ready(function()
 {
   
+  jQuery('a.new-window').click(function(){
+    window.open(jQuery(this).attr('href'),'Terms of Service','width=500,height=600,scrollbars=yes');
+    return false;
+  });
+
   jQuery('.sliding').click(function(){
     jQuery(this).parents('.widget_large').find('.slidecontent').slideToggle();
     return false;
@@ -49,30 +54,30 @@ jQuery(document).ready(function()
     return false;
   });
 
-//  jQuery('.vote').live('click',function(){
-//    rel = jQuery(this).parents('.poll_text').find('.poll');
-//    spi = jQuery(this).parents('.poll_text').find('.spinner');
-//    path = jQuery(this).attr('url');
-//    value= jQuery("input:radio[name='poll[poll_options][option]']:checked").attr('value');
-//    jQuery.ajax({
-//      beforeSend: function(){
-//        jQuery(spi).show();
-//      },
-//      complete: function(){
-//        jQuery(spi).hide();
-//      },
-//      url: path,
-//      dataType: "html",
-//      type: 'POST',
-//      data:{
-//        option: value[0]
-//      },
-//      success: function(response){
-//        jQuery(rel).replaceWith(response)
-//       }
-//     })
-//    return false;
-//  });
+  //  jQuery('.vote').live('click',function(){
+  //    rel = jQuery(this).parents('.poll_text').find('.poll');
+  //    spi = jQuery(this).parents('.poll_text').find('.spinner');
+  //    path = jQuery(this).attr('url');
+  //    value= jQuery("input:radio[name='poll[poll_options][option]']:checked").attr('value');
+  //    jQuery.ajax({
+  //      beforeSend: function(){
+  //        jQuery(spi).show();
+  //      },
+  //      complete: function(){
+  //        jQuery(spi).hide();
+  //      },
+  //      url: path,
+  //      dataType: "html",
+  //      type: 'POST',
+  //      data:{
+  //        option: value[0]
+  //      },
+  //      success: function(response){
+  //        jQuery(rel).replaceWith(response)
+  //       }
+  //     })
+  //    return false;
+  //  });
 
   jQuery('.rsvp_event').click(function(){
     var path = jQuery(this).attr('url');
@@ -102,18 +107,18 @@ jQuery(document).ready(function()
     })
   });
   jQuery("#file_upload").load(function(){
-   $('#file_upload').fileUploadUIX({
-        // Wait for user interaction before starting uploads:
-        autoUpload: false,
-        // Upload bigger files in chunks of 10 MB (remove or set to null to disable):
-        maxChunkSize: 10000000,
-        // Request uploaded filesize prior upload and upload remaining bytes:
-        continueAbortedUploads: true,
-        // Open download dialogs via iframes, to prevent aborting current uploads:
-        forceIframeDownload: true
+    $('#file_upload').fileUploadUIX({
+      // Wait for user interaction before starting uploads:
+      autoUpload: false,
+      // Upload bigger files in chunks of 10 MB (remove or set to null to disable):
+      maxChunkSize: 10000000,
+      // Request uploaded filesize prior upload and upload remaining bytes:
+      continueAbortedUploads: true,
+      // Open download dialogs via iframes, to prevent aborting current uploads:
+      forceIframeDownload: true
 
     });
- });
+  });
   
   jQuery(".show-comments").click(function() {
     jQuery(this).parents('.commentable').find('.blog_comments').toggle();
@@ -435,15 +440,15 @@ function show_gallery(){
   });
 }
 function show_album_photo_uploader(){
-   jQuery('#file_upload').fileUploadUIX({
-        // Wait for user interaction before starting uploads:
-        autoUpload: false,
-        // Upload bigger files in chunks of 10 MB (remove or set to null to disable):
-        maxChunkSize: 10000000,
-        // Request uploaded filesize prior upload and upload remaining bytes:
-        continueAbortedUploads: true,
-        // Open download dialogs via iframes, to prevent aborting current uploads:
-        forceIframeDownload: true
+  jQuery('#file_upload').fileUploadUIX({
+    // Wait for user interaction before starting uploads:
+    autoUpload: false,
+    // Upload bigger files in chunks of 10 MB (remove or set to null to disable):
+    maxChunkSize: 10000000,
+    // Request uploaded filesize prior upload and upload remaining bytes:
+    continueAbortedUploads: true,
+    // Open download dialogs via iframes, to prevent aborting current uploads:
+    forceIframeDownload: true
 
-    });
+  });
 }
