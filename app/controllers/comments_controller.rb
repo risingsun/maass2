@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   before_filter :load_profile, :only=>[:index]
-
+  respond_to :html, :json, :only =>[:destroy]
   def index
     @comments = Comment.between_profiles(@p, @profile).paginate(:page => @page, :per_page => @per_page)
     redirect_to @p and return if @p == @profile
@@ -34,11 +34,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     flash[:notice] = "Successfully destroyed comment."
     comment_count = @comment.commentable.comments_count - 1
-    respond_to do |format|
-      format.js do
-        render :json => (comment_count > 1 ? "#{comment_count} Comments" : "#{comment_count} Comment").to_json
-      end
-    end
+    respond_with((comment_count > 1 ? "#{comment_count} Comments" : "#{comment_count} Comment").to_json)
   end
 
   private

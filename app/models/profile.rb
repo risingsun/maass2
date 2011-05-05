@@ -352,5 +352,6 @@ class Profile < ActiveRecord::Base
     event.add_recurrence_rule('FREQ=YEARLY')    
     return event
   end
+
   
 end

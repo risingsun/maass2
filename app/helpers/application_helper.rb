@@ -18,29 +18,8 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
 
-  def devise_error_messages!
-    return "" if current_user.errors.empty?
-
-    messages = current_user.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
-    sentence = I18n.t("errors.messages.not_saved",
-      :count => current_user.errors.count,
-      :resource => @current_user)
-
-    html = <<-HTML
-       <div id="error_explanation"zz>
-       <h2>#{sentence}</h2>
-       <ul>#{messages}</ul>
-       </div>
-    HTML
-    html.html_safe
-  end
-
   def me (profile=@profile)
     current_user.profile == profile
-  end
-
-  def full_name(profile)
-    [profile.first_name, profile.middle_name, profile.last_name].join(" ")
   end
 
   def rounded_corner(options = {}, &block)
