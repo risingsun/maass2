@@ -60,7 +60,7 @@ class ProfilesController < ApplicationController
   def active_user
     @profile.toggle!(:is_active)
     ArNotifier.delay.user_status(@profile)
-    respond_with((@profile.is_active ? 'Deactive' : 'Active').to_json, :location => :back)
+    respond_with((@profile.is_active ? 'Deactive' : 'Active').to_json)
   end
 
   def search    
@@ -95,12 +95,6 @@ class ProfilesController < ApplicationController
   def user_friends
     @results = @profile.send(params[:friend_type].downcase).all.paginate(:page=>params[:page], :per_page=>PROFILE_PER_PAGE)
     @title = params[:friend_type]
-  end
-
-  def batch_mates
-    @results = @profile.group_member
-    @title = "Group Members #{@profile.group}"
-    render :template => "profiles/user_friends"
   end
 
   def batch_details

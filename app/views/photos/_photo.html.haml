@@ -1,7 +1,7 @@
 .widget_complete
   %span.widget_complete_top
   %h3.blog_head.event_head_width
-    = link_to image_tag(set_icon(@p,'small')), homes_path
+    = link_to image_tag(set_icon(@p,'small')), @p
     = sanitize(photo.caption)
     = link_to image_tag('crop.png', :title => "Crop the image"),edit_profile_photo_path(photo.profile, photo)
     = link_to image_tag('delete.png', :title => "Delete Image"),profile_photo_path(photo.profile, photo),:method => :delete
