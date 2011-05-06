@@ -1,0 +1,11 @@
+= "Name : #{@name}"
+= "Batch : #{@nomination.profile.group}"
+
+= "Details provided by #{@name} for nomination :"
+
+= "Contact details  : #{@nomination.contact_details}"
+= "Occupation details  : #{@nomination.occupational_details}"
+= "What is the reason for your nomination ?  : #{@nomination.reason_for_nomination}"
+= "What difference can you make to the association ?  : #{@nomination.suggestions}"
+
+= render :partial => 'account_mailer/email_footer'

@@ -3,7 +3,7 @@ class Invitation < ActiveRecord::Base
   belongs_to :profile
 
   validates :profile, :presence=>true  
-  validates :email, :presence => true, :uniqueness => {:scope => :profile_id}, :format=> {:with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>' does not look valid.<br/>'}
+  validates :email, :presence => true, :format=> {:with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>' does not look valid.<br/>'}
 
   attr_accessor :emails
   attr_accessor :status
