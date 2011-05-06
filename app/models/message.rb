@@ -2,8 +2,7 @@ class Message < ActiveRecord::Base
 
   belongs_to :sender, :class_name => "Profile"
   belongs_to :receiver, :class_name => "Profile"
-  validates :body, :presence => true
-  validates :subject, :presence => true
+  validates :body,:subject, :presence => true
 
   def delete_message(profile)
     if self.sender == self.receiver

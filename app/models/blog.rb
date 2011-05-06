@@ -5,8 +5,7 @@ class Blog < ActiveRecord::Base
   has_many :comments, :as => :commentable
   scope :by_month_year, lambda {|month,year| {:conditions => ["monthname(created_at)=? and year(created_at)=?",month,year]}}
 
-  validates :title, :presence => true
-  validates :body, :presence => true
+  validates :title, :body, :presence => true
 
   include UserFeeds
   #has_one :feed_item, :as => :commentable

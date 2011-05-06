@@ -11,8 +11,7 @@ class StudentCheck < ActiveRecord::Base
   alias_attribute :email_1, :e_mail_1
   alias_attribute :email_2, :e_mail_2
 
-  validates :name, :presence=>true
-  validates :year, :presence=>true
+  validates :name,:year, :presence=>true
   
   before_save :titlecase_fields, :split_name
   before_validation :fix_name
