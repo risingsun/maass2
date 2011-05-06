@@ -10,9 +10,9 @@
           = link_to image_tag(set_icon(profile,'small')), profile
           = link_to profile.full_name,  profile, :class => "messagebox_profilename_unread"
         - else
-          %span.messagebox_profilename_unread
-          = MAILER_TO_ADDRESS
-        %span.messagebox_date
+          .featured_mem_pic
+            = MAILER_TO_ADDRESS
+        .messagebox_date
           = time_ago_in_words message.created_at
           ago
         .messagebox_subject= link_to message.subject, profile_message_path(@profile, message)
