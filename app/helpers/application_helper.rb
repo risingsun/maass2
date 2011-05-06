@@ -194,4 +194,5 @@ module ApplicationHelper
       photo_gallery_homes_path(:photoset => album.name),:class=>'thickbox',:title => album.name)
   end
 
+  
 end
