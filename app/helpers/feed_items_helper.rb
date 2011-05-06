@@ -14,7 +14,6 @@ module FeedItemsHelper
     when 'Event'
       "<strong>#{link_to_if in_html, comment.profile.full_name, comment.profile} commented on event #{link_to_if in_html, h(parent.title), admin_event_path(parent)} </strong>".html_safe
     end
-  end
-  #safe_helper :commentable_text, :x_feed_link
+  end  
 
 end

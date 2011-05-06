@@ -54,9 +54,9 @@ module Friendship
       friendships.create(:invited => friend, :status => Friend::ACCEPT_FRIEND)
     end
 
-#    def friend_of? user
-#      friends.where(:id=>user.profile.id).present?
-#    end
+    #    def friend_of? user
+    #      friends.where(:id=>user.profile.id).present?
+    #    end
 
 
     def friend_of? profile
