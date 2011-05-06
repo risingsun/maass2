@@ -1,8 +1,0 @@
-<%=raw 'Blog post titled "' + @blog.title + '" by ' + @blog.sent_by %>
-
-<%=raw @blog.body %>
-
-Follow the URL to comment on the blog.
-<%= profile_blog_url(@blog.profile, @blog) %>
-
-<%= render :partial => 'account_mailer/email_footer' %>
