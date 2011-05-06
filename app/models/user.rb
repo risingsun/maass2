@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   before_save :require_references
 
   validates :login, :presence => true,
-    :length => { :maximum => 20 },
-    :uniqueness => true
+    :length => {:within => 3..25},
+    :uniqueness => true, :format=> {:with => /^\w+$/i, :message=>"can only contain letters and numbers."}
   
   validates_acceptance_of  :terms_of_service, :message => "Must be accepted"
 

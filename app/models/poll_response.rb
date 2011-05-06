@@ -1,15 +1,11 @@
 class PollResponse < ActiveRecord::Base
+  
   belongs_to :profile
   belongs_to :poll_option
   belongs_to :poll
 
-  validates :profile, :presence => true
-  validates :poll_option, :presence => true
-  validates :poll, :presence => true
-  #validates_uniqueness_of :profile_id, :scope => :poll_id
-
-   after_save :update_poll_votes_count
-
+  validates :profile, :poll_option, :poll, :presence => true
+  after_save :update_poll_votes_count
 
   private
 
