@@ -50,7 +50,7 @@ class Profile < ActiveRecord::Base
     :small_20 =>  "20x20#"
   }
   validates :first_name,:middle_name,:last_name,:maiden_name,:spouse_name,:professional_qualification, :length => { :maximum => 30 }
-  validates :first_name, :presence => true
+  validates :first_name, :last_name, :presence => true
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   
 
@@ -352,5 +352,6 @@ class Profile < ActiveRecord::Base
     event.add_recurrence_rule('FREQ=YEARLY')    
     return event
   end
+
   
 end

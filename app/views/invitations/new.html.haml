@@ -1,7 +1,7 @@
 .flash_message_class= formatted_error_message :invitation
 = rounded_corner(:title => "Invite Batchmates") do
   .edit_panel_profile
-    - form_for [@profile,@invitation] do |f|
+    = form_for [@profile,@invitation] do |f|
       .row_light_large
         = f.label 'Enter a list of email addresses separated by commas (,)',:class=>"label_margin"
         = f.text_area (:emails, :title => "Comma Separated List of Emails", :class=>"text_area")

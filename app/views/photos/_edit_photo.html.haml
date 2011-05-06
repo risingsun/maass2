@@ -1,5 +1,5 @@
 #cropwrap
-  = image_tag(set_image(photo,'original'), :id => "cropbox")
+  = image_tag(set_image(@photo,'original'), :id => "cropbox")
 #cropresults
   %br
   = f.input :crop_x, :label => "X", :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}

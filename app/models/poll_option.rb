@@ -1,7 +1,9 @@
 class PollOption < ActiveRecord::Base
+  
   belongs_to :poll
   has_many :poll_responses, :dependent => :destroy
-  validates_length_of :option, :maximum => 25
+
+  validates :option, :length=> {:maximum => 25}
 
   def votes_percentage(precision = 1)
     total_votes = poll.poll_responses.count

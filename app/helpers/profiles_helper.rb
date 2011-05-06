@@ -63,18 +63,6 @@ module ProfilesHelper
     return "upcoming"
   end
 
-  def link_to_friends(type)
-    if type == "Group Member"
-      link_to("See All", batch_mates_profile_path(@profile))
-    else
-      link_to("See All", user_friends_profile_path(@profile, :friend_type => type))
-    end
-  end
-
-  def link_to_event_friends(type,event)
-    link_to("See All", event_members_admin_event_path(event, :member_type => type ))
-  end
-
   def linkedin_badge(linkedin_name)
     str = ""
     unless linkedin_name.blank?
@@ -121,9 +109,9 @@ module ProfilesHelper
   def see_all_user(profiles, type)
     size = profiles.size
     if @event
-      see_all = (size > 6) ? "(#{size}) #{link_to_event_friends(type, @event)}" : ""
+      see_all = (size > 6) ? link_to("(#{size}) See All", event_members_admin_event_path(@event, :member_type => type)) : ""
     else
-      see_all = (size > 6) ? link_to_friends(type) : ""
+      see_all = (size > 6) ? link_to("See All", user_friends_profile_path(@profile, :friend_type => type)) : ""
     end
     return see_all
  end

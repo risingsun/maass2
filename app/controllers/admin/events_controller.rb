@@ -75,7 +75,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def event_members
-    @results = @event.send(params[:member_type].downcase)
+    @results = @event.send(params[:member_type].downcase).all.paginate(:page=>params[:page], :per_page=>PROFILE_PER_PAGE)
     @title = "#{params[:member_type]} Members"
     render 'profiles/user_friends'
   end

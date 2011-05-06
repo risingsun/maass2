@@ -1,4 +1,4 @@
 = render "profiles/members", :members => @profile.friends, :type => "Friends" if !@profile.friends.blank?
 = render "profiles/members", :members => @profile.followings, :type => "Followings" if !@profile.followings.blank?
 = render "profiles/members", :members => @profile.followers, :type => "Followers" if !@profile.followers.blank?
-= render "profiles/members", :members => @profile.group_member, :type => "Group Member"
+= render "profiles/members", :members => @profile.group_member, :type => "Group_Member"
