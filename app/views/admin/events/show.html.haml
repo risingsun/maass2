@@ -12,20 +12,13 @@
   .blog_text
     = @event.description.html_safe
   .blog_text
-    %div
-      .event_data
-        %b Start Date:
-      .event_value= @event.start_date.to_datetime.to_formatted_s(:rfc822)if @event.start_date
-    %div
-      .event_data
-        %b End Date:
-      .event_value= @event.end_date.to_datetime.to_formatted_s(:rfc822)if @event.end_date
-    %div
-      .event_data
-        %b Location:
-      .event_value= @event.place
+    %b.event_data Start Date:
+    .event_value= @event.start_date.to_datetime.to_formatted_s(:rfc822)if @event.start_date
+    %b.event_data End Date:
+    .event_value= @event.end_date.to_datetime.to_formatted_s(:rfc822)if @event.end_date
+    %b.event_data Location:
+    .event_value= @event.place
   .blog_text
-    %strong RSVP:
     = render 'comments/form', :commentable => @event
     = render :partial => "/comments/comment", :collection => @event.comments.reject{|x|x.new_record?}
     .clear_div
@@ -34,11 +27,10 @@
   .widget_large
     %span.widget_lrg_top
     = slide_up_down_header('google_map','Google Map','sliding')
-    .middle_panel_profile
-      .slidecontent
-        = raw GMap.header()
-        = javascript_include_tag("markerGroup")
-        - show_map_for_events()
-        = raw @map.to_html
-        = raw @map.div(:width => 530, :height => 400)
-      %span.widget_lrg_btm
+    .middle_panel_profile.slidecontent
+      = raw GMap.header()
+      = javascript_include_tag("markerGroup")
+      - show_map_for_events()
+      = raw @map.to_html
+      = raw @map.div(:width => 530, :height => 400)
+    %span.widget_lrg_btm

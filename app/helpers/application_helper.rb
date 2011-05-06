@@ -108,7 +108,7 @@ module ApplicationHelper
     end
   end
 
-  def set_image(photo, size)
+  def get_image_url(photo, size)
     photo.image.url(size)
   end
 
@@ -191,7 +191,7 @@ module ApplicationHelper
 
   def sets_pictures_link(album = nil)
     link_to(image_tag(album.photos.first.image.url('original'), :alt => album.name, :width => 80, :height => 75),
-       photo_gallery_homes_path(:photoset => album.name),:class=>'thickbox',:title => album.name)
+       photo_gallery_homes_path(:photoset => album),:class=>'thickbox',:title => album.name)
   end
 
 end

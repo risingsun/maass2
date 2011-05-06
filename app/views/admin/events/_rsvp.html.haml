@@ -1,4 +1,4 @@
-- pe = ProfileEvent.where(:event_id => event, :profile_id => @p).first
+- pe = ProfileEvent.find(:first,:conditions => {:event_id => event,:profile_id => @p})
 - role = pe.role if pe
 - status ||= 'show_page'
 %div[event]
@@ -10,6 +10,6 @@
   %br
   = radio_button_tag "event","May Be Attending", checked = checked?(role, 'May Be Attending'), options = {:class => "rsvp_event", :url=>"#{rsvp_admin_event_path(event)}"}
   May Be Attending
-  .spinner= image_tag('spinner.gif')
+.spinner= image_tag('spinner.gif')
 
   
