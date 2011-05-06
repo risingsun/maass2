@@ -46,6 +46,7 @@ img{
 
 .left{
   float: left;
+  margin-top: 0px;
 }
 
 /****** Content CSS ******/

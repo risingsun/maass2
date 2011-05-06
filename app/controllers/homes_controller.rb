@@ -12,10 +12,10 @@ class HomesController < ApplicationController
   end
 
   def show
-    if params[:page] == "tos"
+    if params[:page] == 'tos'
       render :action => params[:page], :layout => false
     elsif params[:page] == 'credits'
-      render :action => params[:page] , :layout=> "plain"
+      render :action => params[:page] , :layout => "plain"
     else
       render :action => params[:page]
     end
