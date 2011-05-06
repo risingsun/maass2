@@ -61,7 +61,7 @@ en:
         current_password: Current Password
         password: New Password
         password_confirmation: Password Confirmation
-        email: Email-Id
+        email: Email
         first_referral_person_name: Referral Person Name
         first_referral_person_year: Referral Person Year
         second_referral_person_name: Referral Person Name

@@ -5,7 +5,6 @@ class PollResponse < ActiveRecord::Base
   belongs_to :poll
 
   validates :profile, :poll_option, :poll, :presence => true
-
   after_save :update_poll_votes_count
 
   private

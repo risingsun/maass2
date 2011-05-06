@@ -7,13 +7,13 @@
     .blurb_image_head
       = SITE_FULL_NAME
     .blurb_image_footer
-      = link_to("About The School","#")
+      = link_to("About The School", page_path(:about_us))
       |
-      = link_to("Feedback","#")
+      = link_to("Feedback",feedback_path)
       |
-      = link_to("Contact Us","#")
+      = link_to("Contact Us", page_path(:contact))
       |
-      = link_to("Credits","#")
+      = link_to("Credits", page_path(:credits))
       |
       = link_to("Forums", forums_path)
     .slideshow
