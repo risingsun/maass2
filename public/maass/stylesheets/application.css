@@ -59,8 +59,8 @@ img{
 }
 
 * html .main_container{ /** IE 6 hack **/
-  background-image:none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='/maass/images/main_container_bg.png');
+                        background-image:none;
+                        filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='/maass/images/main_container_bg.png');
 }
 
 .header_container{
@@ -80,8 +80,8 @@ img{
 }
 
 * html .search_container{ /** IE 6 hack **/
-  background-image:none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='/images/search_bg.png');
+                          background-image:none;
+                          filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src='/images/search_bg.png');
 }
 
 .search_textbox{
@@ -110,9 +110,9 @@ img{
 }
 
 * html .search_btn{ /** IE 6 hack **/
-  background-image:none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=image,src='/images/search_glass.png');
-  position: relative;
+                    background-image:none;
+                    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=image,src='/images/search_glass.png');
+                    position: relative;
 }
 
 .content_container{
@@ -134,7 +134,7 @@ img{
   font-weight: bold;
   font-size: 11px;
   cursor: pointer;
-  
+
   float: left;
   text-align: center;
   padding-top: 3px;
@@ -176,9 +176,9 @@ a.button_small:hover{
 }
 
 * html .button_large{ /** IE 6 hack **/
-  background-image: none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/images/btn_large.png');
-  position: relative;
+                      background-image: none;
+                      filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/images/btn_large.png');
+                      position: relative;
 }
 
 a.button_large{
@@ -233,7 +233,7 @@ a.button_large:hover{
 }
 
 * html .login_container{ /** IE 6 hack **/
-  margin-left: 3px;
+                         margin-left: 3px;
 }
 
 .label_small{
@@ -258,8 +258,8 @@ a.button_large:hover{
 }
 
 * html .btm_div{ /** IE 6 hack **/
-  background-image:none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=image,src='/maass/images/footer.png');
+                 background-image:none;
+                 filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=image,src='/maass/images/footer.png');
 }
 
 .widget_small{
@@ -273,8 +273,8 @@ a.button_large:hover{
 }
 
 * html .widget_small{ /** IE 6 hack **/
-  margin-left: 9px;
-  width: 202px;
+                      margin-left: 9px;
+                      width: 202px;
 
 }
 
@@ -295,8 +295,8 @@ a.button_large:hover{
 }
 
 * html .widget_lrg, * html .widget_large{ /** IE 6 hack **/
-  margin-left: 5px;
-  margin-right: -70px;
+                                          margin-left: 5px;
+                                          margin-right: -70px;
 }
 
 .widget_flash_msg{
@@ -355,8 +355,8 @@ a.button_large:hover{
 }
 
 * html .widget_flash_msg{  /** IE 6 hack **/
-  margin-left: 5px;
-  position: relative;
+                           margin-left: 5px;
+                           position: relative;
 }
 
 .notice_msg {
@@ -369,6 +369,7 @@ a.button_large:hover{
 
 .error_msg{
   color: #FF0000;
+  font-size: 11px;
 }
 
 .widget_flash_msg_btm{
@@ -395,9 +396,9 @@ a.button_large:hover{
 }
 
 * html .widget_flash_msg_btm{  /** IE 6 hack **/
-  margin-left: -5px;
-  margin-bottom: -8px;
-  position: relative;
+                               margin-left: -5px;
+                               margin-bottom: -8px;
+                               position: relative;
 }
 
 .widget_small_title, .widget_title{
@@ -417,9 +418,9 @@ a.button_large:hover{
 
 
 * html .widget_small_title, * html .widget_title{ /** IE 6 hack **/
-  margin-left: 3px;
-  margin-top: -13px;
-  position: relative;
+                                                  margin-left: 3px;
+                                                  margin-top: -13px;
+                                                  position: relative;
 }
 
 .img_close{
@@ -520,8 +521,8 @@ a.button_large:hover{
 }
 
 * html .widget_small_btm, * html .widget_btm{ /** IE 6 hack **/
-  width: 203px;
-  margin-bottom: -8px;
+                                              width: 203px;
+                                              margin-bottom: -8px;
 }
 
 .ad_widget_btm{
@@ -533,8 +534,8 @@ a.button_large:hover{
 }
 
 * html .ad_widget_btm{ /** IE 6 hack **/
-  width: 203px;
-  margin-bottom: -12px;
+                       width: 203px;
+                       margin-bottom: -12px;
 }
 
 .widget_med_btm{
@@ -564,7 +565,7 @@ a.button_large:hover{
 }
 
 * html .widget_lrg_btm{ /** IE 6 hack **/
-  margin-bottom: -12px;
+                        margin-bottom: -12px;
 }
 
 .side_panel{
@@ -601,8 +602,8 @@ a.button_large:hover{
 }
 
 * html .footer{ /** IE 6 hack **/
-  margin-left: 6px;
-  z-index: 90000;
+                margin-left: 6px;
+                z-index: 90000;
 }
 
 .footer_text_top{
@@ -621,13 +622,13 @@ a.button_large:hover{
 }
 
 * html .footer_text_top{ /** IE 6 hack **/
-  margin-left: 2px;
+                         margin-left: 2px;
 }
 
 .footer a{
-    color: #999999;
-    text-decoration: underline;
-    z-index: 100;
+  color: #999999;
+  text-decoration: underline;
+  z-index: 100;
 }
 
 .footer a:hover{
@@ -677,8 +678,8 @@ a.button_large:hover{
 }
 
 * html .profile_pic_panel{ /** IE 6 hack **/
-  margin-left: 3px;
-  margin-right: 4px;
+                           margin-left: 3px;
+                           margin-right: 4px;
 }
 
 .profile_pic_panel a{
@@ -717,8 +718,8 @@ a.button_large:hover{
 }
 
 * html .ad{ /** IE 6 hack **/
-  margin-left: 9px;
-  width: 202px;
+            margin-left: 9px;
+            width: 202px;
 }
 
 .comments {
@@ -734,8 +735,8 @@ a.button_large:hover{
 }
 
 * html .comments { /** IE 6 hack **/
-  position: relative;
-  margin-left: 5px;
+                   position: relative;
+                   margin-left: 5px;
 }
 
 .comments img,.poll_option{
@@ -758,9 +759,9 @@ a.button_large:hover{
   float: right;
 }
 table.announcements {
-    font-size: 12px;
-    margin-left: 7px;
-    width: 950px;
+  font-size: 12px;
+  margin-left: 7px;
+  width: 950px;
 }
 
 ul{
@@ -964,11 +965,11 @@ a.grey_links_sml3:hover{
 }
 
 .middle_panel_profile {
-    float: left;
-    font-size: 12px;
-    height: auto;
-    margin: 0 4px;
-    overflow: hidden;
+  float: left;
+  font-size: 12px;
+  height: auto;
+  margin: 0 4px;
+  overflow: hidden;
 }
 /*.middle_panel_profile{
   height: auto;
@@ -996,12 +997,12 @@ a.grey_links_sml3:hover{
 }
 
 .middle_panel_profile h3 {
-    float: left;
-    font-size: 13px;
-    font-weight: bold;
-    margin-left: 7px;
-    padding: 0;
-    width: 500px;
+  float: left;
+  font-size: 13px;
+  font-weight: bold;
+  margin-left: 7px;
+  padding: 0;
+  width: 500px;
 }
 
 .middle_panel_profile h3 a{
@@ -1014,10 +1015,10 @@ a.grey_links_sml3:hover{
 }
 
 .middle_panel_profile p {
-    float: left;
-    margin: 4px 4px 0;
-    padding: 0;
-    width: 540px;
+  float: left;
+  margin: 4px 4px 0;
+  padding: 0;
+  width: 540px;
 }
 
 .middle_panel_profile div p{
@@ -1140,10 +1141,10 @@ table.middle_panel_profile{
 }
 
 * html .large_panel_side .edit_profile{ /** IE 6 hack **/
-  background-image:none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/maass/images/edit_profile_bg.png');
-  overflow: hidden;
-  margin-left: 5px;
+                                        background-image:none;
+                                        filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/maass/images/edit_profile_bg.png');
+                                        overflow: hidden;
+                                        margin-left: 5px;
 }
 
 .edit_profile_btm{
@@ -1613,7 +1614,7 @@ label.label_margin{
   font-weight: bold;
   font-size: 11px;
   cursor: pointer;
-  
+
   position: relative;
 }
 
@@ -2146,7 +2147,7 @@ h2.page_title{
   font-size: 12px;
   color: #333333;
   border-bottom:1px solid #fce8e0;
-  margin-top: -5px;
+/*  margin-top: -5px;*/
   overflow: hidden;
 }
 
@@ -2164,13 +2165,6 @@ h2.page_title{
 
 .static_blog p{
   margin: 7px;
-}
-
-#thanks p {
-  background-color:oldLace;
-  margin:7px;
-  padding:10px 5px;
-  font-size: 12px;
 }
 
 * html .blog_text {
@@ -2791,7 +2785,7 @@ table.greetings {
 .unread_message{
   background: #FEECD4;
   border-bottom: 1px solid peachPuff;
-  width: 530px;
+  width: 517px;
 }
 
 .flickr_card{
@@ -2867,14 +2861,15 @@ table.greetings {
 
 }
 
-.blog_check_box, .poll_check_box{
+.poll_check_box{
   font-size: 12px;
+  margin-top: 5px;
 }
-* html .blog_check_box, .poll_check_box{
+/** html .blog_check_box, .poll_check_box{
   margin-left: -5px;
   font-size: 12px;
   position: relative;
-}
+}*/
 
 #twitter_update_list li{
   position: relative;
@@ -2918,7 +2913,7 @@ table.greetings {
   background-repeat: no-repeat;
 }
 .input_text_with_icon{
-/*  padding-left :20px;*/
+  /*  padding-left :20px;*/
   width: 209px
 }
 .happy_day_class{
@@ -3020,9 +3015,9 @@ table.greetings {
   float: left;
 }
 .feedback_btn_container{ /** IE 6 hack **/
-  float: left;
-  width: 460px;
-  margin-left: 170px;
+                         float: left;
+                         width: 460px;
+                         margin-left: 170px;
 }
 * html .feedback_btn_container{
   margin-left: 85px;
@@ -3086,7 +3081,7 @@ table.greetings {
   font-weight: bold;
   font-size: 11px;
   cursor: pointer;
-  
+
   float: left;
   text-align: center;
   padding-top: 3px;
@@ -3104,7 +3099,7 @@ table.greetings {
   font-weight: bold;
   font-size: 11px;
   cursor: pointer;
-  
+
   float: left;
   text-align: center;
   padding-top: 3px;
@@ -3135,13 +3130,13 @@ a.editor_cancel{
 
 
 * html .buttons{ /** IE 6 hack **/
-  background-image: none;
-  position: relative;
+                 background-image: none;
+                 position: relative;
 }
 * html .editor_cancel{ /** IE 6 hack **/
-  background-image: none;
-  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/maass/images/cancel-button.png');
-  position: relative;
+                       background-image: none;
+                       filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=crop,src='/maass/images/cancel-button.png');
+                       position: relative;
 }
 * html .editor_ok_button{
   background: none;
@@ -3168,8 +3163,8 @@ a.editor_cancel{
 }
 
 * html .widget_complete{ /** IE 6 hack **/
-  position: relative;
-  margin-left: 5px;
+                         position: relative;
+                         margin-left: 5px;
 }
 
 .widget_complete_top{
@@ -3287,9 +3282,9 @@ a.editor_cancel{
 }
 
 * html .widget_compelete_title{ /** IE 6 hack **/
-  margin-left: 3px;
-  margin-top: -13px;
-  position: relative;
+                                margin-left: 3px;
+                                margin-top: -13px;
+                                position: relative;
 }
 
 .row_complete_for_forum{
@@ -3606,8 +3601,8 @@ a.editor_cancel{
 }
 
 * html .widget_large_flash_msg{  /** IE 6 hack **/
-  position: relative;
-  margin-left: 5px;
+                                 position: relative;
+                                 margin-left: 5px;
 }
 
 .widget_large_flash_msg_btm{
@@ -3620,9 +3615,9 @@ a.editor_cancel{
   height: 6px;
 }
 * html .widget_large_flash_msg_btm{  /** IE 6 hack **/
-  position: relative;
-  margin-left: -5px;
-  margin-bottom: -8px;
+                                     position: relative;
+                                     margin-left: -5px;
+                                     margin-bottom: -8px;
 }
 .new_toipc_button{
   margin-left: 10px;
@@ -3824,7 +3819,7 @@ a.editor_cancel{
   float: left;
   margin-top: 15px;
   cursor: pointer;
-  
+
 }
 
 /* For Common Search Blog */
@@ -3846,7 +3841,7 @@ a.editor_cancel{
   float: left;
   margin-top: 15px;
   cursor: pointer;
-  
+
 }
 .search_form{
   display: inline;
@@ -3886,11 +3881,11 @@ div.blurb_image_footer a{
   color:#000000;
 }
 * html .blurb_image_footer{  /** IE 6 hack **/
-  margin-left: .5px;
+                             margin-left: .5px;
 }
 * html .blurb_image_div{  /** IE 6 hack **/
-  margin-left: 5px;
-  margin-top: -3px;
+                          margin-left: 5px;
+                          margin-top: -3px;
 }
 .image_text_area{
   height:20px;
@@ -3917,8 +3912,8 @@ div.blurb_image_head div
   text-align:center;
 }
 * html .blurb_image_head{  /** IE 6 hack **/
-   margin-left: -2.5px;
- }
+                           margin-left: -2.5px;
+}
 .jcarousel-skin-ie7 .jcarousel-container{
   background:none !important;
   border:none !important;
@@ -3940,9 +3935,9 @@ div.blurb_image_head div
   left:79px !important;
 }
 #TB_ajaxContent {
- padding:2px 1.1px 15px !important;
- height:489px !important;
- width:922px !important;
+  padding:2px 1.1px 15px !important;
+  height:489px !important;
+  width:922px !important;
 }
 #TB_window{
   width:924px !important;
@@ -3952,15 +3947,15 @@ div.blurb_image_head div
   padding-top:37px;
 }
 * html #TB_ajaxContent{  /** IE 6 hack **/
-   height:420px !important;
- }
- * html a.advance-link img{  /** IE 6 hack **/
-   height:395px !important;
- }
- #thumbs{
+                         height:420px !important;
+}
+* html a.advance-link img{  /** IE 6 hack **/
+                            height:395px !important;
+}
+#thumbs{
   margin-left:46px;
   margin-top:9px;
- }
+}
 div.slideshow img {
   max-height:363px;
   max-width:503px;
@@ -3993,18 +3988,18 @@ Patched by Herryanto Siatono, Pluit Solutions to solve background 'none' call to
   this.pngSet=true :
   (this.nodeName == "IMG" ?
   (this.src.toLowerCase().indexOf('.png')>-1 ?
-  (this.runtimeStyle.backgroundImage = "none", this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
-  this.src = "/images/transparent.gif") :
-  '') :
-  (this.currentStyle.backgroundImage.toLowerCase().indexOf('.png')>-1) ?
-  (this.origBg = (this.origBg) ?
-  this.origBg :
-  this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
-  this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
-  this.runtimeStyle.backgroundImage = "none") :
-  ''
-  ), this.pngSet=true
-  );
+    (this.runtimeStyle.backgroundImage = "none", this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+    this.src = "/images/transparent.gif") :
+    '') :
+    (this.currentStyle.backgroundImage.toLowerCase().indexOf('.png')>-1) ?
+    (this.origBg = (this.origBg) ?
+    this.origBg :
+    this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+    this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+    this.runtimeStyle.backgroundImage = "none") :
+    ''
+    ), this.pngSet=true
+    );
 }
 .web_info{
   width:226px !important;
@@ -4031,8 +4026,8 @@ div.album_links a{
 }
 
 * html .album_pic_panel{ /** IE 6 hack **/
-  margin-left: 3px;
-  margin-right: 4px;
+                         margin-left: 3px;
+                         margin-right: 4px;
 }
 
 .album_pic_panel a{
@@ -4075,16 +4070,16 @@ div.album_links a{
 }
 
 .album_header {
-    border-bottom: 1px solid #F7D8CD;
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
-    height: auto;
-    line-height: 24px;
-    margin: 0 0 0 5px;
-    overflow: hidden;
-    padding: 0 0 5px;
-    width: 962px;
+  border-bottom: 1px solid #F7D8CD;
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+  height: auto;
+  line-height: 24px;
+  margin: 0 0 0 5px;
+  overflow: hidden;
+  padding: 0 0 5px;
+  width: 962px;
 }
 
 .album_photos{
@@ -4101,13 +4096,13 @@ div.album_links a{
 }
 
 .facebook_album {
-    font-size: 14px;
-    margin: 10px;
+  font-size: 14px;
+  margin: 10px;
 }
 .blog_label_margin {
-    font-size: 12px;
-    margin: 10px 8px 5px;
-    position: relative;
+  font-size: 12px;
+  margin: 10px 8px 5px;
+  position: relative;
 }
 
 .blog .blog_comments, .blog .comment_form, .hide_info, .spinner, show_rsvp{
@@ -4115,17 +4110,16 @@ div.album_links a{
 }
 .delete {
   float: right;
-  margin-left: 3px;
-  margin-right: 15px;
-  margin-top: -29px;
+  margin-right: 7px;
+  margin-top: 10px;
 }
 .login_links_container2 {
-    float: left;
-    font-size: 11px;
-    margin-bottom: 10px;
-    margin-left: 5px;
-    margin-top: 6px;
-    width: 300px;
+  float: left;
+  font-size: 11px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-top: 6px;
+  width: 300px;
 }
 
 .login_btn_container2{
@@ -4139,44 +4133,34 @@ div.album_links a{
 }
 
 .forgot_password_info {
-    float: left;
-    font-size: 12px;
-    font-weight: normal;
-    margin: 5px 10px;
-    width: 482px;
+  float: left;
+  font-size: 12px;
+  font-weight: normal;
+  margin: 5px 10px;
+  width: 482px;
 }
 .event_text {
-    border-bottom: 13px solid #FCE8E0;
-    color: #333333;
-    float: none;
-    font-size: 12px;
-    margin-left: 13px;
-    margin-top: 0;
-    overflow: hidden;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    width: 945px;
+  width: 545px;
 }
 .album_text{
   margin-left: 113px;
 }
 
 .google_map {
-    float: left;
-    margin-left: 11px;
+  float: left;
+  margin-left: 11px;
 }
 .blog_fields {
-    border: 1px solid #CCCCCC;
-    font-size: 11px;
-    margin: 5px 10px;
-    padding: 3px;
-    width: 530px;
+  border: 1px solid #CCCCCC;
+  font-size: 11px;
+  margin: 5px 10px;
+  padding: 3px;
+  width: 530px;
 }
 .blog_labels {
-    border: 0 solid #CCCCCC;
-    font-size: 14px;
-    margin: 5px 10px;
-    width: 530px;
+  border: 0 solid #CCCCCC;
+  font-size: 12px;
+  margin: 5px 10px;
 }
 select{
   border: 1px solid #CCCCCC;
@@ -4185,15 +4169,10 @@ select{
   padding: 3px;
   width: 530px;
 }
-.tos_text {
-    color: #B93232;
-    font-size: 11px;
-    padding: 8px;
-}
 a.link_disabled
 {
-color: grey;
-cursor: text;
-pointer-events: none;
+  color:grey;
+  cursor:default;
+  pointer-events: none;
 }
 

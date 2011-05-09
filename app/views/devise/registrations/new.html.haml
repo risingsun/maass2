@@ -19,7 +19,7 @@
           = f.input :humanizer_answer, :label => resource.humanizer_question, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = f.hidden_field :humanizer_question_id
           %div{:class => cycle(:row_light, :row_dark)}
-            .tos_text
+            .error_msg
               = check_box :user, :terms_of_service, {:checked => "checked"}
               = @user.errors[:terms_of_service]
               = link_to "Please Accept The Terms of Service", page_path('tos'), :class=>'new-window'

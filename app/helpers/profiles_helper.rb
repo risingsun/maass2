@@ -16,15 +16,14 @@ module ProfilesHelper
 
   def show_map
     @map = GMap.new("map_div")
-    @profiles = @profile.marker.nil? ? @friends : @friends + [@profile]
-    unless @profiles.blank?
+    unless @friends.blank?
       @map.control_init(:large_map => true,:map_type => true)
       @map.set_map_type_init(GMapType::G_HYBRID_MAP)
-      markers = @profiles.collect do |f|
+      markers = @friends.collect do |f|
         GMarker.new([f.marker.lat,f.marker.lng],
           :title => "#{f.full_name({:is_short => 1})}")
       end
-      centre = @profile.marker.nil? ? @friends.first.marker : @profile.marker
+      centre = @friends.first.marker 
       @map.center_zoom_init([centre.lat,centre.lng],centre.zoom)
       @map.overlay_global_init(GMarkerGroup.new(true,markers),"my_friends")
     end
@@ -32,17 +31,36 @@ module ProfilesHelper
 
   def show_map_for_events
     @map = GMap.new("map_div")
+    if @event
+      marker = create_marker(@event.marker, @event.title, 'star', '/images/rails.png')
+    elsif(@profile.marker)
+      marker = create_marker(@profile.marker, @profile.full_name({:is_short => 1}), 'star', '/images/rails.png')
+    end
     unless @friends.blank?
       @map.control_init(:large_map => true,:map_type => true)
       @map.set_map_type_init(GMapType::G_HYBRID_MAP)
       markers = @friends.collect do |f|
-        GMarker.new([f.lat,f.lng],
-          :title => "")
+        create_marker(f.marker, f.full_name({:is_short => 1}), 'star', '/images/rails.png')
       end
-      centre = @event.marker
+      markers = markers.insert(0,marker);
+      centre = marker ? marker : @friends.first.marker
       @map.center_zoom_init([centre.lat,centre.lng],centre.zoom)
       @map.overlay_global_init(GMarkerGroup.new(true,markers),"my_friends")
     end
+  end
+
+  def create_marker(marker, title, image, image_url)
+    GMarker.new([marker.lat,marker.lng],
+          :title => "#{title}", :icon => icon_for_google_map("#{image}","#{image_url}"))
+  end
+
+  def icon_for_google_map(icon_name, icon_url)
+    @map.icon_global_init(
+    GIcon.new(  :image => "#{icon_url}",
+              :icon_size => GSize.new(32, 32),
+              :icon_anchor => GPoint.new(16, 32),
+              :info_window_anchor => GPoint.new(16, 0)), "#{icon_name}")
+     return Variable.new("#{icon_name}")
   end
 
   def location_link profile = @p
