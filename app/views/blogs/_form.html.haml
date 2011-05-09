@@ -12,10 +12,10 @@
     .blog_text Comma Seperated
     .row_normal
       - if @p.is_active
-        .blog_check_box
+        .poll_check_box
           = f.check_box :public
           Public?
-    .blog_btn_container
+    .feedback_btn_container
       %button.buttons{:type => "submit"}
         = image_tag("save.png")
       %button.buttons{:name => 'preview_button'}

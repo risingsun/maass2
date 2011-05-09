@@ -164,7 +164,7 @@ class Profile < ActiveRecord::Base
     @@days
   end
 
-  def self.find_all_happy_days(profile = nil, options = {})
+  def self.find_all_happy_days(profile = nil, options = {})    
     ref_date = options[:date] || Date.today
     days = self.happy_day_range(options)
     today_index = days.index(ref_date.strftime("%m%d"))
@@ -322,7 +322,7 @@ class Profile < ActiveRecord::Base
     unless date_of_birth.blank?
       summary = "#{full_name}'s birthday"
       description = "#{full_name} (#{group}) has their birthday today. They were born on #{date_of_birth.to_formatted_s(:long_ordinal)}."
-      description += "\n Wish them on http://localhost:3000/profiles/#{self.id}"
+      description += "\n Wish them on http://#{SITE}/profiles/#{self.id}"
       return ical_event(birthdate_next,summary,description,'Birthdays')
     end
   end
