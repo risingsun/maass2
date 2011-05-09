@@ -7,7 +7,7 @@
 = f.label "End At", :class => "blog_labels"
 = f.text_field :end_date, :title => "Title", :class => "big_text_field datetime"
 %br= f.label :description, :class => "blog_labels"
-%br= f.cktext_area :description, :toolbar => 'Easy', :width => '525px', :height => '350px', :class => "big_text_area"
+= f.cktext_area :description, :toolbar => 'Easy', :width => '525px', :height => '350px', :class => "big_text_area"
 - @event.marker.blank? ? new_map : edit_map(@event.marker)
 .google_map
   = raw GMap.header()
