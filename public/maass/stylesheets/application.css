@@ -4192,8 +4192,8 @@ select{
 }
 a.link_disabled
 {
-color:grey;
-cursor:default;
+color: grey;
 cursor: text;
+pointer-events: none;
 }
 
