@@ -1,14 +1,13 @@
-class UsersController < Devise::RegistrationsController
+class UsersController < ApplicationController
 
-  def update
-    @profile =  @p
-    if resource.update_with_password(params[:user])
-      set_flash_message :notice, :updated
+  def update    
+    if current_user.update_with_password(params[:user])
+      flash[:notice]= "Password updated"
     else
       clean_up_passwords(current_user)
-      flash[:error] = "Password invalid/blank"
+      flash[:error] = "Password invalid/blank"            
     end
-    redirect_to edit_account_profile_path(@profile)
+    redirect_to edit_account_profile_path(current_user.profile)
   end
 
 end
