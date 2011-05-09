@@ -2,10 +2,10 @@ class FriendsController < ApplicationController
 
   #Show all friends, followers and followings
   def index
-    @friends = @p.friends
-    @follower_friends = @p.followers
-    @following_friends= @p.followings
-    @albums = @p.albums
+    @profile = @p
+    @friends = @profile.friends
+    @follower_friends = @profile.followers
+    @following_friends= @profile.followings
   end
   
   private
