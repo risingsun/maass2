@@ -1,10 +1,10 @@
-- pe = ProfileEvent.where(:event_id => event.id, :profile_id => @p.id).first
+- pe = event.role_of_user(@p)
 - role = pe.role if pe
 .event_location.commentable
   %span.event_address Your RSVP :&nbsp;
   %span{:id => "span_#{event.id}"}
-    = event.is_organizer?(@p) ? 'Attending':role
+    = event.is_organizer?(@p) ? 'Attending' : role
     \&nbsp;
   = image_tag('edit.png', :title => "Change RSVP", :class =>'add-comment') unless event.is_organizer?(@p)                     |
-.comment_form
-  = render :partial => 'admin/events/rsvp',:locals => {:event => event,:status => 'home_page'}
+  .comment_form.hide_info
+    = render :partial => 'admin/events/rsvp',:locals => {:event => event,:status => 'home_page'}

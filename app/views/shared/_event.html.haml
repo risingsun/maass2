@@ -21,7 +21,7 @@
         %span.event_address Address :
         %br
         = event.place
-  - if @p
+  - if @p.present?
     .poll_text
       .poll_option{:id => "event_rsvp_#{event.id}"}
         - if event.responded? @p

@@ -1,6 +1,7 @@
 class UsersController < Devise::RegistrationsController
 
   def update
+   
     @profile =  @p
     if resource.update_with_password(params[:user])
       set_flash_message :notice, :updated

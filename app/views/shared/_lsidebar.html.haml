@@ -17,7 +17,7 @@
               %span.flickr_text= f.name
       - else
         Photos are unavailable at this time
-= render :partial => "profiles/find_batch_details" if @profile
+= render :partial => "profiles/find_batch_details" if @p.present?
 
 :javascript
   show_gallery();

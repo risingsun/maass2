@@ -1,12 +1,8 @@
-- sent = params[:action]=='sent_messages'
-- new = params[:action] == 'new'
-- inbox = params[:action] == "index"
+- action = params[:action]
 %h2.widget_lrg_title
   .message_header_links
-    = raw inbox ? "Inbox" : "#{link_to "Inbox", profile_messages_path(@p)}"
-    %span.grey
+    = link_to "Inbox", profile_messages_path(@p), :class =>(action == 'index' ? 'link_disabled' : "")
     |
-    = raw sent ? "Sent" : "#{link_to "Sent", sent_messages_profile_messages_path(@p)}"
-    %span.grey
+    = link_to "Sent", sent_messages_profile_messages_path(@p), :class =>(action == 'sent_messages' ? 'link_disabled' : "")
     |
-    = raw new ? "New Message" : "#{link_to "New Message", new_profile_message_path(@p)}"
+    = link_to "New Message", new_profile_message_path(@p), :class =>(action == 'new' ? 'link_disabled' : "")
