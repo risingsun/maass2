@@ -369,6 +369,7 @@ a.button_large:hover{
 
 .error_msg{
   color: #FF0000;
+  font-size: 11px;
 }
 
 .widget_flash_msg_btm{
@@ -2146,7 +2147,7 @@ h2.page_title{
   font-size: 12px;
   color: #333333;
   border-bottom:1px solid #fce8e0;
-  margin-top: -5px;
+/*  margin-top: -5px;*/
   overflow: hidden;
 }
 
@@ -2164,13 +2165,6 @@ h2.page_title{
 
 .static_blog p{
   margin: 7px;
-}
-
-#thanks p {
-  background-color:oldLace;
-  margin:7px;
-  padding:10px 5px;
-  font-size: 12px;
 }
 
 * html .blog_text {
@@ -4174,11 +4168,6 @@ select{
   margin: 5px 10px;
   padding: 3px;
   width: 530px;
-}
-.tos_text {
-  color: #B93232;
-  font-size: 11px;
-  padding: 8px;
 }
 a.link_disabled
 {

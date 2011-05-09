@@ -36,7 +36,7 @@ class ProfilesController < ApplicationController
         flash[:notice] = params[:commit] ? "#{params[:commit]} updated." : "Profile updated."
         redirect_to :back
       else
-        render 'profiles/edit'
+        render 'profiles/edit', :layout => "plain"
       end
     end
   end
