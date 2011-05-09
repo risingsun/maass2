@@ -18,10 +18,11 @@
           = p.input :group, :as => :select, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = f.input :humanizer_answer, :label => resource.humanizer_question, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
           = f.hidden_field :humanizer_question_id
-        #tos{:class => cycle(:row_light, :row_dark)}
-          = check_box :user, :terms_of_service, {:checked => "checked"}
-          = link_to "Please Accept The Terms of Service", page_path('tos'), :class=>'new-window'
-          = @user.errors[:terms_of_service]
+          %div{:class => cycle(:row_light, :row_dark)}
+            .tos_text
+              = check_box :user, :terms_of_service, {:checked => "checked"}
+              = @user.errors[:terms_of_service]
+              = link_to "Please Accept The Terms of Service", page_path('tos'), :class=>'new-window'
       = f.inputs do
         = render :partial=> "referral_form", :locals=> {:f=> f}      
       %button.buttons{:type => "submit"}
