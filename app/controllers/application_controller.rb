@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_access_permissions
-    return if ["devise/passwords", "users", "devise/sessions", "devise/confirmations", "ckeditor"].include?(request.params[:controller])
+    return if ["devise/passwords", "users", "devise/sessions", "devise/confirmations", "devise/registrations", "ckeditor"].include?(request.params[:controller])
     raise '@level is blank. Did you override the allow_to method in your controller?' if @level.blank?
     @level.each do |l|
       next unless (l[0] == :all) ||

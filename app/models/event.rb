@@ -15,6 +15,10 @@ class Event < ActiveRecord::Base
 
   accepts_nested_attributes_for :marker
 
+  def role_of_user(profile)
+     profile_events.find(:first, :conditions => {:profile_id=>profile})
+  end
+
   def set_organizer(profile)
     ProfileEvent.create(:event_id => self.id,:profile_id => profile.id, :role =>"Organizer")
   end

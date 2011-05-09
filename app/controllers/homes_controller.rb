@@ -22,7 +22,7 @@ class HomesController < ApplicationController
   end
 
   def photo_gallery
-    @album = Album.check_album(params[:photoset])
+    @album = Album.find(params[:photoset])
     @pictures = @album.photos
     respond_to do |formats|
       formats.html{render :partial => 'photo_gallery'}

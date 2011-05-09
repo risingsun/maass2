@@ -4190,3 +4190,10 @@ select{
     font-size: 11px;
     padding: 8px;
 }
+a.link_disabled
+{
+color:grey;
+cursor:default;
+cursor: text;
+}
+

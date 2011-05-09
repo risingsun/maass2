@@ -1,15 +1,28 @@
-%h2 Sign up
-= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = f.inputs do
-    = f.input :login_name
-    = f.input :email
-    = f.input :password, :as => :password
-    = f.input :password_confirmation, :as => :password
-    = f.input :first_name
-    = f.input :middle_name
-    = f.input :last_name
-    = f.input :maiden_last_name
-    = f.input :gender, :as => :select, :collection => User::SEX, :prompt => false
-    = f.input :groups, :as => :select, :collection => User::GROUP, :prompt => false
-    = f.commit_button :label => "Sign Up"
-  = render :partial => "devise/shared/links"
+- resource.build_profile if resource.profile.blank?
+= rounded_corner(:title => "Sign-up Now", :class => "help") do
+  = semantic_form_for(resource, :as => resource_name, :url => user_registration_path) do |f|
+    = f.semantic_errors
+    .edit_panel_profile
+      = f.inputs do
+        = f.input :login, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+        = f.input :email, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+        = f.input :password, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+        = f.input :password_confirmation, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+      = f.semantic_fields_for(:profile) do |p|
+        = p.inputs do
+          = p.input :first_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :middle_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :last_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :maiden_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :gender, :as => :select, :collection => SEX, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :group, :as => :select, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = f.input :humanizer_answer, :label => resource.humanizer_question, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = f.hidden_field :humanizer_question_id
+        #tos{:class => cycle(:row_light, :row_dark)}
+          = check_box :user, :terms_of_service, {:checked => "checked"}
+          = link_to "Please Accept The Terms of Service", page_path('tos'), :class=>'new-window'
+          = @user.errors[:terms_of_service]
+      = f.inputs do
+        = render :partial=> "users/referral_form", :locals=> {:f=> f}
+      %button.buttons{:type => "submit"}
+        = image_tag('sign-me-up.png')

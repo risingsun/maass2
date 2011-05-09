@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user, :batch_mates]
+  before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user]
   respond_to :html, :json, :only =>[:active_user]
   def index
     if @is_admin
@@ -131,7 +131,7 @@ class ProfilesController < ApplicationController
 
   def allow_to
     super :owner, :all => true
-    super :active_user, :only => [:show, :index, :search, :friend_search, :search_group , :search_location, :batch_mates, :batch_details, :active_user]
+    super :active_user, :only => [:show, :index, :search, :friend_search, :search_group , :search_location, :batch_details, :active_user]
     super :all, :only => [:update_email]
   end
 
