@@ -7,5 +7,5 @@
     = link_to image_tag('delete.png', :title => "Delete Image"),profile_photo_path(photo.profile, photo),:method => :delete
     .created_date
       Posted by #{photo.profile.full_name} at #{photo.updated_at.to_date.to_formatted_s(:rfc822)}
-  = image_tag(set_image(photo,'original'))
+  = image_tag(get_image_url(photo,'original'))
   %span.widget_complete_btm

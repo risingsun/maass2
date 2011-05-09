@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
 
-  def update    
+  layout 'plain'
+
+  def update   
+    @profile =  @p
     if current_user.update_with_password(params[:user])
-      flash[:notice]= "Password updated"
+      flash[:notice] = "Password updated"
+      redirect_to edit_account_profile_path(@profile)
     else
-      clean_up_passwords(current_user)
-      flash[:error] = "Password invalid/blank"            
+      render 'profiles/edit_account'
     end
-    redirect_to edit_account_profile_path(current_user.profile)
   end
 
 end

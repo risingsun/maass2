@@ -4192,3 +4192,11 @@ select{
   padding: 3px;
   width: 530px;
 }
+a.link_disabled
+{
+color:grey;
+cursor:default;
+pointer-events: none;
+
+}
+

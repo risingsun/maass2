@@ -23,6 +23,5 @@
           = link_to "Please Accept The Terms of Service", page_path('tos'), :class=>'new-window'
           = @user.errors[:terms_of_service]
       = f.inputs do
-        = render :partial=> "users/referral_form", :locals=> {:f=> f}
       %button.buttons{:type => "submit"}
         = image_tag('sign-me-up.png')

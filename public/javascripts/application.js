@@ -1,7 +1,8 @@
 
 jQuery(document).ready(function()
 {
-  
+
+
   jQuery('a.new-window').click(function(){
     window.open(jQuery(this).attr('href'),'Terms of Service','width=500,height=600,scrollbars=yes');
     return false;
@@ -81,6 +82,7 @@ jQuery(document).ready(function()
 
   jQuery('.rsvp_event').click(function(){
     var path = jQuery(this).attr('url');
+    var name = jQuery(this).attr('name');
     spi = jQuery(this).parents('.event').find('.spinner');
     var type = jQuery(this).val();
     jQuery.ajax({
@@ -98,10 +100,10 @@ jQuery(document).ready(function()
       },
       success: function(data){
         if(data == 'Organizer') {
-          jQuery("input:radio[id='event_Attending']").attr('checked', true);
+          jQuery("input:radio[id='"+name+"_Attending']").attr('checked', true);
         }
         else{
-          jQuery("input:radio[name='event']:checked").attr('checked', true);
+          jQuery("input:radio[name='"+name+"']:checked").attr('checked', true);
         }
       }
     })
@@ -327,11 +329,6 @@ function add_fields(link, association, content) {
 
 function show_partial(p){
   jQuery("#par_"+p).show();
-}
-
-function content_show_hide(div_id){
-//  id=jQuery(div_id)
-//  jQuery(id).slideToggle();
 }
 
 jQuery('#search_q').live('focus.search_query_field', function(){

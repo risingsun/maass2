@@ -18,11 +18,10 @@
         %span.event_address End Date :
         = event.end_date.to_date.to_formatted_s(:rfc822)if event.end_date
       %br
-      %div
-        %span.event_address Address :
-        %br
-        = event.place
-  - if @p && @p.user
+      %span.event_address Address :
+      %br
+      = event.place
+  - if @p.present?
     .poll_text
       .poll_option
         - if event.responded? @p
