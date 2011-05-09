@@ -18,7 +18,6 @@ module Friendship
   module InstanceMethods
 
     def friends_with?(friend)
-      #profile = friend.kind_of?(User) ? friend.profile : friend
       self.friends.include?(friend)
     end
 
@@ -28,10 +27,6 @@ module Friendship
 
     def is_followed_by?(friend)
       self.followers.include?(friend)
-    end
-
-    def check_friend(user, friend)
-      Friend.find_by_inviter_id_and_invited_id(user, friend)
     end
 
     def start_following(friend)
@@ -52,15 +47,6 @@ module Friendship
     def make_friend(friend)
       follower_friends.where(:inviter_id => friend).first.update_attribute(:status, Friend::ACCEPT_FRIEND)
       friendships.create(:invited => friend, :status => Friend::ACCEPT_FRIEND)
-    end
-
-    #    def friend_of? user
-    #      friends.where(:id=>user.profile.id).present?
-    #    end
-
-
-    def friend_of? profile
-      friends.where(:id=>profile.id).present?
     end
 
     def all_friends

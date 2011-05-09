@@ -2681,14 +2681,7 @@ table.greetings {
   font-size: 12px;
   font-weight: bold;
 }
-.x {
-    float: left;
-    font-size: 12px;
-    font-weight: bold;
-    height: auto;
-    margin: 5px 10px;
-    width: 482px;
-}
+
 .comment_text{
   margin-left: 55px;
 }
@@ -3972,7 +3965,7 @@ div.slideshow img {
   max-height:363px;
   max-width:503px;
 }
-#gallery{
+.gallery{
   margin-top:11px;
 }
 div.embox {
@@ -4192,11 +4185,15 @@ select{
   padding: 3px;
   width: 530px;
 }
+.tos_text {
+    color: #B93232;
+    font-size: 11px;
+    padding: 8px;
+}
 a.link_disabled
 {
-color:grey;
-cursor:default;
+color: grey;
+cursor: text;
 pointer-events: none;
-
 }
 
