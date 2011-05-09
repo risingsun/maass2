@@ -39,7 +39,7 @@ module ProfilesHelper
         GMarker.new([f.lat,f.lng],
           :title => "")
       end
-       centre = @event.marker
+      centre = @event.marker
       @map.center_zoom_init([centre.lat,centre.lng],centre.zoom)
       @map.overlay_global_init(GMarkerGroup.new(true,markers),"my_friends")
     end
@@ -114,5 +114,5 @@ module ProfilesHelper
       see_all = (size > 6) ? link_to("See All", user_friends_profile_path(@profile, :friend_type => type)) : ""
     end
     return see_all
- end
+  end
 end

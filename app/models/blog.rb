@@ -8,13 +8,9 @@ class Blog < ActiveRecord::Base
   validates :title, :body, :presence => true
 
   include UserFeeds
-  #has_one :feed_item, :as => :commentable
+
   after_create :create_my_feed
   after_create :create_other_feeds
-
-  #  def create_my_feed
-  #    profile.feed_items.create(:item => self)
-  #  end
 
   define_index do
     indexes :title

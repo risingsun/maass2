@@ -25,7 +25,7 @@ class Admin::HomeController < ApplicationController
         :body => blog.body, :receiver => profile, :system_message => true) if profile.wants_message_notification?("news")
     end
     redirect_to :back
-    flash[:notice] = "Mail was successfully sent"
+    flash[:notice] = "Blog was successfully sent"
   end
   
   def google_map_locations

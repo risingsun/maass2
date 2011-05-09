@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   def index
     @message = Message.new
     @to_list = @profile.friends + @profile.followers  + @profile.followings    
-    @messages = @profile.received_messages.all.paginate(:per_page =>BLOGS_PER_PAGE, :page => params[:page])
+    @messages = @profile.received_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
   end
 
   def new
@@ -58,7 +58,7 @@ class MessagesController < ApplicationController
   end
 
   def sent_messages
-    @messages = @profile.sent_messages.all.paginate(:per_page =>BLOGS_PER_PAGE, :page => params[:page])
+    @messages = @profile.sent_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
     render 'messages/index'
   end
 

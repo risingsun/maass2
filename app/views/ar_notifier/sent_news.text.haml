@@ -1,0 +1,8 @@
+="Blog post titled #{@blog.title} by #{@blog.sent_by}"
+
+=raw @blog.body
+
+Follow the URL to comment on the blog.
+= "http://#{SITE}#{profile_blog_path(@blog.profile, @blog)}"
+
+= render :partial => 'account_mailer/email_footer'
