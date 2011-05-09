@@ -5,9 +5,6 @@ class Friend < ActiveRecord::Base
   belongs_to :inviter, :class_name => 'Profile'
   belongs_to :invited, :class_name => 'Profile'
 
-  ACCEPTED = 1
-  PENDING = 0
-
   after_save :create_feed_item
   after_create :after_following
 

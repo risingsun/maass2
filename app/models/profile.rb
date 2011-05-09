@@ -245,19 +245,19 @@ class Profile < ActiveRecord::Base
 
 
   def wants_email_notification?(type)
-    self.notification_control && 
-      (self.notification_control.send(type) == NotificationControl::EMAIL_BIT ||
-        self.notification_control.send(type) == NotificationControl::ALL_NOTIFICATION )
+    notification_control && 
+      (notification_control.send(type) == NotificationControl::EMAIL_BIT ||
+        notification_control.send(type) == NotificationControl::ALL_NOTIFICATION )
   end
 
   def wants_message_notification?(type)
-    self.notification_control &&
-      (self.notification_control.send(type) == NotificationControl::INTERNAL_MESSAGE_BIT ||
-        self.notification_control.send(type) == NotificationControl::ALL_NOTIFICATION)
+    notification_control &&
+      (notification_control.send(type) == NotificationControl::INTERNAL_MESSAGE_BIT ||
+        notification_control.send(type) == NotificationControl::ALL_NOTIFICATION)
   end
 
   def friends_on_google_map(profile)
-    f = (self.friends + self.followers + self.followings).select {|p| p.can_see_field('marker', profile)}.insert(0,self)
+    f = (friends + followers + followings).select {|p| p.can_see_field('marker', profile)}.insert(0,self)
     users  = f.select {|p| p.marker}
     return users
   end

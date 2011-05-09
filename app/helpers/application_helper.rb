@@ -65,41 +65,6 @@ module ApplicationHelper
     end
   end
 
-  def formatted_error_message(*params)
-    options = params.extract_options!.symbolize_keys
-    if object = options.delete(:object)
-      objects = [object].flatten
-    else
-      objects = params.collect {|object_name| instance_variable_get("@#{object_name}") }.compact
-    end
-    count   = objects.inject(0) {|sum, object| sum + object.errors.count }
-    unless count.zero?
-      html = {}
-      [:id, :class].each do |key|
-        if options.include?(key)
-          value = options[key]
-          html[key] = value unless value.blank?
-        else
-          error_message_class = 'error_msg' + " " + "widget_flash_msg"
-          html[key] = error_message_class
-        end
-      end
-      options[:object_name] ||= params.first
-      options[:message] ||= 'There were some problems with your submission:' unless options.include?(:message)
-      error_messages = objects.map {|obj| obj.errors.full_messages}
-      content_tag(:div,html) do
-        content_tag(:ul) do
-          error_messages.flatten.map do |msg|
-            content_tag(:li,msg)
-          end.join(" ").html_safe
-        end +
-          content_tag(:span,"",:class =>'widget_flash_msg_btm')
-      end
-    else
-      ''
-    end
-  end
-
   def set_icon(profile, size)
     if profile.icon_file_name.blank?
       "#{profile.gender}_#{size}.png"
