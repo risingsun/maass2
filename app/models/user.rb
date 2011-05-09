@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   attr_accessible :humanizer_answer, :humanizer_question_id  
   require_human_on :create
   before_save :require_references
-  validates :password, :presence => true
-  validates :password_confirmation, :presence => true
+#  validates :password, :presence => true
+#  validates :password_confirmation, :presence => true
 
   validates :login, :presence => true,
     :length => {:within => 3..25},

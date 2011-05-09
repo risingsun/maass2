@@ -68,7 +68,7 @@ module Permissioning
       field_permission = fetch_permission_for(field)
       return true if self==profile || field_permission == :Everyone ||
         (field_permission == :Myself && is_me?(profile)) ||
-        (field_permission == :Friends && friend_of?(profile))
+        (field_permission == :Friends && friends_with?(profile))
 
       #      return !field_permission ||
       #             field.blank? ||

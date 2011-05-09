@@ -27,10 +27,10 @@ class ProfilesController < ApplicationController
       if @user.request_email_change!(params[:profile][:user_attributes][:requested_new_email])
         AccountMailer.delay.new_email_request(@user)
         flash[:notice] = "Email confirmation request has been sent to the new email address."
+         redirect_to edit_account_profile_url(@profile)
       else
-        flash[:error] = "Requested New Email Can not be Blank"
+        render 'profiles/edit_account'
       end
-       redirect_to edit_account_profile_url(@profile)
     else
       if @profile.update_attributes params[:profile]
         flash[:notice] = params[:commit] ? "#{params[:commit]} updated." : "Profile updated."
