@@ -1,14 +1,14 @@
 class HomesController < ApplicationController
   
+  before_filter :load_home, :only => [:index, :show]
+
   def index
-    @profile = @p
     blogs = Blog.all(:conditions => { :public => true })
     polls = Poll.public.open_polls.all(:include => :profile)
     events = Event.all(:include => :profiles)
     @nomination = @p.nomination || @p.build_nomination if @p
     @blurb_album = Album.find{|a| a if a.set_as_blurb}
     @home_data = sorted_results(blogs,polls,events).paginate(:page => @page,:per_page => BLOGS_PER_PAGE)
-    @albums = Album.all.map{|a| a if !a.photos.blank?}.compact
   end
 
   def show
@@ -48,5 +48,10 @@ class HomesController < ApplicationController
   def allow_to
     super :all, :all=>true
   end
-  
+
+  def load_home
+    @profile = @p
+    @albums = Album.all.map{|a| a if !a.photos.blank?}.compact
+  end
+
 end
