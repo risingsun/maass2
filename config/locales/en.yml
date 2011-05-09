@@ -85,4 +85,6 @@ en:
         occupational_details: Occupation details
         reason_for_nomination: What is the reason for your nomination ?
         suggestions: What difference can you make to the association ?
- 
+
+      invitation:
+        emails: Enter a list of email addresses separated by commas (,)
