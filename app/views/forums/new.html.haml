@@ -1,5 +1,1 @@
-.widget_complete
-  %span.widget_complete_top
-  %h2.widget_compelete_title New Forum
-  = render 'form'
-  %span.widget_complete_btm
+= render :partial => 'form' , :locals => {:title => 'New Forum'}

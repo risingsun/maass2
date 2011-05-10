@@ -1,6 +1,1 @@
-.widget_complete
-  %span.widget_complete_top
-  %h2.widget_compelete_title New Forum Topic
-  = form_for :forum_topic, :url => forum_forum_topics_path(@forum) do |f|
-    = render :partial => 'form', :locals => {:f => @forum_topic}
-  %span.widget_complete_btm
+= render 'form', :locals => {:title => "New Forum Topic"}

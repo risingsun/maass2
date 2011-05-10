@@ -163,5 +163,7 @@ form.formtastic fieldset > ol > li.optional {
     margin-left: 5px;
   }
 
-  form.formtastic fieldset > ol > li.required .ckeditor_for_event{    
+ form.formtastic fieldset > ol > li.text textarea.post_text_area_width {
+  margin-right:33px;
+  width:924px;
 }
