@@ -1737,7 +1737,7 @@ div.profile_pic_panel span.even {
 }*/
 
 
-/*.invitation_error{
+.invitation_error{
   font-size: 11px;
   line-height: 10px;
   margin-top: -160px;
@@ -1748,7 +1748,7 @@ div.profile_pic_panel span.even {
   color: #FF0000;
   font-weight: normal;
   width: 125px;
-}*/
+}
 
 .sys_message{
   font-size: 11px;

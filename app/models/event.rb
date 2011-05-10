@@ -20,11 +20,11 @@ class Event < ActiveRecord::Base
   end
 
   def set_organizer(profile)
-    ProfileEvent.create(:event_id => self.id,:profile_id => profile.id, :role =>"Organizer")
+    profile_events.create(:profile => profile, :role =>"Organizer")
   end
 
   def responded?(profile)
-    profile.events.where(:id => self).first
+    profile.events.include?(self)
   end
 
   def list(type)    
@@ -32,17 +32,17 @@ class Event < ActiveRecord::Base
   end
 
   def is_organizer?(profile)
-    self.organizers.first.eql?(profile)
+    organizers.first.eql?(profile)
   end
 
   def users_on_google_map
-    return self.attending.collect{|u| u.marker}.insert(0,self.marker).compact
+    return attending.select{|u| u.marker}.compact
   end
 
   def set_role_of_user(profile, type)
-    pe = self.profile_events.where(:profile_id => profile).first
+    pe = profile_events.where(:profile_id => profile).first
     unless pe
-      pe = self.profile_events.create(:profile => profile)
+      pe = profile_events.create(:profile => profile)
     end
     pe.update_attribute('role',type)unless is_organizer?(profile)
     return pe

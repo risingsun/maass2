@@ -1,10 +1,11 @@
 class ProfilesController < ApplicationController
 
-  before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user]
+  before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user]  
   respond_to :html, :json, :only =>[:active_user]
+  
   def index
     if @is_admin
-      @profiles = Profile.all.paginate(:page => @page, :per_page => PROFILE_PER_PAGE)
+      @profiles = Profile.all.paginate(:page => params[:page], :per_page => PROFILE_PER_PAGE)
       @title = "Users"
       render :layout => "admin"
     else
@@ -26,11 +27,11 @@ class ProfilesController < ApplicationController
     when "Change Email"
       if @user.request_email_change!(params[:profile][:user_attributes][:requested_new_email])
         AccountMailer.delay.new_email_request(@user)
-        flash[:notice] = "Email confirmation request has been sent to the new email address."
-         redirect_to edit_account_profile_url(@profile)
+        flash[:notice] = "Email confirmation request has been sent to the new email address."        
       else
-        render 'profiles/edit_account'
+        flash[:error] = "Requested New Email Can not be Blank"
       end
+       redirect_to edit_account_profile_url(@profile)
     else
       if @profile.update_attributes params[:profile]
         flash[:notice] = params[:commit] ? "#{params[:commit]} updated." : "Profile updated."
@@ -45,12 +46,12 @@ class ProfilesController < ApplicationController
   end
 
   def show
-      @feed_items = @profile.feeds_with_item
-      @friends = @profile.friends_on_google_map(@p) if @profile.can_see_field('marker', @p)
-      respond_to do |format|
-        format.html
-        format.rss {render :layout => false}
-      end
+    @feed_items = @profile.feeds_with_item
+    @friends = @profile.friends_on_google_map(@p) if @profile.can_see_field('marker', @p)
+    respond_to do |format|
+      format.html
+      format.rss {render :layout => false}
+    end
   end
 
   def edit_account
@@ -64,32 +65,32 @@ class ProfilesController < ApplicationController
   end
 
   def search    
-    @title = "Search"
     if params[:search].try(:[],:key) == "blog"
-      @blogs = Blog.search params[:search][:q], :match_mode=> :boolean, :page => params[:page], :per_page => PROFILE_PER_PAGE
+      @profile=@p
+      @blogs = Blog.search params[:search][:q], :match_mode=> :boolean
+      @blogs = @blogs.select{|blog| blog.profile.is_active} if !@is_admin
+      @blogs = @blogs.paginate(:page => params[:page], :per_page => PROFILE_PER_PAGE)
+      @title = "Search"
       render :template => "blogs/search_blog"
     else
-      @results = Profile.search params[:search][:q], :match_mode=> :boolean, :page => params[:page], :per_page => PROFILE_PER_PAGE
-      render :template=>'profiles/user_friends'
+      @results = Profile.search params[:search][:q], :match_mode=> :boolean
+      valid_user_search
     end
   end
 
   def friend_search
     @results=Profile.search params[:search][:q]
-    @title = "Search"
-    render :template=>'profiles/user_friends'
+    valid_user_search
   end
 
   def search_group
-    @title = "Search"
     @results = Profile.search params[:search][:group]
-    render :template=>'profiles/user_friends'
+    valid_user_search
   end
 
   def search_location    
-    @title = "Search"
     @results= Profile.search params[:search][:location]
-    render :template=>'profiles/user_friends'
+    valid_user_search
   end
 
   def user_friends
@@ -98,10 +99,11 @@ class ProfilesController < ApplicationController
   end
 
   def batch_details
+    @profile=@p
     @group = params[:group]
     if valid_batch_range
       @students  = StudentCheck.unregistered_batch_members(@group)
-      @profiles = Profile.batch_details(@group, {:page => @page, :per_page => PROFILE_PER_PAGE})
+      @profiles = Profile.batch_details(@group, {:page => params[:page], :per_page => PROFILE_PER_PAGE})
     else
       flash[:error] = 'Group is invalid! Sorry, please enter a valid group'
       redirect_to :back
@@ -145,6 +147,14 @@ class ProfilesController < ApplicationController
 
   def valid_batch_range(group = @group)
     !group.blank? && GROUPS.include?([group])
+  end
+
+  def valid_user_search
+    @profile=@p
+    @results = @results.select{|profile| profile.is_active} if !@is_admin
+    @results = @results.paginate(:page => params[:page], :per_page => PROFILE_PER_PAGE)
+    @title = "Search"
+    render :template=>'profiles/user_friends'
   end
   
 end
