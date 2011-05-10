@@ -22,4 +22,8 @@ class Message < ActiveRecord::Base
     end
   end
 
+  def message_unread_by?(profile)
+    receiver == profile && !read
+  end
+
 end

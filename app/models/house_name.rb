@@ -4,7 +4,7 @@ class HouseName < ActiveRecord::Base
   before_save :name_titlecase
 
   def self.find_house_names
-    HouseName.order("name").all
+    order("name").all
   end
 
   def name_titlecase

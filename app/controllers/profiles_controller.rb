@@ -28,7 +28,6 @@ class ProfilesController < ApplicationController
       if @user.request_email_change!(params[:profile][:user_attributes][:requested_new_email])
         AccountMailer.delay.new_email_request(@user)
         flash[:notice] = "Email confirmation request has been sent to the new email address."
-        redirect_to edit_account_profile_url(@profile)
       else
         flash[:error] = "Requested New Email Can not be Blank"
       end
@@ -68,8 +67,9 @@ class ProfilesController < ApplicationController
   def search    
     if params[:search].try(:[],:key) == "blog"
       @profile=@p
-      @blogs = Blog.search params[:search][:q], :match_mode=> :boolean, :page => params[:page], :per_page => PROFILE_PER_PAGE
-      @blogs = @blogs.select{|blog| blog.profile.is_active}.paginate(:page => params[:page], :per_page => PROFILE_PER_PAGE) if !@is_admin
+      @blogs = Blog.search params[:search][:q], :match_mode=> :boolean
+      @blogs = @blogs.select{|blog| blog.profile.is_active} if !@is_admin
+      @blogs = @blogs.paginate(:page => params[:page], :per_page => PROFILE_PER_PAGE)
       @title = "Search"
       render :template => "blogs/search_blog"
     else

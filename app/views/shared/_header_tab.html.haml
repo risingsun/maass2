@@ -16,8 +16,8 @@
       = link_to 'My Friends', profile_friends_path(@p)
       |
     %li.menu_text
-      = link_to 'My Messages', profile_messages_path(current_user.profile)
-      = message_count
+      = link_to 'My Messages', profile_messages_path(@p)
+      = profile_message_count(@p)
     - if @is_admin
       %li.menu_text
         |

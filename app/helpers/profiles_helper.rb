@@ -32,32 +32,35 @@ module ProfilesHelper
   def show_map_for_events
     @map = GMap.new("map_div")
     if @event
-      marker = create_marker(@event.marker, @event.title, 'star', '/images/rails.png')
+      marker = create_marker(@event.marker, @event.title, 'event', '/images/yellow_star.png')
     elsif(@profile.marker)
-      marker = create_marker(@profile.marker, @profile.full_name({:is_short => 1}), 'star', '/images/rails.png')
+      marker = create_marker(@profile.marker, @profile.full_name({:is_short => 1}), 'user', '/images/yellow-dot.png')
+      @friends.delete(@profile)
     end
     unless @friends.blank?
       @map.control_init(:large_map => true,:map_type => true)
       @map.set_map_type_init(GMapType::G_HYBRID_MAP)
       markers = @friends.collect do |f|
-        create_marker(f.marker, f.full_name({:is_short => 1}), 'star', '/images/rails.png')
+        create_marker(f.marker, f.full_name({:is_short => 1}))
       end
       markers = markers.insert(0,marker);
-      centre = marker ? marker : @friends.first.marker
+      centre = @event ? @event.marker : (@profile.marker.blank? ? @friends.first.marker : @profile.marker)
       @map.center_zoom_init([centre.lat,centre.lng],centre.zoom)
       @map.overlay_global_init(GMarkerGroup.new(true,markers),"my_friends")
     end
   end
 
-  def create_marker(marker, title, image, image_url)
+  def create_marker(marker, title, image = 'marker', image_url = '/images/marker.png')
+    info = marker.profile ? set_icon(marker.profile, 'small_60') : '/images/event_star.jpeg'
     GMarker.new([marker.lat,marker.lng],
-          :title => "#{title}", :icon => icon_for_google_map("#{image}","#{image_url}"))
+          :title => "#{title}", 
+          :icon => icon_for_google_map("#{image}","#{image_url}"),
+          :info_window => "#{image_tag(info)} #{title}'s Location.")
   end
 
   def icon_for_google_map(icon_name, icon_url)
     @map.icon_global_init(
     GIcon.new(  :image => "#{icon_url}",
-              :icon_size => GSize.new(32, 32),
               :icon_anchor => GPoint.new(16, 32),
               :info_window_anchor => GPoint.new(16, 0)), "#{icon_name}")
      return Variable.new("#{icon_name}")

@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
   end
 
   def list(type)    
-    self.send(type).find(:all, :order => 'RAND()') rescue []
+    self.send(type).all(:order => 'RAND()') rescue []
   end
 
   def is_organizer?(profile)

@@ -7,7 +7,7 @@ module ForumPostsHelper
   end
   
   def owner(post)
-    post.owner == @p
+    post.by_me?(@p)
   end
 
 end

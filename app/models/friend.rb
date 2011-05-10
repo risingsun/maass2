@@ -9,7 +9,7 @@ class Friend < ActiveRecord::Base
   after_create :after_following
 
   def create_feed_item
-    unless(status == ACCEPTED)
+    unless(status ==  ACCEPT_FRIEND)
       feed_item = FeedItem.create(:item => self)
       inviter.feed_items << feed_item
       invited.feed_items << feed_item
@@ -17,7 +17,7 @@ class Friend < ActiveRecord::Base
   end
 
   def is_accepted?
-    status == ACCEPTED
+    status == ACCEPT_FRIEND
   end
 
   def description user
@@ -27,8 +27,12 @@ class Friend < ActiveRecord::Base
 
   def after_following
     ArNotifier.delay.follow(inviter, invited, description(inviter)) if invited.wants_email_notification?("follow")
-    Profile.admins.first.sent_messages.create( :subject => "[#{SITE_NAME} Notice] #{inviter.full_name} is now following you",
-      :body => description(inviter),
-      :receiver => invited, :system_message => true ) if invited.wants_message_notification?("follow")
+    if invited.wants_message_notification?("follow")
+      Profile.admins.first.sent_messages.create(
+        :subject => "[#{SITE_NAME} Notice] #{inviter.full_name} is now following you",
+        :body => description(inviter),
+        :receiver => invited,
+        :system_message => true)
+    end
   end
 end

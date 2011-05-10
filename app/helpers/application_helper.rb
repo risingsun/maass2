@@ -1,24 +1,18 @@
 module ApplicationHelper
 
-
   def link_to_remove_fields(name, f)
-
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
-
   end
 
   def link_to_add_fields(name, f, association)
-
     new_object = f.object.class.reflect_on_association(association).klass.new
-
     fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
       render(association.to_s.singularize + "_fields", :f => builder)
     end
-
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
 
-  def me (profile=@profile)
+  def me(profile=@profile)
     current_user.profile == profile
   end
 
@@ -58,9 +52,7 @@ module ApplicationHelper
   end
 
   def slide_up_down_header(inner_panel_id, header_text, sliding="")
-    self.content_tag :h2,
-      :class => "widget_lrg_title #{sliding}",
-      :id => inner_panel_id + "_header" do
+    content_tag :h2, :class => "widget_lrg_title #{sliding}", :id => inner_panel_id + "_header" do
       header_text
     end
   end
@@ -73,58 +65,6 @@ module ApplicationHelper
     end
   end
 
-  def get_image_url(photo, size)
-    photo.image.url(size)
-  end
-
-  def display_standard_flashes(message = 'There were some problems with your submission:')
-    if flash[:notice]
-      flash_to_display, level = flash[:notice], 'notice'
-      flash_message_class = 'notice_msg'
-    elsif flash[:warning]
-      flash_to_display, level = flash[:warning], 'warning'
-      flash_message_class = 'warning_msg'
-    elsif flash[:error]
-      flash_message_class = 'error_msg'
-      level = 'error'
-      if flash[:error].is_a?( Hash)
-        flash_to_display = message
-        flash_to_display << activerecord_error_list(flash[:error])
-      else
-        flash_to_display = flash[:error]
-      end
-    else
-      return
-    end
-    flash_message_class = flash_message_class.to_s + " " + "widget_flash_msg"
-    flash_msg = flash_to_display.to_s + "<span class='widget_flash_msg_btm'></span>"
-    content_tag 'div', flash_msg.html_safe, :class => flash_message_class, :id => "flash_message"
-  end
-
-  def display_standard_flashes_in_large_size(message = 'There were some problems with your submission:')
-    if flash[:notice]
-      flash_to_display, level = flash[:notice], 'notice'
-      flash_message_class = 'notice_msg'
-    elsif flash[:warning]
-      flash_to_display, level = flash[:warning], 'warning'
-      flash_message_class = 'warning_msg'
-    elsif flash[:error]
-      flash_message_class = 'error_msg'
-      level = 'error'
-      if flash[:error].is_a?( Hash)
-        flash_to_display = message
-        flash_to_display << activerecord_error_list(flash[:error])
-      else
-        flash_to_display = flash[:error]
-      end
-    else
-      return
-    end
-    flash_message_class = flash_message_class.to_s + " " + "widget_large_flash_msg"
-    flash_msg = flash_to_display.to_s + "<span class='widget_large_flash_msg_btm'></span>"
-    content_tag 'div', flash_msg.html_safe, :class => flash_message_class, :id => "flash_message"
-  end
-
   def activerecord_error_list(errors)
     error_list = '<ul class="error_list">'
     error_list << errors.collect do |e, m|
@@ -133,31 +73,16 @@ module ApplicationHelper
     error_list
   end
  
-  def message_count(profile = @p)
+  def profile_message_count(profile)
     c = profile.unread_messages.size
     "(#{c})" if c > 0
   end
 
-  def display_alpha_index(list)
-    str = ""
-    list.each do |i|
-      str << link_to(i, "##{i}_div")
-      str << " "
-    end
-    str.html_safe
+  def zebra(odd = :row_light, even = :row_dark)
+    cycle(odd,even)
   end
 
-  def inline_bar_graph(fill,batch_count)
-    content_tag(:div, content_tag(:div,
-        content_tag(:p, "#{batch_count} Members", :class => "filled_text"),
-        :class => "filled",
-        :style => "width: #{fill}%;"),:class =>"fill_bar")
+  def formtastic_zebra(options = {})
+    options.reverse_merge!(:wrapper_html => {:class => zebra})
   end
-
-  def sets_pictures_link(album = nil)
-    link_to(image_tag(album.photos.first.image.url('original'), :alt => album.name, :width => 80, :height => 75),
-       photo_gallery_homes_path(:photoset => album),:class=>'thickbox',:title => album.name)
-  end
-
-  
 end

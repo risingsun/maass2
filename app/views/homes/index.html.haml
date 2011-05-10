@@ -1,7 +1,7 @@
 - content_for :head do
   = auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments")
   = auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members")
-- if @blurb_image.blank?
+- if @blurb_album.photos.blank?
   = render :partial => 'blurb'
 - else
   .widget_large
@@ -20,9 +20,8 @@
         |
         = link_to("Forums", forums_path)
       .slideshow
-        - if @blurb_album
-          - @blurb_album.photos.each do |photo|
-            = raw image_tag(photo.image.url,:class=>"image_on_blurb")
+        - @blurb_album.photos.each do |photo|
+          = raw image_tag(photo.image.url,:class=>"image_on_blurb")
     %span.widget_lrg_btm
 - if @p
   - unless DISABLE_NOMINATION_FORM

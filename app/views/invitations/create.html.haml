@@ -1,4 +1,5 @@
 = rounded_corner(:title => "Invite Batchmates") do
   .edit_panel_profile
-    = msg_profile_block
+    - @invites.each do |i|
+      %p= msg_profile_block(i)
     %p= link_to "Invite More Friends", new_profile_invitation_path(@p)
