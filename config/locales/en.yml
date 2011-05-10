@@ -2,6 +2,22 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  activerecord:
+    labels:
+      message:
+        attributes:
+          subject: hiihii
+#  views:
+#    labels:
+#      message:
+#        subject:
+#          "blahblah"
+
+#  activerecord:
+#      attributes:
+#          message:
+#                  subject: blahblah
+
   formtastic:
     labels:
       profile:
@@ -88,3 +104,8 @@ en:
 
       invitation:
         emails: Enter a list of email addresses separated by commas (,)
+
+      post:
+        body: Post By Followup
+
+  

@@ -73,23 +73,23 @@ class ProfilesController < ApplicationController
       @title = "Search"
       render :template => "blogs/search_blog"
     else
-      @results = Profile.search params[:search][:q], :match_mode=> :boolean,:page => params[:page], :per_page => PROFILE_PER_PAGE
+      @results = Profile.search params[:search][:q], :match_mode=> :boolean
       valid_user_search
     end
   end
 
   def friend_search
-    @results=Profile.search params[:search][:q], :page => params[:page], :per_page => PROFILE_PER_PAGE
+    @results=Profile.search params[:search][:q]
     valid_user_search
   end
 
   def search_group
-    @results = Profile.search params[:search][:group], :page => params[:page], :per_page => PROFILE_PER_PAGE
+    @results = Profile.search params[:search][:group]
     valid_user_search
   end
 
   def search_location    
-    @results= Profile.search params[:search][:location], :page => params[:page], :per_page => PROFILE_PER_PAGE
+    @results= Profile.search params[:search][:location]
     valid_user_search
   end
 
@@ -151,7 +151,8 @@ class ProfilesController < ApplicationController
 
   def valid_user_search
     @profile=@p
-    @results = @results.select{|profile| profile.is_active}.paginate(:page => params[:page], :per_page => PROFILE_PER_PAGE) if !@is_admin
+    @results = @results.select{|profile| profile.is_active} if !@is_admin
+    @results = @results.paginate(:page => params[:page], :per_page => PROFILE_PER_PAGE)
     @title = "Search"
     render :template=>'profiles/user_friends'
   end

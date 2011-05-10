@@ -1,6 +1,1 @@
-.widget_complete
-  %span.widget_complete_top
-  %h2.widget_compelete_title Edit Forum Topic
-  = form_for :forum_topic, :url => forum_forum_topic_path(@forum), :html => {:method => :put} do |f|
-    = render :partial => 'form', :locals => {:f => @forum}
-  %span.widget_complete_btm
+= render :partial => 'form', :locals => {:title => "Edit Forum Topic"}

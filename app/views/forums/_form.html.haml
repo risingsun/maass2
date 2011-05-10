@@ -1,9 +1,12 @@
-= form_for @forum do |f|
-  %div{:class => "row_complete_for_forum"}
-    = f.label "Name", :class => "label_margin"
-    = f.text_field :name, :title => "Title", :class => "big_text_field", :wrap_class => :row_complete_for_forum
-  %div{:class => "row_complete_large_for_forum"}
-    = f.label "Description", :class => "label_margin"
-    = f.text_area :description, :class => "big_text_area_for_forum", :wrap_class => :row_complete_large_for_forum
-  %button.buttons{:type => "submit"}
-    = image_tag('save.png')
+.widget_complete
+  %span.widget_complete_top
+  %h2.widget_compelete_title= title
+  .forum_text
+    = semantic_form_for @forum do |f|
+      = f.inputs do
+        = f.input :name, :input_html => {:class => "big_text_field"}
+        = f.input :description, :as => :text, :input_html => {:class => "big_text_area"}
+      .feedback_btn_container
+        %button.buttons{:type => "submit"}
+          = image_tag('save.png')
+  %span.widget_complete_btm

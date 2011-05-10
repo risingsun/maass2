@@ -1,8 +1,15 @@
-= form_for :forum_topic, :url => forum_forum_topics_path(@forum) do |f|
-  %div{:class => "row_complete_for_forum"}
-    = f.label "Title", :class => "label_margin"
-    = f.text_field :title, :title => "Title", :class => "big_text_field", :wrap_class => :row_complete_for_forum
-    = f.hidden_field :forum_id
-    = f.hidden_field :owner_id, :value => @p.id
-  %button.buttons{:type => "submit"}
-    = image_tag('save.png')
+- if @forum_topic.blank?
+  - @forum_topic = @forum.topics.new
+.widget_complete
+  %span.widget_complete_top
+  %h2.widget_compelete_title= title
+  .forum_text
+    = semantic_form_for [@forum,@forum_topic] do |f|
+      = f.inputs do
+        = f.input :title, :input_html => {:class => "big_text_field"}
+        = f.input :forum_id, :as => :hidden
+        = f.input :owner_id, :as => :hidden, :value => @p.id
+      .feedback_btn_container
+        %button.buttons{:type => "submit"}
+          = image_tag('save.png')
+  %span.widget_complete_btm
