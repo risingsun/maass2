@@ -3,11 +3,11 @@
     = render 'preview'
   %br
   = form_for [@profile, @blog] do |f|
-    = f.label :Heading, :class => "blog_labels"
+    = f.label :title, :class => "blog_labels"
     = f.text_field :title, :title => "Title", :class => "blog_fields"
-    %br= f.label :Body, :class => "blog_labels"
+    %br= f.label :body, :class => "blog_labels"
     %br= f.cktext_area :body, :toolbar => 'Easy', :width => '525px', :height => '350px', :class => "blog_fields"
-    = f.label :Tags, :class => "blog_labels"
+    = f.label :tag_list, :class => "blog_labels"
     = f.text_field :tag_list, :title => "Tags", :class => "blog_fields"
     .blog_text Comma Seperated
     .row_normal

@@ -2,21 +2,15 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  activerecord:
-    labels:
-      message:
-        attributes:
-          subject: hiihii
-#  views:
-#    labels:
+#  helpers:
+#    label:
 #      message:
-#        subject:
-#          "blahblah"
-
-#  activerecord:
-#      attributes:
-#          message:
-#                  subject: blahblah
+#        receiver_id: To
+#      site_content:
+#        parent_id: Parent
+#      event:
+#        start_date: Start At
+#        end_at: End At
 
   formtastic:
     labels:

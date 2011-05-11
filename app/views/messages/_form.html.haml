@@ -5,10 +5,10 @@
   %span.widget_lrg_top
   = render :partial => "header_links"
   = form_for :message, :url => profile_messages_path(@p) do |f|
-    = f.label :To, :class => "blog_labels"
+    = f.label :receiver_id, :class => "blog_labels"
     = f.select(:receiver_id, @to_list.map{|p| [p.full_name, p.id]})
     = f.hidden_field :sender_id, :value => current_user.profile.id
-    = f.label :Subject, :class => "blog_labels"
+    = f.label :subject, :class => "blog_labels"
     = f.text_field :subject, :title => "Subject",:class => "blog_fields"
     = f.label :Body, :class => "blog_labels"
     = f.text_area :body, :title => "Body",:class => "blog_fields"

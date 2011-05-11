@@ -1,6 +1,6 @@
 = form_for(:title, @title, :url => add_title_admin_preferences_path, :html =>{:method => :put}) do |t|
   .row_complete
-    = t.label "Name"
+    = t.label :name
     = t.text_field :name, :title => "Title", :class => "text_field"
   %button.buttons{:type => "submit"}
     = image_tag('save.png')

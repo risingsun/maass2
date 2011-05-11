@@ -1,5 +1,15 @@
-= f.inputs do
-  = f.input :message, :as => :text
-  = f.input :starts_at, :input_html  => {:class => "datetime"}
-  = f.input :ends_at, :input_html  => {:class => "datetime"}
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width= title
+  .blog_text
+    = semantic_form_for [:admin, @announcement] do |f|
+      = f.inputs do
+        = f.input :message, :as => :text
+        = f.input :starts_at, :as => :string,:input_html  => {:class => "datetime"}
+        = f.input :ends_at, :as => :string, :input_html  => {:class => "datetime"}
+      .large_btn_container2
+        %button.buttons{:type => "submit"}
+          = image_tag('save.png')
+  %span.widget_complete_btm
+
 
