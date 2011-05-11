@@ -1,6 +1,15 @@
-= f.label :Parent, :class => "blog_labels"
-= f.select :parent_id, SiteContent.all.map{|s| [s.name, s.id]},{:include_blank => true}
-= f.label :Name, :class => "blog_labels"
-= f.text_field :name, :title => "Name", :class => "blog_fields"
-%br= f.label :Content, :class => "blog_labels"
-%br= f.cktext_area :content, :toolbar => 'Easy', :width => '525px', :height => '350px', :class => "blog_fields"
+.widget_complete
+  %span.widget_complete_top
+  %h3.blog_head.event_head_width= title
+  .event_text
+    = form_for [:admin, @site_content] do |f|
+      = f.label :parent_id, :class => "blog_labels"
+      = f.select :parent_id, SiteContent.all.map{|s| [s.name, s.id]},{:include_blank => true}
+      = f.label :Name, :class => "blog_labels"
+      = f.text_field :name, :title => "Name", :class => "blog_fields"
+      %br= f.label :Content, :class => "blog_labels"
+      %br= f.cktext_area :content, :toolbar => 'Easy', :width => '525px', :height => '350px', :class => "blog_fields"
+      %button.buttons{:type => "submit"}
+        = image_tag('save.png')
+      = link_to 'Back', admin_site_contents_path
+  %span.widget_complete_btm

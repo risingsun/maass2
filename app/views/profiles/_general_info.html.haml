@@ -1,21 +1,21 @@
 = rounded_med_corner(:id => 'general_info', :title => 'General Info') do
   = f.semantic_fields_for(:user) do |u|
     = u.inputs do
-      = u.input :login, :value => current_user.login, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = u.input :login, formtastic_zebra(:value => current_user.login)
     = f.inputs do
-      = f.input :title, :as => :select, :collection => TITLE, :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :first_name, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :middle_name, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :last_name, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :maiden_name, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :gender, :as => :select, :collection => SEX, :class => "text_field", :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :blood_group, :as => :select, :collection => BLOOD_GROUP, :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :group, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :include_blank => false, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :house_name, :as => :select, :collection => HOUSE_NAME, :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :date_of_birth, :input_html => {:class => "datebalks" }, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :relationship_status, :as => :select, :collection => RELATIONSHIP_STATUS, :include_blank => true, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :anniversary_date, :input_html => {:class => "datebalks" }, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :spouse_name, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-      = f.input :professional_qualification, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+      = f.input :title, formtastic_zebra(:as => :select, :collection => TITLE, :include_blank => true)
+      = f.input :first_name, formtastic_zebra
+      = f.input :middle_name, formtastic_zebra
+      = f.input :last_name,  formtastic_zebra
+      = f.input :maiden_name, formtastic_zebra
+      = f.input :gender, formtastic_zebra(:as => :select, :collection => SEX, :class => "text_field", :include_blank => true)
+      = f.input :blood_group, formtastic_zebra(:as => :select, :collection => BLOOD_GROUP, :include_blank => true)
+      = f.input :group,  formtastic_zebra(:collection => GROUPS.reject{|obj| GROUPS.first==obj}, :include_blank => false)
+      = f.input :house_name, formtastic_zebra(:as => :select, :collection => HOUSE_NAME, :include_blank => true)
+      = f.input :date_of_birth, formtastic_zebra(:as => :string, :input_html => {:class => "datebalks" })
+      = f.input :relationship_status, formtastic_zebra(:as => :select, :collection => RELATIONSHIP_STATUS, :include_blank => true)
+      = f.input :anniversary_date, formtastic_zebra(:as => :string, :input_html => {:class => "datebalks" })
+      = f.input :spouse_name, formtastic_zebra
+      = f.input :professional_qualification, formtastic_zebra
       = f.input :about_me,  :as => :text, :wrapper_html => {:class => "row_dark_large2"}
       = f.input :activities, :as => :text, :wrapper_html => {:class => "row_light_large2"}

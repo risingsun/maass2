@@ -10,17 +10,17 @@
   .forum_text= @forum.description
   .clear_div
   %span.widget_complete_btm
-.new_toipc_button.buttons
-  = link_to(image_tag('new-topic.png', :title => "New Topic"),new_forum_forum_topic_path(@forum),:title => "Start a new topic")
+.new_topic_button.buttons
+  = link_to(image_tag('new-topic.png', :title => "New Topic"),new_forum_forum_topic_path(@forum))
 - if @forum.topics.blank?
   = render :partial => 'forum_topics/form', :locals => {:title => "New Forum Topic"}
 - else
   .widget_complete
     %span.widget_complete_top
     %h3.forum_head
-    Topics
-    %span.topic_starter Topic Starter
-    %span.posts Posts
-    %span.last_post Last Post
+      Topics
+      %span.topic_starter Topic Starter
+      %span.posts Posts
+      %span.last_post Last Post
     = render @forum.topics
     %span.widget_complete_btm
