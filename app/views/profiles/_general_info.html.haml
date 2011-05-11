@@ -8,7 +8,7 @@
       = f.input :middle_name, formtastic_zebra
       = f.input :last_name,  formtastic_zebra
       = f.input :maiden_name, formtastic_zebra
-      = f.input :gender, formtastic_zebra(:as => :select, :collection => SEX, :class => "text_field", :include_blank => true)
+      = f.input :gender, formtastic_zebra(:as => :select, :collection => SEX, :include_blank => true)
       = f.input :blood_group, formtastic_zebra(:as => :select, :collection => BLOOD_GROUP, :include_blank => true)
       = f.input :group,  formtastic_zebra(:collection => GROUPS.reject{|obj| GROUPS.first==obj}, :include_blank => false)
       = f.input :house_name, formtastic_zebra(:as => :select, :collection => HOUSE_NAME, :include_blank => true)

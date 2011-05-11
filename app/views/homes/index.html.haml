@@ -26,17 +26,17 @@
 - if @p
   - unless DISABLE_NOMINATION_FORM
     - if @nomination.new_record?
-      = render :partial => 'nominations/form', :locals => {:nomination => @nomination}
+      = render 'nominations/form', :nomination => @nomination
     - else
-      = render :partial => 'nominations/show', :locals => {:nomination => @nomination}
+      = render 'nominations/show', :nomination => @nomination
 - unless @home_data.blank?
   - @home_data.each do|d|
     - if d.class.name == 'Event'
-      = render :partial => 'shared/event', :locals =>{:event => d}
+      = render 'shared/event', :event => d
     - elsif d.class.name == 'Poll'
-      = render :partial => 'polls/poll', :locals => {:home_page_blog => true,:poll => d}
+      = render 'polls/poll', :home_page_blog => true, :poll => d
     - else
-      = render :partial => 'blogs/blog', :locals => {:blog => d}
+      = render 'blogs/blog', :blog => d
   .clear_div
   = will_paginate @home_data
 

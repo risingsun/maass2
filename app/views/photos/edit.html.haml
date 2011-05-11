@@ -4,7 +4,7 @@
   = semantic_form_for [@album,@photo], :html => { :multipart => true } do |form|
     = form.inputs do
       = form.error_messages
-      = render :partial => "photos/edit_photo",:locals => {:f => form}
+      = render 'photos/edit_photo', :f => form
       #cropresults
         = form.input :caption, :wrapper_html => { :class => cycle(:row_complete_light, :row_complete_dark)}
       %button.buttons{:type => "submit"}

@@ -1,6 +1,6 @@
 - if @poll.poll_options.blank?
   - 2.times{@poll.poll_options.build}
-= f.input :question, :input_html=>{:class=>'poll_input_text'},:wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+= f.input :question, formtastic_zebra(:input_html => {:class=>'poll_input_text'})
 = f.semantic_fields_for(:poll_options) do |form|
   = render "poll_option_fields", :f => form
 .row_dark2

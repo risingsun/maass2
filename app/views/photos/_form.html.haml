@@ -52,7 +52,7 @@
         %td{:class=>"file_download_delete", :colspan=>"3"}
           %button.buttons
             Delete
-      = render :partial => "album_photo" , :locals => {:photos => @album.photos}
+      = render 'album_photo' , :photos => @album.photos
     %span.widget_complete_btm
 :javascript
   show_album_photo_uploader();
