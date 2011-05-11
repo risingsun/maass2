@@ -26,9 +26,13 @@ class FriendshipsController < ApplicationController
   def destroy
     if @profile.stop_following(@friend)
       ArNotifier.delay.delete_friend(@profile, @friend) if @friend.wants_email_notification?("delete_friend")
-      Profile.admins.first.sent_messages.create( :subject => "[#{SITE_NAME} Notice] Delete friend notice",
-        :body => "#{@profile.full_name} is Deleted you on #{SITE_NAME}",
-        :receiver => @friend, :system_message => true ) if @friend.wants_message_notification?("delete_friend")
+      if @friend.wants_message_notification?("delete_friend")
+        Profile.admins.first.sent_messages.create(
+          :subject => "[#{SITE_NAME} Notice] Delete friend notice",
+          :body => "#{@profile.full_name} is Deleted you on #{SITE_NAME}",
+          :receiver => @friend,
+          :system_message => true)
+      end
     end
     respond_to do |format|
       format.js do
