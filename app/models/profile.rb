@@ -198,7 +198,7 @@ class Profile < ActiveRecord::Base
   end
   
   def self.new_member
-    Profile.where(:is_active => true).limit(6).order('created_at DESC').all
+    where(:is_active => true).limit(6).order('created_at DESC').all
   end
 
   def group_member
@@ -267,7 +267,7 @@ class Profile < ActiveRecord::Base
   def self.birthdays
     return @birthdays if @birthdays
     conditions = ['date_of_birth is not null']
-    @birthdays = find(:all,:conditions => conditions).group_by {|d| d.date_of_birth.month }
+    @birthdays = all(:conditions => conditions).group_by {|d| d.date_of_birth.month}
     @birthdays.keys.each do |key|
       @birthdays[key].sort!{|a,b| a.date_of_birth.strftime("%e%m%Y") <=> b.date_of_birth.strftime("%e%m%Y") }
     end
@@ -277,7 +277,7 @@ class Profile < ActiveRecord::Base
   def self.anniversaries
     return @anniversaries if @anniversaries
     conditions = ['anniversary_date is not null']
-    @anniversaries = find(:all,:conditions => conditions).group_by {|d| d.anniversary_date.month }
+    @anniversaries = all(:conditions => conditions).group_by {|d| d.anniversary_date.month}
     @anniversaries.keys.each do |key|
       @anniversaries[key].sort!{|a,b| a.anniversary_date.strftime("%e%m%Y") <=> b.anniversary_date.strftime("%e%m%Y") }
     end

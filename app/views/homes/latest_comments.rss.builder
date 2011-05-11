@@ -7,7 +7,7 @@ xml.rss(:version=>"2.0") do
     xml.language 'en-us'
     Comment.recent_comments.each do |c|
       xml.item do
-        xml.title commentable_text(c, false)
+        xml.title "<strong>#{c.profile.full_name} #{commentable_text(c, false)}</strong>"
         xml.link profile_feed_item_url(c.profile, c)
         xml.guid profile_feed_item_url(c.profile, c)
         xml.description sanitize(textilize(c.comment))
