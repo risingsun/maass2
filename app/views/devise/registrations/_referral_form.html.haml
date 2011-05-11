@@ -1,0 +1,7 @@
+= f.input :first_referral_person_name, formtastic_zebra
+= f.input :first_referral_person_year, formtastic_zebra
+= f.input :second_referral_person_name, formtastic_zebra
+= f.input :second_referral_person_year, formtastic_zebra
+= f.input :third_referral_person_name, formtastic_zebra
+= f.input :third_referral_person_year, formtastic_zebra
+= f.input :additional_message, formtastic_zebra(:as => :text, :input_html=>{:cols=>"200", :rows=>"10"}, :wrapper_html=>{:class=> "#{zebra}_large"})

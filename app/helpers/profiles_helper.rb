@@ -3,7 +3,7 @@ module ProfilesHelper
   def new_map
     @map = GMap.new("map_div")
     @map.control_init(:large_map => true, :map_type => true)
-    @map.center_zoom_init([26.6670958011,75.849609375],4)
+    @map.center_zoom_init([GOOGLE_MAP_DEFAULT_LAT,GOOGLE_MAP_DEFAULT_LON],GOOGLE_MAP_DEFAULT_ZOOM)
     @map.record_init('create_draggable_editable_marker();')
   end
 
@@ -16,28 +16,13 @@ module ProfilesHelper
 
   def show_map
     @map = GMap.new("map_div")
-    unless @friends.blank?
-      @map.control_init(:large_map => true,:map_type => true)
-      @map.set_map_type_init(GMapType::G_HYBRID_MAP)
-      markers = @friends.collect do |f|
-        GMarker.new([f.marker.lat,f.marker.lng],
-          :title => "#{f.full_name({:is_short => 1})}")
-      end
-      centre = @friends.first.marker 
-      @map.center_zoom_init([centre.lat,centre.lng],centre.zoom)
-      @map.overlay_global_init(GMarkerGroup.new(true,markers),"my_friends")
-    end
-  end
-
-  def show_map_for_events
-    @map = GMap.new("map_div")
     if @event
       marker = create_marker(@event.marker, @event.title, 'event', '/images/yellow_star.png')
     elsif(@profile.marker)
       marker = create_marker(@profile.marker, @profile.full_name({:is_short => 1}), 'user', '/images/yellow-dot.png')
       @friends.delete(@profile)
     end
-    unless @friends.blank?
+    unless @friends.blank? && marker.blank?
       @map.control_init(:large_map => true,:map_type => true)
       @map.set_map_type_init(GMapType::G_HYBRID_MAP)
       markers = @friends.collect do |f|
@@ -60,7 +45,7 @@ module ProfilesHelper
 
   def icon_for_google_map(icon_name, icon_url)
     @map.icon_global_init(
-    GIcon.new(  :image => "#{icon_url}",
+    GIcon.new(:image => "#{icon_url}",
               :icon_anchor => GPoint.new(16, 32),
               :info_window_anchor => GPoint.new(16, 0)), "#{icon_name}")
      return Variable.new("#{icon_name}")
@@ -128,12 +113,12 @@ module ProfilesHelper
   end
 
   def see_all_user(profiles, type)
-    size = profiles.size
-    if @event
-      see_all = (size > 6) ? link_to("(#{size}) See All", event_members_admin_event_path(@event, :member_type => type)) : ""
-    else
-      see_all = (size > 6) ? link_to("See All", user_friends_profile_path(@profile, :friend_type => type)) : ""
+    if profiles.size > 6
+      if @event
+        link_to("(#{size}) See All", event_members_admin_event_path(@event, :member_type => type))
+      else
+        link_to("See All", user_friends_profile_path(@profile, :friend_type => type))
+      end
     end
-    return see_all
   end
 end

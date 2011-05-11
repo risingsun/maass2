@@ -6,10 +6,10 @@ class SiteContent < ActiveRecord::Base
 
   def self.get_content(name,child = "")
     c = find_by_name(name)
-    if c && child != ""
+    if c && !child.blank?
       c = c.children.find_by_name(child)
     end
-    return c.blank? ? "" : c.content
+    return c.content
   end
   
 end

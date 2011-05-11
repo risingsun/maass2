@@ -15,17 +15,15 @@ class User < ActiveRecord::Base
   validates :login, :presence => true,
     :length => {:within => 3..25},
     :uniqueness => true, :format=> {:with => /^\w+$/i, :message=>"can only contain letters and numbers."}
-  
   validates_acceptance_of  :terms_of_service, :message => "Must be accepted"
-
   validates :requested_new_email, :format=> {:with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>'does not look like an email address.', :if => proc {|obj| !obj.requested_new_email.blank?}}
   
   has_one :profile
   has_many :authentications
   accepts_nested_attributes_for :profile
   
-  def is_admin
-    return true if self.admin == true
+  def is_admin?
+    self.admin == true
   end
 
   def generate_confirmation_hash!(secret_word= "pimpim")
