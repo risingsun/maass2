@@ -7,4 +7,4 @@
     \&nbsp;
   = image_tag('edit.png', :title => "Change RSVP", :class =>'add-comment') unless event.is_organizer?(@p)                     |
   .comment_form.hide_info
-    = render :partial => 'admin/events/rsvp',:locals => {:event => event,:status => 'home_page'}
+    = render 'admin/events/rsvp', :event => event, :status => 'home_page'

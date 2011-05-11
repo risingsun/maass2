@@ -1,8 +1,8 @@
 .fields
-  = f.input :occupation, formtastic_zebra
-  = f.input :industry, formtastic_zebra
-  = f.input :company_name, formtastic_zebra
-  = f.input :company_website, formtastic_zebra
-  = f.input :job_description, :as => :text, :wrapper_html => {:class => "row_light_large2"}
-  %div{:class => zebra}
+  = f.input :occupation, formtastic_zebra2
+  = f.input :industry, formtastic_zebra2
+  = f.input :company_name, formtastic_zebra2
+  = f.input :company_website, formtastic_zebra2
+  = f.input :job_description, :as => :text, :wrapper_html => {:class => "row_dark_large2"}
+  .row_light2
     = link_to_remove_fields(image_tag("remove.png"), f)

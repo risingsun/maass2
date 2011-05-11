@@ -1,10 +1,10 @@
 = semantic_form_for @p do |f|
   = rounded_med_corner(:id => "change_email", :title => "Email") do
     = f.semantic_fields_for(:user) do |u|
-      %div{:class => zebra}
+      %div{:class => zebra2}
         %label.label_margin Current Email
         %label.label_margin= current_user.email
-      = u.input :requested_new_email, formtastic_zebra
+      = u.input :requested_new_email, formtastic_zebra2
   %button.buttons{:type => "submit"}
     = image_tag('change-email.png')
   = hidden_field_tag "commit", value="Change Email"

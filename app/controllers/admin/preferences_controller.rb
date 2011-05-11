@@ -10,7 +10,7 @@ class Admin::PreferencesController < ApplicationController
     @title = Title.new
     respond_to do |format|
       format.js do
-        render :partial => 'admin/preferences/new_title', :locals=> { :title => @title }
+        render 'admin/preferences/new_title', :title => @title 
       end
     end
   end
@@ -29,7 +29,7 @@ class Admin::PreferencesController < ApplicationController
     @titles = Title.all
     respond_to do |format|
       format.js do
-        render :partial => 'admin/preferences/edit_title', :locals=> { :title => @titles }
+        render 'admin/preferences/edit_title', :title => @titles
       end
     end
   end
@@ -56,7 +56,7 @@ class Admin::PreferencesController < ApplicationController
     @house_name = HouseName.new
     respond_to do |format|
       format.js do
-        render :partial => 'admin/preferences/new_house_name', :locals=> { :title => @house_name }
+        render 'admin/preferences/new_house_name', :title => @house_name
       end    
     end
   end
@@ -75,7 +75,7 @@ class Admin::PreferencesController < ApplicationController
     @house_names = HouseName.all
     respond_to do |format|
       format.js do
-        render :partial => 'admin/preferences/edit_house_name', :locals=> { :title => @house_names }
+        render 'admin/preferences/edit_house_name', :title => @house_names 
       end
     end
   end
@@ -93,7 +93,7 @@ class Admin::PreferencesController < ApplicationController
     @housename.destroy if @housename
     respond_to do |format|
       format.js do
-        render :partial => 'admin/preferences/house_name'
+        render 'admin/preferences/house_name'
       end
     end
   end

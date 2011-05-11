@@ -14,7 +14,7 @@
       = poll.created_at.to_date.to_formatted_s(:rfc822)
   .poll_text
     - if !@p || (poll.responded? current_user.profile)
-      = render :partial => 'polls/poll_response', :locals =>{:poll => poll}
+      = render 'polls/poll_response', :poll => poll
     - else
       #poll_errors
         - div_id = "#{poll.id}"

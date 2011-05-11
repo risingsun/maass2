@@ -61,6 +61,7 @@ class Profile < ActiveRecord::Base
   scope :active, :conditions => {:is_active => true}
   scope :name_ordered, :order => 'profiles.group, first_name, last_name'
   scope :new_joined, :order => 'created_at desc'
+  
   cattr_accessor :featured_profile
   @@featured_profile = {:date => Date.today-4, :profile => nil}
   @@days = ()
@@ -262,7 +263,7 @@ class Profile < ActiveRecord::Base
   def self.birthdays
     return @birthdays if @birthdays
     conditions = ['date_of_birth is not null']
-    @birthdays = find(:all,:conditions => conditions).group_by {|d| d.date_of_birth.month }
+    @birthdays = all(:conditions => conditions).group_by {|d| d.date_of_birth.month}
     @birthdays.keys.each do |key|
       @birthdays[key].sort!{|a,b| a.date_of_birth.strftime("%e%m%Y") <=> b.date_of_birth.strftime("%e%m%Y") }
     end
@@ -272,7 +273,7 @@ class Profile < ActiveRecord::Base
   def self.anniversaries
     return @anniversaries if @anniversaries
     conditions = ['anniversary_date is not null']
-    @anniversaries = find(:all,:conditions => conditions).group_by {|d| d.anniversary_date.month }
+    @anniversaries = all(:conditions => conditions).group_by {|d| d.anniversary_date.month}
     @anniversaries.keys.each do |key|
       @anniversaries[key].sort!{|a,b| a.anniversary_date.strftime("%e%m%Y") <=> b.anniversary_date.strftime("%e%m%Y") }
     end
@@ -345,6 +346,5 @@ class Profile < ActiveRecord::Base
     event.add_recurrence_rule('FREQ=YEARLY')    
     return event
   end
-
   
 end

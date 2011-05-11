@@ -1,6 +1,6 @@
 .fields
-  = f.input :education_from_year, formtastic_zebra(:as => :select, :collection => EDU_YEAR, :prompt => true)
-  = f.input :education_to_year, formtastic_zebra(:as => :select, :collection => EDU_YEAR, :prompt => true)
-  = f.input :institution, formtastic_zebra
-  %div{:class => zebra}
+  = f.input :education_from_year, formtastic_zebra2(:as => :select, :collection => EDU_YEAR, :prompt => true)
+  = f.input :education_to_year, formtastic_zebra2(:as => :select, :collection => EDU_YEAR, :prompt => true)
+  = f.input :institution, formtastic_zebra2
+  %div{:class => zebra2}
     = link_to_remove_fields(image_tag("remove.png"), f)

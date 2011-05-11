@@ -78,11 +78,20 @@ module ApplicationHelper
     "(#{c})" if c > 0
   end
 
+  def formtastic_zebra(options = {})
+    options.reverse_merge!(:wrapper_html => {:class => zebra})
+  end
+
   def zebra(odd = :row_light, even = :row_dark)
     cycle(odd,even)
   end
 
-  def formtastic_zebra(options = {})
-    options.reverse_merge!(:wrapper_html => {:class => zebra})
+  def formtastic_zebra2(options = {})
+    options.reverse_merge!(:wrapper_html => {:class => zebra2})
   end
+
+  def zebra2(odd = :row_light2, even = :row_dark2)
+    cycle(odd,even)
+  end
+
 end
