@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def set_profile
     if current_user
       @p = current_user.profile
-      @is_admin = current_user if current_user.admin
+      @is_admin = current_user if current_user.is_admin?
     end
   end
 
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     raise '@level is blank. Did you override the allow_to method in your controller?' if @level.blank?
     @level.each do |l|
       next unless (l[0] == :all) ||
-        (l[0] == :admin && current_user && current_user.is_admin) ||
+        (l[0] == :admin && current_user && current_user.is_admin?) ||
         (l[0] == :non_user && !current_user) ||
         (l[0] == :user && current_user) ||
         (l[0] == :active_user && current_user && current_user.profile.is_active) ||

@@ -4,11 +4,11 @@ class Title < ActiveRecord::Base
   before_save :name_titlecase
 
   def self.find_titles
-    Title.order("name").all
+    order("name").all
   end
 
   def name_titlecase
-    self.name =self.name.titleize
+    name = name.titleize
   end
 
 end

@@ -5,25 +5,32 @@ class Message < ActiveRecord::Base
   validates :body,:subject, :presence => true
 
   def delete_message(profile)
-    if self.sender == self.receiver
-      self.destroy and return if self.system_message
-    end
-    if profile == self.sender
+    return if delete_system_message()
+    if profile.eql?(sender)
       self.sender_flag = false
       self.save
-    elsif profile == self.receiver
+    elsif profile.eql?(receiver)
       self.receiver_flag = false
       self.read = true
       self.save
-      self.destroy and return if self.system_message
     end
-    if (self.sender_flag == false) && (self.receiver_flag == false)
-      self.destroy
-    end
+    delete_message_in_db()
   end
 
   def message_unread_by?(profile)
     receiver == profile && !read
+  end
+
+  def delete_system_message
+    if sender.eql?(receiver) || system_message
+      self.destroy
+    end
+  end
+
+  def delete_message_in_db
+    unless sender_flag && receiver_flag
+      self.destroy
+    end
   end
 
 end
