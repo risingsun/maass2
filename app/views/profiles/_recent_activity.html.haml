@@ -6,5 +6,5 @@
     .slidecontent
       - feed_items.each do |feed_item|
         - next unless feed_item.item
-        = render( :partial => "feed_items/#{feed_item.partial}", :locals => {:feed_item => feed_item})
+        = render "feed_items/#{feed_item.partial}", :feed_item => feed_item
     %span.widget_lrg_btm
