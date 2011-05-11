@@ -33,7 +33,7 @@ class Comment < ActiveRecord::Base
   end
 
   def self.comments_on_object(obj)
-    Comment.where(:commentable_id => obj, :commentable_type => obj.class.name)
+    where(:commentable_id => obj, :commentable_type => obj.class.name)
   end
 
   def self.between_profiles profile1, profile2

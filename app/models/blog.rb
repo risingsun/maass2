@@ -18,10 +18,9 @@ class Blog < ActiveRecord::Base
   end
 
   def self.blog_groups
-    find(:all,
-      :select => "count(*) as cnt, MONTHNAME(created_at) as month,YEAR(created_at) as year" ,
-      :group => "month,year",
-      :order => "year DESC, MONTH(created_at) DESC" )
+    all(:select => "count(*) as cnt, MONTHNAME(created_at) as month,YEAR(created_at) as year" ,
+        :group => "month,year",
+        :order => "year DESC, MONTH(created_at) DESC" )
   end
 
   def sent_by
@@ -29,7 +28,7 @@ class Blog < ActiveRecord::Base
   end
 
   def commented_users(profile)
-    self.comments.comments_without_self(profile).uniq
+    comments.comments_without_self(profile).uniq
   end
 
 end

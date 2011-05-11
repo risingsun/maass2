@@ -27,7 +27,7 @@ class ProfilesController < ApplicationController
     when "Change Email"
       if @user.request_email_change!(params[:profile][:user_attributes][:requested_new_email])
         AccountMailer.delay.new_email_request(@user)
-        flash[:notice] = "Email confirmation request has been sent to the new email address."        
+        flash[:notice] = "Email confirmation request has been sent to the new email address."
       else
         flash[:error] = "Requested New Email Can not be Blank"
       end

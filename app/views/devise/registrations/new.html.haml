@@ -4,26 +4,31 @@
     = f.semantic_errors
     .edit_panel_profile
       = f.inputs do
-        = f.input :login, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-        = f.input :email, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-        = f.input :password, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-        = f.input :password_confirmation, :as => :password, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+        = f.input :login, formtastic_zebra
+        = f.input :email, formtastic_zebra
+        = f.input :password, formtastic_zebra(:as => :password)
+        = f.input :password_confirmation,formtastic_zebra(:as => :password)
       = f.semantic_fields_for(:profile) do |p|
         = p.inputs do
-          = p.input :first_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = p.input :middle_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = p.input :last_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = p.input :maiden_name, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = p.input :gender, :as => :select, :collection => SEX, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = p.input :group, :as => :select, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :prompt => false, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-          = f.input :humanizer_answer, :label => resource.humanizer_question, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+          = p.input :first_name, formtastic_zebra
+          = p.input :middle_name, formtastic_zebra
+          = p.input :last_name, formtastic_zebra
+          = p.input :maiden_name, formtastic_zebra
+          = p.input :gender, formtastic_zebra(:as => :select, :collection => SEX, :prompt => false)
+          = p.input :group,  formtastic_zebra(:as => :select, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :prompt => false)
+          = f.input :humanizer_answer,  formtastic_zebra(:label => resource.humanizer_question)
           = f.hidden_field :humanizer_question_id
-          %div{:class => cycle(:row_light, :row_dark)}
-            .error_msg
-              = check_box :user, :terms_of_service, {:checked => "checked"}
-              = @user.errors[:terms_of_service]
-              = link_to "Please Accept The Terms of Service", page_path('tos'), :class=>'new-window'
+          .error_msg{:class => zebra}
+            = check_box :user, :terms_of_service, {:checked => "checked"}
+            = @user.errors[:terms_of_service]
+            = link_to "Please Accept The Terms of Service", page_path('tos'), :target=> :blank
       = f.inputs do
-        = render :partial=> "referral_form", :locals=> {:f=> f}
+        = f.input :first_referral_person_name, formtastic_zebra
+        = f.input :first_referral_person_year, formtastic_zebra
+        = f.input :second_referral_person_name, formtastic_zebra
+        = f.input :second_referral_person_year, formtastic_zebra
+        = f.input :third_referral_person_name, formtastic_zebra
+        = f.input :third_referral_person_year, formtastic_zebra
+        = f.input :additional_message, :as => :text, :input_html=>{:cols=>"200", :rows=>"10"}, :wrapper_html=>{:class=> "#{zebra}_large"}
       %button.buttons{:type => "submit"}
         = image_tag('sign-me-up.png')

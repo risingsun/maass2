@@ -16,7 +16,7 @@
           - else
             = render :partial => "shared/header_tab"
         .clear_div
-        = display_standard_flashes_in_large_size
+        = render("/layouts/flashdisplay", :want_large => true)
         .admin_panel
           = render :partial => "admin/shared/admin_header"
           .clear_div

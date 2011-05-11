@@ -23,6 +23,9 @@ class Photo < ActiveRecord::Base
      self.image=open(url)
   end
 
+  def url_for_size(size = 'original')
+    image.url(size)
+  end
 
   private
 

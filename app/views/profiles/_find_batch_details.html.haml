@@ -6,12 +6,13 @@
     - batch_details.each do |p|
       - last_person = Profile.latest_in_batch(p.group)
       - total_batch = p.count.to_i + (unregistered_hash[p.group] || 0)
-      %div{:class => "batch_text batch_text_#{cycle('odd','even')} "}
-        .batch_year
-          = link_to p.group,batch_details_profiles_path(:group => p.group)
+      .batch_text{:class => "batch_text_#{cycle(:odd, :even, :name => :oddeven)}"}
+        .batch_year= link_to p.group,batch_details_profiles_path(:group => p.group)
         - per = ((p.count.to_f/total_batch)*100).round
-        %div{:class => "batch_member #{cycle(:batch_member_odd,:batch_member_even)}"}
-          = inline_bar_graph(per,p.count)
+        .batch_member{:class => cycle(:batch_member_odd,:batch_member_even).to_s}
+          .fill_bar
+            .filled{:style => "width: #{per}%;"}
+              %p.filled_text= "#{p.count} Members"
           .batch_newest_member
             = link_to(last_person.full_name, profile_path(last_person))
             joined on #{(last_person.created_at).to_date.to_formatted_s(:rfc822)}
