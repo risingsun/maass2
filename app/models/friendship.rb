@@ -18,15 +18,15 @@ module Friendship
   module InstanceMethods
 
     def friends_with?(friend)
-      self.friends.include?(friend)
+      friends.include?(friend)
     end
 
     def follows?(friend)
-      self.followings.include?(friend)
+      followings.include?(friend)
     end
 
     def is_followed_by?(friend)
-      self.followers.include?(friend)
+      followers.include?(friend)
     end
 
     def start_following(friend)
@@ -50,7 +50,7 @@ module Friendship
     end
 
     def all_friends
-      @my_friends ||= (self.followings+self.friends+[self]).uniq.compact
+      @my_friends ||= (followings + friends + [self]).uniq.compact
     end
 
   end

@@ -1,4 +1,4 @@
-.widget_large{:id => "event_#{event.id}"}
+.widget_large[event]
   %span.widget_lrg_top
   %h3.blog_head
     = link_to image_tag(set_icon(event.organizers.first,'small')), event.organizers.first
