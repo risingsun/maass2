@@ -7,7 +7,7 @@
         %h2
           - if me
             = semantic_form_for @profile do |form|
-              = render :partial => 'profiles/set_status', :locals => {:f => form}
+              = render 'set_status', :f => form
           - else
             = @profile.status_message
     %span.widget_lrg_btm
@@ -16,7 +16,7 @@
   = slide_up_down_header('personal_info','Personal Info','sliding')
   .middle_panel_profile
     .slidecontent.hide_info
-      = render 'profiles/personal'
+      = render 'personal'
   %span.widget_lrg_btm
 - if @profile.can_see_field("work_informations", @p)
   .widget_large
@@ -24,7 +24,7 @@
     = slide_up_down_header('work_info','Work Info','sliding')
     .middle_panel_profile
       .slidecontent.hide_info
-        = render 'profiles/work' if !@profile.works.blank?
+        = render 'work' if !@profile.works.blank?
     %span.widget_lrg_btm
 - if @profile.can_see_field("educations", @p)
   .widget_large
@@ -32,13 +32,13 @@
     = slide_up_down_header('education_info','Education Info','sliding')
     .middle_panel_profile
       .slidecontent.hide_info
-        = render 'profiles/education' if !@profile.educations.blank?
+        = render 'education' if !@profile.educations.blank?
     %span.widget_lrg_btm
-= render :partial => 'profiles/recent_activity'
-= render :partial => 'blogs/list'
-= render :partial => 'polls/list'
-= render :partial => 'forum_posts/list'
-= render :partial=> 'comments/comment_list', :locals => {:with_form => true, :with_wall_to_wall => true}
+= render 'recent_activity'
+= render 'blogs/list'
+= render 'polls/list'
+= render 'forum_posts/list'
+= render 'comments/comment_list', :with_form => true, :with_wall_to_wall => true
 - if !@friends.blank?
   .widget_large
     %span.widget_lrg_top

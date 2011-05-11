@@ -1,14 +1,12 @@
 = f.inputs do
-  = f.input :website, :input_html  => {:class => "web_info"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :blog, :input_html  => {:class => "web_info"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :flicker_username, :input_html => {:class => "flickr_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :linkedin_name, :input_html => {:class => "linkedin_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :twitter_username, :input_html => {:class => "twitter_icon "}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :aim_name, :input_html => {:class => "aim_icon"},  :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :msn_username, :input_html => {:class => "msn_icon"},  :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :yahoo_name, :input_html => {:class => "yahoo_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :gtalk_name, :input_html => {:class => "gtalk_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :skype_name, :input_html => {:class => "skype_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-  = f.input :delicious_name, :input_html => {:class => "delicious_icon"}, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-
-
+  = f.input :website, formtastic_zebra(:input_html  => {:class => "web_info"})
+  = f.input :blog, formtastic_zebra(:input_html  => {:class => "web_info"})
+  = f.input :flicker_username, formtastic_zebra(:input_html => {:class => "flickr_icon"})
+  = f.input :linkedin_name, formtastic_zebra(:input_html => {:class => "linkedin_icon"})
+  = f.input :twitter_username, formtastic_zebra(:input_html => {:class => "twitter_icon "})
+  = f.input :aim_name, formtastic_zebra(:input_html => {:class => "aim_icon"})
+  = f.input :msn_username, formtastic_zebra(:input_html => {:class => "msn_icon"})
+  = f.input :yahoo_name, formtastic_zebra(:input_html => {:class => "yahoo_icon"})
+  = f.input :gtalk_name, formtastic_zebra(:input_html => {:class => "gtalk_icon"})
+  = f.input :skype_name, formtastic_zebra(:input_html => {:class => "skype_icon"})
+  = f.input :delicious_name, formtastic_zebra(:input_html => {:class => "delicious_icon"})

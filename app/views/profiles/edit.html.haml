@@ -4,19 +4,19 @@
     = image_tag('Update.png')
   .large_panel_side
     = rounded_med_corner(:id => "set_status", :title => "Status") do
-      = render :partial => "profiles/set_status", :locals => {:f => form}
-    = render :partial => "profiles/general_info", :locals => {:f => form}
-    = render :partial => "profiles/contact_info", :locals => {:f => form}
-    = render :partial => "profiles/google_map", :locals => {:f => form}
+      = render 'set_status', :f => form
+    = render 'general_info', :f => form
+    = render 'contact_info', :f => form
+    = render 'google_map', :f => form
     %button.buttons{:type => "submit"}
       = image_tag('Update.png')
   .large_panel_side
     = rounded_med_corner(:id => "address_details", :title => "Web Info") do
-      = render :partial => "profiles/web_info", :locals => {:f => form}
+      = render 'web_info', :f => form
     = rounded_med_corner(:title => "Education Info", :id => "education_information") do
-      = render :partial => "profiles/education_info", :locals => {:f => form}
+      = render 'education_info', :f => form
     = rounded_med_corner( :id => "work_details", :title => "Work Info") do
-      = render :partial => "profiles/work_info", :locals => {:f => form}
+      = render 'work_info', :f => form
     = rounded_med_corner(:title => "Upload Icon", :id => "upload_photo") do
-      = render :partial => "profiles/upload_icon", :locals => {:f => form}
+      = render 'upload_icon', :f => form
     

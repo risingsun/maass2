@@ -1,6 +1,6 @@
 %h2.edit_profile Edit Account
 .large_panel_side
-  = render :partial => "profiles/set_permissions"
+  = render 'set_permissions'
   = rounded_med_corner(:title => "Connect With...") do
     = link_to image_tag('twitter_64.png', :title => "Connect With Twitter"), "/auth/twitter"
     = link_to image_tag('facebook_64.png', :title => "Connect With Facebook"), "/auth/facebook"
@@ -8,8 +8,8 @@
     = link_to image_tag('yahoo_64.png', :title => "Connect With Yahoo"), "/auth/yahoo"
     = link_to image_tag('google_64.png', :title => "Connect With Google"), "/auth/google_apps"
 .large_panel_side
-  = render :partial => "profiles/notification"
-  = render :partial => "users/change_password"
-  = render :partial => "profiles/change_email"
-  = render :partial => "profiles/default_permission"
+  = render 'notification'
+  = render 'users/change_password'
+  = render 'change_email'
+  = render 'default_permission'
 
