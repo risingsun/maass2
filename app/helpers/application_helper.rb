@@ -78,7 +78,7 @@ module ApplicationHelper
     "(#{c})" if c > 0
   end
 
-  def zebra(odd = :row_light, even = :row_dark)
+  def zebra(odd = :row_light2, even = :row_dark2)
     cycle(odd,even)
   end
 

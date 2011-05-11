@@ -27,9 +27,7 @@ class Profile < ActiveRecord::Base
   has_many :forum_posts, :foreign_key => 'owner_id', :dependent => :destroy
   has_many :invitations
   has_one :student_check
-
   has_many :sent_blogs, :class_name => 'Blog', :order => 'created_at desc', :conditions => "is_sent = #{false}"
-
   has_one :nomination
 
   accepts_nested_attributes_for :notification_control
@@ -61,11 +59,9 @@ class Profile < ActiveRecord::Base
   scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
   scope :group_batch, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
   scope :active, :conditions => {:is_active => true}
-
   scope :name_ordered, :order => 'profiles.group, first_name, last_name'
-
   scope :new_joined, :order => 'created_at desc'
-
+  
   cattr_accessor :featured_profile
   @@featured_profile = {:date => Date.today-4, :profile => nil}
   @@days = ()
@@ -182,7 +178,7 @@ class Profile < ActiveRecord::Base
   end
 
   def self.active_profiles
-    self.active.all
+    active.all
   end
 
   def female?
@@ -198,11 +194,11 @@ class Profile < ActiveRecord::Base
   end
   
   def self.new_member
-    where(:is_active => true).limit(6).order('created_at DESC').all
+    active.all(:limit =>6, :order =>'created_at DESC')
   end
 
   def group_member
-    Profile.where(:group => group, :is_active => true)
+    Profile.active.select{|u| u.group == group}
   end
 
   def f(tr=15, options={})
@@ -218,7 +214,7 @@ class Profile < ActiveRecord::Base
   end
 
   def self.batch_details(group, opts)
-    Profile.active.group_batch(group).name_ordered.paginate(opts)
+    active.group_batch(group).name_ordered.paginate(opts)
   end
 
   def self.get_batch_count
@@ -236,7 +232,7 @@ class Profile < ActiveRecord::Base
   end
 
   def self.admins
-    self.all(:conditions => ["users.admin = true"], :include => "user")
+    all(:conditions => ["users.admin = true"], :include => "user")
   end
 
   def self.admin_emails
@@ -257,7 +253,7 @@ class Profile < ActiveRecord::Base
   end
 
   def friends_on_google_map(profile)
-    return all_friends.select {|p| p.can_see_field('marker', profile) && p.marker}
+    all_friends.select {|p| p.can_see_field('marker', profile) && p.marker}
   end
 
   def spouse_name
@@ -350,6 +346,5 @@ class Profile < ActiveRecord::Base
     event.add_recurrence_rule('FREQ=YEARLY')    
     return event
   end
-
   
 end

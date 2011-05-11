@@ -1,5 +1,5 @@
-= render :partial => 'friends/list' , :locals => {:type => 'Follower', :list => @follower_friends}
-= render :partial => 'friends/list' , :locals => {:type => 'Following', :list => @following_friends}
-= render :partial => 'friends/list' , :locals => {:type => 'Friend', :list => @friends}
+= render 'friends/list' , :type => 'Follower', :list => @follower_friends
+= render 'friends/list' , :type => 'Following', :list => @following_friends
+= render 'friends/list' , :type => 'Friend', :list => @friends
 
     

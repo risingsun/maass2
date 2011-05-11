@@ -1,10 +1,1 @@
-.widget_complete
-  %span.widget_complete_top
-  %h3.blog_head.event_head_width Edit Announcement
-  .blog_text
-    = semantic_form_for @announcement, :url => admin_announcement_path, :html => {:method=> :put} do |form|
-      = render :partial => 'form', :locals => {:f => form}
-      .large_btn_container2
-        %button.buttons{:type => "submit"}
-          = image_tag('Update.png')
-  %span.widget_complete_btm
+= render 'form', :title =>  "Edit Announcement"

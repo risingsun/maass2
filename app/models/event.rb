@@ -35,8 +35,8 @@ class Event < ActiveRecord::Base
     organizers.first.eql?(profile)
   end
 
-  def users_on_google_map
-    return attending.select{|u| u.marker}.compact
+  def users_on_google_map(profile)
+    attending.select{|u| u.can_see_field('marker', profile) && u.marker}.compact
   end
 
   def set_role_of_user(profile, type)

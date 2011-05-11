@@ -2,7 +2,7 @@
   = auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments")
   = auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members")
 - if @blurb_album.photos.blank?
-  = render :partial => 'blurb'
+  = render 'blurb'
 - else
   .widget_large
     %span.widget_lrg_top

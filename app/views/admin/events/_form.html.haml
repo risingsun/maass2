@@ -1,20 +1,29 @@
-= f.label :title, :class => "blog_labels"
-= f.text_field :title, :title => "Title", :class => "big_text_field "
-= f.label :place, :class => "blog_labels"
-= f.text_field :place, :title => "Title", :class => "big_text_field "
-= f.label "Start At", :class => "blog_labels"
-= f.text_field :start_date, :title => "Title", :class => "big_text_field datetime "
-= f.label "End At", :class => "blog_labels"
-= f.text_field :end_date, :title => "Title", :class => "big_text_field datetime"
-%br= f.label :description, :class => "blog_labels"
-= f.cktext_area :description, :toolbar => 'Easy', :width => '525px', :height => '350px', :class => "big_text_area"
-- @event.marker.blank? ? new_map : edit_map(@event.marker)
-.google_map
-  = raw GMap.header()
-  = raw @map.to_html
-  = raw @map.div(:width => 525, :height => 400)
-  -@marker = @event.marker || @event.build_marker
-  = f.fields_for(:marker) do |m|
-    = m.hidden_field(:lat,:id=>'map_lat')
-    = m.hidden_field(:lng,:id=>'map_lng')
-    = m.hidden_field(:zoom,:id=>'map_zoom')
+.widget_complete
+  %span.widget_complete_top
+  %h2.widget_compelete_title= title
+  .event_text
+    = form_for [:admin, @event] do |f|
+      = f.label :title, :class => "blog_labels"
+      = f.text_field :title, :title => "Title", :class => "big_text_field "
+      = f.label :place, :class => "blog_labels"
+      = f.text_field :place, :title => "Title", :class => "big_text_field "
+      = f.label :start_date, :class => "blog_labels"
+      = f.text_field :start_date, :title => "Title", :class => "big_text_field datetime "
+      = f.label :end_date, :class => "blog_labels"
+      = f.text_field :end_date, :title => "Title", :class => "big_text_field datetime"
+      %br= f.label :description, :class => "blog_labels"
+      = f.cktext_area :description, :toolbar => 'Easy', :width => '525px', :height => '350px', :class => "big_text_area"
+      - @event.marker.blank? ? new_map : edit_map(@event.marker)
+      .google_map
+        = raw GMap.header()
+        = raw @map.to_html
+        = raw @map.div(:width => 525, :height => 400)
+        -@marker = @event.marker || @event.build_marker
+        = f.fields_for(:marker) do |m|
+          = m.hidden_field(:lat,:id=>'map_lat')
+          = m.hidden_field(:lng,:id=>'map_lng')
+          = m.hidden_field(:zoom,:id=>'map_zoom')
+      .large_btn_container2
+        %button.buttons.gmap{:type => "submit"}
+          = image_tag("save.png")
+  %span.widget_complete_btm

@@ -8,7 +8,7 @@ class Title < ActiveRecord::Base
   end
 
   def name_titlecase
-    self.name =self.name.titleize
+    name = name.titleize
   end
 
 end

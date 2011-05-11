@@ -1,11 +1,11 @@
 = rounded_med_corner(:id => "contact_info", :title => "Contact Info") do
   = f.inputs do
-    = f.input :location, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :address_line1, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :address_line2, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :city, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :postal_code, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :country, :as => :country, :priority_countries =>['India'], :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :state, :as => :select, :collection => INDIA_STATES, :prompt => false, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :landline, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
-    = f.input :mobile, :wrapper_html => {:class => cycle(:row_light2, :row_dark2)}
+    = f.input :location, formtastic_zebra
+    = f.input :address_line1, formtastic_zebra
+    = f.input :address_line2,  formtastic_zebra
+    = f.input :city,  formtastic_zebra
+    = f.input :postal_code,  formtastic_zebra
+    = f.input :country,  formtastic_zebra(:as => :country, :priority_countries =>['India'])
+    = f.input :state,  formtastic_zebra(:as => :select, :collection => INDIA_STATES, :prompt => false)
+    = f.input :landline, formtastic_zebra
+    = f.input :mobile, formtastic_zebra

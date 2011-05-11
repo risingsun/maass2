@@ -3489,7 +3489,7 @@ a.editor_cancel{
   margin-left: 1px;
 }
 
-.post_text_area_width {
+.posnew_toipc_buttont_text_area_width {
   margin-right:33px;
   width:924px;
 }
@@ -3619,7 +3619,7 @@ a.editor_cancel{
                                      margin-left: -5px;
                                      margin-bottom: -8px;
 }
-.new_toipc_button{
+.new_topixc_button{
   margin-left: 10px;
   margin-right: -6px;
 }
@@ -4175,4 +4175,3 @@ a.link_disabled
   cursor:default;
   pointer-events: none;
 }
-
