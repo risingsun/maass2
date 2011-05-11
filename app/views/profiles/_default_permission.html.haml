@@ -1,6 +1,6 @@
 = semantic_form_for @profile do |a|
   = rounded_med_corner(:id => "set_default_permission", :title => "Default Permission") do
-    = a.input :default_permission, formtastic_zebra(:as => :select, :collection => Permission::DEFAULT_PERMISSIONS, :prompt => false)
+    = a.input :default_permission, formtastic_zebra2(:as => :select, :collection => Permission::DEFAULT_PERMISSIONS, :prompt => false)
   %button.buttons{:type => "submit"}
     = image_tag('set-default.png')
   = hidden_field_tag "commit", value="Set Default"
