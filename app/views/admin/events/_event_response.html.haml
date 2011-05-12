@@ -1,10 +1,8 @@
 - pe = event.role_of_user(@p)
 - role = pe.role if pe
 .event_location.commentable
-  %span.event_address Your RSVP :&nbsp;
-  %span{:id => "span_#{event.id}"}
-    = event.is_organizer?(@p) ? 'Attending' : role
-    \&nbsp;
+  %span.event_address Your RSVP :
+  %span= event.is_organizer?(@p) ? 'Attending' : role
   = image_tag('edit.png', :title => "Change RSVP", :class =>'add-comment') unless event.is_organizer?(@p)                     |
   .comment_form.hide_info
-    = render 'admin/events/rsvp', :event => event, :status => 'home_page'
+    = render 'admin/events/rsvp', :event => event

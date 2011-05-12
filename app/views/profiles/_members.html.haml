@@ -1,10 +1,8 @@
-- see_all=see_all_user(members, type)
+- see_all = see_all_user(members, type)
 = rounded_corner(:title => "#{type.titleize} #{see_all}".html_safe, :size => 'small') do
   - members[0..6].each do |member|
     .profile_pic_panel
       .profile_img_wrap
         = link_to(image_tag(set_icon(member,'small_60')), member)
-      %span{:style => "font-size: 10px;", :class => cycle('odd','even')}
-        = link_to h(member.f(18)), member
-        %br
-        = member.group
+      %span= link_to member.f(18), member
+      %br= member.group
