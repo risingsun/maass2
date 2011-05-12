@@ -3,7 +3,7 @@
     .forgot_password_info
       A new password will be generated and sent to this email address.
     = f.inputs do
-      = f.input :email, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
+      = f.input :email, formtastic_zebra
     %button.buttons{:type => "submit"}
       = image_tag('new-password.png')
     .remember_links

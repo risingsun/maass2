@@ -2,7 +2,7 @@
   = image_tag(@photo.url_for_size('original'), :id => "cropbox")
 #cropresults
   %br
-  = f.input :crop_x, :label => "X", :wrapper_html => {:class => cycle(:row_complete_light, :row_complete_dark)}
-  = f.input :crop_y, :label => "Y", :wrapper_html => { :class => cycle(:row_complete_light, :row_complete_dark)}
-  = f.input :crop_w, :label => "Width(=531px)", :wrapper_html => { :class => cycle(:row_complete_light, :row_complete_dark)}
-  = f.input :crop_h, :label => "Height(=264px)", :wrapper_html => { :class => cycle(:row_complete_light, :row_complete_dark)}
+  = f.input :crop_x, :label => "X"
+  = f.input :crop_y, :label => "Y"
+  = f.input :crop_w, :label => "Width(=531px)"
+  = f.input :crop_h, :label => "Height(=264px)"

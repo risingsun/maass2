@@ -2,17 +2,17 @@
   .edit_panel_profile
     = semantic_form_for([@p,@nomination]) do |f|
       = f.inputs do
-        %div{:class => cycle(:row_light, :row_dark)}
+        %div{:class => zebra}
           %label.label_margin Name
           %label.label_margin= @p.full_name
-        %div{:class => cycle(:row_light, :row_dark)}
+        %div{:class => zebra}
           %label.label_margin Batch
           %label.label_margin= @p.group
-        = f.input :contact_details, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-        = f.input :occupational_details, :wrapper_html => {:class => cycle(:row_light, :row_dark)}
-        = f.input :reason_for_nomination, :as => :text, :wrapper_html => {:class => "row_light_large"}
-        = f.input :suggestions, :as => :text, :wrapper_html => {:class => "row_dark_large"}
-        %div{:class => "#{cycle(:row_light, :row_dark)} tag"}
+        = f.input :contact_details, formtastic_zebra
+        = f.input :occupational_details, formtastic_zebra
+        = f.input :reason_for_nomination, :as => :text, :wrapper_html => {:class=> "#{zebra}_large"}
+        = f.input :suggestions, :as => :text,:wrapper_html => {:class=> "#{zebra}_large"}
+        %div{:class => "#{zebra} tag"}
           %span
             *Applicant must be based in Jaipur.
       %button.buttons{:type => "submit"}
