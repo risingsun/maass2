@@ -1,6 +1,5 @@
 - pe = event.role_of_user(@p)
 - role = pe.role if pe
-- status ||= 'show_page'
 %div[event]
   = radio_button_tag "event_#{event.id}", "Attending", checked = checked?(role, 'Attending'), options = {:class => "rsvp_event", :url=>"#{rsvp_admin_event_path(event)}"}
   Attending

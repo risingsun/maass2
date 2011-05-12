@@ -113,11 +113,12 @@ module ProfilesHelper
   end
 
   def see_all_user(profiles, type)
-    if profiles.size > 6
+    size = profiles.size
+    if size > 6
       if @event
         link_to("(#{size}) See All", event_members_admin_event_path(@event, :member_type => type))
       else
-        link_to("See All", user_friends_profile_path(@profile, :friend_type => type))
+        link_to("(#{size}) See All", user_friends_profile_path(@profile, :friend_type => type))
       end
     end
   end
