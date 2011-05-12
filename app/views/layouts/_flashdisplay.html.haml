@@ -1,10 +1,11 @@
 - want_large ||= false
-- htmlclass = want_large ? "widget_large_flash_msg" : "widget_flash_msg"
+- classtop = want_large ? "widget_large_flash_msg" : "widget_flash_msg"
+- classbtm = want_large ? "widget_large_flash_msg_btm" : "widget_flash_msg_btm"
 - flash.keys.each do |key|
-  #flash_message{:class => "#{key.to_s}_msg #{htmlclass}"}
+  #flash_message{:class => "#{key.to_s}_msg #{classtop}"}
     - if flash[key].is_a?( Hash)
       There were some problems with your submission:
       = activerecord_error_list(flash[key])
     - else
       = flash[key]
-    %span.widget_flash_msg_btm
+    %span{:class => "#{classbtm}"}

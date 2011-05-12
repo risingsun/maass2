@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show, :show_blogs]
 
   def index
-    @blogs = @profile.order("created_at desc").paginate(:page => params[:page],:per_page => BLOGS_PER_PAGE)
+    @blogs = @profile.blogs.order("created_at desc").paginate(:page => params[:page],:per_page => BLOGS_PER_PAGE)
     if @blogs.blank? && @profile == @p
       redirect_to new_profile_blog_path
     end
