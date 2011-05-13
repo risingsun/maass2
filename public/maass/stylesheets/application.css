@@ -333,7 +333,7 @@ a.button_large:hover{
   color: black;
   border: none 1px gray;
   background-color: white;
-  -webkit-border-radius: 5px;
+  border-radius: 5px;
   float:left;
   font-size:12px;
   font-weight:bold;

@@ -9,7 +9,7 @@
     = csrf_meta_tag    
   %body
     .main_container
-      = render :partial=> "layouts/header"
+      = render "layouts/header"
       .content_container
         #info.login_container
           - if current_user.blank?
@@ -20,9 +20,9 @@
         .clear_div
         .side_panel
           - if @event
-            = render :partial => "admin/events/lsidebar"
+            = render "admin/events/lsidebar"
           - else
-            = render :partial => "shared/lsidebar"
+            = render "shared/lsidebar"
           = yield :left_side_panel
         .middle_panel
           = render 'layouts/announcements'
@@ -30,12 +30,12 @@
           %span#main_container= yield
         .side_panel
           - if @event
-            = render :partial => "admin/events/rsidebar"
+            = render "admin/events/rsidebar"
           - else
-            = render :partial => "shared/rsidebar"
+            = render "shared/rsidebar"
           = yield :right_side_panel
       .clear_div
-      .footer= render :partial => 'shared/footer'
+      .footer= render 'shared/footer'
       .clear_div
     .clear_div
     .btm_div

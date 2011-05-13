@@ -64,6 +64,7 @@ en:
         end_date: End Date
 
       announcement:
+        message: Message
         starts_at: Starts At
         ends_at: Ends At
 
