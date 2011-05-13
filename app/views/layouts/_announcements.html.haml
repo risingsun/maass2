@@ -1,7 +1,7 @@
 - unless @announcements.blank?
   #announcement.comment_form
     #announcement_close= link_to image_tag('close.jpeg', :title => "Close"), '#', :class => "comment-form-cancel"
-    = image_tag("announcements.jpeg")
     Announcements:
+    %p
     - @announcements.each do |a|
-      %p= a.message
+      %li= a.message

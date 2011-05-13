@@ -16,10 +16,10 @@
           - else
             = render :partial => "shared/header_tab"
         .clear_div
-        = render("/layouts/flashdisplay", :want_large => true)
         .admin_panel
           = render :partial => "admin/shared/admin_header"
           .clear_div
+        = render("/layouts/flashdisplay", :want_large => true)
         = yield
       .clear_div
       .footer{:style => "z-index:9000"}= render :partial => 'shared/footer'

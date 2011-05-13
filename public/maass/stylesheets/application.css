@@ -344,7 +344,13 @@ a.button_large:hover{
   padding: 5px 10px;
   width:530px;
 }
-
+#announcement li{
+  font-size: 10px;
+  font-style: normal;
+  font-weight: normal;
+  list-style-image:  url("/images/bullet.jpeg");
+  margin-left: 16px;
+}
 * html #announcement{
   margin-left: 5px;
 }
