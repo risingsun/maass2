@@ -6,7 +6,7 @@
       = form.error_messages
       = render 'photos/edit_photo', :f => form
       #cropresults
-        = form.input :caption
+        = form.input :caption, :wrapper_html => { :class => "#{zebra}_complete"}
       %button.buttons{:type => "submit"}
         = image_tag("save.png")
   %span.widget_complete_btm

@@ -3628,7 +3628,7 @@ a.editor_cancel{
   margin-left: 169px;
 }
 
-.row_complete_light{
+.row_light_complete{
   float: left;
   width: 967px;
   background-color: #fff7ee;
@@ -3636,7 +3636,7 @@ a.editor_cancel{
   height: 30px;
 }
 
-.row_complete_light label{
+.row_light_complete label{
   font-size: 12px;
   font-weight: normal;
   color: #000000;
@@ -3648,13 +3648,13 @@ a.editor_cancel{
   text-align: right;
 }
 
-.row_complete_light input{
+.row_light_complete input{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
   width: 455px;
 }
-.row_complete_dark{
+.row_dark_complete{
   float: left;
   width: 967px;
   height: 30px;
@@ -3662,7 +3662,7 @@ a.editor_cancel{
   border-bottom: 1px solid #fff;
 }
 
-.row_complete_dark label{
+.row_dark_complete label{
   font-size: 12px;
   font-weight: normal;
   color: #000000;
@@ -3675,13 +3675,13 @@ a.editor_cancel{
   text-align: right;
 }
 
-.row_complete_dark input{
+.row_dark_complete input{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
   width: 455px;
 }
-.row_complete_light_large2{
+.row_light_complete_large2{
   float: left;
   width: 967px;
   background-color: #fff7ee;
@@ -3690,7 +3690,7 @@ a.editor_cancel{
   overflow: hidden;
 }
 
-.row_complete_light_large2 label{
+.row_light_complete_large2 label{
   font-size: 12px;
   font-weight: normal;
   color: #000000;
@@ -3703,7 +3703,7 @@ a.editor_cancel{
   margin-top: 4px;
 }
 
-.row_complete_light_large2 input{
+.row_light_complete_large2 input{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
@@ -3722,7 +3722,7 @@ a.editor_cancel{
   position: relative;
 }
 
-.row_complete_dark_large2{
+.row_dark_complete_large2{
   float: left;
   width: 967px;
   background-color: #fef2e1;
@@ -3730,7 +3730,7 @@ a.editor_cancel{
   height: 400px;
 }
 
-.row_complete_dark_large2 label{
+.row_dark_complete_large2 label{
   font-size: 12px;
   font-weight: normal;
   color: #000000;
@@ -3742,7 +3742,7 @@ a.editor_cancel{
   text-align: right;
 }
 
-.row_complete_dark_large2 input{
+.row_dark_complete_large2 input{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;

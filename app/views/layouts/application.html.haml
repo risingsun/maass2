@@ -25,6 +25,7 @@
             = render :partial => "shared/lsidebar"
           = yield :left_side_panel
         .middle_panel
+          = render 'layouts/announcements'
           = render "/layouts/flashdisplay"
           %span#main_container= yield
         .side_panel
