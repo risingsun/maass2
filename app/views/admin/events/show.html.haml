@@ -22,7 +22,7 @@
     = render :partial => "/comments/comment", :collection => @event.comments.reject{|x|x.new_record?}
     .clear_div
   %span.widget_lrg_btm
-- if !@friends.blank? || @event.marker
+- if @event.marker && !@friends.blank?
   .widget_large
     %span.widget_lrg_top
     = slide_up_down_header('google_map','Google Map','sliding')

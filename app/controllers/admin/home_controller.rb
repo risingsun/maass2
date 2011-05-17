@@ -3,6 +3,8 @@ class Admin::HomeController < ApplicationController
   layout "admin"
 
   before_filter :load_profile
+  
+  skip_authorization_check
 
   def index
   end
@@ -39,10 +41,6 @@ class Admin::HomeController < ApplicationController
   end
 
   private
-
-  def allow_to
-    super :admin, :all => true
-  end
   
   def load_profile
     @profile = @p

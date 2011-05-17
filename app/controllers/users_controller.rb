@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   layout 'plain'
 
+  skip_authorization_check
+
   def update   
     @profile =  @p
     if current_user.update_with_password(params[:user])

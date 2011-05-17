@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
 
+  load_and_authorize_resource :except=> :new
+  
   before_filter :load_profile
   before_filter :load_message, :only => [:show, :destroy, :reply_message]
 
@@ -60,11 +62,6 @@ class MessagesController < ApplicationController
   end
 
   private
-
-  def allow_to
-    super :owner, :all => true
-    super :active_user, :only => [:new]
-  end
 
   def load_profile
     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])

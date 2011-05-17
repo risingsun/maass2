@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
 
+  load_and_authorize_resource :except=>[:search, :friend_search, :search_group , :search_location, :batch_details]
+  
   before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user]  
   respond_to :html, :json, :only =>[:active_user]
   
@@ -9,11 +11,12 @@ class ProfilesController < ApplicationController
       @title = "Users"
       render :layout => "admin"
     else
-      redircet_to :back
+      flash[:error] = 'It looks like you don\'t have permission to view that page.'
+      redirect_to root_url
     end  
   end
 
-  def edit
+  def edit    
     render :layout => "plain"
   end
 
@@ -31,7 +34,7 @@ class ProfilesController < ApplicationController
       else
         flash[:error] = "Requested New Email Can not be Blank"
       end
-       redirect_to edit_account_profile_url(@profile)
+      redirect_to edit_account_profile_url(@profile)
     else
       if @profile.update_attributes params[:profile]
         flash[:notice] = params[:commit] ? "#{params[:commit]} updated." : "Profile updated."
@@ -130,12 +133,6 @@ class ProfilesController < ApplicationController
   end
 
   private
-
-  def allow_to
-    super :owner, :all => true
-    super :active_user, :only => [:show, :index, :search, :friend_search, :search_group , :search_location, :batch_details, :active_user]
-    super :all, :only => [:update_email]
-  end
 
   def load_profile
     @profile = params[:id] == @p ? @p : Profile.find(params[:id])

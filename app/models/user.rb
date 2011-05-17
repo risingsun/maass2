@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  ROLES = ['admin', 'user']
+  
   include Humanizer
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
@@ -7,10 +9,12 @@ class User < ActiveRecord::Base
     :first_referral_person_name, :first_referral_person_year,
     :second_referral_person_name, :second_referral_person_year,
     :third_referral_person_name,:third_referral_person_year,
-    :additional_message, :profile_attributes, :terms_of_service
-  attr_accessible :humanizer_answer, :humanizer_question_id  
+    :additional_message, :profile_attributes, :terms_of_service, :role,
+    :humanizer_answer, :humanizer_question_id
+
   require_human_on :create
   before_save :require_references
+  after_create :set_role
 
   validates :login, :presence => true,
     :length => {:within => 3..25},
@@ -21,6 +25,15 @@ class User < ActiveRecord::Base
   has_one :profile
   has_many :authentications
   accepts_nested_attributes_for :profile
+
+  def set_role
+    if User.all.size==0
+      self.role = 'admin'
+    else
+      self.role = 'user'
+    end
+    self.save
+  end
   
   def is_admin?
     self.admin == true

@@ -2,6 +2,8 @@ class AlbumsController < ApplicationController
 
   layout "admin"
 
+  load_and_authorize_resource
+
   before_filter :load_album, :only => [:edit, :update, :show, :destroy]
 
   def index
@@ -69,10 +71,6 @@ class AlbumsController < ApplicationController
   end
 
   private
-
-  def allow_to
-    super :admin, :all => true
-  end
 
   def load_album
     @album = Album.find(params[:id])

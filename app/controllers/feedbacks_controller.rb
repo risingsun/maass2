@@ -1,5 +1,7 @@
 class FeedbacksController < ApplicationController
 
+  load_and_authorize_resource :only =>[:index, :show, :destroy]
+
   layout 'admin'
 
   def index
@@ -37,14 +39,6 @@ class FeedbacksController < ApplicationController
     @feedback = Feedback.find(params[:id])
     @feedback.destroy
     redirect_to feedbacks_path
-  end
-
-  private
-
-  def allow_to
-    super :admin, :all => true
-    super :non_user, :only => [:new, :create]
-    super :user, :only => [:new, :create]
   end
 
 end

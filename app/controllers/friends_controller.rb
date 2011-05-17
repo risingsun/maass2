@@ -8,10 +8,4 @@ class FriendsController < ApplicationController
     @following_friends= @profile.followings
   end
   
-  private
-
-   def allow_to
-     super :user, :all => true
-     super :non_user, :only => :index
-   end
 end

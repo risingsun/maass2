@@ -72,8 +72,7 @@ Maass2::Application.routes.draw do
     get 'search', :on=>:collection
     get 'friend_search', :on=>:collection
     get 'active_user', :on => :member
-    get 'user_friends', :on => :member
-    get 'batch_mates', :on => :member
+    get 'user_friends', :on => :member    
     get 'batch_details', :on=>:collection
     get 'search_group', :on=>:collection
     get 'search_location', :on=>:collection

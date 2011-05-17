@@ -1,5 +1,7 @@
 class NominationsController < ApplicationController
 
+  load_and_authorize_resource
+
   before_filter :setup,  :except => [:index]
   
   def index
@@ -33,14 +35,8 @@ class NominationsController < ApplicationController
 
   protected
 
-  def allow_to
-    super :owner, :all => true
-    super :admin, :only => [:index]
-  end
-
-  def setup    
-    @my_nomination = params[:profile_id].to_i == @p.id
-    @profile = @my_nomination  ? @p : Profile.find(params[:profile_id])
+  def setup        
+    @profile = params[:profile_id].to_i == @p.id  ? @p : Profile.find(params[:profile_id])
   end
   
 end
