@@ -314,22 +314,12 @@ a.button_large:hover{
   padding-right: 10px;
 }
 
-#announcement_close {
+.announcement_close {
   float: right;
   color: gray;
 }
 
-#announcement_close a {
-  text-decoration: none;
-  color: red;
-}
-
-#announcement_close a:hover {
-  text-decoration: underline;
-  color: red;
-}
-
-#announcement {
+.announcement {
   color: black;
   border: none 1px gray;
   background-color: white;
@@ -344,14 +334,14 @@ a.button_large:hover{
   padding: 5px 10px;
   width:530px;
 }
-#announcement li{
+.announcement li{
   font-size: 10px;
-  font-style: normal;
+  font-style: italic;
   font-weight: normal;
   list-style-image:  url("/images/bullet.jpeg");
   margin-left: 16px;
 }
-* html #announcement{
+* html .announcement{
   margin-left: 5px;
 }
 
@@ -2258,7 +2248,7 @@ a.messagebox_profilename_unread{
   font-weight: normal;
   float: left;
   color: #999999;
-  margin: 20px -70px 0;
+  margin: 20px -57px 0;
 }
 
 .messagebox_subject{
