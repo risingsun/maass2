@@ -1,0 +1,7 @@
+- unless @announcements.blank?
+  .announcement.comment_form
+    .announcement_close= link_to image_tag('close.jpeg', :title => "Close"), '#', :class => "comment-form-cancel"
+    Announcements:
+    %p
+    - @announcements.each do |a|
+      %li= a.message

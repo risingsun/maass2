@@ -1,7 +1,7 @@
 - content_for :head do
   = auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments")
   = auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members")
-- if @blurb_album.photos.blank?
+- if @blurb_album.blank? || @blurb_album.photos.blank?
   = render 'blurb'
 - else
   .widget_large
@@ -21,7 +21,7 @@
         = link_to("Forums", forums_path)
       .slideshow
         - @blurb_album.photos.each do |photo|
-          = raw image_tag(photo.image.url,:class=>"image_on_blurb", :width => '220px', :height =>'220px')
+          = raw image_tag(photo.image.url, :class => "image_on_blurb")
     %span.widget_lrg_btm
 - if @p
   - if @nomination.new_record?

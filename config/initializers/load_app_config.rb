@@ -34,7 +34,8 @@ GOOGLE_MAP_DEFAULT_LAT = THEME_CONFIG[:google_map_default_lat]
 GOOGLE_MAP_DEFAULT_LON = THEME_CONFIG[:google_map_default_lon]
 GOOGLE_MAP_DEFAULT_ZOOM = THEME_CONFIG[:google_map_default_zoom]
 
-INDIA_STATES = [ "Andhra Pradesh",
+INDIA_STATES = [ "Other",
+  "Andhra Pradesh",
   "Arunachal Pradesh",
   "Assam",
   "Andaman and Nicobar Islands",

@@ -19,7 +19,7 @@
   .blog_text
     - if @p.present?
       = link_to image_tag('add_comment.png'), "#", :class => "add-comment"
-      = link_to_if comment_count > 0, "#{comment_count} Comments", "#", :class => "show-comments"
+      = link_to_if comment_count > 0, "#{comment_count} Comments", '#', :class => "show-comments"
       - if !blog.tags.blank?
         Tags:
         - blog.tags.each do |blog_tag|
