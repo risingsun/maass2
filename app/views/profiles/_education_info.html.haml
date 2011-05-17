@@ -2,6 +2,6 @@
   - @profile.educations.build
 = f.semantic_fields_for(:educations) do |builder|
   = render 'education_fields', :f => builder
-.row_dark2
+%div{:class => zebra2}
   = link_to_add_fields(image_tag('add-button.png'), f , :educations)
 

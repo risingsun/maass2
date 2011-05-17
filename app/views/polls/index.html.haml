@@ -12,6 +12,6 @@
         has no polls .
       %span.widget_lrg_btm
   - else
-    = render :partial => 'polls/poll', :collection=>@polls
+    = render @polls
   .clear_div
   = will_paginate @polls

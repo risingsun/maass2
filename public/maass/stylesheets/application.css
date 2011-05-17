@@ -314,26 +314,16 @@ a.button_large:hover{
   padding-right: 10px;
 }
 
-#announcement_close {
+.announcement_close {
   float: right;
   color: gray;
 }
 
-#announcement_close a {
-  text-decoration: none;
-  color: red;
-}
-
-#announcement_close a:hover {
-  text-decoration: underline;
-  color: red;
-}
-
-#announcement {
+.announcement {
   color: black;
   border: none 1px gray;
   background-color: white;
-  -webkit-border-radius: 5px;
+  border-radius: 5px;
   float:left;
   font-size:12px;
   font-weight:bold;
@@ -344,8 +334,14 @@ a.button_large:hover{
   padding: 5px 10px;
   width:530px;
 }
-
-* html #announcement{
+.announcement li{
+  font-size: 10px;
+  font-style: italic;
+  font-weight: normal;
+  list-style-image:  url("/images/bullet.jpeg");
+  margin-left: 16px;
+}
+* html .announcement{
   margin-left: 5px;
 }
 
@@ -2252,7 +2248,7 @@ a.messagebox_profilename_unread{
   font-weight: normal;
   float: left;
   color: #999999;
-  margin: 20px -70px 0;
+  margin: 20px -57px 0;
 }
 
 .messagebox_subject{
@@ -3594,7 +3590,6 @@ a.editor_cancel{
   float: left;
   font-size: 12px;
   font-weight: bold;
-  /*color: #FF0000;*/
   padding-left: 10px;
   padding-top: 5px;
   padding-right: 10px;
@@ -3629,7 +3624,7 @@ a.editor_cancel{
   margin-left: 169px;
 }
 
-.row_complete_light{
+.row_light_complete{
   float: left;
   width: 967px;
   background-color: #fff7ee;
@@ -3637,7 +3632,7 @@ a.editor_cancel{
   height: 30px;
 }
 
-.row_complete_light label{
+.row_light_complete label{
   font-size: 12px;
   font-weight: normal;
   color: #000000;
@@ -3649,13 +3644,13 @@ a.editor_cancel{
   text-align: right;
 }
 
-.row_complete_light input{
+.row_light_complete input{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
   width: 455px;
 }
-.row_complete_dark{
+.row_dark_complete{
   float: left;
   width: 967px;
   height: 30px;
@@ -3663,7 +3658,7 @@ a.editor_cancel{
   border-bottom: 1px solid #fff;
 }
 
-.row_complete_dark label{
+.row_dark_complete label{
   font-size: 12px;
   font-weight: normal;
   color: #000000;
@@ -3676,13 +3671,13 @@ a.editor_cancel{
   text-align: right;
 }
 
-.row_complete_dark input{
+.row_dark_complete input{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
   width: 455px;
 }
-.row_complete_light_large2{
+.row_light_complete_large2{
   float: left;
   width: 967px;
   background-color: #fff7ee;
@@ -3691,7 +3686,7 @@ a.editor_cancel{
   overflow: hidden;
 }
 
-.row_complete_light_large2 label{
+.row_light_complete_large2 label{
   font-size: 12px;
   font-weight: normal;
   color: #000000;
@@ -3704,7 +3699,7 @@ a.editor_cancel{
   margin-top: 4px;
 }
 
-.row_complete_light_large2 input{
+.row_light_complete_large2 input{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
@@ -3723,7 +3718,7 @@ a.editor_cancel{
   position: relative;
 }
 
-.row_complete_dark_large2{
+.row_dark_complete_large2{
   float: left;
   width: 967px;
   background-color: #fef2e1;
@@ -3731,7 +3726,7 @@ a.editor_cancel{
   height: 400px;
 }
 
-.row_complete_dark_large2 label{
+.row_dark_complete_large2 label{
   font-size: 12px;
   font-weight: normal;
   color: #000000;
@@ -3743,7 +3738,7 @@ a.editor_cancel{
   text-align: right;
 }
 
-.row_complete_dark_large2 input{
+.row_dark_complete_large2 input{
   margin-top: 4px;
   margin-bottom: 4px;
   float: left;
@@ -4175,3 +4170,15 @@ a.link_disabled
   cursor:default;
   pointer-events: none;
 }
+.spinner1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -100px 0 0 -100px;
+	height: 100px;
+	width: 100px;
+	text-indent: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+

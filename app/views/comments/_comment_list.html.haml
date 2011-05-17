@@ -8,7 +8,7 @@
   %span.widget_lrg_top
   = slide_up_down_header('user_comments',title.html_safe, 'sliding')
   .slidecontent
-    = render :partial => 'comments/form', :locals => {:commentable => @profile}
+    = render 'comments/form', :commentable => @profile
     %div{:id => "#{@p.id}_comments"}
       = render @comments
   %span.widget_lrg_btm

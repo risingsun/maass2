@@ -1,7 +1,7 @@
 - content_for :head do
   = auto_discovery_link_tag(:rss, "http://#{SITE}/latest_comments.rss", :title=>"Latest Comments")
   = auto_discovery_link_tag(:rss, "http://#{SITE}/newest_members.rss", :title=>"Newest Members")
-- if @blurb_album.photos.blank?
+- if @blurb_album.blank? || @blurb_album.photos.blank?
   = render 'blurb'
 - else
   .widget_large
@@ -21,22 +21,21 @@
         = link_to("Forums", forums_path)
       .slideshow
         - @blurb_album.photos.each do |photo|
-          = raw image_tag(photo.image.url,:class=>"image_on_blurb")
+          = raw image_tag(photo.image.url, :class => "image_on_blurb")
     %span.widget_lrg_btm
 - if @p
-  - unless DISABLE_NOMINATION_FORM
-    - if @nomination.new_record?
-      = render :partial => 'nominations/form', :locals => {:nomination => @nomination}
-    - else
-      = render :partial => 'nominations/show', :locals => {:nomination => @nomination}
+  - if @nomination.new_record?
+    = render 'nominations/form', :nomination => @nomination
+  - else
+    = render 'nominations/show', :nomination => @nomination
 - unless @home_data.blank?
   - @home_data.each do|d|
     - if d.class.name == 'Event'
-      = render :partial => 'shared/event', :locals =>{:event => d}
+      = render 'shared/event', :event => d
     - elsif d.class.name == 'Poll'
-      = render :partial => 'polls/poll', :locals => {:home_page_blog => true,:poll => d}
+      = render 'polls/poll', :home_page_blog => true, :poll => d
     - else
-      = render :partial => 'blogs/blog', :locals => {:blog => d}
+      = render 'blogs/blog', :blog => d
   .clear_div
   = will_paginate @home_data
 

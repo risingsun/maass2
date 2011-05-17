@@ -18,7 +18,6 @@
           - else
             = render 'shared/header_tab'
         .clear_div
-        =# render :partial => 'layouts/announcements'
         = render("/layouts/flashdisplay", :want_large => true)
         = yield
       .clear_div

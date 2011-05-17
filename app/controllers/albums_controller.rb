@@ -2,9 +2,10 @@ class AlbumsController < ApplicationController
 
   layout "admin"
 
-  load_and_authorize_resource
 
-  before_filter :load_album, :only => [:edit, :update, :show, :destroy]
+  load_and_authorize_resource
+  
+  before_filter :load_album, :only => [:edit, :update, :show, :destroy, :upload_photo]
 
   def index
     @albums = @p.albums
@@ -18,15 +19,6 @@ class AlbumsController < ApplicationController
     redirect_to new_album_photo_path(@album)
   end
 
-  def create
-    @album= @p.albums.build(params[:album])
-    if @album.save
-      redirect_to new_album_photo_path(@album)
-    else
-      render :new
-    end
-  end
-
   def edit
     @title = "Update #{@album.name}"
     redirect_to new_album_photo_path(@album)
@@ -35,7 +27,7 @@ class AlbumsController < ApplicationController
   def update
     if @album.update_attributes(params[:album])
       flash[:notice] = "Successfully updated album."
-      redirect_to albums_path(@album)
+      redirect_to album_path(@album)
     else
       flash[:error] = "Album was not succesfully updated"
       render :edit
@@ -68,6 +60,15 @@ class AlbumsController < ApplicationController
       a.save
     end
     redirect_to album_path(@album)
+  end
+
+  def upload_photo
+    @photo = @album.photos.new(params[:photo])
+    if @photo.save
+      render :json => { :thumbnail=> @photo.image.url(:thumbnail).to_s, :url => @photo.image.url, :id => @photo.id , :name => @photo.image.instance.attributes["image_file_name"] }
+    else
+      render :json => { :url => "/images/image_missing.png" , :name => "Undefine Format Of Photo" }
+    end
   end
 
   private

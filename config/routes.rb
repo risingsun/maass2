@@ -10,9 +10,11 @@ Maass2::Application.routes.draw do
   resources :votes, :only => [:create]
   resources :feedbacks
   resources :albums do
-    resources :photos
+    resources :photos 
+    put 'upload_photo', :on => :member
     get 'facebook_album', :on => :collection
     get 'facebook_album_photos', :on => :collection
+    
   end
 
   namespace :admin do

@@ -6,7 +6,7 @@
     %span.widget_complete_top
     %h3.blog_head.event_head_width= "Upload #{@album.name}'s Photos"
     .blog_text
-      = semantic_form_for @album, :html => { :class => "upload", :multipart => true, :load_photo =>  upload_photo_album_path(@album) , :delete_url => album_photos_path(@album)} do |f|
+      = semantic_form_for @album, :html => { :class => "upload", :multipart => true, :load_photo =>  album_photos_path(@album) } do |f|
         = f.inputs do
           = f.input :name
           = f.input :description
@@ -17,10 +17,8 @@
         = f.semantic_fields_for :photo do |p|
           = p.inputs do
             = p.input :image, :as => :file, :input_html => {:multiple => true, :name => 'photo[image]', :class => "large_text_box"}
-        %button.buttons{:type => "submit"}
-          = image_tag("save.png")
+        = f.commit_button
     %span.widget_complete_btm
-  = image_tag('loader.gif', :class=>'hide_info spinner1')
   .widget_complete
     %span.widget_complete_top
     %h3.blog_head.event_head_width

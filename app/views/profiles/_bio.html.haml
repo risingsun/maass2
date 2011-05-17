@@ -20,14 +20,16 @@
         - unless profile.gtalk_name.blank?
           %strong GTalk:
           = profile.gtalk_name
+          %br
       - if profile.can_see_field("website", @p)
         - unless profile.website.blank?
           %strong Website:
-          = link_to (profile.website), h(profile.website)
+          = link_to (profile.website), profile.website
       - if profile.can_see_field("blog", @p)
         - unless profile.blog.blank?
           %strong Blog:
-          = link_to h(profile.blog), h(profile.blog)
+          = link_to profile.blog, profile.blog
+      %br
       - if me
         = link_to 'My Greetings Calendar',alumni_friends_events_path(:ics)
         %br

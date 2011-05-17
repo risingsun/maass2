@@ -1,4 +1,4 @@
-.widget_large{:id => "event_#{event.id}"}
+.widget_large[event]
   %span.widget_lrg_top
   %h3.blog_head
     = link_to image_tag(set_icon(event.organizers.first,'small')), event.organizers.first
@@ -17,18 +17,17 @@
         %span.event_address End Date :
         = event.end_date.to_date.to_formatted_s(:rfc822)if event.end_date
       %br
-      %div
         %span.event_address Address :
-        %br
-        = event.place
+      %br
+      = event.place
   - if @p.present?
     .poll_text
       .poll_option{:id => "event_rsvp_#{event.id}"}
         - if event.responded? @p
-          = render :partial => 'admin/events/event_response',:locals => {:event => event}
+          = render 'admin/events/event_response', :event => event
         - else
           %strong RSVP:
           %br
-          = render :partial => 'admin/events/rsvp',:locals => {:event => event,:status => 'home_page'}
+          = render 'admin/events/rsvp', :event => event, :status => 'home_page'
   %span.widget_lrg_btm
   

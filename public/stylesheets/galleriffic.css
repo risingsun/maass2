@@ -48,6 +48,7 @@ div.slideshow a.advance-link {
 div.slideshow img {
 	border: none;
 	display: block;
+    margin: 20px 10px;
 }
 div.download {
 	float: right;

@@ -13,7 +13,7 @@
 .new_topic_button.buttons
   = link_to(image_tag('new-topic.png', :title => "New Topic"),new_forum_forum_topic_path(@forum))
 - if @forum.topics.blank?
-  = render :partial => 'forum_topics/form', :locals => {:title => "New Forum Topic"}
+  = render 'forum_topics/form',:title => "New Forum Topic"
 - else
   .widget_complete
     %span.widget_complete_top

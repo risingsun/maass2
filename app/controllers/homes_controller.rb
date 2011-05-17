@@ -11,6 +11,7 @@ class HomesController < ApplicationController
     @nomination = @p.nomination || @p.build_nomination if @p
     @blurb_album = Album.find{|a| a if a.set_as_blurb}
     @home_data = sorted_results(blogs,polls,events).paginate(:page => @page,:per_page => BLOGS_PER_PAGE)
+    @announcements = Announcement.current_announcements
   end
 
   def show
