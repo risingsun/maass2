@@ -1,0 +1,12 @@
+.widget_complete
+  %span.widget_complete_top
+  .clear_div
+  = semantic_form_for [@album,@photo], :html => { :multipart => true } do |form|
+    = form.inputs do
+      = form.error_messages
+      = render 'photos/edit_photo', :f => form
+      #cropresults
+        = form.input :caption, :wrapper_html => { :class => "#{zebra}_complete"}
+      %button.buttons{:type => "submit"}
+        = image_tag("save.png")
+  %span.widget_complete_btm

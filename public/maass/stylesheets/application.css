@@ -4174,3 +4174,15 @@ a.link_disabled
   cursor:default;
   pointer-events: none;
 }
+.spinner1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -100px 0 0 -100px;
+	height: 100px;
+	width: 100px;
+	text-indent: 250px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
