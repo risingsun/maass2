@@ -47,7 +47,8 @@
     UploadHandler = function (container, options) {
         var uploadHandler = this;
 
-        this.url = container.find('form:first').attr('action');
+        this.url = container.find('form:first').attr('load_photo');
+        this.delete_url = container.find('form:first').attr('delete_url');
         this.autoUpload = true;
         this.continueAbortedUploads = false;
         this.forceIframeDownload = false;
@@ -94,7 +95,13 @@
             $.each(files, function (index, file) {
                 var row = handler.buildUploadRow(files, index, handler).show(),
                     cells = row.find(
-                        '.file_upload_progress, .file_upload_start, .file_upload_cancel'
+                        '.file_upload_progress, .\n\
+\n\
+\n\
+\n\
+\n\
+\n\
+          , .file_upload_cancel'
                     );
                 if (index) {
                     cells.remove();
@@ -186,20 +193,20 @@
         };
 
         this.continueUploadCallBack = function (event, files, index, xhr, handler, callBack) {
-            if (typeof index !== 'undefined') {
-                $.getJSON(
-                    handler.url,
-                    {file: files[index].name},
-                    function (file) {
-                        if (file && file.size !== files[index].size) {
-                            handler.uploadedBytes = file.size;
-                        }
-                        handler.uploadCallBack(event, files, index, xhr, handler, callBack);
-                    }
-                );
-            } else {
+//            if (typeof index !== 'undefined') {
+//                $.getJSON(
+//                    handler.url,
+//                    {file: files[index].name},
+//                    function (file) {
+//                        if (file && file.size !== files[index].size) {
+//                            handler.uploadedBytes = file.size;
+//                        }
+//                        handler.uploadCallBack(event, files, index, xhr, handler, callBack);
+//                    }
+//                );
+//            } else {
                 handler.uploadCallBack(event, files, index, xhr, handler, callBack);
-            }
+//            }
         };
         
         this.beforeSend = function (event, files, index, xhr, handler, callBack) {
@@ -227,8 +234,15 @@
             uploadHandler.downloadTable.find('.file_download_delete button')
                 .live('click', function (e) {
                     var row = $(this).closest('tr');
+                    var spr = $('#file_upload').children('img.hide_info').show();
                     $.ajax({
-                        url: uploadHandler.url + '/' + encodeURIComponent(
+                        beforeSend: function(){
+                          $(spr).show();
+                        },
+                        complete: function(){
+                          $(spr).hide();
+                        },
+                        url: uploadHandler.delete_url + '/' + encodeURIComponent(
                             row.attr('data-id')
                         ),
                         type: 'DELETE',

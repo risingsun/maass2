@@ -1,5 +1,5 @@
 /*
- * jQuery File Upload Plugin 4.3.1
+ * jQuery File Upload Plugin 4.4.2
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2010, Sebastian Tschan
@@ -99,16 +99,21 @@
                 maxChunkSize: null,
                 maxFileReaderSize: 50000000
             },
+            documentListeners = {},
+            dropZoneListeners = {},
+            protocolRegExp = /^http(s)?:\/\//,
+            optionsReference,
             multiLoader = new MultiLoader(function (list) {
                 if (typeof settings.onLoadAll === func) {
                     settings.onLoadAll(list);
                 }
             }),
             sequenceHandler = new SequenceHandler(),
-            documentListeners = {},
-            dropZoneListeners = {},
-            protocolRegExp = /^http(s)?:\/\//,
-            optionsReference,
+
+            completeNext = function () {
+                multiLoader.complete();
+                sequenceHandler.next();
+            },
 
             isXHRUploadCapable = function () {
                 return typeof XMLHttpRequest !== undef && typeof XMLHttpRequestUpload !== undef &&
@@ -262,8 +267,7 @@
                 if (typeof settings.onLoad === func) {
                     settings.onLoad(event, files, index, xhr, settings);
                 }
-                multiLoader.complete();
-                sequenceHandler.next();
+                completeNext();
             },
 
             handleProgressEvent = function (event, files, index, xhr, settings) {
@@ -295,16 +299,14 @@
                     if (typeof settings.onAbort === func) {
                         settings.onAbort(e, files, index, xhr, settings);
                     }
-                    multiLoader.complete();
-                    sequenceHandler.next();
+                    completeNext();
                 };
                 xhr.onerror = function (e) {
                     settings.progressTotal = settings.progressLoaded;
                     if (typeof settings.onError === func) {
                         settings.onError(e, files, index, xhr, settings);
                     }
-                    multiLoader.complete();
-                    sequenceHandler.next();
+                    completeNext();
                 };
             },
 
@@ -474,14 +476,14 @@
 
             upload = function (event, files, index, xhr, settings, nextChunk) {
                 var send;
-                if (!nextChunk) {
-                    if (typeof settings.onSend === func &&
-                            settings.onSend(event, files, index, xhr, settings) === false) {
-                        return;
-                    }
-                    multiLoader.push(Array.prototype.slice.call(arguments, 1));
-                }
                 send = function () {
+                    if (!nextChunk) {
+                        if (typeof settings.onSend === func &&
+                                settings.onSend(event, files, index, xhr, settings) === false) {
+                            completeNext();
+                            return;
+                        }
+                    }
                     var blob = getBlob(files[index], settings),
                         filesToUpload;
                     initUploadEventHandlers(files, index, xhr, settings);
@@ -503,11 +505,14 @@
                         }
                     }
                 };
-                if (!nextChunk && settings.sequentialUploads) {
-                    sequenceHandler.push(send);
-                } else {
-                    send();
+                if (!nextChunk) {
+                    multiLoader.push(Array.prototype.slice.call(arguments, 1));
+                    if (settings.sequentialUploads) {
+                        sequenceHandler.push(send);
+                        return;
+                    }
                 }
+                send();
             },
 
             handleUpload = function (event, files, input, form, index) {
@@ -573,11 +578,11 @@
 
             legacyUpload = function (event, files, input, form, iframe, settings, index) {
                 var send;
-                if (typeof settings.onSend === func && settings.onSend(event, files, index, iframe, settings) === false) {
-                    return;
-                }
-                multiLoader.push([files, index, iframe, settings]);
                 send = function () {
+                    if (typeof settings.onSend === func && settings.onSend(event, files, index, iframe, settings) === false) {
+                        completeNext();
+                        return;
+                    }
                     var originalAction = form.attr('action'),
                         originalMethod = form.attr('method'),
                         originalTarget = form.attr('target');
@@ -592,8 +597,7 @@
                             if (typeof settings.onAbort === func) {
                                 settings.onAbort(e, files, index, iframe, settings);
                             }
-                            multiLoader.complete();
-                            sequenceHandler.next();
+                            completeNext();
                         })
                         .unbind('load')
                         .bind('load', function (e) {
@@ -602,12 +606,11 @@
                             if (typeof settings.onLoad === func) {
                                 settings.onLoad(e, files, index, iframe, settings);
                             }
-                            multiLoader.complete();
-                            sequenceHandler.next();
                             // Fix for IE endless progress bar activity bug
                             // (happens on form submits to iframe targets):
                             $('<iframe src="javascript:false;" style="display:none;"></iframe>')
                                 .appendTo(form).remove();
+                            completeNext();
                         });
                     form
                         .attr('action', getUrl(settings))
@@ -622,6 +625,7 @@
                         .attr('method', originalMethod)
                         .attr('target', originalTarget);
                 };
+                multiLoader.push([files, index, iframe, settings]);
                 if (settings.sequentialUploads) {
                     sequenceHandler.push(send);
                 } else {
@@ -630,11 +634,15 @@
             },
 
             handleLegacyUpload = function (event, input, form, index) {
+                if (!(event && input && form)) {
+                    $.error('Iframe based File Upload requires a file input change event');
+                    return;
+                }
                 // javascript:false as iframe src prevents warning popups on HTTPS in IE6:
                 var iframe = $('<iframe src="javascript:false;" style="display:none;" name="iframe_' +
                     settings.namespace + '_' + (new Date()).getTime() + '"></iframe>'),
                     uploadSettings = $.extend({}, settings),
-                    files = event.target.files;
+                    files = event.target && event.target.files;
                 files = files ? Array.prototype.slice.call(files, 0) : [{name: input.val(), type: null, size: null}];
                 index = files.length === 1 ? 0 : index;
                 uploadSettings.fileInput = input;
@@ -790,6 +798,9 @@
                 .addClass(settings.cssClass);
             settings.dropZone.not(container).addClass(settings.cssClass);
             initEventHandlers();
+            if (typeof settings.init === func) {
+                settings.init();
+            }
         };
 
         this.options = function (options) {
@@ -856,6 +867,9 @@
         };
 
         this.destroy = function () {
+            if (typeof settings.destroy === func) {
+                settings.destroy();
+            }
             removeEventHandlers();
             container
                 .removeData(settings.namespace)

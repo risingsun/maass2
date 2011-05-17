@@ -4,29 +4,21 @@ class PhotosController < ApplicationController
 
   layout "admin"
 
-  def index
+  def create
     @album = Album.find(params[:album_id])
-    @photos = @album.photos
-    if !@photos.blank?
-      render :json => { :thumbnail=> @photos.first.image.url(:thumbnail).to_s, :url => @photos.first.image.url, :id => @photos.first.id , :name => @photos.first.image.instance.attributes["image_file_name"] }
+    @photo = @album.photos.new(params[:photo])
+    if @photo.save
+      flash[:notice] = "Successfully created image."
+      redirect_to album_path(@album)
     else
-      render :json => { :pic_path => params[:file] }
+      flash[:error] = "Image was not succesfully created"
+      render 'new'
     end
   end
 
   def new
     @album = Album.find(params[:album_id])
     @photo = @album.photos.build
-  end
-
-  def create
-    @album = Album.find(params[:album_id])
-    @photo = @album.photos.new(params[:photo])
-    if @photo.save
-        render :json => { :thumbnail=> @photo.image.url(:thumbnail).to_s, :url => @photo.image.url, :id => @photo.id , :name => @photo.image.instance.attributes["image_file_name"] }
-      else
-        render :json => { :url => "/images/image_missing.png" , :name => "Undefine Format Of Photo" }
-      end
   end
 
   def edit

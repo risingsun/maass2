@@ -327,10 +327,6 @@ function add_fields(link, association, content) {
   jQuery(link).parent().before(content.replace(regexp, new_id));
 }
 
-function show_partial(p){
-  jQuery("#par_"+p).show();
-}
-
 jQuery('#search_q').live('focus.search_query_field', function(){
   if(jQuery(this).val()=='Search for Friends'){
     jQuery(this).val('');
@@ -446,6 +442,5 @@ function show_album_photo_uploader(){
     continueAbortedUploads: true,
     // Open download dialogs via iframes, to prevent aborting current uploads:
     forceIframeDownload: true
-
   });
 }
