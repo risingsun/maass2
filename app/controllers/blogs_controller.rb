@@ -1,9 +1,11 @@
 class BlogsController < ApplicationController
 
-  before_filter :load_profile, :except => [:tag_cloud]
-  before_filter :load_resource, :except => [:index, :new, :create, :tag_cloud, :blog_archive, :show, :show_blogs]
+  before_filter :load_profile
+  before_filter :load_resource, :except => [:index, :create,:blog_archive, :show, :show_blogs]
+  
+  load_and_authorize_resource :except => [:show_blogs, :blog_archive]
 
-  def index
+  def index    
     @blogs = @profile.blogs.order("created_at desc").paginate(:page => params[:page],:per_page => BLOGS_PER_PAGE)
     if @blogs.blank? && @profile == @p
       redirect_to new_profile_blog_path
@@ -59,11 +61,6 @@ class BlogsController < ApplicationController
   end
 
   private
-
-  def allow_to
-    super :owner, :all => true
-    super :active_user, :only => [:index, :show, :show_blogs, :blog_archive]
-  end
   
   def load_profile
     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
@@ -71,7 +68,11 @@ class BlogsController < ApplicationController
   end
 
   def load_resource
-    @blog = @profile.blogs.find(params[:id])
+    unless params[:id].blank?
+      @blog = @profile.blogs.find(params[:id])
+    else
+      @blog = @profile.blogs.new
+    end
   end
   
 end

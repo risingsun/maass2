@@ -12,11 +12,5 @@ class VotesController < ApplicationController
       end
     end
   end
-
-  private
-
-  def allow_to
-    super :active_user, :all => true
-  end
   
 end

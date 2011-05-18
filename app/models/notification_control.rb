@@ -23,7 +23,6 @@ class NotificationControl < ActiveRecord::Base
   end
 
   def parse_bit(value)
-    debugger
     sum = 0
     value.each do |x|
       sum = x.to_i + sum

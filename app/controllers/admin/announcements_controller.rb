@@ -1,6 +1,8 @@
 class  Admin::AnnouncementsController < ApplicationController
 
-  before_filter :load_announcement, :except => [:index, :new, :create]
+  load_and_authorize_resource
+
+  before_filter :load_announcement, :except => [:index, :new, :create] 
 
   layout "admin"
 
@@ -47,10 +49,6 @@ class  Admin::AnnouncementsController < ApplicationController
   end
 
   private
-
-  def allow_to
-    super :admin, :all => true
-  end
 
   def load_announcement
     @announcement = Announcement.find(params[:id])

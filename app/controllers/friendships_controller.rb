@@ -43,11 +43,6 @@ class FriendshipsController < ApplicationController
 
   private
 
-  def allow_to
-    super :user, :all => true
-    super :non_user, :only => :index
-  end
-
   def load_resource    
     @profile = current_user.profile
     @friend = Profile.find(params[:profile_id])

@@ -1,7 +1,9 @@
 class PollsController < ApplicationController
 
-  before_filter :load_profile
-  before_filter :load_resource, :except=>[:index,:show,:create,:new]
+  before_filter :load_profile, :except=>[:create]
+  before_filter :load_resource, :except=>[:index, :show, :edit]
+
+  load_and_authorize_resource
 
   def index
     @polls = @profile.polls.order("created_at desc").paginate(:page => @page, :per_page => POLLS_PER_PAGE)
@@ -19,7 +21,7 @@ class PollsController < ApplicationController
     @poll = @profile.polls.new
   end
 
-  def create
+  def create    
     @profile= current_user.profile
     @poll = @profile.polls.build(params[:poll])
     if @poll.save
@@ -37,7 +39,9 @@ class PollsController < ApplicationController
     end
   end
 
-  def edit    
+  def edit
+    @profile= current_user.profile
+    @poll = @profile.polls.find(params[:id])
   end
 
   def update    
@@ -67,17 +71,15 @@ class PollsController < ApplicationController
 
   def load_profile
     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
-    @show_profile_side_panel = true
   end
 
   def load_resource
-    @profile =  current_user.profile
-    @poll = @profile.polls.find(params[:id])
-  end
-  
-  def allow_to
-    super :owner, :all => true 
-    super :active_user, :only => [:index, :show]
+    @profile= current_user.profile
+    unless params[:id].blank?
+      @poll = @profile.polls.find(params[:id])
+    else
+      @poll = @profile.polls.new
+    end
   end
 
 end

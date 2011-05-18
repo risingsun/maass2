@@ -40,9 +40,9 @@ class CommentsController < ApplicationController
 
   private
 
-  def allow_to
-    super :active_user, :only => [:index, :create,:destroy]
-  end
+#  def allow_to
+#    super :active_user, :only => [:index, :create,:destroy]
+#  end
 
   def load_profile        
     @profile = params[:profile_id] == @p ? @p : Profile.find(params[:profile_id])
