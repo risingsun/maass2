@@ -1,6 +1,8 @@
 class Admin::SiteContentsController < ApplicationController
 
   layout "admin"
+  
+  load_and_authorize_resource
 
   before_filter :load_site_content, :except => [:index, :new, :create]
 
@@ -46,10 +48,6 @@ class Admin::SiteContentsController < ApplicationController
   end
 
   private
-
-  def allow_to
-    super :admin, :all => true
-  end
 
   def load_site_content
     @site_content = SiteContent.find(params[:id])

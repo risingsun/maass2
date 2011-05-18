@@ -1,4 +1,6 @@
 class ForumsController < ApplicationController
+  
+  load_and_authorize_resource :except=>[:index, :show]
 
   before_filter :load_forum, :except => [:index, :new, :create]
 
@@ -47,11 +49,6 @@ class ForumsController < ApplicationController
   end
 
   private
-
-  def allow_to
-    super :admin, :all => true
-    super :active_user, :only => [:index, :show]
-  end
 
   def load_forum
     @forum = Forum.find(params[:id])

@@ -2,8 +2,7 @@ class Admin::PreferencesController < ApplicationController
 
   layout "admin"
  
-  def index
-    
+  def index    
   end
 
   def new_title
@@ -97,11 +96,5 @@ class Admin::PreferencesController < ApplicationController
       end
     end
   end
-
-  private
   
-  def allow_to
-    super :admin, :all => true
-  end
-
 end

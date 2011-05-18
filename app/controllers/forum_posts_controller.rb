@@ -1,5 +1,7 @@
 class ForumPostsController < ApplicationController
-
+  
+  skip_authorization_check
+  
   before_filter :load_forum_post
 
   layout "plain"
@@ -26,11 +28,6 @@ class ForumPostsController < ApplicationController
   end
 
   private
-
-  def allow_to
-    super :admin, :all => true
-    super :active_user, :only => [:new, :create, :destroy]
-  end
 
   def load_forum_post
     @forum = Forum.find(params[:forum_id])

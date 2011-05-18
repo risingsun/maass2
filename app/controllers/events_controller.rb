@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
 
   layout "admin"
+
+  authorize_resource :only=>[:index]
+
+  skip_authorization_check :only => [:alumni_friends]
   
   def index
     respond_to do |format|
@@ -40,11 +44,4 @@ class EventsController < ApplicationController
     end
   end
 
-  private
-
-  def allow_to
-    super :admin, :all => true
-    super :active_user, :only => [:alumni_friends]
-  end
-  
 end

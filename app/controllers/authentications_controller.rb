@@ -27,10 +27,4 @@ class AuthenticationsController < ApplicationController
     redirect_to profile_path(@p)
   end
 
-  private
-
-  def allow_to
-    super :all, :all=>true
-  end
-
 end

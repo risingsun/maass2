@@ -1,6 +1,8 @@
 class HomesController < ApplicationController
   
   before_filter :load_home, :only => [:index, :show]
+  
+  skip_authorization_check
 
   def index
     blogs = Blog.all(:conditions => { :public => true })
@@ -45,10 +47,6 @@ class HomesController < ApplicationController
   end
 
   private
-   
-  def allow_to
-    super :all, :all=>true
-  end
 
   def load_home
     @profile = @p
