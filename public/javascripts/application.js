@@ -2,12 +2,6 @@
 jQuery(document).ready(function()
 {
 
-
-  jQuery('a.new-window').click(function(){
-    window.open(jQuery(this).attr('href'),'Terms of Service','width=500,height=600,scrollbars=yes');
-    return false;
-  });
-
   jQuery('.sliding').click(function(){
     jQuery(this).parents('.widget_large').find('.slidecontent').slideToggle();
     return false;

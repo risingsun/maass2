@@ -3,7 +3,8 @@ class BlogsController < ApplicationController
   before_filter :load_profile
   before_filter :load_resource, :except => [:index, :create,:blog_archive, :show, :show_blogs]
   
-  load_and_authorize_resource :except => [:show_blogs, :blog_archive]
+  load_and_authorize_resource :profile
+  load_and_authorize_resource :blog, :through => :profile, :except => [:show_blogs, :blog_archive]
 
   def index    
     @blogs = @profile.blogs.order("created_at desc").paginate(:page => params[:page],:per_page => BLOGS_PER_PAGE)

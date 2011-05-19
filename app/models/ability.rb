@@ -42,8 +42,7 @@ class Ability
       end
 
       can :read, [Blog, Poll]
-      can :show, Profile
-      can :show, Event            
+      can :show, [Profile, Event]
       
       can [:update, :edit_account, :user_friends, :update_email], Profile do |profile|
         profile.try(:user) ==  user
