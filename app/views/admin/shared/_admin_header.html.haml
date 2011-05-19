@@ -9,9 +9,9 @@
   |
   = link_to "Student Checks", student_checks_path
   |
-  = link_to "Announcement",admin_announcements_path
+  = link_to "Announcement", admin_announcements_path
   |
-  = link_to "Users",profiles_path
+  = link_to "Users", profiles_path
   |
   = link_to "Site Content", admin_site_contents_path
   |
@@ -21,4 +21,4 @@
   |
   = link_to "Albums", albums_path()
 - unless DISABLE_NOMINATION_FORM
-  = link_to "Nomination Forms",nominations_path
+  = link_to "Nomination Forms", profile_nominations_path(@p)

@@ -8,7 +8,7 @@ class Ability
 
     if user.role.eql?('admin')
       
-      can [:index, :create, :edit, :update], Nomination do |nomination|        
+      can [:index, :create, :update], Nomination do |nomination|        
         nomination.try(:profile) == user.profile
       end
 
@@ -37,7 +37,7 @@ class Ability
 
     elsif user.role.eql?('user') && user.profile.is_active
 
-      can [:create, :edit, :update], Nomination do |nomination|
+      can [:create, :update], Nomination do |nomination|
         nomination.try(:profile) == user.profile
       end
 
@@ -57,7 +57,7 @@ class Ability
         poll.try(:profile) == user.profile
       end
 
-      can [:create, :destroy, :reply_message, :sent_messages], Message
+      can [:create, :sent_messages], Message
       
       can [:read, :destroy, :reply_message, :delete_messages], Message do |message|
         message.try(:receiver) == user.profile || message.try(:sender) == user.profile

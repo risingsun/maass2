@@ -5,8 +5,7 @@ Maass2::Application.routes.draw do
 
   match "/auth/:provider/callback" => "authentications#create"
   match "/auth/failure" => "authentications#failure"
-  resources :authentications  
-  resources :nominations
+  resources :authentications    
   resources :votes, :only => [:create]
   resources :feedbacks
   resources :albums do
@@ -56,7 +55,7 @@ Maass2::Application.routes.draw do
     resource :friendship, :only => [:create, :update, :destroy]
     resources :feed_items
     resources :invitations
-    resources :nominations,:except => [:index]
+    resources :nominations
     resources :comments, :only => [:create, :index, :destroy]
     resources :messages do
       get 'sent_messages', :on => :collection
