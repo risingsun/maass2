@@ -34,7 +34,7 @@
       .file_upload_overall_progress
         %div{:style=>"display:none;"}
     %table{:class=>"files"}
-      %tr{:class=>"file_upload_template", :style=>"display:none;"}
+      %tr{:class=>"file_upload_template hide_info"}
         %td{:class=>"file_upload_preview"}
         %td{:class => "file_caption"}
         %td{:class=>"file_name"}
@@ -47,7 +47,7 @@
         %td{:class=>"file_upload_cancel"}
           %button.buttons
             Cancel
-      %tr{:class=>"file_download_template", :style=>"display:none;"}
+      %tr{:class=>"file_download_template hide_info"}
         %td{:class=>"file_download_preview"}
         %td{:class=>"file_name"}
           %a
