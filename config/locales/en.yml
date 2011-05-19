@@ -112,5 +112,7 @@ en:
         crop_w: Width(=531px)
         crop_h: Height(=264px)
 
-
+      feedback:
+        subject: Subject
+        message: Message
   

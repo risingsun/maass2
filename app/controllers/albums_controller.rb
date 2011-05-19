@@ -47,17 +47,7 @@ class AlbumsController < ApplicationController
   end
 
   def facebook_album_photos
-    @a = Photo.get_photosets(current_user)
-    @a.each do |a|
-      @al= a if a.name.eql?(params[:name])
-    end
-    @album = @p.albums.new(:name => @al.name)
-    @album.save
-    @al.photos.count.times do |c|
-      a=@album.photos.build()
-      a.photo_from_url(@al.photos[c].source)
-      a.save
-    end
+    @album = Album.create_facebook_photos_album(current_user,params[:name])
     redirect_to album_path(@album)
   end
 

@@ -6,8 +6,6 @@ class Admin::EventsController < ApplicationController
   
   respond_to :html, :json, :only =>[:rsvp]
 
-  layout "application"
-
   def index
     @events = Event.all
     if @events.blank?

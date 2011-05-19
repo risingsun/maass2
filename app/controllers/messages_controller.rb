@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
- 
+
   before_filter :load_profile
   before_filter :load_message, :only => [:show, :destroy, :reply_message]
 
