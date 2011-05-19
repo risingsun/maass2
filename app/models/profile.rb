@@ -249,7 +249,7 @@ class Profile < ActiveRecord::Base
   end
 
   def friends_on_google_map(profile = nil)
-    if user.is_admin
+    if user.is_admin?
       active.all.select {|p| p.can_see_field('marker', self) && p.marker}
     else
       all_friends.select {|p| p.can_see_field('marker', profile) && p.marker}

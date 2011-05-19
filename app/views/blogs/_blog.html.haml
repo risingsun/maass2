@@ -5,17 +5,14 @@
   %h3.blog_head
     = link_to image_tag(set_icon(blog.profile,'small')), profile
     = link_to sanitize(blog.title), profile_blog_path(blog.profile, blog)
-    - if @p == blog.profile
+    - if @p.eql?(blog.profile)
       = link_to image_tag('edit.png', :title => "Edit blog post"), edit_profile_blog_path(blog.profile, blog)
       = link_to image_tag('delete.png', :title => "Delete blog post"), profile_blog_path(blog.profile, blog), :method => :delete
     = link_to image_tag('email_go.png', :title => "Send Blog"), send_blog_admin_home_path(blog), :confirm => 'Are you sure? Do you  want to send email to all users?' if @is_admin && !blog.is_sent?
     .created_date
       Posted by #{blog.profile.full_name} at #{blog.updated_at.to_date.to_formatted_s(:rfc822)}
   .blog_text
-    - if @q.nil?
-      = raw blog_body_content blog
-    - else
-      = raw highlight(blog.body,@q,"<span class = 'tag_class'>#{params[:search][:blog]}</span>")
+    = raw blog.body
   .blog_text
     - if @p.present?
       = link_to image_tag('add_comment.png'), "#", :class => "add-comment"
