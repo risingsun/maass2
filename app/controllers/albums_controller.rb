@@ -2,7 +2,6 @@ class AlbumsController < ApplicationController
 
   layout "admin"
 
-
   load_and_authorize_resource
   
   before_filter :load_album, :only => [:edit, :update, :show, :destroy, :upload_photo]

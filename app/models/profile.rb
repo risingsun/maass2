@@ -21,14 +21,14 @@ class Profile < ActiveRecord::Base
   has_many :events, :through => :profile_events
   has_many :profile_comments, :class_name => "Comment"
   has_many :feedbacks
-  has_one :notification_control
+  has_one  :notification_control
   has_many :polls, :dependent => :destroy
   has_many :poll_responses, :dependent => :destroy
   has_many :forum_posts, :foreign_key => 'owner_id', :dependent => :destroy
   has_many :invitations
-  has_one :student_check
+  has_one  :student_check
   has_many :sent_blogs, :class_name => 'Blog', :order => 'created_at desc', :conditions => "is_sent = #{false}"
-  has_one :nomination
+  has_one  :nomination
 
   accepts_nested_attributes_for :notification_control
   accepts_nested_attributes_for :blogs

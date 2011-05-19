@@ -5,15 +5,10 @@ class ProfilesController < ApplicationController
   before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user]  
   respond_to :html, :json, :only =>[:active_user]
   
-  def index
-    if @is_admin
-      @profiles = Profile.all.paginate(:page => params[:page], :per_page => PROFILE_PER_PAGE)
-      @title = "Users"
-      render :layout => "admin"
-    else
-      flash[:error] = 'It looks like you don\'t have permission to view that page.'
-      redirect_to root_url
-    end  
+  def index    
+    @profiles = Profile.all.paginate(:page => params[:page], :per_page => PROFILE_PER_PAGE)
+    @title = "Users"
+    render :layout => "admin"
   end
 
   def edit    

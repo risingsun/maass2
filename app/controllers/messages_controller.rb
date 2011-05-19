@@ -1,13 +1,17 @@
 class MessagesController < ApplicationController
 
-  load_resource :only => [:index]
-  load_and_authorize_resource   
   before_filter :load_profile
   before_filter :load_message, :only => [:show, :destroy, :reply_message]
 
+  load_and_authorize_resource :except=> :new
+
   def index
-    @messages = @profile.received_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
-    authorize! :index, @messages
+    if @profile == @p
+      @messages = @profile.received_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
+    else
+      flash[:error] = 'It looks like you don\'t have permission to view that page.'
+      redirect_to root_url
+    end
   end
 
   def new
@@ -43,7 +47,7 @@ class MessagesController < ApplicationController
   end
 
   def delete_messages
-    if !params[:check].blank?
+    unless params[:check].blank?
       params[:check].each do |ch|
         message = Message.find(ch)
         message.delete_message(@p)
@@ -58,8 +62,13 @@ class MessagesController < ApplicationController
   end
 
   def sent_messages
-    @messages = @profile.sent_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
-    render 'messages/index'
+    if @profile == @p
+      @messages = @profile.sent_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
+      render 'messages/index'
+    else
+      flash[:error] = 'It looks like you don\'t have permission to view that page.'
+      redirect_to root_url
+    end
   end
 
   private
@@ -71,9 +80,5 @@ class MessagesController < ApplicationController
   def load_message
     @message = Message.find(params[:id])
   end
-
-#  def load_resource
-#    @messages = @p.received_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
-#  end
 
 end
