@@ -1,12 +1,13 @@
 class MessagesController < ApplicationController
 
-  load_and_authorize_resource :except=> :new
-  
+  load_resource :only => [:index]
+  load_and_authorize_resource   
   before_filter :load_profile
   before_filter :load_message, :only => [:show, :destroy, :reply_message]
 
   def index
     @messages = @profile.received_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
+    authorize! :index, @messages
   end
 
   def new
@@ -70,5 +71,9 @@ class MessagesController < ApplicationController
   def load_message
     @message = Message.find(params[:id])
   end
+
+#  def load_resource
+#    @messages = @p.received_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
+#  end
 
 end

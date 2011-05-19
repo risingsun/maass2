@@ -9,9 +9,6 @@ class Admin::HomeController < ApplicationController
   def index
   end
 
-  def admin
-  end
-
   def blogs
     @blogs = @profile.sent_blogs
   end
@@ -36,7 +33,7 @@ class Admin::HomeController < ApplicationController
   end
   
   def google_map_locations
-    profiles = Profile.active.all.select{|f|f.can_see_field('marker',@p)}
+    profiles = @p.friends_on_google_map()
     @friends = profiles.select{|p| p.marker}
   end
 

@@ -31,6 +31,8 @@ class Ability
 
     elsif user.role.eql?('user') && user.profile.is_active
 
+      can [:create, :sent_messages], Message
+
       can [:create, :edit, :update], Nomination do |nomination|
         nomination.try(:profile) == user.profile
       end
@@ -47,6 +49,11 @@ class Ability
 
       can [:update, :create, :destroy, :poll_close], Poll do |poll|
         poll.try(:profile) == user.profile
+      end
+
+      can [:index, :delete_messages, :destroy, :reply_message], Message do |message|
+        debugger
+        message.try(:receiver) == user.profile || message.try(:sender) == user.profile
       end
       
     end
