@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
 
-  before_filter :load_profile, :except=>[:create]
+  before_filter :load_profile
   before_filter :load_resource, :except=>[:index, :show, :edit]
 
   load_and_authorize_resource
@@ -74,7 +74,6 @@ class PollsController < ApplicationController
   end
 
   def load_resource
-    @profile= current_user.profile
     unless params[:id].blank?
       @poll = @profile.polls.find(params[:id])
     else

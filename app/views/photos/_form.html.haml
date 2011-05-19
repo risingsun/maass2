@@ -20,7 +20,6 @@
         %button.buttons{:type => "submit"}
           = image_tag("save.png")
     %span.widget_complete_btm
-  = image_tag('loader.gif', :class=>'hide_info spinner1')
   .widget_complete
     %span.widget_complete_top
     %h3.blog_head.event_head_width
@@ -55,6 +54,8 @@
         %td{:class=>"file_download_delete", :colspan=>"3"}
           %button.buttons
             Delete
+        %td{:class => 'spinner'}
+          = image_tag('spinner.gif')
       = render 'album_photo' , :photos => @album.photos
     %span.widget_complete_btm
 :javascript

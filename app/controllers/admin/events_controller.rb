@@ -1,12 +1,10 @@
 class Admin::EventsController < ApplicationController
 
-  load_and_authorize_resource :except=> [:show, :rsvp, :event_members]
+  load_and_authorize_resource :except=> [:rsvp, :event_members]
   
   before_filter :load_event, :except => [:index, :new, :create]
   
   respond_to :html, :json, :only =>[:rsvp]
-
-  layout "application"
 
   def index
     @events = Event.all

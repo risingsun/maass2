@@ -234,7 +234,7 @@
             uploadHandler.downloadTable.find('.file_download_delete button')
                 .live('click', function (e) {
                     var row = $(this).closest('tr');
-                    var spr = $('#file_upload').children('img.hide_info').show();
+                    var spr = $(row).children('td.spinner');
                     $.ajax({
                         beforeSend: function(){
                           $(spr).show();

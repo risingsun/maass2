@@ -8,13 +8,13 @@ class Ability
 
     if user.role.eql?('admin')
       
-      can [:index, :create, :edit, :update], Nomination do |nomination|
+      can [:index, :create, :edit, :update], Nomination do |nomination|        
         nomination.try(:profile) == user.profile
       end
 
       can :read, [Profile, Blog, Poll]
-      can :active_user, [Profile]
-
+      can :active_user, [Profile]      
+      
       can [:update, :edit_account, :user_friends, :update_email], Profile do |profile|
         profile.try(:user) ==  user
       end
@@ -25,18 +25,28 @@ class Ability
 
       can [:update, :create, :destroy, :poll_close], Poll do |poll|
         poll.try(:profile) == user.profile
+      end
+
+      can [:create, :sent_messages], Message
+
+      can [:read, :destroy, :reply_message, :delete_messages], Message do |message|
+        message.try(:receiver) == user.profile || message.try(:sender) == user.profile
       end
 
       can :manage, ADMIN_ENTITIES
 
     elsif user.role.eql?('user') && user.profile.is_active
 
+      can [:create, :sent_messages], Message
+
       can [:create, :edit, :update], Nomination do |nomination|
         nomination.try(:profile) == user.profile
       end
 
-      can :read, [Profile, Blog, Poll]
-
+      can :read, [Blog, Poll]
+      can :show, Profile
+      can :show, Event            
+      
       can [:update, :edit_account, :user_friends, :update_email], Profile do |profile|
         profile.try(:user) ==  user
       end
@@ -48,8 +58,13 @@ class Ability
       can [:update, :create, :destroy, :poll_close], Poll do |poll|
         poll.try(:profile) == user.profile
       end
+
+      can [:create, :sent_messages], Message
+      
+      can [:read, :destroy, :reply_message, :delete_messages], Message do |message|
+        message.try(:receiver) == user.profile || message.try(:sender) == user.profile
+      end
       
     end
-
   end
 end

@@ -1,8 +1,8 @@
 class Feedback < ActiveRecord::Base
  
-  validates :name, :email, :message, :subject, :presence => true
   belongs_to :profile
   after_save :send_feedback_to_admin
+  validates :name, :email, :message, :subject, :presence => true
 
   private
 

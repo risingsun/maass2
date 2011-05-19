@@ -9,7 +9,7 @@ class SiteContent < ActiveRecord::Base
     if c && !child.blank?
       c = c.children.find_by_name(child)
     end
-    return c.content
+    return c.content if c
   end
   
 end

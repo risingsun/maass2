@@ -16,11 +16,11 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :marker
 
   def role_of_user(profile)
-    profile_events.where(:profile_id=>profile).first
+    profile_events.where(:profile_id => profile).first
   end
 
   def set_organizer(profile)
-    profile_events.create(:profile => profile, :role =>"Organizer")
+    profile_events.create(:profile => profile, :role => "Organizer")
   end
 
   def responded?(profile)
@@ -44,7 +44,7 @@ class Event < ActiveRecord::Base
     unless pe
       pe = profile_events.create(:profile => profile)
     end
-    pe.update_attribute('role',type)unless is_organizer?(profile)
+    pe.update_attribute('role',type) unless is_organizer?(profile)
     return pe
   end
 end

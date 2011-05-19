@@ -21,14 +21,14 @@ class Profile < ActiveRecord::Base
   has_many :events, :through => :profile_events
   has_many :profile_comments, :class_name => "Comment"
   has_many :feedbacks
-  has_one :notification_control
+  has_one  :notification_control
   has_many :polls, :dependent => :destroy
   has_many :poll_responses, :dependent => :destroy
   has_many :forum_posts, :foreign_key => 'owner_id', :dependent => :destroy
   has_many :invitations
-  has_one :student_check
+  has_one  :student_check
   has_many :sent_blogs, :class_name => 'Blog', :order => 'created_at desc', :conditions => "is_sent = #{false}"
-  has_one :nomination
+  has_one  :nomination
 
   accepts_nested_attributes_for :notification_control
   accepts_nested_attributes_for :blogs
@@ -182,7 +182,7 @@ class Profile < ActiveRecord::Base
   end
 
   def female?
-    gender.downcase == 'female'
+    gender.downcase.eql?('female')
   end
 
   def maiden_name
@@ -241,19 +241,19 @@ class Profile < ActiveRecord::Base
 
 
   def wants_email_notification?(type)
-    notification_control && 
-      (notification_control.send(type) == NotificationControl::EMAIL_BIT ||
-        notification_control.send(type) == NotificationControl::ALL_NOTIFICATION )
+    notification_control && notification_control.check_email_notification?(type)
   end
 
   def wants_message_notification?(type)
-    notification_control &&
-      (notification_control.send(type) == NotificationControl::INTERNAL_MESSAGE_BIT ||
-        notification_control.send(type) == NotificationControl::ALL_NOTIFICATION)
+    notification_control && notification_control.check_message_notification?(type)
   end
 
-  def friends_on_google_map(profile)
-    all_friends.select {|p| p.can_see_field('marker', profile) && p.marker}
+  def friends_on_google_map(profile = nil)
+    if user.is_admin
+      active.all.select {|p| p.can_see_field('marker', self) && p.marker}
+    else
+      all_friends.select {|p| p.can_see_field('marker', profile) && p.marker}
+    end
   end
 
   def spouse_name

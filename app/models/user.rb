@@ -3,6 +3,11 @@ class User < ActiveRecord::Base
   ROLES = ['admin', 'user']
   
   include Humanizer
+  require_human_on :create
+  has_one :profile
+  has_many :authentications
+  before_save :require_references
+  after_create :set_role
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login,
@@ -11,23 +16,18 @@ class User < ActiveRecord::Base
     :third_referral_person_name,:third_referral_person_year,
     :additional_message, :profile_attributes, :terms_of_service, :role,
     :humanizer_answer, :humanizer_question_id
-
-  require_human_on :create
-  before_save :require_references
-  after_create :set_role
-
+ 
   validates :login, :presence => true,
-    :length => {:within => 3..25},
-    :uniqueness => true, :format=> {:with => /^\w+$/i, :message=>"can only contain letters and numbers."}
+                    :length => {:within => 3..25},
+                    :uniqueness => true,
+                    :format=> {:with => /^\w+$/i, :message=>"can only contain letters and numbers."}
   validates_acceptance_of  :terms_of_service, :message => "Must be accepted"
   validates :requested_new_email, :format=> {:with => /^([^@\s]{1}+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>'does not look like an email address.', :if => proc {|obj| !obj.requested_new_email.blank?}}
   
-  has_one :profile
-  has_many :authentications
   accepts_nested_attributes_for :profile
 
   def set_role
-    if User.all.size==0
+    if User.all.blank?
       self.role = 'admin'
     else
       self.role = 'user'
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   end
   
   def is_admin?
-    self.admin == true
+    self.admin
   end
 
   def generate_confirmation_hash!(secret_word= "pimpim")
@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   end
 
   def check_authentication(type)
-    self.authentications.where(:provider => type)
+    authentications.where(:provider => type).first
   end
 
   def match_details
