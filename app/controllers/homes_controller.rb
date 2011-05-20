@@ -50,7 +50,7 @@ class HomesController < ApplicationController
 
   def load_home
     @profile = @p
-    @albums = Album.all.map{|a| a if !a.photos.blank?}.compact
+    @albums = Album.all.select{|a| !a.photos.blank? }
   end
 
 end
