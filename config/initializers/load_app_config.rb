@@ -30,6 +30,9 @@ POLLS_PER_PAGE = THEME_CONFIG[:polls_per_page]
 BLOGS_ON_PROFILE = THEME_CONFIG[:blogs_on_profile]
 BLOGS_PER_PAGE = THEME_CONFIG[:blogs_per_page]
 BLOGS_ON_HOME_PAGE = THEME_CONFIG[:blogs_on_home_page]
+GOOGLE_MAP_DEFAULT_LAT = THEME_CONFIG[:google_map_default_lat]
+GOOGLE_MAP_DEFAULT_LON = THEME_CONFIG[:google_map_default_lon]
+GOOGLE_MAP_DEFAULT_ZOOM = THEME_CONFIG[:google_map_default_zoom]
 INDIA_STATES = [ "Other",
   "Andhra Pradesh",
   "Arunachal Pradesh",
