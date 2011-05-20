@@ -1,7 +1,9 @@
 class Admin::PreferencesController < ApplicationController
 
   layout "admin"
- 
+  
+  authorize_resource :class => false
+  
   def index    
   end
 
