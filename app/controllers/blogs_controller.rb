@@ -13,11 +13,7 @@ class BlogsController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
   def show
-=======
-  def show    
->>>>>>> 3515c7a9ea0bc63a434f6570df9585cf2ed66892
     @blog = Blog.find(params[:id])
   end
 

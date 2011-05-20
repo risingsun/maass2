@@ -27,4 +27,8 @@ class AuthenticationsController < ApplicationController
     redirect_to profile_path(@p)
   end
 
+  def handle_unverified_request
+    true
+  end
+ 
 end

@@ -1,8 +1,8 @@
 class NominationsController < ApplicationController
 
   load_and_authorize_resource :profile
-  load_and_authorize_resource :nomination, :through => :profile, :singleton => true
-  
+  load_and_authorize_resource :nomination, :through => :profile, :singleton => true    
+
   def index
     @nominations = Nomination.all
     render :layout => "admin"
