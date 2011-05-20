@@ -1,4 +1,4 @@
-= semantic_form_for @profile, :html => { :multipart => true } do |form|
+= semantic_form_for @profile, :html => { :multipart => true }, :validate => true do |form|
   %h2.edit_profile Edit Profile
   %button.buttons{:type => "submit"}
     = image_tag('Update.png')
