@@ -1,8 +1,7 @@
 class Nomination < ActiveRecord::Base
 
   belongs_to :profile
-  validates :profile, :contact_details, :occupational_details, :reason_for_nomination,:suggestions ,:presence => true
-  validates :profile_id, :uniqueness => true
+  validates :contact_details, :occupational_details, :reason_for_nomination,:suggestions ,:presence => true  
 
   after_save :send_mail_to_admin
 

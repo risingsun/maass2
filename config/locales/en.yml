@@ -84,6 +84,9 @@ en:
         third_referral_person_year: Referral Person Year
         additional_message: Additional Message
         requested_new_email: Requested New Email
+        new:
+          password: Password
+
 
       student_check:
         profile_id: Profile
@@ -112,5 +115,8 @@ en:
         crop_w: Width(=531px)
         crop_h: Height(=264px)
 
+      feedback:
+        message: Message
+        subject: Subject
 
   

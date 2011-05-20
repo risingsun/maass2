@@ -8,12 +8,13 @@ class Ability
 
     if user.role.eql?('admin')
       
-      can [:index, :create, :edit, :update], Nomination do |nomination|        
+      can [:index, :create, :edit, :update], Nomination do |nomination|
         nomination.try(:profile) == user.profile
       end
 
       can :read, [Profile, Blog, Poll]
-      can :active_user, [Profile]      
+      can :active_user, [Profile]
+      can :manage, [:preference, :home]
       
       can [:update, :edit_account, :user_friends, :update_email], Profile do |profile|
         profile.try(:user) ==  user
@@ -39,13 +40,12 @@ class Ability
 
       can [:create, :sent_messages], Message
 
-      can [:create, :edit, :update], Nomination do |nomination|
+      can [:create, :update], Nomination do |nomination|
         nomination.try(:profile) == user.profile
       end
 
       can :read, [Blog, Poll]
-      can :show, Profile
-      can :show, Event            
+      can :show, [Profile, Event]
       
       can [:update, :edit_account, :user_friends, :update_email], Profile do |profile|
         profile.try(:user) ==  user

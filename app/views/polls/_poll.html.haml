@@ -16,13 +16,11 @@
     - if !@p || (poll.responded? current_user.profile)
       = render 'polls/poll_response', :poll => poll
     - else
-      #poll_errors
-        - div_id = "#{poll.id}"
-        %div{:id => div_id }
-          = semantic_form_remote_for(:poll,:url => votes_path,:loading =>"$('div_id').hide(); $('spinner_\#{poll.id}').show();", :complete =>"$('spinner_\#{poll.id}').hide(); $('div_id').show();") do |f|
-            = f.semantic_fields_for(:poll_options) do |form|
-              = render "polls/option" , :y=> form, :poll => poll
-            %button.buttons{:type => "submit"}
-              = image_tag("vote.png")
-      %div{:id => "spinner_#{poll.id}", :style => "display: none;"}= image_tag('spinner.gif')
+      #poll_errors[poll]
+        = semantic_form_remote_for(:poll,:url => votes_path,:loading =>"$('#{poll.id}').hide(); $('spinner_\#{poll.id}').show();", :complete =>"$('spinner_\#{poll.id}').hide(); $('#{poll.id}').show();") do |f|
+          = f.semantic_fields_for(:poll_options) do |form|
+            = render "polls/option" , :y=> form, :poll => poll
+          %button.buttons{:type => "submit"}
+            = image_tag("vote.png")
+      .spinner{:id => "spinner_#{poll.id}"}=image_tag('spinner.gif')
   %span.widget_lrg_btm

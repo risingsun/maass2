@@ -3,7 +3,7 @@
 - else
   - profile = Profile.find(feedback.profile)
 .feedbacks
-  = link_to image_tag('delete.png', :title => "Delete Feedback"), feedback, :method => :delete
+  = link_to image_tag('delete.png', :title => "Delete Feedback"), feedback_path(feedback), :method => :delete
   From:
   - if profile.blank?
     = feedback.name

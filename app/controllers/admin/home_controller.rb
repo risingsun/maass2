@@ -4,7 +4,7 @@ class Admin::HomeController < ApplicationController
 
   before_filter :load_profile
   
-  skip_authorization_check
+  authorize_resource :class=> false
 
   def index
   end

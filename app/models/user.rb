@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
     :third_referral_person_name,:third_referral_person_year,
     :additional_message, :profile_attributes, :terms_of_service, :role,
     :humanizer_answer, :humanizer_question_id
+
+  validates :humanizer_answer, :presence => true
  
   validates :login, :presence => true,
                     :length => {:within => 3..25},

@@ -1,5 +1,5 @@
 <% if @args %>
-  jQuery("#<%= @vote.poll_id%>").replaceWith("<%= escape_javascript(render 'polls/poll_response', :poll => @vote.poll)%>");
+  jQuery("#poll_errors_poll_<%= @vote.poll_id%>").replaceWith("<%= escape_javascript(render 'polls/poll_response', :poll => @vote.poll)%>");
   <% else %>
-  jQuery("#poll_errors").prepend("<div id='poll_messages' class='error_msg'>Please select a option</div>");
+  jQuery("form.poll").prepend("<div id='poll_messages' class='error_msg'>Please select a option</div>");
 <% end %>

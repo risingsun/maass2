@@ -13,7 +13,6 @@ class BlogsController < ApplicationController
   end
 
   def show
-    debugger
     @blog = Blog.find(params[:id])
   end
 

@@ -6,7 +6,6 @@ Maass2::Application.routes.draw do
   match "/auth/:provider/callback" => "authentications#create"
   match "/auth/failure" => "authentications#failure"
   resources :authentications  
-  resources :nominations
   resources :votes, :only => [:create]
   resources :feedbacks
   resources :albums do
@@ -56,7 +55,7 @@ Maass2::Application.routes.draw do
     resource :friendship, :only => [:create, :update, :destroy]
     resources :feed_items
     resources :invitations
-    resources :nominations,:except => [:index]
+    resources :nominations
     resources :comments, :only => [:create, :index, :destroy]
     resources :messages do
       get 'sent_messages', :on => :collection
@@ -98,7 +97,6 @@ Maass2::Application.routes.draw do
   match '/ue/:hash/:profile_id', :to=> 'profiles#update_email', :as=>:update_email
   match '/latest_comments.rss', :to=> 'homes#latest_comments', :as=>:latest_comments, :format=>'rss'
   match '/newest_members.rss', :to=> 'homes#newest_members', :as=>:newest_members, :format=>'rss'
-  match '/feedback', :to => 'feedbacks#new', :as => :feedback
   match ':page', :to => 'homes#show', :page => /about_us|contact|history|members|academics|contact|credits|tos/, :as => :page
   #  match '/blog_archive/:month/:year', :to => 'blogs#blog_archive'
 
