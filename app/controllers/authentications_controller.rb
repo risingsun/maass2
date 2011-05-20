@@ -16,7 +16,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def failure
-    flash[:error] = "Sorry, You din't authorize"
+    flash[:error] = "Sorry, You didn't authorize"
     redirect_to root_url
   end
 
