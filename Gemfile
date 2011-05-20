@@ -44,7 +44,7 @@ gem 'humanizer'
 gem 'cancan'
 
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
-gem 'jquery-rails', '>= 0.2.6'
+gem 'jquery-rails'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'humanizer'
 gem 'acts-as-taggable-on'
@@ -56,6 +56,7 @@ gem 'oa-openid', :require => 'omniauth/openid'
 gem 'fb_graph'
 gem 'disqus'
 gem 'RedCloth'
+gem 'client_side_validations'
 
 # Use unicorn as the web server
 # gem 'unicorn'

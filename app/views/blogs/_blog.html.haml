@@ -5,7 +5,7 @@
   %h3.blog_head
     = link_to image_tag(set_icon(blog.profile,'small')), profile
     = link_to sanitize(blog.title), profile_blog_path(blog.profile, blog)
-    - if @p == blog.profile
+    - if @p.eql?(blog.profile)
       = link_to image_tag('edit.png', :title => "Edit blog post"), edit_profile_blog_path(blog.profile, blog)
       = link_to image_tag('delete.png', :title => "Delete blog post"), profile_blog_path(blog.profile, blog), :method => :delete
     = link_to image_tag('email_go.png', :title => "Send Blog"), send_blog_admin_home_path(blog), :confirm => 'Are you sure? Do you  want to send email to all users?' if @is_admin && !blog.is_sent?

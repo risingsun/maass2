@@ -3,8 +3,8 @@ class Admin::HomeController < ApplicationController
   layout "admin"
 
   before_filter :load_profile
-  
-  authorize_resource :class => false
+
+  authorize_resource :class=> false
 
   def index
   end

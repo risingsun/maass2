@@ -4170,4 +4170,6 @@ a.link_disabled
   cursor:default;
   pointer-events: none;
 }
-
+.alert_msg{
+  color: red;
+}

@@ -84,6 +84,9 @@ en:
         third_referral_person_year: Referral Person Year
         additional_message: Additional Message
         requested_new_email: Requested New Email
+        new:
+          password: Password
+
 
       student_check:
         profile_id: Profile

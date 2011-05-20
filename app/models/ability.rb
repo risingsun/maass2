@@ -7,7 +7,6 @@ class Ability
     user ||= User.new    
 
     if user.role.eql?('admin')
-      
       can [:index, :create, :update], Nomination do |nomination|        
         nomination.try(:profile) == user.profile
       end
@@ -37,7 +36,6 @@ class Ability
       can :manage, ADMIN_ENTITIES
 
     elsif user.role.eql?('user') && user.profile.is_active
-
       can [:create, :update], Nomination do |nomination|
         nomination.try(:profile) == user.profile
       end
