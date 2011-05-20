@@ -7,12 +7,7 @@ class Ability
     user ||= User.new    
 
     if user.role.eql?('admin')
-      
-<<<<<<< HEAD
-      can [:index, :create, :edit, :update], Nomination do |nomination|
-=======
       can [:index, :create, :update], Nomination do |nomination|        
->>>>>>> 3515c7a9ea0bc63a434f6570df9585cf2ed66892
         nomination.try(:profile) == user.profile
       end
 
@@ -41,12 +36,6 @@ class Ability
       can :manage, ADMIN_ENTITIES
 
     elsif user.role.eql?('user') && user.profile.is_active
-
-<<<<<<< HEAD
-      can [:create, :sent_messages], Message
-
-=======
->>>>>>> 3515c7a9ea0bc63a434f6570df9585cf2ed66892
       can [:create, :update], Nomination do |nomination|
         nomination.try(:profile) == user.profile
       end
