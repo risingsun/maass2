@@ -116,7 +116,6 @@ en:
         crop_h: Height(=264px)
 
       feedback:
-        message: Message
         subject: Subject
-
+        message: Message
   

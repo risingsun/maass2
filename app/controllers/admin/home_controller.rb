@@ -4,7 +4,11 @@ class Admin::HomeController < ApplicationController
 
   before_filter :load_profile
   
+<<<<<<< HEAD
   authorize_resource :class=> false
+=======
+  authorize_resource :class => false
+>>>>>>> 3515c7a9ea0bc63a434f6570df9585cf2ed66892
 
   def index
   end
@@ -33,7 +37,7 @@ class Admin::HomeController < ApplicationController
   end
   
   def google_map_locations
-    profiles = @p.friends_on_google_map()
+    profiles = @p.friends_on_google_map
     @friends = profiles.select{|p| p.marker}
   end
 

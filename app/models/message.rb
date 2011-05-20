@@ -5,7 +5,7 @@ class Message < ActiveRecord::Base
   validates :body,:subject, :presence => true
 
   def delete_message(profile)
-    return if delete_system_message()
+    return if delete_system_message
     if profile.eql?(sender)
       self.sender_flag = false
       self.save
@@ -14,7 +14,7 @@ class Message < ActiveRecord::Base
       self.read = true
       self.save
     end
-    delete_message_in_db()
+    delete_message_in_db
   end
 
   def message_unread_by?(profile)

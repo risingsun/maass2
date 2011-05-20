@@ -14,8 +14,8 @@
           = p.input :middle_name, formtastic_zebra
           = p.input :last_name, formtastic_zebra
           = p.input :maiden_name, formtastic_zebra
-          = p.input :gender, formtastic_zebra(:as => :select, :collection => SEX, :prompt => false)
-          = p.input :group,  formtastic_zebra(:as => :select, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :prompt => false)
+          = p.input :gender, formtastic_zebra(:as => :select, :collection => SEX, :prompt => true)
+          = p.input :group,  formtastic_zebra(:as => :select, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :prompt => true)
           = f.input :humanizer_answer,  formtastic_zebra(:label => resource.humanizer_question)
           = f.hidden_field :humanizer_question_id
           .error_msg{:class => zebra}

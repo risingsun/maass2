@@ -12,10 +12,7 @@
     .created_date
       Posted by #{blog.profile.full_name} at #{blog.updated_at.to_date.to_formatted_s(:rfc822)}
   .blog_text
-    - if @q.nil?
-      = raw blog_body_content blog
-    - else
-      = raw highlight(blog.body,@q,"<span class = 'tag_class'>#{params[:search][:blog]}</span>")
+    = raw blog.body
   .blog_text
     - if @p.present?
       = link_to image_tag('add_comment.png'), "#", :class => "add-comment"
