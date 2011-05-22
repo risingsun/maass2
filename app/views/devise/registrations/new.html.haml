@@ -3,32 +3,36 @@
   = semantic_form_for(resource, :as => resource_name, :url => user_registration_path, :validate => true) do |f|
     = f.semantic_errors
     .edit_panel_profile
-      = f.inputs do
-        = f.input :login, formtastic_zebra
-        = f.input :email, formtastic_zebra
-        = f.input :password, formtastic_zebra(:as => :password)
-        = f.input :password_confirmation, :as => :password, :input_html=> {:validate => false}
-      = f.semantic_fields_for(:profile) do |p|
-        = p.inputs do
-          = p.input :first_name, formtastic_zebra
-          = p.input :middle_name, formtastic_zebra
-          = p.input :last_name, formtastic_zebra
-          = p.input :maiden_name, formtastic_zebra
-          = p.input :gender, formtastic_zebra(:as => :select, :collection => SEX, :prompt => true)
-          = p.input :group,  formtastic_zebra(:as => :select, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :prompt => true)
-          = f.input :humanizer_answer,  formtastic_zebra(:label => resource.humanizer_question)
-          = f.hidden_field :humanizer_question_id
-          .error_msg{:class => zebra}
-            = check_box :user, :terms_of_service, {:checked => "checked"}
-            = @user.errors[:terms_of_service]
-            = link_to "Please Accept The Terms of Service", page_path('tos'), :target=> :blank
-      = f.inputs do
-        = f.input :first_referral_person_name, formtastic_zebra
-        = f.input :first_referral_person_year, formtastic_zebra
-        = f.input :second_referral_person_name, formtastic_zebra
-        = f.input :second_referral_person_year, formtastic_zebra
-        = f.input :third_referral_person_name, formtastic_zebra
-        = f.input :third_referral_person_year, formtastic_zebra
-        = f.input :additional_message, :as => :text, :input_html=>{:cols=>"200", :rows=>"10"}, :wrapper_html=>{:class=> "#{zebra}_large"}
-      %button.buttons{:type => "submit"}
-        = image_tag('sign-me-up.png')
+      #user-info
+        = f.inputs do
+          = f.input :login, formtastic_zebra
+          = f.input :email, formtastic_zebra
+          = f.input :password, formtastic_zebra(:as => :password)
+          = f.input :password_confirmation, :as => :password, :input_html=> {:validate => false}
+        = f.semantic_fields_for(:profile) do |p|
+          = p.inputs do
+            = p.input :first_name, formtastic_zebra
+            = p.input :middle_name, formtastic_zebra
+            = p.input :last_name, formtastic_zebra
+            = p.input :maiden_name, formtastic_zebra
+            = p.input :gender, formtastic_zebra(:as => :select, :collection => SEX, :prompt => true)
+            = p.input :group,  formtastic_zebra(:as => :select, :collection => GROUPS.reject{|obj| GROUPS.first==obj}, :prompt => true)
+            = f.input :humanizer_answer,  formtastic_zebra(:label => resource.humanizer_question)
+            = f.hidden_field :humanizer_question_id
+            .error_msg{:class => zebra}
+              = check_box :user, :terms_of_service, {:checked => "checked"}
+              = @user.errors[:terms_of_service]
+              = link_to "Please Accept The Terms of Service", page_path('tos'), :target=> :blank
+        %button.buttons{:id => "submit"}
+          = image_tag('sign-me-up.png')
+      #referral_form.hide_info
+        = f.inputs do
+          = f.input :first_referral_person_name, formtastic_zebra
+          = f.input :first_referral_person_year, formtastic_zebra
+          = f.input :second_referral_person_name, formtastic_zebra
+          = f.input :second_referral_person_year, formtastic_zebra
+          = f.input :third_referral_person_name, formtastic_zebra
+          = f.input :third_referral_person_year, formtastic_zebra
+          = f.input :additional_message, :as => :text, :input_html=>{:cols=>"200", :rows=>"10"}, :wrapper_html=>{:class=> "#{zebra}_large"}
+        %button.buttons{:type => "submit"}
+          = image_tag('sign-me-up.png')
