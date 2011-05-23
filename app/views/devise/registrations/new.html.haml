@@ -7,7 +7,7 @@
         = f.input :login, formtastic_zebra
         = f.input :email, formtastic_zebra
         = f.input :password, formtastic_zebra(:as => :password)
-        = f.input :password_confirmation, :as => :password, :input_html=> {:validate => false}
+        = f.input :password_confirmation, formtastic_zebra(:as => :password, :input_html=> {:validate => false})
       = f.semantic_fields_for(:profile) do |p|
         = p.inputs do
           = p.input :first_name, formtastic_zebra

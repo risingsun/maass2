@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
                     :uniqueness => true,
                     :format=> {:with => /^\w+$/i, :message=>"can only contain letters and numbers."}
   validates_acceptance_of  :terms_of_service, :message => "Must be accepted"
-  validates :requested_new_email, :format=> {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
   
   accepts_nested_attributes_for :profile
 

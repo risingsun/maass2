@@ -2,7 +2,7 @@
   - if params[:preview_button]
     = render 'preview'
   %br
-  = form_for [@profile, @blog] do |f|
+  = form_for [@profile, @blog], :validates => true do |f|
     = f.label :title, :class => "blog_labels"
     = f.text_field :title, :title => "Title", :class => "blog_fields"
     %br= f.label :body, :class => "blog_labels"

@@ -7,5 +7,6 @@
     = f.input :postal_code,  formtastic_zebra2
     = f.input :country,  formtastic_zebra2(:as => :country, :priority_countries =>['India'])
     = f.input :state,  formtastic_zebra2(:as => :select, :collection => INDIA_STATES, :prompt => false)
-    = f.input :landline, formtastic_zebra2
-    = f.input :mobile, formtastic_zebra2
+    = f.input :landline, formtastic_zebra2(:as => :phone)
+    = f.input :mobile, formtastic_zebra2(:as => :phone)
+    
