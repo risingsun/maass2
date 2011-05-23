@@ -1,4 +1,4 @@
-= form_for(:house_name, @house_name, :url => add_house_name_admin_preferences_path, :html =>{:method => :put}) do |t|
+= form_for(@house_name, :as=> :house_name, :url => add_house_name_admin_preferences_path, :html =>{:method => :put}) do |t|
   .row_complete
     = t.label :name
     = t.text_field :name, :title => "Title", :class => "text_field"
