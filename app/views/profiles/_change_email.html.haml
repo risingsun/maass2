@@ -1,4 +1,4 @@
-= semantic_form_for @p do |f|
+= semantic_form_for(@p, :validate => true) do |f|
   = rounded_med_corner(:id => "change_email", :title => "Email") do
     = f.semantic_fields_for(:user) do |u|
       %div{:class => zebra2}
@@ -7,4 +7,4 @@
       = u.input :requested_new_email, formtastic_zebra2
   %button.buttons{:type => "submit"}
     = image_tag('change-email.png')
-  = hidden_field_tag "commit", value="Change Email"
+  = hidden_field_tag "commit", value = "Change Email"

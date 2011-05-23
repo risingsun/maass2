@@ -25,7 +25,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'pickle'
   gem 'ruby-debug'
-  #  gem 'tiny_mce'
   gem 'avatar', '0.0.5'
   gem 'ckeditor', '3.4.2.pre'
   gem 'acts_as_list'

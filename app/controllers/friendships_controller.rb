@@ -7,7 +7,7 @@ class FriendshipsController < ApplicationController
     @profile.start_following(@friend)
     respond_to do |format|
       format.js do
-        render 'friends/friend_status', :profile =>@friend
+        render :partial => 'friends/friend_status', :locals => {:profile => @friend }
       end
     end
   end
@@ -17,7 +17,7 @@ class FriendshipsController < ApplicationController
     @profile.make_friend(@friend)
     respond_to do |format|
       format.js do
-        render 'friends/friend_status', :profile =>@friend
+        render :partial => 'friends/friend_status', :locals => {:profile => @friend }
       end
     end
   end
@@ -36,7 +36,7 @@ class FriendshipsController < ApplicationController
     end
     respond_to do |format|
       format.js do
-        render 'friends/friend_status', :profile =>@friend
+        render :partial => 'friends/friend_status', :locals => {:profile => @friend }
       end
     end
   end

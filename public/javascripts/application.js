@@ -2,6 +2,21 @@
 jQuery(document).ready(function()
 {
 
+  jQuery('#submit').click(function(){
+    var valid = true;
+    jQuery('[data-validate]:input:visible').each(function() {
+      var settings = window[this.form.id];
+      if (!jQuery(this).isValid(settings.validators)) {
+        valid = false
+      }
+    });
+    if(valid){
+      jQuery('#user-info').hide();
+      jQuery('#referral_form').show();
+    }
+    return false;
+  });
+  
   jQuery('.sliding').click(function(){
     jQuery(this).parents('.widget_large').find('.slidecontent').slideToggle();
     return false;
@@ -102,20 +117,7 @@ jQuery(document).ready(function()
       }
     })
   });
-  jQuery("#file_upload").load(function(){
-    $('#file_upload').fileUploadUIX({
-      // Wait for user interaction before starting uploads:
-      autoUpload: false,
-      // Upload bigger files in chunks of 10 MB (remove or set to null to disable):
-      maxChunkSize: 10000000,
-      // Request uploaded filesize prior upload and upload remaining bytes:
-      continueAbortedUploads: true,
-      // Open download dialogs via iframes, to prevent aborting current uploads:
-      forceIframeDownload: true
 
-    });
-  });
-  
   jQuery(".show-comments").click(function() {
     jQuery(this).parents('.commentable').find('.blog_comments').toggle();
     return false;

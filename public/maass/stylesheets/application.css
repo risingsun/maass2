@@ -4173,3 +4173,6 @@ a.link_disabled
 .alert_msg{
   color: red;
 }
+.nomination_text{
+  font-size: 11px;
+}
