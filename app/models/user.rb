@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 
+  ROLES = ['admin', 'user']
   include Humanizer
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
