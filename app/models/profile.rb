@@ -201,7 +201,7 @@ class Profile < ActiveRecord::Base
     Profile.active.select{|u| u.group == group}
   end
 
-  def f(tr=15, options={})
+  def short_name(tr=15, options={})
     full_name(options).truncate(tr)
   end
 
@@ -227,7 +227,7 @@ class Profile < ActiveRecord::Base
 
   def self.change_group(year)
     years = Profile.where(:group => year, :is_active => true)
-    group = years.map{|p| [p.full_name(), p.id]}
+    group = years.map{|p| [p.full_name, p.id]}
     return group
   end
 

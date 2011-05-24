@@ -3,9 +3,9 @@
   %h3.album_header
     MAASS Albums
     .forum_links
-      = link_to "Fetch Albums From Facebook", facebook_album_albums_path()
+      = link_to "Fetch Albums From Facebook", facebook_album_albums_path
       |
-      = link_to "Create Album Manually", new_album_path()
+      = link_to "Create Album Manually", new_album_path
   - @albums.each do |a|
     .album_pic_panel
       %h3.album_head

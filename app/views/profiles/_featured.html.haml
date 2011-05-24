@@ -3,6 +3,6 @@
   = profile && rounded_corner(:size => :small,:title => image_tag("star.gif",:class => "featured_mem") + "Featured Member") do
     .featured_mem_div
       = link_to image_tag(set_icon(profile,'small_60')), profile_path(profile), {:class => "featured_mem_pic"}
-      = link_to profile.f(20), profile, :class => "featured_mem_text"
+      = link_to profile.short_name(20), profile, :class => "featured_mem_text"
       %br= profile.group
       .featured_mem_lower_text= truncate(profile.about_me, :length => 90, :omission => "...")
