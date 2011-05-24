@@ -1,6 +1,6 @@
 = rounded_med_corner(:id => 'map_info', :title => 'Map Location') do
   - @profile.marker.blank? ? new_map : edit_map(@profile.marker)
-  = raw GMap.header()
+  = raw GMap.header
   = raw @map.to_html
   = raw @map.div(:width => 460, :height => 400)
   -@marker = @profile.marker || @profile.build_marker

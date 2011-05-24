@@ -201,7 +201,7 @@ class Profile < ActiveRecord::Base
     Profile.active.select{|u| u.group == group}
   end
 
-  def f(tr=15, options={})
+  def short_name(tr=15, options={})
     full_name(options).truncate(tr)
   end
 

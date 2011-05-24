@@ -1,16 +1,17 @@
 class User < ActiveRecord::Base
 
+  ROLES = ['admin', 'user']
   include Humanizer
   has_one :profile
   has_many :authentications
   devise :database_authenticatable, :registerable, :confirmable,
-    :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login,
-    :first_referral_person_name, :first_referral_person_year,
-    :second_referral_person_name, :second_referral_person_year,
-    :third_referral_person_name,:third_referral_person_year,
-    :additional_message, :profile_attributes,
-    :humanizer_answer, :humanizer_question_id, :role,:terms_of_service
+                  :first_referral_person_name, :first_referral_person_year,
+                  :second_referral_person_name, :second_referral_person_year,
+                  :third_referral_person_name,:third_referral_person_year,
+                  :additional_message, :profile_attributes,:humanizer_answer,
+                  :humanizer_question_id, :role,:terms_of_service
   require_human_on :create
   before_save :require_references
   after_create :set_role
@@ -19,10 +20,10 @@ class User < ActiveRecord::Base
                     :length => {:within => 3..25},
                     :uniqueness => true,
                     :format=> {:with => /^\w+$/i, :message=>"can only contain letters and numbers."}
-  validates :terms_of_service, :acceptance => true, :allow_blank => false
-  validates_acceptance_of :eula, :message => "must be abided"
+  validates :terms_of_service, :acceptance => true
   validates :requested_new_email, :format=> {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}, :if => proc {|obj| !obj.requested_new_email.blank?}
   validates :password, :confirmation => true
+
   accepts_nested_attributes_for :profile
 
   def set_role

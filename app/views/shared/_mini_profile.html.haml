@@ -3,7 +3,7 @@
     = link_to image_tag(set_icon(mini_profile,'small_60')), mini_profile
     = link_to image_tag('edit.png', :title => "Edit Profile", :class => "img01"), edit_profile_path(@p) if me(mini_profile)
   .text_div
-    %h3.name= link_to (mini_profile.f(20)), mini_profile, :class => "profile_name"
+    %h3.name= link_to (mini_profile.short_name(20)), mini_profile, :class => "profile_name"
     %br
     %p= year_link(mini_profile)
     %p= render('friends/friend_status' , :profile => mini_profile) unless me(mini_profile)
