@@ -1,4 +1,4 @@
-class HomesController < ApplicationController
+class HomeController < ApplicationController
   
   before_filter :load_home, :only => [:index, :show]
   

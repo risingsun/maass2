@@ -7,13 +7,13 @@
     = render :partial => "devise/sessions/login"
     = render :partial => "devise/sessions/login_with_other"
   = render "profiles/members", :members => Profile.new_member, :type => "Newest Members"
-  - if params[:controller] == 'homes'
+  - if params[:controller] == 'home'
     = rounded_corner(:title => "#{SITE_NAME} Picture Gallery", :size => 'small') do
       - unless @albums.blank?
         %ul#mycarousel.jcarousel-skin-ie7
           - @albums.select{|a|a.photos.present?}.each do |f|
             %li
-              = link_to(photo_gallery_homes_path(:photoset => f), :class=> 'thickbox', :title => f.name) do
+              = link_to( photo_gallery_home_index_path(:photoset => f), :class=> 'thickbox', :title => f.name) do
                 = image_tag(f.photos.first.image.url('original'), :alt => f.name, :width => 80, :height => 75)
               %span.flickr_text= f.name
       - else

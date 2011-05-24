@@ -2,7 +2,7 @@
 jQuery(document).ready(function()
 {
 
-  jQuery('#submit').click(function(){
+  jQuery('#submit').live('click',function(){
     var valid = true;
     jQuery('[data-validate]:input:visible').each(function() {
       var settings = window[this.form.id];

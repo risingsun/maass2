@@ -194,7 +194,7 @@ class Profile < ActiveRecord::Base
   end
   
   def self.new_member
-    active.all(:limit =>6, :order =>'created_at DESC')
+    active.all(:limit => 6, :order => 'created_at DESC')
   end
 
   def group_member
@@ -227,7 +227,7 @@ class Profile < ActiveRecord::Base
 
   def self.change_group(year)
     years = Profile.where(:group => year, :is_active => true)
-    group = years.map{|p| [p.full_name(), p.id]}
+    group = years.map{|p| [p.full_name, p.id]}
     return group
   end
 

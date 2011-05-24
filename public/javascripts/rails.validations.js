@@ -41,8 +41,8 @@
               removeError(element);
             }, eventData) })
         // Checkboxes - Live events don't support filter
-        .end().find('[data-validate]:checkbox')
-          .live('click', function() { $(this).isValid(settings.validators); })
+        .end().find('[validate]:checkbox')
+          .live('click', function() {$(this).isValid(settings.validators); })
         // Inputs for confirmations
         .end().find('[id*=_confirmation]').each(function() {
           var confirmationElement = $(this),
