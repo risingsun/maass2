@@ -3,24 +3,24 @@
 .widget_large.commentable[blog]
   %span.widget_lrg_top
   %h3.blog_head
-    = link_to image_tag(set_icon(blog.profile,'small')), profile
-    = link_to sanitize(blog.title), profile_blog_path(blog.profile, blog)
-    - if @p.eql?(blog.profile)
-      = link_to image_tag('edit.png', :title => "Edit blog post"), edit_profile_blog_path(blog.profile, blog)
-      = link_to image_tag('delete.png', :title => "Delete blog post"), profile_blog_path(blog.profile, blog), :method => :delete
+    = link_to image_tag(set_icon(profile,'small')), profile
+    = link_to sanitize(blog.title), profile_blog_path(profile, blog)
+    - if @p.eql?(profile)
+      = link_to image_tag('edit.png', :title => "Edit blog post"), edit_profile_blog_path(profile, blog)
+      = link_to image_tag('delete.png', :title => "Delete blog post"), profile_blog_path(profile, blog), :method => :delete
     = link_to image_tag('email_go.png', :title => "Send Blog"), send_blog_admin_home_path(blog), :confirm => 'Are you sure? Do you  want to send email to all users?' if @is_admin && !blog.is_sent?
     .created_date
-      Posted by #{blog.profile.full_name} at #{blog.updated_at.to_date.to_formatted_s(:rfc822)}
+      Posted by #{profile.full_name} at #{blog.updated_at.to_date.to_formatted_s(:rfc822)}
   .blog_text
     = raw blog.body
   .blog_text
     - if @p.present?
       = link_to image_tag('add_comment.png'), "#", :class => "add-comment"
       = link_to_if comment_count > 0, "#{comment_count} Comments", '#', :class => "show-comments"
-      - if !blog.tags.blank?
+      - unless blog.tags.blank?
         Tags:
         - blog.tags.each do |blog_tag|
-          = link_to blog_tag.name, show_blogs_profile_blog_path(@p,blog_tag.name)
+          = link_to blog_tag.name, show_blogs_profile_blog_path(profile, blog_tag.name)
       .blog_comments
         = render :partial => 'comments/comment', :collection => blog.comments
       = render 'comments/form', :commentable => blog

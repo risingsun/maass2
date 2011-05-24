@@ -10,10 +10,7 @@
         = f.inputs do
           = f.input :name
           = f.input :description
-        .album_text
-          = label_tag "set_as_blurb"
-          &nbsp
-          = check_box_tag('set_as_blurb', value = "1", checked = false)
+          = f.input :set_as_blurb, :as => :boolean
         = f.semantic_fields_for :photo do |p|
           = p.inputs do
             = p.input :image, :as => :file, :input_html => {:multiple => true, :name => 'photo[image]', :class => "large_text_box"}

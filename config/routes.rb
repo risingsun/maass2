@@ -92,7 +92,6 @@ Maass2::Application.routes.draw do
   end
 
   root :to=> 'home#index'
-  match '/edit',  :to => 'profiles#edit'
   match '/new',  :to => 'blogs#new'
   match '/ue/:hash/:profile_id', :to=> 'profiles#update_email', :as=>:update_email
   match '/latest_comments.rss', :to=> 'home#latest_comments', :as=>:latest_comments, :format=>'rss'

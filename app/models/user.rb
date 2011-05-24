@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
                   :additional_message, :profile_attributes,:humanizer_answer,
                   :humanizer_question_id, :role,:terms_of_service
   require_human_on :create
+  after_update :active_user, :if => proc {|obj| obj.sign_in_count == 1}
   before_save :require_references
   after_create :set_role
 
@@ -36,11 +37,11 @@ class User < ActiveRecord::Base
   end
   
   def is_admin?
-    self.admin
+    self.role.eql?('admin')
   end
 
-  def generate_confirmation_hash!(secret_word= "pimpim")
-    self.confirmation_token = Digest::SHA1.hexdigest(secret_word + DateTime.now.to_s)
+  def generate_confirmation_hash!
+    self.confirmation_token = Digest::SHA1.hexdigest(login + DateTime.now.to_s)
   end
 
   def match_confirmation?(user_hash)
@@ -73,6 +74,12 @@ class User < ActiveRecord::Base
       return false
     end
     return true
+  end
+
+  private
+
+  def active_user
+    profile.toggle!(:is_active)
   end
 
 end

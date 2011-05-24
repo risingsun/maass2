@@ -1,14 +1,10 @@
-- if feedback.profile.blank?
-  - profile = ""
-- else
-  - profile = Profile.find(feedback.profile)
 .feedbacks
   = link_to image_tag('delete.png', :title => "Delete Feedback"), feedback_path(feedback), :method => :delete
   From:
-  - if profile.blank?
+  - if feedback.profile.blank?
     = feedback.name
   - else
-    = link_to feedback.name, profile_path(profile)
+    = link_to feedback.name, profile_path(feedback.profile)
   %br
   When:
   = time_ago_in_words feedback.created_at

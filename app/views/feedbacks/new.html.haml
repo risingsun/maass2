@@ -2,7 +2,7 @@
   .edit_panel_profile
     = semantic_form_for(@feedback) do |form|
       = form.inputs do
-        - if !@p
+        - unless @p.present?
           = form.input :name
           = form.input :email
         = form.input :subject

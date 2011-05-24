@@ -11,6 +11,7 @@ class ForumPostsController < ApplicationController
   end
 
   def create
+    debugger
     @post = @topic.posts.build(params[:post])
     if @post.save
       flash[:notice] = "Successfully Created ForumPost."
