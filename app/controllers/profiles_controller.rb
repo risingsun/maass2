@@ -124,7 +124,7 @@ class ProfilesController < ApplicationController
         flash[:error] = "This email has already been taken"
       end
     end
-    redirect_to homes_path
+    redirect_to root_path
   end
 
   private
