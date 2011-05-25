@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
 
   default_scope :order => 'created_at ASC'
   scope :comments_without_self, lambda {|id| { :conditions => ['profiles.id != ? and commentable_type = ?',id, "Blog"],:joins => :profile }}
-  scope :profile_comments, :conditions => ["commentable_type='Profile'"]
+  scope :profile_comments, where("commentable_type='Profile'")
   scope :ordered, :order => 'created_at desc'
 
   include UserFeeds

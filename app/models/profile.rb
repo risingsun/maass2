@@ -56,8 +56,8 @@ class Profile < ActiveRecord::Base
   
   my_default_permission_field :default_permission
 
-  scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
-  scope :group_batch, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
+  scope :group, lambda{|y| where("profiles.group = ?",y)}
+  scope :group_batch, lambda{|y| where("profiles.group = ?",y)}
   scope :active, :conditions => {:is_active => true}
   scope :name_ordered, :order => 'profiles.group, first_name, last_name'
   scope :new_joined, :order => 'created_at desc'
