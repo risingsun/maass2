@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
                   :additional_message, :profile_attributes,:humanizer_answer,
                   :humanizer_question_id, :role,:terms_of_service
   require_human_on :create
-  after_update :active_user, :if => proc {|obj| obj.sign_in_count == 1}
+  after_update :active_user, :if => proc {|obj| obj.sign_in_count == 1 && !obj.profile.is_active}
   before_save :require_references
   after_create :set_role
 
