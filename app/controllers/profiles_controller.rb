@@ -57,7 +57,7 @@ class ProfilesController < ApplicationController
   end
 
   def active_user
-    @profile.toggle!(:is_active) if @user.is_admin?
+    @profile.toggle!(:is_active) if current_user.is_admin?
     ArNotifier.delay.user_status(@profile)
     respond_with((@profile.is_active ? 'Deactive' : 'Active').to_json)
   end
