@@ -59,8 +59,8 @@ class Profile < ActiveRecord::Base
   scope :group, lambda{|y| where("profiles.group = ?",y)}
   scope :group_batch, lambda{|y| where("profiles.group = ?",y)}
   scope :active, where(:is_active => true)
-  scope :name_ordered, :order => 'profiles.group, first_name, last_name'
-  scope :new_joined, :order => 'created_at desc'
+  scope :name_ordered, order('profiles.group, first_name, last_name')
+  scope :new_joined, order('created_at desc')
   
   cattr_accessor :featured_profile
   @@featured_profile = {:date => Date.today-4, :profile => nil}
