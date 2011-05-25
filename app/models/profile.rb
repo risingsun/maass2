@@ -58,7 +58,7 @@ class Profile < ActiveRecord::Base
 
   scope :group, lambda{|y| where("profiles.group = ?",y)}
   scope :group_batch, lambda{|y| where("profiles.group = ?",y)}
-  scope :active, :conditions => {:is_active => true}
+  scope :active, where(:is_active => true)
   scope :name_ordered, :order => 'profiles.group, first_name, last_name'
   scope :new_joined, :order => 'created_at desc'
   
@@ -194,7 +194,7 @@ class Profile < ActiveRecord::Base
   end
   
   def self.new_member
-    active.all(:limit => 6, :order => 'created_at DESC')
+    active.order('created_at DESC').limit(6)
   end
 
   def group_member
