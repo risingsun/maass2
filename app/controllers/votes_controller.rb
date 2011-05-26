@@ -8,7 +8,9 @@ class VotesController < ApplicationController
       @vote = @profile.poll_responses.new(:poll_option => @option, :poll => @option.poll)
       @vote.save
       respond_to do |format|
-        format.js
+        format.js do
+          render 'polls/poll_response', :poll => @vote.poll
+        end
       end
     end
   end

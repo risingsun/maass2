@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
     render :layout => "plain"
   end
 
-  def update
+   def update
     case params[:commit]
     when "Set Default"
       @profile.update_attributes(params[:profile])
@@ -26,15 +26,17 @@ class ProfilesController < ApplicationController
       if @user.request_email_change!(params[:profile][:user_attributes][:requested_new_email])
         AccountMailer.delay.new_email_request(@user)
         flash[:notice] = "Email confirmation request has been sent to the new email address."
+        redirect_to edit_account_profile_url(@profile)
       else
-        flash[:error] = "Requested New Email Can not be Blank"
+        flash[:error] = @user.errors[:requested_new_email].to_s
+        render 'profiles/edit_account', :layout => "plain"
       end
-      redirect_to edit_account_profile_url(@profile)
     else
       if @profile.update_attributes params[:profile]
         flash[:notice] = params[:commit] ? "#{params[:commit]} updated." : "Profile updated."
         redirect_to :back
       else
+        flash[:error] = "Cannot updated"
         render 'profiles/edit', :layout => "plain"
       end
     end
