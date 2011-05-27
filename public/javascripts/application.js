@@ -64,30 +64,30 @@ jQuery(document).ready(function()
     return false;
   });
 
-    jQuery('form.poll').submit(function(){
-      rel = jQuery(this).parents('.poll_text').find('form.poll');
-      spi = jQuery(this).parents('.poll').find('.spinner');
-      path = jQuery(this).attr('action');
-      value= jQuery("form.poll input[type='radio']:checked").val();
-      jQuery.ajax({
-        beforeSend: function(){
-          jQuery(spi).show();
-        },
-        complete: function(){
-          jQuery(spi).hide();
-        },
-        url: path,
-        dataType: "html",
-        type: 'POST',
-        data:{
-          option: value
-        },
-        success: function(response){
-          jQuery(rel).replaceWith(response)
-         }
-       })
-      return false;
-    });
+  jQuery('form.poll').submit(function(){
+    rel = jQuery(this).parents('.poll_text').find('form.poll');
+    spi = jQuery(this).parents('.poll').find('.spinner');
+    path = jQuery(this).attr('action');
+    value= jQuery("form.poll input[type='radio']:checked").val();
+    jQuery.ajax({
+      beforeSend: function(){
+        jQuery(spi).show();
+      },
+      complete: function(){
+        jQuery(spi).hide();
+      },
+      url: path,
+      dataType: "html",
+      type: 'POST',
+      data:{
+        option: value
+      },
+      success: function(response){
+        jQuery(rel).replaceWith(response)
+      }
+    })
+    return false;
+  });
 
   jQuery('.rsvp_event').click(function(){
     var path = jQuery(this).attr('url');

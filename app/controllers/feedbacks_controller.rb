@@ -1,6 +1,6 @@
 class FeedbacksController < ApplicationController
 
-  #load_and_authorize_resource :only =>[:index, :show, :destroy]
+  load_and_authorize_resource :only =>[:index, :show, :destroy]
 
   layout 'admin'
 

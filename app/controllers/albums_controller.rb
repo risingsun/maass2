@@ -28,7 +28,7 @@ class AlbumsController < ApplicationController
       flash[:notice] = "Successfully updated album."
       redirect_to album_path(@album)
     else
-      flash[:error] = "Album was not succesfully updated"
+      flash[:error] = "Album was not succesfully updated."
       render :edit
     end
   end
@@ -56,7 +56,7 @@ class AlbumsController < ApplicationController
     if @photo.save
       render :json => { :thumbnail=> @photo.image.url(:thumbnail).to_s, :url => @photo.image.url, :id => @photo.id , :name => @photo.image.instance.attributes["image_file_name"] }
     else
-      render :json => { :url => "/images/image_missing.png" , :name => "Undefine Format Of Photo" }
+      render :json => { :url => "/images/image_missing.png" , :name => "Undefined Format Of Photo" }
     end
   end
 

@@ -6,6 +6,7 @@ class Comment < ActiveRecord::Base
   belongs_to :blog
   belongs_to :profile
 
+  default_scope :order => 'created_at ASC'
   scope :comments_without_self, lambda {|id| where('profiles.id != ? and commentable_type = ?',id, "Blog").joins(:profile)}
   scope :profile_comments, where("commentable_type='Profile'")
   scope :ordered, :order => 'created_at desc'
