@@ -1,12 +1,14 @@
 = rounded_corner(:title => 'Give us Feedback') do
   .edit_panel_profile
-    = semantic_form_for(@feedback) do |form|
+    = semantic_form_for(@feedback,:validate => true) do |form|
       = form.inputs do
         - unless @p.present?
           = form.input :name
           = form.input :email
         = form.input :subject
         = form.input :message
+        = form.input :humanizer_answer, :label => @feedback.humanizer_question
+        = form.hidden_field :humanizer_question_id
         .blog_btn_container
           %button.buttons{:type => "submit"}
             = image_tag("submit.png")
