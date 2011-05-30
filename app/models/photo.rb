@@ -17,9 +17,9 @@ class Photo < ActiveRecord::Base
     auth = user.check_authentication('facebook')
     if !auth.blank?
       if name.blank?
-        return FbGraph::User.fetch(auth.uid, :access_token => auth.access_token).albums
+        return FbGraph::User.fetch(auth.uid, :access_token => URI.escape(auth.access_token)).albums
       else
-        return FbGraph::User.fetch(auth.uid, :access_token => auth.access_token).albums.find{|a| a.name.eql?(name)}
+        return FbGraph::User.fetch(auth.uid, :access_token => URI.escape(auth.access_token)).albums.find{|a| a.name.eql?(name)}
       end
     end
   end

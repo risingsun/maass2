@@ -11,10 +11,11 @@ class Album < ActiveRecord::Base
 
   def self.create_facebook_photos_album(user,name)
     f_album = Photo.get_photosets(user, name)
-    @album = user.albums.create(:name => f_album.name)
+    @album = user.profile.albums.create(:name => f_album.name)
     f_album.photos.count.times do |c|
       a = @album.photos.build
-      a.photo_from_url(@al.photos[c].source).create
+      a.photo_from_url(f_album.photos[c].source)
+      a.save
     end
     return @album
   end
