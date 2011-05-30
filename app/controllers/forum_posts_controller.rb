@@ -10,7 +10,7 @@ class ForumPostsController < ApplicationController
     @post = @topic.posts.new
   end
 
-  def create
+  def create    
     @post = @topic.posts.build(params[:post])
     if @post.save
       flash[:notice] = "Successfully Created ForumPost."

@@ -93,8 +93,8 @@ form.formtastic fieldset ol li.hidden { display:none; }
 
 /* BOOLEAN OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset > ol > li.boolean label { padding-left:25%; width:auto; }
-form.formtastic fieldset > ol > li.boolean label input { margin:0 0.5em 0 0.2em; }
+form.formtastic fieldset > ol > li.boolean label { padding-right:25%; width:auto; }
+form.formtastic fieldset > ol > li.boolean label input { margin:0 -7.5em 9 16.2em; }
 
 
 /* RADIO OVERRIDES

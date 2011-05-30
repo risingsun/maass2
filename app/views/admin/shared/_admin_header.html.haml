@@ -3,7 +3,7 @@
   |
   = link_to "Feedbacks", feedbacks_path
   |
-  = link_to "Blogs", blogs_admin_home_path(@p)
+  = link_to "Blogs", blogs_admin_home_path(@is_admin)
   |
   = link_to "Greetings", events_path
   |
@@ -22,4 +22,4 @@
   = link_to "Albums", albums_path
   |
 - unless DISABLE_NOMINATION_FORM
-  = link_to "Nomination Forms", profile_nominations_path(@p)
+  = link_to "Nomination Forms", profile_nominations_path(@is_admin)

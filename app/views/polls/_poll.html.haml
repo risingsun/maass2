@@ -17,10 +17,11 @@
       = render 'polls/poll_response', :poll => poll
     - else
       #user[poll]
-        = semantic_form_remote_for(:poll,:url => votes_path,:loading =>"$('user_poll_#{poll.id}').hide(); $('spinner_\#{poll.id}').show();", :complete =>"$('spinner_\#{poll.id}').hide(); $('user_poll_#{poll.id}').show();") do |f|
+        = semantic_form_for(:poll,:url => votes_path, :html => {:class => 'new-vote'}) do |f|
+          #error
           = f.semantic_fields_for(:poll_options) do |form|
             = render "polls/option" , :y=> form, :poll => poll
           %button.buttons{:type => "submit"}
             = image_tag("vote.png")
-      .spinner{:id => "spinner_#{poll.id}"}=image_tag('spinner.gif')
+        .spinner=image_tag('spinner.gif')
   %span.widget_lrg_btm

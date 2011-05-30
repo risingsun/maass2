@@ -2,5 +2,5 @@
 - if @blogs.blank?
   %span.comments Not Found
 - else
-  = render :partial=>'blogs/blog', :collection=> @blogs
+  = render :partial=>'blog', :collection=> @blogs
 = will_paginate @blogs

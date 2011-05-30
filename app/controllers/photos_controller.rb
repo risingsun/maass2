@@ -1,36 +1,14 @@
 class PhotosController < ApplicationController  
   
-  before_filter :load_album, :except => [:new, :create,:index]
+  before_filter :load_album, :except => [:new, :create]
 
   layout "admin"
-
-  def create
-    @album = Album.find(params[:album_id])
-    @photo = @album.photos.new(params[:photo])
-    if @photo.save
-      flash[:notice] = "Successfully created image."
-      redirect_to album_path(@album)
-    else
-      flash[:error] = "Image was not succesfully created"
-      render 'new'
-    end
-  end
 
   def new
     @album = Album.find(params[:album_id])
     @photo = @album.photos.build
   end
-
-  def create
-    @album = Album.find(params[:album_id])
-    @photo = @album.photos.new(params[:photo])
-    if @photo.save
-      render :json => { :thumbnail=> @photo.image.url(:thumbnail).to_s, :url => @photo.image.url, :id => @photo.id , :name => @photo.image.instance.attributes["image_file_name"] }
-    else
-      render :json => { :url => "/images/image_missing.png" , :name => "Undefine Format Of Photo" }
-    end
-  end
-
+  
   def edit
   end
 

@@ -3,7 +3,7 @@ class Blog < ActiveRecord::Base
 
   belongs_to :profile
   has_many :comments, :as => :commentable
-  scope :by_month_year, lambda {|month,year| {:conditions => ["monthname(created_at)=? and year(created_at)=?",month,year]}}
+  scope :by_month_year, lambda {|month,year| where("monthname(updated_at)=? and year(updated_at)=?",month,year)}
 
   validates :title, :body, :presence => true
 
@@ -18,9 +18,9 @@ class Blog < ActiveRecord::Base
   end
 
   def self.blog_groups
-    all(:select => "count(*) as cnt, MONTHNAME(created_at) as month,YEAR(created_at) as year" ,
+    all(:select => "count(*) as cnt, MONTHNAME(updated_at) as month,YEAR(updated_at) as year" ,
         :group => "month,year",
-        :order => "year DESC, MONTH(created_at) DESC" )
+        :order => "year DESC, MONTH(updated_at) DESC" )
   end
 
   def sent_by

@@ -6,12 +6,7 @@ class MessagesController < ApplicationController
   load_and_authorize_resource :except=> :new
 
   def index
-    if @profile == @p
-      @messages = @profile.received_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
-    else
-      flash[:error] = 'It looks like you don\'t have permission to view that page.'
-      redirect_to root_url
-    end
+    @messages = @p.received_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
   end
 
   def new
@@ -62,13 +57,8 @@ class MessagesController < ApplicationController
   end
 
   def sent_messages
-    if @profile == @p
-      @messages = @profile.sent_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
-      render 'messages/index'
-    else
-      flash[:error] = 'It looks like you don\'t have permission to view that page.'
-      redirect_to root_url
-    end
+    @messages = @p.sent_messages.all.paginate(:per_page => BLOGS_PER_PAGE, :page => params[:page])
+    render 'messages/index'
   end
 
   private

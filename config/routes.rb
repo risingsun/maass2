@@ -84,7 +84,7 @@ Maass2::Application.routes.draw do
     post 'send_bulk_invite', :on=> :collection
     post 'send_invite', :on=> :member
   end
-  resources :homes do
+  resources :home do
     get 'photo_gallery', :on => :collection
   end
 
@@ -92,13 +92,12 @@ Maass2::Application.routes.draw do
     get 'alumni_friends', :on=> :collection
   end
 
-  root :to=> 'homes#index'
-  match '/edit',  :to => 'profiles#edit'
+  root :to=> 'home#index'
   match '/new',  :to => 'blogs#new'
   match '/ue/:hash/:profile_id', :to=> 'profiles#update_email', :as=>:update_email
-  match '/latest_comments.rss', :to=> 'homes#latest_comments', :as=>:latest_comments, :format=>'rss'
-  match '/newest_members.rss', :to=> 'homes#newest_members', :as=>:newest_members, :format=>'rss'
-  match ':page', :to => 'homes#show', :page => /about_us|contact|history|members|academics|contact|credits|tos/, :as => :page
+  match '/latest_comments.rss', :to=> 'home#latest_comments', :as=>:latest_comments, :format=>'rss'
+  match '/newest_members.rss', :to=> 'home#newest_members', :as=>:newest_members, :format=>'rss'
+  match ':page', :to => 'home#show', :page => /about_us|contact|history|members|academics|contact|credits|tos/, :as => :page
   #  match '/blog_archive/:month/:year', :to => 'blogs#blog_archive'
 
   #  match '/user/:user_id/profile/:id',  :to => 'profiles#show'

@@ -1,5 +1,5 @@
 - profile ||= @profile
-- posts = profile.forum_posts(:limit => 10, :order => 'created_at DESC')
+- posts = profile.forum_posts.order('created_at DESC').limit(10)
 - unless posts.empty?
   .widget_large
     %span.widget_lrg_top

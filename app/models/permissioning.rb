@@ -69,13 +69,6 @@ module Permissioning
       return true if self==profile || field_permission == :Everyone ||
         (field_permission == :Myself && is_me?(profile)) ||
         (field_permission == :Friends && friends_with?(profile))
-
-      #      return !field_permission ||
-      #             field.blank? ||
-      #             field_permission.everyone? ||
-      #             (field_permission.myself? && is_me?(profile) ||
-      #             (field_permission.friends? && friend_of?(profile)))
-
     end
 
     private

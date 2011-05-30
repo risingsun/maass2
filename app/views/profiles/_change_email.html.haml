@@ -1,5 +1,5 @@
 = semantic_form_for(@p, :validate => true) do |f|
-  = rounded_med_corner(:id => "change_email", :title => "Email") do
+  = rounded_med_corner(:id => "change_email", :title => "Email", :validate => true) do
     = f.semantic_fields_for(:user) do |u|
       %div{:class => zebra2}
         %label.label_margin Current Email

@@ -55,11 +55,11 @@ class Profile < ActiveRecord::Base
   
   my_default_permission_field :default_permission
 
-  scope :group, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
-  scope :group_batch, lambda{|y| {:conditions => ["profiles.group = ?",y]}}
-  scope :active, :conditions => {:is_active => true}
-  scope :name_ordered, :order => 'profiles.group, first_name, last_name'
-  scope :new_joined, :order => 'created_at desc'
+  scope :group, lambda{|y| where("profiles.group = ?",y)}
+  scope :group_batch, lambda{|y| where("profiles.group = ?",y)}
+  scope :active, where(:is_active => true)
+  scope :name_ordered, order('profiles.group, first_name, last_name')
+  scope :new_joined, order('created_at desc')
   
   cattr_accessor :featured_profile
   @@featured_profile = {:date => Date.today-4, :profile => nil}
@@ -193,14 +193,14 @@ class Profile < ActiveRecord::Base
   end
   
   def self.new_member
-    active.all(:limit =>6, :order =>'created_at DESC')
+    active.order('created_at DESC').limit(6)
   end
 
   def group_member
     Profile.active.select{|u| u.group == group}
   end
 
-  def f(tr=15, options={})
+  def short_name(tr=15, options={})
     full_name(options).truncate(tr)
   end
 
@@ -226,7 +226,7 @@ class Profile < ActiveRecord::Base
 
   def self.change_group(year)
     years = Profile.where(:group => year, :is_active => true)
-    group = years.map{|p| [p.full_name(), p.id]}
+    group = years.map{|p| [p.full_name, p.id]}
     return group
   end
 

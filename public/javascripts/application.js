@@ -2,7 +2,7 @@
 jQuery(document).ready(function()
 {
 
-  jQuery('#submit').click(function(){
+  jQuery('#submit').live('click',function(){
     var valid = true;
     jQuery('[data-validate]:input:visible').each(function() {
       var settings = window[this.form.id];
@@ -64,30 +64,37 @@ jQuery(document).ready(function()
     return false;
   });
 
-  //  jQuery('.vote').live('click',function(){
-  //    rel = jQuery(this).parents('.poll_text').find('.poll');
-  //    spi = jQuery(this).parents('.poll_text').find('.spinner');
-  //    path = jQuery(this).attr('url');
-  //    value= jQuery("input:radio[name='poll[poll_options][option]']:checked").attr('value');
-  //    jQuery.ajax({
-  //      beforeSend: function(){
-  //        jQuery(spi).show();
-  //      },
-  //      complete: function(){
-  //        jQuery(spi).hide();
-  //      },
-  //      url: path,
-  //      dataType: "html",
-  //      type: 'POST',
-  //      data:{
-  //        option: value[0]
-  //      },
-  //      success: function(response){
-  //        jQuery(rel).replaceWith(response)
-  //       }
-  //     })
-  //    return false;
-  //  });
+  jQuery('form.new-vote').submit(function(){
+    rel = jQuery(this).parents('.poll_text').find('form.new-vote');
+    spi = jQuery(this).parents('.poll').find('.spinner');
+    path = jQuery(this).attr('action');
+    value = jQuery("form.new-vote input[type='radio']:checked").val();
+    jQuery.ajax({
+      beforeSend: function(){
+        jQuery(spi).show();
+      },
+      complete: function(){
+        jQuery(spi).hide();
+      },
+      url: path,
+      dataType: "html",
+      type: 'POST',
+      data:{
+        option: value
+      },
+      success: function(response){
+        if(value)
+        {
+          jQuery(rel).replaceWith(response)
+        }
+        else
+        {
+          jQuery(rel).children('div#error').replaceWith(response);
+        }
+      }
+    })
+    return false;
+  });
 
   jQuery('.rsvp_event').click(function(){
     var path = jQuery(this).attr('url');

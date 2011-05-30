@@ -11,8 +11,8 @@ class Poll < ActiveRecord::Base
   has_many :poll_responses, :dependent => :destroy
   validates :question, :presence => true
 
-  scope :public , :conditions => ["public = ?", true]
-  scope :open_polls , :conditions => ["status = ?", true]
+  scope :public , where("public = ?", true)
+  scope :open_polls , where("status = ?", true)
   
   accepts_nested_attributes_for :poll_options, :allow_destroy=> true , :reject_if=> proc{|attr| attr['option'].blank?}
   accepts_nested_attributes_for :poll_responses, :allow_destroy=> true

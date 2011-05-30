@@ -16,11 +16,11 @@ class StudentCheck < ActiveRecord::Base
   before_save :titlecase_fields, :split_name
   before_validation :fix_name
 
-  scope :year, lambda{|y| {:conditions => {:year => y}}}
-  scope :unregistered, :conditions => ["profile_id is null"]
+  scope :year, lambda{|y| where(:year => y)}
+  scope :unregistered, where("profile_id is null")
   scope :name_order, :order => 'first_name, last_name'
   scope :ordered, lambda { |*order| { :order => order.flatten.first}}
-  scope :with_profile, :include => :profile  
+  scope :with_profile, includes(:profile)
 
   def titlecase_fields
     %w[ name first_name middle_name last_name].each do |attribute|
@@ -80,10 +80,10 @@ class StudentCheck < ActiveRecord::Base
   end
 
   def self.with_emails
-    self.all(:conditions => "e_mail_1 != '' or e_mail_2 != ''")
+    self.where("e_mail_1 != '' or e_mail_2 != ''").all
   end
 
-  def self.get_students(options)
+  def self.get_students(options)    
     scope = StudentCheck.scoped({})
     scope = scope.ordered("student_checks.year,student_checks.first_name,student_checks.last_name")
     scope = scope.with_profile
