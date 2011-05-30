@@ -1,28 +1,27 @@
 class User < ActiveRecord::Base
 
   ROLES = ['admin', 'user']
-  
   include Humanizer
-  require_human_on :create
-  has_one :profile
-  has_many :authentications
-  before_save :require_references
-  after_create :set_role
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login,
     :first_referral_person_name, :first_referral_person_year,
     :second_referral_person_name, :second_referral_person_year,
     :third_referral_person_name,:third_referral_person_year,
-    :additional_message, :profile_attributes, :terms_of_service, :role,
-    :humanizer_answer, :humanizer_question_id
+    :additional_message, :profile_attributes, :terms_of_service,
+    :humanizer_answer, :humanizer_question_id, :role
+  require_human_on :create
+  before_save :require_references
+  after_create :set_role
 
   validates :login, :presence => true,
-                    :length => {:within => 3..25},
-                    :uniqueness => true,
-                    :format=> {:with => /^\w+$/i, :message=>"can only contain letters and numbers."}
+    :length => {:within => 3..25},
+    :uniqueness => true, :format=> {:with => /^\w+$/i, :message=>"can only contain letters and numbers."}
   validates_acceptance_of  :terms_of_service, :message => "Must be accepted"
-  
+  validates :requested_new_email, :format=> {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+
+  has_one :profile
+  has_many :authentications
   accepts_nested_attributes_for :profile
 
   def set_role
@@ -56,7 +55,7 @@ class User < ActiveRecord::Base
   end
 
   def check_authentication(type)
-    authentications.where(:provider => type).first
+    self.authentications.where(:provider => type).first
   end
 
   def match_details
