@@ -1,5 +1,4 @@
 - profile ||= @profile
-- with_form ||= false
 - with_wall_to_wall ||= false
 - comments ||= @comments
 - title = "Comments #{link_to '(Our Wall-to-Wall)', profile_comments_path(profile) if @p && with_wall_to_wall && !me && @p.has_wall_with(profile)}"
