@@ -10,7 +10,7 @@ class FeedbacksController < ApplicationController
   
   def new
     @feedback = Feedback.new
-    render :layout=>"application"
+    render :layout => "application"
   end
 
   def create
@@ -21,13 +21,12 @@ class FeedbacksController < ApplicationController
       params[:feedback][:email] = @p.user.email
       @feedback = @p.feedbacks.build(params[:feedback])
     end
-
     if @feedback.save
       flash[:notice] = "Thank you for your message.  A member of our team will respond to you shortly."
       redirect_to :root
     else
-      flash[:error] = "Can not create feedback"
-      render :new
+      flash[:error] = "Feedback creation failed"
+      render "new", :layout => 'application'
     end
   end
 
