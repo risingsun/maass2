@@ -144,7 +144,7 @@ body .cke_dialog
 {
   background-color:white;
   border:1px solid #a0a0a0;
-  padding:1px 0;
+  padding: 0px 60px 0;
 }
 .cke_skin_kama .cke_browser_ie.cke_rtl div.cke_dialog_ui_input_text
 {
