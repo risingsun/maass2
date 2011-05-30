@@ -64,11 +64,11 @@ jQuery(document).ready(function()
     return false;
   });
 
-  jQuery('form.poll').submit(function(){
-    rel = jQuery(this).parents('.poll_text').find('form.poll');
+  jQuery('form.new-vote').submit(function(){
+    rel = jQuery(this).parents('.poll_text').find('form.new-vote');
     spi = jQuery(this).parents('.poll').find('.spinner');
     path = jQuery(this).attr('action');
-    value= jQuery("form.poll input[type='radio']:checked").val();
+    value = jQuery("form.new-vote input[type='radio']:checked").val();
     jQuery.ajax({
       beforeSend: function(){
         jQuery(spi).show();
@@ -83,7 +83,14 @@ jQuery(document).ready(function()
         option: value
       },
       success: function(response){
-        jQuery(rel).replaceWith(response)
+        if(value)
+        {
+          jQuery(rel).replaceWith(response)
+        }
+        else
+        {
+          jQuery(rel).children('div#error').replaceWith(response);
+        }
       }
     })
     return false;

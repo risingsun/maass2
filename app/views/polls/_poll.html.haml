@@ -17,7 +17,8 @@
       = render 'polls/poll_response', :poll => poll
     - else
       #user[poll]
-        = semantic_form_for(:poll,:url => votes_path) do |f|
+        = semantic_form_for(:poll,:url => votes_path, :html => {:class => 'new-vote'}) do |f|
+          #error
           = f.semantic_fields_for(:poll_options) do |form|
             = render "polls/option" , :y=> form, :poll => poll
           %button.buttons{:type => "submit"}

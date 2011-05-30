@@ -14,15 +14,6 @@ module InMessaging
   end
 
   module InstanceMethods
-
-    def has_received_messages?
-      received_message.exists?
-    end
-
-    def has_unread_messages?
-      unread_messages.exists?
-    end
-
   end
 
 end

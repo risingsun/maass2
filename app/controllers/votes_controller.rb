@@ -1,15 +1,21 @@
 class VotesController < ApplicationController
 
   def create
-    @args = params.size == 5 ? true : false
+    @args = params.size == 3 ? true : false
     if @args
       @profile = current_user.profile
-      @option = PollOption.find(params[:poll]["poll_options"]["option"])
+      @option = PollOption.find(params["option"])
       @vote = @profile.poll_responses.new(:poll_option => @option, :poll => @option.poll)
       @vote.save
       respond_to do |format|
         format.js do
-          render 'polls/poll_response', :poll => @vote.poll
+          render :partial => 'polls/poll_response', :locals => {:poll => @vote.poll}
+        end
+      end
+    else
+      respond_to do |format|
+        format.js do
+          render :text => "<div id='error' class='error_msg'>Please select a option</div>"
         end
       end
     end

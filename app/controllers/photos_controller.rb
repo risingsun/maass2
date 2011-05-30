@@ -9,18 +9,6 @@ class PhotosController < ApplicationController
     @photo = @album.photos.build
   end
   
-  def create
-    @album = Album.find(params[:album_id])
-    @photo = @album.photos.new(params[:photo])
-    if @photo.save
-      flash[:notice] = "Successfully created image."
-      redirect_to album_path(@album)
-    else
-      flash[:error] = "Image was not succesfully created"
-      render 'new'
-    end
-  end
-
   def edit
   end
 
