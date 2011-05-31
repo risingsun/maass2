@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
 
-  load_and_authorize_resource :except=>[:search, :friend_search, :search_group , :search_location, :batch_details]
+  load_and_authorize_resource :except=>[:set_profile_image, :search, :friend_search, :search_group , :search_location, :batch_details]
   
   before_filter :load_profile, :only => [:create, :edit, :update, :edit_account, :show, :user_friends, :active_user]  
   respond_to :html, :json, :only =>[:active_user]
@@ -127,6 +127,17 @@ class ProfilesController < ApplicationController
       end
     end
     redirect_to root_path
+  end
+
+  def set_profile_image
+    @p.icon = open(params[:icon])
+    @p.save
+    flash[:notice] = "Profile image updated"
+    respond_to do |format|
+      format.js do
+        render :partial => 'layouts/flashdisplay'
+      end
+    end
   end
 
   private

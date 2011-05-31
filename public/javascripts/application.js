@@ -1,6 +1,50 @@
 
 jQuery(document).ready(function()
 {
+  jQuery('img.profile-image').click(function(){
+    jQuery.ajax({
+       beforeSend: function(){
+        jQuery('div.spinner').show();
+      },
+      complete: function(){
+        jQuery('div.spinner').hide();
+      },
+      url: jQuery(this).attr('url'),
+      dataType: "html",
+      type: 'GET',
+      data: {
+        icon: jQuery(this).attr('src')
+      },
+      success: function(response){
+        jQuery('#flash_message').replaceWith(response)
+       // jQuery(rel).text(data).fadeIn("fast");
+      }
+    });
+    return false;
+  });
+
+  jQuery('.friend_status').live('click',function(){
+    rel = jQuery(this).parents('.profile_action').find('.profile');
+    spi = jQuery(this).parents('.profile_action').find('.spinner');
+    path = jQuery(this).attr('href');
+    method = jQuery(this).attr('type');
+    jQuery.ajax({
+      beforeSend: function(){
+        jQuery(spi).show();
+      },
+      complete: function(){
+        jQuery(spi).hide();
+      },
+      url: path,
+      dataType: "html",
+      type: method,
+      success: function(response){
+        jQuery(rel).replaceWith(response)
+      }
+    });
+    return false;
+
+  })
 
   jQuery('#submit').live('click',function(){
     var valid = true;
