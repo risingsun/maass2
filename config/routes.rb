@@ -4,7 +4,7 @@ Maass2::Application.routes.draw do
   resources :users, :only => [:update]
 
   match "/auth/:provider/callback" => "authentications#create"
-  match "/auth/failure" => "authentications#failure"
+  match "/auth/failure" => "authentications#failure"  
   match '/feedback' => 'feedbacks#new', :as => 'feedback'
   resources :authentications  
   resources :votes, :only => [:create]
@@ -13,8 +13,8 @@ Maass2::Application.routes.draw do
     resources :photos 
     put 'upload_photo', :on => :member
     get 'facebook_album', :on => :collection
-    get 'facebook_album_photos', :on => :collection
-    
+    get 'facebook_album_photos', :on => :collection    
+
   end
 
   namespace :admin do
