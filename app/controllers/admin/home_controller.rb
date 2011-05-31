@@ -28,6 +28,7 @@ class Admin::HomeController < ApplicationController
           :system_message => true)
       end
     end
+    TweetsWorker.new.send_blog_tweets(blog.id)
     redirect_to :back
     flash[:notice] = "Blog was successfully sent"
   end

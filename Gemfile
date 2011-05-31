@@ -56,6 +56,7 @@ gem 'fb_graph'
 gem 'disqus'
 gem 'RedCloth'
 gem 'client_side_validations'
+gem 'twitter'
 
 # Use unicorn as the web server
 # gem 'unicorn'
