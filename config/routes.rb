@@ -78,6 +78,7 @@ Maass2::Application.routes.draw do
     get 'batch_details', :on=>:collection
     get 'search_group', :on=>:collection
     get 'search_location', :on=>:collection
+    get 'set_profile_image', :on=>:collection
   end
   resources :student_checks do
     get 'view_year_students', :on=> :collection

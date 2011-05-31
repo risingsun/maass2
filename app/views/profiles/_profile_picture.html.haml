@@ -1,0 +1,4 @@
+= link_to image_tag("https://graph.facebook.com/#{current_user.check_authentication('facebook').uid}/picture", :width => '80px', :class => 'profile-image', :url => set_profile_image_profiles_path), "#"
+= link_to image_tag("http://api.twitter.com/1/users/profile_image/#{@p.twitter_username}", :width => '80px', :class => 'profile-image', :url => set_profile_image_profiles_path), "#"
+= link_to image_tag(avatar_url(current_user), :class => 'profile-image', :url => set_profile_image_profiles_path), "#"
+.spinner= image_tag('spinner.gif')
