@@ -1,5 +1,6 @@
 class TweetsWorker
 
+  include ActionView::Helpers::TextHelper
   include Rails.application.routes.url_helpers
 
   def initialize
@@ -8,7 +9,13 @@ class TweetsWorker
 
   def send_blog_tweets(blog)    
     blog = Blog.find(blog)
-    msg = "New Blog " + (blog.title).truncate(115)
+    msg = "New Blog " + truncate(blog.title, :length=> 115)
+    TweetsWorker.delay.twitter_post(@@twitter, msg)
+  end
+
+  def send_event_tweets(event)
+    evt = Event.find(event)
+    msg =  "New Event " + truncate(evt.title, :length => 115)
     TweetsWorker.delay.twitter_post(@@twitter, msg)
   end
   

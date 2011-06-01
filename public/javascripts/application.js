@@ -3,7 +3,7 @@ jQuery(document).ready(function()
 {
   jQuery('img.profile-image').click(function(){
     jQuery.ajax({
-       beforeSend: function(){
+      beforeSend: function(){
         jQuery('div.spinner').show();
       },
       complete: function(){
@@ -17,7 +17,6 @@ jQuery(document).ready(function()
       },
       success: function(response){
         jQuery('#flash_message').replaceWith(response)
-       // jQuery(rel).text(data).fadeIn("fast");
       }
     });
     return false;

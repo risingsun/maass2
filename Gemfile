@@ -57,6 +57,7 @@ gem 'disqus'
 gem 'RedCloth'
 gem 'client_side_validations'
 gem 'twitter'
+gem 'acts_as_tree'
 
 # Use unicorn as the web server
 # gem 'unicorn'

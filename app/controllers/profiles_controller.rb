@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
     render :layout => "plain"
   end
 
-   def update
+  def update
     case params[:commit]
     when "Set Default"
       @profile.update_attributes(params[:profile])
@@ -120,7 +120,7 @@ class ProfilesController < ApplicationController
       @user.requested_new_email= nil
       @user.confirmation_token= nil
       @user.confirmed_at= DateTime.now
-      if  @profile.save
+      if @profile.save
         flash[:notice] = "Your email has been updated"
       else
         flash[:error] = "This email has already been taken"

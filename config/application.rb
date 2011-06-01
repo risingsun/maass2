@@ -27,6 +27,7 @@ module Maass2
     # config.time_zone = 'Central Time (US & Canada)'
     config.time_zone = 'New Delhi'
     config.active_record.default_timezone = :local
+    config.active_record.observers = :event_observer
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -42,7 +43,7 @@ module Maass2
     config.filter_parameters += [:password]
     config.generators do |g|
       g.test_framework :rspec
-    # g.template_engine :haml
+      # g.template_engine :haml
     end
   end
 end
