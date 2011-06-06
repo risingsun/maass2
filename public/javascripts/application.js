@@ -85,28 +85,6 @@ jQuery(document).ready(function()
     return false;
   });
 
-  jQuery('.friend_status').live('click',function(){
-    rel = jQuery(this).parents('.profile_action').find('.profile');
-    spi = jQuery(this).parents('.profile_action').find('.spinner');
-    path = jQuery(this).attr('href');
-    method = jQuery(this).attr('type');
-    jQuery.ajax({
-      beforeSend: function(){
-        jQuery(spi).show();
-      },
-      complete: function(){
-        jQuery(spi).hide();
-      },
-      url: path,
-      dataType: "html",
-      type: method,
-      success: function(response){
-        jQuery(rel).replaceWith(response)
-      }
-    });
-    return false;
-  });
-
   jQuery('form.new-vote').submit(function(){
     rel = jQuery(this).parents('.poll_text').find('form.new-vote');
     spi = jQuery(this).parents('.poll').find('.spinner');
