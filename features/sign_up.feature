@@ -6,21 +6,17 @@ Feature: Sign Up
   Scenario: sign up
     Given I am not authenticated
     And I am on the home page
-    When I follow "Sign Up"
+    When I follow "Signup"
     And I fill in the following:
-        |Email                 | pariharkirti24@gmail.com |
-        |Password              | 123456 |
-        |Password confirmation | 123456 |
-        |Login             | kirti  |
-  
-    And I press "Sign Up"
+        | Email                           | amitk12@gmail.com |
+        | user_password                   | abcdefg |
+        | user_password_confirmation      | abcdefg |
+        | Login                           | amitkkk   |
+        | First Name                      | Amit   |
+        | Last Name                       | Gupta  |
+    And I select "Male" from "Gender"
+    And I select "2011" from "Group"
+    And I check "user_terms_of_service"
+    And I press "submit"
     Then show me the page
-    Then I should see "You have signed up successfully. If enabled, a confirmation was sent to your e-mail. "
-    And I should be on the home page
-
-  Scenario: create profile when user profile does not exist
-    Given I am a valid user
-    And I sign in with valid data
-    And no user profile exists
-    When I follow "Edit Profile"
-    Then show me the page
+    And I should be on the sign in page

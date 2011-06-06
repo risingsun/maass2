@@ -3,7 +3,7 @@ Feature: Create Blog
     As a user
     I want to create a new blog
 
-Scenario: Creta e a new Blog
+Scenario: Create a new Blog
     Given I am a valid user
     And I sign in with valid data
     And show me the page

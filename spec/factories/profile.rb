@@ -1,9 +1,11 @@
 Factory.define :profile do |p|
   p.user_id "1"
-  p.first_name "kirti"
-  p.last_name "parihar"
+  p.first_name "Amit"
+  p.last_name "Gupta"
   p.title "x"
   p.blood_group "x"
+  p.group "2011"
+  p.gender "Male"
   p.house_name "x"
   p.date_of_birth "x"
   p.relationship_status "x"

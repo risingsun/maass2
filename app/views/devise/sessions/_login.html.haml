@@ -12,7 +12,7 @@
       = check_box_tag 'remember_me', 1, false, :name => 'user[remember_me]', :class => "checkbox"
       %label.label_small{:for => "remember"} Remember me
     .login_btn_container
-      =image_submit_tag 'login.png'
+      =image_submit_tag 'login.png', :value=>"submit"
   .login_links_container= link_to "Forgot Password", new_password_path(resource_name), :class => "grey_links_sml"
   .signup
   = link_to image_tag('signup.png'), new_user_registration_path

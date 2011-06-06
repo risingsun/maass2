@@ -47,123 +47,123 @@ form.formtastic fieldset > ol > li {
 }
 
 form.formtastic fieldset > ol > li.string input {
-    max-width: 74%;
+  max-width: 74%;
 }
 
 form.formtastic fieldset > ol > li.optional {
 
 }
 
-  form.formtastic input.linkedin_icon{
-    background-image: url(/images/linkedin.jpg);
-    background-repeat: no-repeat;
-    padding:4px 4px 4px 20px;
-    width: 226px;
-  }
-  form.formtastic input.twitter_icon{
-    background-image: url(/images/twitter_icon.png);
-    background-repeat: no-repeat;
-    padding:4px 4px 4px 20px;
-    width: 226px;
-  }
-  form.formtastic input.yahoo_icon{
-    background-image: url(/images/yahoo.png);
-    background-repeat: no-repeat;
-    padding:4px 4px 4px 20px;
-    width: 226px;
-  }
-  form.formtastic input.skype_icon{
-    background-image: url(/images/skype.ico);
-    background-repeat: no-repeat;
-    padding:4px 4px 4px 20px;
-    width: 226px;
-  }
-  form.formtastic input.msn_icon{
-    background-image: url(/images/live.png);
-    background-repeat: no-repeat;
-    padding: 4px 4px 4px 20px;
-    width: 226px;
-  }
-  form.formtastic input.aim_icon{
-    background-image: url(/images/aim.jpg);
-    background-repeat: no-repeat;
-    padding: 4px 4px 4px 20px;
-    width: 226px;
-  }
-  form.formtastic input.flickr_icon{
-    background-image: url(/images/flickr.jpg);
-    background-repeat: no-repeat;
-    padding: 4px 4px 4px 20px;
-    width: 226px;
-  }
-  form.formtastic input.gtalk_icon{
-    background-image: url(/images/gtalk.jpg);
-    background-repeat: no-repeat;
-    padding: 4px 4px 4px 20px;
-    width: 226px;
-  }
-  form.formtastic input.delicious_icon{
-    background-image: url(/images/delicious.jpg);
-    background-repeat: no-repeat;
-    padding: 4px 4px 4px 20px;
-    width: 226px;
-  }
-  form.formtastic input.large_text_box{
-    width: 333px;
-    border: #CCCCCC 1px solid;
-  }
-  form.formtastic fieldset > ol > li p.inline-errors {
-    color: #CC0000;
-    margin: 0.5em 0 10px 71%;
-    font-size: 11px;
-  }
-  form.formtastic fieldset > ol > li.password input{
-    max-width: 20em;
-  }
-  form.formtastic ol, form.formtastic ul .cursor{
-    list-style:none;
-    margin: 0px 6px;
-    font-size: medium;
-  }
+form.formtastic input.linkedin_icon{
+  background-image: url(/images/linkedin.jpg);
+  background-repeat: no-repeat;
+  padding:4px 4px 4px 20px;
+  width: 226px;
+}
+form.formtastic input.twitter_icon{
+  background-image: url(/images/twitter_icon.png);
+  background-repeat: no-repeat;
+  padding:4px 4px 4px 20px;
+  width: 226px;
+}
+form.formtastic input.yahoo_icon{
+  background-image: url(/images/yahoo.png);
+  background-repeat: no-repeat;
+  padding:4px 4px 4px 20px;
+  width: 226px;
+}
+form.formtastic input.skype_icon{
+  background-image: url(/images/skype.ico);
+  background-repeat: no-repeat;
+  padding:4px 4px 4px 20px;
+  width: 226px;
+}
+form.formtastic input.msn_icon{
+  background-image: url(/images/live.png);
+  background-repeat: no-repeat;
+  padding: 4px 4px 4px 20px;
+  width: 226px;
+}
+form.formtastic input.aim_icon{
+  background-image: url(/images/aim.jpg);
+  background-repeat: no-repeat;
+  padding: 4px 4px 4px 20px;
+  width: 226px;
+}
+form.formtastic input.flickr_icon{
+  background-image: url(/images/flickr.jpg);
+  background-repeat: no-repeat;
+  padding: 4px 4px 4px 20px;
+  width: 226px;
+}
+form.formtastic input.gtalk_icon{
+  background-image: url(/images/gtalk.jpg);
+  background-repeat: no-repeat;
+  padding: 4px 4px 4px 20px;
+  width: 226px;
+}
+form.formtastic input.delicious_icon{
+  background-image: url(/images/delicious.jpg);
+  background-repeat: no-repeat;
+  padding: 4px 4px 4px 20px;
+  width: 226px;
+}
+form.formtastic input.large_text_box{
+  width: 333px;
+  border: #CCCCCC 1px solid;
+}
+form.formtastic fieldset > ol > li p.inline-errors {
+  color: #CC0000;
+  margin: 0.5em 0 10px 71%;
+  font-size: 11px;
+}
+form.formtastic fieldset > ol > li.password input{
+  max-width: 20em;
+}
+form.formtastic ol, form.formtastic ul .cursor{
+  list-style:none;
+  margin: 0px 6px;
+  font-size: medium;
+}
 
-  form.formtastic textarea {
-    border: #CCCCCC 1px solid;
-    font-size: 11px;
-    width: 200px;
-    height: 150px;
-    margin-right: 5px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    font-family: Arial, Helvetica, sans-serif;
-    float: left;
-    padding: 3px;
-    position: relative;
- }
+form.formtastic textarea {
+  border: #CCCCCC 1px solid;
+  font-size: 11px;
+  width: 200px;
+  height: 150px;
+  margin-right: 5px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  float: left;
+  padding: 3px;
+  position: relative;
+}
 
-  form.formtastic fieldset > ol > li.text textarea.big_text_area{
-    border: #CCCCCC 1px solid;
-    font-size: 11px;
-    width: 520px;
-    height: 325px;
-    margin-right: 5px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    font-family: Arial, Helvetica, sans-serif;
-    float: left;
-    padding: 3px;
-    margin-left: 5px;
-  }
+form.formtastic fieldset > ol > li.text textarea.big_text_area{
+  border: #CCCCCC 1px solid;
+  font-size: 11px;
+  width: 520px;
+  height: 325px;
+  margin-right: 5px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  float: left;
+  padding: 3px;
+  margin-left: 5px;
+}
 
-  form.formtastic fieldset > ol > li.string input.big_text_field{
-    border: #CCCCCC 1px solid;
-    font-size: 11px;
-    width: 520px;
-    margin-right: 5px;
-    padding:3px;
-    margin-left: 5px;
-  }
+form.formtastic fieldset > ol > li.string input.big_text_field{
+  border: #CCCCCC 1px solid;
+  font-size: 11px;
+  width: 520px;
+  margin-right: 5px;
+  padding:3px;
+  margin-left: 5px;
+}
 
- form.formtastic fieldset > ol > li.text textarea.post_text_area_width {
+form.formtastic fieldset > ol > li.text textarea.post_text_area_width {
   margin-right:33px;
   width:924px;
 }
