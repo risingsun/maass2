@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile
 
   def set_role
-    if User.all.blank?
+    if User.all.size == 1
       self.role = 'admin'
     else
       self.role = 'user'

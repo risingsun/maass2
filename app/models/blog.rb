@@ -9,8 +9,7 @@ class Blog < ActiveRecord::Base
 
   include UserFeeds
 
-  after_create :create_my_feed
-  after_create :create_other_feeds
+  after_create :create_my_feed, :create_other_feeds
 
   define_index do
     indexes :title

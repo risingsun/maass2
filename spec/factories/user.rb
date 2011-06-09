@@ -1,8 +1,8 @@
 Factory.define :user do |u|
-  u.email "amitk12@gmail.com"
+  u.sequence(:email) {|n| "amit#{n}@gmail.com"}
   u.password "abcdefg"
   u.password_confirmation "abcdefg"
-  u.login "amitkkk"
+  u.sequence(:login) {|n| "amit#{n}"}
 end
 
 Factory.define :account do |a|
@@ -52,13 +52,6 @@ Factory.define :notification do |n|
   n.delete_friend_notification "true"
 end
 
-Factory.define :blog do |b|
-  b.profile_id "1"
-  b.title "hi"
-  b.body "my first blog"
-  b.is_sent "true"
-end
-
 Factory.define :work do |b|
   b.profile_id "1"
   b.occupation "trainee"
@@ -84,10 +77,4 @@ Factory.define :message do |m|
   m.sender_flag "yes"
   m.receiver_flag "yes"
   m.system_message "yes"
-end
-
-Factory.define :friend do |f|
-  f.inviter_id "1"
-  f.invited_id "5"
-  f.status "yes"
 end

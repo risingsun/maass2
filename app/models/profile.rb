@@ -17,9 +17,9 @@ class Profile < ActiveRecord::Base
   has_many :blogs, :dependent => :destroy
   has_many :albums, :dependent => :destroy
   has_many :comments, :as => :commentable
-  has_many :profile_events,:dependent => :destroy
+  has_many :profile_comments, :class_name => "Comment"  
   has_many :events, :through => :profile_events
-  has_many :profile_comments, :class_name => "Comment"
+  has_many :profile_events,:dependent => :destroy
   has_many :feedbacks
   has_one  :notification_control
   has_many :polls, :dependent => :destroy
@@ -47,7 +47,8 @@ class Profile < ActiveRecord::Base
     :small_60 =>  "60x60#",
     :small_20 =>  "20x20#"
   }
-  validates :first_name,:middle_name,:last_name,:maiden_name,:spouse_name,:professional_qualification, :length => { :maximum => 30 }
+  validates :first_name, :middle_name, :last_name, :maiden_name, :spouse_name, :professional_qualification, :length => { :maximum => 30 }
+  validates :first_name, :last_name , :length => { :minimum => 3 }
   validates :first_name, :last_name, :gender, :group, :presence => true
   validates_attachment_content_type :icon, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   

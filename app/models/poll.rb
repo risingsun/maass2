@@ -18,8 +18,7 @@ class Poll < ActiveRecord::Base
   accepts_nested_attributes_for :poll_responses, :allow_destroy=> true
 
   include UserFeeds
-  after_create :create_my_feed
-  after_create :create_other_feeds
+  after_create :create_my_feed, :create_other_feeds
 
   def select_poll_options
     option_array = []
