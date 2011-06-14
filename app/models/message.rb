@@ -2,7 +2,7 @@ class Message < ActiveRecord::Base
 
   belongs_to :sender, :class_name => "Profile"
   belongs_to :receiver, :class_name => "Profile"
-  validates :body,:subject, :presence => true
+  validates :body, :subject, :presence => true
 
   def delete_message(profile)
     return if delete_system_message
@@ -28,7 +28,7 @@ class Message < ActiveRecord::Base
   end
 
   def delete_message_in_db
-    unless sender_flag && receiver_flag
+    unless sender_flag || receiver_flag
       self.destroy
     end
   end

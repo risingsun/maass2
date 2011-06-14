@@ -68,13 +68,3 @@ Factory.define :education do |b|
   b.institution "MCA"
   b.association :profile
 end
-
-Factory.define :message do |m|
-  m.profile_id "1"
-  m.subject "hi"
-  m.receiver_id "5"
-  m.read "yes"
-  m.sender_flag "yes"
-  m.receiver_flag "yes"
-  m.system_message "yes"
-end
