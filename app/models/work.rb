@@ -3,7 +3,7 @@ class Work < ActiveRecord::Base
   belongs_to :profile
 
   def company_website= val
-    write_attribute(:company_website, fix_http(val))
+    self[:company_website] = fix_http(val)
   end
 
   protected
@@ -14,4 +14,3 @@ class Work < ActiveRecord::Base
   end
 
 end
-

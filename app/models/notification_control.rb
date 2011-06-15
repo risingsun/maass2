@@ -9,7 +9,7 @@ class NotificationControl < ActiveRecord::Base
 
   NOTIFICATION_FIELDS.each do |x|
     define_method("#{x}=") do |value|
-      write_attribute(x,parse_bit(value))
+      self[x]= parse_bit(value)
     end
   end
 

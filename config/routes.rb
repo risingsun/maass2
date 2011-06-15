@@ -8,6 +8,7 @@ Maass2::Application.routes.draw do
   resources :authentications  
   resources :votes, :only => [:create]
   resources :feedbacks
+  
   resources :albums do
     resources :photos 
     put 'upload_photo', :on => :member
@@ -79,11 +80,13 @@ Maass2::Application.routes.draw do
     get 'search_location', :on=>:collection
     get 'set_profile_image', :on=>:collection
   end
+
   resources :student_checks do
     get 'view_year_students', :on=> :collection
     post 'send_bulk_invite', :on=> :collection
     post 'send_invite', :on=> :member
   end
+
   resources :home do
     get 'photo_gallery', :on => :collection
   end
@@ -93,6 +96,7 @@ Maass2::Application.routes.draw do
   end
 
   root :to=> 'home#index'
+  
   match '/new',  :to => 'blogs#new'
   match '/ue/:hash/:profile_id', :to=> 'profiles#update_email', :as=>:update_email
   match '/latest_comments.rss', :to=> 'home#latest_comments', :as=>:latest_comments, :format=>'rss'

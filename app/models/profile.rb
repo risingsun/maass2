@@ -190,7 +190,7 @@ class Profile < ActiveRecord::Base
   end
 
   def premarital_lastname
-    (female? and !maiden_name.blank?) ? maiden_name : last_name
+    (female? and maiden_name.present?) ? maiden_name : last_name
   end
   
   def self.new_member
@@ -218,7 +218,7 @@ class Profile < ActiveRecord::Base
   end
 
   def self.get_batch_count
-    active.all(:group => 'profiles.group', :order => 'profiles.group', :select => 'profiles.group, count(*) as count')
+    active.select('profiles.group, count(*) as count').group('profiles.group').order('profiles.group')
   end  
 
   def self.latest_in_batch(group)
@@ -238,7 +238,6 @@ class Profile < ActiveRecord::Base
   def self.admin_emails
     User.all(:conditions => ["users.admin = true"]).map(&:email)
   end
-
 
   def wants_email_notification?(type)
     notification_control && notification_control.check_email_notification?(type)

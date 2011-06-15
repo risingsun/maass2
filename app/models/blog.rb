@@ -17,9 +17,7 @@ class Blog < ActiveRecord::Base
   end
 
   def self.blog_groups
-    all(:select => "count(*) as cnt, MONTHNAME(updated_at) as month,YEAR(updated_at) as year" ,
-        :group => "month,year",
-        :order => "year DESC, MONTH(updated_at) DESC" )
+    select("count(*) as cnt, MONTHNAME(updated_at) as month,YEAR(updated_at) as year").group("month,year").order("year DESC, MONTH(updated_at) DESC")
   end
 
   def sent_by

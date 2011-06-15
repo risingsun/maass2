@@ -2,7 +2,7 @@
   = rounded_corner(:title => 'Change your password') do
     = f.inputs do
       = f.input :reset_password_token, :as => :hidden
-      = f.input :password, :as => :password, formtastic_zebra
+      = f.input :password, formtastic_zebra(:as => :password)
       = f.input :password_confirmation, formtastic_zebra(:as => :password)
     %button.buttons{:type => "submit"}
       = image_tag('change-password.png')

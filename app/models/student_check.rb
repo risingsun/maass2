@@ -65,7 +65,7 @@ class StudentCheck < ActiveRecord::Base
   end
 
   def self.unregistered_batch_count
-    details = unregistered.all(:group => 'student_checks.year', :order => 'student_checks.year', :select => 'student_checks.year, count(*) as count')
+    details = unregistered.select('student_checks.year, count(*) as count').group('student_checks.year').order('student_checks.year')
     details_hash = {}
     details.each {|p| details_hash[p.year] = p.count.to_i}
     details_hash
