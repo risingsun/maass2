@@ -51,7 +51,7 @@ class StudentChecksController < ApplicationController
   end
 
   def send_invite
-    ArNotifier.delay.invite(@student) unless @student.emails.empty?
+    ArNotifier.delay.invite(@student_check) unless @student_check.emails.empty?
     flash[:notice] = 'Invite sent.'
     redirect_to student_checks_path
   end
