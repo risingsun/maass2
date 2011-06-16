@@ -1,0 +1,62 @@
+%html{:xmlns=>"http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title= "Blog post titled #{@blog.title} by #{@blog.sent_by}"
+  %body
+    %table{:width => "627", :border => "0", :align => "center", :cellpadding => "0", :cellspacing => "0"}
+      %tr
+        %th{:scope=> "row"}
+          = image_tag("header_shadow.jpg", :width=>"658", :height=>"14", :border=>"0", :align=>"absbottom" )
+    %table{:width => "627", :border => "0", :align => "center", :cellpadding => "0", :cellspacing => "0", :bgcolor => "#f5f5f5"}
+      %tr
+        %th{:scope => "row"}
+          = link_to image_tag("mailer_header.jpg", :width=>"625", :height=>"108", :border=>"0",:align=>"top" ), root_url
+    %table{:width => "627", :border => "0", :align => "center", :bgcolor => "#f5f5f5"}
+      %tr
+        %th{:scope=>"row"}
+          &nbsp;
+    %table{:width =>"627", :border =>"0", :align => "center", :cellpadding => "0", :cellspacing => "0", :bgcolor => "#e9e9e9"}
+      %tr
+        %th{:width=> "101", :scope=> "row"}
+          %span{:style=> "font-family: Arial, Helvetica, sans-serif;"}
+            = set_icon(@blog.profile, 'small')
+        %th{:width => "516", :scope => "row"}
+          %div{:align => "left"}
+            %span{:style => "font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-color: FF0000"}
+              = @blog.title
+    %table{:width => "627", :border => "0", :align => "center", :cellpadding => "0", :cellspacing => "0", :bgcolor => "#f5f5f5", :style => "text-align:left;"}
+      %tr
+        %th{:width => "21", :bgcolor => "#f5f5f5", :scope => "row"}
+          &nbsp;
+        %th{:width => "386", :bgcolor => "#f5f5f5", :scope => "row"}
+          = @blog.body.html_safe
+        %th{:width => "13", :bgcolor => "#f5f5f5", :scope => "row"}
+          &nbsp;
+        %td{:width => "189", :background => 'path_to_image("#{THEME_IMG}/mailer/bg.jpg")' , :bgcolor => "#E1E1E1"}
+          %div{:background-image => "url(/images/widget_small_bg.gif)", :border => "0", :background-color => "#FFFFFF"}
+            %span{:background-color=> "#FFFFFF"}
+            %div
+            %h2{:style=>"font-size:11px;"}Supporters
+            -AD_ARRAY.each do |ads|
+            =  link_to image_tag("/ads/#{ads[:image]}",:title => ads[:alt],
+                                      :alt => ads[:alt]), ads[:link],:popup => true ,:style => "color:#FFFFFF"
+            %span{:background-image => "url(/maass/images/widget_small_btm.gif)", :width => "202px;", :height => "6px;", :background-repeat => "no-repeat"}
+    %table{:width =>"627", :height =>"29", :border =>"0", :align => "center", :cellpadding => "0", :cellspacing =>"0", :bgcolor => "#f5f5f5"}
+      %tr
+        %th{:scope =>"row"}
+          Click
+          = link_to "Here",  profile_blog_url(@blog.profile, @blog)
+          to comment on this blog.
+    %table{:width => "627", :border =>"0", :align => "center", :cellpadding => "0", :cellspacing => "0", :bgcolor =>"#f5f5f5"}
+      %tr
+        %th{:scope =>"row"}=  image_tag("line.jpg", :width=>"485", :height=>"1")
+          %table{:width => "627", :border => "0", :cellpadding => "0", :cellspacing => "0", :bgcolor => "#f5f5f5"}
+            %tr
+              %td{:scope => "row"}
+                %div{:align => "center"}
+                  %p{:style => "font-family: Helvetica, sans-serif;font-size:10px;color: #FF6600;"}
+                    = SITE_DESC
+    %table{ :width => "627", :border => "0", :align => "center", :cellpadding => "0", :cellspacing => "0"}
+      %tr
+        %th{:scope => "row"}
+          =  image_tag("footer_shadow1.jpg",:width=> "658", :height=>"67")
