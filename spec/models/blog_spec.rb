@@ -35,7 +35,8 @@ describe Blog do
   end
 
   it "should return blog_groups" do
-    Blog.blog_groups.should be_kind_of(Array)
+   Factory(:blog)
+   Blog.blog_groups.all.should be_kind_of(Array)
   end
 
   it "should comment on blog" do

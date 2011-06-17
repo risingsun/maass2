@@ -5,12 +5,6 @@ Factory.define :user do |u|
   u.sequence(:login) {|n| "amit#{n}"}
 end
 
-Factory.define :account do |a|
-  a.user_id "1"
-  a.default_permission "null"
-  a.association :user
-end
-
 Factory.define :permission do |p|
   p.profile_id "1"
   p.permission_field "website"
