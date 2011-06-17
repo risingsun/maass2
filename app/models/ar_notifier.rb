@@ -6,6 +6,10 @@ class ArNotifier < ActionMailer::Base
   def sent_news(blog,profile)
     @blog=blog
     @profile=profile
+    attachments['header_shadow.jpg'] = File.read("#{Rails.root}/public/images/header_shadow.jpg")
+    attachments['mailer_header.jpg'] = File.read("#{Rails.root}/public/images/mailer_header.jpg")
+    attachments['line.jpg'] = File.read("#{Rails.root}/public/images/line.jpg")
+    attachments['footer_shadow1.jpg'] = File.read("#{Rails.root}/public/images/footer_shadow1.jpg")
     mail(:to=> @profile.user.email, :subject=> "[#{SITE_NAME} News] #{@blog.title} by #{@blog.sent_by}")
   end
 
@@ -63,6 +67,8 @@ class ArNotifier < ActionMailer::Base
 
   def invite(student)
     @student=student
+    attachments["mail_header.jpg"] = File.read("#{Rails.root}/public/images/mail_header.jpg")
+    attachments["mail_bottom.gif"] = File.read("#{Rails.root}/public/images/mail_bottom.gif")
     mail(:to=> @student.emails, :subject=> "Hi #{@student.full_name}, Get back to the future with #{SITE_NAME} on http://#{SITE}")
   end
 

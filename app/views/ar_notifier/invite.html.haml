@@ -6,7 +6,7 @@
     %div{:align => "left"}
       %table{:width => "483", :border => "0", :cellspacing => "0", :cellpadding => "0"}
         %tr
-          %td= link_to image_tag('mail_header.jpg', :alt => SITE_NAME), root_url
+          %td= link_to image_tag(attachments['mail_header.jpg'].url, :alt => SITE_NAME), root_url
         %tr
           %td{:bgcolor => "#f6dcc6", :style => "border-left:3px solid #aa4d49; border-right:3px solid #aa4d49;"}
             %p{:style => "font-size: 16px; color:#68A7BF; font-weight:bold; text-align:left;  padding-left: 20px; padding-top: 10px;"}
@@ -47,4 +47,4 @@
             %br
               = render :partial => 'account_mailer/email_footer'
         %tr
-          %td= image_tag('mail_bottom.gif', :alt => 'Thanks!', :width=>"483", :height=>"12")
+          %td= image_tag(attachments['mail_bottom.gif'].url, :alt => 'Thanks!', :width => "700", :height => "12")

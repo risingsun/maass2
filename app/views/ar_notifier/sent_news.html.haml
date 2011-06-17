@@ -6,11 +6,11 @@
     %table{:width => "627", :border => "0", :align => "center", :cellpadding => "0", :cellspacing => "0"}
       %tr
         %th{:scope=> "row"}
-          = image_tag("header_shadow.jpg", :width=>"658", :height=>"14", :border=>"0", :align=>"absbottom" )
+          = image_tag(attachments['header_shadow.jpg'].url, :width=>"658", :height=>"14", :border=>"0", :align=>"absbottom" )
     %table{:width => "627", :border => "0", :align => "center", :cellpadding => "0", :cellspacing => "0", :bgcolor => "#f5f5f5"}
       %tr
         %th{:scope => "row"}
-          = link_to image_tag("mailer_header.jpg", :width=>"625", :height=>"108", :border=>"0",:align=>"top" ), root_url
+          = link_to image_tag(attachments['mailer_header.jpg'].url, :width=> "625", :height => "108", :border => "0", :align => "top" ), root_url
     %table{:width => "627", :border => "0", :align => "center", :bgcolor => "#f5f5f5"}
       %tr
         %th{:scope=>"row"}
@@ -32,15 +32,15 @@
           = @blog.body.html_safe
         %th{:width => "13", :bgcolor => "#f5f5f5", :scope => "row"}
           &nbsp;
-        %td{:width => "189", :background => 'path_to_image("#{THEME_IMG}/mailer/bg.jpg")' , :bgcolor => "#E1E1E1"}
-          %div{:background-image => "url(/images/widget_small_bg.gif)", :border => "0", :background-color => "#FFFFFF"}
-            %span{:background-color=> "#FFFFFF"}
+        %td{:width => "189", :background => 'path_to_image("/maass/images/mailer/bg.jpg")' , :bgcolor => "#E1E1E1"}
+          %div{:background => "url(/images/widget_small_bg.gif)", :border => "0", :bgcolor => "#FFFFFF"}
+            %span{:bgcolor=> "#FFFFFF"}
             %div
             %h2{:style=>"font-size:11px;"}Supporters
             -AD_ARRAY.each do |ads|
             =  link_to image_tag("/ads/#{ads[:image]}",:title => ads[:alt],
                                       :alt => ads[:alt]), ads[:link],:popup => true ,:style => "color:#FFFFFF"
-            %span{:background-image => "url(/maass/images/widget_small_btm.gif)", :width => "202px;", :height => "6px;", :background-repeat => "no-repeat"}
+            %span{:background => "url(/maass/images/widget_small_btm.gif)", :width => "202px;", :height => "6px;"}
     %table{:width =>"627", :height =>"29", :border =>"0", :align => "center", :cellpadding => "0", :cellspacing =>"0", :bgcolor => "#f5f5f5"}
       %tr
         %th{:scope =>"row"}
@@ -49,7 +49,8 @@
           to comment on this blog.
     %table{:width => "627", :border =>"0", :align => "center", :cellpadding => "0", :cellspacing => "0", :bgcolor =>"#f5f5f5"}
       %tr
-        %th{:scope =>"row"}=  image_tag("line.jpg", :width=>"485", :height=>"1")
+        %th{:scope =>"row"}
+          =  image_tag(attachments['line.jpg'].url, :width=>"485", :height=>"1")
           %table{:width => "627", :border => "0", :cellpadding => "0", :cellspacing => "0", :bgcolor => "#f5f5f5"}
             %tr
               %td{:scope => "row"}
@@ -59,4 +60,4 @@
     %table{ :width => "627", :border => "0", :align => "center", :cellpadding => "0", :cellspacing => "0"}
       %tr
         %th{:scope => "row"}
-          =  image_tag("footer_shadow1.jpg",:width=> "658", :height=>"67")
+          =  image_tag(attachments['footer_shadow1.jpg'].url,:width=> "658", :height=>"67")
