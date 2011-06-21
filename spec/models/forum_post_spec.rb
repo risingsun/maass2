@@ -13,7 +13,7 @@ describe ForumPost do
 
   it "should check that forum_post is by_me?" do
     f= Factory(:forum_post)
-    f.by_me?(f.owner).should == true
+    f.by_me?(f.owner).should be_true
   end
 
 end

@@ -1,7 +1,7 @@
 class Friend < ActiveRecord::Base
 
-  ACCEPT_FRIEND = "1"
-  PENDING_FRIEND = "0"
+  ACCEPT_FRIEND = 1
+  PENDING_FRIEND = 0
   belongs_to :inviter, :class_name => 'Profile'
   belongs_to :invited, :class_name => 'Profile'
 

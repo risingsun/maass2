@@ -34,22 +34,27 @@ describe Invitation do
 
   it "should test if email dose not exist in profile" do    
     i = Factory.build(:invitation, :email => 'ddddd@gmail.com')
-    i.instance_eval{check_email}.should == true
+    i.instance_eval{check_email}.should be_true
   end
 
-  it "should test recent days" do
+  it "should test that invitation is not in recent days" do
+    i = Factory(:invitation, :updated_at =>"2011-05-21 12:17:51" )
+    i.should_not be_recent
+  end
+
+  it "should test that invitation is in recent days" do
     i = Factory(:invitation)
-    i.recent?(7).should == true
+    i.should be_recent
   end
 
   it "should test set_status method" do
     i = Factory.build(:invitation)
-    i.instance_eval{set_status}.should == true
+    i.instance_eval{set_status}.should be_true
   end
 
   it "should test send invitation" do
     i = Factory(:invitation)
-    i.instance_eval{send_invite}.should == true
+    i.instance_eval{send_invite}.should be_true
   end
   
 end

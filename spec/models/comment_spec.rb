@@ -29,23 +29,23 @@ describe Comment do
 
   it "should check that comment is by_me?" do
     comment= Factory(:comment, :profile => Factory(:profile))
-    comment.by_me?(comment.profile).should == true
+    comment.by_me?(comment.profile).should be_true
   end
 
   it "should check that comment is on_my_profile?" do
     comment= Factory(:profile_comment)
-    comment.on_my_profile?(comment.commentable).should == true
+    comment.on_my_profile?(comment.commentable).should be_true
   end
 
   it "should check that comment is on_my_commentable?" do
     comment = Factory(:comment)
-    comment.on_my_commentable?(comment.commentable.profile).should == true
+    comment.on_my_commentable?(comment.commentable.profile).should be_true
   end
 
   it "should test destroyable_by? method" do
     profile_comment = Factory(:profile_comment)
     destroy_comment = profile_comment.destroyable_by?(profile_comment.profile)
-    destroy_comment.should == true
+    destroy_comment.should be_true
   end
 
 end

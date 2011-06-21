@@ -1,11 +1,11 @@
 Factory.define :friend do |f|
   f.association :inviter, :factory => :profile
   f.association :invited, :factory => :profile
-  f.status true
+  f.status "1"
 end
 
 Factory.define :follower, :class => Friend do |f|
   f.association :inviter, :factory => :profile
   f.association :invited, :factory => :profile
-  f.status false
+  f.status "0"
 end

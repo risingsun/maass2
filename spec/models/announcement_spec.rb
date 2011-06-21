@@ -29,8 +29,8 @@ describe Announcement do
   it "should test announcement is current or not" do
     announcement1 = Factory(:announcement, :starts_at => DateTime.now + 1.month, :ends_at => DateTime.now + 1.month)
     announcement2 = Factory(:announcement)
-    announcement1.current_announcement?.should == false
-    announcement2.current_announcement?.should == true
+    announcement1.current_announcement?.should be_false
+    announcement2.current_announcement?.should be_true
   end
 
 end
