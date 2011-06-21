@@ -7,7 +7,7 @@ module ForumTopicsHelper
   def topic_last_post_info(topic)
     unless (topic.posts.empty?)
       post = topic.posts.last
-      "#{time_ago_in_words post.created_at} ago by "+link_to(post.owner.f, profile_path(post.owner))
+      "#{time_ago_in_words post.created_at} ago by "+link_to(post.owner.short_name, profile_path(post.owner))
     else
       "No posts"
     end

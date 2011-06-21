@@ -7,7 +7,7 @@ module ForumsHelper
   def forum_last_post_info(forum)
     unless (forum.posts.empty?)
       post = forum.posts.last
-      "#{post.created_at.to_datetime.to_formatted_s(:rfc822)}<br/>Posted by "+link_to(post.owner.f, profile_path(post.owner))+"<br/>in "+link_to(post.topic.title, forum_forum_topic_path(post.topic.forum, post.topic))
+      "#{post.created_at.to_datetime.to_formatted_s(:rfc822)}<br/>Posted by "+link_to(post.owner.short_name, profile_path(post.owner))+"<br/>in "+link_to(post.topic.title, forum_forum_topic_path(post.topic.forum, post.topic))
     else
       "No posts"
     end
