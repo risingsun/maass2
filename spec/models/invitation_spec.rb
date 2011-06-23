@@ -56,5 +56,5 @@ describe Invitation do
     i = Factory(:invitation)
     i.instance_eval{send_invite}.should be_true
   end
-  
+
 end

@@ -232,11 +232,11 @@ class Profile < ActiveRecord::Base
   end
 
   def self.admins
-    all(:conditions => ["users.admin = true"], :include => "user")
+    all(:conditions => ["users.role = 'admin'"], :include => "user")
   end
 
   def self.admin_emails
-    User.all(:conditions => ["users.admin = true"]).map(&:email)
+    User.all(:conditions => ["users.role = 'admin'"]).map(&:email)
   end
 
   def wants_email_notification?(type)

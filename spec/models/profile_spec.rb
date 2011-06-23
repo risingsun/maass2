@@ -69,6 +69,24 @@ describe Profile do
     full_name.should == "Mr. Amit Kumar Gupta"
   end
 
+  it "should check that user is female" do
+    profile.female?.should be_false
+  end
+
+  it "should check spouse name" do
+    spouse_name= profile2.spouse_name
+    spouse_name.should_not be_blank
+    spouse_name.should be_kind_of(String)
+    spouse_name.should == "Abc"
+  end
+
+  it "should check premarital_lastname" do
+    female_profile = Factory.build(:profile, :gender => 'female', :maiden_name=> "abcd")
+    premarital_lastname = female_profile.premarital_lastname
+    premarital_lastname.should be_kind_of(String)
+    premarital_lastname.should == female_profile.maiden_name
+  end  
+
   it "should find profiles have today_birthday" do
     Profile.today_birthday.should be_kind_of(Array)
     Profile.today_birthday.size.should == 2
@@ -91,6 +109,14 @@ describe Profile do
     profile.anniversary_next.should == '12-2-2012'.to_date
   end
 
+  it "should find birthdays" do
+    Profile.birthdays.should be_kind_of(Hash)
+  end
+
+  it "should find anniversaries" do
+    Profile.anniversaries.should be_kind_of(Hash)
+  end
+
   it "should test featured profile" do
     Profile.featured.should_not be_nil
   end
@@ -108,20 +134,6 @@ describe Profile do
     change_group.first.should_not be_blank
     change_group.should be_kind_of(Array)
   end
-
-  it "should check spouse name" do
-    spouse_name= profile2.spouse_name
-    spouse_name.should_not be_blank
-    spouse_name.should be_kind_of(String)
-    spouse_name.should == "Abc"
-  end
-
-  it "should check premarital_lastname" do
-    female_profile = Factory.build(:profile, :gender => 'female', :maiden_name=> "abcd")
-    premarital_lastname = female_profile.premarital_lastname
-    premarital_lastname.should be_kind_of(String)
-    premarital_lastname.should == female_profile.maiden_name
-  end  
 
   it "should test batch details" do
     Profile.batch_details(2011,:page => 1, :per_page => 2).should_not be_nil
@@ -147,6 +159,20 @@ describe Profile do
   it "should find happy days" do
     Profile.happy_day_range.should be_kind_of(Array)
     Profile.find_all_happy_days.should be_kind_of(Array)
+  end
+
+  it "should find admins" do
+    profiles = Profile.admins
+    profiles.should_not be_blank
+    admin = profiles.first.user
+    admin.role.should == "admin"
+  end
+
+  it "should find admins emails" do
+    emails = Profile.admin_emails
+    emails.should_not be_blank
+    emails.should be_kind_of(Array)
+    emails.first.should == "amit1@gmail.com"
   end
   
 end
