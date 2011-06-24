@@ -48,4 +48,19 @@ describe Comment do
     destroy_comment.should be_true
   end
 
+  it "should test comments_on_object" do
+    blog = Factory(:blog, :profile => Factory(:profile))
+    comment = Factory(:comment, :commentable => blog)
+    comments = Comment.comments_on_object(blog)
+    comments.should_not be_blank
+  end
+
+  it "should show me the wall between us" do
+    profile1 = Factory(:profile)
+    profile2 = Factory(:profile)
+    Factory(:profile_comment,:profile => profile1, :commentable => profile2)
+    Comment.between_profiles(profile1, profile2).should_not be_blank
+    Comment.between_profiles(profile1, profile2).should be_kind_of(Array)
+  end
+
 end

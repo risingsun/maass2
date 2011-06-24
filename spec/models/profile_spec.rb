@@ -88,11 +88,14 @@ describe Profile do
   end  
 
   it "should find profiles have today_birthday" do
+    Factory(:profile, :date_of_birth => Date.today)
+    Factory(:profile2, :date_of_birth => Date.today)
     Profile.today_birthday.should be_kind_of(Array)
     Profile.today_birthday.size.should == 2
   end
 
   it "should find profiles have today_anniversary" do
+    Factory(:profile2, :anniversary_date => Date.today)
     Profile.today_anniversary.should be_kind_of(Array)
     Profile.today_anniversary.size.should == 1
   end
