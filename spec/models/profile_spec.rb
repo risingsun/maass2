@@ -10,12 +10,12 @@ describe Profile do
   let(:profile) {@profile1.reload}
   let(:profile2) {@profile2.reload}
 
-  it "should chack status if profile is active" do
+  it "should check status if profile is active" do
     profile.status.should be_kind_of(String)
     profile.status.should == "activated"
   end
 
-  it "should chack status if profile is not active" do
+  it "should check status if profile is not active" do
     not_active_user = Factory.build(:profile, :is_active => false)
     not_active_user.status.should be_kind_of(String)
     not_active_user.status.should == "deactivated"
@@ -177,5 +177,78 @@ describe Profile do
     emails.should be_kind_of(Array)
     emails.first.should == "amit1@gmail.com"
   end
+
+  # Friendship module testing
+
+  it "should test method follows?" do
+    friend = Factory(:friend, :inviter=> profile, :invited=> profile2, :status => 0)        
+    profile.follows?(friend.invited).should be_true
+  end
+
+  it "should test method is_followed_by?" do
+    friend = Factory(:friend, :inviter=> profile, :invited=> profile2, :status => 0)        
+    profile2.is_followed_by?(friend.inviter).should be_true
+  end
+
+  it "should test method friends_with?" do
+    friend = Factory(:friend, :inviter=> profile, :invited=> profile2, :status => 1)
+    profile.friends_with?(friend.invited).should be_true
+  end
+
+  it "should test method start_following" do
+    profile.start_following(profile2).should_not be_blank
+    profile.followings.should_not be_blank
+    profile.followings.should be_kind_of(Array)
+    profile.followings.size.should == 1
+    profile.followings.first.should == profile2
+  end
+
+  it "should test method stop_following" do
+    profile2.start_following(profile)
+    profile.make_friend(profile2)
+    profile.stop_following(profile2)
+    profile.followings.should be_blank
+    profile.friends.should be_blank
+    profile2.friends.should be_blank
+  end
+
+  it "should test method make_friend" do
+    profile.start_following(profile2)
+    profile2.make_friend(profile).should_not be_nil
+  end
+
+  it "should return all friends" do
+    profile.start_following(profile2)
+    profile2.make_friend(profile)
+    profile.all_friends.should_not be_blank
+    profile.all_friends.should be_kind_of(Array)
+  end
+
+  # Permissioning module testing
+
+  it "should test permissions_with_my_default" do
+    all_permission_fields(profile,"friends")
+    profile.permissions.first.update_attribute(:permission_type, "Everyone")
+    profile.permissions.last.update_attribute(:permission_type, "Everyone")    
+    profile.permissions_with_my_default.should be_kind_of(Array)
+  end
+
+  it "should test my_default_permission" do
+    profile.my_default_permission.should == :Everyone
+    profile.my_default_permission.should be_kind_of(Symbol)
+    profile2.my_default_permission.should == :Friends
+  end
+
+  it "should test profile_permissions" do
+    profile.profile_permissions.should_not be_blank
+    profile.profile_permissions.should be_kind_of(Array)
+  end
+
+  it "should test db_permissions" do
+    all_permission_fields(profile,"everyone")
+    profile.db_permissions.should be_kind_of(Hash)
+    profile.db_permissions.keys.should be_kind_of(Array)
+    profile.db_permissions.values.should be_kind_of(Array)
+  end  
   
 end

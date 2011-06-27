@@ -40,3 +40,9 @@ RSpec.configure do |config|
   end
 
 end
+
+def all_permission_fields(profile,scope)
+  PERMISSION_FIELDS.each do |x|
+    Permission.create(:profile_id => profile, :permission_field=> x, :permission_type=> scope.capitalize)
+  end
+end

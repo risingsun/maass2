@@ -83,5 +83,5 @@ Factory.define :profile2, :class => Profile do |p|
   p.skype_name "x"
   p.delicious_name "x"
   p.icon_file_name "x"
-  p.default_permission "Everyone"
+  p.default_permission "Friends"
 end
