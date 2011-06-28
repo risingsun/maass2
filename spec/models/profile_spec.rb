@@ -85,7 +85,7 @@ describe Profile do
     premarital_lastname = female_profile.premarital_lastname
     premarital_lastname.should be_kind_of(String)
     premarital_lastname.should == female_profile.maiden_name
-  end  
+  end
 
   it "should find profiles have today_birthday" do
     Factory(:profile, :date_of_birth => Date.today)
@@ -156,7 +156,7 @@ describe Profile do
 
   it "should find latest_in_batch" do
     latest = Profile.latest_in_batch(2011)
-    latest.should_not be_blank    
+    latest.should_not be_blank
   end
 
   it "should find happy days" do
@@ -181,12 +181,12 @@ describe Profile do
   # Friendship module testing
 
   it "should test method follows?" do
-    friend = Factory(:friend, :inviter=> profile, :invited=> profile2, :status => 0)        
+    friend = Factory(:friend, :inviter=> profile, :invited=> profile2, :status => 0)
     profile.follows?(friend.invited).should be_true
   end
 
   it "should test method is_followed_by?" do
-    friend = Factory(:friend, :inviter=> profile, :invited=> profile2, :status => 0)        
+    friend = Factory(:friend, :inviter=> profile, :invited=> profile2, :status => 0)
     profile2.is_followed_by?(friend.inviter).should be_true
   end
 
@@ -229,7 +229,7 @@ describe Profile do
   it "should test permissions_with_my_default" do
     all_permission_fields(profile,"friends")
     profile.permissions.first.update_attribute(:permission_type, "Everyone")
-    profile.permissions.last.update_attribute(:permission_type, "Everyone")    
+    profile.permissions.last.update_attribute(:permission_type, "Everyone")
     profile.permissions_with_my_default.should be_kind_of(Array)
   end
 
@@ -249,6 +249,52 @@ describe Profile do
     profile.db_permissions.should be_kind_of(Hash)
     profile.db_permissions.keys.should be_kind_of(Array)
     profile.db_permissions.values.should be_kind_of(Array)
-  end  
+  end
+
+  it "should test all_field_permissions" do
+    all_permission_fields(profile,"everyone")
+    profile.all_field_permissions.should be_kind_of(Hash)
+  end
+
+  it "should fetch_permission_for a field" do
+    all_permission_fields(profile,"everyone").each do |x|
+      profile.fetch_permission_for('x').should == :Everyone
+      profile.fetch_permission_for('x').should be_kind_of(Symbol)
+    end
+  end
+
+  it "should return permissible_fields" do
+    all_permission_fields(profile,"everyone").each do |x|
+      Profile.permissible_fields([x]).should be_kind_of(Array)
+    end
+  end
+
+  it "should return my_default_permission_field" do
+    all_permission_fields(profile,"everyone"). each do |x|
+      Profile.my_default_permission_field(x).should_not be_blank
+      Profile.my_default_permission_field(x).should be_kind_of(String)
+    end
+  end
+
+  it "should test that user can_see_field" do
+    all_permission_fields(profile,"everyone").each do |x|
+      profile.can_see_field(x, profile).should be_true
+    end
+  end
+
+  it "should test can_see_field if user is self" do
+    all_permission_fields(profile,"myself").each do |x|
+      profile.can_see_field(x, profile).should be_true
+      profile2.can_see_field(x, profile).should be_false
+    end
+  end
+
+  it "should test that user can_see_field of friend" do
+    all_permission_fields(profile,"friends").each do |x|
+      profile.start_following(profile2)
+      profile2.make_friend(profile)
+      profile.can_see_field(x, profile2).should be_true
+    end
+  end
   
 end
