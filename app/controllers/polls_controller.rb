@@ -45,7 +45,7 @@ class PollsController < ApplicationController
   end
 
   def update    
-    if @poll.update_attributes!(params[:poll])
+    if @poll.update_attributes(params[:poll])
       flash[:notice] = 'Poll was successfully updated.'
       redirect_to profile_poll_path(@profile,@poll)
     else

@@ -46,3 +46,10 @@ def all_permission_fields(profile,scope)
     Permission.create(:profile_id => profile, :permission_field=> x, :permission_type=> scope.capitalize)
   end
 end
+
+def load_user
+  @request.env["devise.mapping"] = Devise.mappings[:user]
+  @user = Factory(:user)
+  @user.confirm!
+  sign_in :user, @user
+end

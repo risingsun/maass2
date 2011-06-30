@@ -34,7 +34,7 @@ class ProfilesController < ApplicationController
     else
       if @profile.update_attributes params[:profile]
         flash[:notice] = params[:commit] ? "#{params[:commit]} updated." : "Profile updated."
-        redirect_to :back
+        redirect_to request.referer
       else
         flash[:error] = "Cannot updated"
         render 'profiles/edit', :layout => "plain"
