@@ -16,6 +16,7 @@ describe ProfilesController do
       assigns[:profile].should be_an_instance_of(Profile)
       assigns[:profile].should_not be_a_new_record
       assigns[:profile].should_not be_nil
+      flash[:notice].should =~ /Profile updated./
     end
   end
 
@@ -36,8 +37,27 @@ describe ProfilesController do
       assigns[:profile].should be_an_instance_of(Profile)
       assigns[:profile].should_not be_a_new_record
       assigns[:profile].should_not be_nil
-      assigns[:profile].notification_control.profile_comment.should eql(3)
+      flash[:notice].should =~ /Notification updated./
     end
   end
 
+  describe "PUT 'update'" do
+    it "should update work info " do
+      put 'update', :id=> @profile, :profile => {:works_attributes =>{"0"=>{:job_description =>"engineer"}}}
+      assigns[:profile].should be_an_instance_of(Profile)
+      assigns[:profile].should_not be_a_new_record
+      assigns[:profile].should_not be_nil
+      flash[:notice].should =~ /Profile updated./
+    end
+  end
+
+  describe "PUT 'update'" do
+    it "should update permission of website field" do
+      all_permission_fields(@profile,"friends")
+      put :update, :id=> @profile, :commit => "Permissions", :profile=> {:permissions_attributes =>{ "0" =>{:permission_type=>"Myself", :permission_field => "website"}}}
+      assigns[:profile].should be_an_instance_of(Profile)
+      flash[:notice].should =~ /Permissions updated./
+    end
+  end
+  
 end
