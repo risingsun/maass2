@@ -46,7 +46,7 @@ describe ForumsController do
     end
   end
 
-  describe "SHOW 'show'" do
+  describe "GET 'show'" do
     it "should be successful" do
       get :show, :id => @forum
       assigns[:forum].should be_an_instance_of(Forum)

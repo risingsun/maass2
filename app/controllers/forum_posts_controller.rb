@@ -17,14 +17,14 @@ class ForumPostsController < ApplicationController
     else
       flash[:error] = "ForumPost Was Not Successfully Created."
     end
-    redirect_to :back
+     redirect_to request.referer
   end
 
   def destroy
     @post = @topic.posts.find(params[:id])
     @post.destroy
     flash[:notice] = "Successfully Deleted ForumPost."
-    redirect_to :back
+     redirect_to request.referer
   end
 
   private

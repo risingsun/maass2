@@ -12,7 +12,7 @@ describe ForumTopicsController do
 
   describe "Create a new instance (GET new)" do
     it "should create a new instance of forum topic" do
-      get 'new', :forum_id => @forum.id
+      get 'new', :forum_id => @forum
       assigns[:forum_topic].should be_an_instance_of(ForumTopic)
       assigns[:forum_topic].should be_a_new_record
       assigns[:forum_topic].should_not be_nil
@@ -22,13 +22,13 @@ describe ForumTopicsController do
 
   describe "Create a new forum topic (POST create)" do
     it "should not create a forum topic with invalid data" do
-      post :create, :forum_id => @forum.id, :forum_topic =>{:title=> ""}
+      post :create, :forum_id => @forum, :forum_topic =>{:title=> ""}
       assigns[:forum_topic].should be_a_new_record
       assigns[:forum_topic].should redirect_to forum_path(@forum)
     end
   
     it "should create a forum topic with valid data" do
-      post :create, :forum_id => @forum.id, :forum_topic =>{:title=> "first forum topic"}
+      post :create, :forum_id => @forum, :forum_topic =>{:title=> "first forum topic"}
       assigns[:forum_topic].should be_an_instance_of(ForumTopic)
       assigns[:forum_topic].should_not be_a_new_record
       assigns[:forum_topic].should_not be_nil
@@ -37,9 +37,9 @@ describe ForumTopicsController do
     end
   end
 
-  describe "SHOW 'show'" do
+  describe "GET 'show'" do
     it "should be successful" do
-      get :show, :id => @forum_topic, :forum_id=> @forum.id
+      get :show, :id => @forum_topic, :forum_id=> @forum
       assigns[:forum_topic].should be_an_instance_of(ForumTopic)
       assigns[:forum_topic].should_not be_a_new_record
       assigns[:forum_topic].should render_template('show')
@@ -49,7 +49,7 @@ describe ForumTopicsController do
 
   describe "GET 'edit'" do
     it "should be successful" do
-      get 'edit', :id => @forum_topic, :forum_id=> @forum.id
+      get 'edit', :id => @forum_topic, :forum_id=> @forum
       assigns[:forum_topic].should be_an_instance_of(ForumTopic)
       assigns[:forum_topic].should_not be_a_new_record
       assigns[:forum_topic].should render_template('edit')
@@ -59,13 +59,13 @@ describe ForumTopicsController do
 
   describe "Update a forum topic record (PUT update)" do
     it "should not update a forum topic with invalid data" do
-      put :update, :id => @forum_topic, :forum_id => @forum.id, :forum_topic => { :title=> ""}
+      put :update, :id => @forum_topic, :forum_id => @forum, :forum_topic => { :title=> ""}
       assigns[:forum_topic].should be_an_instance_of(ForumTopic)
       assigns[:forum_topic].should redirect_to(forum_path(@forum))
     end
 
     it "should update a forum topic with valid data" do
-      put :update, :id => @forum_topic, :forum_id => @forum.id, :forum_topic => {:title => "first updated forum topic", :forum => @forum, :owner_id => @profile}
+      put :update, :id => @forum_topic, :forum_id => @forum, :forum_topic => {:title => "first updated forum topic", :forum => @forum, :owner_id => @profile}
       assigns[:forum_topic].should be_an_instance_of(ForumTopic)
       assigns[:forum_topic].should_not be_a_new_record
       assigns[:forum_topic].should_not be_nil
@@ -75,7 +75,7 @@ describe ForumTopicsController do
 
   describe "DELETE 'destroy'" do
     it "should be successful" do
-      delete :destroy, :id => @forum_topic, :forum_id=> @forum.id
+      delete :destroy, :id => @forum_topic, :forum_id=> @forum
       assigns[:forum_topic].should redirect_to(forum_path(@forum))
       flash[:notice].should =~ /Successfully Deleted ForumTopic./
     end

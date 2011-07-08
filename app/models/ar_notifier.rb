@@ -80,7 +80,7 @@ class ArNotifier < ActionMailer::Base
   def nomination_mail(nomination,rec_profile)
     @nomination=nomination
     @name = @nomination.profile.full_name
-    mail(:to=> rec_profile, :cc=> rec_profile, :subject=> "[#{SITE_NAME} Nomination] #{@nomination.profile.full_name} (#{@nomination.profile.group})")
+    mail(:to=> rec_profile, :cc=> rec_profile, :subject=> "[#{SITE_NAME} Nomination] #{@name} (#{@nomination.profile.group})")
   end
   
 end
